@@ -36,6 +36,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 Marcelo Medeiros de Vasconcellos <marcelomdevasconcellos@gmail.com>
 
-Para maiores informações acesse: www.emensageria.com.br e baixe o Manual de Instruções
+Para maiores informações acesse: www.emensageria.com.br
 
 
