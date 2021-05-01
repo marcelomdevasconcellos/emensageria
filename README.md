@@ -1,6 +1,6 @@
 # eMensageria
 
-eMensageria - Sistema de Gerenciamento de Eventos do eSocial e EFD-Reinf <www.emensageria.com.br>
+eMensageria - Sistema de mensageria de eventos opensource do eSocial e EFD-Reinf <www.emensageria.com.br>
 
 ## Versões compatíveis do eSocial
 
