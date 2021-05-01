@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eSocial>
+  <retornoEnvioLoteEventos>
+    <ideEmpregador>
+      <tpInsc>123</tpInsc>
+      <nrInsc>str1234</nrInsc>
+    </ideEmpregador>
+    <ideTransmissor>
+      <tpInsc>123</tpInsc>
+      <nrInsc>str1234</nrInsc>
+    </ideTransmissor>
+    <status>
+      <cdResposta>123</cdResposta>
+      <descResposta>str1234</descResposta>
+      <ocorrencias>
+        <ocorrencia>
+          <codigo>123</codigo>
+          <descricao>str1234</descricao>
+          <tipo>5</tipo>
+          <localizacao>str1234</localizacao>
+        </ocorrencia>
+      </ocorrencias>
+    </status>
+    <dadosRecepcaoLote>
+      <dhRecepcao>2012-12-13T12:12:12</dhRecepcao>
+      <versaoAplicativoRecepcao>str1234</versaoAplicativoRecepcao>
+      <protocoloEnvio>str1234</protocoloEnvio>
+    </dadosRecepcaoLote>
+  </retornoEnvioLoteEventos>
+</eSocial>

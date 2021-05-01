@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eSocial>
+  <envioLoteEventos grupo="123">
+    <ideEmpregador>
+      <tpInsc>1</tpInsc>
+      <nrInsc>str1234</nrInsc>
+    </ideEmpregador>
+    <ideTransmissor>
+      <tpInsc>1</tpInsc>
+      <nrInsc>str1234</nrInsc>
+    </ideTransmissor>
+    <eventos>
+      <evento Id="???" />
+    </eventos>
+  </envioLoteEventos>
+</eSocial>
