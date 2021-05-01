@@ -1,0 +1,409 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtIrrfBenef__div">
+    <div class="col-md-12">
+        <h4>Imposto de Renda Retido do beneficiário do rendimento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Identificação do evento de retorno.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrRecArqBase__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do recibo do arquivo vase<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. Validação: Deve corresponder ao recibo de um arquivo com informações de rendimentos sujeitos a IRRF (S-1210)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__ideEvento__id__nrRecArqBase" maxlength="40" value="{{original.evento_json|readjson:'evtIrrfBenef.ideEvento.nrRecArqBase'}}" name="[evtIrrfBenef][ideEvento][nrRecArqBase]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="perApur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de Apuração<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtIrrfBenef.ideEvento.perApur'}}" name="[evtIrrfBenef][ideEvento][perApur]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtIrrfBenef][ideEmpregador][tpInsc]" id="evtIrrfBenef__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtIrrfBenef][ideEmpregador][tpInsc]" id="evtIrrfBenef__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtIrrfBenef__ideEmpregador__id__nrInsc_disabled" name="[evtIrrfBenef][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtIrrfBenef][ideEmpregador][nrInsc]" id="evtIrrfBenef__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideTrabalhador__div">
+    <div class="col-md-12">
+        <h4>Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF constante no arquivo gerado pelo empregador no evento S-1210."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__ideTrabalhador__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtIrrfBenef.ideTrabalhador.cpfTrab'}}" name="[evtIrrfBenef][ideTrabalhador][cpfTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoDep__div">
+    <div class="col-md-12">
+        <h4>Informações relativas a existência de dependentes do beneficiário do pagamento. Origem: S-1210 - registro {deps}.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="vrDedDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da dedução da BC do IRRF<a data-toggle="tooltip" title="Valor da dedução da base de cálculo do IRRF relativo aos dependentes do beneficiário do pagamento, correspondente ao número de dependentes multiplicado pelo valor de dedução por dependente previsto na legislação do Imposto de Renda."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoDep__id__vrDedDep" maxlength="14" value="{{original.evento_json|readjson:'evtIrrfBenef.infoDep.vrDedDep'}}" name="[evtIrrfBenef][infoDep][vrDedDep]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoIrrf__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao Imposto de Renda Retido na Fonte do Trabalhador e suas bases de cálculo. Origem S-1200, S-1202, S-1207, S-1210, S-2299, S-2399.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codCateg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1). Preenchimento obrigatório se a informação de origem for dos eventos S-1200, S-1202, S-2299 e S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.codCateg'}}" name="[evtIrrfBenef][infoIrrf][codCateg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indResBr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicador de residência<a data-toggle="tooltip" title="Indicar se o beneficiário do pagamento é residente fiscal no Brasil: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtIrrfBenef__infoIrrf__id__indResBr" name="[evtIrrfBenef][infoIrrf][indResBr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.indResBr' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.indResBr' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="basesIrrf__div">
+    <div class="col-md-12">
+        <h4>Bases, deduções, isenções e retenções do IRRF.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpValor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de Valor<a data-toggle="tooltip" title="Tipo de valor relativo aos rendimentos pagos e ao IRRF retido. Validação: Deve corresponder ao {codIncIRRF} em S-1010 das rubricas utilizadas na composição das remunerações informadas nos eventos S-1200, S-1202, S-1207, S-1210, S-2299 e S-2399, conforme segue: Rendimentos não tributáveis: 00 - Rendimento não tributável; 01 - Rendimento não tributável em função de acordos internacionais de bitributação; 09 - Outras verbas não consideradas como base de cálculo ou rendimento; Rendimentos tributáveis - base de cálculo do IRRF: 11 - Remuneração Mensal; 12 - 13o Salário; 13 - Férias; 14 - PLR; 15 - Rendimentos Recebidos Acumuladamente - RRA; Retenções do IRRF efetuadas sobre: 31 - Remuneração Mensal; 32 - 13o Salário; 33 - Férias; 34 - PLR; 35 - RRA; Deduções da base de cálculo do IRRF: 41 - Previdência Social Oficial - PSO - Remuner. Mensal; 42 - PSO - 13° salário; 43 - PSO - Férias; 44 - PSO - RRA; 46 - Previdência Privada - salário mensal; 47 - Previdência Privada - 13° salário; 51 - Pensão Alimentícia - Remuneração Mensal; 52 - Pensão Alimentícia - 13° salário; 53 - Pensão Alimentícia - Férias; 54 - Pensão Alimentícia - PLR; 55 - Pensão Alimentícia - RRA; 61 - Fundo de Aposentadoria Programada Individual - FAPI - Remuneração Mensal; 62 - Fundo de Aposentadoria Programada Individual - FAPI - 13° salário; 63 - Fundação de Previdência Complementar do Servidor Público - Funpresp - Remuneração Mensal; 64 - Fundação de Previdência Complementar do Servidor Público - Funpresp - 13° salário; Isenções do IRRF: 70 - Parcela Isenta 65 anos - Remuneração Mensal; 71 - Parcela Isenta 65 anos - 13° salário; 72 - Diárias; 73 - Ajuda de Custo; 74 - Indenização e rescisão de contrato, inclusive a título de PDV e acidentes de trabalho; 75 - Abono pecuniário; 76 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - Remuneração Mensal; 77 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - 13° salário; 78 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis; 79 - Outras isenções (identificar o nome da rubrica em S-1010); Demandas Judiciais: 81 - Depósito Judicial; 82 - Compensação Judicial do ano calendário; 83 - Compensação Judicial de anos anteriores; Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: 91 - Remuneração Mensal; 92 - 13o Salário; 93 - Férias; 94 - PLR; 95 - RRA. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtIrrfBenef__infoIrrf__basesIrrf__id__tpValor" name="[evtIrrfBenef][infoIrrf][basesIrrf][tpValor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="valor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base de cálculo, dedução ou desconto da CP<a data-toggle="tooltip" title="Valor do rendimento tributável, não tributável, retenção, dedução ou isenção do Imposto de Renda Retido na Fonte, conforme definido no campo {tpValor}. I - Se ({tpPgto} <> [7,9] e {indPgtoTt} = [S]) deve corresponder ao somatório dos valores informados em {vrRubr} em S-1200 e S-1202, nos grupos {remunPerApur} e {remunPerAnt}, e em S-1207, S-1210, S-2299 e S- 2399, obedecendo o que segue: a) Somar os valores das rubricas cujo {tpRubr} seja igual a [1,3] menos as rubricas cujo {tpRubr} seja igual a [2,4], cujo pagamento tenha sido realizado no mês indicado em {perApur}, conforme informado no campo {dtPgto} do evento S-1210, cujo {tpValor} = [00,01,09,11,12,13,14,15, 70,71,72,73,74, 75,76,77,78,79, 81,82,83, 91,92,93,94,95]; b) Somar os valores das rubricas cujo {tpRubr} seja igual a [2,4] menos as rubricas cujo {tpRubr} seja igual a [1,3], cujo pagamento tenha sido realizado no mês indicado em {perApur}, conforme informado no campo {dtPgto} do evento S-1210, cujo {tpValor} = [31,32,33,34,35, 41,42,43,44,46,47, 51,52,53,54,55, 61,62,63,64]. II - Se {tpPgto} <> [7,9] e {indPgtoTt} = [N] Deve corresponder ao somatório dos valores informados em {vrRubr} dos grupos {detPgtoFl/infoPgtoParc} e {detPgtoBenPr/infoPgtoParc} em S-1210, obedecendo o que segue: a) Somar {vrRubr} cujo {tpRubr} seja igual a [1] menos as rubricas cujo {tpRubr} seja igual a [2,4], cujo {tpValor} = [00,01,09,11,12,13,14,15, 70,71,72,73,74, 75,76,77,78,79, 81,82,83, 91,92,93,94,95]; b) Somar {vrRubr} cujo {tpRubr} seja igual a [2,4] menos as rubricas cujo {tpRubr} seja igual a [1,3], cujo {tpValor} = [31,32,33,34,35, 41,42,43,44,46,47, 51,52,53,54,55, 61,62,63,64]. III - Se {tpPgto} = [7], deve corresponder ao somatório dos valores informados em {vrRubr} em S-1210 no grupo {detRubrFer}, obedecendo o que segue: a) Somar {vrRubr} cujo {tpRubr} seja igual a [1,3] menos as rubricas cujo {tpRubr} seja igual a [2,4], cujo {tpValor} = [00,01,09,11,12,13,14,15, 70,71,72,73,74, 75,76,77,78,79, 81,82,83, 91,92,93,94,95]; b) Somar [vrRubr] cujo {tpRubr} seja igual a [2,4] menos as rubricas cujo {tpRubr} seja igual a [1,3], cujo {tpValor} = [31,32,33,34,35, 41,42,43,44,46,47, 51,52,53,54,55, 61,62,63,64]. IV - Se {tpPgto} = [9], deve corresponder à soma dos valores informados em {vrBcIRRF} em S-1210 no grupo {infoPgtoAnt}, obedecendo a correspondência para cada {tpBcIRRF} informado. Validação: Deve corresponder ao somatório do campo {vrRubr} em S-1200 e S-1202, nos grupos {remunPerApur} e {remunPerAnt}, e em S-1207, S- 1210, S-2299 e S-2399, obedecendo o que segue: a) Somar os valores das rubricas cujo {tpRubr} seja igual a [1,3] menos as rubricas cujo {tpRubr} seja igual a [2,4], cujo pagamento tenha sido realizado no mês indicado em {perApur}, conforme informado em S-1210, campo {dtPgto} cujo {tpValor} = [00,01,09,11,12,13,14,15, 70,71,72,73,74, 75,76,77,78,79, 81,82,83, 91,92,93,94,95]; b) Somar os valores das rubricas cujo {tpRubr} seja igual a [2,4] menos as rubricas cujo {tpRubr} seja igual a [1,3], cujo pagamento tenha sido realizado no mês indicado em {perApur}, conforme informado em S-1210, campo {dtPgto} cujo {tpValor} = [31,32,33,34,35, 41,42,43,44,46,47, 51,52,53,54,55, 61,62,63,64]. c) Só informar valores, mesmo zerados, relativos a {tpValor} se houver alguma informação nos eventos de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__basesIrrf__id__valor" maxlength="14" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.basesIrrf.valor'}}" name="[evtIrrfBenef][infoIrrf][basesIrrf][valor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="irrf__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao Imposto de Renda Retido na Fonte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpCR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Receita (CR)<a data-toggle="tooltip" title="Código de Receita - CR relativo ao Imposto de Renda Retido na Fonte sobre rendimentos do trabalho, conforme legislação em vigor na competência: 0473-01 - Renda e Proventos de Qualquer Natureza; 0561-07 - IRRF - Rendimento do Trabalho Assalariado no País/Ausente no Exterior a Serviço do País; 0561-08 - IRRF - Empregado Doméstico; 0561-09 - IRRF - Empregado Doméstico - 13º Sal Rescisão; 0561-10 - IRRF - Empregado doméstico - 13º salário; 0561-11 - IRRF - Empregado/Trabalhador Rural - Segurado Especial; 0561-12 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário; 0561-13 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário rescisório; 0588-06 - IRRF - Rendimento do trabalho sem vínculo empregatício; 0610- 01 - IRRF - Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai; 3533 Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos por Previdência Pública; 3562-01 - IRRF - Participação dos trabalhadores em Lucros ou Resultados (PLR). Origem S-1210, para definição do mês de ocorrência dos fatos geradores e os respectivos demonstrativos de pagamento constantes dos eventos S-1200, S- 1202,S-1207, S-2299 e S-2399. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtIrrfBenef__infoIrrf__irrf__id__tpCR" name="[evtIrrfBenef][infoIrrf][irrf][tpCR]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="0473-01" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 0473-01 %}selected{% endifequal %}>0473-01 - Renda e Proventos de Qualquer Natureza</option><option value="0561-07" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 0561-07 %}selected{% endifequal %}>0561-07 - IRRF - Rendimento do Trabalho Assalariado no País/Ausente no Exterior a Serviço do País</option><option value="0561-08" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 0561-08 %}selected{% endifequal %}>0561-08 - IRRF - Empregado Doméstico</option><option value="0561-09" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 0561-09 %}selected{% endifequal %}>0561-09 - IRRF - Empregado Doméstico - 13º Sal Rescisão</option><option value="0561-10" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 0561-10 %}selected{% endifequal %}>0561-10 - IRRF - Empregado doméstico - 13º salário</option><option value="0561-11" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 0561-11 %}selected{% endifequal %}>0561-11 - IRRF - Empregado/Trabalhador Rural - Segurado Especial</option><option value="0561-12" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 0561-12 %}selected{% endifequal %}>0561-12 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário</option><option value="0561-13" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 0561-13 %}selected{% endifequal %}>0561-13 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário rescisório</option><option value="0588-06" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 0588-06 %}selected{% endifequal %}>0588-06 - IRRF - Rendimento do trabalho sem vínculo empregatício</option><option value="0610- 01" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 0610- 01 %}selected{% endifequal %}>0610- 01 - IRRF - Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai</option><option value="3562-01" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.tpCR' 3562-01 %}selected{% endifequal %}>3562-01 - IRRF - Participação dos trabalhadores em Lucros ou Resultados (PLR). Origem S-1210, para definição do mês de ocorrência dos fatos geradores e os respectivos demonstrativos de pagamento constantes dos eventos S-1200, S- 1202,S-1207, S-2299 e S-2399. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="vrIrrfDesc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor efetivamente descontado IRRF<a data-toggle="tooltip" title="Valor efetivamente descontado relativo ao Imposto de Renda Retido na Fonte sobre rendimentos do trabalho, agrupado conforme segue: ORIGEM: S-1200, S-1202, S-2299, S-2399 e respectivo S-1210: 0473-01: Se {codCateg} = [101,103,105,106,107,108,111,301,302,303,305, 306,309, 401,410, 721,722,723], {indResBr} = [N] e {classTrib} <> [22], efetuar o somatório de {valor} cujo {tpValor} = [31,32,33,34,35]; 0561-07: Se {codCateg} = [101,103,105,106,107,108,111,201,202, 301,302,303,305,306,309, 401,410, 721,722,723,901,902,903,904,905], {indResBr} = [S] e {classTrib} <> [22], efetuar o somatório de {valor} cujo {tpValor} = [31, 32, 33, 35]; 0561-08: Se {codCateg} = [104], efetuar o somatório de {valor} cujo {tpValor} = [31,33]; 0561-09: Se {codCateg} = [104], efetuar o somatório de {valor} cujo {tpValor} = [32], apenas se origem for S-2299; 0561-10: Se {codCateg} = [104], efetuar o somatório de {valor} cujo {tpValor} = [32], exceto se origem for S-2299; 0561-11: Se {codCateg} = [101,102,103,105,106,107,108,111,201,202] e {classTrib} = [22], efetuar o somatório de {valor} cujo {tpValor} = [31,33]; 0561-12: Se {codCateg} = [101,102,103,105,106,107,108,111,201,202] e {classTrib} = [22], efetuar o somatório de {valor} cujo {tpValor} = [32], exceto se origem for S-2299/S-2399; 0561-13: Se {codCateg} = [101,102,103,105,106,107,108,111,201,202] e {classTrib} = [22], efetuar o somatório de {valor} cujo {tpValor} = [32], apenas se origem for S-2299/S-2399; 0588-06: Se {codCateg} = [701, 711, 731, 734, 738, 741, 751, 761, 771, 781] ou ({codCateg} = [712] e {paisResid} do trabalhador <> [586]), efetuar o somatório de {valor} cujo {tpValor} = [31]; 0610-01: Se {codCateg} = [712] e {paisResid} do trabalhador = [586], efetuar o somatório de {valor} cujo {tpValor} = [31]; 3562-01: Efetuar o somatório de {valor} cujo {tpValor} = [34] e {indResBr} = [S]; ORIGEM S-1207 e respectivo S-1210: 3533: Efetuar o somatório de {valor} cujo {tpValor} = [31,32,33,34,35]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__irrf__id__vrIrrfDesc" maxlength="14" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.irrf.vrIrrfDesc'}}" name="[evtIrrfBenef][infoIrrf][irrf][vrIrrfDesc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="idePgtoExt__div">
+    <div class="col-md-12">
+        <h4>Informações complementares relativas a pagamento efetuado a beneficiário residente fiscal no exterior.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="idePais__div">
+    <div class="col-md-12">
+        <h4>Identificação do País onde foi efetuado o pagamento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codPais__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do País<a data-toggle="tooltip" title="Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela de países."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__idePgtoExt__idePais__id__codPais" maxlength="3" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.idePais.codPais'}}" name="[evtIrrfBenef][infoIrrf][idePgtoExt][idePais][codPais]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indNIF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicador do NIF<a data-toggle="tooltip" title="Indicativo do Número de Identificação Fiscal: 1 - Beneficiário com NIF; 2 - Beneficiário dispensado do NIF; 3 - País não exige NIF. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtIrrfBenef__infoIrrf__idePgtoExt__idePais__id__indNIF" name="[evtIrrfBenef][infoIrrf][idePgtoExt][idePais][indNIF]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.idePais.indNIF' 1 %}selected{% endifequal %}>1 - Beneficiário com NIF</option><option value="2" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.idePais.indNIF' 2 %}selected{% endifequal %}>2 - Beneficiário dispensado do NIF</option><option value="3" {% ifequal original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.idePais.indNIF' 3 %}selected{% endifequal %}>3 - País não exige NIF. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nifBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do NIF<a data-toggle="tooltip" title="Número de Identificação Fiscal - NIF. Validação: Obrigatório se {indNIF} = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__idePgtoExt__idePais__id__nifBenef" maxlength="20" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.idePais.nifBenef'}}" name="[evtIrrfBenef][infoIrrf][idePgtoExt][idePais][nifBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="endExt__div">
+    <div class="col-md-12">
+        <h4>Informações complementares de endereço do beneficiário.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dscLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__idePgtoExt__endExt__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.endExt.dscLograd'}}" name="[evtIrrfBenef][infoIrrf][idePgtoExt][endExt][dscLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número<a data-toggle="tooltip" title="Número do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__idePgtoExt__endExt__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.endExt.nrLograd'}}" name="[evtIrrfBenef][infoIrrf][idePgtoExt][endExt][nrLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="complem__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__idePgtoExt__endExt__id__complem" maxlength="30" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.endExt.complem'}}" name="[evtIrrfBenef][infoIrrf][idePgtoExt][endExt][complem]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="bairro__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__idePgtoExt__endExt__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.endExt.bairro'}}" name="[evtIrrfBenef][infoIrrf][idePgtoExt][endExt][bairro]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmCid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome da Cidade<a data-toggle="tooltip" title="Nome da Cidade."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__idePgtoExt__endExt__id__nmCid" maxlength="50" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.endExt.nmCid'}}" name="[evtIrrfBenef][infoIrrf][idePgtoExt][endExt][nmCid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codPostal__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrfBenef__infoIrrf__idePgtoExt__endExt__id__codPostal" maxlength="12" value="{{original.evento_json|readjson:'evtIrrfBenef.infoIrrf.idePgtoExt.endExt.codPostal'}}" name="[evtIrrfBenef][infoIrrf][idePgtoExt][endExt][codPostal]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

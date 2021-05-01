@@ -1,0 +1,516 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtTabAmbiente__div">
+    <div class="col-md-12">
+        <h4>Evento de Tabela de Ambientes de Trabalho do Empregador. Regras de validação: REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de Identificação do Evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtTabAmbiente][ideEvento][tpAmb]" id="evtTabAmbiente__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtTabAmbiente][ideEvento][tpAmb]" id="evtTabAmbiente__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtTabAmbiente][ideEvento][procEmi]" id="evtTabAmbiente__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtTabAmbiente][ideEvento][procEmi]" id="evtTabAmbiente__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo</label>
+            <input type="text" name="[evtTabAmbiente][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtTabAmbiente__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtTabAmbiente][ideEvento][verProc]" id="evtTabAmbiente__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtTabAmbiente][ideEmpregador][tpInsc]" id="evtTabAmbiente__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtTabAmbiente][ideEmpregador][tpInsc]" id="evtTabAmbiente__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtTabAmbiente__ideEmpregador__id__nrInsc_disabled" name="[evtTabAmbiente][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtTabAmbiente][ideEmpregador][nrInsc]" id="evtTabAmbiente__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoAmbiente__div">
+    <div class="col-md-12">
+        <h4>Identificação da operação (inclusão, alteração ou exclusão) e das informações do ambiente.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="inclusao__div">
+    <div class="col-md-12">
+        <h4>Inclusão de novas informações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideAmbiente__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do ambiente de trabalho do empregador e de validade das informações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Ambiente<a data-toggle="tooltip" title="Preencher com o código atribuído pela empresa ao Ambiente de Trabalho. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições. Regra de validação: REGRA_CARACTER_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__inclusao__ideAmbiente__id__codAmb" maxlength="30" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.inclusao.ideAmbiente.codAmb'}}" name="[evtTabAmbiente][infoAmbiente][inclusao][ideAmbiente][codAmb]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="iniValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Início da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__inclusao__ideAmbiente__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.inclusao.ideAmbiente.iniValid'}}" name="[evtTabAmbiente][infoAmbiente][inclusao][ideAmbiente][iniValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fimValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__inclusao__ideAmbiente__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.inclusao.ideAmbiente.fimValid'}}" name="[evtTabAmbiente][infoAmbiente][inclusao][ideAmbiente][fimValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="dadosAmbiente__div">
+    <div class="col-md-12">
+        <h4>Informações do ambiente de trabalho.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nmAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o nome do ambiente de trabalho.<a data-toggle="tooltip" title="Informar o nome do ambiente de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__inclusao__dadosAmbiente__id__nmAmb" maxlength="100" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.inclusao.dadosAmbiente.nmAmb'}}" name="[evtTabAmbiente][infoAmbiente][inclusao][dadosAmbiente][nmAmb]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição<a data-toggle="tooltip" title="Descrição do ambiente de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__inclusao__dadosAmbiente__id__dscAmb" maxlength="8000" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.inclusao.dadosAmbiente.dscAmb'}}" name="[evtTabAmbiente][infoAmbiente][inclusao][dadosAmbiente][dscAmb]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="localAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Local<a data-toggle="tooltip" title="Preencher com uma das opções: 1 - Estabelecimento do próprio empregador; 2 - Estabelecimento de terceiros; 3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da Tabela 10. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__inclusao__dadosAmbiente__id__localAmb" maxlength="1" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.inclusao.dadosAmbiente.localAmb'}}" name="[evtTabAmbiente][infoAmbiente][inclusao][dadosAmbiente][localAmb]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtTabAmbiente][infoAmbiente][inclusao][dadosAmbiente][tpInsc]" id="evtTabAmbiente__infoAmbiente__inclusao__dadosAmbiente__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtTabAmbiente][infoAmbiente][inclusao][dadosAmbiente][tpInsc]" id="evtTabAmbiente__infoAmbiente__inclusao__dadosAmbiente__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__inclusao__dadosAmbiente__id__nrInsc_disabled" name="[evtTabAmbiente][infoAmbiente][inclusao][dadosAmbiente][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtTabAmbiente][infoAmbiente][inclusao][dadosAmbiente][nrInsc]" id="evtTabAmbiente__infoAmbiente__inclusao__dadosAmbiente__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="codLotacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Lotação<a data-toggle="tooltip" title="Informar o código atribuído pela empresa para a lotação tributária. Validação: Preenchimento obrigatório e exclusivo se {localAmb} = [2]. Se informado, deve ser um código existente em S-1020 - Tabela de Lotações Tributárias com o campo {tpLotacao} = [03,04,05,06,07,08,09]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__inclusao__dadosAmbiente__id__codLotacao" maxlength="30" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.inclusao.dadosAmbiente.codLotacao'}}" name="[evtTabAmbiente][infoAmbiente][inclusao][dadosAmbiente][codLotacao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="alteracao__div">
+    <div class="col-md-12">
+        <h4>Alteração de informações já existentes.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideAmbiente__div">
+    <div class="col-md-12">
+        <h4>Grupo de informações de identificação do Ambiente de Trabalho, apresentando código e período de validade do Ambiente cujas informações serão alteradas pelos dados constantes neste evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Ambiente<a data-toggle="tooltip" title="Preencher com o código atribuído pela empresa ao Ambiente de Trabalho. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__alteracao__ideAmbiente__id__codAmb" maxlength="30" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.alteracao.ideAmbiente.codAmb'}}" name="[evtTabAmbiente][infoAmbiente][alteracao][ideAmbiente][codAmb]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="iniValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Início da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__alteracao__ideAmbiente__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.alteracao.ideAmbiente.iniValid'}}" name="[evtTabAmbiente][infoAmbiente][alteracao][ideAmbiente][iniValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fimValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__alteracao__ideAmbiente__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.alteracao.ideAmbiente.fimValid'}}" name="[evtTabAmbiente][infoAmbiente][alteracao][ideAmbiente][fimValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="dadosAmbiente__div">
+    <div class="col-md-12">
+        <h4>Informações do Ambiente de Trabalho.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nmAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o nome do ambiente de trabalho.<a data-toggle="tooltip" title="Informar o nome do ambiente de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__alteracao__dadosAmbiente__id__nmAmb" maxlength="100" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.alteracao.dadosAmbiente.nmAmb'}}" name="[evtTabAmbiente][infoAmbiente][alteracao][dadosAmbiente][nmAmb]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição<a data-toggle="tooltip" title="Descrição do ambiente de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__alteracao__dadosAmbiente__id__dscAmb" maxlength="8000" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.alteracao.dadosAmbiente.dscAmb'}}" name="[evtTabAmbiente][infoAmbiente][alteracao][dadosAmbiente][dscAmb]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="localAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Local<a data-toggle="tooltip" title="Preencher com uma das opções: 1 - Estabelecimento do próprio empregador; 2 - Estabelecimento de terceiros; 3 - Prestação de serviços em instalações de terceiros não consideradas como lotações dos tipos 03 a 09 da Tabela 10. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__alteracao__dadosAmbiente__id__localAmb" maxlength="1" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.alteracao.dadosAmbiente.localAmb'}}" name="[evtTabAmbiente][infoAmbiente][alteracao][dadosAmbiente][localAmb]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtTabAmbiente][infoAmbiente][alteracao][dadosAmbiente][tpInsc]" id="evtTabAmbiente__infoAmbiente__alteracao__dadosAmbiente__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtTabAmbiente][infoAmbiente][alteracao][dadosAmbiente][tpInsc]" id="evtTabAmbiente__infoAmbiente__alteracao__dadosAmbiente__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__alteracao__dadosAmbiente__id__nrInsc_disabled" name="[evtTabAmbiente][infoAmbiente][alteracao][dadosAmbiente][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtTabAmbiente][infoAmbiente][alteracao][dadosAmbiente][nrInsc]" id="evtTabAmbiente__infoAmbiente__alteracao__dadosAmbiente__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="codLotacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Lotação<a data-toggle="tooltip" title="Informar o código atribuído pela empresa para a lotação tributária. Validação: Preenchimento obrigatório e exclusivo se {localAmb} = [2]. Se informado, deve ser um código existente em S-1020 - Tabela de Lotações Tributárias."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__alteracao__dadosAmbiente__id__codLotacao" maxlength="30" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.alteracao.dadosAmbiente.codLotacao'}}" name="[evtTabAmbiente][infoAmbiente][alteracao][dadosAmbiente][codLotacao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="novaValidade__div">
+    <div class="col-md-12">
+        <h4>Informação preenchida exclusivamente em caso de alteração do período de validade das informações do Ambiente identificado em {ideAmbiente}, apresentando o novo período de validade.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="iniValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Início da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__alteracao__novaValidade__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.alteracao.novaValidade.iniValid'}}" name="[evtTabAmbiente][infoAmbiente][alteracao][novaValidade][iniValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fimValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__alteracao__novaValidade__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.alteracao.novaValidade.fimValid'}}" name="[evtTabAmbiente][infoAmbiente][alteracao][novaValidade][fimValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="exclusao__div">
+    <div class="col-md-12">
+        <h4>Exclusão de informações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideAmbiente__div">
+    <div class="col-md-12">
+        <h4>Grupo de informações que identifica o Ambiente que será excluído.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Ambiente<a data-toggle="tooltip" title="Preencher com o código atribuído pela empresa ao Ambiente de Trabalho. Validação: O código atribuído não pode conter a expressão "eSocial" nas 7 (sete) primeiras posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__exclusao__ideAmbiente__id__codAmb" maxlength="30" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.exclusao.ideAmbiente.codAmb'}}" name="[evtTabAmbiente][infoAmbiente][exclusao][ideAmbiente][codAmb]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="iniValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Início da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__exclusao__ideAmbiente__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.exclusao.ideAmbiente.iniValid'}}" name="[evtTabAmbiente][infoAmbiente][exclusao][ideAmbiente][iniValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fimValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabAmbiente__infoAmbiente__exclusao__ideAmbiente__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabAmbiente.infoAmbiente.exclusao.ideAmbiente.fimValid'}}" name="[evtTabAmbiente][infoAmbiente][exclusao][ideAmbiente][fimValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

@@ -1,0 +1,1079 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtPgtos__div">
+    <div class="col-md-12">
+        <h4>Evento pagtos. de rendimentos do trabalho. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EXISTE_INFO_EMPREGADOR REGRA_PAGTO_IND_RETIFICACAO REGRA_PAGTO_PERMITE_EXCLUSAO REGRA_RUBRICA_COMPATIVEL_CATEGORIA REGRA_RUBRICA_SIMPLIF_TAB_PADRAO REGRA_VALIDA_DT_PGTO REGRA_VALIDA_PER_APUR_PGTO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtPgtos__ideEvento__id__indRetif" name="[evtPgtos][ideEvento][indRetif]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideEvento__id__nrRecibo" maxlength="40" value="{{original.evento_json|readjson:'evtPgtos.ideEvento.nrRecibo'}}" name="[evtPgtos][ideEvento][nrRecibo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApuracao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo do periodo de apuração<a data-toggle="tooltip" title="Indicativo de período de apuração: 1 - Mensal. Valores Válidos: 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtPgtos__ideEvento__id__indApuracao" name="[evtPgtos][ideEvento][indApuracao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtPgtos.ideEvento.indApuracao' 1 %}selected{% endifequal %}>1 - Mensal. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="perApur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de Apuração<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações. Validação: Deve ser um mês/ano válido, igual ou posterior a implementação do eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtPgtos.ideEvento.perApur'}}" name="[evtPgtos][ideEvento][perApur]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtPgtos][ideEvento][tpAmb]" id="evtPgtos__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtPgtos][ideEvento][tpAmb]" id="evtPgtos__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtPgtos][ideEvento][procEmi]" id="evtPgtos__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtPgtos][ideEvento][procEmi]" id="evtPgtos__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo</label>
+            <input type="text" name="[evtPgtos][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtPgtos__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtPgtos][ideEvento][verProc]" id="evtPgtos__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtPgtos][ideEmpregador][tpInsc]" id="evtPgtos__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtPgtos][ideEmpregador][tpInsc]" id="evtPgtos__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtPgtos__ideEmpregador__id__nrInsc_disabled" name="[evtPgtos][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtPgtos][ideEmpregador][nrInsc]" id="evtPgtos__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideBenef__div">
+    <div class="col-md-12">
+        <h4>Identificação do beneficiário do pagamento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Informar o CPF do beneficiário. Validação: Deve ser um CPF válido. Se o pagamento refere-se a: a) verbas informadas nos eventos de remuneração ou desligamento (S-1200, S-1202, S-2299 ou S-2399), o CPF deve ser o mesmo que o informado nos mesmos; b) férias (grupo {detPgtoFer}), o CPF informado deve constar no RET; c) competências anteriores ao início de obrigatoriedade dos eventos periódicos (grupo {detPgtoAnt}), o CPF informado deve constar no RET, exceto se for referente a TSVE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__id__cpfBenef" maxlength="11" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.cpfBenef'}}" name="[evtPgtos][ideBenef][cpfBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="deps__div">
+    <div class="col-md-12">
+        <h4>Informações de dependentes do beneficiário do pagamento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="vrDedDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da dedução da BC do IRRF<a data-toggle="tooltip" title="Valor da dedução da base de cálculo do IRRF relativo aos dependentes do beneficiário do pagamento, correspondente ao número de dependentes multiplicado pelo valor de dedução por dependente previsto na legislação do Imposto de Renda."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__deps__id__vrDedDep" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.deps.vrDedDep'}}" name="[evtPgtos][ideBenef][deps][vrDedDep]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoPgto__div">
+    <div class="col-md-12">
+        <h4>Informações dos pagamentos efetuados.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dtPgto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de pagamento<a data-toggle="tooltip" title="Informar a data de pagamento. Validação: A data informada deve estar compreendida no período de apuração ({perApur}), exceto se {procEmi} = [2, 4]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__dtPgto" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.dtPgto'}}" name="[evtPgtos][ideBenef][infoPgto][dtPgto]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpPgto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de Pagamento<a data-toggle="tooltip" title="Informar o tipo de pagamento, de acordo com as opções a seguir: 1 - Pagamento de remuneração, conforme apurado em {dmDev} do S-1200; 2 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2299; 3 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2399; 5 - Pagamento de remuneração conforme apurado em {dmDev} do S-1202; 6 - Pagamento de Benefícios Previdenciários, conforme apurado em {dmDev} do S-1207; 7 - Recibo de férias; 9 - Pagamento relativo a competências anteriores ao início de obrigatoriedade dos eventos periódicos para o contribuinte. Valores Válidos: 1, 2, 3, 5, 6, 7, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtPgtos__ideBenef__infoPgto__id__tpPgto" name="[evtPgtos][ideBenef][infoPgto][tpPgto]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.tpPgto' 1 %}selected{% endifequal %}>1 - Pagamento de remuneração, conforme apurado em {dmDev} do S-1200</option><option value="2" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.tpPgto' 2 %}selected{% endifequal %}>2 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2299</option><option value="3" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.tpPgto' 3 %}selected{% endifequal %}>3 - Pagamento de verbas rescisórias conforme apurado em {dmDev} do S- 2399</option><option value="5" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.tpPgto' 5 %}selected{% endifequal %}>5 - Pagamento de remuneração conforme apurado em {dmDev} do S-1202</option><option value="6" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.tpPgto' 6 %}selected{% endifequal %}>6 - Pagamento de Benefícios Previdenciários, conforme apurado em {dmDev} do S-1207</option><option value="7" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.tpPgto' 7 %}selected{% endifequal %}>7 - Recibo de férias</option><option value="9" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.tpPgto' 9 %}selected{% endifequal %}>9 - Pagamento relativo a competências anteriores ao início de obrigatoriedade dos eventos periódicos para o contribuinte. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="indResBr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicador de residência<a data-toggle="tooltip" title="Indicar se o beneficiário do pagamento é residente fiscal no Brasil: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtPgtos__ideBenef__infoPgto__id__indResBr" name="[evtPgtos][ideBenef][infoPgto][indResBr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.indResBr' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.indResBr' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="detPgtoFl__div">
+    <div class="col-md-12">
+        <h4>Detalhamento dos pagamentos efetuados, relativos a folha de pagamento e rescisões contratuais, apurados em S-1200, S-1202, S-2299 e S-2399. O somatório de cada uma das rubricas cujo {codIncIRRF} = [31, 32, 33, 34, 35] não pode ser negativo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de Referência<a data-toggle="tooltip" title="Informar a competência declarada no campo {perApur} do evento remuneratório a que se refere o pagamento, no formato AAAA-MM, se for relativa a folha de pagamento normal (mensal, quinzenal, etc.) ou AAAA, se for relativa a folha de 13° salário. Validação: Informação obrigatória se {tpPgto} = [1,5]. Não pode haver informação nos demais casos. Deve estar no formato AAAA-MM ou AAAA."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__id__perRef" maxlength="7" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.perRef'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][perRef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideDmDev__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador dos demostrativos de pagamento<a data-toggle="tooltip" title="Identificador atribuído pela fonte pagadora para o demonstrativo de valores devidos ao trabalhador conforme definido em S-1200, S-1202, S-2299 ou S- 2399. Validação: Deve ser um valor atribuído pela fonte pagadora em S-1200, S- 1202, S-2299 ou S-2399 no campo {ideDmDev}, obedecendo a relação: Se {tpPgto} = [1], em S-1200; Se {tpPgto} = [2], em S-2299; Se {tpPgto} = [3], em S-2399; Se {tpPgto} = [5], em S-1202."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__id__ideDmDev" maxlength="30" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.ideDmDev'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][ideDmDev]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indPgtoTt__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicador de pagamento total ou parcial<a data-toggle="tooltip" title="Indicativo de pagamento total ou parcial. Informar [S] se o valor que está sendo pago é exatamente o previsto nos eventos S-1200, S-1202, S-2299 ou S-2399 em {dmDev}. Informar [N] se o valor que está sendo pago é inferior ao previsto nos eventos S-1200, S-1202, S-2299 ou S-2399 em {dmDev}. Se for informado [N], significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtPgtos__ideBenef__infoPgto__detPgtoFl__id__indPgtoTt" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][indPgtoTt]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="vrLiq__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor liquido<a data-toggle="tooltip" title="Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). Validação: Não pode ser um valor negativo. Se {indPgtoTt} = [S] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas: a) nos eventos S-1200, S-1202, S-2299 e S-2399; e b) no grupo inferior ({retPgtoTot}). Se {indPgtoTt} = [N] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas em {infoPgtoParc} do registro inferior."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__id__vrLiq" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.vrLiq'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][vrLiq]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrRecArq__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que contém as informações da rescisão contratual que originou o pagamento. Validação: Informação obrigatória se {tpPgto} = [2,3]. Não pode ser informado nos demais casos. Se {tpPgto} = [2] deve ser um recibo de arquivo gerado no leiaute S-2299. Se {tpPgto} = [3], deve ser um recibo de arquivo gerado no leiaute S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__id__nrRecArq" maxlength="40" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.nrRecArq'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][nrRecArq]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="retPgtoTot__div">
+    <div class="col-md-12">
+        <h4>Retenções efetuadas no ato do pagamento pelo valor total do demonstrativo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Rubrica<a data-toggle="tooltip" title="Informar as rubricas de folha de pagamento que representam os descontos de IRRF e pensão alimentícia. Deve-se informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no período indicado em {perApur}. Só pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__retPgtoTot__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.retPgtoTot.codRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][retPgtoTot][codRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador tabela de rubricas<a data-toggle="tooltip" title="Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__retPgtoTot__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.retPgtoTot.ideTabRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][retPgtoTot][ideTabRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quantidade<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__retPgtoTot__id__qtdRubr" maxlength="6" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.retPgtoTot.qtdRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][retPgtoTot][qtdRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc, da rubrica, quando necessário. Ex: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__retPgtoTot__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.retPgtoTot.fatorRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][retPgtoTot][fatorRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrUnit__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor Unitário<a data-toggle="tooltip" title="Preencher com o valor unitário da rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__retPgtoTot__id__vrUnit" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.retPgtoTot.vrUnit'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][retPgtoTot][vrUnit]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total<a data-toggle="tooltip" title="Valor total da rubrica. Validação: Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__retPgtoTot__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.retPgtoTot.vrRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][retPgtoTot][vrRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="penAlim__div">
+    <div class="col-md-12">
+        <h4>Informações sobre beneficiários de pensão alimentícia.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Informar o CPF do beneficiário. Validação: Deve ser um CPF válido. Deve ser diferente do CPF do trabalhador. Em arquivo gerado por pessoa física não pode ser igual ao CPF do empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__retPgtoTot__penAlim__id__cpfBenef" maxlength="11" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.retPgtoTot.penAlim.cpfBenef'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][retPgtoTot][penAlim][cpfBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtNasctoBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de nascimento beneficiarios<a data-toggle="tooltip" title="Data de nascimento do beneficiário da pensão. Validação: Deve ser maior ou igual que 01/01/1890 e menor que a data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__retPgtoTot__penAlim__id__dtNasctoBenef" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.retPgtoTot.penAlim.dtNasctoBenef'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][retPgtoTot][penAlim][dtNasctoBenef]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmBenefic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome<a data-toggle="tooltip" title="Nome do Beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__retPgtoTot__penAlim__id__nmBenefic" maxlength="70" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.retPgtoTot.penAlim.nmBenefic'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][retPgtoTot][penAlim][nmBenefic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrPensao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da Pensão alimentícia<a data-toggle="tooltip" title="Valor da pensão alimentícia."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__retPgtoTot__penAlim__id__vlrPensao" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.retPgtoTot.penAlim.vlrPensao'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][retPgtoTot][penAlim][vlrPensao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoPgtoParc__div">
+    <div class="col-md-12">
+        <h4>Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo. Devem ser utilizadas rubricas que integram o demonstrativo de valores devidos ao trabalhador ({ideDmDev}) do respectivo evento (S-1200, S-1202, S-2299, S-2399) que deu origem ao presente pagamento parcial, além de rubricas que representam os descontos de IRRF e pensão alimentícia.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="matricula__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Deve corresponder à matrícula informada pelo empregador no evento remuneratório (S-1200 ou S-1202, S-2299) do respectivo demonstrativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__infoPgtoParc__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.infoPgtoParc.matricula'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][infoPgtoParc][matricula]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Rubrica<a data-toggle="tooltip" title="Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. Validação: Deve ser utilizada rubrica: a) que integra o demonstrativo de valores devidos ao trabalhador ({ideDmDev}) do respectivo evento (S-1200, S-1202, S-2299, S-2399) que deu origem ao presente pagamento parcial; ou b) cujo {codIncIRRF} em S-1010 for igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]. O código informado deve existir na tabela S-1010 com vigência no período indicado em {perRef}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__infoPgtoParc__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.infoPgtoParc.codRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][infoPgtoParc][codRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador tabela de rubricas<a data-toggle="tooltip" title="Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__infoPgtoParc__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.infoPgtoParc.ideTabRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][infoPgtoParc][ideTabRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quantidade<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__infoPgtoParc__id__qtdRubr" maxlength="6" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.infoPgtoParc.qtdRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][infoPgtoParc][qtdRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc, da rubrica, quando necessário. Ex: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__infoPgtoParc__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.infoPgtoParc.fatorRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][infoPgtoParc][fatorRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrUnit__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor Unitário<a data-toggle="tooltip" title="Preencher com o valor unitário da rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__infoPgtoParc__id__vrUnit" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.infoPgtoParc.vrUnit'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][infoPgtoParc][vrUnit]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total<a data-toggle="tooltip" title="Valor total da rubrica. Validação: Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFl__infoPgtoParc__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFl.infoPgtoParc.vrRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFl][infoPgtoParc][vrRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="detPgtoBenPr__div">
+    <div class="col-md-12">
+        <h4>Detalhamento de pagamentos relativos a benefícios previdenciários.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de Referência<a data-toggle="tooltip" title="Informar o período ao qual se refere o pagamento no formato AAAA-MM. Validação: Deve estar no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__id__perRef" maxlength="7" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.perRef'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][perRef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideDmDev__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador dos demostrativos de pagamento<a data-toggle="tooltip" title="Identificador atribuído pelo Órgão Público ou Instituto de Previdência para o recibo de pagamento, conforme definido em S-1207. Validação: Deve ser um valor atribuído pela empresa em S-1207."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__id__ideDmDev" maxlength="30" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.ideDmDev'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][ideDmDev]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indPgtoTt__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicador de pagamento total ou parcial<a data-toggle="tooltip" title="Indicativo de pagamento total ou parcial. Informar [S] se o valor que está sendo pago é exatamente o previsto no evento S-1207 em {dmDev}. Informar [N] se o valor que está sendo pago é inferior ao previsto no evento S-1207 em {dmDev}. Se for informado [N], significa que está sendo informando um pagamento de parte do que é devido ou então, está sendo informado um pagamento parcelado sendo o presente pagamento apenas uma das parcelas. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__id__indPgtoTt" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][indPgtoTt]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="vrLiq__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor liquido<a data-toggle="tooltip" title="Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). Validação: Não pode ser um valor negativo. Se {indPgtoTt} = [S] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas: a) no evento S-1207; e b) no grupo inferior ({retPgtoTot}). Se {indPgtoTt} = [N] deve corresponder à soma dos vencimentos ({tpRubr=1}) menos a soma dos descontos ({tpRubr=2}) das rubricas informadas em {infoPgtoParc} do registro inferior."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__id__vrLiq" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.vrLiq'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][vrLiq]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="retPgtoTot__div">
+    <div class="col-md-12">
+        <h4>Retenções efetuadas no ato do pagamento pelo valor integral do demonstrativo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Rubrica<a data-toggle="tooltip" title="Informar as rubricas de folha de pagamento que representam os descontos de IRRF e pensão alimentícia. Deve-se informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no período indicado em {perApur}. Só pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__retPgtoTot__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.retPgtoTot.codRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][retPgtoTot][codRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador tabela de rubricas<a data-toggle="tooltip" title="Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__retPgtoTot__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.retPgtoTot.ideTabRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][retPgtoTot][ideTabRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quantidade<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__retPgtoTot__id__qtdRubr" maxlength="6" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.retPgtoTot.qtdRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][retPgtoTot][qtdRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc, da rubrica, quando necessário. Ex: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__retPgtoTot__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.retPgtoTot.fatorRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][retPgtoTot][fatorRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrUnit__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor Unitário<a data-toggle="tooltip" title="Preencher com o valor unitário da rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__retPgtoTot__id__vrUnit" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.retPgtoTot.vrUnit'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][retPgtoTot][vrUnit]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total<a data-toggle="tooltip" title="Valor total da rubrica. Validação: Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__retPgtoTot__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.retPgtoTot.vrRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][retPgtoTot][vrRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoPgtoParc__div">
+    <div class="col-md-12">
+        <h4>Informações complentares relacionadas ao pagamento efetuado em valor menor que o apurado no demonstrativo. Devem ser utilizadas rubricas que integram o demonstrativo de valores devidos ao trabalhador ({ideDmDev}) do respectivo evento (S-1207) que deu origem ao presente pagamento parcial, além de rubricas que representam os descontos de IRRF e pensão alimentícia.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Rubrica<a data-toggle="tooltip" title="Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. Validação: Deve ser utilizada rubrica: a) que integra o demonstrativo de valores devidos ao trabalhador ({ideDmDev}) do respectivo evento (S-1207) que deu origem ao presente pagamento parcial; ou b) cujo {codIncIRRF} em S-1010 for igual a [31, 32, 33, 34, 35, 51, 52, 53, 54, 55, 81, 82, 83]. O código informado deve existir na tabela S-1010 com vigência no período indicado em {perRef}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__infoPgtoParc__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.infoPgtoParc.codRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][infoPgtoParc][codRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador tabela de rubricas<a data-toggle="tooltip" title="Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__infoPgtoParc__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.infoPgtoParc.ideTabRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][infoPgtoParc][ideTabRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quantidade<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__infoPgtoParc__id__qtdRubr" maxlength="6" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.infoPgtoParc.qtdRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][infoPgtoParc][qtdRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc, da rubrica, quando necessário. Ex: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__infoPgtoParc__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.infoPgtoParc.fatorRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][infoPgtoParc][fatorRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrUnit__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor Unitário<a data-toggle="tooltip" title="Preencher com o valor unitário da rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__infoPgtoParc__id__vrUnit" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.infoPgtoParc.vrUnit'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][infoPgtoParc][vrUnit]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total<a data-toggle="tooltip" title="Valor total da rubrica. Validação: Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoBenPr__infoPgtoParc__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoBenPr.infoPgtoParc.vrRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoBenPr][infoPgtoParc][vrRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="detPgtoFer__div">
+    <div class="col-md-12">
+        <h4>Detalhamento dos pagamentos efetuados relativos a férias. O somatório de cada uma das rubricas cujo {codIncCP} = [31, 32, 34, 35] e {codIncIRRF} = [31, 32, 33, 34, 35] não pode ser negativo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codCateg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.codCateg'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][codCateg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="matricula__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Informação obrigatória para trabalhadores das categorias "empregados" e "agentes públicos". Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.matricula'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][matricula]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtIniGoz__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de início do gozo de férias<a data-toggle="tooltip" title="Data de início de gozo das férias."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__id__dtIniGoz" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.dtIniGoz'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][dtIniGoz]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtDias__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quant. de dias de férias gozadas<a data-toggle="tooltip" title="Quantidade de dias de férias gozadas. Não devem ser incluídos os dias referentes ao abono pecuniário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__id__qtDias" maxlength="2" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.qtDias'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][qtDias]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrLiq__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor liquido<a data-toggle="tooltip" title="Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver). Validação: Deve corresponder ao somatório dos valores de vencimentos e descontos descritos em {detRubrFer}. Não pode ser um valor negativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__id__vrLiq" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.vrLiq'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][vrLiq]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="detRubrFer__div">
+    <div class="col-md-12">
+        <h4>Detalhamento das rubricas do Recibo Antecipado de Férias.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Rubrica<a data-toggle="tooltip" title="Informar o código atribuído pela empresa e que identifica a rubrica em sua folha de pagamento. Validação: O código informado deve existir na tabela S-1010 - Tabela de Rubricas, vigente no período indicado em {perApur}. Só pode ser utilizada rubrica cujo {codIncIRRF} em S-1010 seja igual a [00, 01, 09, 13, 33, 43, 46, 53, 63, 75, 93]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__detRubrFer__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.detRubrFer.codRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][detRubrFer][codRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador tabela de rubricas<a data-toggle="tooltip" title="Preencher com o identificador da tabela de rubricas, conforme informado em S-1010 para a rubrica definida em {codRubr}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__detRubrFer__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.detRubrFer.ideTabRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][detRubrFer][ideTabRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quantidade<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, percentual, etc.). Exs.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário. etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__detRubrFer__id__qtdRubr" maxlength="6" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.detRubrFer.qtdRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][detRubrFer][qtdRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc, da rubrica, quando necessário. Ex: Adicional de Horas Extras 50%, relacionado a uma rubrica de horas extras: Fator = 50."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__detRubrFer__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.detRubrFer.fatorRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][detRubrFer][fatorRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrUnit__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor Unitário<a data-toggle="tooltip" title="Preencher com o valor unitário da rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__detRubrFer__id__vrUnit" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.detRubrFer.vrUnit'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][detRubrFer][vrUnit]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total<a data-toggle="tooltip" title="Valor total da rubrica. Validação: Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__detRubrFer__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.detRubrFer.vrRubr'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][detRubrFer][vrRubr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="penAlim__div">
+    <div class="col-md-12">
+        <h4>Informações sobre beneficiários de pensão alimentícia.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Informar o CPF do beneficiário. Validação: Deve ser um CPF válido. Deve ser diferente do CPF do trabalhador. Em arquivo gerado por pessoa física não pode ser igual ao CPF do empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__detRubrFer__penAlim__id__cpfBenef" maxlength="11" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.detRubrFer.penAlim.cpfBenef'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][detRubrFer][penAlim][cpfBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtNasctoBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de nascimento beneficiarios<a data-toggle="tooltip" title="Data de nascimento do beneficiário da pensão. Validação: Deve ser maior ou igual que 01/01/1890 e menor que a data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__detRubrFer__penAlim__id__dtNasctoBenef" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.detRubrFer.penAlim.dtNasctoBenef'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][detRubrFer][penAlim][dtNasctoBenef]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmBenefic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome<a data-toggle="tooltip" title="Nome do Beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__detRubrFer__penAlim__id__nmBenefic" maxlength="70" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.detRubrFer.penAlim.nmBenefic'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][detRubrFer][penAlim][nmBenefic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrPensao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da Pensão alimentícia<a data-toggle="tooltip" title="Valor da pensão alimentícia."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoFer__detRubrFer__penAlim__id__vlrPensao" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoFer.detRubrFer.penAlim.vlrPensao'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoFer][detRubrFer][penAlim][vlrPensao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="detPgtoAnt__div">
+    <div class="col-md-12">
+        <h4>Pagamento relativo a competências anteriores ao início de obrigatoriedade dos eventos periódicos para o contribuinte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codCateg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1. Validação: Deve existir na Tabela de Categorias de Trabalhadores (tabela 1)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoAnt__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoAnt.codCateg'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoAnt][codCateg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoPgtoAnt__div">
+    <div class="col-md-12">
+        <h4>Detalhamento do pagamento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpBcIRRF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de BC IRRF<a data-toggle="tooltip" title="Tipo de base de cálculo, dedução ou isenção do IRRF relacionado ao valor do pagamento, conforme opções abaixo: Rendimentos não tributáveis: 00 - Rendimento não tributável; 01 - Rendimento não tributável em função de acordos internacionais de bitributação; 09 - Outras verbas não consideradas como base de cálculo ou rendimento; Rendimentos tributáveis - base de cálculo do IRRF: 11 - Remuneração Mensal; 12 - 13o Salário; 13 - Férias; 14 - PLR; 15 - Rendimentos Recebidos Acumuladamente - RRA; Retenções do IRRF efetuadas sobre: 31 - Remuneração mensal; 32 - 13o Salário; 33 - Férias; 34 - PLR; 35 - RRA; Deduções da base de cálculo do IRRF: 41 - Previdência Social Oficial - PSO - Remuner. Mensal; 42 - PSO - 13° salário; 43 - PSO - Férias; 44 - PSO - RRA; 46 - Previdência Privada - salário mensal; 47 - Previdência Privada - 13° salário; 51 - Pensão Alimentícia - Remuneração Mensal; 52 - Pensão Alimentícia - 13° salário; 53 - Pensão Alimentícia - Férias; 54 - Pensão Alimentícia - PLR; 55 - Pensão Alimentícia - RRA; 61 - Fundo de Aposentadoria Programada Individual - FAPI - Remuneração Mensal; 62 - Fundo de Aposentadoria Programada Individual - FAPI - 13° salário; 63 - Fundação de Previdência Complementar do Servidor Público - Funpresp - Remuneração Mensal; 64 - Fundação de Previdência Complementar do Servidor Público - Funpresp - 13° salário; Isenções do IRRF: 70 - Parcela Isenta 65 anos - Remuneração Mensal; 71 - Parcela Isenta 65 anos - 13° salário; 72 - Diárias; 73 - Ajuda de Custo; 74 - Indenização e rescisão de contrato, inclusive a título de PDV e acidentes de trabalho; 75 - Abono pecuniário; 76 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - Remuneração Mensal; 77 - Pensão, aposentadoria ou reforma por moléstia grave ou acidente em serviço - 13° salário; 78 - Valores pagos a titular ou sócio de microempresa ou empresa de pequeno porte, exceto pró-labore e alugueis; 79 - Outras isenções (o nome da rubrica deve ser claro para identificação da natureza dos valores); Demandas Judiciais: 81 - Depósito Judicial; 82 - Compensação Judicial do ano calendário; 83 - Compensação Judicial de anos anteriores; Incidência Suspensa decorrente de decisão judicial, relativas a base de cálculo do IRRF sobre: 91 - Remuneração Mensal; 92 - 13o Salário; 93 - Férias; 94 - PLR; 95 - RRA. Valores Válidos: 00,01,09,11,12,13,14,15, 31,32,33,34,35, 41,42,43,44,46,47, 51,52,53,54,55, 61,62,63,64, 70,71,72,73,74,75,76,77,78,79, 81,82,83, 91,92,93,94,95."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtPgtos__ideBenef__infoPgto__detPgtoAnt__infoPgtoAnt__id__tpBcIRRF" name="[evtPgtos][ideBenef][infoPgto][detPgtoAnt][infoPgtoAnt][tpBcIRRF]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="vrBcIRRF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da BC do IRRF<a data-toggle="tooltip" title="Valor da base de cálculo, retenção, dedução ou Isenção do IRRF incidente sobre o valor devido ao trabalhador de acordo com {tpBcIRRF}. Validação: Deve ser maior que zero."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__detPgtoAnt__infoPgtoAnt__id__vrBcIRRF" maxlength="14" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.detPgtoAnt.infoPgtoAnt.vrBcIRRF'}}" name="[evtPgtos][ideBenef][infoPgto][detPgtoAnt][infoPgtoAnt][vrBcIRRF]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="idePgtoExt__div">
+    <div class="col-md-12">
+        <h4>Informações complementares relativas a pagamentos efetuados a beneficiário residente fiscal no exterior.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="idePais__div">
+    <div class="col-md-12">
+        <h4>Identificação do País onde foi efetuado o pagamento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codPais__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do País<a data-toggle="tooltip" title="Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela de países."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__idePgtoExt__idePais__id__codPais" maxlength="3" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.idePais.codPais'}}" name="[evtPgtos][ideBenef][infoPgto][idePgtoExt][idePais][codPais]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indNIF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicador do NIF<a data-toggle="tooltip" title="Indicativo do Número de Identificação Fiscal: 1 - Beneficiário com NIF; 2 - Beneficiário dispensado do NIF; 3 - País não exige NIF. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtPgtos__ideBenef__infoPgto__idePgtoExt__idePais__id__indNIF" name="[evtPgtos][ideBenef][infoPgto][idePgtoExt][idePais][indNIF]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.idePais.indNIF' 1 %}selected{% endifequal %}>1 - Beneficiário com NIF</option><option value="2" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.idePais.indNIF' 2 %}selected{% endifequal %}>2 - Beneficiário dispensado do NIF</option><option value="3" {% ifequal original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.idePais.indNIF' 3 %}selected{% endifequal %}>3 - País não exige NIF. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nifBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do NIF<a data-toggle="tooltip" title="Número de Identificação Fiscal - NIF. Validação: Obrigatório se {indNIF} = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__idePgtoExt__idePais__id__nifBenef" maxlength="20" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.idePais.nifBenef'}}" name="[evtPgtos][ideBenef][infoPgto][idePgtoExt][idePais][nifBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="endExt__div">
+    <div class="col-md-12">
+        <h4>Informações complementares de endereço do beneficiário.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dscLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__idePgtoExt__endExt__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.endExt.dscLograd'}}" name="[evtPgtos][ideBenef][infoPgto][idePgtoExt][endExt][dscLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número<a data-toggle="tooltip" title="Número do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__idePgtoExt__endExt__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.endExt.nrLograd'}}" name="[evtPgtos][ideBenef][infoPgto][idePgtoExt][endExt][nrLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="complem__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__idePgtoExt__endExt__id__complem" maxlength="30" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.endExt.complem'}}" name="[evtPgtos][ideBenef][infoPgto][idePgtoExt][endExt][complem]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="bairro__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__idePgtoExt__endExt__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.endExt.bairro'}}" name="[evtPgtos][ideBenef][infoPgto][idePgtoExt][endExt][bairro]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmCid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome da Cidade<a data-toggle="tooltip" title="Nome da Cidade."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__idePgtoExt__endExt__id__nmCid" maxlength="50" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.endExt.nmCid'}}" name="[evtPgtos][ideBenef][infoPgto][idePgtoExt][endExt][nmCid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codPostal__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__idePgtoExt__endExt__id__codPostal" maxlength="12" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto.idePgtoExt.endExt.codPostal'}}" name="[evtPgtos][ideBenef][infoPgto][idePgtoExt][endExt][codPostal]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

@@ -1,0 +1,501 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtBasesTrab__div">
+    <div class="col-md-12">
+        <h4>Evento Bases por Trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Identificação do evento de retorno.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrRecArqBase__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do recibo do arquivo vase<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. Validação: Deve corresponder ao recibo de um arquivo com informações de remuneração de trabalhador vinculado a RGPS (S-1200, S-2299 ou S-2399)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__ideEvento__id__nrRecArqBase" maxlength="40" value="{{original.evento_json|readjson:'evtBasesTrab.ideEvento.nrRecArqBase'}}" name="[evtBasesTrab][ideEvento][nrRecArqBase]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApuracao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo do periodo de apuração<a data-toggle="tooltip" title="Indicativo de período de apuração: 1 - Mensal; 2 - Anual (13° salário). Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesTrab__ideEvento__id__indApuracao" name="[evtBasesTrab][ideEvento][indApuracao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtBasesTrab.ideEvento.indApuracao' 1 %}selected{% endifequal %}>1 - Mensal</option><option value="2" {% ifequal original.evento_json|readjson:'evtBasesTrab.ideEvento.indApuracao' 2 %}selected{% endifequal %}>2 - Anual (13° salário). Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="perApur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de Apuração<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao} for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao} for igual a [2]. Validação: Deve ser um mês/ano ou ano válido, posterior a implementação do eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtBasesTrab.ideEvento.perApur'}}" name="[evtBasesTrab][ideEvento][perApur]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtBasesTrab][ideEmpregador][tpInsc]" id="evtBasesTrab__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtBasesTrab][ideEmpregador][tpInsc]" id="evtBasesTrab__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtBasesTrab__ideEmpregador__id__nrInsc_disabled" name="[evtBasesTrab][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtBasesTrab][ideEmpregador][nrInsc]" id="evtBasesTrab__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideTrabalhador__div">
+    <div class="col-md-12">
+        <h4>Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de remuneração.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__ideTrabalhador__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtBasesTrab.ideTrabalhador.cpfTrab'}}" name="[evtBasesTrab][ideTrabalhador][cpfTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="procJudTrab__div">
+    <div class="col-md-12">
+        <h4>Informações sobre processos judiciais do trabalhador com decisão favorável quanto à não incidência ou alterações na incidência de contribuição previdenciária.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrProcJud__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do Processo Judicial<a data-toggle="tooltip" title="Informar o número do processo judicial. Validação: Origem: {nrProcJud} em S-1200, S-2299 e S-2399 se {tpTrib}= [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__ideTrabalhador__procJudTrab__id__nrProcJud" maxlength="20" value="{{original.evento_json|readjson:'evtBasesTrab.ideTrabalhador.procJudTrab.nrProcJud'}}" name="[evtBasesTrab][ideTrabalhador][procJudTrab][nrProcJud]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Indicativo da Suspensão<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo empregador em S-1070. Validação: Origem: {codSusp} em S-1200, S-2299 e S-2399 se {tpTrib} = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__ideTrabalhador__procJudTrab__id__codSusp" maxlength="14" value="{{original.evento_json|readjson:'evtBasesTrab.ideTrabalhador.procJudTrab.codSusp'}}" name="[evtBasesTrab][ideTrabalhador][procJudTrab][codSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoCpCalc__div">
+    <div class="col-md-12">
+        <h4>Cálculo da contribuição previdenciária do segurado, incidente sobre a Remuneração do Período de Apuração e de Períodos Anteriores informada nos eventos S-1200, S-2299 e S-2399.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpCR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Receita (CR)<a data-toggle="tooltip" title="Código de Receita (CR) da contribuição descontada do trabalhador. Preencher de acordo com a seguinte tabela: 1082-01 - Contribuição Previdenciária (CP) descontada do segurado empregado/avulso; 1082-02 - CP descontada do segurado empregado rural curto prazo - Lei 11.718/2008; 1082-03 - CP descontada do segurado empregado doméstico ou segurado especial; 1082-04 - CP descontada do segurado especial curto prazo - Lei 11.718/2008; 1082-21 - CP descontada do segurado empregado/avulso 13° salário; 1082-22 - CP descontada do segurado empregado rural curto prazo 13° salário - Lei 11.718/2008; 1082-23 - CP descontada do segurado empregado doméstico ou segurado especial 13° salário; 1082-24 - CP descontada do segurado especial curto prazo 13° salário - Lei 11.718/2008; 1099-01 - CP descontada do contribuinte individual, alíquota de 11%; 1099-02 - CP descontada do contribuinte individual, alíquota de 20%. Validação: Se indApuracao = [2], tpCR = 1082-21, 1082,22, 1082-23, 1082- 24."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCpCalc__id__tpCR" maxlength="6" value="{{original.evento_json|readjson:'evtBasesTrab.infoCpCalc.tpCR'}}" name="[evtBasesTrab][infoCpCalc][tpCR]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrCpSeg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da contribuição do segurado<a data-toggle="tooltip" title="Valor da contribuição do segurado, devida à Previdência Social, calculada segundo as regras da legislação em vigor, por CR. Validação: 1. Se {indMV} do S-1200/S-2299/S-2399 = [3], {vrCpSeg} = 0, portanto não há CR; 2. Se {indMV} do S-1200/S-2299/S-2399 = [1,2], efetuar o somatório das ocorrências do campo {vlrRemunOE} e o somatório de {valor} quando {tpValor} = [11,12,13,14,19] do grupo {infoBaseCS}, resultando em [TotalRemun]. Este procedimento visa a identificação da(s) alíquota(s) aplicável(eis): 2.1. Se {indMV} do S-1200/S-2299/S-2399 = [1] aplicar a(s) alíquota(s) conforme a categoria do segurado sobre a remuneração paga pelo declarante (somatório de {valor} quando {tpValor} = [11,12,13,14,19], do grupo {infoBaseCS}), observando o limite máximo do salário de contribuição. 2.2. Se {indMV} do S-1200/S-2299/S-2399 = [2]: a) se [TotalRemun] ultrapassar o limite máximo do Salário de Contribuição, aplicar a(s) alíquota(s) conforme a categoria do segurado sobre a diferença entre o referido limite máximo e o somatório das ocorrências do campo {vlrRemunOE}; b) se [TotalRemun] for inferior ao limite máximo do Salário de Contribuição: b1) Para as categorias empregado/avulso/agente público: somar {vlrRemunOE} destas mesmas categorias com o somatório de {valor} quando {tpValor}=[11, 12, 13, 14, 19] do grupo {infoBaseCS} e aplicar a(s) alíquota(s) conforme a categoria do segurado sobre a remuneração paga pelo declarante. b2) Para categoria contribuinte individual: aplicar a alíquota referente a [TotalRemun], conforme a categoria do segurado, sobre a remuneração paga pelo declarante (somatório de {valor} quando {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS}). 3. Se não informado o grupo {infoMV} do S-1200/S-2299/S-2399: a) se o trabalhador presta serviço para a empresa declarante em apenas uma categoria {codCateg}, efetuar o somatório de {valor} quando {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} e aplicar a(s) alíquota(s) conforme a categoria. b) se o trabalhador presta serviço para a empresa declarante em mais de uma categoria {codCateg}: I. efetuar o somatório de {valor} quando {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} para todas as categorias de segurado empregado/avulso/agente público e aplicar a(s) alíquota(s) correta(s) conforme faixa salarial observado o limite máximo do salário de contribuição; II. Caso o somatório do item I não tenha atingido o limite máximo do salário de contribuição, efetuar o somatório de {valor} quando {tpValor}=[11,12,13,14,19], do grupo {infoBaseCS} para todas as categorias diferentes de segurado empregado e aplicar a alíquota correta conforme a categoria, observado o limite máximo do salário de contribuição. OBS.: a) No caso de {indapur}=[1], o cálculo deve ser efetuado separadamente para {ind13}= [0] e {ind13}=[1]. A soma de ambos cálculos deve correspondente ao valor {vrCpSeg}. b) Aplica-se a alíquota de 20% para o cálculo da contribuição previdenciária a ser descontada de remuneração de trabalhador pertencente às categorias 731 ou 734, quando o Empregador for Cooperativa de Trabalho ({indCoop}=[1]), ou pertencente à categoria "Contribuinte Individual", quando o Empregador tiver classificação tributária ({classTrib}) = [70,80]. Caso o trabalhador receba remuneração da empresa em outra categoria de contribuinte individual (7XX), primeiro deve ser aplicado o desconto sobre essa categoria (7XX) e depois sobre a remuneração das categorias 731 ou 734, observando o teto do salário de contribuição. c) {vrCpSeg} deve ser igual a {vrDescSeg} nas seguintes situações: c1) se houver informações em {infoPerAnt} na composição de {infoBaseCS/valor}; c2) se houver informação de {procJudTrab} com {tpTrib} = [2] nos eventos que contenham informações de remuneração (S-1200, S-2299 e S-2399); c3) se houver processo do empregador informado em S-1010, contestando incidência de contribuição previdenciária em rubricas utilizadas na composição da remuneração do trabalhador; c4) se, no período de apuração mensal, houver remuneração referente a 13º salário ({codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]). Nesse caso, o campo {vrCpSeg} será igual ao valor calculado sobre a remuneração mensal acrescido do desconto sobre a remuneração relativa a 13° salário informado pelo empregador. d) No caso de trabalhador categoria = [102], utilizar somente a alíquota de 8%, observando o limite máximo do salário de contribuição; e) No caso de empregador com {classTrib} = [21,60], não calcular para a categoria contribuinte individual (grupo 700). O valor deve ser zerado; f) Não calcular quando a categoria do trabalhador for [741] (MEI). O valor deve ser zerado. g) Não calcular quando a lotação tributária for [91]. O valor deve ser zerado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCpCalc__id__vrCpSeg" maxlength="14" value="{{original.evento_json|readjson:'evtBasesTrab.infoCpCalc.vrCpSeg'}}" name="[evtBasesTrab][infoCpCalc][vrCpSeg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrDescSeg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor efetivamente descontado do segurado<a data-toggle="tooltip" title="Valor efetivamente descontado do segurado, correspondente a {tpValor} = [21], do correspondente {tpCR}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCpCalc__id__vrDescSeg" maxlength="14" value="{{original.evento_json|readjson:'evtBasesTrab.infoCpCalc.vrDescSeg'}}" name="[evtBasesTrab][infoCpCalc][vrDescSeg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoCp__div">
+    <div class="col-md-12">
+        <h4>Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos, referentes à Remuneração do Período de Apuração e de Períodos Anteriores informados nos eventos S-1200, S-2299 e S-2399.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEstabLot__div">
+    <div class="col-md-12">
+        <h4>Identificação do estabelecimento ou obra de construção civil e da lotação tributária. As informações desse grupo foram prestadas pelo contribuinte nos eventos S- 1200, S-2299 e S-2399.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtBasesTrab][infoCp][ideEstabLot][tpInsc]" id="evtBasesTrab__infoCp__ideEstabLot__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtBasesTrab][infoCp][ideEstabLot][tpInsc]" id="evtBasesTrab__infoCp__ideEstabLot__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__id__nrInsc_disabled" name="[evtBasesTrab][infoCp][ideEstabLot][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtBasesTrab][infoCp][ideEstabLot][nrInsc]" id="evtBasesTrab__infoCp__ideEstabLot__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="codLotacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Lotação<a data-toggle="tooltip" title="Informar o código atribuído pela empresa para a lotação tributária. Evento de origem (S-1200, S-2299, S-2399). Validação: Deve estar coerente com o informado pelo contribuinte nos eventos S-1200/S-2299/S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__id__codLotacao" maxlength="30" value="{{original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.codLotacao'}}" name="[evtBasesTrab][infoCp][ideEstabLot][codLotacao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoCategIncid__div">
+    <div class="col-md-12">
+        <h4>Informações relativas à matrícula e categoria do trabalhador e tipos de incidências.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="matricula__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Evento de origem (S-1200/S-2299). Validação: Deve corresponder à matrícula constante no evento S-1200/S- 2299, caso tenha sido informada, sendo nesse caso, informação obrigatória. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.matricula'}}" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][matricula]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codCateg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 1. Evento de origem (S-1200/ S-2299/S-2399). Validação: Deve estar coerente com a informação prestada pelo empregador no evento S-1200/S-2299/S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.codCateg'}}" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][codCateg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indSimples__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Contribuição Substituída<a data-toggle="tooltip" title="Indicador de Contribuição Substituída: 1 - Contribuição Substituída Integralmente; 2 - Contribuição não substituída; 3 - Contribuição não substituída concomitante com contribuição substituída. Evento de origem (S-1200/ S-2299/S-2399). Validação: O preenchimento do campo é obrigatório apenas no caso das empresas enquadradas no regime de tributação Simples Nacional, com tributação previdenciária substituída e não substituída, ({classTrib} do evento S-1000 -Informações do Empregador = [03]). Para os demais empregadores, não deve ser informado. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__id__indSimples" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][indSimples]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.indSimples' 1 %}selected{% endifequal %}>1 - Contribuição Substituída Integralmente</option><option value="2" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.indSimples' 2 %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value="3" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.indSimples' 3 %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída. Evento de origem (S-1200/ S-2299/S-2399). Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="infoBaseCS__div">
+    <div class="col-md-12">
+        <h4>Informações sobre bases de cálculo, descontos e deduções de contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos. Evento de origem (S-1200, S-2299 e S-2399).</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ind13__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de 13º salário<a data-toggle="tooltip" title="Indicativo de 13° salário: 0 - Mensal; 1 - 13° salário - {codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]. Validação: Se {indApuracao} = [2], preencher com [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__infoBaseCS__id__ind13" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][infoBaseCS][ind13]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="0" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.ind13' 0 %}selected{% endifequal %}>0 - Mensal</option><option value="1" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.ind13' 1 %}selected{% endifequal %}>1 - 13° salário - {codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="tpValor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de Valor<a data-toggle="tooltip" title="Tipo de valor que influi na apuração da contribuição devida: 11 - Base de cálculo da Contribuição Previdenciária normal; 12 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição; 13 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição; 14 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição; 15 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador; 16 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador; 17 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador; 18 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador; 19 - Base de cálculo da contribuição previdenciária exclusiva do empregado; 21 - Valor total descontado do trabalhador para recolhimento à Previdência Social; 22 - Valor descontado do trabalhador para recolhimento ao Sest; 23 - Valor descontado do trabalhador para recolhimento ao Senat; 31 - Valor pago ao trabalhador a título de salário-família; 32 - Valor pago ao trabalhador a título de salário-maternidade; 41 - Base de cálculo da Contribuição Previdenciária normal – Categorias 107 e 108; 42 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição – Categorias 107 e 108; 43 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição – Categorias 107 e 108; 44 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição – Categorias 107 e 108; 45 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador – Categorias 107 e 108; 46 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador – Categorias 107 e 108; 47 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador – Categorias 107 e 108; 48 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador – Categorias 107 e 108; 49 - Base de cálculo da contribuição previdenciária exclusiva do empregado – Categorias 107 e 108; 81 - Incidência suspensa em decorrência de decisão judicial - Base de cálculo (BC) da Contribuição Previdenciária (CP) Normal – Categorias 107 e 108; 82 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho – Categorias 107 e 108; 83 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho – Categorias 107 e 108; 84 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho – Categorias 107 e 108; 85 - Incidência suspensa em decorrência de decisão judicial - BC CP normal - Exclusiva do empregador – Categorias 107 e 108; 86 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho - Exclusiva do empregador – Categorias 107 e 108; 87 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho - Exclusiva do empregador – Categorias 107 e 108; 88 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho - Exclusiva do empregador – Categorias 107 e 108; 91 - Incidência suspensa em decorrência de decisão judicial - Base de cálculo (BC) da Contribuição Previdenciária (CP) Normal; 92 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho; 93 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho; 94 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho; 95 - Incidência suspensa em decorrência de decisão judicial - BC CP normal - Exclusiva do empregador. 96 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho - Exclusiva do empregador; 97 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho - Exclusiva do empregador; 98 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho - Exclusiva do empregador. Validação: O preenchimento deve ser feito de acordo com as instruções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__infoBaseCS__id__tpValor" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][infoBaseCS][tpValor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="11" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 11 %}selected{% endifequal %}>11 - Base de cálculo da Contribuição Previdenciária normal</option><option value="12" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 12 %}selected{% endifequal %}>12 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição</option><option value="13" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 13 %}selected{% endifequal %}>13 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição</option><option value="14" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 14 %}selected{% endifequal %}>14 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição</option><option value="15" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 15 %}selected{% endifequal %}>15 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador</option><option value="16" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 16 %}selected{% endifequal %}>16 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador</option><option value="17" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 17 %}selected{% endifequal %}>17 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador</option><option value="18" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 18 %}selected{% endifequal %}>18 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador</option><option value="19" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 19 %}selected{% endifequal %}>19 - Base de cálculo da contribuição previdenciária exclusiva do empregado</option><option value="21" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 21 %}selected{% endifequal %}>21 - Valor total descontado do trabalhador para recolhimento à Previdência Social</option><option value="22" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 22 %}selected{% endifequal %}>22 - Valor descontado do trabalhador para recolhimento ao Sest</option><option value="23" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 23 %}selected{% endifequal %}>23 - Valor descontado do trabalhador para recolhimento ao Senat</option><option value="31" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 31 %}selected{% endifequal %}>31 - Valor pago ao trabalhador a título de salário-família</option><option value="32" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 32 %}selected{% endifequal %}>32 - Valor pago ao trabalhador a título de salário-maternidade</option><option value="41" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 41 %}selected{% endifequal %}>41 - Base de cálculo da Contribuição Previdenciária normal – Categorias 107 e 108</option><option value="42" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 42 %}selected{% endifequal %}>42 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição – Categorias 107 e 108</option><option value="43" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 43 %}selected{% endifequal %}>43 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição – Categorias 107 e 108</option><option value="44" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 44 %}selected{% endifequal %}>44 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição – Categorias 107 e 108</option><option value="45" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 45 %}selected{% endifequal %}>45 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador – Categorias 107 e 108</option><option value="46" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 46 %}selected{% endifequal %}>46 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador – Categorias 107 e 108</option><option value="47" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 47 %}selected{% endifequal %}>47 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador – Categorias 107 e 108</option><option value="48" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 48 %}selected{% endifequal %}>48 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador – Categorias 107 e 108</option><option value="49" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 49 %}selected{% endifequal %}>49 - Base de cálculo da contribuição previdenciária exclusiva do empregado – Categorias 107 e 108</option><option value="81" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 81 %}selected{% endifequal %}>81 - Incidência suspensa em decorrência de decisão judicial - Base de cálculo (BC) da Contribuição Previdenciária (CP) Normal – Categorias 107 e 108</option><option value="82" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 82 %}selected{% endifequal %}>82 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho – Categorias 107 e 108</option><option value="83" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 83 %}selected{% endifequal %}>83 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho – Categorias 107 e 108</option><option value="84" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 84 %}selected{% endifequal %}>84 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho – Categorias 107 e 108</option><option value="85" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 85 %}selected{% endifequal %}>85 - Incidência suspensa em decorrência de decisão judicial - BC CP normal - Exclusiva do empregador – Categorias 107 e 108</option><option value="86" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 86 %}selected{% endifequal %}>86 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho - Exclusiva do empregador – Categorias 107 e 108</option><option value="87" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 87 %}selected{% endifequal %}>87 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho - Exclusiva do empregador – Categorias 107 e 108</option><option value="88" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 88 %}selected{% endifequal %}>88 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho - Exclusiva do empregador – Categorias 107 e 108</option><option value="91" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 91 %}selected{% endifequal %}>91 - Incidência suspensa em decorrência de decisão judicial - Base de cálculo (BC) da Contribuição Previdenciária (CP) Normal</option><option value="92" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 92 %}selected{% endifequal %}>92 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho</option><option value="93" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 93 %}selected{% endifequal %}>93 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho</option><option value="94" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 94 %}selected{% endifequal %}>94 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho</option><option value="95" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 95 %}selected{% endifequal %}>95 - Incidência suspensa em decorrência de decisão judicial - BC CP normal - Exclusiva do empregador. 96 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 15 anos de trabalho - Exclusiva do empregador</option><option value="97" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 97 %}selected{% endifequal %}>97 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 20 anos de trabalho - Exclusiva do empregador</option><option value="98" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.tpValor' 98 %}selected{% endifequal %}>98 - Incidência suspensa em decorrência de decisão judicial - BC CP Aposentadoria Especial aos 25 anos de trabalho - Exclusiva do empregador. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="valor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base de cálculo, dedução ou desconto da CP<a data-toggle="tooltip" title="Valor da base de cálculo, dedução ou desconto da contribuição social devida à Previdência Social ou a Outras Entidades e Fundos, conforme definido no campo {tpValor}. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200, nos grupos {remunPerApur} e {remunPerAnt}, e também em S- 2299 e S-2399, obedecendo o que segue: a) Somar os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [1,3] e subtrair os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [2,4], observando a tabela de relacionamento abaixo: {tpValor} = 11*, {codIncCP} = [11,12,21,22] e (({grauExp} = 1) ou (sem informação em {grauExp})); {tpValor} = 12*, {codIncCP} = [11,12,21,22] e {grauExp} = 2; {tpValor} = 13*, {codIncCP} = [11,12,21,22] e {grauExp} = 3; {tpValor} = 14*, {codIncCP} = [11,12,21,22] e {grauExp} = 4; {tpValor} = 15**, {codIncCP}= [13,14,25,26] e (({grauExp} = 1) ou (sem informação em {grauExp})); {tpValor} = 16**, {codIncCP} = [13, 14] e {grauExp} = 2; {tpValor} = 17**, {codIncCP} = [13, 14] e {grauExp} = 3; {tpValor} = 18**, {codIncCP} = [13, 14] e {grauExp} = 4; {tpValor} = 19, {codIncCP} = [15, 16]; {tpValor} = 31, {codIncCP} = [51]; {tpValor} = 32, {codIncCP} = [21, 22]; {tpValor} = 41*, {codIncCP} = [11,12,21,22] e (({grauExp} = 1) ou (sem informação em {grauExp})), observado o limite para Categorias 107 e 108; {tpValor} = 42*, {codIncCP} = [11,12,21,22] e {grauExp} = 2, observado o limite para Categorias 107 e 108; {tpValor} = 43*, {codIncCP} = [11,12,21,22] e {grauExp} = 3, observado o limite para Categorias 107 e 108; {tpValor} = 44*, {codIncCP} = [11,12,21,22] e {grauExp} = 4, observado o limite para Categorias 107 e 108; {tpValor} = 45**, {codIncCP}= [13,14,25,26] e (({grauExp} = 1) ou (sem informação em {grauExp})), observado o limite para Categorias 107 e 108; {tpValor} = 46**, {codIncCP} = [13, 14] e {grauExp} = 2, observado o limite para Categorias 107 e 108; {tpValor} = 47**, {codIncCP} = [13, 14] e {grauExp} = 3, observado o limite para Categorias 107 e 108; {tpValor} = 48**, {codIncCP} = [13, 14] e {grauExp} = 4, observado o limite para Categorias 107 e 108; {tpValor} = 49, {codIncCP} = [15, 16], observado o limite para Categorias 107 e 108; {tpValor} = 81*, {codIncCP} = [91, 92, 93, 94] e (({grauExp} = 1) ou (sem informação em {grauExp})), observado o limite para Categorias 107 e 108; {tpValor} = 82*, {codIncCP} = [91, 92, 93, 94] e {grauExp} = [2], observado o limite para Categorias 107 e 108; {tpValor} = 83*, {codIncCP} = [91, 92, 93, 94] e {grauExp} = [3], observado o limite para Categorias 107 e 108; {tpValor} = 84*, {codIncCP} = [91, 92, 93, 94] e {grauExp} = [4], observado o limite para Categorias 107 e 108; {tpValor} = 85**, {codIncCP} = [95, 96, 97, 98] e (({grauExp} = [1]) ou (sem informação em {grauExp})), observado o limite para Categorias 107 e 108; {tpValor} = 86**, {codIncCP} = [95, 96, 97, 98] e ({grauExp} = [2]), observado o limite para Categorias 107 e 108; {tpValor} = 87**, {codIncCP} = [95, 96, 97, 98] e ({grauExp} = [3]), observado o limite para Categorias 107 e 108; {tpValor} = 88**, {codIncCP} = [95, 96, 97, 98] e ({grauExp} = [4]), observado o limite para Categorias 107 e 108; {tpValor} = 91*, {codIncCP} = [91, 92, 93, 94] e (({grauExp} = 1) ou (sem informação em {grauExp})); {tpValor} = 92*, {codIncCP} = [91, 92, 93, 94] e {grauExp}=[2]; {tpValor} = 93*, {codIncCP} = [91, 92, 93, 94] e {grauExp}=[3]; {tpValor} = 94*, {codIncCP} = [91, 92, 93, 94] e {grauExp}=[4]; {tpValor} = 95**, {codIncCP} = [95, 96, 97, 98] e (({grauExp} = [1]) ou (sem informação em {grauExp})); {tpValor} = 96**, {codIncCP} = [95, 96, 97, 98] e ({grauExp} = [2]); {tpValor} = 97**, {codIncCP} = [95, 96, 97, 98] e ({grauExp} = [3]); {tpValor} = 98**, {codIncCP} = [95, 96, 97, 98] e ({grauExp} = [4]). b) Somar os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [2,4] e subtrair os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [1,3], observando a tabela de relacionamento abaixo: {tpValor} = 21, {codIncCP} = [31, 32]; {tpValor} = 22, {codIncCP} = [34]; {tpValor} = 23, {codIncCP} = [35]. * Caso {codIncCP} da rubrica em S-1010 seja igual a [91, 92, 93, 94] e {indSusp} do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deverá ser computado na composição das bases do {tpValor} = [11, 12, 13, 14, 41, 42, 43, 44]. Se Categoria igual a 107 ou 108: caso {tpValor} = [11] seja maior que o limite do salário-base para essas categorias, então {tpValor} = [81] é igual a {tpValor}=[41] – ({tpValor}=[11] – {tpValor}=[91]). Se {tpValor} = [81] resultar negativo, informar zero. O mesmo se aplica para {tpValor} = [82, 83, 84]. ** Caso {codindCP} da rubrica em S-1010 seja igual a [95, 96, 97, 98] e {indSusp} do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deverá ser computado na composição das bases do {tpValor} = [15, 16, 17, 18, 45, 46, 47, 48]. Se Categoria igual a 107 ou 108: caso {tpValor} = [15] seja maior que o limite do salário-base para essas categorias, então {tpValor} = [85] é igual a {tpValor}=[45] – ({tpValor}=[15] – {tpValor}=[95]). Se {tpValor} = [85] resultar negativo, informar zero. O mesmo se aplica para {tpValor} = [86, 87, 88]. *** Caso {indSusp} do respectivo processo em S-1070 seja igual a [90] (decisão definitiva), o valor não deve ser computado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__infoBaseCS__id__valor" maxlength="14" value="{{original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoBaseCS.valor'}}" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][infoBaseCS][valor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="calcTerc__div">
+    <div class="col-md-12">
+        <h4>Cálculo das contribuições sociais devidas a Outras Entidades e Fundos.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpCR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Receita (CR)<a data-toggle="tooltip" title="Código de Receita (CR) da contribuição descontada do trabalhador. Preencher de acordo com a seguinte tabela: 1218-02 - Contribuição ao SEST, descontada do transportador autônomo; 1221-02 - Contribuição ao SENAT, descontada do transportador autônomo. Validação: Deve ser um código indicado nas instruções de preenchimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__tpCR" maxlength="6" value="{{original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.calcTerc.tpCR'}}" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][calcTerc][tpCR]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrCsSegTerc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da CS devida a outras entidades<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR. Validação: 1218-02 - Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,5%, se categoria {codCateg} = [711,712,734]-Transportador Autônomo; 1221-02. Somatório de {valor} qdo {tpValor}=[11,12,13,14], do grupo {infoBaseCS} multiplicado pela alíquota de 1,0% se categoria {codCateg} = [711,712,734]-Transportador Autônomo. OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__vrCsSegTerc" maxlength="14" value="{{original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.calcTerc.vrCsSegTerc'}}" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][calcTerc][vrCsSegTerc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrDescTerc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total descontado do segurado<a data-toggle="tooltip" title="Valor efetivamente descontado do segurado, correspondente a {tpValor} = [22,23], do correspondente {tpCR}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__vrDescTerc" maxlength="14" value="{{original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.calcTerc.vrDescTerc'}}" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][calcTerc][vrDescTerc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoPerRef__div">
+    <div class="col-md-12">
+        <h4>Informações de remuneração por período de referência.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de Referência<a data-toggle="tooltip" title="Informar o período ao qual se refere a remuneração. Origem: {perRef} de {infoPerAnt} de S-1200/S-2299 e {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__infoPerRef__id__perRef" maxlength="7" value="{{original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.perRef'}}" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][infoPerRef][perRef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="detInfoPerRef__div">
+    <div class="col-md-12">
+        <h4>Detalhamento das informações de remuneração por período de referência. Deve ser preenchido com informações de {infoPerApur} e {infoPerAnt} do S-1200 e S-2299, e de {detVerbas} do S-2399, quando houver.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ind13__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de 13º salário<a data-toggle="tooltip" title="Indicativo de 13° salário: 0 - Mensal; 1 - 13° salário - {codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]. Validação: Se {indApuracao} = [2], preencher com [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__infoPerRef__detInfoPerRef__id__ind13" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][infoPerRef][detInfoPerRef][ind13]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="0" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.ind13' 0 %}selected{% endifequal %}>0 - Mensal</option><option value="1" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.ind13' 1 %}selected{% endifequal %}>1 - 13° salário - {codIncCP} = [12, 14, 16, 22, 26, 32, 92, 94]. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="tpValor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de Valor<a data-toggle="tooltip" title="Tipo de valor que influi na apuração da contribuição devida: 11 - Base de cálculo da Contribuição Previdenciária normal; 12 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição; 13 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição; 14 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição; 15 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador; 16 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador; 17 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador; 18 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador; 19 - Base de cálculo da contribuição previdenciária exclusiva do empregado; 21 - Valor total descontado do trabalhador para recolhimento à Previdência Social; 22 - Valor descontado do trabalhador para recolhimento ao Sest; 23 - Valor descontado do trabalhador para recolhimento ao Senat; 31 - Valor pago ao trabalhador a título de salário-família; 32 - Valor pago ao trabalhador a título de salário-maternidade. Validação: O preenchimento deve ser feito de acordo com as instruções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__infoPerRef__detInfoPerRef__id__tpValor" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][infoPerRef][detInfoPerRef][tpValor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="11" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 11 %}selected{% endifequal %}>11 - Base de cálculo da Contribuição Previdenciária normal</option><option value="12" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 12 %}selected{% endifequal %}>12 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição</option><option value="13" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 13 %}selected{% endifequal %}>13 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição</option><option value="14" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 14 %}selected{% endifequal %}>14 - Base de cálculo da Contribuição Previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição</option><option value="15" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 15 %}selected{% endifequal %}>15 - Base de cálculo da contribuição previdenciária adicional normal - exclusiva do empregador</option><option value="16" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 16 %}selected{% endifequal %}>16 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - exclusiva do empregador</option><option value="17" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 17 %}selected{% endifequal %}>17 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - exclusiva do empregador</option><option value="18" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 18 %}selected{% endifequal %}>18 - Base de cálculo da contribuição previdenciária adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - exclusiva do empregador</option><option value="19" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 19 %}selected{% endifequal %}>19 - Base de cálculo da contribuição previdenciária exclusiva do empregado</option><option value="21" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 21 %}selected{% endifequal %}>21 - Valor total descontado do trabalhador para recolhimento à Previdência Social</option><option value="22" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 22 %}selected{% endifequal %}>22 - Valor descontado do trabalhador para recolhimento ao Sest</option><option value="23" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 23 %}selected{% endifequal %}>23 - Valor descontado do trabalhador para recolhimento ao Senat</option><option value="31" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 31 %}selected{% endifequal %}>31 - Valor pago ao trabalhador a título de salário-família</option><option value="32" {% ifequal original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.tpValor' 32 %}selected{% endifequal %}>32 - Valor pago ao trabalhador a título de salário-maternidade. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="vrPerRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base de cálculo, dedução ou desconto da contribuição social, conforme definido no campo {tpValor}. <a data-toggle="tooltip" title="Valor da base de cálculo, dedução ou desconto da contribuição social, conforme definido no campo {tpValor}. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200 e S-2299, nos grupos {infoPerApur} e {infoPerAnt}, e também em S-2399, obedecendo ao que segue: a) Somar os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [1,3] e subtrair os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [2,4], observando a tabela de relacionamento abaixo: {tpValor} = 11*, {codIncCP} = [11,12,21,22] e (({grauExp} = 1) ou (sem informação em {grauExp})); {tpValor} = 12*, {codIncCP} = [11,12,21,22] e {grauExp} = 2; {tpValor} = 13*, {codIncCP} = [11,12,21,22] e {grauExp} = 3; {tpValor} = 14*, {codIncCP} = [11,12,21,22] e {grauExp} = 4; {tpValor} = 15**, {codIncCP}= [13,14,25,26] e (({grauExp} = 1) ou (sem informação em {grauExp})); {tpValor} = 16**, {codIncCP} = [13, 14] e {grauExp} = 2; {tpValor} = 17**, {codIncCP} = [13, 14] e {grauExp} = 3; {tpValor} = 18**, {codIncCP} = [13, 14] e {grauExp} = 4; {tpValor} = 19, {codIncCP} = [15, 16]; {tpValor} = 31, {codIncCP} = [51]; {tpValor} = 32, {codIncCP} = [21, 22]. b) Somar os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [2,4] e subtrair os valores das rubricas cujo {tpRubr} em S-1010 seja igual a [1,3], observando a tabela de relacionamento abaixo: {tpValor} = 21, {codIncCP} = [31, 32]; {tpValor} = 22, {codIncCP} = [34]; {tpValor} = 23, {codIncCP} = [35]. * Caso {codIncCP} da rubrica em S-1010 seja igual a [91, 92, 93, 94] e {indSusp} do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deverá ser computado na composição das bases do {tpValor} = [11, 12, 13, 14]. ** Caso {codindCP} da rubrica em S-1010 seja igual a [95, 96, 97, 98] e {indSusp} do respectivo processo em S-1070 seja diferente de [90] (decisão definitiva), o valor também deverá ser computado na composição das bases do {tpValor} = [15, 16, 17, 18]. *** Caso {indSusp} do respectivo processo em S-1070 seja igual a [90] (decisão definitiva), o valor não deve ser computado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__infoPerRef__detInfoPerRef__id__vrPerRef" maxlength="14" value="{{original.evento_json|readjson:'evtBasesTrab.infoCp.ideEstabLot.infoCategIncid.infoPerRef.detInfoPerRef.vrPerRef'}}" name="[evtBasesTrab][infoCp][ideEstabLot][infoCategIncid][infoPerRef][detInfoPerRef][vrPerRef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

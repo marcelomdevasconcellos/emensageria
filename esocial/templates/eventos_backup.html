@@ -1,0 +1,173 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n static adminlte_options %}
+{% load i18n admin_urls static admin_modify %}
+{% load esocial_custom_tags %}
+
+{% block content %}
+
+<style>
+label {
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h4 class="box-title">
+                    Eventos
+                </h4>
+            </div>
+
+            <div class="box-body">
+                <div id="content-main">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Identidade</label>
+                              <input name="identidade" 
+                                     id="id_identidade" 
+                                     class="form-control"
+                                     style="width: 100%;" />
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              <label>Versão</label>
+                              <select name="versao" id="id_versao" class="form-control select2" style="width: 100%;">
+                                <option value="">---------</option>
+                                <option value="v02_04_02">Versão 2.04.02</option>
+                                <option value="v02_05_00" selected>Versão 2.05.00</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              <label>Evento</label>
+                              <select class="form-control select2" style="width: 100%;">
+                                <option>---</option>
+                                <option value="S1000">S1000</option>
+                                <option value="S1010">S1010</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              <label>Operação</label>
+                              <select class="form-control select2" name="operacao" id="id_operacao" style="width: 100%;">
+                                <option>---</option>
+                                <option value="1">Inclusão</option>
+                                <option value="2">Alteração</option>
+                                <option value="3">Exclusao</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              <label>Status
+                                <a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data informada anteriormente no registro que se pretende alterar ou excluir.">
+                                  <i class="fa fa-fw fa-question-circle"></i>
+                                </a>
+                              </label>
+                              <select class="form-control select2" 
+                                      name="status" 
+                                      id="id_status" 
+                                      style="width: 100%;">
+                                <option value="0" selected>Cadastrado</option>
+                                <option value="1">Importado</option>
+                                <option value="2">Duplicado</option>
+                                <option value="3">Gerado</option>
+                                <option value="4">Erro na Geração</option>
+                                <option value="5">Assinado</option>
+                                <option value="6">Erro na Assinatura</option>
+                                <option value="7">Validado</option>
+                                <option value="8">Erro na validação</option>
+                                <option value="9">Aguardando envio de precedência</option>
+                                <option value="10">Aguardando envio</option>
+                                <option value="11">Enviado</option>
+                                <option value="12">Erro no Envio/Consulta</option>
+                                <option value="13">Processado</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>JSON</label>
+                              <input name="evento_json" 
+                                     id="id_evento_json" 
+                                     class="form-control"
+                                     style="width: 100%;" 
+                                     readonly="" 
+                                     value=""/>
+                            </div>
+                          </div>
+                        </div>
+                        {{ original.evento_json|readjson:"Id" }}
+
+                        
+                        {% include "v2_05_00/s1000.html" %}
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="content-main">
+                                    {% block submit_buttons_bottom %}
+                                    {% submit_row %}
+                                    {% endblock %}
+
+                                    {% block object-tools %}
+                                    {% if change %}{% if not is_popup %}
+                                    <ul class="object-tools">
+                                        {% block object-tools-items %}
+                                        {% change_form_object_tools %}
+                                        {% endblock %}
+                                    </ul>
+                                    {% endif %}{% endif %}
+                                    {% endblock %}
+                                </div> 
+                            </div> 
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br class="clear" />
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extrajs %}
+
+<script type="text/javascript">
+  $(function() {
+    $('#inclusao__div').hide(); 
+    $('#alteracao__div').hide(); 
+    $('#exclusao__div').hide(); 
+    $('#id_operacao').change(function(){
+        if ($('#id_operacao').val() == 1) {
+            $('#inclusao__div').show(); 
+            $('#alteracao__div').hide(); 
+            $('#exclusao__div').hide(); 
+        } else if ($('#id_operacao').val() == 2) {
+            $('#inclusao__div').hide(); 
+            $('#alteracao__div').show(); 
+            $('#exclusao__div').hide(); 
+        } else {
+            $('#inclusao__div').hide(); 
+            $('#alteracao__div').hide(); 
+            $('#exclusao__div').show(); 
+        } 
+    });
+  });
+</script>
+<script>
+    $('[required]').before('<span class="text-red" style="margin-left: -10px;">* </span>');
+</script>
+{% endblock %}

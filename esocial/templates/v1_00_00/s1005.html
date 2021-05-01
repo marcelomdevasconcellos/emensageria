@@ -1,0 +1,949 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtTabEstab__div">
+    <div class="col-md-12">
+        <h4>Evento Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos. Regras de validação: REGRA_ENVIO_PROC_FECHAMENTO REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABESTAB_VALIDA_ESTABELECIMENTO REGRA_TABESTAB_VALIDA_INFO_CNO REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtTabEstab][ideEvento][tpAmb]" id="evtTabEstab__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtTabEstab][ideEvento][tpAmb]" id="evtTabEstab__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtTabEstab][ideEvento][procEmi]" id="evtTabEstab__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtTabEstab][ideEvento][procEmi]" id="evtTabEstab__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo</label>
+            <input type="text" name="[evtTabEstab][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtTabEstab__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtTabEstab][ideEvento][verProc]" id="evtTabEstab__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtTabEstab][ideEmpregador][tpInsc]" id="evtTabEstab__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtTabEstab][ideEmpregador][tpInsc]" id="evtTabEstab__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtTabEstab__ideEmpregador__id__nrInsc_disabled" name="[evtTabEstab][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtTabEstab][ideEmpregador][nrInsc]" id="evtTabEstab__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoEstab__div">
+    <div class="col-md-12">
+        <h4>Informações do estabelecimento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="inclusao__div">
+    <div class="col-md-12">
+        <h4>Inclusão de novas informações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação do estabelecimento, obra de construção civil ou unidade de órgão público e período de validade das informações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtTabEstab][infoEstab][inclusao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtTabEstab][infoEstab][inclusao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__nrInsc_disabled" name="[evtTabEstab][infoEstab][inclusao][ideEstab][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtTabEstab][infoEstab][inclusao][ideEstab][nrInsc]" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="iniValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Início da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.ideEstab.iniValid'}}" name="[evtTabEstab][infoEstab][inclusao][ideEstab][iniValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fimValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.ideEstab.fimValid'}}" name="[evtTabEstab][infoEstab][inclusao][ideEstab][fimValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="dadosEstab__div">
+    <div class="col-md-12">
+        <h4>Detalhamento das informações do estabelecimento, obra de construção civil ou unidade de órgão público.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cnaePrep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CNAE preponderante<a data-toggle="tooltip" title="Preencher com o código CNAE conforme legislação vigente, referente à atividade econômica preponderante do estabelecimento. Validação: Deve ser um número existente na tabela CNAE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__id__cnaePrep" maxlength="7" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.cnaePrep'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][cnaePrep]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="aliqGilrat__div">
+    <div class="col-md-12">
+        <h4>Informações de apuração da alíquota GILRAT do estabelecimento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="aliqRat__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Alíquota RAT<a data-toggle="tooltip" title="Informar a alíquota RAT, quando divergente da legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o grupo com informações sobre o processo administrativo/judicial que permite a aplicação de alíquota diferente. Valores Válidos: 1, 2, 3 Validação: Preenchimento obrigatório e exclusivo se a alíquota informada for diferente da definida na legislação vigente para o código CNAE informado (neste caso, deverá haver informações de processo em {procAdmJudRat}). Se informada, deve ser diferente da alíquota definida na legislação vigente para a atividade (CNAE) preponderante."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__id__aliqRat" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][aliqRat]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="fap__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP. Validação: Preenchimento obrigatório e exclusivo por Pessoa Jurídica e {ideEstab/tpInsc} = [4], ou se {ideEstab/tpInsc} = [1] e o fator informado for diferente do definido pelo órgão governamental competente para o estabelecimento (neste caso, deverá haver informações de processo em {procAdmJudFap}). Se informado, deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000 e, se {ideEstab/tpInsc} = [1], deve ser diferente do valor definido pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__id__fap" maxlength="5" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.fap'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][fap]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="procAdmJudRat__div">
+    <div class="col-md-12">
+        <h4>Grupo que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Processo RAT<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__procAdmJudRat__id__tpProc" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][procAdmJudRat][tpProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc' 1 %}selected{% endifequal %}>1 - Administrativo</option><option value="2" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc' 2 %}selected{% endifequal %}>2 - Judicial. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do Processo<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070), com {indMatProc} = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__procAdmJudRat__id__nrProc" maxlength="21" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudRat.nrProc'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][procAdmJudRat][nrProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Indicativo da Suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__procAdmJudRat__id__codSusp" maxlength="14" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudRat.codSusp'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][procAdmJudRat][codSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="procAdmJudFap__div">
+    <div class="col-md-12">
+        <h4>Grupo que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Processo RAT<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial; 4 - Processo FAP de exercício anterior a 2019. Valores Válidos: 1, 2, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__procAdmJudFap__id__tpProc" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][procAdmJudFap][tpProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' 1 %}selected{% endifequal %}>1 - Administrativo</option><option value="2" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' 2 %}selected{% endifequal %}>2 - Judicial</option><option value="4" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' 4 %}selected{% endifequal %}>4 - Processo FAP de exercício anterior a 2019. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do Processo<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070), com {indMatProc} = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__procAdmJudFap__id__nrProc" maxlength="21" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.nrProc'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][procAdmJudFap][nrProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Indicativo da Suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__procAdmJudFap__id__codSusp" maxlength="14" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.codSusp'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][procAdmJudFap][codSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoCaepf__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao Cadastro de Atividade Econômica da Pessoa Física - CAEPF.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpCaepf__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo CAEPF (Cadastro Atividade Econômica de Pessoa Física)<a data-toggle="tooltip" title="Tipo de CAEPF: 1 - Contribuinte individual; 2 - Produtor rural; 3 - Segurado especial. Validação: Deve ser compatível com o cadastro da RFB. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoCaepf__id__tpCaepf" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoCaepf][tpCaepf]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.infoCaepf.tpCaepf' 1 %}selected{% endifequal %}>1 - Contribuinte individual</option><option value="2" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.infoCaepf.tpCaepf' 2 %}selected{% endifequal %}>2 - Produtor rural</option><option value="3" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.infoCaepf.tpCaepf' 3 %}selected{% endifequal %}>3 - Segurado especial. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoObra__div">
+    <div class="col-md-12">
+        <h4>Grupo preenchido exclusivamente por empresa construtora, relacionando os estabelecimentos inscritos no Cadastro Nacional de Obras - CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indSubstPatrObra__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Substituição de CP patronal de Obra<a data-toggle="tooltip" title="Indicativo de substituição da contribuição patronal de obra de construção civil: 1 - Contribuição patronal substituída; 2 - Contribuição patronal não substituída. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoObra__id__indSubstPatrObra" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoObra][indSubstPatrObra]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.infoObra.indSubstPatrObra' 1 %}selected{% endifequal %}>1 - Contribuição patronal substituída</option><option value="2" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.infoObra.indSubstPatrObra' 2 %}selected{% endifequal %}>2 - Contribuição patronal não substituída. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoTrab__div">
+    <div class="col-md-12">
+        <h4>Informações trabalhistas relativas ao estabelecimento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="infoApr__div">
+    <div class="col-md-12">
+        <h4>Informações relacionadas à contratação de aprendiz. Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de contratação de aprendiz em virtude de processo judicial ou quando houver contratação de aprendiz por meio de entidade educativa ou de prática desportiva.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrProcJud__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do Processo Judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial. Validação: Se informado, deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoTrab__infoApr__id__nrProcJud" maxlength="20" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.infoTrab.infoApr.nrProcJud'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoTrab][infoApr][nrProcJud]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoEntEduc__div">
+    <div class="col-md-12">
+        <h4>Identificação da(s) entidade(s) educativa(s) ou de prática desportiva.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc_disabled" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoTrab][infoApr][infoEntEduc][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoTrab][infoApr][infoEntEduc][nrInsc]" id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoPCD__div">
+    <div class="col-md-12">
+        <h4>Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento matriz. Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de contratação de PCD em virtude de processo judicial.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrProcJud__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do Processo Judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial. Validação: Deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoTrab__infoPCD__id__nrProcJud" maxlength="20" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.infoTrab.infoPCD.nrProcJud'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoTrab][infoPCD][nrProcJud]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="alteracao__div">
+    <div class="col-md-12">
+        <h4>Alteração das informações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação do estabelecimento, obra de construção civil ou unidade de órgão público e período de validade das informações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtTabEstab][infoEstab][alteracao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtTabEstab][infoEstab][alteracao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__nrInsc_disabled" name="[evtTabEstab][infoEstab][alteracao][ideEstab][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtTabEstab][infoEstab][alteracao][ideEstab][nrInsc]" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="iniValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Início da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.ideEstab.iniValid'}}" name="[evtTabEstab][infoEstab][alteracao][ideEstab][iniValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fimValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.ideEstab.fimValid'}}" name="[evtTabEstab][infoEstab][alteracao][ideEstab][fimValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="dadosEstab__div">
+    <div class="col-md-12">
+        <h4>Detalhamento das informações do estabelecimento, obra de construção civil ou unidade de órgão público.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cnaePrep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CNAE preponderante<a data-toggle="tooltip" title="Preencher com o código CNAE conforme legislação vigente, referente à atividade econômica preponderante do estabelecimento. Validação: Deve ser um número existente na tabela CNAE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__id__cnaePrep" maxlength="7" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.cnaePrep'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][cnaePrep]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="aliqGilrat__div">
+    <div class="col-md-12">
+        <h4>Informações de apuração da alíquota GILRAT do estabelecimento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="aliqRat__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Alíquota RAT<a data-toggle="tooltip" title="Informar a alíquota RAT, quando divergente da legislação vigente para a atividade (CNAE) preponderante. A divergência só é permitida se existir o grupo com informações sobre o processo administrativo/judicial que permite a aplicação de alíquota diferente. Valores Válidos: 1, 2, 3 Validação: Preenchimento obrigatório e exclusivo se a alíquota informada for diferente da definida na legislação vigente para o código CNAE informado (neste caso, deverá haver informações de processo em {procAdmJudRat}). Se informada, deve ser diferente da alíquota definida na legislação vigente para a atividade (CNAE) preponderante."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__id__aliqRat" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][aliqRat]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="fap__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP. Validação: Preenchimento obrigatório e exclusivo por Pessoa Jurídica e {ideEstab/tpInsc} = [4], ou se {ideEstab/tpInsc} = [1] e o fator informado for diferente do definido pelo órgão governamental competente para o estabelecimento (neste caso, deverá haver informações de processo em {procAdmJudFap}). Se informado, deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000 e, se {ideEstab/tpInsc} = [1], deve ser diferente do valor definido pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__id__fap" maxlength="5" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.fap'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][fap]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="procAdmJudRat__div">
+    <div class="col-md-12">
+        <h4>Grupo que identifica, em caso de existência, o processo administrativo ou judicial em que houve decisão/sentença favorável ao contribuinte modificando a alíquota RAT da empresa.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Processo RAT<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__procAdmJudRat__id__tpProc" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][procAdmJudRat][tpProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc' 1 %}selected{% endifequal %}>1 - Administrativo</option><option value="2" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc' 2 %}selected{% endifequal %}>2 - Judicial. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do Processo<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070), com {indMatProc} = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__procAdmJudRat__id__nrProc" maxlength="21" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudRat.nrProc'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][procAdmJudRat][nrProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Indicativo da Suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__procAdmJudRat__id__codSusp" maxlength="14" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudRat.codSusp'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][procAdmJudRat][codSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="procAdmJudFap__div">
+    <div class="col-md-12">
+        <h4>Grupo que identifica, em caso de existência, o processo administrativo/judicial em que houve decisão ou sentença favorável ao contribuinte suspendendo ou alterando a alíquota FAP aplicável ao contribuinte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Processo RAT<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial; 4 - Processo FAP de exercício anterior a 2019. Valores Válidos: 1, 2, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__procAdmJudFap__id__tpProc" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][procAdmJudFap][tpProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' 1 %}selected{% endifequal %}>1 - Administrativo</option><option value="2" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' 2 %}selected{% endifequal %}>2 - Judicial</option><option value="4" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' 4 %}selected{% endifequal %}>4 - Processo FAP de exercício anterior a 2019. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do Processo<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo {indMatProc} seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070), com {indMatProc} = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__procAdmJudFap__id__nrProc" maxlength="21" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.nrProc'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][procAdmJudFap][nrProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Indicativo da Suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__procAdmJudFap__id__codSusp" maxlength="14" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.codSusp'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][procAdmJudFap][codSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoCaepf__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao Cadastro de Atividade Econômica da Pessoa Física - CAEPF.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpCaepf__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo CAEPF (Cadastro Atividade Econômica de Pessoa Física)<a data-toggle="tooltip" title="Tipo de CAEPF: 1 - Contribuinte individual; 2 - Produtor rural; 3 - Segurado especial. Validação: Deve ser compatível com o cadastro da RFB. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoCaepf__id__tpCaepf" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoCaepf][tpCaepf]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.infoCaepf.tpCaepf' 1 %}selected{% endifequal %}>1 - Contribuinte individual</option><option value="2" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.infoCaepf.tpCaepf' 2 %}selected{% endifequal %}>2 - Produtor rural</option><option value="3" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.infoCaepf.tpCaepf' 3 %}selected{% endifequal %}>3 - Segurado especial. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoObra__div">
+    <div class="col-md-12">
+        <h4>Grupo preenchido exclusivamente por empresa construtora, relacionando os estabelecimentos inscritos no Cadastro Nacional de Obras - CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indSubstPatrObra__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Substituição de CP patronal de Obra<a data-toggle="tooltip" title="Indicativo de substituição da contribuição patronal de obra de construção civil: 1 - Contribuição patronal substituída; 2 - Contribuição patronal não substituída. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoObra__id__indSubstPatrObra" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoObra][indSubstPatrObra]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.infoObra.indSubstPatrObra' 1 %}selected{% endifequal %}>1 - Contribuição patronal substituída</option><option value="2" {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.infoObra.indSubstPatrObra' 2 %}selected{% endifequal %}>2 - Contribuição patronal não substituída. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoTrab__div">
+    <div class="col-md-12">
+        <h4>Informações trabalhistas relativas ao estabelecimento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="infoApr__div">
+    <div class="col-md-12">
+        <h4>Informações relacionadas à contratação de aprendiz. Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de contratação de aprendiz em virtude de processo judicial ou quando houver contratação de aprendiz por meio de entidade educativa ou de prática desportiva.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrProcJud__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do Processo Judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial. Validação: Se informado, deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoTrab__infoApr__id__nrProcJud" maxlength="20" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.infoTrab.infoApr.nrProcJud'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoTrab][infoApr][nrProcJud]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoEntEduc__div">
+    <div class="col-md-12">
+        <h4>Identificação da(s) entidade(s) educativa(s) ou de prática desportiva.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc_disabled" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoTrab][infoApr][infoEntEduc][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoTrab][infoApr][infoEntEduc][nrInsc]" id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoPCD__div">
+    <div class="col-md-12">
+        <h4>Informações sobre a contratação de pessoa com deficiência (PCD). Essa informação deve ser prestada apenas no estabelecimento matriz. Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de contratação de PCD em virtude de processo judicial.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrProcJud__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do Processo Judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial. Validação: Deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoTrab__infoPCD__id__nrProcJud" maxlength="20" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.infoTrab.infoPCD.nrProcJud'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoTrab][infoPCD][nrProcJud]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="novaValidade__div">
+    <div class="col-md-12">
+        <h4>Informação preenchida exclusivamente em caso de alteração do período de validade das informações, apresentando o novo período de validade.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="iniValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Início da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__novaValidade__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.novaValidade.iniValid'}}" name="[evtTabEstab][infoEstab][alteracao][novaValidade][iniValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fimValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__novaValidade__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.novaValidade.fimValid'}}" name="[evtTabEstab][infoEstab][alteracao][novaValidade][fimValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="exclusao__div">
+    <div class="col-md-12">
+        <h4>Exclusão das informações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação do estabelecimento, obra de construção civil ou unidade de órgão público e período de validade das informações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtTabEstab][infoEstab][exclusao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtTabEstab][infoEstab][exclusao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__nrInsc_disabled" name="[evtTabEstab][infoEstab][exclusao][ideEstab][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtTabEstab][infoEstab][exclusao][ideEstab][nrInsc]" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="iniValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Início da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM. Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.exclusao.ideEstab.iniValid'}}" name="[evtTabEstab][infoEstab][exclusao][ideEstab][iniValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fimValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fim da Validade<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver. Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a {iniValid}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.exclusao.ideEstab.fimValid'}}" name="[evtTabEstab][infoEstab][exclusao][ideEstab][fimValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

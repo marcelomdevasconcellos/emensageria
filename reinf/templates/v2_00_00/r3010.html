@@ -1,0 +1,588 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtEspDesportivo__div">
+    <div class="col-md-12">
+        <h4>Evento Espetáculo Desportivo do qual participe ao menos uma equipe que mantenha equipe de futebol profissional. Regras de validação: REGRA_EVE_IND_RETIFICACAO REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de Identificação do Evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtEspDesportivo__ideEvento__id__indRetif" name="[evtEspDesportivo][ideEvento][indRetif]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideEvento__id__nrRecibo" maxlength="52" value="{{original.evento_json|readjson:'evtEspDesportivo.ideEvento.nrRecibo'}}" name="[evtEspDesportivo][ideEvento][nrRecibo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtApuracao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a data de realização do espetáculo desportivo no formato AAAA- MM-DD<a data-toggle="tooltip" title="Informar a data de realização do espetáculo desportivo no formato AAAA- MM-DD. Validação: Deve ser uma data posterior a implementação da EFD-Reinf. Não pode ser superior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideEvento__id__dtApuracao" value="{{original.evento_json|readjson:'evtEspDesportivo.ideEvento.dtApuracao'}}" name="[evtEspDesportivo][ideEvento][dtApuracao]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtEspDesportivo][ideEvento][tpAmb]" id="evtEspDesportivo__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtEspDesportivo][ideEvento][tpAmb]" id="evtEspDesportivo__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtEspDesportivo][ideEvento][procEmi]" id="evtEspDesportivo__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtEspDesportivo][ideEvento][procEmi]" id="evtEspDesportivo__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtEspDesportivo][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtEspDesportivo__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtEspDesportivo][ideEvento][verProc]" id="evtEspDesportivo__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideContri__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação da Entidade promotora do espetáculo desportivo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Preencher com o código correspondente ao tipo de inscrição</label>
+            <select name="[evtEspDesportivo][ideContri][tpInsc]" id="evtEspDesportivo__ideContri__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtEspDesportivo][ideContri][tpInsc]" id="evtEspDesportivo__ideContri__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</label>
+            <input type="text" id="evtEspDesportivo__ideContri__id__nrInsc_disabled" name="[evtEspDesportivo][ideContri][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtEspDesportivo][ideContri][nrInsc]" id="evtEspDesportivo__ideContri__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Registro que identifica o estabelecimento promotor do espetáculo desportivo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInscEstab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição: 1 - CNPJ. Validação: Deve ser igual a [1] (CNPJ). Valores Válidos: 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtEspDesportivo__ideContri__ideEstab__id__tpInscEstab" name="[evtEspDesportivo][ideContri][ideEstab][tpInscEstab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.tpInscEstab' 1 %}selected{% endifequal %}>1 - CNPJ. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInscEstab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}.<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento do contribuinte declarante de acordo com o tipo de inscrição indicado no campo {tpInscEstab}. Validação: A inscrição informada deve ser válida e compatível com {tpInscEstab}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__id__nrInscEstab" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.nrInscEstab'}}" name="[evtEspDesportivo][ideContri][ideEstab][nrInscEstab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="boletim__div">
+    <div class="col-md-12">
+        <h4>Boletim do Espetáculo Desportivo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrBoletim__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do boletim relativo ao espetáculo desportivo<a data-toggle="tooltip" title="Número do boletim relativo ao espetáculo desportivo. Validação: Não pode haver duplicidade de registros com o mesmo {nrBoletim}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__id__nrBoletim" maxlength="4" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.nrBoletim'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][nrBoletim]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpCompeticao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de Competição<a data-toggle="tooltip" title="Tipo de Competição: 1 - Oficial; 2 - Não Oficial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtEspDesportivo__ideContri__ideEstab__boletim__id__tpCompeticao" name="[evtEspDesportivo][ideContri][ideEstab][boletim][tpCompeticao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.tpCompeticao' 1 %}selected{% endifequal %}>1 - Oficial</option><option value="2" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.tpCompeticao' 2 %}selected{% endifequal %}>2 - Não Oficial. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="categEvento__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Categoria do evento<a data-toggle="tooltip" title="Categoria do evento: 1 - Internacional; 2 - Interestadual; 3 - Estadual; 4 - Local;. Valores Válidos: 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtEspDesportivo__ideContri__ideEstab__boletim__id__categEvento" name="[evtEspDesportivo][ideContri][ideEstab][boletim][categEvento]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.categEvento' 1 %}selected{% endifequal %}>1 - Internacional</option><option value="2" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.categEvento' 2 %}selected{% endifequal %}>2 - Interestadual</option><option value="3" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.categEvento' 3 %}selected{% endifequal %}>3 - Estadual</option><option value="4" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.categEvento' 4 %}selected{% endifequal %}>4 - Local</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="modDesportiva__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição da modalidade do evento desportivo<a data-toggle="tooltip" title="Descrição da modalidade do evento desportivo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__id__modDesportiva" maxlength="100" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.modDesportiva'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][modDesportiva]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nomeCompeticao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome da competição. (Campeonato Brasileiro, Copa do Brasil, Campeonato Estadual, entre outras)<a data-toggle="tooltip" title="Nome da competição. (Campeonato Brasileiro, Copa do Brasil, Campeonato Estadual, entre outras)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__id__nomeCompeticao" maxlength="100" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.nomeCompeticao'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][nomeCompeticao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cnpjMandante__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o CNPJ do clube mandante<a data-toggle="tooltip" title="Preencher com o CNPJ do clube mandante. Validação: Deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__id__cnpjMandante" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.cnpjMandante'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][cnpjMandante]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cnpjVisitante__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o número de inscrição do clube visitante no CNPJ<a data-toggle="tooltip" title="Preencher com o número de inscrição do clube visitante no CNPJ. Não deve ser preenchido em caso de clube estrangeiro. Validação: Se informado, deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__id__cnpjVisitante" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.cnpjVisitante'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][cnpjVisitante]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nomeVisitante__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome do clube visitante<a data-toggle="tooltip" title="Nome do clube visitante. Validação: Preenchimento obrigatório se não preencher {cnpjVisitante}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__id__nomeVisitante" maxlength="80" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.nomeVisitante'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][nomeVisitante]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="pracaDesportiva__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Praça desportiva do local do evento<a data-toggle="tooltip" title="Praça desportiva do local do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__id__pracaDesportiva" maxlength="100" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.pracaDesportiva'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][pracaDesportiva]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codMunic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Deve ser um código existente na tabela de municípios do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.codMunic'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][codMunic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="uf__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com a sigla da Unidade da Federação<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtEspDesportivo__ideContri__ideEstab__boletim__id__uf" name="[evtEspDesportivo][ideContri][ideEstab][boletim][uf]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="qtdePagantes__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quantidade de espectadores pagantes do evento<a data-toggle="tooltip" title="Quantidade de espectadores pagantes do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__id__qtdePagantes" maxlength="6" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.qtdePagantes'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][qtdePagantes]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdeNaoPagantes__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quantidade de espectadores não pagantes do evento<a data-toggle="tooltip" title="Quantidade de espectadores não pagantes do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__id__qtdeNaoPagantes" maxlength="6" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.qtdeNaoPagantes'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][qtdeNaoPagantes]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="receitaIngressos__div">
+    <div class="col-md-12">
+        <h4>Receita da Venda de Ingressos.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpIngresso__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de Ingresso<a data-toggle="tooltip" title="Tipo de Ingresso: 1 - Arquibancada; 2 - Geral; 3 - Cadeiras; 4 - Camarote;. Valores Válidos: 1,2,3,4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtEspDesportivo__ideContri__ideEstab__boletim__receitaIngressos__id__tpIngresso" name="[evtEspDesportivo][ideContri][ideEstab][boletim][receitaIngressos][tpIngresso]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.receitaIngressos.tpIngresso' 1 %}selected{% endifequal %}>1 - Arquibancada</option><option value="2" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.receitaIngressos.tpIngresso' 2 %}selected{% endifequal %}>2 - Geral</option><option value="3" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.receitaIngressos.tpIngresso' 3 %}selected{% endifequal %}>3 - Cadeiras</option><option value="4" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.receitaIngressos.tpIngresso' 4 %}selected{% endifequal %}>4 - Camarote</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="descIngr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição do tipo de ingresso<a data-toggle="tooltip" title="Descrição do tipo de ingresso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__receitaIngressos__id__descIngr" maxlength="30" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.receitaIngressos.descIngr'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][receitaIngressos][descIngr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdeIngrVenda__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número de ingressos colocados à venda<a data-toggle="tooltip" title="Número de ingressos colocados à venda."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__receitaIngressos__id__qtdeIngrVenda" maxlength="6" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.receitaIngressos.qtdeIngrVenda'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][receitaIngressos][qtdeIngrVenda]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdeIngrVendidos__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número de ingressos vendidos<a data-toggle="tooltip" title="Número de ingressos vendidos. Validação: Não pode ser superior ao valor informado em {qtdeIngrVenda}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__receitaIngressos__id__qtdeIngrVendidos" maxlength="6" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.receitaIngressos.qtdeIngrVendidos'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][receitaIngressos][qtdeIngrVendidos]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdeIngrDev__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número de ingressos devolvidos<a data-toggle="tooltip" title="Número de ingressos devolvidos. Validação: Não pode ser superior ao valor informado em {qtdeIngrVenda}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__receitaIngressos__id__qtdeIngrDev" maxlength="6" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.receitaIngressos.qtdeIngrDev'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][receitaIngressos][qtdeIngrDev]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="precoIndiv__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preço individual do ingresso<a data-toggle="tooltip" title="Preço individual do ingresso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__receitaIngressos__id__precoIndiv" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.receitaIngressos.precoIndiv'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][receitaIngressos][precoIndiv]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrTotal__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total arrecadado<a data-toggle="tooltip" title="Valor total arrecadado. Validação: Deve corresponder a {qtdeIngrVendidos} x {precoIndiv}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__receitaIngressos__id__vlrTotal" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.receitaIngressos.vlrTotal'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][receitaIngressos][vlrTotal]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="outrasReceitas__div">
+    <div class="col-md-12">
+        <h4>Outras receitas do espetáculo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpReceita__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de receita<a data-toggle="tooltip" title="Tipo de receita, conforme tabela: 1 - Transmissão; 2 - Propaganda; 3 - Publicidade; 4 - Sorteio; 5 - Outros. Valores Válidos: 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__outrasReceitas__id__tpReceita" maxlength="1" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.outrasReceitas.tpReceita'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][outrasReceitas][tpReceita]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrReceita__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da receita auferida<a data-toggle="tooltip" title="Valor da receita auferida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__outrasReceitas__id__vlrReceita" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.outrasReceitas.vlrReceita'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][outrasReceitas][vlrReceita]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="descReceita__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição da receita<a data-toggle="tooltip" title="Descrição da receita."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__boletim__outrasReceitas__id__descReceita" maxlength="20" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.boletim.outrasReceitas.descReceita'}}" name="[evtEspDesportivo][ideContri][ideEstab][boletim][outrasReceitas][descReceita]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="receitaTotal__div">
+    <div class="col-md-12">
+        <h4>Totalização da Receita.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="vlrReceitaTotal__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da receita bruta total<a data-toggle="tooltip" title="Valor da receita bruta total. Validação: Deve corresponder a soma de {vlrTotal} de{receitaIngressos} e de {vlrReceita} de {outrasReceitas} que estejam vinculados ao mesmo estabelecimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__receitaTotal__id__vlrReceitaTotal" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrReceitaTotal'}}" name="[evtEspDesportivo][ideContri][ideEstab][receitaTotal][vlrReceitaTotal]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCP__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da contribuição previdenciária<a data-toggle="tooltip" title="Valor da contribuição previdenciária."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__receitaTotal__id__vlrCP" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrCP'}}" name="[evtEspDesportivo][ideContri][ideEstab][receitaTotal][vlrCP]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCPSuspTotal__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da Contribuição Previdenciária com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária com exigibilidade suspensa. Validação: Deve ser igual ao somatório dos valores informados no campo {vlrCPSusp} do grupo {infoProc}, desconsiderando os processos cujo {indSusp} seja igual a [92]. Não pode ser superior a {vlrCP}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__receitaTotal__id__vlrCPSuspTotal" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrCPSuspTotal'}}" name="[evtEspDesportivo][ideContri][ideEstab][receitaTotal][vlrCPSuspTotal]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrReceitaClubes__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da receita destinada aos clubes participantes<a data-toggle="tooltip" title="Valor total da receita destinada aos clubes participantes."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__receitaTotal__id__vlrReceitaClubes" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrReceitaClubes'}}" name="[evtEspDesportivo][ideContri][ideEstab][receitaTotal][vlrReceitaClubes]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrRetParc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor retido do clube para amortização do parcelamento especial da Lei 8.641/93, quando for o caso. Se não houver retenção, preencher com 0 (zero).<a data-toggle="tooltip" title="Valor retido do clube para amortização do parcelamento especial da Lei 8.641/93, quando for o caso. Se não houver retenção, preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__receitaTotal__id__vlrRetParc" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.receitaTotal.vlrRetParc'}}" name="[evtEspDesportivo][ideContri][ideEstab][receitaTotal][vlrRetParc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoProc__div">
+    <div class="col-md-12">
+        <h4>Informações de Processos Administrativos/Judiciais com decisão/sentença favorável ao contribuinte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de processo<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtEspDesportivo__ideContri__ideEstab__receitaTotal__infoProc__id__tpProc" name="[evtEspDesportivo][ideContri][ideEstab][receitaTotal][infoProc][tpProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.receitaTotal.infoProc.tpProc' 1 %}selected{% endifequal %}>1 - Administrativo</option><option value="2" {% ifequal original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.receitaTotal.infoProc.tpProc' 2 %}selected{% endifequal %}>2 - Judicial. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número do processo administrativo/judicial<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__receitaTotal__infoProc__id__nrProc" maxlength="21" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.receitaTotal.infoProc.nrProc'}}" name="[evtEspDesportivo][ideContri][ideEstab][receitaTotal][infoProc][nrProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__receitaTotal__infoProc__id__codSusp" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.receitaTotal.infoProc.codSusp'}}" name="[evtEspDesportivo][ideContri][ideEstab][receitaTotal][infoProc][codSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCPSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da Contribuição Previdenciária com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária com exigibilidade suspensa."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtEspDesportivo__ideContri__ideEstab__receitaTotal__infoProc__id__vlrCPSusp" maxlength="14" value="{{original.evento_json|readjson:'evtEspDesportivo.ideContri.ideEstab.receitaTotal.infoProc.vlrCPSusp'}}" name="[evtEspDesportivo][ideContri][ideEstab][receitaTotal][infoProc][vlrCPSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

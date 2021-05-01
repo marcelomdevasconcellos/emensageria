@@ -1,0 +1,454 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtCPRB__div">
+    <div class="col-md-12">
+        <h4>Evento da contribuição previdenciária sobre a receita bruta - CPRB. Regras de validação: REGRA_EVE_CPRB REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de Identificação do Evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCPRB__ideEvento__id__indRetif" name="[evtCPRB][ideEvento][indRetif]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__ideEvento__id__nrRecibo" maxlength="52" value="{{original.evento_json|readjson:'evtCPRB.ideEvento.nrRecibo'}}" name="[evtCPRB][ideEvento][nrRecibo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="perApur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o ano/mês de referência das informações no formato AAAA-MM<a data-toggle="tooltip" title="Informar o ano/mês de referência das informações no formato AAAA-MM. Validação: Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__ideEvento__id__perApur" maxlength="10" value="{{original.evento_json|readjson:'evtCPRB.ideEvento.perApur'}}" name="[evtCPRB][ideEvento][perApur]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtCPRB][ideEvento][tpAmb]" id="evtCPRB__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtCPRB][ideEvento][tpAmb]" id="evtCPRB__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtCPRB][ideEvento][procEmi]" id="evtCPRB__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtCPRB][ideEvento][procEmi]" id="evtCPRB__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtCPRB][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtCPRB__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtCPRB][ideEvento][verProc]" id="evtCPRB__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideContri__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do contribuinte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Preencher com o código correspondente ao tipo de inscrição</label>
+            <select name="[evtCPRB][ideContri][tpInsc]" id="evtCPRB__ideContri__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtCPRB][ideContri][tpInsc]" id="evtCPRB__ideContri__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</label>
+            <input type="text" id="evtCPRB__ideContri__id__nrInsc_disabled" name="[evtCPRB][ideContri][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtCPRB][ideContri][nrInsc]" id="evtCPRB__ideContri__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoCPRB__div">
+    <div class="col-md-12">
+        <h4>Informação da contribuição previdenciária sobre a receita bruta.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Registro que identifica o estabelecimento que auferiu a receita bruta.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInscEstab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCPRB__infoCPRB__ideEstab__id__tpInscEstab" name="[evtCPRB][infoCPRB][ideEstab][tpInscEstab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInscEstab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}.<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento pertencente ao contribuinte declarante, de acordo com o tipo de inscrição indicado no campo {tpInscEstab}. Validação: A inscrição informada deve ser compatível com o {tpInscEstab}. O CNPJ ou CNO deve ser válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__id__nrInscEstab" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.nrInscEstab'}}" name="[evtCPRB][infoCPRB][ideEstab][nrInscEstab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrRecBrutaTotal__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da Receita Bruta Total do Estabelecimento no Período<a data-toggle="tooltip" title="Valor da Receita Bruta Total do Estabelecimento no Período."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__id__vlrRecBrutaTotal" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.vlrRecBrutaTotal'}}" name="[evtCPRB][infoCPRB][ideEstab][vlrRecBrutaTotal]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCPApurTotal__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da Contribuição Previdenciária sobre Receita Bruta apurada pelo Estabelecimento no período<a data-toggle="tooltip" title="Valor total da Contribuição Previdenciária sobre Receita Bruta apurada pelo Estabelecimento no período. Validação: Deve ser igual a totalização do campo {vlrCPRBapur} do grupo {tipoCod}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__id__vlrCPApurTotal" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.vlrCPApurTotal'}}" name="[evtCPRB][infoCPRB][ideEstab][vlrCPApurTotal]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCPRBSuspTotal__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da Contribuição Previdenciária com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária com exigibilidade suspensa. Validação: Deve ser igual a totalização do campo {vlrCPRBSusp} do grupo {infoProc}, desconsiderando os processos cujo {indSusp} seja igual a [92]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__id__vlrCPRBSuspTotal" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.vlrCPRBSuspTotal'}}" name="[evtCPRB][infoCPRB][ideEstab][vlrCPRBSuspTotal]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tipoCod__div">
+    <div class="col-md-12">
+        <h4>Registro que apresenta o valor total da receita por tipo de código de atividade econômica.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codAtivEcon__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09<a data-toggle="tooltip" title="Código indicador correspondente à atividade comercial, produto ou serviço sujeito a incidência da Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 09. Validação: Deve ser um código válido existente na Tabela 09."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__id__codAtivEcon" maxlength="8" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.codAtivEcon'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][codAtivEcon]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrRecBrutaAtiv__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o valor total da receita da atividade<a data-toggle="tooltip" title="Preencher com o valor total da receita da atividade. Validação: Não pode ser maior que {vlrRecBrutaTotal}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__id__vlrRecBrutaAtiv" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.vlrRecBrutaAtiv'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][vlrRecBrutaAtiv]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrExcRecBruta__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei<a data-toggle="tooltip" title="Preencher com o Valor total das Exclusões da Receita Bruta previstas em lei. Validação: Deve ser igual a soma dos valores informados no campo {vlrAjuste} cujo {tpAjuste} seja igual a "0" - Ajuste de redução. Caso não haja ajuste de redução, preencher com 0 (zero). Não pode ser maior que {vlrRecBrutaAtiv}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__id__vlrExcRecBruta" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.vlrExcRecBruta'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][vlrExcRecBruta]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrAdicRecBruta__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o Valor total das Adições da Receita Bruta previstas em lei<a data-toggle="tooltip" title="Preencher com o Valor total das Adições da Receita Bruta previstas em lei. Validação: Deve ser igual a soma dos valores informados no campo {vlrAjuste} cujo {tpAjuste} seja igual a "1" - Ajuste de adição. Caso não haja ajuste de adição, preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__id__vlrAdicRecBruta" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.vlrAdicRecBruta'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][vlrAdicRecBruta]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBcCPRB__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta<a data-toggle="tooltip" title="Preencher com o Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita Bruta. Validação: Deve ser igual a {vlrRecBrutaAtiv} + {vlrAdicRecBruta} - {vlrExcRecBruta}. O somatório dos valores informados no campo {vlrCPRBSusp} não pode ser superior ao valor informado neste campo ({vlrBcCPRB}) multiplicado pela alíquota definida na tabela 09 para o código da atividade informada em {codAtivEcon}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__id__vlrBcCPRB" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.vlrBcCPRB'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][vlrBcCPRB]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCPRBapur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta.<a data-toggle="tooltip" title="Preencher com o Valor Contribuição Previdenciária sobre a Receita Bruta."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__id__vlrCPRBapur" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.vlrCPRBapur'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][vlrCPRBapur]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="observ__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observações<a data-toggle="tooltip" title="Observações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__id__observ" maxlength="200" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.observ'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][observ]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tipoAjuste__div">
+    <div class="col-md-12">
+        <h4>Registro a ser preenchido caso a pessoa jurídica tenha de proceder a ajustes da contribuição apurada no período, decorrentes da legislação tributária da contribuição, de estorno ou de outras situações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpAjuste__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de ajuste<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo. Valores Válidos: 0,1."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCPRB__infoCPRB__ideEstab__tipoCod__tipoAjuste__id__tpAjuste" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][tipoAjuste][tpAjuste]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="codAjuste__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código de ajuste<a data-toggle="tooltip" title="Preencher com o código de ajuste: 1 - Ajuste da CPRB: Adoção do Regime de Caixa; 2 - Ajuste da CPRB: Diferimento de Valores a recolher no período; 3 - Adição de valores Diferidos em Período(s) Anteriores(es); 4 - Exportações diretas; 5 -Transporte internacional de cargas; 6 - Vendas canceladas e os descontos incondicionais concedidos; 7 - IPI, se incluído na receita bruta; 8 - ICMS, quando cobrado pelo vendedor dos bens ou prestador dos serviços na condição de substituto tributário; 9 - Receita bruta reconhecida pela construção, recuperação, reforma, ampliação ou melhoramento da infraestrutura, cuja contrapartida seja ativo intangível representativo de direito de exploração, no caso de contratos de concessão de serviços públicos; 10 - O valor do aporte de recursos realizado nos termos do art 6 §3 inciso III da Lei 11.079/2004; 11 - Demais ajustes oriundos da Legislação Tributária, estorno ou outras situações. Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCPRB__infoCPRB__ideEstab__tipoCod__tipoAjuste__id__codAjuste" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][tipoAjuste][codAjuste]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.tipoAjuste.codAjuste' 1 %}selected{% endifequal %}>1 - Ajuste da CPRB</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="vlrAjuste__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do ajuste<a data-toggle="tooltip" title="Valor do ajuste."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__tipoAjuste__id__vlrAjuste" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.tipoAjuste.vlrAjuste'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][tipoAjuste][vlrAjuste]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="descAjuste__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição resumida do ajuste<a data-toggle="tooltip" title="Descrição resumida do ajuste."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__tipoAjuste__id__descAjuste" maxlength="20" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.tipoAjuste.descAjuste'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][tipoAjuste][descAjuste]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtAjuste__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o mês/ano (formato AAAA-MM) de referência do ajuste<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência do ajuste. Validação: Deve ser um mês/ano válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__tipoAjuste__id__dtAjuste" maxlength="7" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.tipoAjuste.dtAjuste'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][tipoAjuste][dtAjuste]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoProc__div">
+    <div class="col-md-12">
+        <h4>Informações de processos relacionados a Suspensão da CPRB.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de processo<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCPRB__infoCPRB__ideEstab__tipoCod__infoProc__id__tpProc" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][infoProc][tpProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.infoProc.tpProc' 1 %}selected{% endifequal %}>1 - Administrativo</option><option value="2" {% ifequal original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.infoProc.tpProc' 2 %}selected{% endifequal %}>2 - Judicial. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número do processo administrativo/judicial<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__infoProc__id__nrProc" maxlength="21" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.infoProc.nrProc'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][infoProc][nrProc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve existir na tabela de processos (R-1070), vinculado ao número do processo informado em {nrProc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__infoProc__id__codSusp" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.infoProc.codSusp'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][infoProc][codSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCPRBSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da Contribuição Previdenciária com exigibilidade suspensa.<a data-toggle="tooltip" title="Valor da Contribuição Previdenciária com exigibilidade suspensa."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCPRB__infoCPRB__ideEstab__tipoCod__infoProc__id__vlrCPRBSusp" maxlength="14" value="{{original.evento_json|readjson:'evtCPRB.infoCPRB.ideEstab.tipoCod.infoProc.vlrCPRBSusp'}}" name="[evtCPRB][infoCPRB][ideEstab][tipoCod][infoProc][vlrCPRBSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

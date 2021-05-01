@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Mac OS files
+.DS_Store
+
 # C extensions
 *.so
 
@@ -127,3 +130,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Certs
+*.0
+*.pem
+*.pfx
+
+# File Folder
+arquivos/*
+
+# VsCode
+*.code-workspace
+

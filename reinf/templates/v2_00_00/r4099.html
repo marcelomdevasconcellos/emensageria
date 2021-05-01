@@ -1,0 +1,267 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtFech__div">
+    <div class="col-md-12">
+        <h4>Evento de Fechamento. Regras de validação: REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_CONTRIBUINTE</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de Identificação do Evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perApur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o ano/mês de referência das informações no formato AAAA-MM<a data-toggle="tooltip" title="Informar o ano/mês de referência das informações no formato AAAA-MM. Validação: Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtFech__ideEvento__id__perApur" maxlength="10" value="{{original.evento_json|readjson:'evtFech.ideEvento.perApur'}}" name="[evtFech][ideEvento][perApur]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtFech][ideEvento][tpAmb]" id="evtFech__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtFech][ideEvento][tpAmb]" id="evtFech__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtFech][ideEvento][procEmi]" id="evtFech__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtFech][ideEvento][procEmi]" id="evtFech__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtFech][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtFech__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtFech][ideEvento][verProc]" id="evtFech__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideContri__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do contribuinte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Preencher com o código correspondente ao tipo de inscrição</label>
+            <select name="[evtFech][ideContri][tpInsc]" id="evtFech__ideContri__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtFech][ideContri][tpInsc]" id="evtFech__ideContri__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</label>
+            <input type="text" id="evtFech__ideContri__id__nrInsc_disabled" name="[evtFech][ideContri][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtFech][ideContri][nrInsc]" id="evtFech__ideContri__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideRespInf__div">
+    <div class="col-md-12">
+        <h4>Responsável pelas informações.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nmResp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome do responsável pelas informações.<a data-toggle="tooltip" title="Nome do responsável pelas informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtFech__ideRespInf__id__nmResp" maxlength="70" value="{{original.evento_json|readjson:'evtFech.ideRespInf.nmResp'}}" name="[evtFech][ideRespInf][nmResp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cpfResp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o CPF do responsável<a data-toggle="tooltip" title="Preencher com o CPF do responsável. Validação: Deve ser um número de CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtFech__ideRespInf__id__cpfResp" maxlength="11" value="{{original.evento_json|readjson:'evtFech.ideRespInf.cpfResp'}}" name="[evtFech][ideRespInf][cpfResp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="telefone__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número do telefone, com DDD<a data-toggle="tooltip" title="Informar o número do telefone, com DDD. Validação: Se preenchido, deve conter apenas números com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtFech__ideRespInf__id__telefone" maxlength="13" value="{{original.evento_json|readjson:'evtFech.ideRespInf.telefone'}}" name="[evtFech][ideRespInf][telefone]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="email__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Endereço eletrônico<a data-toggle="tooltip" title="Endereço eletrônico. Validação: O e-mail deve possuir o caractere "@" e este não pode estar no início e/ou no final do endereço informado. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no final do endereço informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtFech__ideRespInf__id__email" maxlength="60" value="{{original.evento_json|readjson:'evtFech.ideRespInf.email'}}" name="[evtFech][ideRespInf][email]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoFech__div">
+    <div class="col-md-12">
+        <h4>Informações do Fechamento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="evtRetPF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Evento Pagamentos ou Créditos efetuados a Pessoa Física<a data-toggle="tooltip" title="Possui informações de pagamentos ou crédito a beneficiário PF no período de apuração? S - Sim; N - Não. Validação: Se for igual a [S], deve existir evento R-4010 para o período de apuração. Caso contrário, não deve existir o referido evento. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtFech__infoFech__id__evtRetPF" name="[evtFech][infoFech][evtRetPF]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="evtRetPJ__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Evento Retenções na Fonte - IR, CSLL, Cofins e PIS/PASEP<a data-toggle="tooltip" title="Possui informações de pagamentos ou crédito a beneficiário PJ no período de apuração? S - Sim; N - Não. Validação: Se for igual a [S], deve existir evento R-4020 para o mesmo período de apuração. Caso contrário, não deve existir o referido evento. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtFech__infoFech__id__evtRetPJ" name="[evtFech][infoFech][evtRetPJ]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="evtPgtosNId__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Possui informações de pagamentos a beneficiários não identificados no período de apuração?<a data-toggle="tooltip" title="Possui informações de pagamentos a beneficiários não identificados no período de apuração? S - Sim; N - Não. Validação: Se for igual a [S], deve existir o evento R-4040 para o mesmo período de apuração. Caso contrário, não deve existir o referido evento. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtFech__infoFech__id__evtPgtosNId" name="[evtFech][infoFech][evtPgtosNId]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

@@ -1,0 +1,599 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtServPrest__div">
+    <div class="col-md-12">
+        <h4>Evento Serviços Prestados - Cessão de Mão de Obra ou Empreitada. Regras de validação: REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_TOMAD REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de Identificação do Evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtServPrest__ideEvento__id__indRetif" name="[evtServPrest][ideEvento][indRetif]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__ideEvento__id__nrRecibo" maxlength="52" value="{{original.evento_json|readjson:'evtServPrest.ideEvento.nrRecibo'}}" name="[evtServPrest][ideEvento][nrRecibo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="perApur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o ano/mês de referência das informações no formato AAAA-MM<a data-toggle="tooltip" title="Informar o ano/mês de referência das informações no formato AAAA-MM. Validação: Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__ideEvento__id__perApur" maxlength="10" value="{{original.evento_json|readjson:'evtServPrest.ideEvento.perApur'}}" name="[evtServPrest][ideEvento][perApur]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtServPrest][ideEvento][tpAmb]" id="evtServPrest__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtServPrest][ideEvento][tpAmb]" id="evtServPrest__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtServPrest][ideEvento][procEmi]" id="evtServPrest__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtServPrest][ideEvento][procEmi]" id="evtServPrest__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtServPrest][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtServPrest__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtServPrest][ideEvento][verProc]" id="evtServPrest__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideContri__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do contribuinte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Preencher com o código correspondente ao tipo de inscrição</label>
+            <select name="[evtServPrest][ideContri][tpInsc]" id="evtServPrest__ideContri__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtServPrest][ideContri][tpInsc]" id="evtServPrest__ideContri__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</label>
+            <input type="text" id="evtServPrest__ideContri__id__nrInsc_disabled" name="[evtServPrest][ideContri][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtServPrest][ideContri][nrInsc]" id="evtServPrest__ideContri__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoServPrest__div">
+    <div class="col-md-12">
+        <h4>Informação dos Serviços Prestados (Cessão de Mão de Obra ou Empreitada).</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEstabPrest__div">
+    <div class="col-md-12">
+        <h4>Registro que identifica o estabelecimento "prestador" de serviços mediante cessão de mão de obra.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInscEstabPrest__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtServPrest__infoServPrest__ideEstabPrest__id__tpInscEstabPrest" name="[evtServPrest][infoServPrest][ideEstabPrest][tpInscEstabPrest]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInscEstabPrest__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInscEstabPrest}<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInscEstabPrest}. Validação: A inscrição informada deve ser compatível com o {tpInscEstabPrest}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__id__nrInscEstabPrest" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.nrInscEstabPrest'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][nrInscEstabPrest]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTomador__div">
+    <div class="col-md-12">
+        <h4>Identificação dos tomadores dos serviços.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInscTomador__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ) ou [4] CNO. Valores Válidos: 1,4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__id__tpInscTomador" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][tpInscTomador]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInscTomador__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}<a data-toggle="tooltip" title="Indicar o número de inscrição do tomador, conforme indicado no campo {tpInscTomador}. Validação: A inscrição informada deve ser compatível com o {tpInscTomador}. Se {indObra} = [0], o número informado deve ser um CNPJ válido e não pertencer ao contribuinte declarante na base cadastral da RFB. Se {indObra} for igual a 1 (Empreitada Total), o {nrInscTomador} informado deve ser um CNO de propriedade do estabelecimento prestador {ideEstabPrest} na base da RFB. Se {indObra} for igual a 2 (Empreitada Parcial), o {nrInscTomador} informado deve ser um CNO e não pertencer ao contribuinte declarante na base cadastral da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__id__nrInscTomador" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nrInscTomador'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nrInscTomador]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indObra__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de Prestação de Serviços em Obra de Construção Civil<a data-toggle="tooltip" title="Indicativo de Prestação de Serviços em Obra de Construção Civil: 0 - Não é obra de construção civil ou não está sujeita a matrícula de obra; 1 - Obra de Construção Civil - Empreitada Total; 2 - Obra de Construção Civil - Empreitada Parcial. Valores Válidos: 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__id__indObra" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][indObra]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="0" {% ifequal original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.indObra' 0 %}selected{% endifequal %}>0 - Não é obra de construção civil ou não está sujeita a matrícula de obra</option><option value="1" {% ifequal original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.indObra' 1 %}selected{% endifequal %}>1 - Obra de Construção Civil - Empreitada Total</option><option value="2" {% ifequal original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.indObra' 2 %}selected{% endifequal %}>2 - Obra de Construção Civil - Empreitada Parcial. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="vlrTotalBruto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o valor bruto da(s) nota(s) fiscal(is) <a data-toggle="tooltip" title="Preencher com o valor bruto da(s) nota(s) fiscal(is). Validação: Deve corresponder a soma do campo {vlrBruto} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__id__vlrTotalBruto" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalBruto'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][vlrTotalBruto]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrTotalBaseRet__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante<a data-toggle="tooltip" title="Preencher com a soma da base de cálculo da retenção da contribuição previdenciária das notas fiscais emitidas para o contratante. Validação: Deve corresponder a soma do campo {vlrBaseRet} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__id__vlrTotalBaseRet" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalBaseRet'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][vlrTotalBaseRet]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrTotalRetPrinc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante<a data-toggle="tooltip" title="Soma do valor da retenção das notas fiscais de serviço emitidas para o contratante. Validação: Deve corresponder a soma do campo {vlrRetencao} - a soma do campo {vlrRetSub} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__id__vlrTotalRetPrinc" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalRetPrinc'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][vlrTotalRetPrinc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrTotalRetAdic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Soma do valor do adicional de retenção das notas fiscais<a data-toggle="tooltip" title="Soma do valor do adicional de retenção das notas fiscais. Validação: Deve corresponder a soma do campo {vlrAdicional} dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__id__vlrTotalRetAdic" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalRetAdic'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][vlrTotalRetAdic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrTotalNRetPrinc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial<a data-toggle="tooltip" title="Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Validação: Deve corresponder a soma do campo {vlrNRetPrinc} dos registros vinculados. Não pode ser maior que {vlrTotalRetPrinc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__id__vlrTotalNRetPrinc" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalNRetPrinc'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][vlrTotalNRetPrinc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrTotalNRetAdic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial<a data-toggle="tooltip" title="Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência da decisão judicial. Validação: Deve corresponder a soma do campo {vlrNRetAdic} dos registros vinculados. Não pode ser maior que {vlrTotalRetAdic}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__id__vlrTotalNRetAdic" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.vlrTotalNRetAdic'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][vlrTotalNRetAdic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nfs__div">
+    <div class="col-md-12">
+        <h4>Notas Fiscais do Prestador de Serviços.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="serie__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS<a data-toggle="tooltip" title="Informar o número de série da nota fiscal/fatura ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Preencher com 0 (zero) caso não exista número de série."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__id__serie" maxlength="5" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.serie'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][serie]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="numDocto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS.<a data-toggle="tooltip" title="Número da Nota Fiscal/Fatura ou outros documentos fiscais válidos, como Recibo Provisório de Serviço - RPS, CT-e OS, entre outros."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__id__numDocto" maxlength="15" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.numDocto'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][numDocto]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtEmissaoNF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço - RPS<a data-toggle="tooltip" title="Data de Emissão da Nota Fiscal/Fatura ou do Recibo Provisório de Serviço ou de outro documento fiscal válido. Validação: O mês/ano informado deve ser igual ao mês/ano indicado no registro de abertura do arquivo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__id__dtEmissaoNF" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.dtEmissaoNF'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][dtEmissaoNF]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBruto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS<a data-toggle="tooltip" title="Preencher com o valor bruto da nota fiscal ou do Recibo Provisório de Serviço - RPS ou de outro documento fiscal válido. Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__id__vlrBruto" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.vlrBruto'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][vlrBruto]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="obs__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observações<a data-toggle="tooltip" title="Observações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__id__obs" maxlength="250" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.obs'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][obs]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoTpServ__div">
+    <div class="col-md-12">
+        <h4>Informações sobre os tipos de Serviços constantes da Nota Fiscal.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpServico__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o tipo de serviço, conforme tabela 6<a data-toggle="tooltip" title="Informar o tipo de serviço, conforme tabela 6. Validação: O código informado deve existir na tabela 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__infoTpServ__id__tpServico" maxlength="9" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.infoTpServ.tpServico'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][infoTpServ][tpServico]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseRet__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da Base de cálculo da retenção da contribuição previdenciária.<a data-toggle="tooltip" title="Valor da Base de cálculo da retenção da contribuição previdenciária."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__infoTpServ__id__vlrBaseRet" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.infoTpServ.vlrBaseRet'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][infoTpServ][vlrBaseRet]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrRetencao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura<a data-toggle="tooltip" title="Preencher com o valor da retenção apurada de acordo com o que determina a legislação vigente relativa aos serviços contidos na nota fiscal/fatura. Validação: Não pode ser maior que 11% de {vlrBaseRet}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__infoTpServ__id__vlrRetencao" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.infoTpServ.vlrRetencao'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][infoTpServ][vlrRetencao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrRetSub__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação<a data-toggle="tooltip" title="Informar o valor da retenção destacada na nota fiscal relativo aos serviços subcontratados, se houver, desde que todos os documentos envolvidos se refiram à mesma competência e ao mesmo serviço, conforme disciplina a legislação. Validação: Não pode ser superior ao {vlrRetencao}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__infoTpServ__id__vlrRetSub" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.infoTpServ.vlrRetSub'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][infoTpServ][vlrRetSub]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrNRetPrinc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa<a data-toggle="tooltip" title="Valor da retenção principal que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa. Validação: Não pode ser maior que {vlrRetencao}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__infoTpServ__id__vlrNRetPrinc" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.infoTpServ.vlrNRetPrinc'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][infoTpServ][vlrNRetPrinc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrServicos15__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 15 anos de contribuição. Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__infoTpServ__id__vlrServicos15" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.infoTpServ.vlrServicos15'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][infoTpServ][vlrServicos15]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrServicos20__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 20 anos de contribuição. Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__infoTpServ__id__vlrServicos20" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.infoTpServ.vlrServicos20'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][infoTpServ][vlrServicos20]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrServicos25__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição<a data-toggle="tooltip" title="Valor dos Serviços prestados por segurados em condições especiais, cuja atividade permita concessão de aposentadoria especial após 25 anos de contribuição. Validação: O somatório dos campos {vlrServicos15}, {vlrServicos20} e {vlrServicos25} não pode ser superior ao {vlrBaseRet} indicado na nota fiscal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__infoTpServ__id__vlrServicos25" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.infoTpServ.vlrServicos25'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][infoTpServ][vlrServicos25]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrAdicional__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Adicional apurado de retenção da nota fiscal<a data-toggle="tooltip" title="Adicional apurado de retenção da nota fiscal, caso os serviços tenham sido prestados sob condições especiais que ensejem aposentadoria especial aos trabalhadores após 15, 20, ou 25 anos de contribuição. Preencher com o valor correspondente ao somatório de 4% sobre o {vlrServicos15} mais 3% sobre {vlrServicos20} mais 2% sobre {vlrServicos25}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__infoTpServ__id__vlrAdicional" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.infoTpServ.vlrAdicional'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][infoTpServ][vlrAdicional]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrNRetAdic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa<a data-toggle="tooltip" title="Valor da retenção adicional que deixou de ser efetuada pelo contratante ou que foi depositada em juízo em decorrência de decisão judicial/administrativa. Validação: Não pode ser maior que {vlrAdicional}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__nfs__infoTpServ__id__vlrNRetAdic" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.nfs.infoTpServ.vlrNRetAdic'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][nfs][infoTpServ][vlrNRetAdic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoProcRetPr__div">
+    <div class="col-md-12">
+        <h4>Informações de processos relacionados a não retenção de contribuição previdenciária. Validação: A soma dos valores informados no campo {valorPrinc} deste grupo, com exceção dos valores informados para {indSusp} = [92], deve ser igual a {vlrTotalNRetPrinc}.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpProcRetPrinc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de processo<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__infoProcRetPr__id__tpProcRetPrinc" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][infoProcRetPr][tpProcRetPrinc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetPr.tpProcRetPrinc' 1 %}selected{% endifequal %}>1 - Administrativo</option><option value="2" {% ifequal original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetPr.tpProcRetPrinc' 2 %}selected{% endifequal %}>2 - Judicial. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrProcRetPrinc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número do processo administrativo/judicial<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. Validação: O processo deve existir na tabela de PROCESSOS."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__infoProcRetPr__id__nrProcRetPrinc" maxlength="21" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetPr.nrProcRetPrinc'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][infoProcRetPr][nrProcRetPrinc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSuspPrinc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve constar na tabela de processos (R-1070 - campo {codSusp}), vinculado ao número do processo informado em {nrProcRetPrinc}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__infoProcRetPr__id__codSuspPrinc" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetPr.codSuspPrinc'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][infoProcRetPr][codSuspPrinc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="valorPrinc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da retenção de contribuição previdenciária principal que deixou de ser efetuada em função de processo administrativo ou judicial.<a data-toggle="tooltip" title="Valor da retenção de contribuição previdenciária principal que deixou de ser efetuada em função de processo administrativo ou judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__infoProcRetPr__id__valorPrinc" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetPr.valorPrinc'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][infoProcRetPr][valorPrinc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoProcRetAd__div">
+    <div class="col-md-12">
+        <h4>Informações de processos relacionados a não retenção de contribuição previdenciária adicional. Validação: A soma dos valores informados no campo {valorAdic} deste grupo, com exceção dos valores informados para {indSusp} = [92], deve ser igual a {vlrTotalNRetAdic}.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpProcRetAdic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de processo<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo: 1 - Administrativo; 2 - Judicial. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__infoProcRetAd__id__tpProcRetAdic" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][infoProcRetAd][tpProcRetAdic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetAd.tpProcRetAdic' 1 %}selected{% endifequal %}>1 - Administrativo</option><option value="2" {% ifequal original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetAd.tpProcRetAdic' 2 %}selected{% endifequal %}>2 - Judicial. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrProcRetAdic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número do processo administrativo/judicial<a data-toggle="tooltip" title="Informar o número do processo administrativo/judicial. Validação: O processo deve existir na tabela de PROCESSOS."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__infoProcRetAd__id__nrProcRetAdic" maxlength="21" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetAd.nrProcRetAdic'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][infoProcRetAd][nrProcRetAdic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSuspAdic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Indicativo da Suspensão, atribuído pelo contribuinte<a data-toggle="tooltip" title="Código do Indicativo da Suspensão, atribuído pelo contribuinte. Este campo deve ser utilizado se, num mesmo processo, houver mais de uma matéria tributária objeto de contestação e as decisões forem diferentes para cada uma. Validação: Preenchimento obrigatório se houver mais de uma informação de Indicativo de Suspensão para um mesmo processo. Se informado, deve constar na tabela de processos (R-1070 - campo {codSusp}), vinculado ao número do processo informado em {nrProcRetAdic}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__infoProcRetAd__id__codSuspAdic" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetAd.codSuspAdic'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][infoProcRetAd][codSuspAdic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="valorAdic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da retenção de contribuição previdenciária adicional que deixou de ser efetuada em função de processo administrativo ou judicial.<a data-toggle="tooltip" title="Valor da retenção de contribuição previdenciária adicional que deixou de ser efetuada em função de processo administrativo ou judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtServPrest__infoServPrest__ideEstabPrest__ideTomador__infoProcRetAd__id__valorAdic" maxlength="14" value="{{original.evento_json|readjson:'evtServPrest.infoServPrest.ideEstabPrest.ideTomador.infoProcRetAd.valorAdic'}}" name="[evtServPrest][infoServPrest][ideEstabPrest][ideTomador][infoProcRetAd][valorAdic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

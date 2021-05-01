@@ -1,0 +1,1167 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtAltCadastral__div">
+    <div class="col-md-12">
+        <h4>Evento Alteração Cadastral do Trabalhador. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXISTE_TRABALHADOR REGRA_EXTEMP_REINTEGRACAO REGRA_VALIDA_TRABALHADOR_BASE_CNIS REGRA_VALIDA_TRABALHADOR_BASE_CPF</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de Identificação do Evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__ideEvento__id__indRetif" name="[evtAltCadastral][ideEvento][indRetif]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__ideEvento__id__nrRecibo" maxlength="40" value="{{original.evento_json|readjson:'evtAltCadastral.ideEvento.nrRecibo'}}" name="[evtAltCadastral][ideEvento][nrRecibo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtAltCadastral][ideEvento][tpAmb]" id="evtAltCadastral__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtAltCadastral][ideEvento][tpAmb]" id="evtAltCadastral__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtAltCadastral][ideEvento][procEmi]" id="evtAltCadastral__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtAltCadastral][ideEvento][procEmi]" id="evtAltCadastral__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo</label>
+            <input type="text" name="[evtAltCadastral][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtAltCadastral__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtAltCadastral][ideEvento][verProc]" id="evtAltCadastral__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtAltCadastral][ideEmpregador][tpInsc]" id="evtAltCadastral__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtAltCadastral][ideEmpregador][tpInsc]" id="evtAltCadastral__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtAltCadastral__ideEmpregador__id__nrInsc_disabled" name="[evtAltCadastral][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtAltCadastral][ideEmpregador][nrInsc]" id="evtAltCadastral__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideTrabalhador__div">
+    <div class="col-md-12">
+        <h4>Identificação do Trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__ideTrabalhador__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtAltCadastral.ideTrabalhador.cpfTrab'}}" name="[evtAltCadastral][ideTrabalhador][cpfTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="alteracao__div">
+    <div class="col-md-12">
+        <h4>Alteração de Dados Cadastrais do Trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dtAlteracao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de alteração<a data-toggle="tooltip" title="Preencher com a data da alteração das informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__id__dtAlteracao" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dtAlteracao'}}" name="[evtAltCadastral][alteracao][dtAlteracao]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dadosTrabalhador__div">
+    <div class="col-md-12">
+        <h4>Informações Pessoais do Trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nisTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>NIS<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__id__nisTrab" maxlength="11" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nisTrab'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nisTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome<a data-toggle="tooltip" title="Nome do Trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__id__nmTrab" maxlength="70" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nmTrab'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nmTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="sexo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Sexo<a data-toggle="tooltip" title="Sexo do Trabalhador: M - Masculino; F - Feminino. Valores Válidos: M, F."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__id__sexo" name="[evtAltCadastral][alteracao][dadosTrabalhador][sexo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="M" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.sexo' M %}selected{% endifequal %}>M - Masculino</option><option value="F" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.sexo' F %}selected{% endifequal %}>F - Feminino. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="racaCor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Raça/Cor<a data-toggle="tooltip" title="Raça e cor do trabalhador, conforme opções abaixo: 1 - Branca; 2 - Preta; 3 - Parda; 4 - Amarela; 5 - Indígena; 6 - Não informado. Valores Válidos: 1, 2, 3, 4, 5, 6."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__id__racaCor" name="[evtAltCadastral][alteracao][dadosTrabalhador][racaCor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.racaCor' 1 %}selected{% endifequal %}>1 - Branca</option><option value="2" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.racaCor' 2 %}selected{% endifequal %}>2 - Preta</option><option value="3" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.racaCor' 3 %}selected{% endifequal %}>3 - Parda</option><option value="4" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.racaCor' 4 %}selected{% endifequal %}>4 - Amarela</option><option value="5" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.racaCor' 5 %}selected{% endifequal %}>5 - Indígena</option><option value="6" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.racaCor' 6 %}selected{% endifequal %}>6 - Não informado. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="estCiv__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Estado Civil<a data-toggle="tooltip" title="Estado civil do trabalhador, conforme opções abaixo: 1 - Solteiro; 2 - Casado; 3 - Divorciado; 4 - Separado; 5 - Viúvo. Valores Válidos: 1, 2, 3, 4, 5."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__id__estCiv" name="[evtAltCadastral][alteracao][dadosTrabalhador][estCiv]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.estCiv' 1 %}selected{% endifequal %}>1 - Solteiro</option><option value="2" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.estCiv' 2 %}selected{% endifequal %}>2 - Casado</option><option value="3" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.estCiv' 3 %}selected{% endifequal %}>3 - Divorciado</option><option value="4" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.estCiv' 4 %}selected{% endifequal %}>4 - Separado</option><option value="5" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.estCiv' 5 %}selected{% endifequal %}>5 - Viúvo. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="grauInstr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Grau de Instrução<a data-toggle="tooltip" title="Grau de instrução do trabalhador, conforme opções abaixo: 01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou; 02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular; 03 - 5º ano completo do Ensino Fundamental; 04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série); 05 - Ensino Fundamental Completo; 06 - Ensino Médio incompleto; 07 - Ensino Médio completo; 08 - Educação Superior incompleta; 09 - Educação Superior completa; 10 - Pós-Graduação completa; 11 - Mestrado completo; 12 - Doutorado completo. Valores Válidos: 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__id__grauInstr" name="[evtAltCadastral][alteracao][dadosTrabalhador][grauInstr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="01" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 01 %}selected{% endifequal %}>01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou</option><option value="02" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 02 %}selected{% endifequal %}>02 - Até o 5º ano incompleto do Ensino Fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular</option><option value="03" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 03 %}selected{% endifequal %}>03 - 5º ano completo do Ensino Fundamental</option><option value="04" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 04 %}selected{% endifequal %}>04 - Do 6º ao 9º ano do Ensino Fundamental incompleto (antiga 5ª a 8ª série)</option><option value="05" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 05 %}selected{% endifequal %}>05 - Ensino Fundamental Completo</option><option value="06" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 06 %}selected{% endifequal %}>06 - Ensino Médio incompleto</option><option value="07" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 07 %}selected{% endifequal %}>07 - Ensino Médio completo</option><option value="08" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 08 %}selected{% endifequal %}>08 - Educação Superior incompleta</option><option value="09" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 09 %}selected{% endifequal %}>09 - Educação Superior completa</option><option value="10" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 10 %}selected{% endifequal %}>10 - Pós-Graduação completa</option><option value="11" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 11 %}selected{% endifequal %}>11 - Mestrado completo</option><option value="12" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.grauInstr' 12 %}selected{% endifequal %}>12 - Doutorado completo. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nmSoc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome Social<a data-toggle="tooltip" title="Nome social para travesti ou transexual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__id__nmSoc" maxlength="70" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nmSoc'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nmSoc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nascimento__div">
+    <div class="col-md-12">
+        <h4>Grupo de informações do nascimento do trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dtNascto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__nascimento__id__dtNascto" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.dtNascto'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nascimento][dtNascto]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codMunic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE. O preenchimento deste campo é facultativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__nascimento__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.codMunic'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nascimento][codMunic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="uf__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. Validação: O preenchimento deste campo é facultativo. Se informado, deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__nascimento__id__uf" name="[evtAltCadastral][alteracao][dadosTrabalhador][nascimento][uf]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="paisNascto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>País de nascimento<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do trabalhador, conforme tabela 6. Validação: Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__nascimento__id__paisNascto" maxlength="3" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNascto'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nascimento][paisNascto]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="paisNac__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>País de nacionalidade<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador, conforme tabela 6. Validação: Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__nascimento__id__paisNac" maxlength="3" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.paisNac'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nascimento][paisNac]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmMae__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome da Mãe<a data-toggle="tooltip" title="Nome da mãe."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__nascimento__id__nmMae" maxlength="70" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmMae'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nascimento][nmMae]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmPai__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome do Pai<a data-toggle="tooltip" title="Nome do pai do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__nascimento__id__nmPai" maxlength="70" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nascimento.nmPai'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nascimento][nmPai]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="documentos__div">
+    <div class="col-md-12">
+        <h4>Informações dos documentos pessoais do trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="CTPS__div">
+    <div class="col-md-12">
+        <h4>Informações da Carteira de Trabalho e Previdência Social.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrCtps__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número da CTPS<a data-toggle="tooltip" title="CTPS."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__CTPS__id__nrCtps" maxlength="11" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.CTPS.nrCtps'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][CTPS][nrCtps]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="serieCtps__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Série da CTPS<a data-toggle="tooltip" title="Número de série da CTPS."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__CTPS__id__serieCtps" maxlength="5" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.CTPS.serieCtps'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][CTPS][serieCtps]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ufCtps__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>UF da CTPS<a data-toggle="tooltip" title="UF da expedição da CTPS. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__CTPS__id__ufCtps" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][CTPS][ufCtps]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="RIC__div">
+    <div class="col-md-12">
+        <h4>Informações do Documento Nacional de Identidade - DNI (Registro de Identificação Civil - RIC).</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrRic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do RIC<a data-toggle="tooltip" title="Número do Documento Nacional de Identidade - DNI."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__RIC__id__nrRic" maxlength="14" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.RIC.nrRic'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][RIC][nrRic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="orgaoEmissor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Órgão Emissor do RIC<a data-toggle="tooltip" title="Órgão e UF de emissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__RIC__id__orgaoEmissor" maxlength="20" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.RIC.orgaoEmissor'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][RIC][orgaoEmissor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtExped__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de Expedição do RIC<a data-toggle="tooltip" title="Data da expedição do documento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__RIC__id__dtExped" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.RIC.dtExped'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][RIC][dtExped]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="RG__div">
+    <div class="col-md-12">
+        <h4>Informações do Registro Geral (RG).</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrRg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do RG<a data-toggle="tooltip" title="RG."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__RG__id__nrRg" maxlength="14" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.RG.nrRg'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][RG][nrRg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="orgaoEmissor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Órgão Emissor do RIC<a data-toggle="tooltip" title="Órgão e UF de emissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__RG__id__orgaoEmissor" maxlength="20" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.RG.orgaoEmissor'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][RG][orgaoEmissor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtExped__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de Expedição do RIC<a data-toggle="tooltip" title="Data da expedição do documento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__RG__id__dtExped" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.RG.dtExped'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][RG][dtExped]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="RNE__div">
+    <div class="col-md-12">
+        <h4>Informações do Registro Nacional de Estrangeiro.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrRne__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do RNE<a data-toggle="tooltip" title="Número de inscrição no Registro Nacional de Estrangeiros."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__RNE__id__nrRne" maxlength="14" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.RNE.nrRne'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][RNE][nrRne]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="orgaoEmissor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Órgão Emissor do RIC<a data-toggle="tooltip" title="Órgão e UF de emissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__RNE__id__orgaoEmissor" maxlength="20" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.RNE.orgaoEmissor'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][RNE][orgaoEmissor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtExped__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de Expedição do RIC<a data-toggle="tooltip" title="Data da expedição do documento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__RNE__id__dtExped" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.RNE.dtExped'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][RNE][dtExped]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="OC__div">
+    <div class="col-md-12">
+        <h4>Informações do número de registro em Órgão de Classe (OC).</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrOc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do OC<a data-toggle="tooltip" title="Número de inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__OC__id__nrOc" maxlength="14" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.OC.nrOc'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][OC][nrOc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="orgaoEmissor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Órgão Emissor do RIC<a data-toggle="tooltip" title="Órgão e UF de emissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__OC__id__orgaoEmissor" maxlength="20" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.OC.orgaoEmissor'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][OC][orgaoEmissor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtExped__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de Expedição do RIC<a data-toggle="tooltip" title="Data da expedição do documento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__OC__id__dtExped" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.OC.dtExped'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][OC][dtExped]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de Validade do OC<a data-toggle="tooltip" title="Preencher com a data de validade. Validação: Deve ser posterior a data de expedição ({dtExped}), se esta for informada."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__OC__id__dtValid" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.OC.dtValid'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][OC][dtValid]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="CNH__div">
+    <div class="col-md-12">
+        <h4>Informações da Carteira Nacional de Habilitação (CNH).</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrRegCnh__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do CNH<a data-toggle="tooltip" title="Número do Registro da Carteira Nacional de Habilitação - CNH."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__CNH__id__nrRegCnh" maxlength="12" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.CNH.nrRegCnh'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][CNH][nrRegCnh]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtExped__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de Expedição do RIC<a data-toggle="tooltip" title="Data da expedição do documento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__CNH__id__dtExped" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.CNH.dtExped'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][CNH][dtExped]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ufCnh__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>UF do CNH<a data-toggle="tooltip" title="Estado da Federação emissor da CNH. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__CNH__id__ufCnh" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][CNH][ufCnh]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dtValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de Validade do OC<a data-toggle="tooltip" title="Preencher com a data de validade. Validação: Deve ser posterior a data de expedição ({dtExped}), se esta for informada."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__CNH__id__dtValid" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.CNH.dtValid'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][CNH][dtValid]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtPriHab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data da Primeira Habilitação do CNH<a data-toggle="tooltip" title="Data da primeira habilitação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__CNH__id__dtPriHab" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.documentos.CNH.dtPriHab'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][CNH][dtPriHab]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="categoriaCnh__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Categoria do CNH<a data-toggle="tooltip" title="Categoria da CNH. Valores Válidos: A, B, C, D, E, AB, AC, AD, AE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__documentos__CNH__id__categoriaCnh" name="[evtAltCadastral][alteracao][dadosTrabalhador][documentos][CNH][categoriaCnh]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="endereco__div">
+    <div class="col-md-12">
+        <h4>Grupo de informações do endereço do Trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="brasil__div">
+    <div class="col-md-12">
+        <h4>Preenchimento obrigatório para trabalhador residente no Brasil.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de logradouro<a data-toggle="tooltip" title="Tipo de Logradouro, conforme tabela 20. Validação: Se informado, deve ser um código válido, existente na tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__tpLograd" maxlength="4" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.tpLograd'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][tpLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.dscLograd'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][dscLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número<a data-toggle="tooltip" title="Número do logradouro. Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.nrLograd'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][nrLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="complemento__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.complemento'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][complemento]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="bairro__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.bairro'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][bairro]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP. Validação: Deve ser preenchido apenas com números, com 8 (oito) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.cep'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][cep]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codMunic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.codMunic'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][codMunic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="uf__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__uf" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][uf]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="exterior__div">
+    <div class="col-md-12">
+        <h4>Preenchido em caso de trabalhador residente no exterior.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="paisResid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>País<a data-toggle="tooltip" title="Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__paisResid" maxlength="3" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.paisResid'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][paisResid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.dscLograd'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][dscLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número<a data-toggle="tooltip" title="Número do logradouro. Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.nrLograd'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][nrLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="complemento__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.complemento'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][complemento]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="bairro__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.bairro'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][bairro]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmCid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome da Cidade<a data-toggle="tooltip" title="Nome da Cidade."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__nmCid" maxlength="50" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.nmCid'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][nmCid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codPostal__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__codPostal" maxlength="12" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.codPostal'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][codPostal]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="trabEstrangeiro__div">
+    <div class="col-md-12">
+        <h4>Grupo de informações do Trabalhador Estrangeiro.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dtChegada__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de chegada<a data-toggle="tooltip" title="Data de chegada do trabalhador ao Brasil, em caso de estrangeiro. Validação: Preenchimento obrigatório se {classTrabEstrang} <> [6]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__trabEstrangeiro__id__dtChegada" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.dtChegada'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][trabEstrangeiro][dtChegada]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="classTrabEstrang__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Classificação da condição de trabalho<a data-toggle="tooltip" title="Classificação da condição de ingresso do trabalhador estrangeiro no Brasil: 1 - Visto permanente; 2 - Visto temporário; 3 - Asilado; 4 - Refugiado; 5 - Solicitante de Refúgio; 6 - Residente fora do Brasil; 7 - Deficiente físico e com mais de 51 anos; 8 - Com residência provisória e anistiado, em situação irregular; 9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros; 10 - Beneficiado pelo acordo entre países do Mercosul; 11 - Dependente de agente diplomático e/ou consular de países que mantém convênio de reciprocidade para o exercício de atividade remunerada no Brasil; 12 - Beneficiado pelo Tratado de Amizade, Cooperação e Consulta entre a República Federativa do Brasil e a República Portuguesa. Valores Válidos: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__trabEstrangeiro__id__classTrabEstrang" name="[evtAltCadastral][alteracao][dadosTrabalhador][trabEstrangeiro][classTrabEstrang]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 1 %}selected{% endifequal %}>1 - Visto permanente</option><option value="2" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 2 %}selected{% endifequal %}>2 - Visto temporário</option><option value="3" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 3 %}selected{% endifequal %}>3 - Asilado</option><option value="4" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 4 %}selected{% endifequal %}>4 - Refugiado</option><option value="5" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 5 %}selected{% endifequal %}>5 - Solicitante de Refúgio</option><option value="6" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 6 %}selected{% endifequal %}>6 - Residente fora do Brasil</option><option value="7" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 7 %}selected{% endifequal %}>7 - Deficiente físico e com mais de 51 anos</option><option value="8" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 8 %}selected{% endifequal %}>8 - Com residência provisória e anistiado, em situação irregular</option><option value="9" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 9 %}selected{% endifequal %}>9 - Permanência no Brasil em razão de filhos ou cônjuge brasileiros</option><option value="10" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 10 %}selected{% endifequal %}>10 - Beneficiado pelo acordo entre países do Mercosul</option><option value="11" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 11 %}selected{% endifequal %}>11 - Dependente de agente diplomático e/ou consular de países que mantém convênio de reciprocidade para o exercício de atividade remunerada no Brasil</option><option value="12" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.classTrabEstrang' 12 %}selected{% endifequal %}>12 - Beneficiado pelo Tratado de Amizade, Cooperação e Consulta entre a República Federativa do Brasil e a República Portuguesa. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="casadoBr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Casado com Brasileiro(a)<a data-toggle="tooltip" title="Casado com brasileiro(a): S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__trabEstrangeiro__id__casadoBr" name="[evtAltCadastral][alteracao][dadosTrabalhador][trabEstrangeiro][casadoBr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.casadoBr' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.casadoBr' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="filhosBr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Possui filho(s) brasileiro(s)<a data-toggle="tooltip" title="Indicar se o trabalhador estrangeiro tem filhos brasileiros: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__trabEstrangeiro__id__filhosBr" name="[evtAltCadastral][alteracao][dadosTrabalhador][trabEstrangeiro][filhosBr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.filhosBr' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.trabEstrangeiro.filhosBr' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoDeficiencia__div">
+    <div class="col-md-12">
+        <h4>Pessoa com Deficiência.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="defFisica__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Possui Deficiência Física<a data-toggle="tooltip" title="Deficiência Física: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__defFisica" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][defFisica]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.defFisica' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.defFisica' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="defVisual__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Possui Deficiência Visual<a data-toggle="tooltip" title="Deficiência visual: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__defVisual" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][defVisual]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.defVisual' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.defVisual' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="defAuditiva__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Possui Deficiência Auditiva<a data-toggle="tooltip" title="Deficiência auditiva: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__defAuditiva" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][defAuditiva]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.defAuditiva' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.defAuditiva' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="defMental__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Possui Deficiência Mental<a data-toggle="tooltip" title="Deficiência Mental: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__defMental" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][defMental]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.defMental' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.defMental' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="defIntelectual__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Possui Deficiência Intelectual<a data-toggle="tooltip" title="Deficiência Intelectual: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__defIntelectual" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][defIntelectual]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.defIntelectual' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.defIntelectual' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="reabReadap__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Reabilitado ou Readaptado<a data-toggle="tooltip" title="Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar). Reabilitado: estando o empregado incapacitado parcial ou totalmente para o trabalho, cumpriu Programa de Reabilitação Profissional no INSS, recebendo certificado, sendo proporcionado os meios indicados para participar do mercado de trabalho. Readaptado: o servidor está investido em cargo de atribuições e responsabilidades compatíveis com a limitação que tenha sofrido em sua capacidade física ou mental verificada em inspeção médica: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__reabReadap" maxlength="1" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.reabReadap'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][reabReadap]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoCota__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preenche cota de pessoas com deficientes<a data-toggle="tooltip" title="Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados. Essa informação deve ser prestada apenas para trabalhadores da categoria "Empregados". Não informar nos demais casos. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__infoCota" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][infoCota]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="observacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observações<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.observacao'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][observacao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="dependente__div">
+    <div class="col-md-12">
+        <h4>Informações dos dependentes.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo<a data-toggle="tooltip" title="Tipo de dependente conforme tabela 07. Validação: Deve ser um código existente na tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__tpDep" maxlength="2" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.tpDep'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][tpDep]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__nmDep" maxlength="70" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.nmDep'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][nmDep]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtNascto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento. Validação: Deve ser maior ou igual que 01/01/1890 e menor que a data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__dtNascto" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.dtNascto'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][dtNascto]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cpfDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Número de Inscrição no CPF. Validação: Deve ser um número de CPF válido, observando o que segue: a) O preenchimento é obrigatório se {depIRRF} = [S]; b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em {ideEmpregador}; c) Não pode haver mais de um dependente com um mesmo número do CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__cpfDep" maxlength="11" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.cpfDep'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][cpfDep]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="depIRRF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Dependente de IRRF<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__depIRRF" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][depIRRF]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.depIRRF' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.depIRRF' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="depSF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Dependente de SF<a data-toggle="tooltip" title="Informar se é dependente para fins de recebimento do benefício de salário- família: S - Sim N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__depSF" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][depSF]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.depSF' S %}selected{% endifequal %}>S - Sim N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="incTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Possui incapacidade física ou mental<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__incTrab" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][incTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.incTrab' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.incTrab' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="aposentadoria__div">
+    <div class="col-md-12">
+        <h4>Informação de aposentadoria do trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="trabAposent__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Aposentado<a data-toggle="tooltip" title="Informar se o trabalhador já recebe o benefício previdenciário da aposentadoria por tempo de contribuição ou por idade: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__aposentadoria__id__trabAposent" name="[evtAltCadastral][alteracao][dadosTrabalhador][aposentadoria][trabAposent]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.aposentadoria.trabAposent' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.aposentadoria.trabAposent' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="contato__div">
+    <div class="col-md-12">
+        <h4>Informações de Contato.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="fonePrinc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Telefone Principal<a data-toggle="tooltip" title="Número de telefone do trabalhador, com DDD. Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__contato__id__fonePrinc" maxlength="13" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.contato.fonePrinc'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][contato][fonePrinc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="foneAlternat__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Telefone Alternativo<a data-toggle="tooltip" title="Número de telefone alternativo do trabalhador, com DDD. Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__contato__id__foneAlternat" maxlength="13" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.contato.foneAlternat'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][contato][foneAlternat]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="emailPrinc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>E-mail principal<a data-toggle="tooltip" title="Endereço eletrônico. Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no início ou no final do e-mail."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__contato__id__emailPrinc" maxlength="60" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.contato.emailPrinc'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][contato][emailPrinc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="emailAlternat__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>E-mail alternativo<a data-toggle="tooltip" title="Endereço eletrônico alternativo. Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no início ou no final do e-mail."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__contato__id__emailAlternat" maxlength="60" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.contato.emailAlternat'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][contato][emailAlternat]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

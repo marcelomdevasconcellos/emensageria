@@ -1,0 +1,201 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtIrrf__div">
+    <div class="col-md-12">
+        <h4>Evento consolidado por contribuinte relativo ao Imposto de Renda Retido na Fonte incidente sobre remunerações pagas a seus trabalhadores.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Identificação do evento de retorno.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perApur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de Apuração<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM), ou apenas o ano (formato AAAA), de referência das informações. Validação: Deve corresponder ao informado pelo empregador no evento de origem (S-1295 ou S-1299)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrf__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtIrrf.ideEvento.perApur'}}" name="[evtIrrf][ideEvento][perApur]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtIrrf][ideEmpregador][tpInsc]" id="evtIrrf__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtIrrf][ideEmpregador][tpInsc]" id="evtIrrf__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtIrrf__ideEmpregador__id__nrInsc_disabled" name="[evtIrrf][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtIrrf][ideEmpregador][nrInsc]" id="evtIrrf__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoIRRF__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao Imposto de Renda Retido na Fonte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrRecArqBase__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do recibo do arquivo vase<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1295 ou S-1299)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrf__infoIRRF__id__nrRecArqBase" maxlength="40" value="{{original.evento_json|readjson:'evtIrrf.infoIRRF.nrRecArqBase'}}" name="[evtIrrf][infoIRRF][nrRecArqBase]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indExistInfo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Existência de valores base<a data-toggle="tooltip" title="Indicativo de existência de Imposto de Renda Retido na Fonte, conforme opções a seguir: 1 - Há informações de Imposto de Renda Retido na Fonte; 2 - Há movimento, porém não há informações de Imposto de Renda Retido na Fonte; 3 - Não há movimento no período informado em {perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtIrrf__infoIRRF__id__indExistInfo" name="[evtIrrf][infoIRRF][indExistInfo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtIrrf.infoIRRF.indExistInfo' 1 %}selected{% endifequal %}>1 - Há informações de Imposto de Renda Retido na Fonte</option><option value="2" {% ifequal original.evento_json|readjson:'evtIrrf.infoIRRF.indExistInfo' 2 %}selected{% endifequal %}>2 - Há movimento, porém não há informações de Imposto de Renda Retido na Fonte</option><option value="3" {% ifequal original.evento_json|readjson:'evtIrrf.infoIRRF.indExistInfo' 3 %}selected{% endifequal %}>3 - Não há movimento no período informado em {perApur}.</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="infoCRContrib__div">
+    <div class="col-md-12">
+        <h4>Informações consolidadas do IRRF por código de Receita - CR. Origem S-5002.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpCR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Receita (CR)<a data-toggle="tooltip" title="Código de Receita - CR relativo ao Imposto de Renda Retido na Fonte, conforme legislação em vigor na competência. Validação: Deve ser um código válido, conforme as opções a seguir: 0473-01 - IRRF - Residentes Fiscais no Exterior 0561-07 - IRRF Mensal, 13° salário e Férias sobre Trabalho Assalariado no país ou ausente no exterior a serviço do país, exceto se contratado por Empregador Doméstico ou por Segurado Especial sujeito a recolhimento unificado; 0561-08 - IRRF Mensal, 13° salário e Férias sobre Trabalho Assalariado no país ou ausente no exterior a serviço do país, Empregado Doméstico ou Trabalhador contratado por Segurado Especial sujeito a recolhimento unificado; 0561-09 - IRRF 13° salário na rescisão de contrato de trabalho relativo a empregador sujeito a recolhimento unificado; 0561-10 - IRRF - Empregado doméstico - 13º salário; 0561-11 - IRRF - Empregado/Trabalhador Rural - Segurado Especial; 0561-12 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário. 0561-13 - IRRF - Empregado/Trabalhador Rural - Segurado Especial 13° salário rescisório; 0588-06 - IRRF sobre Rendimento do trabalho sem vínculo empregatício; 0610- 01 - IRRF sobre Rendimentos relativos a prestação de serviços de transporte rodoviário internacional de carga, pagos a transportador autônomo PF residente no Paraguai; 3533 - Proventos de Aposentadoria, Reserva, Reforma ou Pensão Pagos por Previdência Pública; 3562-01 - IRRF sobre Participação dos trabalhadores em Lucros ou Resultados (PLR)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtIrrf__infoIRRF__infoCRContrib__id__tpCR" name="[evtIrrf][infoIRRF][infoCRContrib][tpCR]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="vrCR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do CR apurado<a data-toggle="tooltip" title="Valor correspondente ao Código de Receita - CR apurado. Validação: Deve ser apurado de acordo com a legislação em vigor na competência. Deve ser maior que 0 (zero). Origem: S-5002."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtIrrf__infoIRRF__infoCRContrib__id__vrCR" maxlength="14" value="{{original.evento_json|readjson:'evtIrrf.infoIRRF.infoCRContrib.vrCR'}}" name="[evtIrrf][infoIRRF][infoCRContrib][vrCR]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

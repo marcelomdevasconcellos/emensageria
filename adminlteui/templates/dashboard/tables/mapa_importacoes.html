@@ -1,0 +1,50 @@
+<!-- eMensageriaAI -->
+{% load templatetags %}{% load static %}
+<table class="table table-bordered table-striped automate-data-table">
+    <thead>
+        <tr>
+            <!-- cabeçalho de colunas especiais -->
+            {% if not output %}
+            <th width="80px">Ações</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in mapa_importacoes_lista %}
+        <tr>
+
+            <!-- colunas especiais -->
+            {% if not output %}
+            <td>
+                <div class="btn-group">
+                    <!-- botões especiais -->
+
+                        {% if perms.mapa_processamento.change_MapaImportações or perms.mapa_processamento.add_MapaImportações %}
+
+                        <a href="{% url 'mapa_importacoes_salvar' pk=a.id %}">
+                            {% if perms.mapa_processamento.change_MapaImportações %}
+                                <span class="btn btn-primary" title="Editar">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </span>
+                            {% elif perms.mapa_processamento.can_see_data_MapaImportações %}
+                                <span class="btn btn-primary" title="Visualizar">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </span>
+                            {% endif %}
+                        </a>
+                        {% endif %}
+                        {% if perms.mapa_processamento.delete_MapaImportações %}
+                        <a href="{% url 'mapa_importacoes_apagar' pk=a.id %}">
+                            <span class="btn btn-danger" title="Apagar">
+                                <i class="fa fa-fw fa-times"></i>
+                            </span>
+                        </a>
+                        {% endif %}
+
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

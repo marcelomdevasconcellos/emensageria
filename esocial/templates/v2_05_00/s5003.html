@@ -1,0 +1,565 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtBasesFGTS__div">
+    <div class="col-md-12">
+        <h4>Evento Bases FGTS por Trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Identificação do evento de retorno.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrRecArqBase__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do recibo do arquivo vase<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador. Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1200, S-2299 ou S-2399)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__ideEvento__id__nrRecArqBase" maxlength="40" value="{{original.evento_json|readjson:'evtBasesFGTS.ideEvento.nrRecArqBase'}}" name="[evtBasesFGTS][ideEvento][nrRecArqBase]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="perApur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de Apuração<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM), ou apenas o ano (formato AAAA), de referência das informações."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtBasesFGTS.ideEvento.perApur'}}" name="[evtBasesFGTS][ideEvento][perApur]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtBasesFGTS][ideEmpregador][tpInsc]" id="evtBasesFGTS__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtBasesFGTS][ideEmpregador][tpInsc]" id="evtBasesFGTS__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtBasesFGTS__ideEmpregador__id__nrInsc_disabled" name="[evtBasesFGTS][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtBasesFGTS][ideEmpregador][nrInsc]" id="evtBasesFGTS__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideTrabalhador__div">
+    <div class="col-md-12">
+        <h4>Registro que apresenta a identificação básica do trabalhador ao qual se refere o evento de retorno.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__ideTrabalhador__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtBasesFGTS.ideTrabalhador.cpfTrab'}}" name="[evtBasesFGTS][ideTrabalhador][cpfTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nisTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>NIS<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__ideTrabalhador__id__nisTrab" maxlength="11" value="{{original.evento_json|readjson:'evtBasesFGTS.ideTrabalhador.nisTrab'}}" name="[evtBasesFGTS][ideTrabalhador][nisTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoFGTS__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao FGTS.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dtVenc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de vencimento do FGTS mensal<a data-toggle="tooltip" title="Data de vencimento do FGTS mensal. Validação: Preencher somente em uma das situações abaixo: a) Caso tenha origem no evento S-2299 e {mtvDeslig} = [02, 03, 05, 06, 14, 17, 23, 26, 27, 33]; ou b) Caso tenha origem no evento S-2399, {codCateg} = [721] e {mtvDesligTSV} = [01, 02, 04, 06]. Se informada, deve corresponder ao dia 7 (sete) do mês subsequente ao indicado em {perApur}, se esse dia for útil. Caso não seja, deve corresponder ao dia útil imediatamente anterior. Considera-se como dia não útil o sábado, o domingo e todo aquele constante do Calendário Nacional de feriados bancários divulgados pelo Banco Central do Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__id__dtVenc" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.dtVenc'}}" name="[evtBasesFGTS][infoFGTS][dtVenc]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideEstabLot__div">
+    <div class="col-md-12">
+        <h4>Identificação do estabelecimento ou obra de construção civil e da respectiva lotação tributária. As informações desse grupo foram prestadas pelo contribuinte no evento S- 1200, S-2299 ou S-2399.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtBasesFGTS][infoFGTS][ideEstabLot][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstabLot__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstabLot][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstabLot__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__id__nrInsc_disabled" name="[evtBasesFGTS][infoFGTS][ideEstabLot][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstabLot][nrInsc]" id="evtBasesFGTS__infoFGTS__ideEstabLot__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="codLotacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Lotação<a data-toggle="tooltip" title="Informar o código atribuído pela empresa para a lotação tributária. Evento de origem: S-1200, S-2299, S-2399. Validação: Deve estar coerente com o informado pelo contribuinte nos eventos S-1200/S-2299/S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__id__codLotacao" maxlength="30" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.codLotacao'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][codLotacao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoTrabFGTS__div">
+    <div class="col-md-12">
+        <h4>Informações relativas à matrícula e categoria do trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="matricula__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Deve corresponder à matrícula constante no evento S-1200/S- 2299, caso tenha sido informada (sendo, nesse caso, informação obrigatória). Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.matricula'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][matricula]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codCateg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 01. Evento de origem: S-1200, S-2299 ou S-2399. Validação: Deve estar coerente com a informação prestada pelo empregador no evento S-1200/S-2299/S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.codCateg'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][codCateg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtAdm__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de admissão<a data-toggle="tooltip" title="Preencher com a data de admissão do trabalhador. Validação: Deve corresponder à data de admissão constante no RET. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__id__dtAdm" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.dtAdm'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][dtAdm]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtDeslig__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de desligamento<a data-toggle="tooltip" title="Data do último dia trabalhado para o respectivo vínculo. Evento de origem: S-2299. Validação: Deve corresponder à data do desligamento informada no evento S- 2299. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__id__dtDeslig" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.dtDeslig'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][dtDeslig]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtInicio__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de início<a data-toggle="tooltip" title="Preencher com a data de início do TSVE. Validação: Deve corresponder à data de início constante no RET. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__id__dtInicio" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.dtInicio'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][dtInicio]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="mtvDeslig__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Motivo do desligamento<a data-toggle="tooltip" title="Código de Motivo do Desligamento, conforme Tabela 19. Validação: Deve corresponder ao motivo do desligamento informado no evento S-2299. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__id__mtvDeslig" maxlength="2" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.mtvDeslig'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][mtvDeslig]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtTerm__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de Término do contrato de trabalho<a data-toggle="tooltip" title="Data do término. Evento de origem: S-2399. Validação: Deve corresponder à data do término informada no evento S-2399. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__id__dtTerm" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.dtTerm'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][dtTerm]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="mtvDesligTSV__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Motivo do término<a data-toggle="tooltip" title="Código de motivo do desligamento do diretor não empregado. Evento de origem: S-2399. Validação: Deve corresponder ao motivo do desligamento informado no evento S-2399. Não preencher nos demais casos. Valores Válidos: 01, 02, 03, 04, 05, 06, 07, 99."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__id__mtvDesligTSV" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][mtvDesligTSV]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="infoBaseFGTS__div">
+    <div class="col-md-12">
+        <h4>Informações referentes a bases de cálculo do FGTS.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="basePerApur__div">
+    <div class="col-md-12">
+        <h4>Informações sobre bases de cálculo do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E]. Origem: S-1200, S-2299 ou S-2399.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpValor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de Valor<a data-toggle="tooltip" title="Tipo de valor que influi na apuração do FGTS: 11 - Base de Cálculo do FGTS; 12 - Base de Cálculo do FGTS 13° Salário; 13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 15 - Base de Cálculo do FGTS - Aprendiz/Contrato Verde e Amarelo; 16 - Base de Cálculo do FGTS 13° Salário - Aprendiz/Contrato Verde e Amarelo; 17 - Base de Cálculo do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo; 18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo; 21 - Base de Cálculo do FGTS Rescisório; 22 - Base de Cálculo do FGTS Rescisório 13° Salário; 23 - Base de Cálculo do FGTS Rescisório Aviso Prévio; 24 - Base de Cálculo do FGTS Rescisório Dissídio; 25 - Base de Cálculo do FGTS Rescisório Dissídio 13º Salário; 26 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio; 27 - Base de Cálculo do FGTS Rescisório - Aprendiz/Contrato Verde e Amarelo; 28 - Base de Cálculo do FGTS Rescisório 13° Salário - Aprendiz/Contrato Verde e Amarelo; 29 - Base de Cálculo do FGTS Rescisório Aviso Prévio - Aprendiz/Contrato Verde e Amarelo; 30 - Base de Cálculo do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo; 31 - Base de Cálculo do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo; 32 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo; 91 - Incidência suspensa em decorrência de decisão judicial. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__infoBaseFGTS__basePerApur__id__tpValor" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][infoBaseFGTS][basePerApur][tpValor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="11" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 11 %}selected{% endifequal %}>11 - Base de Cálculo do FGTS</option><option value="12" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 12 %}selected{% endifequal %}>12 - Base de Cálculo do FGTS 13° Salário</option><option value="13" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 13 %}selected{% endifequal %}>13 - Base de Cálculo do FGTS Dissídio</option><option value="14" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 14 %}selected{% endifequal %}>14 - Base de Cálculo do FGTS Dissídio 13º Salário</option><option value="15" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 15 %}selected{% endifequal %}>15 - Base de Cálculo do FGTS - Aprendiz/Contrato Verde e Amarelo</option><option value="16" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 16 %}selected{% endifequal %}>16 - Base de Cálculo do FGTS 13° Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="17" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 17 %}selected{% endifequal %}>17 - Base de Cálculo do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo</option><option value="18" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 18 %}selected{% endifequal %}>18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="21" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 21 %}selected{% endifequal %}>21 - Base de Cálculo do FGTS Rescisório</option><option value="22" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 22 %}selected{% endifequal %}>22 - Base de Cálculo do FGTS Rescisório 13° Salário</option><option value="23" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 23 %}selected{% endifequal %}>23 - Base de Cálculo do FGTS Rescisório Aviso Prévio</option><option value="24" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 24 %}selected{% endifequal %}>24 - Base de Cálculo do FGTS Rescisório Dissídio</option><option value="25" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 25 %}selected{% endifequal %}>25 - Base de Cálculo do FGTS Rescisório Dissídio 13º Salário</option><option value="26" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 26 %}selected{% endifequal %}>26 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio</option><option value="27" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 27 %}selected{% endifequal %}>27 - Base de Cálculo do FGTS Rescisório - Aprendiz/Contrato Verde e Amarelo</option><option value="28" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 28 %}selected{% endifequal %}>28 - Base de Cálculo do FGTS Rescisório 13° Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="29" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 29 %}selected{% endifequal %}>29 - Base de Cálculo do FGTS Rescisório Aviso Prévio - Aprendiz/Contrato Verde e Amarelo</option><option value="30" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 30 %}selected{% endifequal %}>30 - Base de Cálculo do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo</option><option value="31" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 31 %}selected{% endifequal %}>31 - Base de Cálculo do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="32" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 32 %}selected{% endifequal %}>32 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo</option><option value="91" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' 91 %}selected{% endifequal %}>91 - Incidência suspensa em decorrência de decisão judicial. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="remFGTS__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Remuneração (valor da base de cálculo) do FGTS, conforme definido no campo {tpValor}<a data-toggle="tooltip" title="Remuneração (valor da base de cálculo) do FGTS, conforme definido no campo {tpValor}. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200 e S-2299, nos grupos {infoPerApur} ou {infoPerAnt}, quando {tpAcConv} <> [E], e também em S-2399, obedecendo ao que segue: Somar os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [1,3] e subtrair os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [2,4], observando a tabela de relacionamento abaixo: I - {tpValor} = [11]: se {codCateg} <> [103,107,108] e uma das condições a seguir: a) {codIncFGTS} = [11] e origem for {infoPerApur} do S-1200; ou b) {codIncFGTS} = [11,21], origem for {infoPerApur} do S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) {codIncFGTS} = [11], origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; ou d) {codIncFGTS} = [11,21], origem for S-2399, {codCateg} = [721] e {mtvDesligTSV} <> [01,02,04,06]; ou e) {codIncFGTS} = [11], origem for S-2399, {codCateg} = [721], {mtvDesligTSV} = [01,02,04,06] e {dtTerm} acrescida de 10 dias for posterior a {dtVenc}; ou f) {codIncFGTS} = [11,21], origem for S-2399 e {codCateg} <> [721]; II - {tpValor} = [12]: se {codIncFGTS} = [12], {codCateg} <> [103,107,108] e uma das condições a seguir: a) Origem for {infoPerApur} do S-1200; ou b) Origem for {infoPerApur} do S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) Origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; ou d) Origem for S-2399, {codCateg} = [721] e {mtvDesligTSV} <> [01,02,04,06]; ou e) Origem for S-2399, {codCateg} = [721], {mtvDesligTSV} = [01,02,04,06] e {dtTerm} acrescida de 10 dias for posterior a {dtVenc}; ou f) Origem for S-2399 e {codCateg} <> [721]; III - {tpValor} = [13]: se {codCateg} <> [103,107,108] e uma das condições a seguir: a) {codIncFGTS} = [11,21], origem for {infoPerAnt} do S-1200 e {tpAcConv} <> [E]; ou b) {codIncFGTS} = [11,21], origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E] e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) {codIncFGTS} = [11], origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E], {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; IV - {tpValor} = [14]: se {codIncFGTS} = [12], {codCateg} <> [103,107,108] e uma das condições a seguir: a) Origem for {infoPerAnt} do S-1200 e {tpAcConv} <> [E]; ou b) Origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E] e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) Origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E], {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; V - {tpValor} = [15]: se {codCateg} = [103,107,108] e uma das condições a seguir: a) {codIncFGTS} = [11] e origem for {infoPerApur} do S-1200; ou b) {codIncFGTS} = [11,21], origem for {infoPerApur} do S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) {codIncFGTS} = [11], origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; VI - {tpValor} = [16]: se {codIncFGTS} = [12], {codCateg} = [103,107,108] e uma das condições a seguir: a) Origem for {infoPerApur} do S-1200; ou b) Origem for {infoPerApur} do S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) Origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; VII - {tpValor} = [17]: se {codCateg} = [103,107,108] e uma das condições a seguir: a) {codIncFGTS} = [11,21], origem for {infoPerAnt} do S-1200 e {tpAcConv} <> [E]; ou b) {codIncFGTS} = [11,21], origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E] e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) {codIncFGTS} = [11], origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E], {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; VIII - {tpValor} = [18]: se {codIncFGTS} = [12], {codCateg} = [103,107,108] e uma das condições a seguir: a) Origem for {infoPerAnt} do S-1200 e {tpAcConv} <> [E]; ou b) Origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E] e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) Origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E], {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; IX - {tpValor} = [21]: se {codIncFGTS} = [11], {codCateg} <> [103,107,108] e uma das condições a seguir: a) Origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; ou b) Origem for S-2399, {codCateg} = [721], {mtvDesligTSV} = [01,02,04,06] e {dtTerm} acrescida de 10 dias for igual ou anterior a {dtVenc}; X - {tpValor} = [22]: se {codIncFGTS} = [12], {codCateg} <> [103,107,108] e uma das condições a seguir: a) Origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; ou b) Origem for S-2399, {codCateg} = [721], {mtvDesligTSV} = [01,02,04,06] e {dtTerm} acrescida de 10 dias for igual ou anterior a {dtVenc}; XI - {tpValor} = [23]: se {codIncFGTS} = [21], {codCateg} <> [103,107,108] e uma das condições a seguir: a) Origem for {infoPerApur} do S-2299 e {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33]; ou b) Origem for S-2399, {codCateg} = [721] e {mtvDesligTSV} = [01,02,04,06]; XII - {tpValor} = [24]: se {codIncFGTS} = [11], {codCateg} <> [103,107,108], origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E], {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XIII - {tpValor} = [25]: se {codIncFGTS} = [12], {codCateg} <> [103,107,108], origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E], {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XIV - {tpValor} = [26]: se {codIncFGTS} = [21], {codCateg} <> [103,107,108], origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E] e {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33]; XV - {tpValor} = [27]: se {codIncFGTS} = [11], {codCateg} = [103,107,108], origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XVI - {tpValor} = [28]: se {codIncFGTS} = [12], {codCateg} = [103,107,108], origem for {infoPerApur} do S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XVII - {tpValor} = [29]: se {codIncFGTS} = [21], {codCateg} = [103,107,108], origem for {infoPerApur} do S-2299 e {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33]; XVIII - {tpValor} = [30]: se {codIncFGTS} = [11], {codCateg} = [103,107,108], origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E], {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XIX - {tpValor} = [31]: se {codIncFGTS} = [12], {codCateg} = [103,107,108], origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E], {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; XX - {tpValor} = [32]: se {codIncFGTS} = [21], {codCateg} = [103,107,108], origem for {infoPerAnt} do S-2299, {tpAcConv} <> [E] e {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33]; XXI - {tpValor} = [91]: se {codIncFGTS} = [91]. OBS: Se {dtDeslig} (ou {dtTerm}) acrescida de 10 dias não for dia útil, deverá ser considerado o dia útil imediatamente anterior. Considera-se como dia não útil o sábado, o domingo e todo aquele constante do Calendário Nacional de feriados bancários divulgados pelo Banco Central do Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__infoBaseFGTS__basePerApur__id__remFGTS" maxlength="14" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.basePerApur.remFGTS'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][infoBaseFGTS][basePerApur][remFGTS]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoBasePerAntE__div">
+    <div class="col-md-12">
+        <h4>Informações referentes a bases de cálculo do FGTS de períodos anteriores quando {tpAcConv} = [E].</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de Referência<a data-toggle="tooltip" title="Informar o período ao qual se refere a remuneração, no formato AAAA-MM. Evento de origem: S-1200 ou S-2299. Validação: Deve corresponder ao período informado no evento de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__id__perRef" maxlength="7" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.perRef'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][perRef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="basePerAntE__div">
+    <div class="col-md-12">
+        <h4>Informações sobre bases de cálculo do FGTS referentes à remuneração de períodos anteriores quando {tpAcConv} = [E]. Origem: S-1200 ou S-2299.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpValorE__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de valor que influi na apuração do FGTS<a data-toggle="tooltip" title="Tipo de valor que influi na apuração do FGTS: 13 - Base de Cálculo do FGTS Dissídio; 14 - Base de Cálculo do FGTS Dissídio 13º Salário; 17 - Base de Cálculo do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo; 18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo; 24 - Base de Cálculo do FGTS Rescisório Dissídio; 25 - Base de Cálculo do FGTS Rescisório Dissídio 13º Salário; 26 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio; 30 - Base de Cálculo do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo; 31 - Base de Cálculo do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo; 32 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo; 91 - Incidência suspensa em decorrência de decisão judicial. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__tpValorE" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][basePerAntE][tpValorE]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="13" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 13 %}selected{% endifequal %}>13 - Base de Cálculo do FGTS Dissídio</option><option value="14" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 14 %}selected{% endifequal %}>14 - Base de Cálculo do FGTS Dissídio 13º Salário</option><option value="17" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 17 %}selected{% endifequal %}>17 - Base de Cálculo do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo</option><option value="18" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 18 %}selected{% endifequal %}>18 - Base de Cálculo do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="24" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 24 %}selected{% endifequal %}>24 - Base de Cálculo do FGTS Rescisório Dissídio</option><option value="25" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 25 %}selected{% endifequal %}>25 - Base de Cálculo do FGTS Rescisório Dissídio 13º Salário</option><option value="26" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 26 %}selected{% endifequal %}>26 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio</option><option value="30" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 30 %}selected{% endifequal %}>30 - Base de Cálculo do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo</option><option value="31" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 31 %}selected{% endifequal %}>31 - Base de Cálculo do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="32" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 32 %}selected{% endifequal %}>32 - Base de Cálculo do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo</option><option value="91" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' 91 %}selected{% endifequal %}>91 - Incidência suspensa em decorrência de decisão judicial. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="remFGTSE__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Remuneração (valor da base de cálculo) do FGTS, conforme definido no campo {tpValorE}<a data-toggle="tooltip" title="Remuneração (valor da base de cálculo) do FGTS, conforme definido no campo {tpValorE}. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200 e S-2299, no grupo {infoPerAnt}, quando {tpAcConv} = [E]), obedecendo ao que segue: Somar os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [1,3] e subtrair os valores das rubricas cujo {tpRubr} em {S-1010} seja igual a [2,4], observando a tabela de relacionamento abaixo: I - {tpValorE} = [13]: se {codCateg} <> [103,107,108] e uma das condições a seguir: a) {codIncFGTS} = [11,21] e origem for S-1200; ou b) {codIncFGTS} = [11,21], origem for S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) {codIncFGTS} = [11], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; II - {tpValorE} = [14]: se {codIncFGTS} = [12], {codCateg} <> [103,107,108] e uma das condições a seguir: a) Origem for S-1200; ou b) Origem for S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) Origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; III - {tpValorE} = [17]: se {codCateg} = [103,107,108] e uma das condições a seguir: a) {codIncFGTS} = [11,21] e origem for S-1200; ou b) {codIncFGTS} = [11,21], origem for S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) {codIncFGTS} = [11], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; IV - {tpValorE} = [18]: se {codIncFGTS} = [12], {codCateg} = [103,107,108] e uma das condições a seguir: a) Origem for S-1200; ou b) Origem for S-2299 e {mtvDeslig} <> [02,03,05,06,14,17,23,26,27,33]; ou c) Origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for posterior a {dtVenc}; V - {tpValorE} = [24]: se {codIncFGTS} = [11], {codCateg} <> [103,107,108], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; VI - {tpValorE} = [25]: se {codIncFGTS} = [12], {codCateg} <> [103,107,108], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; VII - {tpValorE} = [26]: se {codIncFGTS} = [21], {codCateg} <> [103,107,108], origem for S-2299 e {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33]; VIII - {tpValorE} = [30]: se {codIncFGTS} = [11], {codCateg} = [103,107,108], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; IX - {tpValorE} = [31]: se {codIncFGTS} = [12], {codCateg} = [103,107,108], origem for S-2299, {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33] e {dtDeslig} acrescida de 10 dias for igual ou anterior a {dtVenc}; X - {tpValorE} = [32]: se {codIncFGTS} = [21], {codCateg} = [103,107,108], origem for S-2299 e {mtvDeslig} = [02,03,05,06,14,17,23,26,27,33]; XI - {tpValorE} = [91]: se {codIncFGTS} = [91]. OBS: Se {dtDeslig} (ou {dtTerm}) acrescida de 10 dias não for dia útil, deverá ser considerado o dia útil imediatamente anterior. Considera-se como dia não útil o sábado, o domingo e todo aquele constante do Calendário Nacional de feriados bancários divulgados pelo Banco Central do Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstabLot__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__remFGTSE" maxlength="14" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstabLot.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.remFGTSE'}}" name="[evtBasesFGTS][infoFGTS][ideEstabLot][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][basePerAntE][remFGTSE]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoDpsFGTS__div">
+    <div class="col-md-12">
+        <h4>Informações sobre valores de FGTS.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="infoTrabDps__div">
+    <div class="col-md-12">
+        <h4>Informações relativas à matrícula e categoria do trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="matricula__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão, conforme definido no campo {infoTrabFGTS/matricula}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__infoDpsFGTS__infoTrabDps__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.matricula'}}" name="[evtBasesFGTS][infoFGTS][infoDpsFGTS][infoTrabDps][matricula]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codCateg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme definido no campo {infoTrabFGTS/codCateg}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__infoDpsFGTS__infoTrabDps__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.codCateg'}}" name="[evtBasesFGTS][infoFGTS][infoDpsFGTS][infoTrabDps][codCateg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dpsPerApur__div">
+    <div class="col-md-12">
+        <h4>Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E].</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpDps__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de depósito<a data-toggle="tooltip" title="Tipo de depósito: 51 - Depósito do FGTS; 52 - Depósito do FGTS 13° Salário; 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 55 - Depósito do FGTS - Aprendiz/Contrato Verde e Amarelo; 56 - Depósito do FGTS 13° Salário - Aprendiz/Contrato Verde e Amarelo; 57 - Depósito do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo; 61 - Depósito do FGTS Rescisório; 62 - Depósito do FGTS Rescisório 13° Salário; 63 - Depósito do FGTS Rescisório Aviso Prévio; 64 - Depósito do FGTS Rescisório Dissídio; 65 - Depósito do FGTS Rescisório Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório Dissídio Aviso Prévio; 67 - Depósito do FGTS Rescisório - Aprendiz/Contrato Verde e Amarelo; 68 - Depósito do FGTS Rescisório 13° Salário - Aprendiz/Contrato Verde e Amarelo; 69 - Depósito do FGTS Rescisório Aviso Prévio - Aprendiz/Contrato Verde e Amarelo; 70 - Depósito do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo; 71 - Depósito do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo; 72 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo; 73 - Depósito do FGTS - Antecipação da multa rescisória do FGTS; 74 - Depósito do FGTS 13° Salário - Antecipação da multa rescisória do FGTS; 75 - Depósito do FGTS Dissídio - Antecipação da multa rescisória do FGTS; 76 - Depósito do FGTS Dissídio 13º Salário - Antecipação da multa rescisória do FGTS; 77 - Depósito do FGTS Rescisório - Antecipação da multa rescisória do FGTS; 78 - Depósito do FGTS Rescisório 13° Salário - Antecipação da multa rescisória do FGTS; 79 - Depósito do FGTS Rescisório Aviso Prévio - Antecipação da multa rescisória do FGTS; 80 - Depósito do Rescisório Dissídio - Antecipação da multa rescisória do FGTS; 81 - Depósito do FGTS Rescisório Dissídio 13º Salário - Antecipação da multa rescisória do FGTS; 82 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Antecipação da multa rescisória do FGTS. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesFGTS__infoFGTS__infoDpsFGTS__infoTrabDps__dpsPerApur__id__tpDps" name="[evtBasesFGTS][infoFGTS][infoDpsFGTS][infoTrabDps][dpsPerApur][tpDps]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="51" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 51 %}selected{% endifequal %}>51 - Depósito do FGTS</option><option value="52" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 52 %}selected{% endifequal %}>52 - Depósito do FGTS 13° Salário</option><option value="53" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 53 %}selected{% endifequal %}>53 - Depósito do FGTS Dissídio</option><option value="54" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 54 %}selected{% endifequal %}>54 - Depósito do FGTS Dissídio 13º Salário</option><option value="55" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 55 %}selected{% endifequal %}>55 - Depósito do FGTS - Aprendiz/Contrato Verde e Amarelo</option><option value="56" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 56 %}selected{% endifequal %}>56 - Depósito do FGTS 13° Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="57" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 57 %}selected{% endifequal %}>57 - Depósito do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo</option><option value="58" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 58 %}selected{% endifequal %}>58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="61" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 61 %}selected{% endifequal %}>61 - Depósito do FGTS Rescisório</option><option value="62" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 62 %}selected{% endifequal %}>62 - Depósito do FGTS Rescisório 13° Salário</option><option value="63" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 63 %}selected{% endifequal %}>63 - Depósito do FGTS Rescisório Aviso Prévio</option><option value="64" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 64 %}selected{% endifequal %}>64 - Depósito do FGTS Rescisório Dissídio</option><option value="65" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 65 %}selected{% endifequal %}>65 - Depósito do FGTS Rescisório Dissídio 13º Salário</option><option value="66" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 66 %}selected{% endifequal %}>66 - Depósito do FGTS Rescisório Dissídio Aviso Prévio</option><option value="67" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 67 %}selected{% endifequal %}>67 - Depósito do FGTS Rescisório - Aprendiz/Contrato Verde e Amarelo</option><option value="68" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 68 %}selected{% endifequal %}>68 - Depósito do FGTS Rescisório 13° Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="69" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 69 %}selected{% endifequal %}>69 - Depósito do FGTS Rescisório Aviso Prévio - Aprendiz/Contrato Verde e Amarelo</option><option value="70" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 70 %}selected{% endifequal %}>70 - Depósito do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo</option><option value="71" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 71 %}selected{% endifequal %}>71 - Depósito do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="72" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 72 %}selected{% endifequal %}>72 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo</option><option value="73" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 73 %}selected{% endifequal %}>73 - Depósito do FGTS - Antecipação da multa rescisória do FGTS</option><option value="74" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 74 %}selected{% endifequal %}>74 - Depósito do FGTS 13° Salário - Antecipação da multa rescisória do FGTS</option><option value="75" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 75 %}selected{% endifequal %}>75 - Depósito do FGTS Dissídio - Antecipação da multa rescisória do FGTS</option><option value="76" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 76 %}selected{% endifequal %}>76 - Depósito do FGTS Dissídio 13º Salário - Antecipação da multa rescisória do FGTS</option><option value="77" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 77 %}selected{% endifequal %}>77 - Depósito do FGTS Rescisório - Antecipação da multa rescisória do FGTS</option><option value="78" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 78 %}selected{% endifequal %}>78 - Depósito do FGTS Rescisório 13° Salário - Antecipação da multa rescisória do FGTS</option><option value="79" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 79 %}selected{% endifequal %}>79 - Depósito do FGTS Rescisório Aviso Prévio - Antecipação da multa rescisória do FGTS</option><option value="80" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 80 %}selected{% endifequal %}>80 - Depósito do Rescisório Dissídio - Antecipação da multa rescisória do FGTS</option><option value="81" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 81 %}selected{% endifequal %}>81 - Depósito do FGTS Rescisório Dissídio 13º Salário - Antecipação da multa rescisória do FGTS</option><option value="82" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.tpDps' 82 %}selected{% endifequal %}>82 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Antecipação da multa rescisória do FGTS. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dpsFGTS__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDps}<a data-toggle="tooltip" title="Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDps}. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTS}. Em seguida, aplicar a alíquota indicada, conforme a tabela de relacionamento abaixo: {tpDps} = [51]: se {tpValor} = [11], e aplicar a alíquota de 8%; {tpDps} = [52]: se {tpValor} = [12], e aplicar a alíquota de 8%; {tpDps} = [53]: se {tpValor} = [13], e aplicar a alíquota de 8%; {tpDps} = [54]: se {tpValor} = [14], e aplicar a alíquota de 8%; {tpDps} = [55]: se {tpValor} = [15], e aplicar a alíquota de 2%; {tpDps} = [56]: se {tpValor} = [16], e aplicar a alíquota de 2%; {tpDps} = [57]: se {tpValor} = [17], e aplicar a alíquota de 2%; {tpDps} = [58]: se {tpValor} = [18], e aplicar a alíquota de 2%; {tpDps} = [61]: se {tpValor} = [21], e aplicar a alíquota de 8%; {tpDps} = [62]: se {tpValor} = [22], e aplicar a alíquota de 8%; {tpDps} = [63]: se {tpValor} = [23], e aplicar a alíquota de 8%; {tpDps} = [64]: se {tpValor} = [24], e aplicar a alíquota de 8%; {tpDps} = [65]: se {tpValor} = [25], e aplicar a alíquota de 8%; {tpDps} = [66]: se {tpValor} = [26], e aplicar a alíquota de 8%; {tpDps} = [67]: se {tpValor} = [27], e aplicar a alíquota de 2%; {tpDps} = [68]: se {tpValor} = [28], e aplicar a alíquota de 2%; {tpDps} = [69]: se {tpValor} = [29], e aplicar a alíquota de 2%; {tpDps} = [70]: se {tpValor} = [30], e aplicar a alíquota de 2%; {tpDps} = [71]: se {tpValor} = [31], e aplicar a alíquota de 2%; {tpDps} = [72]: se {tpValor} = [32], e aplicar a alíquota de 2%; {tpDps} = [73]: se {tpValor} = [15] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDps} = [74]: se {tpValor} = [16] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDps} = [75]: se {tpValor} = [17] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDps} = [76]: se {tpValor} = [18] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDps} = [77]: se {tpValor} = [27] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDps} = [78]: se {tpValor} = [28] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDps} = [79]: se {tpValor} = [29] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDps} = [80]: se {tpValor} = [30] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDps} = [81]: se {tpValor} = [31] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDps} = [82]: se {tpValor} = [32] e {codCateg} = [108], e aplicar a alíquota de 0,4%."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__infoDpsFGTS__infoTrabDps__dpsPerApur__id__dpsFGTS" maxlength="14" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.dpsPerApur.dpsFGTS'}}" name="[evtBasesFGTS][infoFGTS][infoDpsFGTS][infoTrabDps][dpsPerApur][dpsFGTS]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoDpsPerAntE__div">
+    <div class="col-md-12">
+        <h4>Informações referentes ao cálculo dos valores de FGTS de períodos anteriores quando {tpAcConv} = [E].</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de Referência<a data-toggle="tooltip" title="Informar o período ao qual se refere a remuneração, no formato AAAA-MM. Evento de origem: S-1200 ou S-2299. Validação: Deve corresponder ao período informado no evento de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__infoDpsFGTS__infoTrabDps__infoDpsPerAntE__id__perRef" maxlength="7" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.perRef'}}" name="[evtBasesFGTS][infoFGTS][infoDpsFGTS][infoTrabDps][infoDpsPerAntE][perRef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dpsPerAntE__div">
+    <div class="col-md-12">
+        <h4>Cálculo dos valores de FGTS a serem depositados, incidentes sobre a remuneração de períodos anteriores quando {tpAcConv} = [E].</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpDpsE__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de depósito<a data-toggle="tooltip" title="Tipo de depósito: 53 - Depósito do FGTS Dissídio; 54 - Depósito do FGTS Dissídio 13º Salário; 57 - Depósito do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo; 58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo; 64 - Depósito do FGTS Rescisório Dissídio; 65 - Depósito do FGTS Rescisório Dissídio 13º Salário; 66 - Depósito do FGTS Rescisório Dissídio Aviso Prévio; 70 - Depósito do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo; 71 - Depósito do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo; 72 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo; 75 - Depósito do FGTS Dissídio - Antecipação da multa rescisória do FGTS; 76 - Depósito do FGTS Dissídio 13º Salário - Antecipação da multa rescisória do FGTS; 80 - Depósito do Rescisório Dissídio - Antecipação da multa rescisória do FGTS; 81 - Depósito do FGTS Rescisório Dissídio 13º Salário - Antecipação da multa rescisória do FGTS; 82 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Antecipação da multa rescisória do FGTS. Validação: Deve ser um código válido, conforme opções acima."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesFGTS__infoFGTS__infoDpsFGTS__infoTrabDps__infoDpsPerAntE__dpsPerAntE__id__tpDpsE" name="[evtBasesFGTS][infoFGTS][infoDpsFGTS][infoTrabDps][infoDpsPerAntE][dpsPerAntE][tpDpsE]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="53" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 53 %}selected{% endifequal %}>53 - Depósito do FGTS Dissídio</option><option value="54" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 54 %}selected{% endifequal %}>54 - Depósito do FGTS Dissídio 13º Salário</option><option value="57" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 57 %}selected{% endifequal %}>57 - Depósito do FGTS Dissídio - Aprendiz/Contrato Verde e Amarelo</option><option value="58" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 58 %}selected{% endifequal %}>58 - Depósito do FGTS Dissídio 13º Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="64" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 64 %}selected{% endifequal %}>64 - Depósito do FGTS Rescisório Dissídio</option><option value="65" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 65 %}selected{% endifequal %}>65 - Depósito do FGTS Rescisório Dissídio 13º Salário</option><option value="66" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 66 %}selected{% endifequal %}>66 - Depósito do FGTS Rescisório Dissídio Aviso Prévio</option><option value="70" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 70 %}selected{% endifequal %}>70 - Depósito do FGTS Rescisório Dissídio - Aprendiz/Contrato Verde e Amarelo</option><option value="71" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 71 %}selected{% endifequal %}>71 - Depósito do FGTS Rescisório Dissídio 13° Salário - Aprendiz/Contrato Verde e Amarelo</option><option value="72" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 72 %}selected{% endifequal %}>72 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Aprendiz/Contrato Verde e Amarelo</option><option value="75" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 75 %}selected{% endifequal %}>75 - Depósito do FGTS Dissídio - Antecipação da multa rescisória do FGTS</option><option value="76" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 76 %}selected{% endifequal %}>76 - Depósito do FGTS Dissídio 13º Salário - Antecipação da multa rescisória do FGTS</option><option value="80" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 80 %}selected{% endifequal %}>80 - Depósito do Rescisório Dissídio - Antecipação da multa rescisória do FGTS</option><option value="81" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 81 %}selected{% endifequal %}>81 - Depósito do FGTS Rescisório Dissídio 13º Salário - Antecipação da multa rescisória do FGTS</option><option value="82" {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.tpDpsE' 82 %}selected{% endifequal %}>82 - Depósito do FGTS Rescisório Dissídio Aviso Prévio - Antecipação da multa rescisória do FGTS. Validação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dpsFGTSE__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDpsE}<a data-toggle="tooltip" title="Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador, conforme definido no campo {tpDpsE}. Validação: Deve ser maior que 0 (zero). Deve corresponder ao somatório dos valores informados no campo {remFGTSE}. Em seguida, aplicar a alíquota indicada, conforme a tabela de relacionamento abaixo: {tpDpsE} = [53]: se {tpValorE} = [13], e aplicar a alíquota de 8%; {tpDpsE} = [54]: se {tpValorE} = [14], e aplicar a alíquota de 8%; {tpDpsE} = [57]: se {tpValorE} = [17], e aplicar a alíquota de 2%; {tpDpsE} = [58]: se {tpValorE} = [18], e aplicar a alíquota de 2%; {tpDpsE} = [64]: se {tpValorE} = [24], e aplicar a alíquota de 8%; {tpDpsE} = [65]: se {tpValorE} = [25], e aplicar a alíquota de 8%; {tpDpsE} = [66]: se {tpValorE} = [26], e aplicar a alíquota de 8%; {tpDpsE} = [70]: se {tpValorE} = [30], e aplicar a alíquota de 2%; {tpDpsE} = [71]: se {tpValorE} = [31], e aplicar a alíquota de 2%; {tpDpsE} = [72]: se {tpValorE} = [32], e aplicar a alíquota de 2%; {tpDpsE} = [75]: se {tpValorE} = [17] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDpsE} = [76]: se {tpValorE} = [18] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDpsE} = [80]: se {tpValorE} = [30] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDpsE} = [81]: se {tpValorE} = [31] e {codCateg} = [108], e aplicar a alíquota de 0,4%; {tpDpsE} = [82]: se {tpValorE} = [32] e {codCateg} = [108], e aplicar a alíquota de 0,4%."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__infoDpsFGTS__infoTrabDps__infoDpsPerAntE__dpsPerAntE__id__dpsFGTSE" maxlength="14" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.infoDpsFGTS.infoTrabDps.infoDpsPerAntE.dpsPerAntE.dpsFGTSE'}}" name="[evtBasesFGTS][infoFGTS][infoDpsFGTS][infoTrabDps][infoDpsPerAntE][dpsPerAntE][dpsFGTSE]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

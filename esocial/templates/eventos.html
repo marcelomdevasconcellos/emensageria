@@ -1,0 +1,369 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+{% load esocial_custom_tags %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "admin/adminlte-dist/css/app.css" %}">
+<style>
+label {
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+</style>
+{% endblock %}
+
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'admin:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
+    <li><a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a></li>
+    <li>{% if has_view_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}</li>
+    <li class="active">{% if add %}{% blocktrans with name=opts.verbose_name %}Add {{ name }}{% endblocktrans %}{% else %}{{ original|truncatewords:"18" }}{% endif %}</li>
+</ol>
+{% endblock %}
+{% endif %}
+
+{% block content_title %} {{ opts.verbose_name_plural|capfirst }} {% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>
+        
+        {% csrf_token %}{% block form_top %}{% endblock %}
+        {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1">{% endif %}
+        {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
+        {% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+        {% if errors %}
+        <div class="alert alert-danger alert-dismissible" style="margin: 20px;">
+        <h4><i class="icon fa fa-ban"></i> Erro!</h4>
+            {% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+            <br><br>
+            {{ adminform.form.non_field_errors }}
+        </div>
+        
+        {% endif %}
+
+        {% comment %}
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h4 class="box-title">
+                        {{title}}{% block pretitle %}{% endblock %}
+                    </h4>
+                </div>
+                <div class="box-body">
+                    <div id="content-main">
+                        <div>
+                            {% csrf_token %}{% block form_top %}{% endblock %}
+                            {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1">{% endif %}
+                            {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
+                            {% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+                            {% if errors %}
+                            <div class="errornote text-red text-center" style="margin: 20px;">
+                                {% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+                            </div>
+                            {{ adminform.form.non_field_errors }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endcomment %}
+
+        {% block field_sets %}
+        {% for fieldset in adminform %}
+        <div class="col-md-12">
+            <div class="box box-default{% if 'collapse' in fieldset.classes %} collapsed-box{% endif %}">
+              {% if fieldset.name %}
+              <div class="box-header with-border">
+                <h3 class="box-title">
+                  {{ fieldset.name }}
+                </h3>
+                {% if fieldset.description %}
+                <span class="description">
+                  {{ fieldset.description|safe }}
+                </span>
+                {% endif %}
+                {% if 'collapse' in fieldset.classes %}
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-plus"></i> Mostrar/Ocultar
+                  </button>
+                </div>
+                {% endif %}
+              </div>
+              {% endif %}
+              <!-- /.box-header -->
+              <div class="box-body {{ fieldset.classes }}">
+                <div class="row">
+                  {% for line in fieldset %}
+                  {% for field in line %}
+                  {% if 'date' not in field.field.field.widget.template_name and not field.is_checkbox and not field.field.field.max_length or field.field.field.max_length > 200 %}
+                  <div class="col-md-4">{% elif field.is_checkbox %}<div class="col-md-4">{% else %}<div class="col-md-4">
+                        {% endif %}
+                        
+                        <div class="form-group">
+                          {% if not field.field.is_hidden %}
+                          <label class="control-label text-right">
+                            {{ field.field.label }}
+                          </label>
+                          {% endif %}
+                          <div {% if not line.fields|length_is:'1' %}
+                            class="fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"
+                            {% elif field.is_checkbox %} class="checkbox-row" {% endif %}>
+                            {% if field.is_readonly %}
+                            <div class="readonly" style="margin-top: 7px;">{{ field.contents }}</div>
+                            {% else %}
+                            {{ field.field }}
+                            {% endif %}
+                            <div class="help-block red">
+                              {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                            </div>
+                            {% if field.field.help_text %}
+                            <div class="help-block">{{ field.field.help_text|safe }}</div>
+                            {% endif %}
+                          </div>
+                        </div>
+                        
+                      </div>
+                      {% endfor %}
+                      {% if line.errors %}
+                      <div class="col-sm-12">
+                        <div class="alert alert-danger alert-dismissible">
+                          {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
+                        </div>
+                      </div>
+                      {% endif %}
+
+                      {% endfor %}
+
+                      {% if original.evento %}
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>JSON</label>
+                          <input type="text" 
+                                 id="id_evento_json_read" 
+                                 name="evento_json_read" 
+                                 value="{{original.evento_json}}"
+                                 class="form-control" disabled/>
+                        </div>
+                      </div>
+                      {% endif %}
+          
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+        {% endblock %}
+
+        {% block after_field_sets %}{% endblock %}
+
+        {% block inline_field_sets %}
+        {% for inline_admin_formset in inline_admin_formsets %}
+        {% include inline_admin_formset.opts.template %}
+        {% endfor %}
+        {% endblock %}
+
+        {% block after_related_objects %}{% endblock %}
+
+        {% block admin_change_form_document_ready %}
+        <script type="text/javascript"
+                id="django-admin-form-add-constants"
+                src="{% static 'admin/js/change_form.js' %}"
+                {% if adminform and add %}
+                data-model-name="{{ opts.model_name }}"
+                {% endif %}>
+        </script>
+        {% endblock %}
+
+        {# JavaScript for prepopulated fields #}
+        {% prepopulated_fields_js %}
+        <div class="form-inline visible-sm visible-xs">
+            <br class="clear" />
+            {% submit_row %}
+        </div>
+        
+
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div id="content-main">
+                        {% block submit_buttons_bottom %}
+                        {% submit_row %}
+
+                        <!-- <div class="submit-row">
+                            <input type="submit" value="Make Unique" name="_make-unique">
+                        </div> -->
+
+
+
+                        {% endblock %}
+
+                        {% block object-tools %}
+                        {% if change %}{% if not is_popup %}
+                        <ul class="object-tools">
+                            {% block object-tools-items %}
+                            {% change_form_object_tools %}
+                            {% endblock %}
+                        </ul>
+                        {% endif %}{% endif %}
+                        {% endblock %}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <span>
+        <input type="submit" 
+               value="Duplicar Evento" 
+               class="btn btn-warning"
+               name="_duplicar_evento"
+               style="margin-bottom: 3px; margin-right:3px">
+            </span>
+        <span>
+        <input type="submit" 
+               value="Atualizar Identidade" 
+               class="btn btn-warning"
+               name="_atualizar_identidade"
+               style="margin-bottom: 3px; margin-right:3px">
+            </span>
+        <span>
+        <input type="submit" 
+               value="Abrir evento para edição" 
+               class="btn btn-warning"
+               name="_abrir_evento_para_edicao"
+               style="margin-bottom: 3px; margin-right:3px">
+            </span>
+        <span>
+        <input type="submit" 
+               value="Autorizar envio"
+               class="btn btn-warning"
+               name="_autorizar_envio_evento"
+               style="margin-bottom: 3px; margin-right:3px">
+        </span>
+    
+    {% if original.pk %}
+    <a href="{% url 'esocial:visualizar_xml' pk=original.pk %}" target="_blank">
+        <span class="btn btn-primary" style="margin-bottom: 3px; margin-right:3px">
+            <i class="fa fa-code"></i>&nbsp;Visualizar XML
+        </span>
+    </a>&nbsp;
+    {% endif %}
+    
+    <a href="#">
+        <span class="btn btn-default" style="margin-bottom: 3px; margin-right:3px">
+            <i class="fa fa-thumbs-o-up"></i>&nbsp;
+            Validar
+        </span>
+    </a>&nbsp;
+    
+    
+    {% ifequal original.evento 's1000' %}
+    <a href="#">
+        <span class="btn btn-danger" style="margin-bottom: 3px; margin-right:3px">
+            <i class="fa fa-gear"></i>&nbsp;
+            Limpar base de Produção Restrita
+        </span>
+    </a>&nbsp;
+    {% endifequal %}
+    
+    <div class="btn-group">
+        <button type="button"
+                class="btn btn-primary dropdown-toggle"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                style="margin-bottom: 3px; margin-right:3px">
+            <i class="fa fa-download"></i>&nbsp;Recibo
+            <span class="caret"></span>
+            <span class="sr-only">Recibo</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li class="text-left">
+                <a href="#" target="_blank">
+                    <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                </a>
+            </li>
+            <li class="text-left">
+                <a href="#" target="_blank">
+                    <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                </a>
+            </li>
+            <li class="text-left">
+                <a href="#" target="_blank">
+                    <i class="fa fa-file-text-o"></i>&nbsp;CSV
+                </a>
+            </li>
+        </ul>
+    </div>
+    </div>
+    </div>
+
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+
+        <br class="clear" />
+    </form>
+</div>
+
+{% include "eventos_lista.html" %} 
+
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript">
+  $(function() {
+    {% if not original.operacao == 1 %}
+    $('#inclusao__div').hide(); {% endif %}
+    {% if not original.operacao == 2 %}
+    $('#alteracao__div').hide(); {% endif %}
+    {% if not original.operacao == 3 %}
+    $('#exclusao__div').hide(); {% endif %}
+    $('#id_operacao').change(function(){
+        if ($('#id_operacao').val() == 1) {
+            $('#inclusao__div').show(); 
+            $('#alteracao__div').hide(); 
+            $('#exclusao__div').hide(); 
+        } else if ($('#id_operacao').val() == 2) {
+            $('#inclusao__div').hide(); 
+            $('#alteracao__div').show(); 
+            $('#exclusao__div').hide(); 
+        } else {
+            $('#inclusao__div').hide(); 
+            $('#alteracao__div').hide(); 
+            $('#exclusao__div').show(); 
+        } 
+    });
+  });
+</script>
+<script type="text/javascript">
+    function atualizar_campos_parronizados() {
+        var g_ = document.getElementById("id_evento_json");
+        var dst_read = document.getElementById("id_evento_json_read");
+        var obj = $('#form_json').serializeJSON();
+        dst.value = JSON.stringify(obj);
+        dst_read.value = JSON.stringify(obj);
+    };
+</script>
+<script src="{% static "admin/plugins/datatables/jquery.dataTables.min.js" %}"></script>
+<script src="{% static "admin/plugins/datatables/dataTables.bootstrap.min.js" %}"></script>
+<script>
+$('[required]').before('<span class="text-red" style="margin-left: -10px;">* </span>');
+</script>
+{% endblock %}

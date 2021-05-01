@@ -1,0 +1,75 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/adminlte-dist/css/app.css" %}">{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block content_title %}Visão Geral{% endblock %}
+
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'admin:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
+    <li class="active">Visão Geral</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    {% if app_list %}
+    <div class="row">
+        <div class="col-md-7 col-sm-12 col-xs-12">
+
+            {% include 'dashboard/visao_geral.html' %}
+
+        </div>
+        <div class="col-md-5 col-sm-12 col-xs-12">
+            <div id="content-related">
+                <div class="module" id="recent-actions-module">
+                    <h3>{% trans 'Recent actions' %}</h3>
+                    <h4>{% trans 'My actions' %}</h4>
+                    {% load log %}
+                    {% get_admin_log 6 as admin_log for_user user %}
+                    {% if not admin_log %}
+                    <p>{% trans 'None available' %}</p>
+                    {% else %}
+                    <ul class="timeline">
+                        {% for entry in admin_log %}
+                        <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+                            <i class="fa fa-database bg-aqua"></i>
+                            <div class="timeline-item">
+                                <h3 class="timeline-header">
+                                    {% if entry.is_deletion or not entry.get_admin_url %}
+                                    {{ entry.object_repr }}
+                                    {% else %}
+                                    <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                                    {% endif %}
+                                    {% if entry.content_type %}
+                                    <span class="mini quiet">{% filter capfirst %}{{ entry.content_type }}{% endfilter %}</span>
+                                    {% else %}
+                                    <span class="mini quiet">{% trans 'Unknown content' %}</span>
+                                    {% endif %}
+                                </h3>
+                                <div class="timeline-body">
+                                    {{ entry }}
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                        <li>
+                            <i class="fa fa-clock-o bg-gray"></i>
+                        </li>
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="row"><div class="col-md-12">{% trans "You don't have permission to view or edit anything." %}</div></div>
+        {% endif %}
+
+    </div>
+    {% endblock %}
+</div>

@@ -1,0 +1,307 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtBenefNId__div">
+    <div class="col-md-12">
+        <h4>Evento Beneficiários não identificados. Regras de validação: REGRA_EVE_IND_RETIFICACAO REGRA_EVE_VALIDO_ESTAB REGRA_EXISTE_INFO_CONTRIBUINTE REGRA_VALIDA_ID_EVENTO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenefNId__ideEvento__id__indRetif" name="[evtBenefNId][ideEvento][indRetif]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo objeto da retificação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenefNId__ideEvento__id__nrRecibo" maxlength="52" value="{{original.evento_json|readjson:'evtBenefNId.ideEvento.nrRecibo'}}" name="[evtBenefNId][ideEvento][nrRecibo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="perApur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o ano/mês de referência das informações no formato AAAA-MM<a data-toggle="tooltip" title="Informar o ano/mês de referência das informações no formato AAAA-MM. Validação: Deve ser um ano/mês válido para o qual haja informações do contribuinte informadas através do evento R-1000. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenefNId__ideEvento__id__perApur" maxlength="10" value="{{original.evento_json|readjson:'evtBenefNId.ideEvento.perApur'}}" name="[evtBenefNId][ideEvento][perApur]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtBenefNId][ideEvento][tpAmb]" id="evtBenefNId__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtBenefNId][ideEvento][tpAmb]" id="evtBenefNId__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtBenefNId][ideEvento][procEmi]" id="evtBenefNId__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtBenefNId][ideEvento][procEmi]" id="evtBenefNId__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtBenefNId][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtBenefNId__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtBenefNId][ideEvento][verProc]" id="evtBenefNId__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideContri__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do contribuinte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Preencher com o código correspondente ao tipo de inscrição</label>
+            <select name="[evtBenefNId][ideContri][tpInsc]" id="evtBenefNId__ideContri__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtBenefNId][ideContri][tpInsc]" id="evtBenefNId__ideContri__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</label>
+            <input type="text" id="evtBenefNId__ideContri__id__nrInsc_disabled" name="[evtBenefNId][ideContri][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtBenefNId][ideContri][nrInsc]" id="evtBenefNId__ideContri__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do estabelecimento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInscEstab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição. Validação: Deve ser igual a [1] (CNPJ). Valores Válidos: 1."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenefNId__ideEstab__id__tpInscEstab" name="[evtBenefNId][ideEstab][tpInscEstab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInscEstab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}.<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento de acordo com o tipo de inscrição indicado no campo {tpInscEstab}. Validação: A inscrição informada deve ser compatível com o {tpInscEstab}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenefNId__ideEstab__id__nrInscEstab" maxlength="14" value="{{original.evento_json|readjson:'evtBenefNId.ideEstab.nrInscEstab'}}" name="[evtBenefNId][ideEstab][nrInscEstab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideNat__div">
+    <div class="col-md-12">
+        <h4>Identificação da natureza do rendimento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="natRendim__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a natureza dos rendimentos pagos a beneficiários não identificados<a data-toggle="tooltip" title="Informar a natureza dos rendimentos pagos a beneficiários não identificados, conforme opções a seguir: 1 - Rendimentos do trabalho; 9 - Demais rendimentos. Valores Válidos: 1, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenefNId__ideEstab__ideNat__id__natRendim" name="[evtBenefNId][ideEstab][ideNat][natRendim]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtBenefNId.ideEstab.ideNat.natRendim' 1 %}selected{% endifequal %}>1 - Rendimentos do trabalho</option><option value="9" {% ifequal original.evento_json|readjson:'evtBenefNId.ideEstab.ideNat.natRendim' 9 %}selected{% endifequal %}>9 - Demais rendimentos. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="infoPgto__div">
+    <div class="col-md-12">
+        <h4>Informações de pagamentos a beneficiários não indentificados.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dtFG__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a data do fato gerador ou pagamento/crédito<a data-toggle="tooltip" title="Informar a data do fato gerador ou pagamento/crédito. Validação: A data informada deve estar compreendida no período de apuração ao qual se refere o arquivo, conforme informado em (perApur}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenefNId__ideEstab__ideNat__infoPgto__id__dtFG" value="{{original.evento_json|readjson:'evtBenefNId.ideEstab.ideNat.infoPgto.dtFG'}}" name="[evtBenefNId][ideEstab][ideNat][infoPgto][dtFG]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrLiq__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor líquido do pagamento<a data-toggle="tooltip" title="Valor líquido do pagamento. Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenefNId__ideEstab__ideNat__infoPgto__id__vlrLiq" maxlength="14" value="{{original.evento_json|readjson:'evtBenefNId.ideEstab.ideNat.infoPgto.vlrLiq'}}" name="[evtBenefNId][ideEstab][ideNat][infoPgto][vlrLiq]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrReaj__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor reajustado, considerado como valor bruto da base de cálculo do IRRF<a data-toggle="tooltip" title="Valor reajustado, considerado como valor bruto da base de cálculo do IRRF. Validação: Deve corresponder a ({vlrLiq} / 0,65)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenefNId__ideEstab__ideNat__infoPgto__id__vlrReaj" maxlength="14" value="{{original.evento_json|readjson:'evtBenefNId.ideEstab.ideNat.infoPgto.vlrReaj'}}" name="[evtBenefNId][ideEstab][ideNat][infoPgto][vlrReaj]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação<a data-toggle="tooltip" title="Valor do Imposto de Renda Retido na Fonte, conforme previsto na legislação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenefNId__ideEstab__ideNat__infoPgto__id__vlrIR" maxlength="14" value="{{original.evento_json|readjson:'evtBenefNId.ideEstab.ideNat.infoPgto.vlrIR'}}" name="[evtBenefNId][ideEstab][ideNat][infoPgto][vlrIR]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="descr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição do pagamento<a data-toggle="tooltip" title="Descrição do pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenefNId__ideEstab__ideNat__infoPgto__id__descr" maxlength="200" value="{{original.evento_json|readjson:'evtBenefNId.ideEstab.ideNat.infoPgto.descr'}}" name="[evtBenefNId][ideEstab][ideNat][infoPgto][descr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

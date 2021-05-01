@@ -1,0 +1,651 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtExpRisco__div">
+    <div class="col-md-12">
+        <h4>Evento Condições Ambientais do Trabalho - Agentes Nocivos. Regras de validação: REGRA_ENVIO_PROC_FECHAMENTO REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_GERAL_VALIDA_DADOS_TABCONTRIB REGRA_RETIFICA_MESMO_VINCULO REGRA_TSV_ATIVO_NA_DTEVENTO REGRA_VINCULO_ATIVO_NA_DTEVENTO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__ideEvento__id__indRetif" name="[evtExpRisco][ideEvento][indRetif]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtExpRisco.ideEvento.nrRecibo'}}" name="[evtExpRisco][ideEvento][nrRecibo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtExpRisco][ideEvento][tpAmb]" id="evtExpRisco__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtExpRisco][ideEvento][tpAmb]" id="evtExpRisco__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtExpRisco][ideEvento][procEmi]" id="evtExpRisco__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtExpRisco][ideEvento][procEmi]" id="evtExpRisco__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo</label>
+            <input type="text" name="[evtExpRisco][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtExpRisco__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtExpRisco][ideEvento][verProc]" id="evtExpRisco__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtExpRisco][ideEmpregador][tpInsc]" id="evtExpRisco__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtExpRisco][ideEmpregador][tpInsc]" id="evtExpRisco__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtExpRisco__ideEmpregador__id__nrInsc_disabled" name="[evtExpRisco][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtExpRisco][ideEmpregador][nrInsc]" id="evtExpRisco__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideVinculo__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do trabalhador e do vínculo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtExpRisco.ideVinculo.cpfTrab'}}" name="[evtExpRisco][ideVinculo][cpfTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="matricula__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: Deve corresponder à matrícula informada pelo empregador no evento S- 2190, S-2200 ou S-2300 do respectivo contrato. Não preencher no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE sem informação de matrícula no evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtExpRisco.ideVinculo.matricula'}}" name="[evtExpRisco][ideVinculo][matricula]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codCateg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador. Informar somente no caso de TSVE sem informação de matrícula no evento S-2300. Validação: Informação obrigatória e exclusiva se não houver preenchimento de {matricula}. Se informado, deve ser um código válido e existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__ideVinculo__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtExpRisco.ideVinculo.codCateg'}}" name="[evtExpRisco][ideVinculo][codCateg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoExpRisco__div">
+    <div class="col-md-12">
+        <h4>Informações sobre o ambiente de trabalho, atividades desempenhadas e exposição a agentes nocivos.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dtIniCondicao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de início da condição<a data-toggle="tooltip" title="Informar a data em que o trabalhador iniciou as atividades nas condições descritas ou a data de início da obrigatoriedade deste evento para o empregador no eSocial, a que for mais recente. Validação: Deve ser uma data válida, igual ou posterior à data de admissão do vínculo a que se refere. Não pode ser anterior à data de início da obrigatoriedade deste evento para o empregador no eSocial, nem pode ser posterior a 30 (trinta) dias da data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__id__dtIniCondicao" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.dtIniCondicao'}}" name="[evtExpRisco][infoExpRisco][dtIniCondicao]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoAmb__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao ambiente de trabalho.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="localAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Local<a data-toggle="tooltip" title="Informar o tipo de estabelecimento do ambiente de trabalho: 1 - Estabelecimento do próprio empregador; 2 - Estabelecimento de terceiros. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__infoAmb__id__localAmb" name="[evtExpRisco][infoExpRisco][infoAmb][localAmb]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.infoAmb.localAmb' 1 %}selected{% endifequal %}>1 - Estabelecimento do próprio empregador</option><option value="2" {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.infoAmb.localAmb' 2 %}selected{% endifequal %}>2 - Estabelecimento de terceiros. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dscSetor__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição do lugar administrativo, na estrutura organizacional da empresa, onde o trabalhador exerce suas atividades laborais.<a data-toggle="tooltip" title="Descrição do lugar administrativo, na estrutura organizacional da empresa, onde o trabalhador exerce suas atividades laborais."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__infoAmb__id__dscSetor" maxlength="100" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.infoAmb.dscSetor'}}" name="[evtExpRisco][infoExpRisco][infoAmb][dscSetor]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtExpRisco][infoExpRisco][infoAmb][tpInsc]" id="evtExpRisco__infoExpRisco__infoAmb__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtExpRisco][infoExpRisco][infoAmb][tpInsc]" id="evtExpRisco__infoExpRisco__infoAmb__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtExpRisco__infoExpRisco__infoAmb__id__nrInsc_disabled" name="[evtExpRisco][infoExpRisco][infoAmb][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtExpRisco][infoExpRisco][infoAmb][nrInsc]" id="evtExpRisco__infoExpRisco__infoAmb__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoAtiv__div">
+    <div class="col-md-12">
+        <h4>Descrição das atividades desempenhadas.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dscAtivDes__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição das atividades desempenhadas<a data-toggle="tooltip" title="Descrição das atividades, físicas ou mentais, realizadas pelo trabalhador, por força do poder de comando a que se submete. As atividades deverão ser escritas com exatidão, e de forma sucinta, com a utilização de verbos no infinitivo impessoal. Ex.: Distribuir panfletos, operar máquina de envase, etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__infoAtiv__id__dscAtivDes" maxlength="999" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.infoAtiv.dscAtivDes'}}" name="[evtExpRisco][infoExpRisco][infoAtiv][dscAtivDes]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="agNoc__div">
+    <div class="col-md-12">
+        <h4>Agente(s) nocivo(s) ao(s) qual(is) o trabalhador está exposto.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="codAgNoc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código do agente nocivo ao qual o trabalhador está exposto. Preencher com números e pontos. Caso não haja exposição, informar o código [09.01.001] (Ausência de agente nocivo ou de atividades previstas no Anexo IV do Decreto 3.048/1999). Validação: Deve ser um código válido e existente na Tabela 24. Não é possível informar nenhum outro código de agente nocivo quando houver o código [09.01.001].<a data-toggle="tooltip" title="Informar o código do agente nocivo ao qual o trabalhador está exposto. Preencher com números e pontos. Caso não haja exposição, informar o código [09.01.001] (Ausência de agente nocivo ou de atividades previstas no Anexo IV do Decreto 3.048/1999). Validação: Deve ser um código válido e existente na Tabela 24. Não é possível informar nenhum outro código de agente nocivo quando houver o código [09.01.001]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__codAgNoc" maxlength="9" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.codAgNoc'}}" name="[evtExpRisco][infoExpRisco][agNoc][codAgNoc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscAgNoc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição do agente nocivo. Validação: Preenchimento obrigatório se {codAgNoc} = [01.01.001, 01.02.001, 01.03.001, 01.04.001, 01.05.001, 01.06.001, 01.07.001, 01.08.001, 01.09.001, 01.10.001, 01.12.001, 01.13.001, 01.14.001, 01.15.001, 01.16.001, 01.17.001, 01.18.001, 05.01.001].<a data-toggle="tooltip" title="Descrição do agente nocivo. Validação: Preenchimento obrigatório se {codAgNoc} = [01.01.001, 01.02.001, 01.03.001, 01.04.001, 01.05.001, 01.06.001, 01.07.001, 01.08.001, 01.09.001, 01.10.001, 01.12.001, 01.13.001, 01.14.001, 01.15.001, 01.16.001, 01.17.001, 01.18.001, 05.01.001]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__dscAgNoc" maxlength="999" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.dscAgNoc'}}" name="[evtExpRisco][infoExpRisco][agNoc][dscAgNoc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAval__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de avaliação do fator de risco<a data-toggle="tooltip" title="Tipo de avaliação do agente nocivo: 1 - Critério quantitativo; 2 - Critério qualitativo. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__id__tpAval" name="[evtExpRisco][infoExpRisco][agNoc][tpAval]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.tpAval' 1 %}selected{% endifequal %}>1 - Critério quantitativo</option><option value="2" {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.tpAval' 2 %}selected{% endifequal %}>2 - Critério qualitativo. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="intConc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Concentração<a data-toggle="tooltip" title="Intensidade, concentração ou dose da exposição do trabalhador ao agente nocivo cujo critério de avaliação seja quantitativo. Validação: Preenchimento obrigatório e exclusivo se {tpAval} = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__intConc" maxlength="10" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.intConc'}}" name="[evtExpRisco][infoExpRisco][agNoc][intConc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="limTol__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação<a data-toggle="tooltip" title="Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação. Validação: Preenchimento obrigatório e exclusivo se {tpAval} = [1] e {codAgNoc} = [01.18.001, 02.01.005]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__limTol" maxlength="10" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.limTol'}}" name="[evtExpRisco][infoExpRisco][agNoc][limTol]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="unMed__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Unidade de medida da intensidade ou concentração<a data-toggle="tooltip" title="Dose ou unidade de medida da intensidade ou concentração do agente: 1 - dose diária de ruído; 2 - decibel linear (dB (linear)); 3 - decibel (C) (dB(C)); 4 - decibel (A) (dB(A)); 5 - metro por segundo ao quadrado (m/s2); 6 - metro por segundo elevado a 1,75 (m/s1,75); 7 - parte de vapor ou gás por milhão de partes de ar contaminado (ppm); 8 - miligrama por metro cúbico de ar (mg/m3); 9 - fibra por centímetro cúbico (f/cm3); 10 - grau Celsius (ºC); 11 - metro por segundo (m/s); 12 - porcentual; 13 - lux (lx); 14 - unidade formadora de colônias por metro cúbico (ufc/m3); 15 - dose diária; 16 - dose mensal; 17 - dose trimestral; 18 - dose anual; 19 - watt por metro quadrado (W/m2); 20 - ampère por metro (A/m); 21 - militesla (mT); 22 - microtesla (µT); 23 - miliampère (mA); 24 - quilovolt por metro (kV/m); 25 - volt por metro (V/m); 26 - joule por metro quadrado (J/m2); 27 - milijoule por centímetro quadrado (mJ/cm2); 28 - milisievert (mSv); 29 - milhão de partículas por decímetro cúbico (mppdc); 30 - umidade relativa do ar (UR (%)). Validação: Preenchimento obrigatório e exclusivo se {tpAval} = [1]. Valores Válidos: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25, 26,27,28,29,30."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__unMed" maxlength="2" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.unMed'}}" name="[evtExpRisco][infoExpRisco][agNoc][unMed]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tecMedicao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Técnica de medição<a data-toggle="tooltip" title="Técnica utilizada para medição da intensidade ou concentração. Validação: Preenchimento obrigatório e exclusivo se {tpAval} = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__tecMedicao" maxlength="40" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.tecMedicao'}}" name="[evtExpRisco][infoExpRisco][agNoc][tecMedicao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="epcEpi__div">
+    <div class="col-md-12">
+        <h4>Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="utilizEPC__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Utiliza EPC<a data-toggle="tooltip" title="O empregador implementa medidas de proteção coletiva (EPC) para eliminar ou reduzir a exposição dos trabalhadores ao agente nocivo? 0 - Não se aplica; 1 - Não implementa; 2 - Implementa. Valores Válidos: 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__utilizEPC" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][utilizEPC]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="eficEpc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>EPC é eficaz na neutralização<a data-toggle="tooltip" title="Os EPCs são eficazes na neutralização dos riscos ao trabalhador? S - Sim; N - Não. Validação: Preenchimento obrigatório e exclusivo se {utilizEPC} = [2]. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__eficEpc" maxlength="1" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.epcEpi.eficEpc'}}" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][eficEpc]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="utilizEPI__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Utiliza EPI<a data-toggle="tooltip" title="Utilização de EPI: 0 - Não se aplica; 1 - Não utilizado; 2 - Utilizado. Valores Válidos: 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__utilizEPI" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][utilizEPI]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="0" {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.epcEpi.utilizEPI' 0 %}selected{% endifequal %}>0 - Não se aplica</option><option value="1" {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.epcEpi.utilizEPI' 1 %}selected{% endifequal %}>1 - Não utilizado</option><option value="2" {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.epcEpi.utilizEPI' 2 %}selected{% endifequal %}>2 - Utilizado. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="epi__div">
+    <div class="col-md-12">
+        <h4>EPI.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="docAval__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Certificado de Aprovação - CA ou documento de avaliação do EPI.<a data-toggle="tooltip" title="Certificado de Aprovação - CA ou documento de avaliação do EPI."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__docAval" maxlength="255" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.epcEpi.epi.docAval'}}" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][epi][docAval]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscEPI__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição do EPI. Validação: Preenchimento obrigatório e exclusivo se {caEPI} não for informado.<a data-toggle="tooltip" title="Descrição do EPI. Validação: Preenchimento obrigatório e exclusivo se {docAval} não for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__dscEPI" maxlength="999" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.agNoc.epcEpi.epi.dscEPI'}}" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][epi][dscEPI]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="eficEpi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>EPI é eficaz na neutralização<a data-toggle="tooltip" title="O EPI é eficaz na neutralização do risco ao trabalhador? S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__eficEpi" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][epi][eficEpi]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="epiCompl__div">
+    <div class="col-md-12">
+        <h4>Requisitos da Norma Regulamentadora 06 - NR-06 e da Norma Regulamentadora 09 - NR-09 pelo(s) EPI(s) informado(s).</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="medProtecao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Medidas de proteção coletiva<a data-toggle="tooltip" title="Foi tentada a implementação de medidas de proteção coletiva, de caráter administrativo ou de organização, optando-se pelo EPI por inviabilidade técnica, insuficiência ou interinidade, ou ainda em caráter complementar ou emergencial? S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__medProtecao" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][epiCompl][medProtecao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="condFuncto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Condição de funcionamento e uso ininterrupto<a data-toggle="tooltip" title="Foram observadas as condições de funcionamento do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo? S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__condFuncto" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][epiCompl][condFuncto]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="usoInint__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Foi observado o uso ininterrupto do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo?<a data-toggle="tooltip" title="Foi observado o uso ininterrupto do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo? S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__usoInint" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][epiCompl][usoInint]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="przValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observado Prazo de validade<a data-toggle="tooltip" title="Foi observado o prazo de validade do CA no momento da compra do EPI? S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__przValid" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][epiCompl][przValid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="periodicTroca__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observado periodicidade de troca<a data-toggle="tooltip" title="É observada a periodicidade de troca definida pelo fabricante nacional ou importador e/ou programas ambientais, comprovada mediante recibo assinado pelo usuário em época própria? S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__periodicTroca" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][epiCompl][periodicTroca]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="higienizacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observada higienização<a data-toggle="tooltip" title="É observada a higienização conforme orientação do fabricante nacional ou importador? S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__higienizacao" name="[evtExpRisco][infoExpRisco][agNoc][epcEpi][epiCompl][higienizacao]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="respReg__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao responsável pelos registros ambientais.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfResp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Preencher com o CPF do responsável pelos registros ambientais. Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__respReg__id__cpfResp" maxlength="11" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.respReg.cpfResp'}}" name="[evtExpRisco][infoExpRisco][respReg][cpfResp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideOC__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Órgão de Classe (OC)<a data-toggle="tooltip" title="Órgão de classe ao qual o responsável pelos registros ambientais está vinculado: 1 - Conselho Regional de Medicina - CRM; 4 - Conselho Regional de Engenharia e Agronomia - CREA; 9 - Outros. Valores Válidos: 1, 4, 9."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__respReg__id__ideOC" name="[evtExpRisco][infoExpRisco][respReg][ideOC]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.respReg.ideOC' 1 %}selected{% endifequal %}>1 - Conselho Regional de Medicina - CRM</option><option value="4" {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.respReg.ideOC' 4 %}selected{% endifequal %}>4 - Conselho Regional de Engenharia e Agronomia - CREA</option><option value="9" {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.respReg.ideOC' 9 %}selected{% endifequal %}>9 - Outros. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dscOC__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado<a data-toggle="tooltip" title="Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado. Validação: Preenchimento obrigatório e exclusivo se {ideOC} = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__respReg__id__dscOC" maxlength="20" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.respReg.dscOC'}}" name="[evtExpRisco][infoExpRisco][respReg][dscOC]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrOC__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número de Inscrição no órgão de classe.<a data-toggle="tooltip" title="Número de inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__respReg__id__nrOC" maxlength="14" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.respReg.nrOC'}}" name="[evtExpRisco][infoExpRisco][respReg][nrOC]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ufOC__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>UF do OC<a data-toggle="tooltip" title="Sigla da Unidade da Federação - UF do órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__respReg__id__ufOC" maxlength="2" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.respReg.ufOC'}}" name="[evtExpRisco][infoExpRisco][respReg][ufOC]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="obs__div">
+    <div class="col-md-12">
+        <h4>Observações relativas a registros ambientais.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="obsCompl__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observação(ões) complementar(es) referente(s) a registros ambientais. Validação: Preenchimento obrigatório se {metErg} não for informado.<a data-toggle="tooltip" title="Observação(ões) complementar(es) referente(s) a registros ambientais."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__obs__id__obsCompl" maxlength="999" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.obs.obsCompl'}}" name="[evtExpRisco][infoExpRisco][obs][obsCompl]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

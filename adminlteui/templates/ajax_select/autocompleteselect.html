@@ -1,0 +1,50 @@
+{% load templatetags_fieldset %}
+<span id="{{ html_id }}_wrapper">
+    {% if not current_id or name|can_edit and current_id %} 
+    <div class="input-group input-group-sm">
+        <input type="text" 
+               name="{{name}}_text" 
+               class="vTextField" 
+               id="{{html_id}}_text" 
+               value="{{current_repr}}" 
+               width="100%"
+               autocomplete="off" 
+               {{ extra_attrs }} />
+        {% if name|get_add_link %}
+        <span class="input-group-btn">
+            <a href="{{ name|get_add_link }}" 
+               class="btn btn-success btn-flat" 
+               id="add_{{ html_id }}" 
+               onclick="return showAddAnotherPopup(this);"> Novo</a>
+        </span>
+        {% endif %}
+        {% if add_link %}
+        <span class="input-group-btn">
+            <a href="{{ add_link }}" 
+               class="btn btn-info btn-flat" 
+               id="add_{{ html_id }}" 
+               onclick="return showAddAnotherPopup(this);"> Novo</a>
+        </span>
+        {% endif %}
+    </div>
+    {% endif %}
+    <input type="hidden" 
+           name="{{name}}" 
+           id="{{html_id}}" 
+           value="{{current_id}}" 
+           data-ajax-select="autocompleteselect" 
+           data-plugin-options="{{ data_plugin_options }}" />
+    <div id="{{html_id}}_on_deck" 
+         class="results_on_deck">
+        <div>{{current_repr|safe}}</div>
+    </div>
+    {% block extra_script %}
+    {% endblock %}
+    {% block help %}
+        {% if help_text %}
+        <p class="help">
+        {{help_text}}
+        </p>
+        {% endif %}
+    {% endblock %}
+</span>

@@ -1,0 +1,312 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtToxic__div">
+    <div class="col-md-12">
+        <h4>Evento Exame Toxicológico do Motorista Profissional. Regras de validação: REGRA_EVENTOS_EXTEMP REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_EXTEMP_REINTEGRACAO REGRA_RETIFICA_MESMO_VINCULO REGRA_VALIDA_TRABALHADOR_BASE_CNIS</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de Identificação do Evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtToxic__ideEvento__id__indRetif" name="[evtToxic][ideEvento][indRetif]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtToxic__ideEvento__id__nrRecibo" maxlength="40" value="{{original.evento_json|readjson:'evtToxic.ideEvento.nrRecibo'}}" name="[evtToxic][ideEvento][nrRecibo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtToxic][ideEvento][tpAmb]" id="evtToxic__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtToxic][ideEvento][tpAmb]" id="evtToxic__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtToxic][ideEvento][procEmi]" id="evtToxic__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtToxic][ideEvento][procEmi]" id="evtToxic__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo</label>
+            <input type="text" name="[evtToxic][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtToxic__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtToxic][ideEvento][verProc]" id="evtToxic__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtToxic][ideEmpregador][tpInsc]" id="evtToxic__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtToxic][ideEmpregador][tpInsc]" id="evtToxic__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtToxic__ideEmpregador__id__nrInsc_disabled" name="[evtToxic][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtToxic][ideEmpregador][nrInsc]" id="evtToxic__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideVinculo__div">
+    <div class="col-md-12">
+        <h4>Informações de Identificação do Trabalhador e do Vínculo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador. Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtToxic__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtToxic.ideVinculo.cpfTrab'}}" name="[evtToxic][ideVinculo][cpfTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nisTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>NIS<a data-toggle="tooltip" title="Preencher com o Número de Identificação Social - NIS, o qual pode ser o PIS, PASEP ou NIT. Validação: O preenchimento é obrigatório, exceto se o código de categoria do trabalhador for igual a [901, 903, 904]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtToxic__ideVinculo__id__nisTrab" maxlength="11" value="{{original.evento_json|readjson:'evtToxic.ideVinculo.nisTrab'}}" name="[evtToxic][ideVinculo][nisTrab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="matricula__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão. Validação: A matrícula deve corresponder à informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista. Se o trabalhador não está sujeito a esse evento (S-2200), a matrícula não deve ser informada, porém, o trabalhador deve ter sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtToxic__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtToxic.ideVinculo.matricula'}}" name="[evtToxic][ideVinculo][matricula]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codCateg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código da Categoria<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 01. Validação: Só informar se o trabalhador tiver sido registrado como TSVE - Trabalhador Sem Vínculo de Emprego/Estatutário, através do evento S-2300. Não informar nos demais casos. Se informado, deve existir na Tabela de Categorias de Trabalhadores (Tabela 01)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtToxic__ideVinculo__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtToxic.ideVinculo.codCateg'}}" name="[evtToxic][ideVinculo][codCateg]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="toxicologico__div">
+    <div class="col-md-12">
+        <h4>Detalhamento das informações do exame toxicológico do motorista profissional.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dtExame__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data da realização do exame toxicológico<a data-toggle="tooltip" title="Data da realização do exame toxicológico. Se {indRecusa} = [S], informar a data do desligamento. Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtToxic__toxicologico__id__dtExame" value="{{original.evento_json|readjson:'evtToxic.toxicologico.dtExame'}}" name="[evtToxic][toxicologico][dtExame]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cnpjLab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CNPJ do laboratório responsável pela realização do exame<a data-toggle="tooltip" title="CNPJ do laboratório responsável pela realização do exame. Validação: Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informado, deve ser um CNPJ válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtToxic__toxicologico__id__cnpjLab" maxlength="14" value="{{original.evento_json|readjson:'evtToxic.toxicologico.cnpjLab'}}" name="[evtToxic][toxicologico][cnpjLab]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSeqExame__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame<a data-toggle="tooltip" title="Código do exame toxicológico. Deve ser informado no formato AA999999999, sendo AA o serial do sequencial e 999999999 o número sequencial do exame. Validação: Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informado, deve possuir 11 (onze) caracteres, composto por duas letras (dois primeiros caracteres) e nove algarismos (últimos nove caracteres)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtToxic__toxicologico__id__codSeqExame" maxlength="11" value="{{original.evento_json|readjson:'evtToxic.toxicologico.codSeqExame'}}" name="[evtToxic][toxicologico][codSeqExame]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmMed__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome do Médico<a data-toggle="tooltip" title="Preencher com o nome do médico. Validação: Preenchimento obrigatório e exclusivo se {indRecusa} = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtToxic__toxicologico__id__nmMed" maxlength="70" value="{{original.evento_json|readjson:'evtToxic.toxicologico.nmMed'}}" name="[evtToxic][toxicologico][nmMed]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrCRM__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do CRM<a data-toggle="tooltip" title="Número de inscrição do médico no CRM. Validação: Preenchimento obrigatório e exclusivo se {indRecusa} = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtToxic__toxicologico__id__nrCRM" maxlength="8" value="{{original.evento_json|readjson:'evtToxic.toxicologico.nrCRM'}}" name="[evtToxic][toxicologico][nrCRM]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ufCRM__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>UF do Órgão de classe<a data-toggle="tooltip" title="Preencher com a sigla da UF de expedição do CRM. Validação: Preenchimento obrigatório e exclusivo se {indRecusa} = [N]. Se informada, deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtToxic__toxicologico__id__ufCRM" name="[evtToxic][toxicologico][ufCRM]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="indRecusa__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicar se o trabalhador se recusou a realizar o exame toxicológico no desligamento: S - Sim; N - Não. Valores Válidos: S, N.<a data-toggle="tooltip" title="Indicar se o trabalhador se recusou a realizar o exame toxicológico no desligamento: S - Sim; N - Não. Valores Válidos: S, N."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtToxic__toxicologico__id__indRecusa" name="[evtToxic][toxicologico][indRecusa]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="S" {% ifequal original.evento_json|readjson:'evtToxic.toxicologico.indRecusa' S %}selected{% endifequal %}>S - Sim</option><option value="N" {% ifequal original.evento_json|readjson:'evtToxic.toxicologico.indRecusa' N %}selected{% endifequal %}>N - Não. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

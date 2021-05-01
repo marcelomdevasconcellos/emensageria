@@ -1,0 +1,714 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtCdBenPrRP__div">
+    <div class="col-md-12">
+        <h4>Evento de cadastro de benefícios previdenciários de Regimes Próprios. Regras de validação: REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG REGRA_EXISTE_INFO_EMPREGADOR REGRA_RETIFICA_MESMO_VINCULO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de Identificação do Evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCdBenPrRP__ideEvento__id__indRetif" name="[evtCdBenPrRP][ideEvento][indRetif]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do recibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado. Validação: O preenchimento é obrigatório se {indRetif} = [2]. Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideEvento__id__nrRecibo" maxlength="40" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideEvento.nrRecibo'}}" name="[evtCdBenPrRP][ideEvento][nrRecibo]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Identificação do ambiente</label>
+            <select name="[evtCdBenPrRP][ideEvento][tpAmb]" id="evtCdBenPrRP__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtCdBenPrRP][ideEvento][tpAmb]" id="evtCdBenPrRP__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Processo de emissão do evento</label>
+            <select name="[evtCdBenPrRP][ideEvento][procEmi]" id="evtCdBenPrRP__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtCdBenPrRP][ideEvento][procEmi]" id="evtCdBenPrRP__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Versão do processo</label>
+            <input type="text" name="[evtCdBenPrRP][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtCdBenPrRP__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtCdBenPrRP][ideEvento][verProc]" id="evtCdBenPrRP__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Tipo de inscrição</label>
+            <select name="[evtCdBenPrRP][ideEmpregador][tpInsc]" id="evtCdBenPrRP__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtCdBenPrRP][ideEmpregador][tpInsc]" id="evtCdBenPrRP__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Número de inscrição (CPF/CNPJ)</label>
+            <input type="text" id="evtCdBenPrRP__ideEmpregador__id__nrInsc_disabled" name="[evtCdBenPrRP][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtCdBenPrRP][ideEmpregador][nrInsc]" id="evtCdBenPrRP__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideBenef__div">
+    <div class="col-md-12">
+        <h4>Identificação do beneficiário.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cpfBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF<a data-toggle="tooltip" title="Informar o CPF do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__id__cpfBenef" maxlength="11" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.cpfBenef'}}" name="[evtCdBenPrRP][ideBenef][cpfBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmBenefic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome<a data-toggle="tooltip" title="Nome do Beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__id__nmBenefic" maxlength="70" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.nmBenefic'}}" name="[evtCdBenPrRP][ideBenef][nmBenefic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dadosBenef__div">
+    <div class="col-md-12">
+        <h4>Dados do beneficiário.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dadosNasc__div">
+    <div class="col-md-12">
+        <h4>Informações de nascimento do beneficiário.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="dtNascto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__dadosNasc__id__dtNascto" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.dadosNasc.dtNascto'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][dadosNasc][dtNascto]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codMunic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Se informado, deve ser um código existente na tabela do IBGE. O preenchimento é obrigatório se o país do nascimento for igual a Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__dadosNasc__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.dadosNasc.codMunic'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][dadosNasc][codMunic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="uf__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCdBenPrRP__ideBenef__dadosBenef__dadosNasc__id__uf" name="[evtCdBenPrRP][ideBenef][dadosBenef][dadosNasc][uf]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="paisNascto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>País de nascimento<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do trabalhador, conforme tabela 6. Validação: Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__dadosNasc__id__paisNascto" maxlength="3" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.dadosNasc.paisNascto'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][dadosNasc][paisNascto]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="paisNac__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>País de nacionalidade<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador, conforme tabela 6. Validação: Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__dadosNasc__id__paisNac" maxlength="3" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.dadosNasc.paisNac'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][dadosNasc][paisNac]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmMae__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome da Mãe<a data-toggle="tooltip" title="Nome da mãe."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__dadosNasc__id__nmMae" maxlength="70" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.dadosNasc.nmMae'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][dadosNasc][nmMae]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmPai__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome do Pai<a data-toggle="tooltip" title="Nome do pai do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__dadosNasc__id__nmPai" maxlength="70" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.dadosNasc.nmPai'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][dadosNasc][nmPai]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="endereco__div">
+    <div class="col-md-12">
+        <h4>Grupo de informações do endereço do Trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="brasil__div">
+    <div class="col-md-12">
+        <h4>Preenchimento obrigatório para trabalhador residente no Brasil.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de logradouro<a data-toggle="tooltip" title="Tipo de Logradouro, conforme tabela 20. Validação: Deve ser um código válido, existente na tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__brasil__id__tpLograd" maxlength="4" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.brasil.tpLograd'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][brasil][tpLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__brasil__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.brasil.dscLograd'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][brasil][dscLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número<a data-toggle="tooltip" title="Número do logradouro. Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__brasil__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.brasil.nrLograd'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][brasil][nrLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="complemento__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__brasil__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.brasil.complemento'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][brasil][complemento]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="bairro__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__brasil__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.brasil.bairro'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][brasil][bairro]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP. Validação: Deve ser preenchido apenas com números. Deve ser um CEP válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__brasil__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.brasil.cep'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][brasil][cep]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codMunic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE. Validação: Deve ser um código existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__brasil__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.brasil.codMunic'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][brasil][codMunic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="uf__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação. Validação: Deve ser uma UF válida."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__brasil__id__uf" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][brasil][uf]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="exterior__div">
+    <div class="col-md-12">
+        <h4>Preenchido em caso de trabalhador residente no exterior.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="paisResid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>País<a data-toggle="tooltip" title="Preencher com o código do país, conforme tabela 6. Validação: Deve ser um código existente na tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__exterior__id__paisResid" maxlength="3" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.exterior.paisResid'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][exterior][paisResid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__exterior__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.exterior.dscLograd'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][exterior][dscLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrLograd__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número<a data-toggle="tooltip" title="Número do logradouro. Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__exterior__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.exterior.nrLograd'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][exterior][nrLograd]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="complemento__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__exterior__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.exterior.complemento'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][exterior][complemento]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="bairro__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__exterior__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.exterior.bairro'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][exterior][bairro]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmCid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome da Cidade<a data-toggle="tooltip" title="Nome da Cidade."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__exterior__id__nmCid" maxlength="50" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.exterior.nmCid'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][exterior][nmCid]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codPostal__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__ideBenef__dadosBenef__endereco__exterior__id__codPostal" maxlength="12" value="{{original.evento_json|readjson:'evtCdBenPrRP.ideBenef.dadosBenef.endereco.exterior.codPostal'}}" name="[evtCdBenPrRP][ideBenef][dadosBenef][endereco][exterior][codPostal]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoBeneficio__div">
+    <div class="col-md-12">
+        <h4>Informações relacionadas ao benefício previdenciário concedido ao servidor. Regras de validação: REGRA_TSV_ATIVO_NA_DTEVENTO REGRA_VINCULO_ATIVO_NA_DTEVENTO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpPlanRP__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de plano de segregação de massa<a data-toggle="tooltip" title="Tipo de plano de segregação da massa: 1 - Plano previdenciário ou único; 2 - Plano financeiro. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCdBenPrRP__infoBeneficio__id__tpPlanRP" name="[evtCdBenPrRP][infoBeneficio][tpPlanRP]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.tpPlanRP' 1 %}selected{% endifequal %}>1 - Plano previdenciário ou único</option><option value="2" {% ifequal original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.tpPlanRP' 2 %}selected{% endifequal %}>2 - Plano financeiro. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="iniBeneficio__div">
+    <div class="col-md-12">
+        <h4>Informações relativas a benefícios previdenciários - Início Validação: Não pode ser informado se já houver informação anterior de benefícios para o beneficiário identificado em {ideBenef} e para os qual não tenha havido ainda informação de término de benefícios.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de benefício<a data-toggle="tooltip" title="Tipo de benefício previdenciário, conforme tabela 25. Validação: Deve ser um código existente na tabela 25."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__iniBeneficio__id__tpBenef" maxlength="2" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.iniBeneficio.tpBenef'}}" name="[evtCdBenPrRP][infoBeneficio][iniBeneficio][tpBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrBenefic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do benefício<a data-toggle="tooltip" title="Número do benefício previdenciário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__iniBeneficio__id__nrBenefic" maxlength="20" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.iniBeneficio.nrBenefic'}}" name="[evtCdBenPrRP][infoBeneficio][iniBeneficio][nrBenefic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtIniBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de início do benefício<a data-toggle="tooltip" title="Data de início do benefício previdenciário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__iniBeneficio__id__dtIniBenef" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.iniBeneficio.dtIniBenef'}}" name="[evtCdBenPrRP][infoBeneficio][iniBeneficio][dtIniBenef]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do benefício<a data-toggle="tooltip" title="Valor do benefício previdenciário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__iniBeneficio__id__vrBenef" maxlength="14" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.iniBeneficio.vrBenef'}}" name="[evtCdBenPrRP][infoBeneficio][iniBeneficio][vrBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoPenMorte__div">
+    <div class="col-md-12">
+        <h4>Informações relativas a pensão por morte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="idQuota__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quota<a data-toggle="tooltip" title="Identificação da quota do benefício."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__iniBeneficio__infoPenMorte__id__idQuota" maxlength="30" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.iniBeneficio.infoPenMorte.idQuota'}}" name="[evtCdBenPrRP][infoBeneficio][iniBeneficio][infoPenMorte][idQuota]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cpfInst__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF do instituidor<a data-toggle="tooltip" title="CPF do instituidor da pensão por morte."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__iniBeneficio__infoPenMorte__id__cpfInst" maxlength="11" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.iniBeneficio.infoPenMorte.cpfInst'}}" name="[evtCdBenPrRP][infoBeneficio][iniBeneficio][infoPenMorte][cpfInst]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="altBeneficio__div">
+    <div class="col-md-12">
+        <h4>Informações relativas a benefícios previdenciários - Alteração. Validação: Só pode ser informado se já houver informação anterior de benefícios para o beneficiário identificado em {ideBenef} e para o qual não tenha havido ainda informação de término de benefícios.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de benefício<a data-toggle="tooltip" title="Tipo de benefício previdenciário, conforme tabela 25. Validação: Deve ser um código existente na tabela 25."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__altBeneficio__id__tpBenef" maxlength="2" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.altBeneficio.tpBenef'}}" name="[evtCdBenPrRP][infoBeneficio][altBeneficio][tpBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrBenefic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do benefício<a data-toggle="tooltip" title="Número do benefício previdenciário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__altBeneficio__id__nrBenefic" maxlength="20" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.altBeneficio.nrBenefic'}}" name="[evtCdBenPrRP][infoBeneficio][altBeneficio][nrBenefic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtIniBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de início do benefício<a data-toggle="tooltip" title="Data de início do benefício previdenciário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__altBeneficio__id__dtIniBenef" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.altBeneficio.dtIniBenef'}}" name="[evtCdBenPrRP][infoBeneficio][altBeneficio][dtIniBenef]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do benefício<a data-toggle="tooltip" title="Valor do benefício previdenciário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__altBeneficio__id__vrBenef" maxlength="14" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.altBeneficio.vrBenef'}}" name="[evtCdBenPrRP][infoBeneficio][altBeneficio][vrBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoPenMorte__div">
+    <div class="col-md-12">
+        <h4>Informações relativas a pensão por morte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="idQuota__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quota<a data-toggle="tooltip" title="Identificação da quota do benefício."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__altBeneficio__infoPenMorte__id__idQuota" maxlength="30" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.altBeneficio.infoPenMorte.idQuota'}}" name="[evtCdBenPrRP][infoBeneficio][altBeneficio][infoPenMorte][idQuota]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cpfInst__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>CPF do instituidor<a data-toggle="tooltip" title="CPF do instituidor da pensão por morte."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__altBeneficio__infoPenMorte__id__cpfInst" maxlength="11" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.altBeneficio.infoPenMorte.cpfInst'}}" name="[evtCdBenPrRP][infoBeneficio][altBeneficio][infoPenMorte][cpfInst]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="fimBeneficio__div">
+    <div class="col-md-12">
+        <h4>Informações relativas a benefícios previdenciários - Término. Validação: Só pode ser informado se já houver informação anterior de benefícios para o beneficiário identificado em {ideBenef} e para o qual não tenha havido ainda informação de término de benefícios.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de benefício<a data-toggle="tooltip" title="Tipo de benefício previdenciário, conforme tabela 25. Validação: Deve ser um código existente na tabela 25."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__fimBeneficio__id__tpBenef" maxlength="2" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.fimBeneficio.tpBenef'}}" name="[evtCdBenPrRP][infoBeneficio][fimBeneficio][tpBenef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrBenefic__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do benefício<a data-toggle="tooltip" title="Número do benefício previdenciário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__fimBeneficio__id__nrBenefic" maxlength="20" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.fimBeneficio.nrBenefic'}}" name="[evtCdBenPrRP][infoBeneficio][fimBeneficio][nrBenefic]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtFimBenef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data do fim do benefício<a data-toggle="tooltip" title="Data de término de todos os benefícios previdenciários devidos ao beneficiário identificado em {ideBenef}."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__fimBeneficio__id__dtFimBenef" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.fimBeneficio.dtFimBenef'}}" name="[evtCdBenPrRP][infoBeneficio][fimBeneficio][dtFimBenef]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="mtvFim__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Motivo que originou a cessação<a data-toggle="tooltip" title="Motivo que originou a cessação de benefícios ao beneficiário, de acordo com as opções da tabela 26. Validação: Deve ser um valor constante da tabela 26."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenPrRP__infoBeneficio__fimBeneficio__id__mtvFim" maxlength="2" value="{{original.evento_json|readjson:'evtCdBenPrRP.infoBeneficio.fimBeneficio.mtvFim'}}" name="[evtCdBenPrRP][infoBeneficio][fimBeneficio][mtvFim]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>

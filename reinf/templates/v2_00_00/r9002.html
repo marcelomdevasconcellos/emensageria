@@ -1,0 +1,677 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtRet__div">
+    <div class="col-md-12">
+        <h4>Evento Totalização.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de Identificação do Evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o ano/mês no formato AAAA-MM de referência das informações<a data-toggle="tooltip" title="Informar o ano/mês no formato AAAA-MM de referência das informações. Validação: Deve ser uma data igual ou posterior à implementação da EFD- Reinf. Não pode ser maior que o ano/mês corrente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__ideEvento__id__perRef" maxlength="7" value="{{original.evento_json|readjson:'evtRet.ideEvento.perRef'}}" name="[evtRet][ideEvento][perRef]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideContri__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do contribuinte.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Preencher com o código correspondente ao tipo de inscrição</label>
+            <select name="[evtRet][ideContri][tpInsc]" id="evtRet__ideContri__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtRet][ideContri][tpInsc]" id="evtRet__ideContri__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</label>
+            <input type="text" id="evtRet__ideContri__id__nrInsc_disabled" name="[evtRet][ideContri][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtRet][ideContri][nrInsc]" id="evtRet__ideContri__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideRecRetorno__div">
+    <div class="col-md-12">
+        <h4>Informações do Recibo de Retorno.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="ideStatus__div">
+    <div class="col-md-12">
+        <h4>Situação atual do evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="cdRetorno__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do Retorno<a data-toggle="tooltip" title="Código do Retorno: 0 - Sucesso; 1 - Erro; 2 - Em processamento. Valores Válidos: 0, 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtRet__ideRecRetorno__ideStatus__id__cdRetorno" name="[evtRet][ideRecRetorno][ideStatus][cdRetorno]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="0" {% ifequal original.evento_json|readjson:'evtRet.ideRecRetorno.ideStatus.cdRetorno' 0 %}selected{% endifequal %}>0 - Sucesso</option><option value="1" {% ifequal original.evento_json|readjson:'evtRet.ideRecRetorno.ideStatus.cdRetorno' 1 %}selected{% endifequal %}>1 - Erro</option><option value="2" {% ifequal original.evento_json|readjson:'evtRet.ideRecRetorno.ideStatus.cdRetorno' 2 %}selected{% endifequal %}>2 - Em processamento. Valores Válidos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="descRetorno__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição do retorno<a data-toggle="tooltip" title="Descrição do retorno."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__ideRecRetorno__ideStatus__id__descRetorno" maxlength="1000" value="{{original.evento_json|readjson:'evtRet.ideRecRetorno.ideStatus.descRetorno'}}" name="[evtRet][ideRecRetorno][ideStatus][descRetorno]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="regOcorrs__div">
+    <div class="col-md-12">
+        <h4>Informações de ocorrências registradas.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpOcorr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo da ocorrência<a data-toggle="tooltip" title="Tipo da ocorrência: 1 - Erro; 2 - Aviso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtRet__ideRecRetorno__ideStatus__regOcorrs__id__tpOcorr" name="[evtRet][ideRecRetorno][ideStatus][regOcorrs][tpOcorr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value="1" {% ifequal original.evento_json|readjson:'evtRet.ideRecRetorno.ideStatus.regOcorrs.tpOcorr' 1 %}selected{% endifequal %}>1 - Erro</option><option value="2" {% ifequal original.evento_json|readjson:'evtRet.ideRecRetorno.ideStatus.regOcorrs.tpOcorr' 2 %}selected{% endifequal %}>2 - Aviso.</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="localErroAviso__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Campo que originou o erro ou aviso<a data-toggle="tooltip" title="Campo que originou o erro ou aviso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__ideRecRetorno__ideStatus__regOcorrs__id__localErroAviso" maxlength="200" value="{{original.evento_json|readjson:'evtRet.ideRecRetorno.ideStatus.regOcorrs.localErroAviso'}}" name="[evtRet][ideRecRetorno][ideStatus][regOcorrs][localErroAviso]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codResp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do status da resposta do processamento da consulta<a data-toggle="tooltip" title="Código do status da resposta do processamento da consulta."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__ideRecRetorno__ideStatus__regOcorrs__id__codResp" maxlength="6" value="{{original.evento_json|readjson:'evtRet.ideRecRetorno.ideStatus.regOcorrs.codResp'}}" name="[evtRet][ideRecRetorno][ideStatus][regOcorrs][codResp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscResp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição literal da resposta do processamento da consulta<a data-toggle="tooltip" title="Descrição literal da resposta do processamento da consulta."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__ideRecRetorno__ideStatus__regOcorrs__id__dscResp" maxlength="999" value="{{original.evento_json|readjson:'evtRet.ideRecRetorno.ideStatus.regOcorrs.dscResp'}}" name="[evtRet][ideRecRetorno][ideStatus][regOcorrs][dscResp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoRecEv__div">
+    <div class="col-md-12">
+        <h4>Informações de processamento dos eventos.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrProtEntr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do protocolo de entrega do evento<a data-toggle="tooltip" title="Número do protocolo de entrega do evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoRecEv__id__nrProtEntr" maxlength="49" value="{{original.evento_json|readjson:'evtRet.infoRecEv.nrProtEntr'}}" name="[evtRet][infoRecEv][nrProtEntr]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dhProcess__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data e hora do início do processamento da consulta<a data-toggle="tooltip" title="Data e hora do início do processamento da consulta."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoRecEv__id__dhProcess" value="{{original.evento_json|readjson:'evtRet.infoRecEv.dhProcess'}}" name="[evtRet][infoRecEv][dhProcess]" onkeyup="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpEv__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo do Evento<a data-toggle="tooltip" title="Tipo do Evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoRecEv__id__tpEv" maxlength="6" value="{{original.evento_json|readjson:'evtRet.infoRecEv.tpEv'}}" name="[evtRet][infoRecEv][tpEv]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="idEv__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>ID do Evento<a data-toggle="tooltip" title="ID do Evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoRecEv__id__idEv" maxlength="36" value="{{original.evento_json|readjson:'evtRet.infoRecEv.idEv'}}" name="[evtRet][infoRecEv][idEv]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="hash__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Hash do arquivo processado<a data-toggle="tooltip" title="Hash do arquivo processado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoRecEv__id__hash" maxlength="60" value="{{original.evento_json|readjson:'evtRet.infoRecEv.hash'}}" name="[evtRet][infoRecEv][hash]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoTotal__div">
+    <div class="col-md-12">
+        <h4>Informações relativas a totalizadores de bases e tributos.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="nrRecArqBase__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao contribuinte. Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem a este arquivo totalizador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__id__nrRecArqBase" maxlength="52" value="{{original.evento_json|readjson:'evtRet.infoTotal.nrRecArqBase'}}" name="[evtRet][infoTotal][nrRecArqBase]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação do estabelecimento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Preencher com o código correspondente ao tipo de inscrição</label>
+            <select name="[evtRet][infoTotal][ideEstab][tpInsc]" id="evtRet__infoTotal__ideEstab__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtRet][infoTotal][ideEstab][tpInsc]" id="evtRet__infoTotal__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo {tpInsc}</label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__id__nrInsc_disabled" name="[evtRet][infoTotal][ideEstab][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtRet][infoTotal][ideEstab][nrInsc]" id="evtRet__infoTotal__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="totApurMen__div">
+    <div class="col-md-12">
+        <h4>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração mensal.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="CRMen__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código de Receita - CR relativo ao tributo que possui período de apuração mensal<a data-toggle="tooltip" title="Código de Receita - CR relativo ao tributo que possui período de apuração mensal. Validação: Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [0561, 0588, 5200, 5936, 1889, 3533, 3562, 3223, 3540, 3556, 5565, 3579, 3208, 3277, 8045, 3280, 1708, 5944, 5204, 6891, 5928, 1895, 5952, 5987, 5960, 5979, 6147, 9060, 8739, 8767, 6175, 8850, 8863, 6188, 6190]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurMen__id__CRMen" maxlength="6" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurMen.CRMen'}}" name="[evtRet][infoTotal][ideEstab][totApurMen][CRMen]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseCRMen__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base do tributo com período de apuração mensal<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração mensal. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurMen__id__vlrBaseCRMen" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurMen.vlrBaseCRMen'}}" name="[evtRet][infoTotal][ideEstab][totApurMen][vlrBaseCRMen]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCRMen__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do tributo retido com período de apuração mensal, calculado segundo as regras estabelecidas na legislação em vigor<a data-toggle="tooltip" title="Valor do tributo retido com período de apuração mensal, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurMen__id__vlrCRMen" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurMen.vlrCRMen'}}" name="[evtRet][infoTotal][ideEstab][totApurMen][vlrCRMen]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseCRMenSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração mensal, com exigibilidade suspensa. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurMen__id__vlrBaseCRMenSusp" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurMen.vlrBaseCRMenSusp'}}" name="[evtRet][infoTotal][ideEstab][totApurMen][vlrBaseCRMenSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCRMenSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do tributo com período de apuração mensal, que deixou de ser retido<a data-toggle="tooltip" title="Valor do tributo com período de apuração mensal, que deixou de ser retido. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurMen__id__vlrCRMenSusp" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurMen.vlrCRMenSusp'}}" name="[evtRet][infoTotal][ideEstab][totApurMen][vlrCRMenSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="totApurQui__div">
+    <div class="col-md-12">
+        <h4>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração quinzenal.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perApurQui__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de apuração quinzenal do Código de Receita - CR<a data-toggle="tooltip" title="Período de apuração quinzenal do Código de Receita - CR. Origem: R-4020. Validação: Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 1 a 15, deve ser igual a [1]. Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 16 a 31, deve ser igual a [2]. Valores Válidos: 1, 2."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurQui__id__perApurQui" maxlength="1" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurQui.perApurQui'}}" name="[evtRet][infoTotal][ideEstab][totApurQui][perApurQui]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="CRQui__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código de Receita - CR relativo a tributo que possui período de apuração quinzenal<a data-toggle="tooltip" title="Código de Receita - CR relativo a tributo que possui período de apuração quinzenal. Validação: Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [3746, 3770]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurQui__id__CRQui" maxlength="6" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurQui.CRQui'}}" name="[evtRet][infoTotal][ideEstab][totApurQui][CRQui]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseCRQui__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base do tributo com período de apuração quinzenal<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração quinzenal. Origem: R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurQui__id__vlrBaseCRQui" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurQui.vlrBaseCRQui'}}" name="[evtRet][infoTotal][ideEstab][totApurQui][vlrBaseCRQui]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCRQui__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do tributo retido com período de apuração quinzenal, calculado segundo as regras estabelecidas na legislação em vigor<a data-toggle="tooltip" title="Valor do tributo retido com período de apuração quinzenal, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurQui__id__vlrCRQui" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurQui.vlrCRQui'}}" name="[evtRet][infoTotal][ideEstab][totApurQui][vlrCRQui]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseCRQuiSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base do tributo com período de apuração quinzenal, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração quinzenal, com exigibilidade suspensa. Origem: R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurQui__id__vlrBaseCRQuiSusp" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurQui.vlrBaseCRQuiSusp'}}" name="[evtRet][infoTotal][ideEstab][totApurQui][vlrBaseCRQuiSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCRQuiSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do tributo com período de apuração quinzenal, que deixou de ser retido<a data-toggle="tooltip" title="Valor do tributo com período de apuração quinzenal, que deixou de ser retido. Origem: R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurQui__id__vlrCRQuiSusp" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurQui.vlrCRQuiSusp'}}" name="[evtRet][infoTotal][ideEstab][totApurQui][vlrCRQuiSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="totApurDec__div">
+    <div class="col-md-12">
+        <h4>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração decendial.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perApurDec__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de apuração decenal do Código de Receita - CR<a data-toggle="tooltip" title="Período de apuração decenal do Código de Receita - CR. Origem: R-4010 e R-4020. Validação: Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 1 a 10, deve ser igual a [1]. Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 11 a 20, deve ser igual a [2]; Se o dia ("DD") da data informada em {dtFG} no evento de origem for de 21 a 31, deve ser igual a [3]. Valores Válidos: 1, 2, 3."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDec__id__perApurDec" maxlength="1" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDec.perApurDec'}}" name="[evtRet][infoTotal][ideEstab][totApurDec][perApurDec]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="CRDec__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código de Receita - CR relativo a tributo que possui período de apuração decendial<a data-toggle="tooltip" title="Código de Receita - CR relativo a tributo que possui período de apuração decendial. Validação: Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [5706, 3426, 8053, 6800, 6813, 0924, 5029, 5035, 5273, 8468, 5557, 0916, 8673, 9385, 0490, 9453, 5232, 5286]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDec__id__CRDec" maxlength="6" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDec.CRDec'}}" name="[evtRet][infoTotal][ideEstab][totApurDec][CRDec]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseCRDec__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base do tributo com período de apuração decendial<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração decendial. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDec__id__vlrBaseCRDec" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDec.vlrBaseCRDec'}}" name="[evtRet][infoTotal][ideEstab][totApurDec][vlrBaseCRDec]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCRDec__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do tributo retido com período de apuração decendial, calculado segundo as regras estabelecidas na legislação em vigor<a data-toggle="tooltip" title="Valor do tributo retido com período de apuração decendial, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDec__id__vlrCRDec" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDec.vlrCRDec'}}" name="[evtRet][infoTotal][ideEstab][totApurDec][vlrCRDec]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseCRDecSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base do tributo com período de apuração decendial, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração decendial, com exigibilidade suspensa. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDec__id__vlrBaseCRDecSusp" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDec.vlrBaseCRDecSusp'}}" name="[evtRet][infoTotal][ideEstab][totApurDec][vlrBaseCRDecSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCRDecSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do tributo com período de apuração decendial, que deixou de ser retido<a data-toggle="tooltip" title="Valor do tributo com período de apuração decendial, que deixou de ser retido. Origem: R-4010, R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDec__id__vlrCRDecSusp" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDec.vlrCRDecSusp'}}" name="[evtRet][infoTotal][ideEstab][totApurDec][vlrCRDecSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="totApurSem__div">
+    <div class="col-md-12">
+        <h4>Totalizador das bases de cálculo e das retenções dos tributos com apuração semanal.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perApurSem__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de apuração semanal do Código de Receita - CR<a data-toggle="tooltip" title="Período de apuração semanal do Código de Receita - CR. Origem: R-4020. Valores Válidos: 1, 2, 3, 4."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurSem__id__perApurSem" maxlength="1" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurSem.perApurSem'}}" name="[evtRet][infoTotal][ideEstab][totApurSem][perApurSem]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="CRSem__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código de Receita - CR relativo a tributo que possui período de apuração semanal<a data-toggle="tooltip" title="Código de Receita - CR relativo a tributo que possui período de apuração semanal. Validação: Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [6147, 9060, 8739, 8767, 6175, 8850, 8863, 6188, 6190]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurSem__id__CRSem" maxlength="6" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurSem.CRSem'}}" name="[evtRet][infoTotal][ideEstab][totApurSem][CRSem]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseCRSem__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base do tributo com período de apuração semanal<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração semanal. Origem: R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurSem__id__vlrBaseCRSem" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurSem.vlrBaseCRSem'}}" name="[evtRet][infoTotal][ideEstab][totApurSem][vlrBaseCRSem]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCRSem__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor<a data-toggle="tooltip" title="Valor do tributo retido com período de apuração semanal, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurSem__id__vlrCRSem" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurSem.vlrCRSem'}}" name="[evtRet][infoTotal][ideEstab][totApurSem][vlrCRSem]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseCRSemSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração semanal, com exigibilidade suspensa. Origem: R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurSem__id__vlrBaseCRSemSusp" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurSem.vlrBaseCRSemSusp'}}" name="[evtRet][infoTotal][ideEstab][totApurSem][vlrBaseCRSemSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCRSemSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do tributo com período de apuração semanal, que deixou de ser retido<a data-toggle="tooltip" title="Valor do tributo com período de apuração semanal, que deixou de ser retido. Origem: R-4020."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurSem__id__vlrCRSemSusp" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurSem.vlrCRSemSusp'}}" name="[evtRet][infoTotal][ideEstab][totApurSem][vlrCRSemSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="totApurDia__div">
+    <div class="col-md-12">
+        <h4>Totalizador das bases de cálculo e das retenções dos tributos com período de apuração diário.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote style="font-size: 14px;">
+            <div class="row">
+
+<div id="perApurDia__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Período de apuração diário do Código de Receita - CR<a data-toggle="tooltip" title="Período de apuração diário do Código de Receita - CR. Origem: R-4010, R-4020 e R-4040. Validação: Deve ser um número que representa o dia do mês, no intervalo entre [1] e [31], inclusive. Deve ser igual ao dia ("DD") da data informada em {dtFG} no evento de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDia__id__perApurDia" maxlength="2" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDia.perApurDia'}}" name="[evtRet][infoTotal][ideEstab][totApurDia][perApurDia]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="CRDia__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código de Receita - CR relativo a tributo que possui período de apuração diário<a data-toggle="tooltip" title="Código de Receita - CR relativo a tributo que possui período de apuração diário. Validação: Deve ser um dos seguintes valores, compatível com as informações prestadas nos demais eventos: [0473, 2063, 0422, 0481, 9478, 9472, 9466, 9427, 5192, 5286, 5217, 2063]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDia__id__CRDia" maxlength="6" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDia.CRDia'}}" name="[evtRet][infoTotal][ideEstab][totApurDia][CRDia]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseCRDia__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base do tributo com período de apuração diário<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração diário. Origem: R-4010, R-4020, R-4040."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDia__id__vlrBaseCRDia" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDia.vlrBaseCRDia'}}" name="[evtRet][infoTotal][ideEstab][totApurDia][vlrBaseCRDia]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCRDia__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor<a data-toggle="tooltip" title="Valor do tributo retido com período de apuração diário, calculado segundo as regras estabelecidas na legislação em vigor. Origem: R-4010, R-4020, R-4040."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDia__id__vlrCRDia" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDia.vlrCRDia'}}" name="[evtRet][infoTotal][ideEstab][totApurDia][vlrCRDia]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrBaseCRDiaSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base do tributo com período de apuração diário, com exigibilidade suspensa<a data-toggle="tooltip" title="Valor da base do tributo com período de apuração diário, com exigibilidade suspensa. Origem: R-4010, R-4020, R-4040."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDia__id__vlrBaseCRDiaSusp" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDia.vlrBaseCRDiaSusp'}}" name="[evtRet][infoTotal][ideEstab][totApurDia][vlrBaseCRDiaSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vlrCRDiaSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor do tributo com período de apuração diário, que deixou de ser retido<a data-toggle="tooltip" title="Valor do tributo com período de apuração diário, que deixou de ser retido. Origem: R-4010, R-4020, R-4040."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRet__infoTotal__ideEstab__totApurDia__id__vlrCRDiaSusp" maxlength="14" value="{{original.evento_json|readjson:'evtRet.infoTotal.ideEstab.totApurDia.vlrCRDiaSusp'}}" name="[evtRet][infoTotal][ideEstab][totApurDia][vlrCRDiaSusp]" onkeyup="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+$("#id_nrinsc").keyup(function() {
+    var origem = document.getElementById("id_nrinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__nrInsc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+$("#id_tpinsc").on('change', function() {
+    var origem = document.getElementById("id_tpinsc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEmpregador__id__tpInsc")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_procemi").on('change', function() {
+    var origem = document.getElementById("id_procemi");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__procEmi")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__procEmi_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_tpamb").on('change', function() {
+    var origem = document.getElementById("id_tpamb");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__tpAmb")
+    destino.value = origem.value;
+    $("#evtInfoEmpregador__ideEvento__id__tpAmb_disabled").val(origem.value).change();
+    set_evento_json();
+});
+$("#id_verproc").keyup(function() {
+    var origem = document.getElementById("id_verproc");
+    var destino_disabled = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc_disabled")
+    var destino = document.getElementById("evtInfoEmpregador__ideEvento__id__verProc")
+    destino.value = origem.value;
+    destino_disabled.value = origem.value;
+    set_evento_json();
+});
+</script>
