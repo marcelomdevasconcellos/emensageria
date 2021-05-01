@@ -1,0 +1,59 @@
+* {
+    color: #000;
+    font-size: 10px;
+    font-family: Arial, Tahoma, Verdana;
+}
+@page {
+    margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+}
+
+body {
+    width: 100%;
+     
+ }
+ table {
+     width: 100%;
+ }
+ 
+ table.bordabranca {
+     border-collapse: collapse;
+ }
+ table.bordabranca tr td {
+     border:0px solid #FFFFFF;
+ }
+ table.bordasimples {
+     border-collapse: collapse;
+ }
+ table.bordasimples tr td {
+     border:1px solid #333333;
+ }
+
+ h1 {
+     font-weight: bold;
+     color: #000;
+     font-size: 32px;
+     font-family: Arial, Tahoma, Verdana;
+ }
+
+ h2 {
+     font-weight: bold;
+     color: #000;
+     font-size: 24px;
+     font-family: Arial, Tahoma, Verdana;
+ }
+
+ h3 {
+     font-weight: bold;
+     color: #000;
+     font-size: 20px;
+     font-family: Arial, Tahoma, Verdana;
+ }
+ h4 {
+     font-weight: bold;
+     color: #000;
+     font-size: 16px;
+     font-family: Arial, Tahoma, Verdana;
+ }
+ .alnright { text-align: right; }
+ .alncenter { text-align: center; }
+ .alnleft { text-align: left; }
