@@ -13,6 +13,38 @@ except:
 register = template.Library()
 
 
+@register.filter('is_list')
+def is_list(value):
+    if type(value) is list:
+        return True
+    return False
+
+
+@register.filter('finditem')
+def finditem(obj, key):
+    if isinstance(obj, dict):
+        if key in obj.keys():
+            return obj[key]
+        else:
+            for k, v in obj.items():
+                if isinstance(v, dict):
+                    item = finditem(v, key)
+                    if item is not None:
+                        return item
+    elif isinstance(obj, list):
+        for a in obj:
+            finditem(a, key)
+
+
+@register.filter('to_json')
+def to_json(string):
+    import json
+    try:
+        return json.loads(string)
+    except:
+        return ''
+
+
 @register.filter('get_form')
 def get_form(obj):
     return "{}/{}.html".format(obj.versao, obj.evento)

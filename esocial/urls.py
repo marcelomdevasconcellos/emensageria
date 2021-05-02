@@ -17,15 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from esocial.views import (
-    dashboard_json, 
-    visualizar_xml, 
-    eventos_api_detail, 
-    eventos_api_list,
-    enviar_transmissor,
-    enviar_transmissores,
-    consultar_transmissor,
-    consultar_transmissores,)
+from esocial.views import *
 
 
 app_name = 'esocial'
@@ -59,5 +51,29 @@ urlpatterns = [
     path('enviar/',
         enviar_transmissores, 
         name='enviar_transmissores'),
+
+    path('evento/recibo/<int:pk>/',
+        eventos_recibo, 
+        name='eventos_recibo'),
+
+    path('transmissor/recibo/<int:pk>/',
+        transmissores_recibo, 
+        name='transmissores_recibo'),
+
+    path('relatorios/imprimir/<int:pk>/',
+        relatorios_imprimir, 
+        name='relatorios_imprimir'),
+
+    path('arquivos/visualizar/<int:pk>/',
+        arquivos_visualizar, 
+        name='arquivos_visualizar'),
+
+    # path('arquivos/reprocessar/<int:pk>/',
+    #     arquivos_reprocessar, 
+    #     name='arquivos_reprocessar'),
+
+    # path('arquivos/recuperar/<int:pk>/',
+    #     arquivos_recuperar, 
+    #     name='arquivos_recuperar'),
 
 ]

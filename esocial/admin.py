@@ -34,14 +34,24 @@ admin.site.register(Certificados, CertificadosAdmin)
 
 
 class ArquivosAdmin(AuditoriaAdmin):
+    
+    def arquivo_visualizar(self, obj):
+        from django.urls import reverse
+        url = reverse('esocial:arquivos_visualizar', kwargs={'pk': obj.pk})
+        return mark_safe("<a href='{}'>{}</a>".format(url, obj.arquivo.name))
+
+    arquivo_visualizar.allow_tags = True
+    arquivo_visualizar.short_description = 'Arquivo'
+    arquivo_visualizar.admin_order_field = ['arquivo']
+
     form = ArquivosForm
     search_fields = (
         'arquivo',)
     list_filter = (
         'permite_recuperacao', )
     list_display = (
+        'arquivo_visualizar',
         'fonte', 
-        'arquivo',
         'permite_recuperacao', )
     readonly_fields = (
         'permite_recuperacao',
@@ -73,6 +83,7 @@ admin.site.register(Relatorios, RelatoriosAdmin)
 
 
 class TransmissorAdmin(AuditoriaAdmin):
+
     search_fields = (
         'transmissor_tpinsc',
         'transmissor_nrinsc',
@@ -118,6 +129,14 @@ class TransmissorEventosArquivosInline(AuditoriaAdminStackedInlineInline):
 
 
 class TransmissorEventosAdmin(AuditoriaAdmin):
+    
+    def recibo(self, obj):
+        from django.urls import reverse
+        url = reverse('esocial:transmissores_recibo', kwargs={'pk': obj.pk})
+        return mark_safe("<a href='{}'>Recibo</a>".format(url))
+
+    recibo.allow_tags = True
+    recibo.short_description = 'Recibo'
 
     def autorizar_envio(modeladmin, request, queryset):
         from .choices import STATUS_TRANSMISSOR_AGUARDANDO
@@ -176,6 +195,7 @@ class TransmissorEventosAdmin(AuditoriaAdmin):
         'tempo_estimado_conclusao',
         'data_hora_envio',
         'data_hora_consulta',
+        'recibo',
     )
 
     def has_add_permission(self, request, obj=None):
@@ -189,6 +209,15 @@ admin.site.register(TransmissorEventos, TransmissorEventosAdmin)
 
 
 class EventosAdmin(AuditoriaAdmin):
+    
+    def recibo(self, obj):
+        from django.urls import reverse
+        url = reverse('esocial:eventos_recibo', kwargs={'pk': obj.pk})
+        return mark_safe("<a href='{}'>Recibo</a>".format(url))
+
+    recibo.allow_tags = True
+    recibo.short_description = 'Recibo'
+
     def atualizar_identidade(modeladmin, request, queryset):
         for obj in queryset:
             from .functions import identidade_evento
@@ -250,6 +279,7 @@ class EventosAdmin(AuditoriaAdmin):
             'evento',
             'operacao',
             'status',
+            'recibo',
     )
     fieldsets = (
         ( None, {

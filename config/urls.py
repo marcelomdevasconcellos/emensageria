@@ -26,13 +26,13 @@ admin.site.index_title = 'eMensageria'
 
 urlpatterns = [
     path('contrib/', 
-        include("contrib.urls")
+        include("contrib.urls", namespace='contrib')
         ),
     path('esocial/', 
-        include("esocial.urls")
+        include("esocial.urls", namespace='esocial')
         ),
     path('reinf/', 
-        include("reinf.urls")
+        include("reinf.urls", namespace='reinf')
         ),
     path('static/', static),
     path('', admin.site.urls),

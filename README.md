@@ -1,6 +1,7 @@
 # eMensageria
 
 eMensageria - Sistema de mensageria de eventos opensource do eSocial e EFD-Reinf <www.emensageria.com.br>
+(em desenvolvimento)
 
 ## Versões compatíveis do eSocial
 
@@ -35,7 +36,6 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 ## Backlog
 
 - Docker
@@ -44,7 +44,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 - Impressão de recibos de eventos
 - Impressão de recibos de transmissores
 - Impressão e geração de relatórios
-- Link para visualização de arquivos
+- Recuperação de arquivos
+- Reprocessamento de arquivos
 - Revisão de funções de importação
 - Atualização dos eventos do eSocial para as versões vigentes
 - Atualização dos eventos do Reinf para as versões vigentes
