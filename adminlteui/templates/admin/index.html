@@ -21,11 +21,11 @@
     {% if app_list %}
     <div class="row">
         <div class="col-md-7 col-sm-12 col-xs-12">
-
             {% include 'dashboard/visao_geral.html' %}
-
         </div>
         <div class="col-md-5 col-sm-12 col-xs-12">
+            {% include 'dashboard/fila.html' %}
+            {% comment %}
             <div id="content-related">
                 <div class="module" id="recent-actions-module">
                     <h3>{% trans 'Recent actions' %}</h3>
@@ -64,6 +64,7 @@
                     </ul>
                     {% endif %}
                 </div>
+                {% endcomment %}
             </div>
         </div>
         {% else %}

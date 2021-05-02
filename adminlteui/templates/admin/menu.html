@@ -9,22 +9,22 @@
       </span>
       </a>
       <ul class="treeview-menu">
-         {% if perms.esocial.view_assistidos %}
-         <li><a href="/esocial/arquivos/"><i class="fa  fa-circle "></i>Arquivos</a></li>
+         {% if perms.esocial.view_eventos %}
+         <li><a href="/esocial/eventos/"><i class="fa  fa-circle-o"></i>Eventos</a></li>
          {% endif %}
-         {% if perms.esocial.view_assistidos %}
+         {% if perms.esocial.view_arquivos %}
+         <li><a href="/esocial/arquivos/"><i class="fa  fa-circle-o"></i>Arquivos</a></li>
+         {% endif %}
+         {% if perms.esocial.view_certificados %}
          <li><a href="/esocial/certificados/"><i class="fa fa-circle-o"></i>Certificados</a></li>
          {% endif %}
-         {% if perms.esocial.view_assistidos %}
-         <li><a href="/esocial/eventos/"><i class="fa  fa-circle "></i>Eventos</a></li>
-         {% endif %}
-         {% if perms.esocial.view_assistidos %}
+         {% if perms.esocial.view_relatorios %}
          <li><a href="/esocial/relatorios/"><i class="fa fa-circle-o"></i>Relatórios</a></li>
          {% endif %}
-         {% if perms.esocial.view_assistidos %}
+         {% if perms.esocial.view_transmissor %}
          <li><a href="/esocial/transmissor/"><i class="fa fa-circle-o"></i>Transmissor</a></li>
          {% endif %}
-         {% if perms.esocial.view_assistidos %}
+         {% if perms.esocial.view_transmissoreventos %}
          <li><a href="/esocial/transmissoreventos/"><i class="fa fa-circle-o"></i>Transmissor do eSocial</a></li>
          {% endif %}
       </ul>
@@ -40,14 +40,14 @@
       </span>
       </a>
       <ul class="treeview-menu">
+         {% if perms.reinf.view_eventos %}
+         <li><a href="/reinf/eventos/"><i class="fa fa-circle-o"></i>Eventos</a></li>
+         {% endif %}
          {% if perms.reinf.view_arquivos %}
          <li><a href="/reinf/arquivos/"><i class="fa fa-circle-o"></i>Arquivos</a></li>
          {% endif %}
          {% if perms.reinf.view_certificados %}
          <li><a href="/reinf/certificados/"><i class="fa fa-circle-o"></i>Certificados</a></li>
-         {% endif %}
-         {% if perms.reinf.view_eventos %}
-         <li><a href="/reinf/eventos/"><i class="fa fa-circle-o"></i>Eventos</a></li>
          {% endif %}
          {% if perms.reinf.view_importacaoarquivoseventos %}
          <li><a href="/reinf/importacaoarquivoseventos/"><i class="fa fa-circle-o"></i>Eventos de Arquivos Importados</a></li>

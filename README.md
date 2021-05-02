@@ -32,6 +32,20 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+
+## Backlog
+
+- Docker
+- Mapa de processamento
+- Chamada de funções no Dashboard
+- Impressão de recibos de eventos
+- Impressão de recibos de transmissores
+- Impressão e geração de relatórios
+- Link para visualização de arquivos
+- Revisão de funções de importação
+- Atualização dos eventos do eSocial para as versões vigentes
+- Atualização dos eventos do Reinf para as versões vigentes
+
 ## Contato
 
 Marcelo Medeiros de Vasconcellos <marcelomdevasconcellos@gmail.com>

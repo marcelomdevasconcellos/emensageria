@@ -32,6 +32,10 @@ get_model = apps.get_model
 class Arquivos(BaseModelEsocial):
     cols = {
         'arquivo': 12,
+        'created_at': 3,
+        'created_by': 3,
+        'updated_at': 3,
+        'updated_by': 3,
     }
     fs_arquivo = FileSystemStorage(
         location=BASE_DIR + '/arquivos/eventos/esocial')
@@ -55,7 +59,7 @@ class Arquivos(BaseModelEsocial):
         return self.arquivo.name
 
     class Meta:
-        verbose_name = 'Arquivos'
+        verbose_name = 'Arquivo'
         verbose_name_plural = 'Arquivos'
 
 
@@ -69,6 +73,10 @@ class Relatorios(BaseModelEsocial):
         'titulo': 12,
         'campos': 12,
         'sql': 12,
+        'created_at': 3,
+        'created_by': 3,
+        'updated_at': 3,
+        'updated_by': 3,
     }
     titulo = models.CharField('Título', max_length=500, )
     campos = models.CharField('Campos',
@@ -98,6 +106,10 @@ class Transmissor(BaseModelEsocial):
         'nrinsc': 6,
         'tpinsc': 6,
         'certificado': 12,
+        'created_at': 3,
+        'created_by': 3,
+        'updated_at': 3,
+        'updated_by': 3,
     }
     transmissor_tpinsc = models.IntegerField(
         'Tipo de inscrição do transmissor', choices=TIPO_INSCRICAO, )
@@ -149,6 +161,10 @@ class TransmissorEventos(BaseModelEsocial):
         'retorno_envio_json': 12,
         'retorno_consulta_json': 12,
         'ocorrencias_json': 12,
+        'created_at': 3,
+        'created_by': 3,
+        'updated_at': 3,
+        'updated_by': 3,
     }
     transmissor = models.ForeignKey(
         'Transmissor',
@@ -296,6 +312,10 @@ class Certificados(BaseModelEsocial):
         'nome': 12,
         'certificado': 12,
         'senha': 12,
+        'created_at': 3,
+        'created_by': 3,
+        'updated_at': 3,
+        'updated_by': 3,
     }
     nome = models.CharField('Nome', max_length=300, )
     fs_certificado = FileSystemStorage(location=BASE_DIR + config.CERT_PATH)

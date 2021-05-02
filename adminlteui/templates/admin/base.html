@@ -116,7 +116,7 @@
                             <img src={% static "admin/adminlte-dist/img/default.jpg" %} class="user-image" alt="User Image">
                             {% endif %}
                             {% endif %}
-                            <span class="hidden-xs">{{ request.user.username }}</span>
+                            <span class="hidden-xs">{{ request.user.first_name }} {{ request.user.last_name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->

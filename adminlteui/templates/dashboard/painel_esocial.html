@@ -90,23 +90,23 @@
             <div class="col-md-3">
                 <a href="#">
                     <span class="btn btn-primary btn-block btn-lg">
-                        <i class="fa fa-gear"></i>&nbsp;
+                        <i class="fa fa-check"></i>&nbsp;
                         Validar
                     </span>
                 </a>&nbsp;
             </div>
             <div class="col-md-3">
-                <a href="#">
+                <a href="#" id="btn_esocial_enviar">
                     <span class="btn btn-primary btn-block btn-lg">
-                        <i class="fa fa-gear"></i>&nbsp;
+                        <i class="fa fa-external-link"></i>&nbsp;
                         Enviar
                     </span>
                 </a>&nbsp;
             </div>
             <div class="col-md-3">
-                <a href="#">
+                <a href="#" id="btn_esocial_consultar">
                     <span class="btn btn-primary btn-block btn-lg">
-                        <i class="fa fa-gear"></i>&nbsp;
+                        <i class="fa fa-level-down"></i>&nbsp;
                         Consultar
                     </span>
                 </a>&nbsp;
@@ -147,6 +147,14 @@
             </div>
         </div>
 <script>
+$("#btn_esocial_enviar").click(function() {
+    console.log('enviar');
+    $.getJSON("{% url 'esocial:enviar_transmissores' %}", function(data) {});
+});
+$("#btn_esocial_consultar").click(function() {
+    console.log('consultar');
+    $.getJSON("{% url 'esocial:consultar_transmissores' %}", function(data) {});
+});
 $.getJSON("{% url 'esocial:dashboard_json' %}", function(data) {
     $("#esocial_quant_cadastrados").html(data.esocial_quant_cadastrados);
     $("#esocial_quant_importados").html(data.esocial_quant_importados);

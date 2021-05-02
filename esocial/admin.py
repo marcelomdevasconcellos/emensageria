@@ -3,9 +3,8 @@ from django.db import models
 from django.forms import Select, Textarea
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
-
 from django.contrib import messages
-from config.mixins import AuditoriaAdmin, AuditoriaAdminInline
+from config.mixins import AuditoriaAdmin, AuditoriaAdminInline, AuditoriaAdminStackedInlineInline
 
 from .models import (
     Certificados,
@@ -20,7 +19,7 @@ from .forms import (
     EventosForm,
     CertificadosForm,
     ArquivosForm,
-    )
+)
 
 
 class CertificadosAdmin(AuditoriaAdmin):
@@ -41,6 +40,7 @@ class ArquivosAdmin(AuditoriaAdmin):
     list_filter = (
         'permite_recuperacao', )
     list_display = (
+        'fonte', 
         'arquivo',
         'permite_recuperacao', )
     readonly_fields = (
@@ -51,24 +51,34 @@ class ArquivosAdmin(AuditoriaAdmin):
         'updated_by',
     )
 
+    def has_add_permission(self, request, obj=None):
+        return False
+    
+    def has_change_permission(self, request, obj=None):
+        return False
+
 
 admin.site.register(Arquivos, ArquivosAdmin)
 
 
 class RelatoriosAdmin(AuditoriaAdmin):
-    search_fields = ()
+    search_fields = (
+        'titulo', )
     list_filter = ()
     list_display = (
-        'titulo',
-        'campos',
-    )
+        'titulo', )
 
 
 admin.site.register(Relatorios, RelatoriosAdmin)
 
 
 class TransmissorAdmin(AuditoriaAdmin):
-    search_fields = ()
+    search_fields = (
+        'transmissor_tpinsc',
+        'transmissor_nrinsc',
+        'nome_empresa',
+        'nrinsc',
+        'tpinsc',)
     list_filter = ()
     list_display = (
         'transmissor_tpinsc',
@@ -83,13 +93,29 @@ class TransmissorAdmin(AuditoriaAdmin):
 admin.site.register(Transmissor, TransmissorAdmin)
 
 
-class EventosInline(AuditoriaAdminInline):
+class EventosInline(AuditoriaAdminStackedInlineInline):
+
     classes = ['collapse']
     model = Eventos
 
-class TransmissorEventosArquivosInline(AuditoriaAdminInline):
+    def has_add_permission(self, request, obj=None):
+        return False
+    
+    def has_change_permission(self, request, obj=None):
+        return False
+
+
+class TransmissorEventosArquivosInline(AuditoriaAdminStackedInlineInline):
+
     classes = ['collapse']
     model = TransmissorEventosArquivos
+
+    def has_add_permission(self, request, obj=None):
+        return False
+    
+    def has_change_permission(self, request, obj=None):
+        return False
+
 
 class TransmissorEventosAdmin(AuditoriaAdmin):
 
@@ -129,9 +155,12 @@ class TransmissorEventosAdmin(AuditoriaAdmin):
         TransmissorEventosArquivosInline,
     )
 
-    search_fields = (
+    list_filter = (
+        'transmissor',
+        'empregador_tpinsc',
+        'empregador_nrinsc',
+        'grupo',
         'status',)
-    list_filter = ()
     list_display = (
         'transmissor',
         'empregador_tpinsc',

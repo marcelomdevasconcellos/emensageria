@@ -5,15 +5,7 @@
     <!-- Current language: {{ LANGUAGE_CODE }} -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>
-        {% get_adminlte_option 'site_title' as adminlte_site_title %}
-        {% if adminlte_site_title.valid %}
-        {{ adminlte_site_title.site_title }}
-        {% else %}
-        {{ site_title|default:_('Django site admin') }}
-        {% endif %}
-        | {% trans "Log in" %}
-    </title>
+    <title>eMensageria - Sistema de mensageria de eventos opensource do eSocial e EFD-Reinf</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -40,12 +32,7 @@
     <div class="login-logo">
         <a href="/">
             <b>
-                {% get_adminlte_option 'site_header' as adminlte_site_header  %}
-                {% if adminlte_site_header.valid %}
-                {{ adminlte_site_header.site_header }}
-                {% else %}
-                {{ site_header }}
-                {% endif %}
+                eMensageria
             </b>
         </a>
     </div>
@@ -53,12 +40,7 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">
-            {% get_adminlte_option 'welcome_sign' as adminlte_welcome_sign  %}
-            {% if adminlte_welcome_sign.valid %}
-            {{ adminlte_welcome_sign.welcome_sign }}
-            {% else %}
-            {% trans 'Login and Enjoy' %}
-            {% endif %}
+            Seja bem-vindo!
         </p>
         <form action="{{ app_path }}" method="post">
             {% csrf_token %}
