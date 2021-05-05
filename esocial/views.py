@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, get_object_or_404, render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from wkhtmltopdf.views import PDFTemplateResponse
 from esocial.models import (
     Eventos, 
     EventosSerializer, 
@@ -166,6 +167,7 @@ def consultar_transmissores(request):
 @login_required
 def transmissores_recibo(request, pk):
     import json
+    from datetime import datetime
     from django.db.models import Q
     transmissor_lote_esocial = get_object_or_404(TransmissorEventos, id=pk)
     context = {
@@ -174,25 +176,60 @@ def transmissores_recibo(request, pk):
         # 'retorno_consulta_json': json.loads(transmissor_lote_esocial.retorno_consulta_json),
         # 'ocorrencias_json': json.loads(transmissor_lote_esocial.ocorrencias_json),
         # 'ocorrencias_lista': ocorrencias_lista,
-        # 'transmissor_lote_esocial': transmissor_lote_esocial,
-        # 'data': datetime.datetime.now(),
+        'transmissor_lote_esocial': transmissor_lote_esocial,
+        'data': datetime.now(),
     }
-    return render(request, 'transmissores_recibo.html', context)
+    return PDFTemplateResponse(
+        request=request,
+        template='transmissores_recibo.html',
+        filename="transmissores_recibo.pdf",
+        context=context,
+        show_content_in_browser=True,
+        cmd_options={'margin-top': 10,
+                     'margin-bottom': 10,
+                     'margin-right': 10,
+                     'margin-left': 10,
+                     'zoom': 1,
+                     'dpi': 72,
+                     'orientation': 'Landscape',
+                     "viewport-size": "1366 x 513",
+                     'javascript-delay': 1000,
+                     'footer-center': '[page]/[topage]',
+                     "no-stop-slow-scripts": True}, )
+    #return render(request, 'transmissores_recibo.html', context)
 
 
 @login_required
 def eventos_recibo(request, pk):
     import json
+    from datetime import datetime
     from django.db.models import Q
     evento = get_object_or_404(Eventos, id=pk)
     context = {
-        # 'pk': pk,
-        # 'evento': evento,
-        # 'data': datetime.now(),
+        'pk': pk,
+        'evento': evento,
+        'data': datetime.now(),
         # 'output': output,
-        # 'user': request.user,
+        'user': request.user,
     }
-    return render(request, 'eventos_recibo.html', context)
+    return PDFTemplateResponse(
+        request=request,
+        template='eventos_recibo.html',
+        filename="eventos_recibo.pdf",
+        context=context,
+        show_content_in_browser=True,
+        cmd_options={'margin-top': 10,
+                     'margin-bottom': 10,
+                     'margin-right': 10,
+                     'margin-left': 10,
+                     'zoom': 1,
+                     'dpi': 72,
+                     'orientation': 'Landscape',
+                     "viewport-size": "1366 x 513",
+                     'javascript-delay': 1000,
+                     'footer-center': '[page]/[topage]',
+                     "no-stop-slow-scripts": True}, )
+    #return render(request, 'eventos_recibo.html', context)
 
 
 @login_required

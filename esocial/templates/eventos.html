@@ -207,12 +207,6 @@ label {
                         {% block submit_buttons_bottom %}
                         {% submit_row %}
 
-                        <!-- <div class="submit-row">
-                            <input type="submit" value="Make Unique" name="_make-unique">
-                        </div> -->
-
-
-
                         {% endblock %}
 
                         {% block object-tools %}
@@ -260,7 +254,8 @@ label {
     {% if original.pk %}
     <a href="{% url 'esocial:visualizar_xml' pk=original.pk %}" target="_blank">
         <span class="btn btn-primary" style="margin-bottom: 3px; margin-right:3px">
-            <i class="fa fa-code"></i>&nbsp;Visualizar XML
+            <i class="fa fa-code"></i>&nbsp;
+            Visualizar XML
         </span>
     </a>&nbsp;
     {% endif %}
@@ -281,14 +276,23 @@ label {
         </span>
     </a>&nbsp;
     {% endifequal %}
-    
+
+    <a href="{% url 'esocial:eventos_recibo' pk=original.pk %}" target="_blank">
+        <span class="btn btn-primary" style="margin-bottom: 3px; margin-right:3px">
+            <i class="fa fa-download"></i>&nbsp;
+            Recibo
+        </span>
+    </a>
+
+    {% comment %}
     <div class="btn-group">
         <button type="button"
                 class="btn btn-primary dropdown-toggle"
                 data-toggle="dropdown"
                 aria-expanded="false"
                 style="margin-bottom: 3px; margin-right:3px">
-            <i class="fa fa-download"></i>&nbsp;Recibo
+            <i class="fa fa-download"></i>&nbsp;
+            Recibo
             <span class="caret"></span>
             <span class="sr-only">Recibo</span>
         </button>
@@ -310,6 +314,8 @@ label {
             </li>
         </ul>
     </div>
+    {% endcomment %}
+
     </div>
     </div>
 
@@ -330,11 +336,14 @@ label {
 <script type="text/javascript">
   $(function() {
     {% if not original.operacao == 1 %}
-    $('#inclusao__div').hide(); {% endif %}
+    $('#inclusao__div').hide(); 
+    {% endif %}
     {% if not original.operacao == 2 %}
-    $('#alteracao__div').hide(); {% endif %}
+    $('#alteracao__div').hide(); 
+    {% endif %}
     {% if not original.operacao == 3 %}
-    $('#exclusao__div').hide(); {% endif %}
+    $('#exclusao__div').hide(); 
+    {% endif %}
     $('#id_operacao').change(function(){
         if ($('#id_operacao').val() == 1) {
             $('#inclusao__div').show(); 
