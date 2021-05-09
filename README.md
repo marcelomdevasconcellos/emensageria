@@ -20,7 +20,7 @@ eMensageria - Sistema de mensageria de eventos opensource do eSocial e EFD-Reinf
 
 ## Licença AGPL-3
 
-eMensageria - Sistema de mensageria de eventos opensource do eSocial e EFD-Reinf 
+eMensageria - Sistema de mensageria de eventos opensource do eSocial e EFD-Reinf  
 Copyright (C) 2021  Marcelo Medeiros de Vasconcellos
 
 This program is free software: you can redistribute it and/or modify
