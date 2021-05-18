@@ -25,15 +25,15 @@ admin.site.index_title = 'eMensageria'
 
 
 urlpatterns = [
-    path('contrib/', 
+    path('contrib/',
         include("contrib.urls", namespace='contrib')
         ),
-    path('esocial/', 
+    path('esocial/',
         include("esocial.urls", namespace='esocial')
         ),
-    path('reinf/', 
+    path('reinf/',
         include("reinf.urls", namespace='reinf')
         ),
-    path('static/', static),
+#    path('static/', static),
     path('', admin.site.urls),
-]
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

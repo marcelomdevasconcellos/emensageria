@@ -29,8 +29,8 @@ environ.Env.read_env()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
-DIRETORIO_BASE = '/Users/marcelovasconcellos/PycharmProjects/emensageriapro/'
-DIRETORIO_BASE_AUTOMATE = '/Users/marcelovasconcellos/PycharmProjects/'
+# DIRETORIO_BASE = '/Users/marcelovasconcellos/PycharmProjects/emensageriapro/'
+# DIRETORIO_BASE_AUTOMATE = '/Users/marcelovasconcellos/PycharmProjects/'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
@@ -38,7 +38,7 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    # env('ALLOWED_HOSTS'),
+    env('ALLOWED_HOSTS'),
 ]
 
 # Application definition
@@ -158,7 +158,7 @@ VERSOES_REINF = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = env('STATIC_ROOT')
 STATIC_URL = env('STATIC_URL')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles')
