@@ -277,12 +277,14 @@ label {
     </a>&nbsp;
     {% endifequal %}
 
+    {% if original.pk %}
     <a href="{% url 'esocial:eventos_recibo' pk=original.pk %}" target="_blank">
         <span class="btn btn-primary" style="margin-bottom: 3px; margin-right:3px">
             <i class="fa fa-download"></i>&nbsp;
             Recibo
         </span>
     </a>
+    {% endif %}
 
     {% comment %}
     <div class="btn-group">
