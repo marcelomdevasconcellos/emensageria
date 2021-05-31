@@ -4,7 +4,9 @@
 
 {% block object-tools-items %}
     {% if not is_popup and has_add_permission and has_change_permission %}
-        <a href="{% url opts|admin_urlname:'recoverlist' %}" class="btn btn-default"><i class="fa fa-recycle"></i> &nbsp; {% blocktrans with cl.opts.verbose_name_plural|escape as name %}Recuperar apagados{% endblocktrans %}</a>
+        <a href="{% url opts|admin_urlname:'recoverlist' %}" class="btn btn-default" alt="Recuperar apagados" >
+        <i class="fa fa-recycle" alt="Recuperar apagados" ></i>
+        </a>
     {% endif %}
     {{block.super}}
 {% endblock %}

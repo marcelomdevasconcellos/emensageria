@@ -97,15 +97,15 @@ def abrir_evento_para_edicao(obj):
     from .models import Eventos
     from .choices import (
         STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO,
-        STATUS_EVENTO_GERADO_ERRO,
-        STATUS_EVENTO_ASSINADO,
-        STATUS_EVENTO_ASSINADO_ERRO,
-        STATUS_EVENTO_VALIDADO,
+        # STATUS_EVENTO_IMPORTADO,
+        # STATUS_EVENTO_DUPLICADO,
+        # STATUS_EVENTO_GERADO,
+        # STATUS_EVENTO_GERADO_ERRO,
+        # STATUS_EVENTO_ASSINADO,
+        # STATUS_EVENTO_ASSINADO_ERRO,
+        #STATUS_EVENTO_VALIDADO,
         STATUS_EVENTO_VALIDADO_ERRO,
-        STATUS_EVENTO_AGUARD_PRECEDENCIA,
+        # STATUS_EVENTO_AGUARD_PRECEDENCIA,
         STATUS_EVENTO_AGUARD_ENVIO,
         STATUS_EVENTO_ENVIADO,
         STATUS_EVENTO_ENVIADO_ERRO,
@@ -113,15 +113,15 @@ def abrir_evento_para_edicao(obj):
 
     status_list = [
         STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_IMPORTADO,
-        STATUS_EVENTO_DUPLICADO,
-        STATUS_EVENTO_GERADO,
-        STATUS_EVENTO_GERADO_ERRO,
-        STATUS_EVENTO_ASSINADO,
-        STATUS_EVENTO_ASSINADO_ERRO,
-        STATUS_EVENTO_VALIDADO,
+        # STATUS_EVENTO_IMPORTADO,
+        # STATUS_EVENTO_DUPLICADO,
+        # STATUS_EVENTO_GERADO,
+        # STATUS_EVENTO_GERADO_ERRO,
+        # STATUS_EVENTO_ASSINADO,
+        # STATUS_EVENTO_ASSINADO_ERRO,
+        #STATUS_EVENTO_VALIDADO,
         STATUS_EVENTO_VALIDADO_ERRO,
-        STATUS_EVENTO_AGUARD_PRECEDENCIA,
+        # STATUS_EVENTO_AGUARD_PRECEDENCIA,
         STATUS_EVENTO_AGUARD_ENVIO,
         STATUS_EVENTO_ENVIADO_ERRO
     ]
@@ -141,45 +141,7 @@ def abrir_evento_para_edicao(obj):
             "402 - Lote Incorreto - schema Inválido"!''')
 
 
-def autorizar_envio_evento(obj):
-    from datetime import datetime
-    from .models import Eventos, Transmissor, TransmissorEventos
-    from .choices import (
-        STATUS_EVENTO_CADASTRADO,
-        STATUS_EVENTO_AGUARD_ENVIO,
-        STATUS_TRANSMISSOR_CADASTRADO,
-        EVENTOS_GRUPOS_TABELAS, )
 
-    transmissor = Transmissor.objects.\
-        filter(nrinsc=obj.nrinsc).all()
-    if transmissor:
-        transmissor = transmissor[0]
-        tevt = TransmissorEventos.objects.filter(
-            empregador_tpinsc=transmissor.tpinsc,
-            empregador_nrinsc=transmissor.nrinsc,
-            grupo=EVENTOS_GRUPOS_TABELAS,
-            status=STATUS_TRANSMISSOR_CADASTRADO).all()
-        if tevt:
-            tevt = tevt[0]
-        else:
-            tevt_data = {
-                'transmissor': transmissor,
-                'empregador_tpinsc': transmissor.tpinsc,
-                'empregador_nrinsc': transmissor.nrinsc,
-                'grupo': EVENTOS_GRUPOS_TABELAS,
-                'status': STATUS_TRANSMISSOR_CADASTRADO,
-            }
-            tevt = TransmissorEventos(**tevt_data)
-            tevt.save()
-        new_obj = Eventos.objects.filter(
-            id=obj.id).update(
-            transmissor_evento_id=tevt.id,
-            status=STATUS_EVENTO_AGUARD_ENVIO)
-        return (0, 'Evento vinculado com sucesso ao transmissor!')
-    else:
-        return (1, '''Erro ao vincular evento. Não foi encontrato 
-            nenhum transmissor com o número de inscrição: 
-            %s !''' % obj.nrinsc)
 
 
 def create_pem_files(certificado):

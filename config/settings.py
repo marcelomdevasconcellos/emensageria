@@ -144,12 +144,12 @@ USE_THOUSAND_SEPARATOR = True
 
 # Configurações de Versão do Aplicativo
 
-VERSAO_EMENSAGERIA = '2' # eSocial V2.5 (até NT18/2019)
-VERSAO_LAYOUT_ESOCIAL = 'v02_05_00'
+VERSAO_EMENSAGERIA = '2'  # eSocial V2.5 (até NT18/2019)
+VERSAO_LAYOUT_ESOCIAL = 'v_S_01_00_00'
 VERSAO_LAYOUT_REINF = 'v1_04_00'
 
 VERSOES_ESOCIAL = [
-    'v02_05_00']
+    'v_S_01_00_00']
 
 VERSOES_REINF = [
     'v1_04_00',

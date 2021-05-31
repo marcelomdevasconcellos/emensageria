@@ -210,13 +210,43 @@ admin.site.register(TransmissorEventos, TransmissorEventosAdmin)
 
 class EventosAdmin(AuditoriaAdmin):
     
-    def recibo(self, obj):
+    def acoes(self, obj):
         from django.urls import reverse
-        url = reverse('esocial:eventos_recibo', kwargs={'pk': obj.pk})
-        return mark_safe("<a href='{}'>Recibo</a>".format(url))
+        from .choices import (
+        STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_ENVIADO,
+            STATUS_EVENTO_AGUARD_ENVIO,
+            STATUS_EVENTO_PROCESSADO,
+            STATUS_EVENTO_CADASTRADO,)
 
-    recibo.allow_tags = True
-    recibo.short_description = 'Recibo'
+        if obj.status == STATUS_EVENTO_CADASTRADO:
+            url = '#'
+            return mark_safe("<a href='{}' class='btn btn-primary form-control'>"
+                             "<i class='fa fa-thumbs-o-up'></i>&nbsp;Validar</a>".format(url))
+        elif obj.status in (STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_VALIDADO_ERRO):
+            url = '#'
+            return mark_safe("<a href='{}' class='btn btn-danger form-control'>"
+                             "<i class='fa fa-minus-square-o'></i>&nbsp;Corrigir</a>".format(url))
+        elif obj.status == STATUS_EVENTO_AGUARD_ENVIO:
+            url = '#'
+            return mark_safe("<a href='{}' class='btn btn-primary form-control'>"
+                             "<i class='fa fa-send-o'></i>&nbsp;Enviar</a>".format(url))
+        elif obj.status == STATUS_EVENTO_ENVIADO:
+            url = '#'
+            url_recibo = reverse('esocial:eventos_recibo', kwargs={'pk': obj.pk})
+            return mark_safe("<a href='{}' class='btn btn-primary form-control'>"
+                             "<i class='fa fa-search'></i>&nbsp;Consultar</a>"
+                             "<a href='{}' class='btn btn-print form-control'>"
+                             "<i class='fa fa-thumbs-o-up'></i>&nbsp;Recibo</a>".format(url, url_recibo))
+        elif obj.status == STATUS_EVENTO_PROCESSADO:
+            url = reverse('esocial:eventos_recibo', kwargs={'pk': obj.pk})
+            return mark_safe("<a href='{}' class='btn btn-primary form-control'>"
+                             "<i class='fa fa-print'></i>&nbsp;Recibo</a>".format(url))
+        else:
+            return ''
+
+    acoes.allow_tags = True
+    acoes.short_description = 'Ações'
 
     def atualizar_identidade(modeladmin, request, queryset):
         for obj in queryset:
@@ -228,9 +258,8 @@ class EventosAdmin(AuditoriaAdmin):
     atualizar_identidade.short_description = "Atualizar identidade"
 
     def autorizar_envio(modeladmin, request, queryset):
-        from .functions import autorizar_envio_evento
         for obj in queryset:
-            autorizar_envio_evento(obj)
+            obj.autorizar_envio_evento(obj)
             messages.add_message(request, messages.INFO, 'Autorizado envio do evento %s!' % obj.identidade)
 
     autorizar_envio.short_description = "Autorizar envio de evento"
@@ -279,7 +308,7 @@ class EventosAdmin(AuditoriaAdmin):
             'evento',
             'operacao',
             'status',
-            'recibo',
+            'acoes',
     )
     fieldsets = (
         ( None, {
@@ -309,10 +338,21 @@ class EventosAdmin(AuditoriaAdmin):
         'updated_by',
     )
 
+    def has_change_permission(self, request, obj=None):
+        from .choices import STATUS_EVENTO_CADASTRADO
+        if obj and obj.status != STATUS_EVENTO_CADASTRADO:
+            return False
+        return super().has_change_permission(request)
+
+    def has_delete_permission(self, request, obj=None):
+        from .choices import STATUS_EVENTO_CADASTRADO
+        if obj and obj.status != STATUS_EVENTO_CADASTRADO:
+            return False
+        return super().has_delete_permission(request)
+
     def response_change(self, request, obj):
         from django.http import HttpResponseRedirect
         from django.contrib import messages
-        from .functions import autorizar_envio_evento
         from .functions import abrir_evento_para_edicao
         from .functions import duplicar_evento
         from .functions import identidade_evento
@@ -338,7 +378,7 @@ class EventosAdmin(AuditoriaAdmin):
             # Сan also be used (messages.ERROR, messages.WARNING, messages.DEBUG, messages.INFO, messages.SUCCESS)
         
         elif "_autorizar_envio_evento" in request.POST:
-            retorno = autorizar_envio_evento(obj)
+            retorno = obj.autorizar_envio_evento()
             if not retorno[0]:
                 self.message_user(request, retorno[1])
             else:

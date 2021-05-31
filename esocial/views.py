@@ -13,15 +13,15 @@ from esocial.models import (
     Relatorios, )
 from esocial.choices import (
     STATUS_EVENTO_CADASTRADO,
-    STATUS_EVENTO_IMPORTADO,
-    STATUS_EVENTO_DUPLICADO,
-    STATUS_EVENTO_GERADO,
-    STATUS_EVENTO_GERADO_ERRO,
-    STATUS_EVENTO_ASSINADO,
-    STATUS_EVENTO_ASSINADO_ERRO,
-    STATUS_EVENTO_VALIDADO,
+    # STATUS_EVENTO_IMPORTADO,
+    # STATUS_EVENTO_DUPLICADO,
+    # STATUS_EVENTO_GERADO,
+    # STATUS_EVENTO_GERADO_ERRO,
+    # STATUS_EVENTO_ASSINADO,
+    # STATUS_EVENTO_ASSINADO_ERRO,
+    # STATUS_EVENTO_VALIDADO,
     STATUS_EVENTO_VALIDADO_ERRO,
-    STATUS_EVENTO_AGUARD_PRECEDENCIA,
+    #STATUS_EVENTO_AGUARD_PRECEDENCIA,
     STATUS_EVENTO_AGUARD_ENVIO,
     STATUS_EVENTO_ENVIADO,
     STATUS_EVENTO_ENVIADO_ERRO,
@@ -35,22 +35,22 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated
 def dashboard_json(request):
     import json
     eventos_cadastrados = Eventos.objects.filter(status=STATUS_EVENTO_CADASTRADO)
-    eventos_importados = Eventos.objects.filter(status=STATUS_EVENTO_IMPORTADO)
+    #eventos_importados = Eventos.objects.filter(status=STATUS_EVENTO_IMPORTADO)
     eventos_erros_validacao = Eventos.objects.filter(status=STATUS_EVENTO_VALIDADO_ERRO)
-    eventos_validados = Eventos.objects.filter(status__in=(STATUS_EVENTO_VALIDADO, STATUS_EVENTO_AGUARD_ENVIO))
+    eventos_validados = Eventos.objects.filter(status__in=(STATUS_EVENTO_AGUARD_ENVIO,))
     eventos_erros_envio = Eventos.objects.filter(status=STATUS_EVENTO_ENVIADO_ERRO)
     eventos_enviados = Eventos.objects.filter(status=STATUS_EVENTO_ENVIADO)
     eventos_processados = Eventos.objects.filter(status=STATUS_EVENTO_PROCESSADO)
     dashboars_data = {
         'esocial_quant_cadastrados': eventos_cadastrados.count(),
-        'esocial_quant_importados': eventos_importados.count(),
+        #'esocial_quant_importados': eventos_importados.count(),
         'esocial_quant_erros_validacao': eventos_erros_validacao.count(),
         'esocial_quant_validados': eventos_validados.count(),
         'esocial_quant_erros_envio': eventos_erros_envio.count(),
         'esocial_quant_enviados': eventos_enviados.count(),
         'esocial_quant_processados': eventos_processados.count(),
         'esocial_cadastrados': list(eventos_cadastrados.values('id', 'evento', 'identidade')),
-        'esocial_importados': list(eventos_importados.values('id', 'evento', 'identidade')),
+        #'esocial_importados': list(eventos_importados.values('id', 'evento', 'identidade')),
         'esocial_erros_validacao': list(eventos_erros_validacao.values('id', 'evento', 'identidade')),
         'esocial_validados': list(eventos_validados.values('id', 'evento', 'identidade')),
         'esocial_erros_envio': list(eventos_erros_envio.values('id', 'evento', 'identidade')),
@@ -90,7 +90,6 @@ class eventos_api_list(generics.ListCreateAPIView):
             status=0)
 
 
-
 class eventos_api_detail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Eventos.objects.all()
@@ -124,6 +123,7 @@ class eventos_api_detail(generics.RetrieveUpdateDestroyAPIView):
 @login_required
 def visualizar_xml(request, pk):
     evt = get_object_or_404(Eventos, id=pk)
+    evt.autorizar_envio_evento()
     evt.create_xml()
     response = HttpResponse(
         evt.evento_xml,
@@ -235,6 +235,7 @@ def eventos_recibo(request, pk):
 @login_required
 def relatorios_imprimir(request, pk, output='pdf'):
     from django.db import connections
+    from datetime import datetime
 
     relatorio = get_object_or_404(Relatorios, id=pk)
     if 'delete' in relatorio.sql.lower() or \
@@ -271,9 +272,8 @@ def relatorios_imprimir(request, pk, output='pdf'):
             listagem += listagem_temp
 
     context = {
-        'usuario': Usuarios.objects.get(user_id=request.user.id),
         'relatorio': relatorio,
-        'data': datetime.datetime.now(),
+        'data': datetime.now(),
         'cabecalho': cabecalho,
         'listagem': listagem,
         'output': output,

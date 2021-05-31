@@ -119,13 +119,13 @@ class Transmissor(BaseModelEsocial):
         'Nome da empresa', max_length=200, unique=True)
     logotipo = models.FileField(
         'Logotipo', upload_to="logotipo",
-        blank=True, null=True, )
+        blank=True, null=True )
     endereco_completo = models.TextField(
-        'Endereço', null=True, )
-    nrinsc = models.CharField(
-        'Número de inscrição', max_length=15, unique=True)
+        'Endereço', null=True, blank=True )
     tpinsc = models.IntegerField(
         'Tipo de inscrição', choices=TIPO_INSCRICAO, )
+    nrinsc = models.CharField(
+        'Número de inscrição', max_length=15, unique=True)
     certificado = models.ForeignKey(
         'Certificados',
         on_delete=models.PROTECT,
@@ -351,7 +351,11 @@ class CertificadosSerializer(BaseModelSerializer):
 
 class Eventos(BaseModelEsocial):
     from config.settings import VERSAO_LAYOUT_ESOCIAL
-
+    from .choices import ESOCIAL_VERSAO_DEFAULT
+    cols = {
+        'evento': 8,
+        'evento_json': 12,
+    }
     identidade = models.CharField('Identidade',
                                   max_length=36,
                                   blank=True,
@@ -359,11 +363,10 @@ class Eventos(BaseModelEsocial):
     versao = models.CharField('Versão',
                               choices=VERSOES,
                               max_length=20,
-                              default=VERSAO_LAYOUT_ESOCIAL, )
+                              default=ESOCIAL_VERSAO_DEFAULT, )
     evento = models.CharField('Evento',
                               choices=EVENTOS,
-                              max_length=20,
-                              default='v02_05_00', )
+                              max_length=20, )
     operacao = models.IntegerField(
         'Operações',
         choices=OPERACOES,
@@ -433,6 +436,47 @@ class Eventos(BaseModelEsocial):
     def __str__(self):
         return self.identidade
 
+    def autorizar_envio_evento(self):
+        from datetime import datetime
+        from .models import Eventos, Transmissor, TransmissorEventos
+        from .choices import (
+            STATUS_EVENTO_CADASTRADO,
+            STATUS_EVENTO_AGUARD_ENVIO,
+            STATUS_TRANSMISSOR_CADASTRADO,
+            EVENTOS_GRUPOS_TABELAS, )
+
+        transmissor = Transmissor.objects. \
+            filter(nrinsc=self.nrinsc).all()
+
+        if transmissor:
+            transmissor = transmissor[0]
+            tevt = TransmissorEventos.objects.filter(
+                empregador_tpinsc=transmissor.tpinsc,
+                empregador_nrinsc=transmissor.nrinsc,
+                grupo=EVENTOS_GRUPOS_TABELAS,
+                status=STATUS_TRANSMISSOR_CADASTRADO).all()
+            if tevt:
+                tevt = tevt[0]
+            else:
+                tevt_data = {
+                    'transmissor': transmissor,
+                    'empregador_tpinsc': transmissor.tpinsc,
+                    'empregador_nrinsc': transmissor.nrinsc,
+                    'grupo': EVENTOS_GRUPOS_TABELAS,
+                    'status': STATUS_TRANSMISSOR_CADASTRADO,
+                }
+                tevt = TransmissorEventos(**tevt_data)
+                tevt.save()
+            Eventos.objects.filter(
+                id=self.id).update(
+                transmissor_evento_id=tevt.id,
+                status=STATUS_EVENTO_AGUARD_ENVIO)
+            return (0, 'Evento vinculado com sucesso ao transmissor!')
+        else:
+            return (1, '''Erro ao vincular evento. Não foi encontrato 
+                nenhum transmissor com o número de inscrição: 
+                %s !''' % self.nrinsc)
+
     def create_xml(self):
         from json2xml import json2xml
         from json2xml.utils import readfromstring
@@ -444,8 +488,7 @@ class Eventos(BaseModelEsocial):
         xml = json2xml.Json2xml(data,
                                 wrapper="eSocial", pretty=False,
                                 attr_type=False).to_xml()
-
-        ET.register_namespace("", "http://www.esocial.gov.br/schema/evt/evtInfoEmpregador/v02_05_00")
+        ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/evtInfoEmpregador/{self.versao}")
         xml_obj = ET.fromstring(xml)
 
         def recursive_remove(elem2):

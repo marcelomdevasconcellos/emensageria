@@ -1,6 +1,14 @@
 import datetime
 from constance import config
 from config import settings
+from esocial.choices import (
+    STATUS_EVENTO_CADASTRADO,
+    STATUS_EVENTO_VALIDADO_ERRO,
+    STATUS_EVENTO_AGUARD_ENVIO,
+    STATUS_EVENTO_ENVIADO,
+    STATUS_EVENTO_ENVIADO_ERRO,
+    STATUS_EVENTO_PROCESSADO,
+)
 
 
 def admin_media(request):
@@ -9,4 +17,10 @@ def admin_media(request):
         'DEBUG': settings.DEBUG,
         'DATABASE_NAME': settings.DATABASES['default']['NAME'],
         'get_tags': False,
+        'STATUS_EVENTO_CADASTRADO': STATUS_EVENTO_CADASTRADO,
+        'STATUS_EVENTO_VALIDADO_ERRO': STATUS_EVENTO_VALIDADO_ERRO,
+        'STATUS_EVENTO_AGUARD_ENVIO': STATUS_EVENTO_AGUARD_ENVIO,
+        'STATUS_EVENTO_ENVIADO': STATUS_EVENTO_ENVIADO,
+        'STATUS_EVENTO_ENVIADO_ERRO': STATUS_EVENTO_ENVIADO_ERRO,
+        'STATUS_EVENTO_PROCESSADO': STATUS_EVENTO_PROCESSADO,
     }

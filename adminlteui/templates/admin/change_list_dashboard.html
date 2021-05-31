@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_urls static admin_list %}
+{% load i18n admin_urls static admin_list templatetags_fieldset %}
 
 {% block extrastyle %}
 {{ block.super }}
@@ -41,17 +41,43 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-body">
-                <div id="content-main">
-                <iframe src="{{original.link}}"
-                        frameborder="0"
-                        width="{{original.width}}"
-                        height="{{original.height}}"
-                        allowtransparency></iframe>
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                {% for d in dashboards %}
+                <li {% ifequal original.id d.id %}class="active"{% else %}class=""{% endifequal %}>
+                    <a href="#{{d.nome|to_slug}}" data-toggle="tab" aria-expanded="{% ifequal original.id d.id %}true{% else %}False{% endifequal %}">
+                        {{d.nome}}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="tab-content">
+                {% for d in dashboards %}
+                <div class="tab-pane{% ifequal original.id d.id %} active{% endifequal %}" id="{{d.nome|to_slug}}">
+                    {% block object-tools %}
+                    <div {% if cl.has_filters or cl.search_fields %}
+                         class="col-md-12 col-sm-12 col-xs-12 text-right"
+                         {% else %}class="col-md-12 text-right"{% endif %}>
+                        {% block object-tools-items %}
+                        {% change_list_object_tools %}
+                        {% endblock %}
+                        {% if request.user.is_superuser %}
+                        <a href="/admin/acolhe/acolhedashboards/{{d.id}}/change/" 
+                        class="btn btn-info">
+                            <i class="fa fa-edit"></i> &nbsp; Editar
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endblock %}
+                    <iframe src="{{d.link}}"
+                            frameborder="0"
+                            width="{{d.width}}"
+                            height="{{d.height}}"
+                            allowtransparency></iframe>
                 </div> 
-            </div> 
-        </div> 
+                {% endfor %}
+            </div>
+        </div>
         <br class="clear" />
     </div>
 </div>

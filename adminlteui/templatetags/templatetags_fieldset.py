@@ -8,10 +8,26 @@ register = template.Library()
 def test(obj):
     try:
         print()
-        print(obj.widget.__dict__)
+        print(obj.__dict__)
     except:
-        pass
+        print('erro')
     return ''
+
+
+@register.filter('to_slug')
+def to_slug(txt):
+    from slugify import slugify
+    return slugify(txt)
+
+
+@register.filter('to_str')
+def to_str(int):
+    return str(int)
+
+
+@register.filter('minus_one')
+def minus_one(obj):
+    return int(obj) - 1
 
 
 @register.filter('div_cols')
@@ -71,8 +87,18 @@ def get_add_link(value):
     return None
 
 
+@register.filter(name='get_edit_link')
+def get_edit_link(value):
+    # assistidosprocessos_processo-0-assistido
+    if 'assistidosprocessos_assistido' in value:
+        return '/admin/atendimento/processos/add/?_popup=1'
+    elif 'assistidosprocessos_processo' in value:
+        return '/admin/atendimento/assistidos/add/?_popup=1'
+    return None
+
+
 @register.filter(name='can_edit')
-def get_add_link(value):
+def can_edit(value):
     # assistidosprocessos_processo-0-assistido
     if 'assistidosprocessos_assistido' in value:
         return False

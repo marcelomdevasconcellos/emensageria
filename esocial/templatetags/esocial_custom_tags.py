@@ -13,6 +13,7 @@ except:
 register = template.Library()
 
 
+
 @register.filter('is_list')
 def is_list(value):
     if type(value) is list:

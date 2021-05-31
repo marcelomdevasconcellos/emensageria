@@ -19,8 +19,8 @@
     <div class="box box-default collapsed-box">
       <div class="box-header with-border">
         <h3 class="box-title">
-          <b>{{ inline_admin_formset.opts.verbose_name|capfirst }}:</b>&nbsp;
-          <span class="inline_label">
+          <b>{{ inline_admin_formset.opts.verbose_name|capfirst }}:</b>&nbsp; 
+          <span class="inline_label" style="display: block;">
             {% if inline_admin_form.original %}
               {{ inline_admin_form.original }}
                 {% if inline_admin_form.model_admin.show_change_link and inline_admin_form.model_admin.has_registered_model %} 
@@ -60,7 +60,7 @@
             <div class="col-md-{{ field|div_cols }}">
               <div class="form-group">
                   <label class="control-label text-right">
-                      {{ field.field.label }} {{field.field.field.widget.blank}}
+                  {{ field.field.label }} {% if field.field.field.required %}*{% endif %}
                   </label>
                   <div {% if not line.fields|length_is:'1' %} class="fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"{% elif field.is_checkbox %} class="checkbox-row"{% endif %}>
                   {% if field.is_readonly %}

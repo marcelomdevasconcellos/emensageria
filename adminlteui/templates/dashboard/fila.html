@@ -1,5 +1,5 @@
 {% load templatetags %}
-<div class="row">
+<div class="row" id="id_eventos_cadastrados">
     <h3>Mapa de processamento</h3>
     <table class="table table-bordered table-striped">
         <thead>
@@ -7,7 +7,6 @@
             <th style="display:none;"></th>
             <th width="30px">Evento</th>
             <th>Identidade</th>
-            <th>Status</th>
         </tr>
         </thead>
         <tbody>
@@ -15,8 +14,8 @@
                 <td style="display:none;"></td>
                 <td>{{ a.evento }}</td>
                 <td>{{ a.identidade }}</td>
-                <td>{{ a.get_status_display }}</td>
             </tr>
         </tbody>
     </table>
 </div>
+

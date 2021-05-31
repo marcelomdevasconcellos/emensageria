@@ -6,6 +6,7 @@ from django.forms import widgets
 from django.core.exceptions import ValidationError
 
 from .models import Eventos, Certificados, Arquivos
+from .choices import STATUS_EVENTO_CADASTRADO
 
 
 class EventosForm(forms.ModelForm):
@@ -18,10 +19,14 @@ class EventosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventosForm, self).__init__(*args, **kwargs)
 
-        if self.instance.pk:
+        if self.instance.pk and self.instance.status == STATUS_EVENTO_CADASTRADO:
             self.fields['evento'].disabled = True
             self.fields['versao'].disabled = True
             self.fields['operacao'].disabled = True
+
+        if self.instance.pk and self.instance.status != STATUS_EVENTO_CADASTRADO:
+                for f in list(self.fields):
+                    self.fields[f].disabled = True
 
 
 class CertificadosForm(forms.ModelForm):
