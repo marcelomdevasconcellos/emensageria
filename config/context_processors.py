@@ -1,7 +1,7 @@
 import datetime
 from constance import config
 from config import settings
-from esocial.choices import (
+from apps.esocial.choices import (
     STATUS_EVENTO_CADASTRADO,
     STATUS_EVENTO_VALIDADO_ERRO,
     STATUS_EVENTO_AGUARD_ENVIO,

@@ -139,6 +139,7 @@ dmypy.json
 
 # File Folder
 arquivos/*
+apps/contrib/management/commands/*
 
 # VsCode
 *.code-workspace

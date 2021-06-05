@@ -2,15 +2,9 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.db import models
-from django.utils import timezone
 from django.forms import Select, Textarea
-
+from django_currentuser.db.models import CurrentUserField
 from rest_framework.serializers import ModelSerializer
-from reversion.admin import VersionAdmin
-
-from django_currentuser.middleware import get_current_user
-from reversion.admin import VersionAdmin
-
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -19,7 +13,7 @@ class BaseModelSerializer(ModelSerializer):
     class Meta:
         fields = '__all__'
         read_only_fields = ('id', 'created_at', 'created_by',
-                            'updated_at', 'updated_by', )
+                            'updated_at', 'updated_by',)
 
 
 class MultiFieldSortableChangeList(ChangeList):
@@ -56,106 +50,34 @@ class MultiFieldSortableChangeList(ChangeList):
         return ordering
 
 
-class BaseModelEsocial(models.Model):
-    created_at = models.DateTimeField(blank=True, null=True)
-    created_by = models.ForeignKey(
-        AUTH_USER_MODEL,
-        on_delete=models.DO_NOTHING,
-        related_name='esocial_%(class)s_created_by',
-        blank=True,
-        null=True,
-        default=get_current_user()
-    )
-    updated_at = models.DateTimeField(blank=True, null=True)
-    updated_by = models.ForeignKey(
-        AUTH_USER_MODEL,
-        on_delete=models.DO_NOTHING,
-        related_name='esocial_%(class)s_update_by',
-        blank=True,
-        null=True
-    )
+class BaseModel(models.Model):
+    created_by = CurrentUserField(related_name='%(class)s_created_by')
+    updated_by = CurrentUserField(on_update=True, related_name='%(class)s_updated_by')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
 
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        if not self.created_by or not self.created_at:
-            self.created_by = get_current_user()
-            self.created_at = timezone.now()
-        else:
-            self.update_by = get_current_user()
-            self.update_at = timezone.now()
-        super(BaseModelEsocial, self).save(force_insert=False, force_update=False, using=None,
-                                           update_fields=None)
+
+class BaseModelEsocial(models.Model):
+    created_by = CurrentUserField(related_name='%(class)s_created_by_esocial')
+    updated_by = CurrentUserField(on_update=True, related_name='%(class)s_updated_by_esocial')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
 
 
 class BaseModelReinf(models.Model):
-    created_at = models.DateTimeField(blank=True, null=True)
-    created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.DO_NOTHING,
-        related_name='reinf_%(class)s_created_by',
-        blank=True,
-        null=True,
-        default=get_current_user()
-    )
-    updated_at = models.DateTimeField(blank=True, null=True)
-    updated_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.DO_NOTHING,
-        related_name='reinf_%(class)s_update_by',
-        blank=True,
-        null=True
-    )
+    created_by = CurrentUserField(related_name='%(class)s_created_by_reinf')
+    updated_by = CurrentUserField(on_update=True, related_name='%(class)s_updated_by_reinf')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
-
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        if not self.created_by or not self.created_at:
-            self.created_by = get_current_user()
-            self.created_at = timezone.now()
-        else:
-            self.update_by = get_current_user()
-            self.update_at = timezone.now()
-        super(BaseModelReinf, self).save(force_insert=False, force_update=False, using=None,
-                                         update_fields=None)
-
-
-class BaseModel(models.Model):
-    created_at = models.DateTimeField(blank=True, null=True)
-    created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.DO_NOTHING,
-        related_name='%(app)s_%(class)s_created_by',
-        blank=True,
-        null=True,
-        default=get_current_user()
-    )
-    updated_at = models.DateTimeField(blank=True, null=True)
-    updated_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.DO_NOTHING,
-        related_name='%(app)s_%(class)s_update_by',
-        blank=True,
-        null=True
-    )
-
-    class Meta:
-        abstract = True
-
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        if not self.created_by or not self.created_at:
-            self.created_by = get_current_user()
-            self.created_at = timezone.now()
-        else:
-            self.update_by = get_current_user()
-            self.update_at = timezone.now()
-        super(BaseModel, self).save(force_insert=False, force_update=False, using=None,
-                                    update_fields=None)
 
 
 class AuditoriaAdmin(admin.ModelAdmin):
@@ -168,12 +90,7 @@ class AuditoriaAdmin(admin.ModelAdmin):
 
 
 class AuditoriaAdminInline(admin.TabularInline):
-    readonly_fields = (
-        'created_at',
-        'created_by',
-        'updated_at',
-        'updated_by',
-    )
+    readonly_fields = AuditoriaAdmin.readonly_fields
     formfield_overrides = {
         models.TextField: {
             'widget': Textarea(attrs={
@@ -190,9 +107,4 @@ class AuditoriaAdminInline(admin.TabularInline):
 
 
 class AuditoriaAdminStackedInlineInline(admin.StackedInline):
-    readonly_fields = (
-        'created_at',
-        'created_by',
-        'updated_at',
-        'updated_by',
-    )
+    readonly_fields = AuditoriaAdmin.readonly_fields

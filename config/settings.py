@@ -41,6 +41,8 @@ ALLOWED_HOSTS = [
     env('ALLOWED_HOSTS'),
 ]
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,13 +55,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'reversion',
     'treebeard',
     'constance',
     'constance.backends.database',
-    'esocial',
-    'reinf',
-    'contrib',
+    'apps.esocial.apps.esocialConfig',
+    'apps.reinf.apps.reinfConfig',
+    'apps.contrib.apps.contribConfig',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_currentuser.middleware.ThreadLocalUserMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -203,11 +205,11 @@ CONSTANCE_CONFIG = {
          'Link do manual do sistema.',
          str),
 
-    'FILES_PATH': ('/arquivos/',
+    'FILES_PATH': ('arquivos',
          'Caminho relativo do local aonde serão armazenados os arquivos',
          str),
 
-    'CERT_PATH': ('/certificados/',
+    'CERT_PATH': ('certificados',
          'Caminho relativo do local aonde serão armazenados os certificados',
          str),
 

@@ -1,0 +1,676 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtRmnRPPS__div">
+    <div class="col-md-12">
+        <h4>Evento Remuneração de Servidor vinculado ao Regime Próprio de Previdência Social.
+Regras de validação:
+REGRA_COMPATIBILIDADE_CATEGORIA_CLASSTRIB
+REGRA_COMPATIB_REGIME_PREV
+REGRA_CONTROLE_DUPLICIDADE
+REGRA_ENVIO_PROC_FECHAMENTO
+REGRA_EVENTOS_EXTEMP
+REGRA_EXISTE_INFO_EMPREGADOR
+REGRA_GERAL_VALIDA_DADOS_TABCONTRIB
+REGRA_REMUN_ANUAL_DEZEMBRO
+REGRA_REMUN_CATEG_EXISTENTE_RET
+REGRA_REMUN_IND_RETIFICACAO
+REGRA_REMUN_JA_EXISTE_DESLIGAMENTO
+REGRA_REMUN_PERMITE_EXCLUSAO
+REGRA_REMUN_TRAB_EXISTENTE_RET
+REGRA_REMUN_VALIDA_INFO_COMPLEMENTAR
+REGRA_TSV_ATIVO_NA_DTEVENTO
+REGRA_VALIDA_EMPREGADOR
+REGRA_VALIDA_PERIODO_APURACAO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indRetif<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
+Valores válidos:
+1 - Original
+2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtRmnRPPS__ideEvento__id__indRetif" name="[evtRmnRPPS][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtRmnRPPS.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtRmnRPPS.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>nrRecibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
+Validação: O preenchimento é obrigatório se indRetif = [2].
+Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtRmnRPPS.ideEvento.nrRecibo'}}" name="[evtRmnRPPS][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApuracao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indApuracao<a data-toggle="tooltip" title="Indicativo de período de apuração.
+Valores válidos:
+1 - Mensal
+2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtRmnRPPS__ideEvento__id__indApuracao" name="[evtRmnRPPS][ideEvento][indApuracao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtRmnRPPS.ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal original.evento_json|readjson:'evtRmnRPPS.ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="perApur__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>perApur<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
+Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtRmnRPPS.ideEvento.perApur'}}" name="[evtRmnRPPS][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">tpAmb</label>
+            <select name="[evtRmnRPPS][ideEvento][tpAmb]" id="evtRmnRPPS__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtRmnRPPS][ideEvento][tpAmb]" id="evtRmnRPPS__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">procEmi</label>
+            <select name="[evtRmnRPPS][ideEvento][procEmi]" id="evtRmnRPPS__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtRmnRPPS][ideEvento][procEmi]" id="evtRmnRPPS__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">verProc</label>
+            <input type="text" name="[evtRmnRPPS][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtRmnRPPS__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtRmnRPPS][ideEvento][verProc]" id="evtRmnRPPS__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">tpInsc</label>
+            <select name="[evtRmnRPPS][ideEmpregador][tpInsc]" id="evtRmnRPPS__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtRmnRPPS][ideEmpregador][tpInsc]" id="evtRmnRPPS__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">nrInsc</label>
+            <input type="text" id="evtRmnRPPS__ideEmpregador__id__nrInsc_disabled" name="[evtRmnRPPS][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtRmnRPPS][ideEmpregador][nrInsc]" id="evtRmnRPPS__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideTrabalhador__div">
+    <div class="col-md-12">
+        <h4>Identificação do trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="cpfTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>cpfTrab<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador.
+Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__ideTrabalhador__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtRmnRPPS.ideTrabalhador.cpfTrab'}}" name="[evtRmnRPPS][ideTrabalhador][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoComplem__div">
+    <div class="col-md-12">
+        <h4>Grupo preenchido quando o evento de remuneração se referir a trabalhador cuja categoria não está sujeita ao evento de admissão ou ao evento TSVE - Início, bem como para informar remuneração devida pelo órgão sucessor a servidor desligado ainda no sucedido. No caso das categorias em que o evento TSVE - Início for opcional, o preenchimento do grupo somente é exigido se não existir o respectivo evento. As informações complementares são necessárias para correta identificação do trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="nmTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>nmTrab<a data-toggle="tooltip" title="Informar o nome do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__ideTrabalhador__infoComplem__id__nmTrab" maxlength="70" value="{{original.evento_json|readjson:'evtRmnRPPS.ideTrabalhador.infoComplem.nmTrab'}}" name="[evtRmnRPPS][ideTrabalhador][infoComplem][nmTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtNascto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>dtNascto<a data-toggle="tooltip" title="Preencher com a data de nascimento.
+Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__ideTrabalhador__infoComplem__id__dtNascto" value="{{original.evento_json|readjson:'evtRmnRPPS.ideTrabalhador.infoComplem.dtNascto'}}" name="[evtRmnRPPS][ideTrabalhador][infoComplem][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="sucessaoVinc__div">
+    <div class="col-md-12">
+        <h4>Grupo de informações da sucessão de vínculo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="cnpjOrgaoAnt__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>cnpjOrgaoAnt<a data-toggle="tooltip" title="Informar o CNPJ do órgão público anterior.
+Validação: Deve ser um CNPJ válido e diferente da inscrição do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000. Além disso, deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do órgão público declarante (exceto se ideEmpregador/nrInsc tiver 14 (catorze) algarismos) e dos estabelecimentos informados através do evento S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__ideTrabalhador__infoComplem__sucessaoVinc__id__cnpjOrgaoAnt" maxlength="14" value="{{original.evento_json|readjson:'evtRmnRPPS.ideTrabalhador.infoComplem.sucessaoVinc.cnpjOrgaoAnt'}}" name="[evtRmnRPPS][ideTrabalhador][infoComplem][sucessaoVinc][cnpjOrgaoAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="matricAnt__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>matricAnt<a data-toggle="tooltip" title="Matrícula do trabalhador no órgão público anterior."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__ideTrabalhador__infoComplem__sucessaoVinc__id__matricAnt" maxlength="30" value="{{original.evento_json|readjson:'evtRmnRPPS.ideTrabalhador.infoComplem.sucessaoVinc.matricAnt'}}" name="[evtRmnRPPS][ideTrabalhador][infoComplem][sucessaoVinc][matricAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtExercicio__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>dtExercicio<a data-toggle="tooltip" title="Preencher com a data de exercício do servidor. No caso de transferência do servidor, deve ser preenchida a data inicial do vínculo no primeiro órgão público (data de início do vínculo)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__ideTrabalhador__infoComplem__sucessaoVinc__id__dtExercicio" value="{{original.evento_json|readjson:'evtRmnRPPS.ideTrabalhador.infoComplem.sucessaoVinc.dtExercicio'}}" name="[evtRmnRPPS][ideTrabalhador][infoComplem][sucessaoVinc][dtExercicio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="observacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>observacao<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__ideTrabalhador__infoComplem__sucessaoVinc__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtRmnRPPS.ideTrabalhador.infoComplem.sucessaoVinc.observacao'}}" name="[evtRmnRPPS][ideTrabalhador][infoComplem][sucessaoVinc][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="dmDev__div">
+    <div class="col-md-12">
+        <h4>Identificação de cada um dos demonstrativos de valores devidos ao trabalhador.
+Regra de validação:
+REGRA_DEMONSTRATIVO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="ideDmDev__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>ideDmDev<a data-toggle="tooltip" title="Identificador atribuído pelo órgão público para o demonstrativo de valores devidos ao trabalhador. O ente público pode preencher este campo utilizando-se de um identificador padrão para todos os trabalhadores; no entanto, havendo mais de um demonstrativo relativo a uma mesma competência, devem ser utilizados identificadores diferentes para cada um dos demonstrativos.
+Validação: Deve ser um identificador único dentro do mesmo perApur para cada um dos demonstrativos do trabalhador.
+Regra de validação:
+REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__id__ideDmDev" maxlength="30" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.ideDmDev'}}" name="[evtRmnRPPS][dmDev][ideDmDev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codCateg__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>codCateg<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
+Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.codCateg'}}" name="[evtRmnRPPS][dmDev][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoPerApur__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao período de apuração.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o servidor possui remuneração.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">tpInsc</label>
+            <select name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][tpInsc]" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][tpInsc]" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">nrInsc</label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__id__nrInsc_disabled" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][nrInsc]" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="remunPerApur__div">
+    <div class="col-md-12">
+        <h4>Informações relativas à remuneração do trabalhador no período de apuração.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="matricula__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
+Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 ou S-2300 do respectivo contrato. Não preencher no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE sem informação de matrícula no evento S-2300 ou, no caso de remunPerAnt, se remunOrgSuc = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.matricula'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem a remuneração do trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>codRubr<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.codRubr'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>ideTabRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.ideTabRubr'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>qtdRubr<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__qtdRubr" maxlength="12" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.qtdRubr'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][qtdRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>fatorRubr<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.fatorRubr'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][fatorRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>vrRubr<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.vrRubr'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][vrRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indApurIR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem a remuneração do trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>codRubr<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.codRubr'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>ideTabRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.ideTabRubr'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>qtdRubr<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__qtdRubr" maxlength="12" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.qtdRubr'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][qtdRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>fatorRubr<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.fatorRubr'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][fatorRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>vrRubr<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.vrRubr'}}" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][vrRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indApurIR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][infoPerApur][ideEstab][remunPerApur][itensRemun][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerApur.ideEstab.remunPerApur.itensRemun.indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoPerAnt__div">
+    <div class="col-md-12">
+        <h4>Grupo destinado às informações de:
+a) remuneração relativa a diferenças de vencimento provenientes de disposições legais;
+b) verbas de natureza salarial ou não salarial devidas após o desligamento;
+c) decisões administrativas ou judiciais relativas a diferenças de remuneração.
+OBS.: As informações previstas acima podem se referir ao período de apuração definido em perApur ou a períodos anteriores a perApur.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="remunOrgSuc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>remunOrgSuc<a data-toggle="tooltip" title="Indicar se a remuneração é relativa a verbas de natureza salarial ou não salarial devidas pelo órgão sucessor a servidor desligado ainda no sucedido.
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtRmnRPPS__dmDev__infoPerAnt__id__remunOrgSuc" name="[evtRmnRPPS][dmDev][infoPerAnt][remunOrgSuc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerAnt.remunOrgSuc' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerAnt.remunOrgSuc' 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="idePeriodo__div">
+    <div class="col-md-12">
+        <h4>Identificação do período ao qual se referem as diferenças de remuneração.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>perRef<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de remuneração, no formato AAAA-MM.
+Validação: Deve ser igual ou anterior ao período de apuração informado em perApur.
+Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__id__perRef" maxlength="7" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerAnt.idePeriodo.perRef'}}" name="[evtRmnRPPS][dmDev][infoPerAnt][idePeriodo][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o servidor possui remuneração.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">tpInsc</label>
+            <select name="[evtRmnRPPS][dmDev][infoPerAnt][idePeriodo][ideEstab][tpInsc]" id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtRmnRPPS][dmDev][infoPerAnt][idePeriodo][ideEstab][tpInsc]" id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">nrInsc</label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__nrInsc_disabled" name="[evtRmnRPPS][dmDev][infoPerAnt][idePeriodo][ideEstab][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtRmnRPPS][dmDev][infoPerAnt][idePeriodo][ideEstab][nrInsc]" id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="remunPerAnt__div">
+    <div class="col-md-12">
+        <h4>Informações relativas à remuneração do trabalhador em períodos anteriores.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="matricula__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
+Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 ou S-2300 do respectivo contrato. Não preencher no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE sem informação de matrícula no evento S-2300 ou, no caso de remunPerAnt, se remunOrgSuc = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__remunPerAnt__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtRmnRPPS.dmDev.infoPerAnt.idePeriodo.ideEstab.remunPerAnt.matricula'}}" name="[evtRmnRPPS][dmDev][infoPerAnt][idePeriodo][ideEstab][remunPerAnt][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+</script>

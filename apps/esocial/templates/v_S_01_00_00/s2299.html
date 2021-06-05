@@ -1,0 +1,980 @@
+
+{% load esocial_custom_tags %}
+<form id="form_json">
+
+<div class="row">
+
+<div id="evtDeslig__div">
+    <div class="col-md-12">
+        <h4>Evento Desligamento.
+Regras de validação:
+REGRA_DESLIG_EXCLUI_DESLIGAMENTO_REINTEG
+REGRA_DESLIG_EXCLUSAO_EVENTO
+REGRA_DESLIG_EXISTE_EVENTO_POSTERIOR
+REGRA_DESLIG_JA_EXISTE_BAIXA
+REGRA_DESLIG_TRABALHADOR_AFASTADO
+REGRA_EMPREGADO_DOMESTICO
+REGRA_ENVIO_PROC_FECHAMENTO
+REGRA_EVENTOS_EXTEMP
+REGRA_EVENTO_IMPACTO_FOPAG
+REGRA_EVE_FOPAG_SIMPLIFICADO
+REGRA_EXISTE_INFO_EMPREGADOR
+REGRA_EXTEMP_DOMESTICO
+REGRA_EXTEMP_REINTEGRACAO
+REGRA_GERAL_VALIDA_DADOS_TABCONTRIB
+REGRA_MESMO_PROCEMI
+REGRA_MUDANCA_CPF
+REGRA_REMUN_FGTS_ANTERIOR_ESOCIAL
+REGRA_REMUN_IND_RETIFICACAO
+REGRA_REMUN_PERMITE_EXCLUSAO
+REGRA_RETIFICA_MESMO_VINCULO
+REGRA_RUBRICA_COMPATIVEL_CATEGORIA
+REGRA_VALIDA_EMPREGADOR
+REGRA_VALIDA_PERIODO_APURACAO
+REGRA_VINCULO_ATIVO_NA_DTEVENTO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="ideEvento__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do evento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="indRetif__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indRetif<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
+Valores válidos:
+1 - Original
+2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtDeslig__ideEvento__id__indRetif" name="[evtDeslig][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtDeslig.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtDeslig.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrRecibo__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>nrRecibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
+Validação: O preenchimento é obrigatório se indRetif = [2].
+Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtDeslig.ideEvento.nrRecibo'}}" name="[evtDeslig][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indGuia__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indGuia<a data-toggle="tooltip" title="Indicativo do tipo de guia.
+Valores válidos:
+1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtDeslig__ideEvento__id__indGuia" name="[evtDeslig][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtDeslig.ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="tpAmb__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">tpAmb</label>
+            <select name="[evtDeslig][ideEvento][tpAmb]" id="evtDeslig__ideEvento__id__tpAmb_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
+                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+            </select>
+            <input type="hidden" name="[evtDeslig][ideEvento][tpAmb]" id="evtDeslig__ideEvento__id__tpAmb" value="{{original.tpamb}}">
+        </div>
+    </div>
+</div>
+<div id="procEmi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">procEmi</label>
+            <select name="[evtDeslig][ideEvento][procEmi]" id="evtDeslig__ideEvento__id__procEmi_disabled" disabled="">
+                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+            </select>
+            <input type="hidden" name="[evtDeslig][ideEvento][procEmi]" id="evtDeslig__ideEvento__id__procEmi" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+<div id="verProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">verProc</label>
+            <input type="text" name="[evtDeslig][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtDeslig__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtDeslig][ideEvento][verProc]" id="evtDeslig__ideEvento__id__verProc" value="{{original.procemi}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideEmpregador__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do empregador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">tpInsc</label>
+            <select name="[evtDeslig][ideEmpregador][tpInsc]" id="evtDeslig__ideEmpregador__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtDeslig][ideEmpregador][tpInsc]" id="evtDeslig__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">nrInsc</label>
+            <input type="text" id="evtDeslig__ideEmpregador__id__nrInsc_disabled" name="[evtDeslig][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtDeslig][ideEmpregador][nrInsc]" id="evtDeslig__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="ideVinculo__div">
+    <div class="col-md-12">
+        <h4>Informações de identificação do trabalhador e do vínculo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="cpfTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>cpfTrab<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtDeslig.ideVinculo.cpfTrab'}}" name="[evtDeslig][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="matricula__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
+Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtDeslig.ideVinculo.matricula'}}" name="[evtDeslig][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoDeslig__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao desligamento do vínculo.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="mtvDeslig__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>mtvDeslig<a data-toggle="tooltip" title="Código de motivo do desligamento.
+Validação: Deve ser um código válido e existente na Tabela 19, bem como compatível com o código de categoria do trabalhador, conforme Tabela 19."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__id__mtvDeslig" maxlength="2" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.mtvDeslig'}}" name="[evtDeslig][infoDeslig][mtvDeslig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtDeslig__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>dtDeslig<a data-toggle="tooltip" title="Preencher com a data de desligamento do vínculo (último dia trabalhado).
+Validação: Deve ser uma data igual ou anterior à data atual acrescida de 10 (dez) dias. No caso de empregado reintegrado, também deve ser uma data igual ou posterior a dtEfetRetorno do evento S-2298."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__id__dtDeslig" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.dtDeslig'}}" name="[evtDeslig][infoDeslig][dtDeslig]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtAvPrv__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>dtAvPrv<a data-toggle="tooltip" title="Data de concessão do aviso prévio.
+Validação: Se informada, deve ser igual ou posterior à data de admissão e igual ou anterior a dtDeslig."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__id__dtAvPrv" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.dtAvPrv'}}" name="[evtDeslig][infoDeslig][dtAvPrv]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indPagtoAPI__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indPagtoAPI<a data-toggle="tooltip" title="Indicativo de pagamento de aviso prévio indenizado pelo empregador, ao empregado.
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtDeslig__infoDeslig__id__indPagtoAPI" name="[evtDeslig][infoDeslig][indPagtoAPI]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.indPagtoAPI' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.indPagtoAPI' 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dtProjFimAPI__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>dtProjFimAPI<a data-toggle="tooltip" title="Data projetada para o término do aviso prévio indenizado.
+Validação: Obrigatório se indPagtoAPI for igual a [S], devendo ser igual ou posterior a dtDeslig."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__id__dtProjFimAPI" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.dtProjFimAPI'}}" name="[evtDeslig][infoDeslig][dtProjFimAPI]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="pensAlim__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>pensAlim<a data-toggle="tooltip" title="Indicativo de pensão alimentícia para fins de retenção de FGTS.
+Valores válidos:
+0 - Não existe pensão alimentícia
+1 - Percentual de pensão alimentícia
+2 - Valor de pensão alimentícia
+3 - Percentual e valor de pensão alimentícia
+Validação: Preenchimento obrigatório e exclusivo se o vínculo for celetista (tpRegTrab em S-2200 = [1])."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtDeslig__infoDeslig__id__pensAlim" name="[evtDeslig][infoDeslig][pensAlim]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.pensAlim' '0' %}selected{% endifequal %}>0 - Não existe pensão alimentícia</option><option value='1' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.pensAlim' '1' %}selected{% endifequal %}>1 - Percentual de pensão alimentícia</option><option value='2' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.pensAlim' '2' %}selected{% endifequal %}>2 - Valor de pensão alimentícia</option><option value='3' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.pensAlim' '3' %}selected{% endifequal %}>3 - Percentual e valor de pensão alimentícia</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="percAliment__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>percAliment<a data-toggle="tooltip" title="Percentual a ser destinado a pensão alimentícia.
+Validação: Deve ser maior que 0 (zero) e menor ou igual a 100 (cem).
+Informação obrigatória e exclusiva se pensAlim = [1, 3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__id__percAliment" maxlength="5" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.percAliment'}}" name="[evtDeslig][infoDeslig][percAliment]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrAlim__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>vrAlim<a data-toggle="tooltip" title="Valor da pensão alimentícia.
+Validação: Deve ser maior que 0 (zero).
+Informação obrigatória e exclusiva se pensAlim = [2, 3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__id__vrAlim" maxlength="14" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.vrAlim'}}" name="[evtDeslig][infoDeslig][vrAlim]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrProcTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>nrProcTrab<a data-toggle="tooltip" title="Número que identifica o processo trabalhista, quando o desligamento se der por decisão judicial.
+Validação: Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__id__nrProcTrab" maxlength="20" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.nrProcTrab'}}" name="[evtDeslig][infoDeslig][nrProcTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoInterm__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao trabalho intermitente.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="dia__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>dia<a data-toggle="tooltip" title="Dia do mês efetivamente trabalhado pelo empregado com contrato de trabalho intermitente.
+Validação: Deve ser um número entre 1 e 31, de acordo com o calendário anual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtDeslig__infoDeslig__infoInterm__id__dia" name="[evtDeslig][infoDeslig][infoInterm][dia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="observacoes__div">
+    <div class="col-md-12">
+        <h4>Observações sobre o desligamento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="observacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>observacao<a data-toggle="tooltip" title="Observação relevante sobre o desligamento do trabalhador, que não esteja consignada em outros campos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__observacoes__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.observacoes.observacao'}}" name="[evtDeslig][infoDeslig][observacoes][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="sucessaoVinc__div">
+    <div class="col-md-12">
+        <h4>Grupo preenchido exclusivamente nos casos de sucessão do vínculo trabalhista, com a identificação da empresa sucessora.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">tpInsc</label>
+            <select name="[evtDeslig][infoDeslig][sucessaoVinc][tpInsc]" id="evtDeslig__infoDeslig__sucessaoVinc__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtDeslig][infoDeslig][sucessaoVinc][tpInsc]" id="evtDeslig__infoDeslig__sucessaoVinc__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">nrInsc</label>
+            <input type="text" id="evtDeslig__infoDeslig__sucessaoVinc__id__nrInsc_disabled" name="[evtDeslig][infoDeslig][sucessaoVinc][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtDeslig][infoDeslig][sucessaoVinc][nrInsc]" id="evtDeslig__infoDeslig__sucessaoVinc__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="transfTit__div">
+    <div class="col-md-12">
+        <h4>Transferência de titularidade do empregado doméstico para outro representante da mesma unidade familiar.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="cpfSubstituto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>cpfSubstituto<a data-toggle="tooltip" title="Preencher com o CPF do novo titular.
+Validação: Deve ser um CPF válido e diferente do CPF do declarante e do empregado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__transfTit__id__cpfSubstituto" maxlength="11" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.transfTit.cpfSubstituto'}}" name="[evtDeslig][infoDeslig][transfTit][cpfSubstituto]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtNascto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>dtNascto<a data-toggle="tooltip" title="Preencher com a data de nascimento do novo titular.
+Validação: Deve corresponder à data de nascimento cadastrada na base de dados do CPF do cpfSubstituto."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__transfTit__id__dtNascto" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.transfTit.dtNascto'}}" name="[evtDeslig][infoDeslig][transfTit][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="mudancaCPF__div">
+    <div class="col-md-12">
+        <h4>Informação do novo CPF do trabalhador.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="novoCPF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>novoCPF<a data-toggle="tooltip" title="Preencher com o novo CPF do trabalhador.
+Validação: Deve ser um CPF válido e diferente do CPF do empregador e do antigo CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__mudancaCPF__id__novoCPF" maxlength="11" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.mudancaCPF.novoCPF'}}" name="[evtDeslig][infoDeslig][mudancaCPF][novoCPF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="verbasResc__div">
+    <div class="col-md-12">
+        <h4>Grupo onde são prestadas as informações relativas às verbas devidas ao trabalhador na rescisão contratual.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="dmDev__div">
+    <div class="col-md-12">
+        <h4>Identificação de cada um dos demonstrativos de valores devidos ao trabalhador.
+Regra de validação:
+REGRA_DEMONSTRATIVO</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="ideDmDev__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>ideDmDev<a data-toggle="tooltip" title="Identificador atribuído pela empresa para o demonstrativo de valores devidos ao trabalhador relativo a verbas rescisórias.
+Validação: Deve ser um identificador único dentro da mesma competência (mês/ano da data de desligamento) para cada um dos demonstrativos do trabalhador.
+Regra de validação:
+REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__id__ideDmDev" maxlength="30" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.ideDmDev'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][ideDmDev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoPerApur__div">
+    <div class="col-md-12">
+        <h4>Verbas rescisórias relativas ao mês/ano da data do desligamento.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="ideEstabLot__div">
+    <div class="col-md-12">
+        <h4>Identificação do estabelecimento e da lotação nos quais o trabalhador possui remuneração no período de apuração. O estabelecimento identificado no grupo pode ser: o número do CNPJ do estabelecimento da própria empresa (matriz/filial), o número da obra (própria) no CNO, ou o número do CAEPF (no caso de pessoa física obrigada a inscrição no Cadastro de Atividade Econômica da Pessoa Física).</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">tpInsc</label>
+            <select name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][tpInsc]" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][tpInsc]" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">nrInsc</label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__id__nrInsc_disabled" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][nrInsc]" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="codLotacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>codLotacao<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__id__codLotacao" maxlength="30" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.codLotacao'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="detVerbas__div">
+    <div class="col-md-12">
+        <h4>Detalhamento das verbas rescisórias devidas ao trabalhador. Deve haver pelo menos uma rubrica de folha, mesmo que o valor líquido a ser pago ao trabalhador seja 0 (zero) em função de descontos.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>codRubr<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.
+Validação: Não pode ser utilizada rubrica cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de dtDeslig >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__detVerbas__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.detVerbas.codRubr'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][detVerbas][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>ideTabRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__detVerbas__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.detVerbas.ideTabRubr'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][detVerbas][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>qtdRubr<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.detVerbas.qtdRubr'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][detVerbas][qtdRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>fatorRubr<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário. Ex.: Adicional de horas extras 50%, relacionado a uma rubrica de horas extras: Fator = 50.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__detVerbas__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.detVerbas.fatorRubr'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][detVerbas][fatorRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>vrRubr<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__detVerbas__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.detVerbas.vrRubr'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][detVerbas][vrRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indApurIR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR
+Validação: Informação obrigatória e exclusiva se mês/ano de dtDeslig >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__detVerbas__id__indApurIR" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][detVerbas][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.detVerbas.indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.detVerbas.indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoAgNocivo__div">
+    <div class="col-md-12">
+        <h4>Grupo referente ao detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="grauExp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>grauExp<a data-toggle="tooltip" title="Preencher com o código que representa o grau de exposição a agentes nocivos, conforme Tabela 02.
+Valores válidos:
+1 - Não ensejador de aposentadoria especial
+2 - Ensejador de aposentadoria especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)
+3 - Ensejador de aposentadoria especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)
+4 - Ensejador de aposentadoria especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__infoAgNocivo__id__grauExp" maxlength="1" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.infoAgNocivo.grauExp'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][infoAgNocivo][grauExp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoSimples__div">
+    <div class="col-md-12">
+        <h4>Informação relativa a empresas enquadradas no regime de tributação Simples Nacional.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="indSimples__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indSimples<a data-toggle="tooltip" title="Indicador de contribuição substituída.
+Valores válidos:
+1 - Contribuição substituída integralmente
+2 - Contribuição não substituída
+3 - Contribuição não substituída concomitante com contribuição substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerApur__ideEstabLot__infoSimples__id__indSimples" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerApur][ideEstabLot][infoSimples][indSimples]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.infoSimples.indSimples' '1' %}selected{% endifequal %}>1 - Contribuição substituída integralmente</option><option value='2' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.infoSimples.indSimples' '2' %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value='3' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerApur.ideEstabLot.infoSimples.indSimples' '3' %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoPerAnt__div">
+    <div class="col-md-12">
+        <h4>Remuneração relativa a períodos anteriores, devida em função de acordos coletivos, legislação específica, convenção coletiva de trabalho, dissídio ou conversão de licença saúde em acidente de trabalho.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="ideADC__div">
+    <div class="col-md-12">
+        <h4>Identificação do instrumento ou situação ensejadora da remuneração relativa a períodos de apuração anteriores.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="dtAcConv__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>dtAcConv<a data-toggle="tooltip" title="Data da assinatura do acordo, convenção coletiva, sentença normativa ou da conversão da licença saúde em acidente de trabalho.
+Validação: Informação obrigatória se tpAcConv = [A, B, C, D, E]. Se preenchida, seu mês/ano deve ser igual ou anterior ao mês/ano da data de desligamento, em dtDeslig. A data deve ser igual ou posterior a 01/01/1890."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__id__dtAcConv" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.dtAcConv'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][dtAcConv]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAcConv__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>tpAcConv<a data-toggle="tooltip" title="Tipo do instrumento ou situação ensejadora da remuneração relativa a períodos de apuração anteriores.
+Valores válidos:
+A - Acordo Coletivo de Trabalho
+B - Legislação federal, estadual, municipal ou distrital
+C - Convenção Coletiva de Trabalho
+D - Sentença normativa - Dissídio
+E - Conversão de licença saúde em acidente de trabalho
+G - Antecipação de diferenças de acordo, convenção ou dissídio coletivo
+H - Recolhimento mensal de FGTS anterior ao início de obrigatoriedade dos eventos periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__id__tpAcConv" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][tpAcConv]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='A' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.tpAcConv' 'A' %}selected{% endifequal %}>A - Acordo Coletivo de Trabalho</option><option value='B' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.tpAcConv' 'B' %}selected{% endifequal %}>B - Legislação federal, estadual, municipal ou distrital</option><option value='C' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.tpAcConv' 'C' %}selected{% endifequal %}>C - Convenção Coletiva de Trabalho</option><option value='D' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.tpAcConv' 'D' %}selected{% endifequal %}>D - Sentença normativa - Dissídio</option><option value='E' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.tpAcConv' 'E' %}selected{% endifequal %}>E - Conversão de licença saúde em acidente de trabalho</option><option value='G' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.tpAcConv' 'G' %}selected{% endifequal %}>G - Antecipação de diferenças de acordo, convenção ou dissídio coletivo</option><option value='H' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.tpAcConv' 'H' %}selected{% endifequal %}>H - Recolhimento mensal de FGTS anterior ao início de obrigatoriedade dos eventos periódicos</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>dsc<a data-toggle="tooltip" title="Descrição do instrumento ou situação que originou o pagamento das verbas relativas a períodos anteriores."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__id__dsc" maxlength="255" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.dsc'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][dsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="idePeriodo__div">
+    <div class="col-md-12">
+        <h4>Identificação do período ao qual se referem as diferenças de remuneração.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>perRef<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de remuneração, no formato AAAA-MM.
+Validação: Deve ser igual ou anterior ao mês/ano da data do desligamento, informada em dtDeslig.
+Deve ser informado no formato AAAA-MM.
+Se tpAcConv = [H], deve ser anterior ao início dos eventos periódicos para o empregador no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__id__perRef" maxlength="7" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.perRef'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideEstabLot__div">
+    <div class="col-md-12">
+        <h4>Identificação do estabelecimento e da lotação aos quais se referem as diferenças de remuneração do mês identificado no grupo superior.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">tpInsc</label>
+            <select name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][tpInsc]" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__id__tpInsc_disabled" disabled="">
+                <option value="">---------</option>
+                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
+                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
+                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
+                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+            <input type="hidden" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][tpInsc]" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__id__tpInsc" value="{{original.tpinsc}}">
+        </div>
+    </div>
+</div>
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label text-right">nrInsc</label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__id__nrInsc_disabled" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][nrInsc]" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__id__nrInsc" value="{{original.nrinsc}}">
+        </div>
+    </div>
+</div>
+<div id="codLotacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>codLotacao<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__id__codLotacao" maxlength="30" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.codLotacao'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="detVerbas__div">
+    <div class="col-md-12">
+        <h4>Detalhamento das verbas rescisórias devidas ao trabalhador. Deve haver pelo menos uma rubrica de folha, mesmo que o valor líquido a ser pago ao trabalhador seja 0 (zero) em função de descontos.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>codRubr<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.
+Validação: Não pode ser utilizada rubrica cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de dtDeslig >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__detVerbas__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.detVerbas.codRubr'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][detVerbas][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>ideTabRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__detVerbas__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.detVerbas.ideTabRubr'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][detVerbas][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>qtdRubr<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.detVerbas.qtdRubr'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][detVerbas][qtdRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>fatorRubr<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário. Ex.: Adicional de horas extras 50%, relacionado a uma rubrica de horas extras: Fator = 50.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__detVerbas__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.detVerbas.fatorRubr'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][detVerbas][fatorRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>vrRubr<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__detVerbas__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.detVerbas.vrRubr'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][detVerbas][vrRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indApurIR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR
+Validação: Informação obrigatória e exclusiva se mês/ano de dtDeslig >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__detVerbas__id__indApurIR" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][detVerbas][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.detVerbas.indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.detVerbas.indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoAgNocivo__div">
+    <div class="col-md-12">
+        <h4>Grupo referente ao detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="grauExp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>grauExp<a data-toggle="tooltip" title="Preencher com o código que representa o grau de exposição a agentes nocivos, conforme Tabela 02.
+Valores válidos:
+1 - Não ensejador de aposentadoria especial
+2 - Ensejador de aposentadoria especial - FAE15_12% (15 anos de contribuição e alíquota de 12%)
+3 - Ensejador de aposentadoria especial - FAE20_09% (20 anos de contribuição e alíquota de 9%)
+4 - Ensejador de aposentadoria especial - FAE25_06% (25 anos de contribuição e alíquota de 6%)"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__infoAgNocivo__id__grauExp" maxlength="1" value="{{original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.infoAgNocivo.grauExp'}}" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][infoAgNocivo][grauExp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+<div id="infoSimples__div">
+    <div class="col-md-12">
+        <h4>Informação relativa a empresas enquadradas no regime de tributação Simples Nacional.</h4>
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="indSimples__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>indSimples<a data-toggle="tooltip" title="Indicador de contribuição substituída.
+Valores válidos:
+1 - Contribuição substituída integralmente
+2 - Contribuição não substituída
+3 - Contribuição não substituída concomitante com contribuição substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtDeslig__infoDeslig__verbasResc__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__infoSimples__id__indSimples" name="[evtDeslig][infoDeslig][verbasResc][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][infoSimples][indSimples]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.infoSimples.indSimples' '1' %}selected{% endifequal %}>1 - Contribuição substituída integralmente</option><option value='2' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.infoSimples.indSimples' '2' %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value='3' {% ifequal original.evento_json|readjson:'evtDeslig.infoDeslig.verbasResc.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.infoSimples.indSimples' '3' %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+
+</div>
+
+</form>
+<script type="text/javascript">
+function set_evento_json() {
+    var dst = document.getElementById("id_evento_json");
+    var dst_read = document.getElementById("id_evento_json_read");
+    var obj = $('#form_json').serializeJSON();
+    dst.value = JSON.stringify(obj);
+    dst_read.value = JSON.stringify(obj);
+};
+$(document).ready(function(){
+    set_evento_json();
+});
+</script>

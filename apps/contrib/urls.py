@@ -13,27 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls.static import static
-from config import settings
+from django.urls import path
+from .views import dashboard_json
 
-admin.site.site_header = 'eMensageria'
-admin.site.site_title = 'eMensageria'
-admin.site.index_title = 'eMensageria'
-
+app_name = 'contrib'
 
 urlpatterns = [
-    path('contrib/',
-        include("apps.contrib.urls", namespace='contrib')
-        ),
-    path('esocial/',
-        include("apps.esocial.urls", namespace='esocial')
-        ),
-    path('reinf/',
-        include("apps.reinf.urls", namespace='reinf')
-        ),
-#    path('static/', static),
-    path('', admin.site.urls),
-]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('dashboard-json/', 
+    dashboard_json, name='dashboard_json'),
+]
