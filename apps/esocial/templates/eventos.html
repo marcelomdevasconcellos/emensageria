@@ -247,6 +247,28 @@ label {
                             </div>
                         </div>
                         {% endif %}
+                        {% if original.pk and original.status == STATUS_EVENTO_AGUARD_ENVIO %}
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="submit"
+                                       value="Enviar"
+                                       class="btn btn-primary form-control"
+                                       name="_enviar"
+                                       style="margin-bottom: 3px; margin-right:3px">
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if original.pk and original.status == STATUS_EVENTO_ENVIADO %}
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="submit"
+                                       value="Consultar"
+                                       class="btn btn-primary form-control"
+                                       name="_consultar"
+                                       style="margin-bottom: 3px; margin-right:3px">
+                            </div>
+                        </div>
+                        {% endif %}
                         {% if original.pk and original.transmissor_evento %}
                         <div class="col-md-3">
                             <div class="form-group">

@@ -779,6 +779,25 @@ class Eventos(BaseModelEsocial):
         else:
             return (2, '''Evento já vinculado a um tranmissor''')
 
+    def enviar(self):
+        from .choices import (
+            STATUS_TRANSMISSOR_CADASTRADO,
+            EVENTOS_GRUPOS_TABELAS, )
+        tra = Transmissor.objects. \
+            get(nrinsc=self.nrinsc)
+        tra_evt_data = {
+            'transmissor': tra,
+            'empregador_tpinsc': tra.tpinsc,
+            'empregador_nrinsc': tra.nrinsc,
+            'grupo': EVENTOS_GRUPOS_TABELAS,
+            'status': STATUS_TRANSMISSOR_CADASTRADO,
+        }
+        tra_evt = TransmissorEventos(**tra_evt_data)
+        tra_evt.save()
+        self.transmissor_evento = tra_evt
+        self.save()
+        return tra_evt.enviar()
+
     def assinar(self, xml_obj):
         from signxml import XMLSigner, methods
         if not self.transmissor_evento:
@@ -810,8 +829,9 @@ class Eventos(BaseModelEsocial):
         ET.register_namespace("ds", f"http://www.w3.org/2000/09/xmldsig#")
         xml_obj = ET.fromstring(xml)
         xml_obj.set('xmlns', f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
-        #xml_obj.set('xmlns', f"http://www.w3.org/2000/09/xmldsig#")
-        #xml_obj.find(EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
+
+        # xml_obj.set('xmlns', f"http://www.w3.org/2000/09/xmldsig#")
+        # xml_obj.find(EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
 
         def recursive_remove(elem2):
             for elem in elem2:
@@ -839,7 +859,6 @@ class Eventos(BaseModelEsocial):
         save_file(self.xml_file(), evento_xml.decode("utf-8"))
         Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode("utf-8"))
 
-
     def validar(self):
         from config.functions import validar_schema
         err = validar_schema(self.xsd_file(), self.xml_file())
@@ -854,7 +873,6 @@ class Eventos(BaseModelEsocial):
         else:
             self.ocorrencias_json = None
             self.save()
-
 
     def duplicar_evento(self):
 

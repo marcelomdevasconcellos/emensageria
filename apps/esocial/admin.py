@@ -367,6 +367,16 @@ class EventosAdmin(AuditoriaAdmin):
             obj.duplicar_evento()
             self.message_user(request, "Novo evento criado com sucesso! %s" % obj.identidade)
             return HttpResponseRedirect(".")
+
+        elif "_enviar" in request.POST:
+            obj.enviar()
+            self.message_user(request, "Evento enviado com sucesso! %s" % obj.identidade)
+            return HttpResponseRedirect(".")
+
+        elif "_consultar" in request.POST:
+            obj.transmissor_evento.consultar()
+            self.message_user(request, "Evento consultado com sucesso! %s" % obj.identidade)
+            return HttpResponseRedirect(".")
         
         elif "_abrir_evento_para_edicao" in request.POST:
             retorno = obj.abrir_evento_para_edicao()

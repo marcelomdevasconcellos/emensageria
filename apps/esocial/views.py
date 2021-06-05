@@ -121,24 +121,8 @@ def visualizar_xml(request, pk):
 
 @login_required
 def enviar_evento(request, pk):
-    from .choices import (
-        STATUS_TRANSMISSOR_CADASTRADO,
-        EVENTOS_GRUPOS_TABELAS, )
     evt = get_object_or_404(Eventos, id=pk)
-    tra = Transmissor.objects. \
-        get(nrinsc=evt.nrinsc)
-    tra_evt_data = {
-        'transmissor': tra,
-        'empregador_tpinsc': tra.tpinsc,
-        'empregador_nrinsc': tra.nrinsc,
-        'grupo': EVENTOS_GRUPOS_TABELAS,
-        'status': STATUS_TRANSMISSOR_CADASTRADO,
-    }
-    tra_evt = TransmissorEventos(**tra_evt_data)
-    tra_evt.save()
-    evt.transmissor_evento = tra_evt
-    evt.save()
-    response = tra_evt.enviar()
+    response = evt.enviar()
     if request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     return HttpResponse(json.dumps(response), content_type='application/json')
