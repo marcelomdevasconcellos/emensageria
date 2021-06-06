@@ -15,6 +15,8 @@ class EventosSerializer(ModelSerializer):
         model = Eventos
         fields = '__all__'
         read_only_fields = (
+            'tpamb',
+            'procemi',
             'status',
             'transmissor_evento',
             'validacao_precedencia',

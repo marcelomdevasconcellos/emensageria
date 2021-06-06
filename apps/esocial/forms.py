@@ -14,10 +14,10 @@ class EventosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventosForm, self).__init__(*args, **kwargs)
         self.fields['tpamb'].disabled = True
-        if config.ESOCIAL_TP_AMB == 'Produção':
-            self.fields['tpamb'].initial = 1
-        else:
-            self.fields['tpamb'].initial = 2
+        # if config.ESOCIAL_TP_AMB == 'Produção':
+        #     self.fields['tpamb'].initial = 1
+        # else:
+        #     self.fields['tpamb'].initial = 2
 
         if self.instance.pk and self.instance.status == STATUS_EVENTO_CADASTRADO:
             self.fields['evento'].disabled = True

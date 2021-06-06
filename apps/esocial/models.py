@@ -656,10 +656,10 @@ class Eventos(BaseModelEsocial):
         max_length=15, )
     tpamb = models.IntegerField(
         'Identificação do ambiente',
-        choices=CHOICES_TPAMB, null=True, )
+        choices=CHOICES_TPAMB, default=2)
     procemi = models.IntegerField(
         'Processo de emissão do evento',
-        choices=CHOICES_PROCEMI, null=True, default=1, )
+        choices=CHOICES_PROCEMI, default=1, )
     verproc = models.CharField(
         'Versão do processo',
         max_length=20, null=True, )

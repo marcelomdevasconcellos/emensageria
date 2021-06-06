@@ -1,18 +1,24 @@
+TPAMB = {
+    'Produção': 1,
+    'Produção Restrita': 2,
+}
+
+
 URLS_ESOCIAL = {
-    'Produção': {
-        'WsEnviarLoteEventos': {
-            'url': 'https://webservices.producaorestrita.esocial.gov.br/servicos'
-                   '/empregador/enviarloteeventos/WsEnviarLoteEventos.svc',
-            'action': 'http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/'
-                      'ServicoEnviarLoteEventos/EnviarLoteEventos',
-        },
-        'WsConsultarLoteEventos': {
-            'url': 'https://webservices.producaorestrita.esocial.gov.br/servicos/empregador'
-                   '/consultarloteeventos/WsConsultarLoteEventos.svc',
-            'action': 'http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/'
-                      'consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos',
-        },
-    },
+    # 'Produção': {
+    #     'WsEnviarLoteEventos': {
+    #         'url': 'https://webservices.producaorestrita.esocial.gov.br/servicos'
+    #                '/empregador/enviarloteeventos/WsEnviarLoteEventos.svc',
+    #         'action': 'http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/'
+    #                   'ServicoEnviarLoteEventos/EnviarLoteEventos',
+    #     },
+    #     'WsConsultarLoteEventos': {
+    #         'url': 'https://webservices.producaorestrita.esocial.gov.br/servicos/empregador'
+    #                '/consultarloteeventos/WsConsultarLoteEventos.svc',
+    #         'action': 'http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/'
+    #                   'consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos',
+    #     },
+    # },
     'Produção Restrita': {
         'WsEnviarLoteEventos': {
             'url': 'https://webservices.producaorestrita.esocial.gov.br/servicos'
@@ -30,15 +36,7 @@ URLS_ESOCIAL = {
 }
 
 STATUS_EVENTO_CADASTRADO = 0
-# STATUS_EVENTO_IMPORTADO = 1
-# STATUS_EVENTO_DUPLICADO = 2
-# STATUS_EVENTO_GERADO = 3
-# STATUS_EVENTO_GERADO_ERRO = 4
-# STATUS_EVENTO_ASSINADO = 5
-# STATUS_EVENTO_ASSINADO_ERRO = 6
-# STATUS_EVENTO_VALIDADO = 7
 STATUS_EVENTO_VALIDADO_ERRO = 1
-# STATUS_EVENTO_AGUARD_PRECEDENCIA = 9
 STATUS_EVENTO_AGUARD_ENVIO = 2
 STATUS_EVENTO_ENVIADO = 3
 STATUS_EVENTO_ENVIADO_ERRO = 4
