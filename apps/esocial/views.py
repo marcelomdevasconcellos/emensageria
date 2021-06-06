@@ -106,6 +106,7 @@ class EventosApiDetail(generics.RetrieveUpdateDestroyAPIView):
             status=0)
 """
 
+
 @login_required
 def visualizar_xml(request, pk):
     evt = get_object_or_404(Eventos, id=pk)
@@ -354,11 +355,11 @@ def relatorios_imprimir(request, pk, output='pdf'):
 @login_required
 def arquivos_visualizar(request, pk):
     import os
-    from config.settings import BASE_DIR
-    from .functions import read_file
+    from django.conf import settings
+    from config.functions import read_file
     arquivos = get_object_or_404(Arquivos, id=pk)
-
-    if not os.path.isfile('{}/{}'.format(BASE_DIR, arquivos.arquivo.name)):
+    path = os.path.join(settings.BASE_DIR, arquivos.arquivo.name)
+    if not os.path.isfile(path):
         messages.error(request, 'Arquivo não encontrado "%s"!' % arquivos.arquivo)
         return redirect('admin:esocial_arquivos_changelist')
 
