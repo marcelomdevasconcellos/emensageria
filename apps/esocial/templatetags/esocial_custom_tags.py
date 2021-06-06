@@ -48,6 +48,12 @@ def read_ocorrencias(string):
                  'codigo': o['ocorrencia'].get('codigo'),
                  'descricao': o['ocorrencia'].get('descricao'),
                  'localizacao': o['ocorrencia'].get('localizacao')})
+    elif obj.get('ocorrencias') and isinstance(obj['ocorrencias'].get('ocorrencia'), list):
+        for o in obj['ocorrencias'].get('ocorrencia'):
+            lista.append({'tipo': o.get('tipo'),
+                 'codigo': o.get('codigo'),
+                 'descricao': o.get('descricao'),
+                 'localizacao': o.get('localizacao')})
     else:
         lista.append({'tipo': obj['ocorrencias']['ocorrencia']['tipo'],
                       'codigo': obj['ocorrencias']['ocorrencia']['codigo'],

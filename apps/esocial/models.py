@@ -808,8 +808,9 @@ class Eventos(BaseModelEsocial):
             self.transmissor_evento.transmissor.certificado.senha)
         evt = esocial.xml.load_fromfile(self.xml_file())
         evt_signed = esocial.xml.sign(evt, cert_data)
-        xml_header = '<?xml version="1.0" encoding="UTF-8"?>'
-        evt_signed = ''.join([xml_header, etree.tostring(evt_signed).decode("utf-8")])
+        #xml_header = '<?xml version="1.0" encoding="UTF-8"?>'
+        #evt_signed = ''.join([xml_header, etree.tostring(evt_signed).decode("utf-8")])
+        evt_signed = etree.tostring(evt_signed).decode("utf-8")
         self.evento_xml = evt_signed
         self.save()
         save_file(self.xml_file(), evt_signed)
