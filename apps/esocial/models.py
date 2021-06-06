@@ -705,6 +705,15 @@ class Eventos(BaseModelEsocial):
     evento_xml = models.TextField("XML", null=True, blank=True)
     ocorrencias_json = models.TextField("Ocorrências", null=True, blank=True)
 
+    def retorno_envio(self):
+        return json.loads(self.retorno_envio_json)
+
+    def retorno_consulta(self):
+        return json.loads(self.retorno_consulta_json)
+
+    def ocorrencias(self):
+        return json.loads(self.ocorrencias_json)
+
     def __str__(self):
         return self.identidade
 

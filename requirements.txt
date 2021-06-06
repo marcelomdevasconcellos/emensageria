@@ -32,5 +32,11 @@ git+git://github.com/marcelomdevasconcellos/django-adminlte-ui.git#egg=django-ad
 git+git://github.com/marcelomdevasconcellos/libesocial.git#egg=libesocial #original: libesocial
 beautifulsoup4==4.9.3
 pandas==1.2.4
-django-allauth==0.41.0
 lxml
+coreapi
+django-filter
+djangorestframework-simplejwt==4.7.1
+django-rest-passwordreset==1.1.0
+django-cors-headers==3.7.0
+reportlab
+django-allauth==0.41.0

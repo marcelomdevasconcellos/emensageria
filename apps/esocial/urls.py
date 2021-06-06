@@ -15,8 +15,7 @@ Including another URLconf
 
 """
 
-from django.urls import path
-
+from django.urls import path, include
 from .views import *
 
 app_name = 'esocial'
@@ -39,8 +38,7 @@ urlpatterns = [
          visualizar_xml,
          name='visualizar_xml'),
 
-    path('api/',
-         eventos_api_list.as_view()),
+    path("api/", include("apps.esocial.api.urls")),
 
     path('consultar/<int:pk>/',
          consultar_evento,

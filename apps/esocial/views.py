@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404, render
-from rest_framework import generics
 from wkhtmltopdf.views import PDFTemplateResponse
 
 from .choices import (
@@ -16,8 +15,6 @@ from .choices import (
     STATUS_EVENTO_PROCESSADO, )
 from .models import (
     Eventos,
-    EventosSerializer,
-    Transmissor,
     TransmissorEventos,
     Arquivos,
     Relatorios, )
@@ -49,9 +46,11 @@ def dashboard_json(request):
     return HttpResponse(json.dumps(dashboars_data, indent=4))
 
 
-class eventos_api_list(generics.ListCreateAPIView):
+"""
+class EventosApiList(generics.ListCreateAPIView):
     queryset = Eventos.objects.all()
     serializer_class = EventosSerializer
+    filterset_class = EventosFilter
 
     def perform_create(self, serializer):
         from config.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
@@ -78,7 +77,7 @@ class eventos_api_list(generics.ListCreateAPIView):
             status=0)
 
 
-class eventos_api_detail(generics.RetrieveUpdateDestroyAPIView):
+class EventosApiDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Eventos.objects.all()
     serializer_class = EventosSerializer
 
@@ -105,7 +104,7 @@ class eventos_api_detail(generics.RetrieveUpdateDestroyAPIView):
             versao=VERSAO_LAYOUT_ESOCIAL,
             arquivo_original=0,
             status=0)
-
+"""
 
 @login_required
 def visualizar_xml(request, pk):
