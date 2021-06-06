@@ -1,20 +1,16 @@
 # eMensageria
 
-eMensageria - Sistema de mensageria de eventos opensource do eSocial e EFD-Reinf <www.emensageria.com.br>
+eMensageria - Sistema de mensageria de eventos opensource do eSocial <www.emensageria.com.br>
 (em desenvolvimento)
 
 ## Versões compatíveis do eSocial
 
 - S 1.0
 
-## Versões compatíveis do EFD-Reinf
-
-- 1.5.1 (em desenvolvimento)
-
 ## Requisitos de Sistema
 
 - Python (versão 3.8.5);
-- Django (versão 2.2);
+- Django (versão 3.2);
 - Postgres 12;
 - outros requisitos no arquivo requirements.txt
 
@@ -55,5 +51,3 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 Marcelo Medeiros de Vasconcellos <marcelomdevasconcellos@gmail.com>
 
 Para maiores informações acesse: www.emensageria.com.br
-
-

@@ -10,9 +10,9 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.db import models
 
+from config.functions import (create_dir, read_file, save_file)
 from config.mixins import BaseModelEsocial, BaseModelSerializer, BaseModel
 from .choices import *
-from config.functions import (create_dir, read_file, save_file)
 
 get_model = apps.get_model
 
@@ -214,7 +214,7 @@ class TransmissorEventos(BaseModelEsocial):
         for evt in evts:
             evts_txt += '<evento Id="{}">{}</evento>'.format(
                 evt.identidade,
-                str(read_file(evt.xml_file())))
+                read_file(evt.xml_file()))
         return evts_txt
 
     def make_send(self):
@@ -798,20 +798,38 @@ class Eventos(BaseModelEsocial):
         self.save()
         return tra_evt.enviar()
 
-    def assinar(self, xml_obj):
-        from signxml import XMLSigner, methods
-        if not self.transmissor_evento:
-            self.vincular_transmissor()
-        cert = self.transmissor_evento.transmissor.certificado.create_pem_files()
-        signed_root = XMLSigner(
-            method=methods.enveloped,
-            signature_algorithm='rsa-sha256',
-            digest_algorithm='sha256',
-            c14n_algorithm='http://www.w3.org/TR/2001/REC-xml-c14n-20010315'). \
-            sign(xml_obj,
-                 key=cert['key_str'],
-                 cert=cert['cert_str'])
-        return signed_root
+    def assinar(self):
+        import esocial.xml
+        import esocial.utils
+        from lxml import etree
+
+        cert_data = esocial.utils.pkcs12_data(
+            self.transmissor_evento.transmissor.certificado.certificado.file.name,
+            self.transmissor_evento.transmissor.certificado.senha)
+        evt = esocial.xml.load_fromfile(self.xml_file())
+        evt_signed = esocial.xml.sign(evt, cert_data)
+        xml_header = '<?xml version="1.0" encoding="UTF-8"?>'
+        evt_signed = ''.join([xml_header, etree.tostring(evt_signed).decode("utf-8")])
+        self.evento_xml = evt_signed
+        self.save()
+        save_file(self.xml_file(), evt_signed)
+        #esocial.xml.dump_tofile(evt_signed, self.xml_file())
+
+
+        # from signxml import XMLSigner, methods, XMLVerifier
+        # if not self.transmissor_evento:
+        #     self.vincular_transmissor()
+        # cert = self.transmissor_evento.transmissor.certificado.create_pem_files()
+        # signed_root = XMLSigner(
+        #     method=methods.enveloped,
+        #     signature_algorithm='rsa-sha256',
+        #     digest_algorithm='sha256',
+        #     c14n_algorithm='http://www.w3.org/TR/2001/REC-xml-c14n-20010315'). \
+        #     sign(xml_obj,
+        #          key=cert['key_str'],
+        #          cert=cert['cert_str'])
+        # #verified_data = XMLVerifier().verify(signed_root).signed_xml
+        # return signed_root
 
     def create_xml(self):
         from json2xml import json2xml
@@ -826,7 +844,7 @@ class Eventos(BaseModelEsocial):
                                 attr_type=False).to_xml().decode()
         evento_codigo = EVENTO_COD[self.evento]['codigo']
         ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
-        ET.register_namespace("ds", f"http://www.w3.org/2000/09/xmldsig#")
+        #ET.register_namespace("ds", f"http://www.w3.org/2000/09/xmldsig#")
         xml_obj = ET.fromstring(xml)
         xml_obj.set('xmlns', f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
 
@@ -851,13 +869,11 @@ class Eventos(BaseModelEsocial):
             for elem in xml_obj:
                 recursive_remove(elem)
 
-        # xml_obj.set('Id', self.identidade)
         xml_obj.find(EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
-        xml_obj = self.assinar(xml_obj)
-
         evento_xml = ET.tostring(xml_obj)
-        save_file(self.xml_file(), evento_xml.decode("utf-8"))
-        Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode("utf-8"))
+        Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode())
+        save_file(self.xml_file(), evento_xml.decode())
+        xml_obj = self.assinar()
 
     def validar(self):
         from config.functions import validar_schema

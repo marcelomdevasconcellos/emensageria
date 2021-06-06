@@ -2,7 +2,7 @@ from django import forms
 
 from .choices import STATUS_EVENTO_CADASTRADO
 from .models import Eventos, Certificados, Arquivos
-
+from constance import config
 
 class EventosForm(forms.ModelForm):
     evento_json = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -13,6 +13,11 @@ class EventosForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(EventosForm, self).__init__(*args, **kwargs)
+        self.fields['tpamb'].disabled = True
+        if config.ESOCIAL_TP_AMB == 'Produção':
+            self.fields['tpamb'].initial = 1
+        else:
+            self.fields['tpamb'].initial = 2
 
         if self.instance.pk and self.instance.status == STATUS_EVENTO_CADASTRADO:
             self.fields['evento'].disabled = True

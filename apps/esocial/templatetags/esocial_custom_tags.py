@@ -42,11 +42,17 @@ def read_ocorrencias(string):
     import json
     lista = []
     obj = json.loads(string or '{}')
-    for o in obj.get('ocorrencias'):
-        lista.append({'tipo': obj['ocorrencias'][o]['tipo'],
-             'codigo': obj['ocorrencias'][o]['codigo'],
-             'descricao': obj['ocorrencias'][o]['descricao'],
-             'localizacao': obj['ocorrencias'][o]['localizacao']})
+    if isinstance(obj.get('ocorrencias'), list):
+        for o in obj.get('ocorrencias'):
+            lista.append({'tipo': o['ocorrencia'].get('tipo'),
+                 'codigo': o['ocorrencia'].get('codigo'),
+                 'descricao': o['ocorrencia'].get('descricao'),
+                 'localizacao': o['ocorrencia'].get('localizacao')})
+    else:
+        lista.append({'tipo': obj['ocorrencias']['ocorrencia']['tipo'],
+                      'codigo': obj['ocorrencias']['ocorrencia']['codigo'],
+                      'descricao': obj['ocorrencias']['ocorrencia']['descricao'],
+                      'localizacao': obj['ocorrencias']['ocorrencia']['localizacao']})
     return lista
 
 
