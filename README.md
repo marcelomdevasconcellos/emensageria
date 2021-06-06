@@ -1,6 +1,6 @@
 # eMensageria
 
-eMensageria - Sistema de mensageria de eventos opensource do eSocial <www.emensageria.com.br>
+eMensageria - Sistema de Mensageria Opensource do eSocial <www.emensageria.com.br>
 (em desenvolvimento)
 
 ## Versões compatíveis do eSocial
@@ -16,7 +16,7 @@ eMensageria - Sistema de mensageria de eventos opensource do eSocial <www.emensa
 
 ## Licença AGPL-3
 
-eMensageria - Sistema de mensageria de eventos opensource do eSocial e EFD-Reinf  
+eMensageria - Sistema de Mensageria Opensource do eSocial
 Copyright (C) 2021  Marcelo Medeiros de Vasconcellos
 
 This program is free software: you can redistribute it and/or modify
@@ -35,16 +35,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ## Backlog
 
 - Docker
-- Mapa de processamento
-- Chamada de funções no Dashboard
 - Impressão de recibos de eventos
 - Impressão de recibos de transmissores
 - Impressão e geração de relatórios
-- Recuperação de arquivos
-- Reprocessamento de arquivos
-- Revisão de funções de importação
-- Atualização dos eventos do eSocial para as versões vigentes
-- Atualização dos eventos do Reinf para as versões vigentes
+- Importação e recuperação de arquivos
 
 ## Contato
 
