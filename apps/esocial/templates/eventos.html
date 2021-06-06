@@ -282,18 +282,18 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% ifequal original.evento 's1000' %}
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <a href="#">
-                                    <span class="btn btn-danger form-control" style="margin-bottom: 3px; margin-right:3px">
-                                        <i class="fa fa-gear"></i>&nbsp;
-                                        Limpar base de Produção Restrita
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                        {% endifequal %}
+{#                        {% ifequal original.evento 's1000' %}#}
+{#                        <div class="col-md-3">#}
+{#                            <div class="form-group">#}
+{#                                <a href="#">#}
+{#                                    <span class="btn btn-danger form-control" style="margin-bottom: 3px; margin-right:3px">#}
+{#                                        <i class="fa fa-gear"></i>&nbsp;#}
+{#                                        Limpar base de Produção Restrita#}
+{#                                    </span>#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        {% endifequal %}#}
                         {% if original.pk and original.status == STATUS_EVENTO_PROCESSADO %}
                         <div class="col-md-3">
                             <div class="form-group">
