@@ -5,7 +5,7 @@ django-constance==2.8.0
 django-cron==0.5.1
 django-currentuser==0.5.3
 django-environ==0.4.5
-django-filter==2.0.0
+# django-filter==2.0.0
 # django-localflavor-br==1.0
 django-localflavor==2.2
 django-picklefield==2.0
