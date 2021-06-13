@@ -30,7 +30,7 @@
       </ul>
    </li>
 {% endif %}
-{% comment %}{% if perms.reinf.view_eventos %}
+{% comment %}{% if perms.reinf.view_eventos or perms.reinf.view_arquivos or perms.reinf.view_certificados or perms.reinf.view_relatorios or perms.reinf.view_transmissor or perms.reinf.view_transmissoreventos %}
    <li class="treeview{% if 'reinf' in request.get_full_path %} active{% endif %}">
       <a href="javascript:void(0)">
       <i class="fa fa-database"></i>
