@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.contrib import messages
 from django.utils.safestring import mark_safe
-
-from config.mixins import AuditoriaAdmin, AuditoriaAdminStackedInlineInline
+from constance import config
+from django_currentuser.middleware import get_current_user, get_current_authenticated_user
+from config.mixins import AuditoriaAdminEventos, AuditoriaAdminStackedInlineInline
 from .forms import (
     EventosForm,
     CertificadosForm,
@@ -19,7 +20,8 @@ from .models import (
 )
 
 
-class CertificadosAdmin(AuditoriaAdmin):
+class CertificadosAdmin(AuditoriaAdminEventos):
+
     form = CertificadosForm
     search_fields = (
         'nome',)
@@ -30,7 +32,7 @@ class CertificadosAdmin(AuditoriaAdmin):
 admin.site.register(Certificados, CertificadosAdmin)
 
 
-class ArquivosAdmin(AuditoriaAdmin):
+class ArquivosAdmin(AuditoriaAdminEventos):
     
     def arquivo_visualizar(self, obj):
         from django.urls import reverse
@@ -68,7 +70,8 @@ class ArquivosAdmin(AuditoriaAdmin):
 admin.site.register(Arquivos, ArquivosAdmin)
 
 
-class RelatoriosAdmin(AuditoriaAdmin):
+class RelatoriosAdmin(AuditoriaAdminEventos):
+
     search_fields = (
         'titulo', )
     list_filter = ()
@@ -79,7 +82,7 @@ class RelatoriosAdmin(AuditoriaAdmin):
 admin.site.register(Relatorios, RelatoriosAdmin)
 
 
-class TransmissorAdmin(AuditoriaAdmin):
+class TransmissorAdmin(AuditoriaAdminEventos):
 
     search_fields = (
         'transmissor_tpinsc',
@@ -125,7 +128,7 @@ class TransmissorEventosArquivosInline(AuditoriaAdminStackedInlineInline):
         return False
 
 
-class TransmissorEventosAdmin(AuditoriaAdmin):
+class TransmissorEventosAdmin(AuditoriaAdminEventos):
     
     def recibo(self, obj):
         from django.urls import reverse
@@ -203,8 +206,8 @@ class TransmissorEventosAdmin(AuditoriaAdmin):
 admin.site.register(TransmissorEventos, TransmissorEventosAdmin)
 
 
-class EventosAdmin(AuditoriaAdmin):
-    
+class EventosAdmin(AuditoriaAdminEventos):
+
     def acoes(self, obj):
         from django.urls import reverse
         from .choices import (
@@ -314,7 +317,7 @@ class EventosAdmin(AuditoriaAdmin):
             'acoes',
     )
     fieldsets = (
-        ( None, {
+        (None, {
         'fields': (
             'versao', 
             'evento',

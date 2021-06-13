@@ -5,6 +5,8 @@ from django.db import models
 from django.forms import Select, Textarea
 from django_currentuser.db.models import CurrentUserField
 from rest_framework.serializers import ModelSerializer
+from constance import config
+from django_currentuser.middleware import get_current_user, get_current_authenticated_user
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -60,11 +62,20 @@ class BaseModel(models.Model):
         abstract = True
 
 
+class EventosManager(models.Manager):
+    def get_queryset(self):
+        current_user = get_current_user()
+        if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
+            return super().get_queryset().filter(created_by=current_user)
+        return super().get_queryset()
+
+
 class BaseModelEsocial(models.Model):
     created_by = CurrentUserField(related_name='%(class)s_created_by_esocial')
     updated_by = CurrentUserField(on_update=True, related_name='%(class)s_updated_by_esocial')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = EventosManager()
 
     class Meta:
         abstract = True
@@ -75,9 +86,34 @@ class BaseModelReinf(models.Model):
     updated_by = CurrentUserField(on_update=True, related_name='%(class)s_updated_by_reinf')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = EventosManager()
 
     class Meta:
         abstract = True
+
+
+class AuditoriaAdminEventos(admin.ModelAdmin):
+
+    def has_view_permission(self, request, obj=None):
+        current_user = get_current_user()
+        if current_user and not current_user.is_superuser and config.FILTER_BY_USER and \
+            obj and obj.created_by != current_user:
+            return False
+        return super().has_view_permission(request)
+
+    def get_queryset(self, request):
+        current_user = get_current_user()
+        queryset = super().get_queryset(request)
+        if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
+            return queryset.filter(created_by=current_user)
+        return queryset
+
+    readonly_fields = (
+        'created_at',
+        'created_by',
+        'updated_at',
+        'updated_by',
+    )
 
 
 class AuditoriaAdmin(admin.ModelAdmin):

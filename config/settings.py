@@ -214,6 +214,10 @@ CONSTANCE_CONFIG = {
          'Caminho relativo do local aonde serão armazenados os certificados',
          str),
 
+    'FILTER_BY_USER': (False,
+        'Cada usuário pode ver somente os que ele mesmo cadastrou. Os Super-usuários vêem todos os eventos',
+        bool),
+
     'LOGO_IMAGE_IN_LOGIN': (False,
         'Visualiza imagem do logotipo na tela de Login.',
         bool),
