@@ -144,3 +144,6 @@ apps/contrib/management/commands/*
 # VsCode
 *.code-workspace
 
+# media
+media/
+

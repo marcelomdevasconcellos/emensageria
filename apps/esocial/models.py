@@ -1000,7 +1000,7 @@ class EventosHistorico(BaseModelEsocial):
     }
     evt = models.ForeignKey(
         'Eventos',
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
         verbose_name='Evento',
         related_name='evento_esocial',
         blank=True, null=True, )

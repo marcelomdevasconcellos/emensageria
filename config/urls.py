@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from config import settings
 
@@ -25,15 +25,11 @@ admin.site.index_title = 'eMensageria'
 
 
 urlpatterns = [
-    path('contrib/',
-        include("apps.contrib.urls", namespace='contrib')
-        ),
-    path('esocial/',
-        include("apps.esocial.urls", namespace='esocial')
-        ),
-    path('reinf/',
-        include("apps.reinf.urls", namespace='reinf')
-        ),
-#    path('static/', static),
-    path('', admin.site.urls),
-]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('contrib/', include("apps.contrib.urls", namespace='contrib')),
+    path('esocial/', include("apps.esocial.urls", namespace='esocial')),
+    path('reinf/', include("apps.reinf.urls", namespace='reinf')),
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns.append(path('', admin.site.urls))

@@ -5,36 +5,41 @@
     <!-- Current language: {{ LANGUAGE_CODE }} -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>eMensageria - Sistema de mensageria de eventos opensource do eSocial e EFD-Reinf</title>
+    <title>eMensageria - Sistema de Mensageria Opensource do eSocial</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static "admin/ionicons/ionicons.min.css" %}">
     <!-- Theme style -->
-    <link rel="stylesheet" href={% static "admin/adminlte-dist/css/AdminLTE.min.css" %}>
+    <link rel="stylesheet" href="{% static "admin/adminlte-dist/css/AdminLTE.min.css" %}">
     <!-- iCheck -->
-    <link rel="stylesheet" href={% static "admin/plugins/iCheck/square/blue.css" %}>
+    <link rel="stylesheet" href="{% static "admin/plugins/iCheck/square/blue.css" %}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="{% static "js/html5shiv.min.js" %}"></script>
+    <script src="{% static "js/respond.min.js" %}"></script>
     <![endif]-->
 </head>
 <body class="hold-transition login-page">
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="/">
-            <b>
-                eMensageria
-            </b>
-        </a>
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="/">
+                    {% if config.LOGO_IMAGE_IN_LOGIN %}
+                        <img src="{{ MEDIA_URL }}{{config.LOGO_IMAGE}}" width="100%">
+                    {% endif %}
+                    <b>eMensageria</b>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- /.login-logo -->
@@ -91,11 +96,11 @@
 <!-- /.login-box -->
 
 <!-- jQuery 2.2.3 -->
-<script src={% static "admin/plugins/jQuery/jquery-2.2.3.min.js" %}></script>
+<script src="{% static "admin/plugins/jQuery/jquery-2.2.3.min.js" %}"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src={% static "admin/bootstrap/js/bootstrap.min.js" %}></script>
+<script src="{% static "admin/bootstrap/js/bootstrap.min.js" %}"></script>
 <!-- iCheck -->
-<script src={% static "admin/plugins/iCheck/icheck.min.js" %}></script>
+<script src="{% static "admin/plugins/iCheck/icheck.min.js" %}"></script>
 <script>
 $(function () {
     $('input').iCheck({

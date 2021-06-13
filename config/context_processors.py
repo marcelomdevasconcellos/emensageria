@@ -17,6 +17,7 @@ def admin_media(request):
         'DEBUG': settings.DEBUG,
         'DATABASE_NAME': settings.DATABASES['default']['NAME'],
         'get_tags': False,
+        'MEDIA_URL': settings.MEDIA_URL,
         'STATUS_EVENTO_CADASTRADO': STATUS_EVENTO_CADASTRADO,
         'STATUS_EVENTO_VALIDADO_ERRO': STATUS_EVENTO_VALIDADO_ERRO,
         'STATUS_EVENTO_AGUARD_ENVIO': STATUS_EVENTO_AGUARD_ENVIO,

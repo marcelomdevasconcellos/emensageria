@@ -72,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_currentuser.middleware.ThreadLocalUserMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -160,16 +161,16 @@ VERSOES_REINF = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = env('STATIC_ROOT')
-STATIC_URL = env('STATIC_URL')
+STATIC_ROOT = os.path.join(env('STATIC_ROOT', default='static'))
+STATIC_URL = env('STATIC_URL', default='/static/')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles')
 ]
 
 # Media files
 
-# MEDIA_ROOT = env('MEDIA_ROOT') or os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = env('MEDIA_URL')
+MEDIA_ROOT = os.path.join(BASE_DIR, env('MEDIA_ROOT', default='media'))
+MEDIA_URL = env('MEDIA_URL', default='/media/')
 
 REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',

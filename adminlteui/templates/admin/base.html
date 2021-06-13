@@ -12,29 +12,31 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    {# <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">#}
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
     <!-- Font Awesome -->
     <!--<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
-    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    {# <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">#}
+    <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href={% static "admin/ionicons/ionicons.min.css" %}>
+    <link rel="stylesheet" href="{% static "admin/ionicons/ionicons.min.css" %}">
 
     {% block extrastyle %} {% endblock %}
 
     {% block extrahead %} {% endblock %}
     <!-- Select2 -->
-    <link rel="stylesheet" href={% static "admin/plugins/select2/select2.min.css" %}>
+    <link rel="stylesheet" href="{% static "admin/plugins/select2/select2.min.css" %}">
     <!-- Theme style -->
-    <link rel="stylesheet" href={% static "admin/adminlte-dist/css/AdminLTE.min.css" %}>
+    <link rel="stylesheet" href="{% static "admin/adminlte-dist/css/AdminLTE.min.css" %}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     {% if adminlte.skin %}
-    <link rel="stylesheet" href={% static "admin/adminlte-dist/css/skins/skin-"|add:adminlte.skin|add:".min.css" %}>
+    <link rel="stylesheet" href="{% static "admin/adminlte-dist/css/skins/skin-"|add:adminlte.skin|add:".min.css" %}">
     {% else %}
-    <link rel="stylesheet" href={% static "admin/adminlte-dist/css/skins/_all-skins.min.css" %}>
+    <link rel="stylesheet" href="{% static "admin/adminlte-dist/css/skins/_all-skins.min.css" %}">
     {% endif %}
 
-    <link rel="stylesheet" href={% static "admin/adminlte-dist/css/django.css" %}>
+    <link rel="stylesheet" href="{% static "admin/adminlte-dist/css/django.css" %}">
     {% if adminlte_site_logo.valid %}
     <link rel="apple-touch-icon" href="{% static "esocial.ico" %}">
     <link rel="icon" href="{% static "esocial.ico" %}">
@@ -43,13 +45,15 @@
     <link rel="icon" href="{% static "esocial.ico" %}">
     {% endif %}
     <!-- jQuery 2.2.3 -->
-    <script src={% static "admin/plugins/jQuery/jquery-2.2.3.min.js" %}></script>
+    <script src="{% static "admin/plugins/jQuery/jquery-2.2.3.min.js" %}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    {# <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>#}
+    {# <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>#}
+    <script src="{% static "js/html5shiv.min.js" %}"></script>
+    <script src="{% static "js/respond.min.js" %}"></script>
     <![endif]-->
 
 </head>
@@ -116,7 +120,7 @@
                             <img src={% static "admin/adminlte-dist/img/default.jpg" %} class="user-image" alt="User Image">
                             {% endif %}
                             {% endif %}
-                            <span class="hidden-xs">{{ request.user.first_name }} {{ request.user.last_name }}</span>
+                            <span class="hidden-xs">{{ request.user.username }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
