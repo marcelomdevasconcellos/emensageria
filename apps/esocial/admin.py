@@ -224,7 +224,7 @@ class EventosAdmin(AuditoriaAdminEventos):
             STATUS_EVENTO_PROCESSADO,
             STATUS_EVENTO_CADASTRADO, )
 
-        if obj.status == STATUS_EVENTO_CADASTRADO and obj.evento_json:
+        if obj.status == STATUS_EVENTO_CADASTRADO:
             url = reverse('esocial:validar_evento', kwargs={'pk': obj.pk})
             return mark_safe("<a href='{}' class='btn btn-primary form-control'>"
                              "<i class='fa fa-thumbs-o-up'></i>&nbsp;Validar</a>".format(url))

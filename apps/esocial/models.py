@@ -954,7 +954,9 @@ class Eventos(BaseModelEsocial):
              force_update=False,
              using=None,
              update_fields=None):
-        if self.ocorrencias_json and self.status != STATUS_EVENTO_CADASTRADO:
+        if self.ocorrencias_json and self.status == STATUS_EVENTO_CADASTRADO:
+            self.ocorrencias_json = None
+        elif self.ocorrencias_json and self.status != STATUS_EVENTO_CADASTRADO:
             self.status = STATUS_EVENTO_ENVIADO_ERRO
         super(Eventos, self).save(
             force_insert=False,
