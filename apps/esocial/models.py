@@ -111,9 +111,9 @@ class Transmissor(BaseModelEsocial):
     endereco_completo = models.TextField(
         'Endereço', null=True, blank=True)
     tpinsc = models.IntegerField(
-        'Tipo de inscrição', choices=TIPO_INSCRICAO, )
+        'Tipo de inscrição do empregador', choices=TIPO_INSCRICAO, )
     nrinsc = models.CharField(
-        'Número de inscrição', max_length=15, unique=True)
+        'Número de inscrição do empregador', max_length=15, unique=True)
     certificado = models.ForeignKey(
         'Certificados',
         on_delete=models.PROTECT,
@@ -236,6 +236,16 @@ class TransmissorEventos(BaseModelEsocial):
         return MAKE_RETRIEVE.format(
             self.protocolo)
 
+    def get_command(self, service, date_now):
+        filename = os.path.join(
+            settings.BASE_DIR,
+            config.FILES_PATH, 'comunicacao',
+            service, 'command',
+            '{}_{}.txt'.format(
+                self.id, datetime.now().strftime('%Y%m%d%H%M%S')))
+        create_dir(filename)
+        return filename
+
     def get_header(self, service, date_now):
         filename = os.path.join(
             settings.BASE_DIR,
@@ -288,6 +298,8 @@ class TransmissorEventos(BaseModelEsocial):
             if dados['esocial_lote_min'] <= dados['quant_eventos'] <= dados['esocial_lote_max']:
 
                 save_file(dados['request'], self.make_send())
+                save_file(self.get_command(service, date_now), COMMAND_CURL % dados)
+
                 os.system(COMMAND_CURL % dados)
 
                 if not os.path.isfile(dados['response']):
@@ -297,10 +309,10 @@ class TransmissorEventos(BaseModelEsocial):
 
                     return {
                         'status': 'error',
-                        'mensagem': '''O servidor demorou mais que o esperado
-                        para efetuar a conexão! Caso necessário solicite ao
-                        administrador do sistema para que aumente o tempo do
-                        Timeout. Timeout atual %(timeout)s''' % dados}
+                        'mensagem': '''Não foi recebida nenhuma resposta do servidor. 
+                            Verifique se a pasta /arquivos/ está com permissão de escrita ou 
+                            pode ter ocorrido erro de timeout.
+                            Timeout atual %(timeout)s''' % dados}
 
                 elif 'HTTP/1.1 200 OK' not in read_file(dados['header']):
 
@@ -344,7 +356,7 @@ class TransmissorEventos(BaseModelEsocial):
                 protocolo = None
                 ocorrencias_json = json.dumps(response_dict.get("status").get("ocorrencias") or {})
                 resposta_codigo = response_dict.get("status").get("cdResposta")
-                resposta_descricao = response_dict.get("status").get("cdResposta")
+                resposta_descricao = response_dict.get("status").get("descResposta")
 
                 if response_dict.get("dadosRecepcaoLote"):
                     recepcao_data_hora = response_dict.get("dadosRecepcaoLote").get("dhRecepcao")
@@ -432,10 +444,10 @@ class TransmissorEventos(BaseModelEsocial):
 
                 return {
                     'status': 'error',
-                    'mensagem': '''O servidor demorou mais que o esperado
-                    para efetuar a conexão! Caso necessário solicite ao
-                    administrador do sistema para que aumente o tempo do
-                    Timeout. Timeout atual %(timeout)s''' % dados}
+                    'mensagem': '''Não foi recebida nenhuma resposta do servidor. 
+                        Verifique se a pasta /arquivos/ está com permissão de escrita ou 
+                        pode ter ocorrido erro de timeout.
+                        Timeout atual %(timeout)s''' % dados}
 
             elif 'HTTP/1.1 200 OK' not in read_file(dados['header']):
 
@@ -516,11 +528,13 @@ class TransmissorEventos(BaseModelEsocial):
                                    possuem eventos validados para envio neste lote!'''}
 
     def __str__(self):
-        return '{} {} {}'.format(self.id, self.grupo, self.get_status_display())
+        return '{} - {}'.format(
+            self.id,
+            self.transmissor.nome_empresa, )
 
     class Meta:
-        verbose_name = 'Transmissor do eSocial'
-        verbose_name_plural = 'Transmissor do eSocial'
+        verbose_name = 'Lote'
+        verbose_name_plural = 'Lotes'
 
 
 class TransmissorEventosSerializer(BaseModelSerializer):
@@ -669,7 +683,7 @@ class Eventos(BaseModelEsocial):
     transmissor_evento = models.ForeignKey(
         'TransmissorEventos',
         on_delete=models.PROTECT,
-        verbose_name='Transmissor',
+        verbose_name='Lote/Transmissor',
         related_name='transmissor_esocial',
         blank=True, null=True, )
 
@@ -691,7 +705,7 @@ class Eventos(BaseModelEsocial):
 
     transmissor_evento_error = models.ManyToManyField(
         'TransmissorEventos',
-        verbose_name='Transmissores (Erro)',
+        verbose_name='Lote/Transmissor (Erro)',
         related_name='%(class)s_transmissor_eventos_erros',
         blank=True, )
 
@@ -847,7 +861,7 @@ class Eventos(BaseModelEsocial):
         import xml.etree.ElementTree as ET
         from .choices import EVENTO_COD
 
-        data = readfromstring(self.evento_json)
+        data = readfromstring(self.evento_json or '{}')
         wrapper = 'eSocial'
         xml = json2xml.Json2xml(data,
                                 wrapper=wrapper, pretty=False,
@@ -1041,7 +1055,7 @@ class EventosHistorico(BaseModelEsocial):
         max_length=20, null=True, )
     transmissor_evento = models.ForeignKey(
         'TransmissorEventos',
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
         verbose_name='Transmissor',
         related_name='transmissor_esocial_historico',
         blank=True, null=True, )

@@ -135,16 +135,24 @@ label {
                       {% endfor %}
 
                       {% if original.evento and original.status == STATUS_EVENTO_CADASTRADO %}
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label>JSON</label>
-                          <input type="text" 
-                                 id="id_evento_json_read" 
-                                 name="evento_json_read" 
-                                 value="{{original.evento_json}}"
-                                 class="form-control" disabled/>
-                        </div>
-                      </div>
+                          {% if user.is_superuser %}
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>JSON</label>
+                              <input type="text"
+                                     id="id_evento_json_read"
+                                     name="evento_json_read"
+                                     value="{{original.evento_json}}"
+                                     class="form-control" disabled/>
+                            </div>
+                          </div>
+                          {% else %}
+                              <input type="hidden"
+                                     id="id_evento_json_read"
+                                     name="evento_json_read"
+                                     value="{{original.evento_json}}"
+                                     class="form-control"/>
+                          {% endif %}
                       {% endif %}
           
                       <!-- /.col -->
@@ -188,10 +196,12 @@ label {
             <div class="box box-primary">
                 <div class="box-body">
                     <div id="content-main">
-                        {% block submit_buttons_bottom %}
-                        {% submit_row %}
 
-                        {% endblock %}
+                        {% if original.status == STATUS_EVENTO_CADASTRADO %}
+                            {% block submit_buttons_bottom %}
+                            {% submit_row %}
+                            {% endblock %}
+                        {% endif %}
 
                         {% block object-tools %}
                         {% if change %}{% if not is_popup %}

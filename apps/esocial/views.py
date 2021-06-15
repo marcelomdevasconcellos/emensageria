@@ -131,20 +131,24 @@ def enviar_evento(request, pk):
 @login_required
 def validar_evento(request, pk):
     evt = get_object_or_404(Eventos, id=pk)
-    evt.create_xml()
-    evt.vincular_transmissor()
-    evt.validar()
+    if evt.evento_json:
+        evt.vincular_transmissor()
+        evt.create_xml()
+        evt.validar()
+    else:
+        messages.add_message(request, messages.ERROR,
+                             'Não é possível validar pois o evento %s não possui dados suficientes!' % evt.identidade)
     if request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return HttpResponse(json.dumps({}), content_type='application/json')
+    return HttpResponse('{}', content_type='application/json')
 
 
 @login_required
 def validar_eventos(request):
     evts = Eventos.objects.filter(status=STATUS_EVENTO_CADASTRADO)
     for evt in evts:
-        evt.create_xml()
         evt.vincular_transmissor()
+        evt.create_xml()
         evt.validar()
     if request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
@@ -213,24 +217,24 @@ def transmissores_recibo(request, pk):
         'transmissor_lote_esocial': transmissor_lote_esocial,
         'data': datetime.now(),
     }
-    return PDFTemplateResponse(
-        request=request,
-        template='transmissores_recibo.html',
-        filename="transmissores_recibo.pdf",
-        context=context,
-        show_content_in_browser=True,
-        cmd_options={'margin-top': 10,
-                     'margin-bottom': 10,
-                     'margin-right': 10,
-                     'margin-left': 10,
-                     'zoom': 1,
-                     'dpi': 72,
-                     'orientation': 'Landscape',
-                     "viewport-size": "1366 x 513",
-                     'javascript-delay': 1000,
-                     'footer-center': '[page]/[topage]',
-                     "no-stop-slow-scripts": True}, )
-    # return render(request, 'transmissores_recibo.html', context)
+    return render(request, 'transmissores_recibo.html', context)
+    # return PDFTemplateResponse(
+    #     request=request,
+    #     template='transmissores_recibo.html',
+    #     filename="transmissores_recibo.pdf",
+    #     context=context,
+    #     show_content_in_browser=True,
+    #     cmd_options={'margin-top': 10,
+    #                  'margin-bottom': 10,
+    #                  'margin-right': 10,
+    #                  'margin-left': 10,
+    #                  'zoom': 1,
+    #                  'dpi': 72,
+    #                  'orientation': 'Landscape',
+    #                  "viewport-size": "1366 x 513",
+    #                  'javascript-delay': 1000,
+    #                  'footer-center': '[page]/[topage]',
+    #                  "no-stop-slow-scripts": True}, )
 
 
 @login_required
@@ -244,24 +248,25 @@ def eventos_recibo(request, pk):
         # 'output': output,
         'user': request.user,
     }
-    return PDFTemplateResponse(
-        request=request,
-        template='eventos_recibo.html',
-        filename="eventos_recibo.pdf",
-        context=context,
-        show_content_in_browser=True,
-        cmd_options={'margin-top': 10,
-                     'margin-bottom': 10,
-                     'margin-right': 10,
-                     'margin-left': 10,
-                     'zoom': 1,
-                     'dpi': 72,
-                     'orientation': 'Landscape',
-                     "viewport-size": "1366 x 513",
-                     'javascript-delay': 1000,
-                     'footer-center': '[page]/[topage]',
-                     "no-stop-slow-scripts": True}, )
-    # return render(request, 'eventos_recibo.html', context)
+    return render(request, 'eventos_recibo.html', context)
+    # return PDFTemplateResponse(
+    #     request=request,
+    #     template='eventos_recibo.html',
+    #     filename="eventos_recibo.pdf",
+    #     context=context,
+    #     show_content_in_browser=True,
+    #     cmd_options={'margin-top': 10,
+    #                  'margin-bottom': 10,
+    #                  'margin-right': 10,
+    #                  'margin-left': 10,
+    #                  'zoom': 1,
+    #                  'dpi': 72,
+    #                  'orientation': 'Landscape',
+    #                  "viewport-size": "1366 x 513",
+    #                  'javascript-delay': 1000,
+    #                  'footer-center': '[page]/[topage]',
+    #                  "no-stop-slow-scripts": True}, )
+
 
 
 @login_required

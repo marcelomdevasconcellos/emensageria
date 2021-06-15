@@ -99,6 +99,12 @@ class TransmissorAdmin(AuditoriaAdminEventos):
         'tpinsc',
         'certificado',
     )
+    fieldsets = (('Transmissor', {
+        'fields': ('transmissor_tpinsc', 'transmissor_nrinsc',)
+    }), ('Empregador', {
+        'fields': ('nome_empresa', 'logotipo', 'endereco_completo',
+                   'tpinsc', 'nrinsc', 'certificado')
+    }))
 
 
 admin.site.register(Transmissor, TransmissorAdmin)
@@ -218,7 +224,7 @@ class EventosAdmin(AuditoriaAdminEventos):
             STATUS_EVENTO_PROCESSADO,
             STATUS_EVENTO_CADASTRADO, )
 
-        if obj.status == STATUS_EVENTO_CADASTRADO:
+        if obj.status == STATUS_EVENTO_CADASTRADO and obj.evento_json:
             url = reverse('esocial:validar_evento', kwargs={'pk': obj.pk})
             return mark_safe("<a href='{}' class='btn btn-primary form-control'>"
                              "<i class='fa fa-thumbs-o-up'></i>&nbsp;Validar</a>".format(url))
@@ -264,8 +270,8 @@ class EventosAdmin(AuditoriaAdminEventos):
 
     def validar(modeladmin, request, queryset):
         for obj in queryset:
-            obj.create_xml()
             obj.vincular_transmissor()
+            obj.create_xml()
             obj.validar()
             messages.add_message(request, messages.INFO, 'Autorizado envio do evento %s!' % obj.identidade)
 
@@ -363,22 +369,32 @@ class EventosAdmin(AuditoriaAdminEventos):
         if "_atualizar_identidade" in request.POST:
             obj.identidade = obj.make_identidade()
             obj.save()
-            self.message_user(request, "Identidade atualizada com sucesso")
+            self.message_user(request, "Identidade atualizada com sucesso %s" % obj.identidade)
             return HttpResponseRedirect(".")
         
         elif "_duplicar_evento" in request.POST:
-            obj.duplicar_evento()
-            self.message_user(request, "Novo evento criado com sucesso! %s" % obj.identidade)
+            retorno = obj.duplicar_evento()
+            self.message_user(request, "Novo evento criado com sucesso! %s" % retorno.identidade)
             return HttpResponseRedirect(".")
 
         elif "_enviar" in request.POST:
-            obj.enviar()
-            self.message_user(request, "Evento enviado com sucesso! %s" % obj.identidade)
+            retorno = obj.enviar()
+            if retorno['status'] == 'error':
+                messages.error(request, retorno['mensagem'])
+            elif retorno['status'] == 'warning':
+                messages.warning(request, retorno['mensagem'])
+            else:
+                self.message_user(request, retorno['mensagem'])
             return HttpResponseRedirect(".")
 
         elif "_consultar" in request.POST:
-            obj.transmissor_evento.consultar()
-            self.message_user(request, "Evento consultado com sucesso! %s" % obj.identidade)
+            retorno = obj.transmissor_evento.consultar()
+            if retorno['status'] == 'error':
+                messages.error(request, retorno['mensagem'])
+            elif retorno['status'] == 'warning':
+                messages.warning(request, retorno['mensagem'])
+            else:
+                self.message_user(request, retorno['mensagem'])
             return HttpResponseRedirect(".")
         
         elif "_abrir_evento_para_edicao" in request.POST:
@@ -386,7 +402,7 @@ class EventosAdmin(AuditoriaAdminEventos):
             if not retorno[0]:
                 self.message_user(request, retorno[1])
             else:
-                self.message_user(request, retorno[1], level=messages.ERROR)
+                messages.error(request, retorno[1])
             return HttpResponseRedirect(".")
         
         elif "_validar" in request.POST:
@@ -396,7 +412,7 @@ class EventosAdmin(AuditoriaAdminEventos):
             if not retorno[0]:
                 self.message_user(request, retorno[1])
             else:
-                self.message_user(request, retorno[1], level=messages.ERROR)
+                messages.error(request, retorno[1])
             return HttpResponseRedirect(".")
         
         return super().response_change(request, obj)

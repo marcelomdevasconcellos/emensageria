@@ -8,6 +8,9 @@ def create_dir(filename):
     directory = os.path.dirname(filename)
     if not os.path.exists(directory):
         os.makedirs(directory)
+    if not os.path.exists(directory):
+        raise NameError('''Não foi possivel criar a pasta %s, verifique se a pasta está 
+                           com permissão de escrita para o usuário do sistema.''' % filename)
 
 
 def save_file(filename, content):
@@ -15,6 +18,9 @@ def save_file(filename, content):
     file = codecs.open(filename, "w", "utf-8")
     file.write(content)
     file.close()
+    if not os.path.exists(filename):
+        raise NameError('''Não foi possivel salvar o arquivo %s, verifique se a pasta 
+                           está com permissão de escrita para o usuário do sistema.''' % filename)
 
 
 def read_file(filename):
@@ -24,6 +30,9 @@ def read_file(filename):
         content = file.read()
         file.close()
         return content
+    else:
+        raise NameError('Não foi possivel ler o arquivo %s.' % filename)
+
 
 
 def validar_schema(file_schema_xsd, file_xml):

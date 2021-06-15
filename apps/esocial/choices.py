@@ -35,12 +35,6 @@ URLS_ESOCIAL = {
     },
 }
 
-STATUS_EVENTO_CADASTRADO = 0
-STATUS_EVENTO_VALIDADO_ERRO = 1
-STATUS_EVENTO_AGUARD_ENVIO = 2
-STATUS_EVENTO_ENVIADO = 3
-STATUS_EVENTO_ENVIADO_ERRO = 4
-STATUS_EVENTO_PROCESSADO = 5
 
 COMMAND_CURL = 'curl --insecure --connect-timeout %(timeout)s ' \
                '--cert %(cert)s --key %(key)s --capath %(capath)s ' \
@@ -93,10 +87,18 @@ MAKE_RETRIEVE = """
     </soapenv:Body>
 </soapenv:Envelope>"""
 
+
+STATUS_EVENTO_CADASTRADO = 0
+STATUS_EVENTO_VALIDADO_ERRO = 1
+STATUS_EVENTO_AGUARD_ENVIO = 2
+STATUS_EVENTO_ENVIADO = 3
+STATUS_EVENTO_ENVIADO_ERRO = 4
+STATUS_EVENTO_PROCESSADO = 5
+
 EVENTO_STATUS = [
     (STATUS_EVENTO_CADASTRADO, 'Cadastrado (Aguardando validação)'),
-    (STATUS_EVENTO_VALIDADO_ERRO, 'Erro na validação (Aguardando correção)'),
-    (STATUS_EVENTO_ENVIADO_ERRO, 'Erro no Envio/Consulta (Aguardando correção)'),
+    (STATUS_EVENTO_VALIDADO_ERRO, 'Erro (Aguardando correção)'),
+    (STATUS_EVENTO_ENVIADO_ERRO, 'Erro (Aguardando correção)'),
     (STATUS_EVENTO_AGUARD_ENVIO, 'Validado (Aguardando envio)'),
     (STATUS_EVENTO_ENVIADO, 'Enviado (Aguardando consulta)'),
     (STATUS_EVENTO_PROCESSADO, 'Consultado'),
