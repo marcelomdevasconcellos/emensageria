@@ -197,7 +197,7 @@ label {
                 <div class="box-body">
                     <div id="content-main">
 
-                        {% if original.status == STATUS_EVENTO_CADASTRADO %}
+                        {% if not original.status or original.status == STATUS_EVENTO_CADASTRADO %}
                             {% block submit_buttons_bottom %}
                             {% submit_row %}
                             {% endblock %}
