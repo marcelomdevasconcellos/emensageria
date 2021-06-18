@@ -853,6 +853,7 @@ class Eventos(BaseModelEsocial):
                     tevt.save()
                 self.transmissor_evento = tevt
                 self.save()
+                return tevt
             else:
                 if request:
                     messages.error(
@@ -881,6 +882,9 @@ class Eventos(BaseModelEsocial):
         import esocial.xml
         import esocial.utils
         from lxml import etree
+
+        if not self.transmissor_evento:
+            self.transmissor_evento = self.vincular_transmissor()
 
         cert_data = esocial.utils.pkcs12_data(
             self.transmissor_evento.transmissor.certificado.certificado.file.name,
