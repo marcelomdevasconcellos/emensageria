@@ -4,6 +4,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404, render
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+from reportlab.lib import utils
+from reportlab.lib.units import mm
 from wkhtmltopdf.views import PDFTemplateResponse
 
 from .choices import (
@@ -242,35 +246,86 @@ def transmissores_recibo(request, pk):
     #                  "no-stop-slow-scripts": True}, )
 
 
+
+
+def get_size_image(path):
+    img = utils.ImageReader(path)
+    return img.getSize()
+
+
+def pdf_recibo_evento(evento):
+    import os
+    from config import settings
+    from config.functions import create_dir
+
+    background = os.path.join(settings.BASE_DIR, 'staticfiles', 'recibo', 'recibo_evento.jpg')
+    logo = os.path.join(settings.BASE_DIR, settings.MEDIA_ROOT, evento.transmissor_evento.transmissor.logotipo.file.name)
+    # w, h = get_size_image(logo)
+    logo_w, logo_h = get_size_image(logo)
+    create_dir(evento.pdf_file())
+
+    my_canvas = canvas.Canvas(
+        evento.pdf_file(),
+        pagesize=A4)
+    my_canvas.drawImage(
+        background,
+        0*mm, 0*mm,
+        width=210*mm,
+        height=297*mm, mask='auto')
+    my_canvas.drawImage(
+        logo, 164*mm, 280*mm,
+        width=30*mm, height=(logo_h/logo_w)*30*mm)
+    my_canvas.setFont('Helvetica', 12)
+    my_canvas.drawString(16*mm, 280*mm, evento.get_evento_display())
+    my_canvas.setFont('Helvetica', 10)
+    my_canvas.drawString(17*mm, 257*mm, evento.identidade)
+    my_canvas.drawString(90*mm, 257*mm, evento.versao)
+    my_canvas.drawString(140*mm, 257*mm, evento.get_tpamb_display())
+    # text1 = 'ATRAVÉS DO APLICATIVO NO DIA {} ÀS {}'.format(
+    #     obj.criado_em.strftime('%d/%m/%Y'), obj.criado_em.strftime('%H:%M'))
+    # my_canvas.drawString(21*mm, 17*mm, text1)
+    my_canvas.save()
+
+
 @login_required
 def eventos_recibo(request, pk):
-    from datetime import datetime
     evento = get_object_or_404(Eventos, id=pk)
-    context = {
-        'pk': pk,
-        'evento': evento,
-        'data': datetime.now(),
-        # 'output': output,
-        'user': request.user,
-    }
-    return render(request, 'eventos_recibo.html', context)
-    # return PDFTemplateResponse(
-    #     request=request,
-    #     template='eventos_recibo.html',
-    #     filename="eventos_recibo.pdf",
-    #     context=context,
-    #     show_content_in_browser=True,
-    #     cmd_options={'margin-top': 10,
-    #                  'margin-bottom': 10,
-    #                  'margin-right': 10,
-    #                  'margin-left': 10,
-    #                  'zoom': 1,
-    #                  'dpi': 72,
-    #                  'orientation': 'Landscape',
-    #                  "viewport-size": "1366 x 513",
-    #                  'javascript-delay': 1000,
-    #                  'footer-center': '[page]/[topage]',
-    #                  "no-stop-slow-scripts": True}, )
+    pdf_recibo_evento(evento)
+    with open(evento.pdf_file(), 'rb') as fh:
+        response = HttpResponse(fh.read(), content_type="application/pdf")
+        response['Content-Disposition'] = 'inline; filename=' + evento.identidade + '.pdf'
+        return response
+
+
+# @login_required
+# def eventos_recibo(request, pk):
+#     from datetime import datetime
+#     evento = get_object_or_404(Eventos, id=pk)
+#     context = {
+#         'pk': pk,
+#         'evento': evento,
+#         'data': datetime.now(),
+#         # 'output': output,
+#         'user': request.user,
+#     }
+#     return render(request, 'eventos_recibo.html', context)
+#     # return PDFTemplateResponse(
+#     #     request=request,
+#     #     template='eventos_recibo.html',
+#     #     filename="eventos_recibo.pdf",
+#     #     context=context,
+#     #     show_content_in_browser=True,
+#     #     cmd_options={'margin-top': 10,
+#     #                  'margin-bottom': 10,
+#     #                  'margin-right': 10,
+#     #                  'margin-left': 10,
+#     #                  'zoom': 1,
+#     #                  'dpi': 72,
+#     #                  'orientation': 'Landscape',
+#     #                  "viewport-size": "1366 x 513",
+#     #                  'javascript-delay': 1000,
+#     #                  'footer-center': '[page]/[topage]',
+#     #                  "no-stop-slow-scripts": True}, )
 
 
 

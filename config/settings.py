@@ -158,6 +158,10 @@ VERSOES_REINF = [
     'v1_04_00',
     'v2_00_00']
 
+# caminho dos certificados
+CERT_PATH = env('CERT_PATH', default='certificados/')
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -210,9 +214,9 @@ CONSTANCE_CONFIG = {
          'Caminho relativo do local aonde serão armazenados os arquivos. Insira "/" no início para definir diretórios absolutos.',
          str),
 
-    'CERT_PATH': ('/Users/marcelovasconcellos/Projects/emensageria/certificados',
-         'Caminho relativo do local aonde serão armazenados os certificados. Insira "/" no início para definir diretórios absolutos.',
-         str),
+    # 'CERT_PATH': ('/Users/marcelovasconcellos/Projects/emensageria/certificados',
+    #      'Caminho relativo do local aonde serão armazenados os certificados. Insira "/" no início para definir diretórios absolutos.',
+    #      str),
 
     'FILTER_BY_USER': (False,
         'Cada usuário pode ver somente os que ele mesmo cadastrou. Os Super-usuários vêem todos os eventos',

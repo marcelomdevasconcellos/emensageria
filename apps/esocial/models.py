@@ -612,24 +612,24 @@ class Certificados(BaseModelEsocial):
         'updated_by': 3,
     }
     nome = models.CharField('Nome', max_length=300, )
-    fs_certificado = FileSystemStorage(location=os.path.join(settings.BASE_DIR, config.CERT_PATH))
+    fs_certificado = FileSystemStorage(location=os.path.join(settings.BASE_DIR, settings.CERT_PATH))
     certificado = models.FileField('Arquivo', storage=fs_certificado)
     senha = models.CharField('Senha', max_length=300, blank=True, null=True, )
 
     def cert_pem_file(self):
-        file = os.path.join(settings.BASE_DIR, config.CERT_PATH, 'cert_{}.pem'.format(self.id))
+        file = os.path.join(settings.BASE_DIR, settings.CERT_PATH, 'cert_{}.pem'.format(self.id))
         if not file:
             self.create_pem_files()
         return file
 
     def key_pem_file(self):
-        file = os.path.join(settings.BASE_DIR, config.CERT_PATH, 'key_{}.pem'.format(self.id))
+        file = os.path.join(settings.BASE_DIR, settings.CERT_PATH, 'key_{}.pem'.format(self.id))
         if not file:
             self.create_pem_files()
         return file
 
     def cert_host(self):
-        return os.path.join(settings.BASE_DIR, config.CERT_PATH, self.certificado.name)
+        return os.path.join(settings.BASE_DIR, settings.CERT_PATH, self.certificado.name)
 
     def capath(self):
         return os.path.join(settings.BASE_DIR, 'cacerts', 'esocial')
@@ -811,6 +811,10 @@ class Eventos(BaseModelEsocial):
             'esocial',
             self.versao,
             '{}.xsd'.format(EVENTO_COD[self.evento]['codigo']))
+
+    def pdf_file(self):
+        return os.path.join(settings.BASE_DIR, config.FILES_PATH,
+                            'recibos', 'esocial', '{}.pdf'.format(self.identidade))
 
     def xml_file(self):
         return os.path.join(settings.BASE_DIR, config.FILES_PATH,

@@ -146,4 +146,4 @@ apps/contrib/management/commands/*
 
 # media
 media/
-
+certificados/
