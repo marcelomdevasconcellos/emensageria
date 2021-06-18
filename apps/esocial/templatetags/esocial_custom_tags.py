@@ -62,6 +62,30 @@ def read_ocorrencias(string):
     return lista
 
 
+@register.filter('read_ocorrencias_lote')
+def read_ocorrencias_lote(string):
+    import json
+    lista = []
+    obj = json.loads(string or '{}')
+    if isinstance(obj.get('ocorrencia'), list):
+        for o in obj.get('ocorrencia'):
+            lista.append({'tipo': o.get('tipo'),
+                 'codigo': o.get('codigo'),
+                 'descricao': o.get('descricao'),
+                 'localizacao': o.get('localizacao')})
+    return lista
+
+
+@register.filter('get_tipo_erro')
+def get_tipo_erro(string):
+    # 1 - Erro
+    # 2 - Advertência
+    if int(string) == 1:
+        return 'ERRO'
+    else:
+        return 'ADVERTÊNCIA'
+
+
 @register.filter('to_json')
 def to_json(string):
     import json
@@ -78,7 +102,7 @@ def get_form(obj):
 
 @register.filter('disabled')
 def disabled(obj):
-    if obj.status != 0:
+    if not obj.is_aberto:
         return 'disabled="disabled"'
     return "" 
 

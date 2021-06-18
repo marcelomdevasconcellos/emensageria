@@ -14,17 +14,13 @@ class EventosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventosForm, self).__init__(*args, **kwargs)
         self.fields['tpamb'].disabled = True
-        # if config.ESOCIAL_TP_AMB == 'Produção':
-        #     self.fields['tpamb'].initial = 1
-        # else:
-        #     self.fields['tpamb'].initial = 2
 
-        if self.instance.pk and self.instance.status == STATUS_EVENTO_CADASTRADO:
+        if self.instance.pk:
             self.fields['evento'].disabled = True
             self.fields['versao'].disabled = True
             self.fields['operacao'].disabled = True
 
-        if self.instance.pk and self.instance.status != STATUS_EVENTO_CADASTRADO:
+        if self.instance.pk and not self.instance.is_aberto:
             for f in list(self.fields):
                 self.fields[f].disabled = True
 

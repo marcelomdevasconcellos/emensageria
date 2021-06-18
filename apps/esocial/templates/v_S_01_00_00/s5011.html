@@ -6,7 +6,7 @@
 
 <div id="evtCS__div">
     <div class="col-md-12">
-        <h4>Evento Informações das Contribuições Sociais Consolidadas por Contribuinte.</h4>
+        <h4>S-5011 - Informações das Contribuições Sociais Consolidadas por Contribuinte</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1292,6 +1292,7 @@ Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></l
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -1304,3 +1305,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

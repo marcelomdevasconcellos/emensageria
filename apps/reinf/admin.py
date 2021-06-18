@@ -376,7 +376,8 @@ class EventosAdmin(AuditoriaAdmin):
             return HttpResponseRedirect(".")
         
         elif "_validar" in request.POST:
-            retorno = obj.vincular_transmissor()
+            if not obj.transmissor_evento:
+                retorno = obj.vincular_transmissor()
             obj.create_xml()
             if not retorno[0]:
                 self.message_user(request, retorno[1])

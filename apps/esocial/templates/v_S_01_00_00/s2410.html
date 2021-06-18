@@ -6,16 +6,7 @@
 
 <div id="evtCdBenIn__div">
     <div class="col-md-12">
-        <h4>Evento Cadastro de Benefício - Entes Públicos - Início.
-Regras de validação:
-REGRA_BENEFICIO_VALIDA_NUMERO
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_EXTEMP_REATIVACAO
-REGRA_MUDANCA_CPF
-REGRA_RETIFICA_MESMO_BENEFICIO
-REGRA_VALIDA_CNPJ</h4>
+        <h4>S-2410 - Cadastro de Benefício - Entes Públicos - Início</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -524,6 +515,7 @@ Validação: Deve ser um código válido e existente na Tabela 26, com exceção
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -536,3 +528,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

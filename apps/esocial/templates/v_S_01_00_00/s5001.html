@@ -6,7 +6,7 @@
 
 <div id="evtBasesTrab__div">
     <div class="col-md-12">
-        <h4>Evento Informações das Contribuições Sociais por Trabalhador.</h4>
+        <h4>S-5001 - Informações das Contribuições Sociais por Trabalhador</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -856,6 +856,7 @@ tpVrPerRef = [23], codIncCP em S-1010 = [35].
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -868,3 +869,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

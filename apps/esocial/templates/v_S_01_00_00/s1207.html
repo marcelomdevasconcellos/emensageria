@@ -6,20 +6,7 @@
 
 <div id="evtBenPrRP__div">
     <div class="col-md-12">
-        <h4>Evento Benefícios - Entes Públicos.
-Regras de validação:
-REGRA_CONTROLE_DUPLICIDADE
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_GERAL_VALIDA_DADOS_TABCONTRIB
-REGRA_REMUN_ANUAL_DEZEMBRO
-REGRA_REMUN_BENEFICIO_EXISTENTE_RET
-REGRA_REMUN_IND_RETIFICACAO
-REGRA_REMUN_PERMITE_EXCLUSAO
-REGRA_RUBRICA_COMPATIVEL_DECTERCEIRO
-REGRA_VALIDA_EMPREGADOR
-REGRA_VALIDA_PERIODO_APURACAO</h4>
+        <h4>S-1207 - Benefícios - Entes Públicos</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -510,6 +497,7 @@ Valores válidos:
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -522,3 +510,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

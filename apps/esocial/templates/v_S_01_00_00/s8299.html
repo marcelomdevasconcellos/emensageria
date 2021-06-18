@@ -6,18 +6,7 @@
 
 <div id="evtBaixa__div">
     <div class="col-md-12">
-        <h4>Evento Baixa Judicial do Vínculo.
-Regras de validação:
-REGRA_BAIXA_JUDICIAL
-REGRA_BAIXA_TRABALHADOR_AFASTADO
-REGRA_DESLIG_EXCLUI_DESLIGAMENTO_REINTEG
-REGRA_DESLIG_EXCLUSAO_EVENTO
-REGRA_DESLIG_EXISTE_EVENTO_POSTERIOR
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_RETIFICA_MESMO_VINCULO
-REGRA_VINCULO_ATIVO_NA_DTEVENTO</h4>
+        <h4>S-8299 - Baixa Judicial do Vínculo</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -240,6 +229,7 @@ Validação: Deve ser um processo judicial válido, com 20 (vinte) algarismos.">
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -252,3 +242,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

@@ -6,30 +6,7 @@
 
 <div id="evtAdmissao__div">
     <div class="col-md-12">
-        <h4>Evento Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador.
-Regras de validação:
-REGRA_ADMISSAO_POSTERIOR_INICIO_ATIVIDADES
-REGRA_ADMISSAO_VALIDA_DT_ADM
-REGRA_ADMISSAO_VALIDA_DURACAO_CONTRATO
-REGRA_BLOQUEIA_USO_CPF_EMPREGADOR
-REGRA_COMPATIBILIDADE_CATEGORIA_CLASSTRIB
-REGRA_COMPATIB_CATEG_EVENTO
-REGRA_EMPREGADO_DOMESTICO
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EVENTO_IMPACTO_FOPAG
-REGRA_EVETRAB_VALIDA_OPCAO_FGTS
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_EXTEMP_DOMESTICO
-REGRA_EXTEMP_REINTEGRACAO
-REGRA_GERAL_VALIDA_DADOS_TABCONTRIB
-REGRA_MESMO_PROCEMI
-REGRA_MUDANCA_CPF
-REGRA_REGISTRO_PRELIMINAR
-REGRA_RETIFICA_MESMO_VINCULO
-REGRA_VALIDA_EMPREGADOR
-REGRA_VALIDA_MATRICULA
-REGRA_VALIDA_TRABALHADOR_BASE_CPF</h4>
+        <h4>S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1642,6 +1619,7 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -1654,3 +1632,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

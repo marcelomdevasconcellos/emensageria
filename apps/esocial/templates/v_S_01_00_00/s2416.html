@@ -6,15 +6,7 @@
 
 <div id="evtCdBenAlt__div">
     <div class="col-md-12">
-        <h4>Evento Cadastro de Benefício - Entes Públicos - Alteração.
-Regras de validação:
-REGRA_ALTERA_TIPO_BENEFICIO
-REGRA_BENEFICIO_ATIVO_NA_DTEVENTO
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_EXTEMP_REATIVACAO
-REGRA_RETIFICA_MESMO_BENEFICIO</h4>
+        <h4>S-2416 - Cadastro de Benefício - Entes Públicos - Alteração</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -321,6 +313,7 @@ Validação: Preenchimento obrigatório e exclusivo se mtvSuspensao = [99]."><i 
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -333,3 +326,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

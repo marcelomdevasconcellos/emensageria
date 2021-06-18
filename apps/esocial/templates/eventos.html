@@ -60,9 +60,20 @@ label {
         <h4><i class="icon fa fa-ban"></i> Ocorrência(s)!</h4>
             {% for e in original.ocorrencias_json|read_ocorrencias %}
                 <br>
-                Tipo: <strong>{{ e.tipo }}</strong><br>
-                Código: <strong>{{ e.codigo }}</strong><br>
-                Descrição: <strong>{{ e.descricao }}</strong><br>
+                Tipo: <strong>{{ e.tipo|get_tipo_erro }}</strong><br>
+                Descrição: <strong>{% if e.codigo != '-' %}{{ e.codigo }} - {% endif %}{{ e.descricao }}</strong><br>
+                {% if e.localizacao %}Localização: <strong>{{ e.localizacao }}</strong><br>{% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if original.transmissor_evento.ocorrencias_json != '{}' %}
+        <div class="alert alert-danger alert-dismissible" style="margin: 20px;">
+        <h4><i class="icon fa fa-ban"></i> Ocorrência(s) do Lote!</h4>
+            {% for e in original.transmissor_evento.ocorrencias_json|read_ocorrencias_lote %}
+                <br>
+                Tipo: <strong>{{ e.tipo|get_tipo_erro }}</strong><br>
+                Descrição: <strong>{{ e.codigo }} - {{ e.descricao }}</strong><br>
                 Localização: <strong>{{ e.localizacao }}</strong><br>
             {% endfor %}
         </div>
@@ -134,7 +145,7 @@ label {
 
                       {% endfor %}
 
-                      {% if original.evento and original.status == STATUS_EVENTO_CADASTRADO %}
+                      {% if original.evento and original.is_aberto %}
                           {% if user.is_superuser %}
                           <div class="col-md-12">
                             <div class="form-group">
@@ -197,7 +208,7 @@ label {
                 <div class="box-body">
                     <div id="content-main">
 
-                        {% if not original.status or original.status == STATUS_EVENTO_CADASTRADO %}
+                        {% if not original.status or original.is_aberto %}
                             {% block submit_buttons_bottom %}
                             {% submit_row %}
                             {% endblock %}
@@ -224,7 +235,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.status == STATUS_EVENTO_CADASTRADO %}
+                        {% if original.pk and original.is_aberto and original.status == STATUS_EVENTO_CADASTRADO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="submit"
@@ -235,7 +246,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.status != STATUS_EVENTO_CADASTRADO %}
+                        {% if original.pk and not original.is_aberto and original.status in original.abrir_evento_para_edicao_lista %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="submit"
@@ -246,7 +257,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.status == STATUS_EVENTO_CADASTRADO %}
+                        {% if original.pk and original.is_aberto %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="submit"
@@ -257,7 +268,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.status == STATUS_EVENTO_AGUARD_ENVIO %}
+                        {% if original.pk and not original.is_aberto and original.status == STATUS_EVENTO_AGUARD_ENVIO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="submit"
@@ -268,7 +279,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.status == STATUS_EVENTO_ENVIADO %}
+                        {% if original.pk and not original.is_aberto and original.status == STATUS_EVENTO_ENVIADO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="submit"
@@ -279,7 +290,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.transmissor_evento %}
+                        {% if original.pk and not original.is_aberto and original.transmissor_evento %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <a href="{% url 'esocial:visualizar_xml' pk=original.pk %}"
@@ -304,7 +315,7 @@ label {
 {#                            </div>#}
 {#                        </div>#}
 {#                        {% endifequal %}#}
-                        {% if original.pk and original.status == STATUS_EVENTO_PROCESSADO %}
+                        {% if original.pk and not original.is_aberto and original.status == STATUS_EVENTO_PROCESSADO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <a href="{% url 'esocial:eventos_recibo' pk=original.pk %}" target="_blank">

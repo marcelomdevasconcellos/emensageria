@@ -6,19 +6,7 @@
 
 <div id="evtPgtos__div">
     <div class="col-md-12">
-        <h4>Evento Pagamentos de Rendimentos do Trabalho.
-Regras de validação:
-REGRA_CONTROLE_DUPLICIDADE
-REGRA_EMPREGADO_DOMESTICO
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EVE_FOPAG_SIMPLIFICADO
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_MESMO_PROCEMI
-REGRA_PAGTO_IND_RETIFICACAO
-REGRA_VALIDA_DT_PGTO
-REGRA_VALIDA_EMPREGADOR
-REGRA_VALIDA_PER_APUR_PGTO</h4>
+        <h4>S-1210 - Pagamentos de Rendimentos do Trabalho</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -272,6 +260,7 @@ Validação: Não pode ser um valor negativo."><i class="fa fa-fw fa-question-ci
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -284,3 +273,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

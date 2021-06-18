@@ -145,6 +145,14 @@ ARQUIVO_FONTE = [
     (1, 'Importado'),
 ]
 
+EVENTO_ORIGEM_SISTEMA = 0
+EVENTO_ORIGEM_API = 1
+
+EVENTO_ORIGEM = [
+    (EVENTO_ORIGEM_SISTEMA, 'Sistema'),
+    (EVENTO_ORIGEM_API, 'Api'),
+]
+
 EVENTO_COD = {
     's1000': {'codigo': 'evtInfoEmpregador'},
     's1005': {'codigo': 'evtTabEstab'},

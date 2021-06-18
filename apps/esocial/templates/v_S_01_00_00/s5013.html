@@ -6,7 +6,7 @@
 
 <div id="evtFGTS__div">
     <div class="col-md-12">
-        <h4>Evento Informações do FGTS Consolidadas por Contribuinte.</h4>
+        <h4>S-5013 - Informações do FGTS Consolidadas por Contribuinte</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -460,6 +460,7 @@ Deve corresponder ao somatório dos valores informados no campo dpsFGTSE do even
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -472,3 +473,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

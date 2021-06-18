@@ -6,18 +6,7 @@
 
 <div id="evtTabProcesso__div">
     <div class="col-md-12">
-        <h4>Evento Tabela de Processos Administrativos/Judiciais.
-Regras de validação:
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_PERMITE_ALT_EXCL_CODSUSP
-REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE
-REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO
-REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO
-REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE
-REGRA_TAB_PERMITE_EXCLUSAO
-REGRA_VALIDA_DT_FUTURA
-REGRA_VALIDA_PROCESSO</h4>
+        <h4>S-1070 - Tabela de Processos Administrativos/Judiciais</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -730,6 +719,7 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -742,3 +732,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

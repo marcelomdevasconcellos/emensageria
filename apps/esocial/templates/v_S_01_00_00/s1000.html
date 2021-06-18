@@ -6,15 +6,7 @@
 
 <div id="evtInfoEmpregador__div">
     <div class="col-md-12">
-        <h4>Evento Informações do Empregador.
-Regras de validação:
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_INFO_EMP_PERIODO_CONFLITANTE
-REGRA_INFO_EMP_VALIDA_CLASSTRIB_NATJURID
-REGRA_INFO_EMP_VALIDA_DTINICIAL
-REGRA_TAB_PERMITE_EXCLUSAO
-REGRA_VALIDA_DT_FUTURA
-REGRA_VALIDA_EMPREGADOR</h4>
+        <h4>S-1000 - Informações do Empregador/Contribuinte/Órgão Público</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -771,6 +763,7 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -783,3 +776,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

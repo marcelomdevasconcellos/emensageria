@@ -6,23 +6,7 @@
 
 <div id="evtCAT__div">
     <div class="col-md-12">
-        <h4>Evento Comunicação de Acidente de Trabalho.
-Regras de validação:
-REGRA_EMPREGADO_DOMESTICO
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG
-REGRA_EVENTO_POSTERIOR_CAT_OBITO
-REGRA_EXCLUI_EVENTO_CAT
-REGRA_EXISTE_CAT_ORIGEM
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_EXTEMP_REINTEGRACAO
-REGRA_GERAL_VALIDA_DADOS_TABCONTRIB
-REGRA_MESMO_PROCEMI
-REGRA_RETIFICA_DT_ACIDENTE
-REGRA_RETIFICA_MESMO_VINCULO
-REGRA_TSV_ATIVO_NA_DTEVENTO
-REGRA_VINCULO_ATIVO_NA_DTEVENTO</h4>
+        <h4>S-2210 - Comunicação de Acidente de Trabalho</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -790,6 +774,7 @@ OBS.: Quando a data do acidente for anterior à data de obrigatoriedade do empre
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -802,3 +787,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

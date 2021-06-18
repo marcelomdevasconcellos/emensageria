@@ -6,16 +6,7 @@
 
 <div id="evtReativBen__div">
     <div class="col-md-12">
-        <h4>Evento Reativação de Benefício - Entes Públicos.
-Regras de validação:
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EXISTE_EVENTO_BENEFICIO_TERMINO
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_EXTEMP_REATIVACAO
-REGRA_REATIVACAO_EXCLUSAO_EVENTO
-REGRA_RETIFICA_MESMO_BENEFICIO
-REGRA_VALIDA_CNPJ</h4>
+        <h4>S-2418 - Reativação de Benefício - Entes Públicos</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -207,6 +198,7 @@ Validação: Deve ser uma data igual ou anterior à data da efetiva reativação
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -219,3 +211,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

@@ -6,7 +6,7 @@
 
 <div id="evtIrrfBenef__div">
     <div class="col-md-12">
-        <h4>Evento Imposto de Renda Retido na Fonte por Trabalhador.</h4>
+        <h4>S-5002 - Imposto de Renda Retido na Fonte por Trabalhador</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -380,6 +380,7 @@ OBS.: Se o campo {indApurIR} vinculado à rubrica for igual a [1], considerar {v
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -392,3 +393,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

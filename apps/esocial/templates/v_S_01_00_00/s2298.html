@@ -6,19 +6,7 @@
 
 <div id="evtReintegr__div">
     <div class="col-md-12">
-        <h4>Evento Reintegração/Outros Provimentos.
-Regras de validação:
-REGRA_EMPREGADO_DOMESTICO
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EVENTO_IMPACTO_FOPAG
-REGRA_EXISTE_EVENTO_DESLIGAMENTO
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_EXTEMP_REINTEGRACAO
-REGRA_MESMO_PROCEMI
-REGRA_REINTEG_EXCLUSAO_EVENTO
-REGRA_RETIFICA_MESMO_VINCULO
-REGRA_VALIDA_EMPREGADOR</h4>
+        <h4>S-2298 - Reintegração/Outros Provimentos</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -251,6 +239,7 @@ Validação: Deve ser uma data igual ou anterior à data do efetivo retorno ao t
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -263,3 +252,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

@@ -28,6 +28,14 @@ class CertificadosAdmin(AuditoriaAdminEventos):
     list_display = (
         'nome',)
 
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        try:
+            obj.create_pem_files()
+        except Exception as e:
+            messages.error(request, 'Erro ao tentar criar as chaves do certificado, ' \
+                                    'verifique se o mesmo está com a senha correta. {}'.format(e))
+
 
 admin.site.register(Certificados, CertificadosAdmin)
 
@@ -173,10 +181,10 @@ class TransmissorEventosAdmin(AuditoriaAdminEventos):
         consultar_lote,
     ]
 
-    inlines = (
-        EventosInline,
-        TransmissorEventosArquivosInline,
-    )
+    # inlines = (
+    #     EventosInline,
+    #     TransmissorEventosArquivosInline,
+    # )
 
     list_filter = (
         'transmissor',
@@ -201,6 +209,34 @@ class TransmissorEventosAdmin(AuditoriaAdminEventos):
         'data_hora_consulta',
         'recibo',
     )
+    fieldsets = (
+        (None, {
+            'fields': (
+                'transmissor',
+                'grupo',
+                'empregador_tpinsc',
+                'empregador_nrinsc',
+                'status',
+                'resposta_codigo',
+                'resposta_descricao',
+                'data_hora_envio',
+                'data_hora_consulta',
+                'recepcao_data_hora',
+                'recepcao_versao_aplicativo',
+                'protocolo',
+                'processamento_versao_aplicativo',
+                'tempo_estimado_conclusao',
+                'created_at',
+                'created_by',
+                'updated_at',
+                'updated_by',),
+        }),
+        ('Arquivos', {
+            'classes': ('collapse',),
+            'fields': ('arquivo_header',
+                       'arquivo_request',
+                       'arquivo_response',),
+        }), )
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -270,10 +306,11 @@ class EventosAdmin(AuditoriaAdminEventos):
 
     def validar(modeladmin, request, queryset):
         for obj in queryset:
-            obj.vincular_transmissor()
+            if not obj.transmissor_evento:
+                obj.vincular_transmissor()
             obj.create_xml()
             obj.validar()
-            messages.add_message(request, messages.INFO, 'Autorizado envio do evento %s!' % obj.identidade)
+            messages.add_message(request, messages.INFO, 'Evento validado %s!' % obj.identidade)
 
     validar.short_description = "Autorizar envio de evento"
 
@@ -367,18 +404,18 @@ class EventosAdmin(AuditoriaAdminEventos):
         from django.contrib import messages
         
         if "_atualizar_identidade" in request.POST:
-            obj.identidade = obj.make_identidade()
+            obj.identidade = obj.make_identidade(request=request)
             obj.save()
             self.message_user(request, "Identidade atualizada com sucesso %s" % obj.identidade)
             return HttpResponseRedirect(".")
         
         elif "_duplicar_evento" in request.POST:
-            retorno = obj.duplicar_evento()
+            retorno = obj.duplicar_evento(request=request)
             self.message_user(request, "Novo evento criado com sucesso! %s" % retorno.identidade)
             return HttpResponseRedirect(".")
 
         elif "_enviar" in request.POST:
-            retorno = obj.enviar()
+            retorno = obj.enviar(request=request)
             if retorno['status'] == 'error':
                 messages.error(request, retorno['mensagem'])
             elif retorno['status'] == 'warning':
@@ -388,7 +425,7 @@ class EventosAdmin(AuditoriaAdminEventos):
             return HttpResponseRedirect(".")
 
         elif "_consultar" in request.POST:
-            retorno = obj.transmissor_evento.consultar()
+            retorno = obj.transmissor_evento.consultar(request=request)
             if retorno['status'] == 'error':
                 messages.error(request, retorno['mensagem'])
             elif retorno['status'] == 'warning':
@@ -398,21 +435,14 @@ class EventosAdmin(AuditoriaAdminEventos):
             return HttpResponseRedirect(".")
         
         elif "_abrir_evento_para_edicao" in request.POST:
-            retorno = obj.abrir_evento_para_edicao()
-            if not retorno[0]:
-                self.message_user(request, retorno[1])
-            else:
-                messages.error(request, retorno[1])
+            obj.abrir_evento_para_edicao(request=request)
             return HttpResponseRedirect(".")
         
         elif "_validar" in request.POST:
-            retorno = obj.vincular_transmissor()
-            obj.create_xml()
-            obj.validar()
-            if not retorno[0]:
-                self.message_user(request, retorno[1])
-            else:
-                messages.error(request, retorno[1])
+            if not obj.transmissor_evento:
+                obj.vincular_transmissor(request=request)
+            obj.create_xml(request=request)
+            obj.validar(request=request)
             return HttpResponseRedirect(".")
         
         return super().response_change(request, obj)

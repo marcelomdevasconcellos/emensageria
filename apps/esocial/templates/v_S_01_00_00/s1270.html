@@ -6,16 +6,7 @@
 
 <div id="evtContratAvNP__div">
     <div class="col-md-12">
-        <h4>Evento Contratação de Trabalhadores Avulsos Não Portuários.
-Regras de validação:
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EVE_FOPAG_IND_RETIFICACAO
-REGRA_EVE_FOPAG_PERMITE_EXCLUSAO
-REGRA_EVE_FOPAG_SIMPLIFICADO
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_MESMO_PROCEMI
-REGRA_VALIDA_EMPREGADOR</h4>
+        <h4>S-1270 - Contratação de Trabalhadores Avulsos Não Portuários</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -278,6 +269,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -290,3 +282,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

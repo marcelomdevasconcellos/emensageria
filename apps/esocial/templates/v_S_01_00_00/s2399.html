@@ -6,23 +6,7 @@
 
 <div id="evtTSVTermino__div">
     <div class="col-md-12">
-        <h4>Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Término.
-Regras de validação:
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVENTOS_EXTEMP
-REGRA_EVENTO_IMPACTO_FOPAG
-REGRA_EVE_FOPAG_SIMPLIFICADO
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_GERAL_VALIDA_DADOS_TABCONTRIB
-REGRA_MESMO_PROCEMI
-REGRA_MUDANCA_CPF
-REGRA_REMUN_IND_RETIFICACAO
-REGRA_REMUN_PERMITE_EXCLUSAO
-REGRA_RETIFICA_MESMO_VINCULO
-REGRA_RUBRICA_COMPATIVEL_CATEGORIA
-REGRA_TSV_ATIVO_NA_DTEVENTO
-REGRA_VALIDA_EMPREGADOR
-REGRA_VALIDA_PERIODO_APURACAO</h4>
+        <h4>S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -678,6 +662,7 @@ Validação: Deve ser uma data posterior a dtTerm."><i class="fa fa-fw fa-questi
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -690,3 +675,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

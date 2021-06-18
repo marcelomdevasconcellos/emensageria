@@ -110,7 +110,8 @@ class EventosApiDetail(generics.RetrieveUpdateDestroyAPIView):
 @login_required
 def visualizar_xml(request, pk):
     evt = get_object_or_404(Eventos, id=pk)
-    evt.vincular_transmissor()
+    if not evt.transmissor_evento:
+        evt = evt.vincular_transmissor()
     evt.create_xml()
     response = HttpResponse(
         evt.evento_xml,
@@ -132,7 +133,10 @@ def enviar_evento(request, pk):
 def validar_evento(request, pk):
     evt = get_object_or_404(Eventos, id=pk)
     if evt.evento_json:
-        evt.vincular_transmissor()
+        if not evt.transmissor_evento:
+            evt = evt.vincular_transmissor()
+            evt = Eventos.objects.get(id=pk)
+            print(evt.transmissor_evento)
         evt.create_xml()
         evt.validar()
     else:
@@ -147,7 +151,8 @@ def validar_evento(request, pk):
 def validar_eventos(request):
     evts = Eventos.objects.filter(status=STATUS_EVENTO_CADASTRADO)
     for evt in evts:
-        evt.vincular_transmissor()
+        if not evt.transmissor_evento:
+            evt.vincular_transmissor()
         evt.create_xml()
         evt.validar()
     if request.META.get('HTTP_REFERER'):

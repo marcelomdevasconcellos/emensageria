@@ -206,12 +206,12 @@ CONSTANCE_CONFIG = {
          'Link do manual do sistema.',
          str),
 
-    'FILES_PATH': ('arquivos',
-         'Caminho relativo do local aonde serão armazenados os arquivos',
+    'FILES_PATH': ('/Users/marcelovasconcellos/Projects/emensageria/arquivos',
+         'Caminho relativo do local aonde serão armazenados os arquivos. Insira "/" no início para definir diretórios absolutos.',
          str),
 
-    'CERT_PATH': ('certificados',
-         'Caminho relativo do local aonde serão armazenados os certificados',
+    'CERT_PATH': ('/Users/marcelovasconcellos/Projects/emensageria/certificados',
+         'Caminho relativo do local aonde serão armazenados os certificados. Insira "/" no início para definir diretórios absolutos.',
          str),
 
     'FILTER_BY_USER': (False,

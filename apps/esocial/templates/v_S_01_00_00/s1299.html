@@ -6,14 +6,7 @@
 
 <div id="evtFechaEvPer__div">
     <div class="col-md-12">
-        <h4>Evento Fechamento dos Eventos Periódicos.
-Regras de validação:
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVE_FOPAG_SIMPLIFICADO
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_REMUN_ANUAL_DEZEMBRO
-REGRA_VALIDA_EMPREGADOR
-REGRA_VALIDA_FECHAMENTO_FOPAG</h4>
+        <h4>S-1299 - Fechamento dos Eventos Periódicos</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -156,11 +149,7 @@ Valores válidos:
 <div id="evtRemun__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>evtRemun<a data-toggle="tooltip" title="Possui informações relativas a remuneração de trabalhadores ou provento/pensão de beneficiários no período de apuração?
-Valores válidos:
-S - Sim
-N - Não
-Validação: Se for igual a [S], deve existir evento de remuneração (S-1200, S-1202, S-1207, S-2299 ou S-2399) para o período de apuração. Caso contrário, não deve existir evento de remuneração."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>evtRemun<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__infoFech__id__evtRemun" name="[evtFechaEvPer][infoFech][evtRemun]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtRemun' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtRemun' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -171,11 +160,7 @@ Validação: Se for igual a [S], deve existir evento de remuneração (S-1200, S
 <div id="evtComProd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>evtComProd<a data-toggle="tooltip" title="Possui informações de comercialização de produção?
-Valores válidos:
-S - Sim
-N - Não
-Validação: Se for igual a [S], deve existir o evento S-1260 para o período de apuração. Caso contrário, não deve existir o evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>evtComProd<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__infoFech__id__evtComProd" name="[evtFechaEvPer][infoFech][evtComProd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtComProd' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtComProd' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -186,11 +171,7 @@ Validação: Se for igual a [S], deve existir o evento S-1260 para o período de
 <div id="evtContratAvNP__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>evtContratAvNP<a data-toggle="tooltip" title="Contratou, por intermédio de sindicato, serviços de trabalhadores avulsos não portuários?
-Valores válidos:
-S - Sim
-N - Não
-Validação: Se for igual a [S], deve existir o evento S-1270 para o período de apuração. Caso contrário, não deve existir o evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>evtContratAvNP<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__infoFech__id__evtContratAvNP" name="[evtFechaEvPer][infoFech][evtContratAvNP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtContratAvNP' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtContratAvNP' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -201,11 +182,7 @@ Validação: Se for igual a [S], deve existir o evento S-1270 para o período de
 <div id="evtInfoComplPer__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>evtInfoComplPer<a data-toggle="tooltip" title="Possui informações de desoneração de folha de pagamento ou, sendo empresa enquadrada no Simples, possui informações sobre a receita obtida em atividades cuja contribuição previdenciária incidente sobre a folha de pagamento é concomitantemente substituída e não substituída?
-Valores válidos:
-S - Sim
-N - Não
-Validação: Se for igual a [S], deve existir o evento S-1280 para o período de apuração. Caso contrário, não deve existir o evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>evtInfoComplPer<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__infoFech__id__evtInfoComplPer" name="[evtFechaEvPer][infoFech][evtInfoComplPer]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtInfoComplPer' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtInfoComplPer' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -240,6 +217,7 @@ Validação: Não informar se perApur >= [2021-05] ou se indApuracao = [2]. Pree
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -252,3 +230,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

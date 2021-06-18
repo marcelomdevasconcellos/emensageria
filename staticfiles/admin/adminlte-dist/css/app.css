@@ -27,7 +27,6 @@
 
 .vLargeTextField {
     width: 100%;
-    min-width: 300px;
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.42857143;
@@ -38,7 +37,6 @@
 
 .select2 {
     width: 100% !important;
-    min-width: 300px;
 }
 
 form select {

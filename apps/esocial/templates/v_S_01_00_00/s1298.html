@@ -6,13 +6,7 @@
 
 <div id="evtReabreEvPer__div">
     <div class="col-md-12">
-        <h4>Evento Reabertura dos Eventos Periódicos.
-Regras de validação:
-REGRA_ENVIO_PROC_FECHAMENTO
-REGRA_EVE_FOPAG_SIMPLIFICADO
-REGRA_EXISTE_INFO_EMPREGADOR
-REGRA_REABERTURA_VALIDA_PERIODO_APURACAO
-REGRA_VALIDA_EMPREGADOR</h4>
+        <h4>S-1298 - Reabertura dos Eventos Periódicos</h4>
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -152,6 +146,7 @@ Valores válidos:
 </div>
 
 </form>
+{% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
@@ -164,3 +159,4 @@ $(document).ready(function(){
     set_evento_json();
 });
 </script>
+{% endif %}

@@ -7,8 +7,11 @@ import xmltodict
 from constance import config
 from django.apps import apps
 from django.conf import settings
+from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from config.functions import (create_dir, read_file, save_file)
 from config.mixins import BaseModelEsocial, BaseModelSerializer, BaseModel
@@ -26,7 +29,7 @@ class Arquivos(BaseModelEsocial):
         'updated_by': 3,
     }
     fs_arquivo = FileSystemStorage(
-        location=os.path.join(settings.BASE_DIR, 'arquivos', 'eventos', 'esocial'))
+        location=os.path.join(settings.BASE_DIR, config.FILES_PATH))
     arquivo = models.FileField(
         'Arquivo', storage=fs_arquivo)
     permite_recuperacao = models.IntegerField(
@@ -111,9 +114,11 @@ class Transmissor(BaseModelEsocial):
     endereco_completo = models.TextField(
         'Endereço', null=True, blank=True)
     tpinsc = models.IntegerField(
-        'Tipo de inscrição do empregador', choices=TIPO_INSCRICAO, )
+        'Tipo de inscrição do empregador', choices=TIPO_INSCRICAO,)
     nrinsc = models.CharField(
-        'Número de inscrição do empregador', max_length=15, unique=True)
+        'Número de inscrição do empregador', max_length=15, unique=True,
+        help_text="O CNPJ completo somente pode ser utilizado por órgãos públicos, " \
+                  "os demais empregadores deverão informar somente o CNPJ base (8 primeiros dígitos do CNPJ)")
     certificado = models.ForeignKey(
         'Certificados',
         on_delete=models.PROTECT,
@@ -140,7 +145,7 @@ class TransmissorSerializer(BaseModelSerializer):
 
 class TransmissorEventos(BaseModelEsocial):
     cols = {
-        'transmissor': 12,
+        'transmissor': 8,
         'arquivo_header': 12,
         'arquivo_request': 12,
         'arquivo_response': 12,
@@ -276,7 +281,7 @@ class TransmissorEventos(BaseModelEsocial):
         create_dir(filename)
         return filename
 
-    def enviar(self, service='WsEnviarLoteEventos'):
+    def enviar(self, service='WsEnviarLoteEventos', request=None):
         from .choices import COMMAND_CURL
         date_now = datetime.now().strftime('%Y%m%d%H%M%S')
 
@@ -307,6 +312,11 @@ class TransmissorEventos(BaseModelEsocial):
                     TransmissorEventos.objects.filter(id=self.id). \
                         update(status=STATUS_TRANSMISSOR_ERRO_ENVIO)
 
+                    if request:
+                        messages.error(request, '''Não foi recebida nenhuma resposta do servidor. 
+                            Verifique se a pasta /arquivos/ está com permissão de escrita ou 
+                            pode ter ocorrido erro de timeout.
+                            Timeout atual %(timeout)s''' % dados)
                     return {
                         'status': 'error',
                         'mensagem': '''Não foi recebida nenhuma resposta do servidor. 
@@ -318,6 +328,8 @@ class TransmissorEventos(BaseModelEsocial):
 
                     TransmissorEventos.objects.filter(id=self.id). \
                         update(status=STATUS_TRANSMISSOR_ERRO_ENVIO)
+                    if request:
+                        messages.error(request, 'Retorno do servidor: ' + read_file(dados['header']))
 
                     return {
                         'status': 'warning',
@@ -378,6 +390,10 @@ class TransmissorEventos(BaseModelEsocial):
                 if response_dict["status"]["cdResposta"] not in ('101', '201', '202'):
                     self.status = STATUS_TRANSMISSOR_ERRO_ENVIO
                     self.save()
+                    if request:
+                        messages.error(request, '{} {}'.format(
+                            resposta_codigo,
+                            resposta_descricao))
                     return {
                         'status': 'error',
                         'mensagem': '{} {}'.format(
@@ -388,6 +404,10 @@ class TransmissorEventos(BaseModelEsocial):
                 self.save()
                 self.transmissor_esocial.update(status=STATUS_EVENTO_ENVIADO)
 
+                if request:
+                    messages.success(request, '{} {}'.format(
+                        resposta_codigo,
+                        resposta_descricao))
                 return {
                     'status': 'success',
                     'mensagem': '{} {}'.format(
@@ -395,27 +415,36 @@ class TransmissorEventos(BaseModelEsocial):
                         resposta_descricao)}
 
             elif dados['quant_eventos'] < dados['esocial_lote_min']:
+                if request:
+                    messages.error(request, 'Lote com quantidade inferior a mínima permitida!')
                 return {
                     'status': 'error',
                     'mensagem': 'Lote com quantidade inferior a mínima permitida!'}
 
             elif dados['quant_eventos'] > dados['esocial_lote_max']:
+                if request:
+                    messages.error(request, 'Lote com quantidade de eventos superior a máxima permitida!')
                 return {
                     'status': 'error',
                     'mensagem': 'Lote com quantidade de eventos superior a máxima permitida!'}
 
             else:
+                if request:
+                    messages.error(request, 'Ops! Algo aconteceu!')
                 return {
                     'status': 'error',
-                    'mensagem': 'Alguma coisa aconteceu e eu não sei o que foi!'}
+                    'mensagem': 'Ops! Algo aconteceu!'}
 
         else:
+            if request:
+                messages.error(request, '''O certificado não está configurado ou não
+                                possuem eventos validados para envio neste lote!''')
             return {
                 'status': 'error',
                 'mensagem': '''O certificado não está configurado ou não
                                 possuem eventos validados para envio neste lote!'''}
 
-    def consultar(self, service='WsConsultarLoteEventos'):
+    def consultar(self, service='WsConsultarLoteEventos', request=None):
 
         from bs4 import BeautifulSoup
         date_now = datetime.now().strftime('%Y%m%d%H%M%S')
@@ -543,14 +572,25 @@ class TransmissorEventosSerializer(BaseModelSerializer):
 
 
 class TransmissorEventosArquivos(BaseModelEsocial):
+    cols = {
+        'transmissor_evento': 12,
+        'arquivo': 12,
+        'servico': 6,
+        'tipo': 6,
+        'conteudo': 12,
+        'created_at': 3,
+        'created_by': 3,
+        'updated_at': 3,
+        'updated_by': 3,
+    }
     transmissor_evento = models.ForeignKey(
         'TransmissorEventos',
         on_delete=models.CASCADE,
         related_name='%(class)s_transmissor_evento',
         blank=True, null=True, )
+    arquivo = models.CharField('Nome do arquivo', max_length=200, )
     servico = models.IntegerField('Serviço', choices=SERVICOS, )
     tipo = models.IntegerField('Tipo', choices=ARQUIVOS_TIPOS, )
-    arquivo = models.CharField('Nome do arquivo', max_length=200, )
     conteudo = models.TextField('Conteúdo do arquivo', )
 
     def __str__(self):
@@ -583,7 +623,7 @@ class Certificados(BaseModelEsocial):
         return file
 
     def key_pem_file(self):
-        file = os.path.join(settings.BASE_DIR, config.CERT_PATH, 'key{}.pem'.format(self.id))
+        file = os.path.join(settings.BASE_DIR, config.CERT_PATH, 'key_{}.pem'.format(self.id))
         if not file:
             self.create_pem_files()
         return file
@@ -592,7 +632,7 @@ class Certificados(BaseModelEsocial):
         return os.path.join(settings.BASE_DIR, config.CERT_PATH, self.certificado.name)
 
     def capath(self):
-        return os.path.join(settings.BASE_DIR, config.CERT_PATH, 'esocial')
+        return os.path.join(settings.BASE_DIR, 'cacerts', 'esocial')
 
     def create_pem_files(self):
         import os
@@ -601,6 +641,7 @@ class Certificados(BaseModelEsocial):
         pkcs12 = crypto.load_pkcs12(
             open(self.cert_host(), 'rb').read(),
             self.senha)
+
         key_str = crypto.dump_privatekey(
             crypto.FILETYPE_PEM, pkcs12.get_privatekey())
         cert_str = crypto.dump_certificate(
@@ -630,6 +671,11 @@ class Certificados(BaseModelEsocial):
             'nome', ]
 
 
+# @receiver(post_save, sender=Certificados)
+# def save_cert(sender, instance, **kwargs):
+#     instance.create_pem_files()
+
+
 class CertificadosSerializer(BaseModelSerializer):
     class Meta:
         model = Certificados
@@ -638,7 +684,9 @@ class CertificadosSerializer(BaseModelSerializer):
 class Eventos(BaseModelEsocial):
     from .choices import ESOCIAL_VERSAO_DEFAULT
     cols = {
-        'evento': 8,
+        'versao': 3,
+        'operacao': 3,
+        'evento': 6,
         'evento_json': 12,
     }
     identidade = models.CharField('Identidade',
@@ -666,8 +714,10 @@ class Eventos(BaseModelEsocial):
         'Tipo de inscrição',
         choices=CHOICES_INSCRICOESTIPOS)
     nrinsc = models.CharField(
-        'Numero de inscrição',
-        max_length=15, )
+        'Número de inscrição',
+        max_length=15,
+        help_text="O CNPJ completo somente pode ser utilizado por órgãos públicos, " \
+                  "os demais empregadores deverão informar somente o CNPJ base (8 primeiros dígitos do CNPJ)" )
     tpamb = models.IntegerField(
         'Identificação do ambiente',
         choices=CHOICES_TPAMB, default=2)
@@ -718,6 +768,11 @@ class Eventos(BaseModelEsocial):
     evento_json = models.TextField("JSON", null=True, blank=True)
     evento_xml = models.TextField("XML", null=True, blank=True)
     ocorrencias_json = models.TextField("Ocorrências", null=True, blank=True)
+    origem = models.IntegerField(
+        'Origem do evento',
+        choices=EVENTO_ORIGEM, default=0, )
+    is_aberto = models.BooleanField(
+        'Está aberto para edição', default=True, )
 
     def retorno_envio(self):
         return json.loads(self.retorno_envio_json)
@@ -731,7 +786,7 @@ class Eventos(BaseModelEsocial):
     def __str__(self):
         return self.identidade
 
-    def make_identidade(self):
+    def make_identidade(self, request=None):
         existe = True
         num = 0
         while existe:
@@ -758,9 +813,10 @@ class Eventos(BaseModelEsocial):
             '{}.xsd'.format(EVENTO_COD[self.evento]['codigo']))
 
     def xml_file(self):
-        return os.path.join(settings.BASE_DIR, 'arquivos', 'eventos', 'esocial', '{}.xml'.format(self.identidade))
+        return os.path.join(settings.BASE_DIR, config.FILES_PATH,
+                            'eventos', 'esocial', '{}.xml'.format(self.identidade))
 
-    def vincular_transmissor(self):
+    def vincular_transmissor(self, request=None):
         from .models import Eventos, Transmissor, TransmissorEventos
         from .choices import (
             STATUS_EVENTO_AGUARD_ENVIO,
@@ -794,15 +850,13 @@ class Eventos(BaseModelEsocial):
                 self.transmissor_evento = tevt
                 self.status = STATUS_EVENTO_AGUARD_ENVIO
                 self.save()
-                return (0, 'Evento vinculado com sucesso ao transmissor!')
             else:
-                return (1, '''Erro ao vincular evento. Não foi encontrato 
-                    nenhum transmissor com o número de inscrição: 
-                    %s !''' % self.nrinsc)
-        else:
-            return (2, '''Evento já vinculado a um tranmissor''')
+                if request:
+                    messages.error(
+                        request, 'Erro ao vincular evento. Não foi encontrado '/
+                        'nenhum transmissor com o número de inscrição: %s!' % self.nrinsc)
 
-    def enviar(self):
+    def enviar(self, request=None):
         from .choices import (
             STATUS_TRANSMISSOR_CADASTRADO,
             EVENTOS_GRUPOS_TABELAS, )
@@ -821,7 +875,7 @@ class Eventos(BaseModelEsocial):
         self.save()
         return tra_evt.enviar()
 
-    def assinar(self):
+    def assinar(self, request=None):
         import esocial.xml
         import esocial.utils
         from lxml import etree
@@ -855,7 +909,7 @@ class Eventos(BaseModelEsocial):
         # #verified_data = XMLVerifier().verify(signed_root).signed_xml
         # return signed_root
 
-    def create_xml(self):
+    def create_xml(self, request=None):
         from json2xml import json2xml
         from json2xml.utils import readfromstring
         import xml.etree.ElementTree as ET
@@ -868,12 +922,8 @@ class Eventos(BaseModelEsocial):
                                 attr_type=False).to_xml().decode()
         evento_codigo = EVENTO_COD[self.evento]['codigo']
         ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
-        #ET.register_namespace("ds", f"http://www.w3.org/2000/09/xmldsig#")
         xml_obj = ET.fromstring(xml)
         xml_obj.set('xmlns', f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
-
-        # xml_obj.set('xmlns', f"http://www.w3.org/2000/09/xmldsig#")
-        # xml_obj.find(EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
 
         def recursive_remove(elem2):
             for elem in elem2:
@@ -899,7 +949,7 @@ class Eventos(BaseModelEsocial):
         save_file(self.xml_file(), evento_xml.decode())
         xml_obj = self.assinar()
 
-    def validar(self):
+    def validar(self, request=None):
         from config.functions import validar_schema
         err = validar_schema(self.xsd_file(), self.xml_file())
         err_dict = {}
@@ -909,12 +959,21 @@ class Eventos(BaseModelEsocial):
                 err_dict['ocorrencias'].append(
                     {"ocorrencia": {'tipo': '1', 'codigo': '-', 'descricao': e.reason, 'localizacao': e.path}})
             self.ocorrencias_json = json.dumps(err_dict)
+            self.is_aberto = False
+            self.status = STATUS_EVENTO_ENVIADO_ERRO
+            self.transmissor_evento = None
             self.save()
+            if request:
+                messages.error(request, 'Erro na validação do evento!')
         else:
             self.ocorrencias_json = None
+            self.is_aberto = False
+            self.status = STATUS_EVENTO_AGUARD_ENVIO
             self.save()
+            if request:
+                messages.success(request, 'Evento validado com sucesso!')
 
-    def duplicar_evento(self):
+    def duplicar_evento(self, request=None):
 
         from .choices import STATUS_EVENTO_CADASTRADO
         ev_new = self
@@ -928,36 +987,45 @@ class Eventos(BaseModelEsocial):
         ev_new.save()
         return ev_new
 
-    def abrir_evento_para_edicao(self):
-        status_list = [
+    def abrir_evento_para_edicao_lista(self):
+        return [
             STATUS_EVENTO_CADASTRADO,
             STATUS_EVENTO_VALIDADO_ERRO,
             STATUS_EVENTO_AGUARD_ENVIO,
             STATUS_EVENTO_ENVIADO_ERRO
         ]
+
+    def abrir_evento_para_edicao(self, request=None):
+        status_list = self.abrir_evento_para_edicao_lista()
         if self.status in status_list:
-            self.status = STATUS_EVENTO_CADASTRADO
-            self.transmissor_evento = None
+            if self.status == STATUS_EVENTO_AGUARD_ENVIO:
+                self.status = STATUS_EVENTO_CADASTRADO
+            self.is_aberto = True
             self.save()
-            return (0, "Evento aberto para edição!")
+            if request:
+                messages.success(request, "Evento aberto para edição!")
         else:
-            return (1, '''
-                Não foi possível abrir o evento para edição! Somente é possível
-                abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
-                "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
-                ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
-                "401 - Lote Incorreto - Erro preenchimento" ou 
-                "402 - Lote Incorreto - schema Inválido"!''')
+            if request:
+                messages.error(request, '''
+                    Não foi possível abrir o evento para edição! Somente é possível
+                    abrir eventos com os seguintes status: "Cadastrado", "Importado", "Validado",
+                    "Duplicado", "Erro na validação", "XML Assinado" ou "XML Gerado"
+                    ou com o status "Enviado com sucesso" e os seguintes códigos de resposta do servidor:
+                    "401 - Lote Incorreto - Erro preenchimento" ou 
+                    "402 - Lote Incorreto - schema Inválido"!''')
 
     def save(self,
              force_insert=False,
              force_update=False,
              using=None,
              update_fields=None):
-        if self.ocorrencias_json and self.status == STATUS_EVENTO_CADASTRADO:
-            self.ocorrencias_json = None
-        elif self.ocorrencias_json and self.status != STATUS_EVENTO_CADASTRADO:
-            self.status = STATUS_EVENTO_ENVIADO_ERRO
+        # if self.ocorrencias_json:
+        #     self.status = STATUS_EVENTO_ENVIADO_ERRO
+        #     if self.transmissor_evento:
+        #         self.transmissor_evento_error.add(self.transmissor_evento)
+        #     self.transmissor_evento = None
+        # elif self.status == STATUS_EVENTO_ENVIADO_ERRO:
+        #     self.status = STATUS_EVENTO_CADASTRADO
         super(Eventos, self).save(
             force_insert=False,
             force_update=False,
@@ -1093,6 +1161,11 @@ class EventosHistorico(BaseModelEsocial):
     evento_json = models.TextField("JSON", null=True, blank=True)
     evento_xml = models.TextField("XML", null=True, blank=True)
     ocorrencias_json = models.TextField("Ocorrências", null=True, blank=True)
+    origem = models.IntegerField(
+        'Origem do evento',
+        choices=EVENTO_ORIGEM, default=0, )
+    is_aberto = models.BooleanField(
+        'Está aberto para edição', default=True, )
 
     def __str__(self):
         return self.identidade
