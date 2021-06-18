@@ -852,13 +852,11 @@ class Eventos(BaseModelEsocial):
                     tevt = TransmissorEventos(**tevt_data)
                     tevt.save()
                 self.transmissor_evento = tevt
-                self.status = STATUS_EVENTO_AGUARD_ENVIO
                 self.save()
             else:
                 if request:
                     messages.error(
-                        request, 'Erro ao vincular evento. Não foi encontrado '/
-                        'nenhum transmissor com o número de inscrição: %s!' % self.nrinsc)
+                        request, 'Erro ao vincular evento. Não foi encontrado nenhum transmissor com o número de inscrição: %s!' % self.nrinsc)
 
     def enviar(self, request=None):
         from .choices import (

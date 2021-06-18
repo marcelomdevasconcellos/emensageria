@@ -305,6 +305,7 @@ class EventosAdmin(AuditoriaAdminEventos):
     atualizar_identidade.short_description = "Atualizar identidade"
 
     def validar(modeladmin, request, queryset):
+        from .choices import STATUS_EVENTO_AGUARD_ENVIO
         for obj in queryset:
             if not obj.transmissor_evento:
                 obj.vincular_transmissor()

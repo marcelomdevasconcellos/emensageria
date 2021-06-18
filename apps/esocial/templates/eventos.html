@@ -67,7 +67,7 @@ label {
         </div>
         {% endif %}
 
-        {% if original.transmissor_evento.ocorrencias_json != '{}' %}
+        {% if original.transmissor_evento.ocorrencias_json and original.transmissor_evento.ocorrencias_json != '{}' %}
         <div class="alert alert-danger alert-dismissible" style="margin: 20px;">
         <h4><i class="icon fa fa-ban"></i> Ocorrência(s) do Lote!</h4>
             {% for e in original.transmissor_evento.ocorrencias_json|read_ocorrencias_lote %}
