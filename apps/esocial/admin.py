@@ -3,11 +3,12 @@ from django.contrib import messages
 from django.utils.safestring import mark_safe
 from constance import config
 from django_currentuser.middleware import get_current_user, get_current_authenticated_user
-from config.mixins import AuditoriaAdminEventos, AuditoriaAdminStackedInlineInline
+from config.mixins import AuditoriaAdminEventos, AuditoriaAdminStackedInlineInline, AuditoriaAdminInline
 from .forms import (
     EventosForm,
     CertificadosForm,
     ArquivosForm,
+    TransmissorForm,
 )
 from .models import (
     Certificados,
@@ -112,16 +113,25 @@ class TransmissorAdmin(AuditoriaAdminEventos):
     }), ('Empregador', {
         'fields': ('nome_empresa', 'logotipo', 'endereco_completo',
                    'tpinsc', 'nrinsc', 'certificado')
+    }), ('Usuários', {
+        'fields': ('users', )
     }))
+    form = TransmissorForm
 
 
 admin.site.register(Transmissor, TransmissorAdmin)
 
 
-class EventosInline(AuditoriaAdminStackedInlineInline):
-
+class EventosInline(AuditoriaAdminInline):
     classes = ['collapse']
     model = Eventos
+    fields = (
+        'identidade',
+        'versao',
+        'evento',
+        'operacao',
+        'status',
+    )
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -131,7 +141,6 @@ class EventosInline(AuditoriaAdminStackedInlineInline):
 
 
 class TransmissorEventosArquivosInline(AuditoriaAdminStackedInlineInline):
-
     classes = ['collapse']
     model = TransmissorEventosArquivos
 

@@ -7,6 +7,7 @@ import xmltodict
 from constance import config
 from django.apps import apps
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from django.db import models
@@ -97,6 +98,7 @@ class Transmissor(BaseModelEsocial):
         'nrinsc': 6,
         'tpinsc': 6,
         'certificado': 12,
+        'users': 12,
         'created_at': 3,
         'created_by': 3,
         'updated_at': 3,
@@ -124,7 +126,8 @@ class Transmissor(BaseModelEsocial):
         on_delete=models.PROTECT,
         verbose_name='Certificado',
         related_name='%(class)s_certificado', )
-
+    users = models.ManyToManyField(User, verbose_name='Usuários', related_name='transmissores_users',
+                                   help_text="Informe a lista de usuários que tem acesso a utilizar este transmissor.")
     def __str__(self):
         return self.nome_empresa
 
@@ -610,6 +613,7 @@ class Certificados(BaseModelEsocial):
         'nome': 12,
         'certificado': 12,
         'senha': 12,
+        'users': 12,
         'created_at': 3,
         'created_by': 3,
         'updated_at': 3,
@@ -619,6 +623,8 @@ class Certificados(BaseModelEsocial):
     fs_certificado = FileSystemStorage(location=os.path.join(settings.BASE_DIR, settings.CERT_PATH))
     certificado = models.FileField('Arquivo', storage=fs_certificado)
     senha = models.CharField('Senha', max_length=300, blank=True, null=True, )
+    users = models.ManyToManyField(User, verbose_name='Usuários', related_name='certificado_users',
+                                   help_text="Informe a lista de usuários que tem acesso a utilizar este certificado.")
 
     def cert_pem_file(self):
         file = os.path.join(settings.BASE_DIR, settings.CERT_PATH, 'cert_{}.pem'.format(self.id))

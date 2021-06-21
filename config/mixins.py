@@ -64,10 +64,16 @@ class BaseModel(models.Model):
 
 class EventosManager(models.Manager):
     def get_queryset(self):
+        from django.db.models import Q
         current_user = get_current_user()
-        if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
-            return super().get_queryset().filter(created_by=current_user)
-        return super().get_queryset()
+        if self.model.__name__ not in ('Certificados', 'Transmissor'):
+            if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
+                return super().get_queryset().filter(created_by=current_user)
+            return super().get_queryset()
+        else:
+            if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
+                return super().get_queryset().filter(Q(created_by=current_user)|Q(users__id=current_user.id))
+            return super().get_queryset()
 
 
 class BaseModelEsocial(models.Model):
@@ -114,6 +120,15 @@ class AuditoriaAdminEventos(admin.ModelAdmin):
         'updated_at',
         'updated_by',
     )
+
+    def get_readonly_fields(self, request, obj=None):
+        if self.model.__name__ not in ('Certificados', 'Transmissor'):
+            if request.user.is_superuser:
+                return super(AuditoriaAdminEventos, self).get_readonly_fields(request, obj)
+            else:
+                return self.readonly_fields + ('users',)
+        else:
+            return super(AuditoriaAdminEventos, self).get_readonly_fields(request, obj)
 
 
 class AuditoriaAdmin(admin.ModelAdmin):

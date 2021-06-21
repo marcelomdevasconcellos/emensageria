@@ -274,12 +274,6 @@ def pdf_recibo_evento(evento):
         return lista
 
     background = os.path.join(settings.BASE_DIR, 'staticfiles', 'recibo', 'recibo_evento.jpg')
-    logo = os.path.join(
-        settings.BASE_DIR,
-        settings.MEDIA_ROOT,
-        evento.transmissor_evento.transmissor.logotipo.file.name)
-    # w, h = get_size_image(logo)
-    logo_w, logo_h = get_size_image(logo)
     create_dir(evento.pdf_file())
 
     my_canvas = canvas.Canvas(
@@ -290,9 +284,15 @@ def pdf_recibo_evento(evento):
         0*mm, 0*mm,
         width=210*mm,
         height=297*mm, mask='auto')
-    my_canvas.drawImage(
-        logo, 159*mm, 280*mm,
-        width=30*mm, height=(logo_h/logo_w)*30*mm)
+    if evento.transmissor_evento.transmissor.logotipo:
+        logo = os.path.join(
+            settings.BASE_DIR,
+            settings.MEDIA_ROOT,
+            evento.transmissor_evento.transmissor.logotipo.file.name)
+        logo_w, logo_h = get_size_image(logo)
+        my_canvas.drawImage(
+            logo, 159*mm, 280*mm,
+            width=30*mm, height=(logo_h/logo_w)*30*mm)
     my_canvas.setFont('Helvetica', 12)
     my_canvas.drawString(20*mm, 280*mm, evento.get_evento_display())
     my_canvas.setFont('Helvetica', 8)
