@@ -255,11 +255,29 @@ def get_size_image(path):
 
 def pdf_recibo_evento(evento):
     import os
+    import json
     from config import settings
     from config.functions import create_dir
 
+    def generate_text_list(texto, compr):
+        lista = []
+        palavras = texto.split(' ')
+        novo_texto = palavras[0]
+        del palavras[0]
+        for p in palavras:
+            if len(novo_texto) + len(p) + 1 > compr:
+                lista.append(novo_texto)
+                novo_texto = p
+            else:
+                novo_texto += ' ' + p
+        lista.append(novo_texto)
+        return lista
+
     background = os.path.join(settings.BASE_DIR, 'staticfiles', 'recibo', 'recibo_evento.jpg')
-    logo = os.path.join(settings.BASE_DIR, settings.MEDIA_ROOT, evento.transmissor_evento.transmissor.logotipo.file.name)
+    logo = os.path.join(
+        settings.BASE_DIR,
+        settings.MEDIA_ROOT,
+        evento.transmissor_evento.transmissor.logotipo.file.name)
     # w, h = get_size_image(logo)
     logo_w, logo_h = get_size_image(logo)
     create_dir(evento.pdf_file())
@@ -273,17 +291,69 @@ def pdf_recibo_evento(evento):
         width=210*mm,
         height=297*mm, mask='auto')
     my_canvas.drawImage(
-        logo, 164*mm, 280*mm,
+        logo, 159*mm, 280*mm,
         width=30*mm, height=(logo_h/logo_w)*30*mm)
     my_canvas.setFont('Helvetica', 12)
-    my_canvas.drawString(16*mm, 280*mm, evento.get_evento_display())
+    my_canvas.drawString(20*mm, 280*mm, evento.get_evento_display())
+    my_canvas.setFont('Helvetica', 8)
+    ends = evento.transmissor_evento.transmissor.endereco_completo.replace('\r', '').split('\n')
+    ini = 16
+    for end in ends:
+        my_canvas.drawString(20*mm, ini*mm, end)
+        ini -= 4
+
     my_canvas.setFont('Helvetica', 10)
-    my_canvas.drawString(17*mm, 257*mm, evento.identidade)
-    my_canvas.drawString(90*mm, 257*mm, evento.versao)
-    my_canvas.drawString(140*mm, 257*mm, evento.get_tpamb_display())
-    # text1 = 'ATRAVÉS DO APLICATIVO NO DIA {} ÀS {}'.format(
-    #     obj.criado_em.strftime('%d/%m/%Y'), obj.criado_em.strftime('%H:%M'))
-    # my_canvas.drawString(21*mm, 17*mm, text1)
+    my_canvas.drawString(22*mm, 252*mm, evento.identidade)
+    my_canvas.drawString(108*mm, 252*mm, evento.versao)
+    my_canvas.drawString(150*mm, 252*mm, evento.get_tpamb_display())
+    my_canvas.drawString(22*mm, 233*mm, evento.get_procemi_display())
+    my_canvas.drawString(79*mm, 233*mm, evento.verproc)
+    my_canvas.drawString(108*mm, 233*mm, evento.get_tpinsc_display())
+    my_canvas.drawString(136*mm, 233*mm, evento.nrinsc)
+    re = json.loads(evento.retorno_consulta_json)
+
+    # RECEPÇÃO
+    rec = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('recepcao')
+    my_canvas.drawString(22*mm, 214*mm, rec.get('tpAmb'))
+    my_canvas.setFont('Helvetica', 9)
+    my_canvas.drawString(50*mm, 214*mm, rec.get('dhRecepcao') or '')
+    my_canvas.setFont('Helvetica', 10)
+    my_canvas.drawString(94*mm, 214*mm, rec.get('versaoAppRecepcao') or '')
+    my_canvas.drawString(122*mm, 214*mm, rec.get('protocoloEnvioLote') or '')
+
+    # PROCESSAMENTO
+    pro = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('processamento')
+    my_canvas.drawString(22*mm, 195*mm, pro.get('cdResposta'))
+    my_canvas.drawString(36*mm, 195*mm, pro.get('descResposta'))
+    my_canvas.drawString(122*mm, 195*mm, pro.get('versaoAppProcessamento') or '')
+    my_canvas.drawString(150*mm, 195*mm, pro.get('dhProcessamento'))
+
+    # RECIBO
+    reci = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('recibo')
+    my_canvas.drawString(22*mm, 176*mm, reci.get('nrRecibo') or '')
+    my_canvas.drawString(79*mm, 176*mm, reci.get('hash') or '')
+
+    # OCORRÊNCIAS
+    if pro.get('ocorrencias') and pro.get('ocorrencias').get('ocorrencia'):
+        ocor = pro.get('ocorrencias').get('ocorrencia')
+        ini = 160
+        for oco in ocor:
+            my_canvas.drawString(22*mm, ini*mm, oco.get('tipo') or '')
+            my_canvas.drawString(32*mm, ini*mm, oco.get('codigo') or '')
+            desc_txt = oco.get('descricao').replace('\n', ' ')
+            desc_list = generate_text_list(desc_txt, 88)
+            for des in desc_list:
+                my_canvas.drawString(42*mm, ini*mm, des)
+                ini -= 5
+            if oco.get('localizacao'):
+                my_canvas.drawString(42*mm, ini*mm, oco.get('localizacao') or '')
+            else:
+                ini +=5
+            ini -= 7
+    else:
+        ini = 160
+        my_canvas.drawString(22 * mm, ini * mm, 'Não há')
+
     my_canvas.save()
 
 

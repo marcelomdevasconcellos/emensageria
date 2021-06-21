@@ -181,10 +181,10 @@ class TransmissorEventosAdmin(AuditoriaAdminEventos):
         consultar_lote,
     ]
 
-    # inlines = (
-    #     EventosInline,
-    #     TransmissorEventosArquivosInline,
-    # )
+    inlines = (
+        EventosInline,
+        #TransmissorEventosArquivosInline,
+    )
 
     list_filter = (
         'transmissor',
@@ -267,8 +267,11 @@ class EventosAdmin(AuditoriaAdminEventos):
 
         elif obj.status in (STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_VALIDADO_ERRO):
             url = reverse('admin:esocial_eventos_change', kwargs={'object_id': obj.pk})
+            url_recibo = reverse('esocial:eventos_recibo', kwargs={'pk': obj.pk})
             return mark_safe("<a href='{}' class='btn btn-danger form-control'>"
-                             "<i class='fa fa-minus-square-o'></i>&nbsp;Corrigir</a>".format(url))
+                             "<i class='fa fa-minus-square-o'></i>&nbsp;Corrigir</a>"
+                             "<a href='{}' class='btn btn-print form-control'>"
+                             "<i class='fa fa-thumbs-o-up'></i>&nbsp;Recibo</a>".format(url, url_recibo))
 
         elif obj.status == STATUS_EVENTO_AGUARD_ENVIO:
             url = reverse('esocial:enviar_evento', kwargs={'pk': obj.pk})
@@ -325,11 +328,7 @@ class EventosAdmin(AuditoriaAdminEventos):
 
     def abrir_evento_edicao(modeladmin, request, queryset):
         for obj in queryset:
-            retorno = obj.abrir_evento_para_edicao()
-            if not retorno[0]:
-                messages.add_message(request, messages.INFO, retorno[1])
-            else:
-                messages.add_message(request, messages.ERROR, retorno[1])
+            retorno = obj.abrir_evento_para_edicao(request=request)
 
     abrir_evento_edicao.short_description = "Abrir evento para edição"
 
@@ -366,14 +365,15 @@ class EventosAdmin(AuditoriaAdminEventos):
             'versao', 
             'evento',
             'operacao',
-            'identidade', 
-            'status',
-            'tpinsc',
+            'identidade',
             'nrinsc',
+            'tpinsc',
             'tpamb',
             'procemi',
             'verproc',
+            'status',
             'transmissor_evento',
+            'certificado',
             'evento_json',
             )
         }),

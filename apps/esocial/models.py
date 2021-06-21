@@ -464,6 +464,7 @@ class TransmissorEventos(BaseModelEsocial):
         if self.transmissor.certificado and self.protocolo:
 
             save_file(dados['request'], self.make_retrieve())
+            save_file(self.get_command(service, date_now), COMMAND_CURL % dados)
             os.system(COMMAND_CURL % dados)
 
             if not os.path.isfile(dados['response']):
@@ -533,12 +534,15 @@ class TransmissorEventos(BaseModelEsocial):
                     retorno_consulta_dict = xmltodict.parse(evt.retornoEvento.prettify())
                     retorno_consulta_json = json.dumps(retorno_consulta_dict)
                     ocorrencias = evt.retornoEvento.eSocial.retornoEvento.processamento.ocorrencias
+                    oco_json = None
                     if ocorrencias:
                         oco_dict = xmltodict.parse(ocorrencias.prettify())
                         oco_json = json.dumps(oco_dict)
                     evento = Eventos.objects.get(identidade=identidade)
                     evento.retorno_consulta_json = retorno_consulta_json
                     evento.ocorrencias_json = oco_json
+                    if oco_json and oco_json != '{}':
+                        evento.status = STATUS_EVENTO_ENVIADO_ERRO
                     evento.save()
 
                 return {
@@ -684,10 +688,12 @@ class CertificadosSerializer(BaseModelSerializer):
 class Eventos(BaseModelEsocial):
     from .choices import ESOCIAL_VERSAO_DEFAULT
     cols = {
-        'versao': 3,
+        'versao': 2,
+        'evento': 4,
         'operacao': 3,
-        'evento': 6,
+        'identidade': 3,
         'evento_json': 12,
+        'certificado': 4,
     }
     identidade = models.CharField('Identidade',
                                   max_length=36,
@@ -727,6 +733,12 @@ class Eventos(BaseModelEsocial):
     verproc = models.CharField(
         'Versão do processo',
         max_length=20, null=True, )
+    certificado = models.ForeignKey(
+        'Certificados',
+        on_delete=models.PROTECT,
+        verbose_name='Certificado',
+        related_name='certificado_esocial',
+        blank=True, null=True, )
 
     #####
 
@@ -883,12 +895,18 @@ class Eventos(BaseModelEsocial):
         import esocial.utils
         from lxml import etree
 
-        if not self.transmissor_evento:
-            self.transmissor_evento = self.vincular_transmissor()
+        if self.certificado:
+            certificado = self.certificado
+        else:
+            if not self.transmissor_evento:
+                self.transmissor_evento = self.vincular_transmissor()
+            certificado = self.transmissor_evento.certificado
+            self.certificado = certificado
+            self.save()
 
         cert_data = esocial.utils.pkcs12_data(
-            self.transmissor_evento.transmissor.certificado.certificado.file.name,
-            self.transmissor_evento.transmissor.certificado.senha)
+            certificado.certificado.file.name,
+            certificado.senha)
         evt = esocial.xml.load_fromfile(self.xml_file())
         evt_signed = esocial.xml.sign(evt, cert_data)
         #xml_header = '<?xml version="1.0" encoding="UTF-8"?>'
@@ -1007,6 +1025,7 @@ class Eventos(BaseModelEsocial):
             if self.status == STATUS_EVENTO_AGUARD_ENVIO:
                 self.status = STATUS_EVENTO_CADASTRADO
             self.is_aberto = True
+            self.transmissor_evento = None
             self.save()
             if request:
                 messages.success(request, "Evento aberto para edição!")
@@ -1134,6 +1153,12 @@ class EventosHistorico(BaseModelEsocial):
         on_delete=models.SET_NULL,
         verbose_name='Transmissor',
         related_name='transmissor_esocial_historico',
+        blank=True, null=True, )
+    certificado = models.ForeignKey(
+        'Certificados',
+        on_delete=models.SET_NULL,
+        verbose_name='Certificado',
+        related_name='certificado_esocial_historico',
         blank=True, null=True, )
 
     validacao_precedencia = models.IntegerField(
