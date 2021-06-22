@@ -314,24 +314,27 @@ def pdf_recibo_evento(evento):
 
     # RECEPÇÃO
     rec = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('recepcao')
-    my_canvas.drawString(22*mm, 214*mm, rec.get('tpAmb'))
-    my_canvas.setFont('Helvetica', 9)
-    my_canvas.drawString(50*mm, 214*mm, rec.get('dhRecepcao') or '')
-    my_canvas.setFont('Helvetica', 10)
-    my_canvas.drawString(94*mm, 214*mm, rec.get('versaoAppRecepcao') or '')
-    my_canvas.drawString(122*mm, 214*mm, rec.get('protocoloEnvioLote') or '')
+    if rec:
+        my_canvas.drawString(22*mm, 214*mm, rec.get('tpAmb'))
+        my_canvas.setFont('Helvetica', 9)
+        my_canvas.drawString(50*mm, 214*mm, rec.get('dhRecepcao') or '')
+        my_canvas.setFont('Helvetica', 10)
+        my_canvas.drawString(94*mm, 214*mm, rec.get('versaoAppRecepcao') or '')
+        my_canvas.drawString(122*mm, 214*mm, rec.get('protocoloEnvioLote') or '')
 
     # PROCESSAMENTO
     pro = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('processamento')
-    my_canvas.drawString(22*mm, 195*mm, pro.get('cdResposta'))
-    my_canvas.drawString(36*mm, 195*mm, pro.get('descResposta'))
-    my_canvas.drawString(122*mm, 195*mm, pro.get('versaoAppProcessamento') or '')
-    my_canvas.drawString(150*mm, 195*mm, pro.get('dhProcessamento'))
+    if pro:
+        my_canvas.drawString(22*mm, 195*mm, pro.get('cdResposta'))
+        my_canvas.drawString(36*mm, 195*mm, pro.get('descResposta'))
+        my_canvas.drawString(122*mm, 195*mm, pro.get('versaoAppProcessamento') or '')
+        my_canvas.drawString(150*mm, 195*mm, pro.get('dhProcessamento'))
 
     # RECIBO
     reci = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('recibo')
-    my_canvas.drawString(22*mm, 176*mm, reci.get('nrRecibo') or '')
-    my_canvas.drawString(79*mm, 176*mm, reci.get('hash') or '')
+    if reci:
+        my_canvas.drawString(22*mm, 176*mm, reci.get('nrRecibo') or '')
+        my_canvas.drawString(79*mm, 176*mm, reci.get('hash') or '')
 
     # OCORRÊNCIAS
     if pro.get('ocorrencias') and pro.get('ocorrencias').get('ocorrencia'):

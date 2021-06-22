@@ -3,6 +3,7 @@ from django import forms
 from .choices import STATUS_EVENTO_CADASTRADO
 from .models import Eventos, Certificados, Arquivos, Transmissor
 from constance import config
+from django.core.exceptions import ValidationError
 from django_currentuser.middleware import get_current_user
 
 class EventosForm(forms.ModelForm):
@@ -50,6 +51,18 @@ class TransmissorForm(forms.ModelForm):
     class Meta:
         model = Transmissor
         fields = '__all__'
+
+    def clean(self):
+        cleaned_data = super().clean()
+        nrinsc = cleaned_data.get("nrinsc")
+        if config.FILTER_BY_USER:
+            current_user = get_current_user()
+            transmissores = Transmissor.all_objects.\
+                filter(nrinsc=nrinsc).\
+                exclude(created_by=current_user).\
+                exclude(users__id=current_user.id).all()
+            if transmissores:
+                raise ValidationError("Já existe um transmissor cadastrado com este número. Entre em contato com o administrador do sistema e solicite que vincule ele ao seu usuário.")
 
     # def __init__(self, *args, **kwargs):
     #     super(TransmissorForm, self).__init__(*args, **kwargs)

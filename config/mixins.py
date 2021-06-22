@@ -6,6 +6,7 @@ from django.forms import Select, Textarea
 from django_currentuser.db.models import CurrentUserField
 from rest_framework.serializers import ModelSerializer
 from constance import config
+from django.db.models.query import QuerySet
 from django_currentuser.middleware import get_current_user, get_current_authenticated_user
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
@@ -63,17 +64,24 @@ class BaseModel(models.Model):
 
 
 class EventosManager(models.Manager):
+
+    def __init__(self, *args, **kwargs):
+        self.all_obj = kwargs.pop('all_obj', False)
+        super(EventosManager, self).__init__(*args, **kwargs)
+
     def get_queryset(self):
         from django.db.models import Q
         current_user = get_current_user()
-        if self.model.__name__ not in ('Certificados', 'Transmissor'):
+        if self.all_obj:
+            return QuerySet(self.model)
+        elif self.model.__name__ not in ('Certificados', 'Transmissor'):
             if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
-                return super().get_queryset().filter(created_by=current_user)
-            return super().get_queryset()
+                return QuerySet(self.model).filter(created_by=current_user)
+            return QuerySet(self.model)
         else:
             if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
-                return super().get_queryset().filter(Q(created_by=current_user)|Q(users__id=current_user.id))
-            return super().get_queryset()
+                return QuerySet(self.model).filter(Q(created_by=current_user)|Q(users__id=current_user.id))
+            return QuerySet(self.model)
 
 
 class BaseModelEsocial(models.Model):
@@ -82,6 +90,7 @@ class BaseModelEsocial(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = EventosManager()
+    all_objects = EventosManager(all_obj=True)
 
     class Meta:
         abstract = True
@@ -98,7 +107,29 @@ class BaseModelReinf(models.Model):
         abstract = True
 
 
+class AuditoriaManager(models.Manager):
+
+    def __init__(self, *args, **kwargs):
+        self.all_obj = kwargs.pop('all_obj', True)
+        super(AuditoriaManager, self).__init__(*args, **kwargs)
+
+    def get_queryset(self):
+        from django.db.models import Q
+        current_user = get_current_user()
+        if self.all_obj:
+            return super().get_queryset()
+        elif self.model.__name__ not in ('Certificados', 'Transmissor'):
+            if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
+                return super().get_queryset().filter(created_by=current_user)
+            return super().get_queryset()
+        else:
+            if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
+                return super().get_queryset().filter(Q(created_by=current_user)|Q(users__id=current_user.id))
+            return super().get_queryset()
+
+
 class AuditoriaAdminEventos(admin.ModelAdmin):
+    objects = AuditoriaManager()
 
     def has_view_permission(self, request, obj=None):
         current_user = get_current_user()
@@ -108,10 +139,14 @@ class AuditoriaAdminEventos(admin.ModelAdmin):
         return super().has_view_permission(request)
 
     def get_queryset(self, request):
+        from django.db.models import Q
         current_user = get_current_user()
         queryset = super().get_queryset(request)
         if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
-            return queryset.filter(created_by=current_user)
+            if self.model.__name__ in ('Certificados', 'Transmissor'):
+                return queryset.filter(Q(created_by=current_user)|Q(users__id=current_user.id))
+            else:
+                return queryset.filter(created_by=current_user)
         return queryset
 
     readonly_fields = (
@@ -122,7 +157,7 @@ class AuditoriaAdminEventos(admin.ModelAdmin):
     )
 
     def get_readonly_fields(self, request, obj=None):
-        if self.model.__name__ not in ('Certificados', 'Transmissor'):
+        if self.model.__name__ in ('Certificados', 'Transmissor'):
             if request.user.is_superuser:
                 return super(AuditoriaAdminEventos, self).get_readonly_fields(request, obj)
             else:

@@ -126,7 +126,7 @@ class Transmissor(BaseModelEsocial):
         on_delete=models.PROTECT,
         verbose_name='Certificado',
         related_name='%(class)s_certificado', )
-    users = models.ManyToManyField(User, verbose_name='Usuários', related_name='transmissores_users',
+    users = models.ManyToManyField(User, verbose_name='Usuários', related_name='transmissores_users', blank=True,
                                    help_text="Informe a lista de usuários que tem acesso a utilizar este transmissor.")
     def __str__(self):
         return self.nome_empresa
@@ -623,7 +623,7 @@ class Certificados(BaseModelEsocial):
     fs_certificado = FileSystemStorage(location=os.path.join(settings.BASE_DIR, settings.CERT_PATH))
     certificado = models.FileField('Arquivo', storage=fs_certificado)
     senha = models.CharField('Senha', max_length=300, blank=True, null=True, )
-    users = models.ManyToManyField(User, verbose_name='Usuários', related_name='certificado_users',
+    users = models.ManyToManyField(User, verbose_name='Usuários', related_name='certificado_users', blank=True,
                                    help_text="Informe a lista de usuários que tem acesso a utilizar este certificado.")
 
     def cert_pem_file(self):
@@ -793,13 +793,13 @@ class Eventos(BaseModelEsocial):
         'Está aberto para edição', default=True, )
 
     def retorno_envio(self):
-        return json.loads(self.retorno_envio_json)
+        return json.loads(self.retorno_envio_json or '{}')
 
     def retorno_consulta(self):
-        return json.loads(self.retorno_consulta_json)
+        return json.loads(self.retorno_consulta_json or '{}')
 
     def ocorrencias(self):
-        return json.loads(self.ocorrencias_json)
+        return json.loads(self.ocorrencias_json or '{}')
 
     def __str__(self):
         return self.identidade
@@ -1050,6 +1050,23 @@ class Eventos(BaseModelEsocial):
              force_update=False,
              using=None,
              update_fields=None):
+        if self.origem == EVENTO_ORIGEM_API and not self.pk:
+            self.is_aberto = False
+            self.status = STATUS_EVENTO_CADASTRADO
+            if self.evento_xml and not self.evento_json:
+                import json
+                dict = xmltodict.parse(self.evento_xml)
+                self.evento_json = json.dumps(dict.get['eSocial'])
+            elif self.evento_json and not self.evento_xml:
+                from json2xml import json2xml
+                from json2xml.utils import readfromstring
+                import xml.etree.ElementTree as ET
+                from .choices import EVENTO_COD
+                data = readfromstring(self.evento_json or '{}')
+                wrapper = 'eSocial'
+                self.evento_xml = json2xml.Json2xml(data,
+                                        wrapper=wrapper, pretty=False,
+                                        attr_type=False).to_xml().decode()
         # if self.ocorrencias_json:
         #     self.status = STATUS_EVENTO_ENVIADO_ERRO
         #     if self.transmissor_evento:

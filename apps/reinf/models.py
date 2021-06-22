@@ -512,8 +512,8 @@ class TransmissorEventos(BaseModelReinf):
         return '{} {} {}'.format(self.id, self.grupo, self.get_status_display())
 
     class Meta:
-        verbose_name = 'Transmissor do eSocial'
-        verbose_name_plural = 'Transmissor do eSocial'
+        verbose_name = 'Transmissor do Reinf'
+        verbose_name_plural = 'Transmissor do Reinf'
 
 
 class TransmissorEventosSerializer(BaseModelSerializer):
@@ -785,7 +785,7 @@ class Eventos(BaseModelReinf):
         from .choices import EVENTO_COD
 
         data = readfromstring(self.evento_json)
-        wrapper = 'eSocial'
+        wrapper = 'Reinf'
         xml = json2xml.Json2xml(data,
                                 wrapper=wrapper, pretty=False,
                                 attr_type=False).to_xml().decode()
@@ -923,7 +923,7 @@ class EventosHistorico(BaseModelReinf):
         'Eventos',
         on_delete=models.PROTECT,
         verbose_name='Evento',
-        related_name='evento_esocial',
+        related_name='evento_reinf',
         blank=True, null=True, )
     identidade = models.CharField('Identidade',
                                   max_length=36,
@@ -964,7 +964,7 @@ class EventosHistorico(BaseModelReinf):
         'TransmissorEventos',
         on_delete=models.PROTECT,
         verbose_name='Transmissor',
-        related_name='transmissor_esocial_historico',
+        related_name='transmissor_reinf_historico',
         blank=True, null=True, )
 
     validacao_precedencia = models.IntegerField(

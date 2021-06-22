@@ -113,10 +113,21 @@ class TransmissorAdmin(AuditoriaAdminEventos):
     }), ('Empregador', {
         'fields': ('nome_empresa', 'logotipo', 'endereco_completo',
                    'tpinsc', 'nrinsc', 'certificado')
-    }), ('Usuários', {
-        'fields': ('users', )
-    }))
+    }), )
     form = TransmissorForm
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super(TransmissorAdmin, self).get_fieldsets(request, obj)
+        if request.user.is_superuser:
+            return (('Transmissor', {
+                        'fields': ('transmissor_tpinsc', 'transmissor_nrinsc',)
+                    }), ('Empregador', {
+                        'fields': ('nome_empresa', 'logotipo', 'endereco_completo',
+                                   'tpinsc', 'nrinsc', 'certificado')
+                    }), ('Usuários', {
+                        'fields': ('users', )
+                    }))
+        return fieldsets
 
 
 admin.site.register(Transmissor, TransmissorAdmin)

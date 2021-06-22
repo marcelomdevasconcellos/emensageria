@@ -34,11 +34,15 @@ def minus_one(obj):
 def div_cols(field):
     COLUMN_DEFAULT = 4
     if not field.is_readonly:
-        if 'cols' in field.field.form.Meta.model.__dict__ \
+        if field.field.name == 'permissions':
+            return 8
+        elif 'cols' in field.field.form.Meta.model.__dict__ \
                 and field.field.name in field.field.form.Meta.model.cols:
             return field.field.form.Meta.model.cols[field.field.name]
     else:
-        if 'cols' in field.model_admin.model.__dict__ \
+        if field.field.get('name') == 'permissions':
+            return 8
+        elif 'cols' in field.model_admin.model.__dict__ \
                 and field.field['name'] in field.model_admin.model.cols:
             return field.model_admin.model.cols[field.field['name']]
     return COLUMN_DEFAULT
