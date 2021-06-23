@@ -788,7 +788,7 @@ class Eventos(BaseModelEsocial):
     ocorrencias_json = models.TextField("Ocorrências", null=True, blank=True)
     origem = models.IntegerField(
         'Origem do evento',
-        choices=EVENTO_ORIGEM, default=0, )
+        choices=EVENTO_ORIGEM, default=EVENTO_ORIGEM_SISTEMA, )
     is_aberto = models.BooleanField(
         'Está aberto para edição', default=True, )
 
@@ -895,6 +895,10 @@ class Eventos(BaseModelEsocial):
         self.transmissor_evento = tra_evt
         self.save()
         return tra_evt.enviar()
+
+    def consultar(self, request=None):
+        tra_evt = self.transmissor_evento
+        return tra_evt.consultar()
 
     def assinar(self, request=None):
         import esocial.xml
@@ -1050,30 +1054,6 @@ class Eventos(BaseModelEsocial):
              force_update=False,
              using=None,
              update_fields=None):
-        if self.origem == EVENTO_ORIGEM_API and not self.pk:
-            self.is_aberto = False
-            self.status = STATUS_EVENTO_CADASTRADO
-            if self.evento_xml and not self.evento_json:
-                import json
-                dict = xmltodict.parse(self.evento_xml)
-                self.evento_json = json.dumps(dict.get['eSocial'])
-            elif self.evento_json and not self.evento_xml:
-                from json2xml import json2xml
-                from json2xml.utils import readfromstring
-                import xml.etree.ElementTree as ET
-                from .choices import EVENTO_COD
-                data = readfromstring(self.evento_json or '{}')
-                wrapper = 'eSocial'
-                self.evento_xml = json2xml.Json2xml(data,
-                                        wrapper=wrapper, pretty=False,
-                                        attr_type=False).to_xml().decode()
-        # if self.ocorrencias_json:
-        #     self.status = STATUS_EVENTO_ENVIADO_ERRO
-        #     if self.transmissor_evento:
-        #         self.transmissor_evento_error.add(self.transmissor_evento)
-        #     self.transmissor_evento = None
-        # elif self.status == STATUS_EVENTO_ENVIADO_ERRO:
-        #     self.status = STATUS_EVENTO_CADASTRADO
         super(Eventos, self).save(
             force_insert=False,
             force_update=False,

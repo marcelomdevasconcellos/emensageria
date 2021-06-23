@@ -235,7 +235,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.is_aberto and original.status == STATUS_EVENTO_CADASTRADO %}
+                        {% if original.pk and original.is_aberto and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ENVIADO_ERRO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="submit"
@@ -257,7 +257,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.is_aberto %}
+                        {% if original.pk and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ENVIADO_ERRO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="submit"

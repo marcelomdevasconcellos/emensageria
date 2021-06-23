@@ -40,15 +40,15 @@ urlpatterns = [
 
     path("api/", include("apps.esocial.api.urls")),
 
-    path('consultar/<int:pk>/',
+    path('consultar-evento/<int:pk>/',
          consultar_evento,
          name='consultar_evento'),
 
-    path('consultar/<int:pk>/',
+    path('consultar-transmissor/<int:pk>/',
          consultar_transmissor,
          name='consultar_transmissor'),
 
-    path('consultar/',
+    path('consultar-transmissor/',
          consultar_transmissores,
          name='consultar_transmissores'),
 
@@ -56,11 +56,11 @@ urlpatterns = [
          enviar_evento,
          name='enviar_evento'),
 
-    path('enviar/<int:pk>/',
+    path('enviar-transmissor/<int:pk>/',
          enviar_transmissor,
          name='enviar_transmissor'),
 
-    path('enviar/',
+    path('enviar-transmissores/',
          enviar_transmissores,
          name='enviar_transmissores'),
 
