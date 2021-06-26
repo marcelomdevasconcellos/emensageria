@@ -43,3 +43,4 @@ django-allauth==0.41.0
 whitenoise==5.2.0
 requests~=2.24.0
 django-treebeard~=4.3
+python-dateutil==2.8.1
