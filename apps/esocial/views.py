@@ -115,7 +115,7 @@ class EventosApiDetail(generics.RetrieveUpdateDestroyAPIView):
 def visualizar_xml(request, pk):
     evt = get_object_or_404(Eventos, id=pk)
     if not evt.transmissor_evento:
-        evt = evt.vincular_transmissor()
+        evt.vincular_transmissor()
     evt.create_xml()
     response = HttpResponse(
         evt.evento_xml,

@@ -467,16 +467,6 @@ class EventosAdmin(AuditoriaAdminEventos):
             return HttpResponseRedirect(".")
         
         return super().response_change(request, obj)
-            # incluir redirecionamento para nova url
-
-    # formfield_overrides = {
-    #     models.TextField: {
-    #         'widget': Textarea(attrs={
-    #             'rows': 1,
-    #             'cols': 120
-    #         })
-    #     },
-    # }
 
 
 admin.site.register(Eventos, EventosAdmin)

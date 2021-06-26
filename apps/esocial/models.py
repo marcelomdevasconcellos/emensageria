@@ -959,6 +959,16 @@ class Eventos(BaseModelEsocial):
         xml_obj = ET.fromstring(xml)
         xml_obj.set('xmlns', f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
 
+        def recursive_update_datefield(elem2):
+            from dateutil import parser as dateutil_parser
+            for elem in elem2:
+                print(elem.text)
+                if elem.text and len(elem.text) == 10 and len(elem.text.split('/')) == 3:
+                    data = dateutil_parser.parse(elem.text, dayfirst=True)
+                    elem.text = data.strftime('%Y-%m-%d')
+                else:
+                    recursive_update_datefield(elem)
+
         def recursive_remove(elem2):
             for elem in elem2:
                 if len(elem) == 0 and (elem.text is None or not elem.text.strip()):
@@ -975,6 +985,7 @@ class Eventos(BaseModelEsocial):
 
         while get_empty_tags():
             for elem in xml_obj:
+                recursive_update_datefield(elem)
                 recursive_remove(elem)
 
         xml_obj.find(EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
@@ -1063,7 +1074,7 @@ class Eventos(BaseModelEsocial):
             Eventos.objects.filter(id=self.id). \
                 update(identidade=self.make_identidade())
         data = Eventos.objects.filter(id=self.id).values().first()
-        data['evt'] = self
+        data['evt_id'] = self.pk or None
         data['id'] = None
         EventosHistorico(**data).save()
 
