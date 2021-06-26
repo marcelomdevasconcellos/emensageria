@@ -253,7 +253,7 @@ Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa
         <div class="form-group">
             <label>vlrRemunOE<a data-toggle="tooltip" title="Preencher com o valor da remuneração recebida pelo trabalhador na outra empresa/atividade, sobre a qual houve desconto/recolhimento da contribuição do segurado.
 Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtRemun__ideTrabalhador__infoMV__remunOutrEmpr__id__vlrRemunOE" maxlength="14" value="{{original.evento_json|readjson:'evtRemun.ideTrabalhador.infoMV.remunOutrEmpr.vlrRemunOE'}}" name="[evtRemun][ideTrabalhador][infoMV][remunOutrEmpr][vlrRemunOE]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtRemun__ideTrabalhador__infoMV__remunOutrEmpr__id__vlrRemunOE" maxlength="14" value="{{original.evento_json|readjson:'evtRemun.ideTrabalhador.infoMV.remunOutrEmpr.vlrRemunOE'}}" name="[evtRemun][ideTrabalhador][infoMV][remunOutrEmpr][vlrRemunOE]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -606,7 +606,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que perAp
             <label>qtdRubr<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
 Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
 Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtRemun__dmDev__infoPerApur__ideEstabLot__remunPerApur__itensRemun__id__qtdRubr" maxlength="12" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerApur.ideEstabLot.remunPerApur.itensRemun.qtdRubr'}}" name="[evtRemun][dmDev][infoPerApur][ideEstabLot][remunPerApur][itensRemun][qtdRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtRemun__dmDev__infoPerApur__ideEstabLot__remunPerApur__itensRemun__id__qtdRubr" maxlength="12" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerApur.ideEstabLot.remunPerApur.itensRemun.qtdRubr'}}" name="[evtRemun][dmDev][infoPerApur][ideEstabLot][remunPerApur][itensRemun][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -616,7 +616,7 @@ Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr t
         <div class="form-group">
             <label>fatorRubr<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário. Ex.: Adicional de horas extras 50%, relacionado a uma rubrica de horas extras: Fator = 50.
 Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtRemun__dmDev__infoPerApur__ideEstabLot__remunPerApur__itensRemun__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerApur.ideEstabLot.remunPerApur.itensRemun.fatorRubr'}}" name="[evtRemun][dmDev][infoPerApur][ideEstabLot][remunPerApur][itensRemun][fatorRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtRemun__dmDev__infoPerApur__ideEstabLot__remunPerApur__itensRemun__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerApur.ideEstabLot.remunPerApur.itensRemun.fatorRubr'}}" name="[evtRemun][dmDev][infoPerApur][ideEstabLot][remunPerApur][itensRemun][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -626,7 +626,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
         <div class="form-group">
             <label>vrRubr<a data-toggle="tooltip" title="Valor total da rubrica.
 Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtRemun__dmDev__infoPerApur__ideEstabLot__remunPerApur__itensRemun__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerApur.ideEstabLot.remunPerApur.itensRemun.vrRubr'}}" name="[evtRemun][dmDev][infoPerApur][ideEstabLot][remunPerApur][itensRemun][vrRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtRemun__dmDev__infoPerApur__ideEstabLot__remunPerApur__itensRemun__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerApur.ideEstabLot.remunPerApur.itensRemun.vrRubr'}}" name="[evtRemun][dmDev][infoPerApur][ideEstabLot][remunPerApur][itensRemun][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -899,7 +899,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que perAp
             <label>qtdRubr<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
 Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
 Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtRemun__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__remunPerAnt__itensRemun__id__qtdRubr" maxlength="12" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.remunPerAnt.itensRemun.qtdRubr'}}" name="[evtRemun][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][remunPerAnt][itensRemun][qtdRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtRemun__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__remunPerAnt__itensRemun__id__qtdRubr" maxlength="12" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.remunPerAnt.itensRemun.qtdRubr'}}" name="[evtRemun][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][remunPerAnt][itensRemun][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -909,7 +909,7 @@ Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr t
         <div class="form-group">
             <label>fatorRubr<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário. Ex.: Adicional de horas extras 50%, relacionado a uma rubrica de horas extras: Fator = 50.
 Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtRemun__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__remunPerAnt__itensRemun__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.remunPerAnt.itensRemun.fatorRubr'}}" name="[evtRemun][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][remunPerAnt][itensRemun][fatorRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtRemun__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__remunPerAnt__itensRemun__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.remunPerAnt.itensRemun.fatorRubr'}}" name="[evtRemun][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][remunPerAnt][itensRemun][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -919,7 +919,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
         <div class="form-group">
             <label>vrRubr<a data-toggle="tooltip" title="Valor total da rubrica.
 Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtRemun__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__remunPerAnt__itensRemun__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.remunPerAnt.itensRemun.vrRubr'}}" name="[evtRemun][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][remunPerAnt][itensRemun][vrRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtRemun__dmDev__infoPerAnt__ideADC__idePeriodo__ideEstabLot__remunPerAnt__itensRemun__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtRemun.dmDev.infoPerAnt.ideADC.idePeriodo.ideEstabLot.remunPerAnt.itensRemun.vrRubr'}}" name="[evtRemun][dmDev][infoPerAnt][ideADC][idePeriodo][ideEstabLot][remunPerAnt][itensRemun][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>

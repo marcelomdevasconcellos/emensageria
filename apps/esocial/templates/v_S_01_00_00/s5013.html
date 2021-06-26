@@ -294,7 +294,7 @@ Se tpValor = [19], deve ser retornado [1]."><i class="fa fa-fw fa-question-circl
 Validação: Deve ser maior que 0 (zero).
 Se tpValor for diferente de [19], deve corresponder ao somatório dos valores informados no campo remFGTS do evento S-5003, agrupados por tpValor e indIncid.
 Se tpValor = [19], deve corresponder à remuneração dos trabalhadores avulsos não portuários contratados, conforme informado no campo vrBcFGTS do evento S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtFGTS__infoFGTS__ideEstab__ideLotacao__infoBaseFGTS__basePerApur__id__baseFGTS" maxlength="14" value="{{original.evento_json|readjson:'evtFGTS.infoFGTS.ideEstab.ideLotacao.infoBaseFGTS.basePerApur.baseFGTS'}}" name="[evtFGTS][infoFGTS][ideEstab][ideLotacao][infoBaseFGTS][basePerApur][baseFGTS]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtFGTS__infoFGTS__ideEstab__ideLotacao__infoBaseFGTS__basePerApur__id__baseFGTS" maxlength="14" value="{{original.evento_json|readjson:'evtFGTS.infoFGTS.ideEstab.ideLotacao.infoBaseFGTS.basePerApur.baseFGTS'}}" name="[evtFGTS][infoFGTS][ideEstab][ideLotacao][infoBaseFGTS][basePerApur][baseFGTS]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -306,7 +306,7 @@ Se tpValor = [19], deve corresponder à remuneração dos trabalhadores avulsos 
 Validação: Deve ser maior que 0 (zero).
 Se tpValor for diferente de [19], deve corresponder ao somatório dos valores informados no campo dpsFGTS do evento S-5003, agrupados por tpValor.
 Se tpValor = [19], deve corresponder ao somatório dos valores informados no campo baseFGTS, e aplicar a alíquota de 8%."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtFGTS__infoFGTS__ideEstab__ideLotacao__infoBaseFGTS__basePerApur__id__vrFGTS" maxlength="14" value="{{original.evento_json|readjson:'evtFGTS.infoFGTS.ideEstab.ideLotacao.infoBaseFGTS.basePerApur.vrFGTS'}}" name="[evtFGTS][infoFGTS][ideEstab][ideLotacao][infoBaseFGTS][basePerApur][vrFGTS]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtFGTS__infoFGTS__ideEstab__ideLotacao__infoBaseFGTS__basePerApur__id__vrFGTS" maxlength="14" value="{{original.evento_json|readjson:'evtFGTS.infoFGTS.ideEstab.ideLotacao.infoBaseFGTS.basePerApur.vrFGTS'}}" name="[evtFGTS][infoFGTS][ideEstab][ideLotacao][infoBaseFGTS][basePerApur][vrFGTS]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -406,7 +406,7 @@ Validação: Deve corresponder ao valor informado no campo indIncidE do evento d
             <label>baseFGTSE<a data-toggle="tooltip" title="Remuneração (valor da base de cálculo) do FGTS.
 Validação: Deve ser maior que 0 (zero).
 Deve corresponder ao somatório dos valores informados no campo remFGTSE do evento de origem, agrupados por tpValorE e indIncidE."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtFGTS__infoFGTS__ideEstab__ideLotacao__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__baseFGTSE" maxlength="14" value="{{original.evento_json|readjson:'evtFGTS.infoFGTS.ideEstab.ideLotacao.infoBaseFGTS.infoBasePerAntE.basePerAntE.baseFGTSE'}}" name="[evtFGTS][infoFGTS][ideEstab][ideLotacao][infoBaseFGTS][infoBasePerAntE][basePerAntE][baseFGTSE]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtFGTS__infoFGTS__ideEstab__ideLotacao__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__baseFGTSE" maxlength="14" value="{{original.evento_json|readjson:'evtFGTS.infoFGTS.ideEstab.ideLotacao.infoBaseFGTS.infoBasePerAntE.basePerAntE.baseFGTSE'}}" name="[evtFGTS][infoFGTS][ideEstab][ideLotacao][infoBaseFGTS][infoBasePerAntE][basePerAntE][baseFGTSE]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -417,7 +417,7 @@ Deve corresponder ao somatório dos valores informados no campo remFGTSE do even
             <label>vrFGTSE<a data-toggle="tooltip" title="Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador.
 Validação: Deve ser maior que 0 (zero).
 Deve corresponder ao somatório dos valores informados no campo dpsFGTSE do evento de origem, agrupados por tpValorE."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtFGTS__infoFGTS__ideEstab__ideLotacao__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__vrFGTSE" maxlength="14" value="{{original.evento_json|readjson:'evtFGTS.infoFGTS.ideEstab.ideLotacao.infoBaseFGTS.infoBasePerAntE.basePerAntE.vrFGTSE'}}" name="[evtFGTS][infoFGTS][ideEstab][ideLotacao][infoBaseFGTS][infoBasePerAntE][basePerAntE][vrFGTSE]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtFGTS__infoFGTS__ideEstab__ideLotacao__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__vrFGTSE" maxlength="14" value="{{original.evento_json|readjson:'evtFGTS.infoFGTS.ideEstab.ideLotacao.infoBaseFGTS.infoBasePerAntE.basePerAntE.vrFGTSE'}}" name="[evtFGTS][infoFGTS][ideEstab][ideLotacao][infoBaseFGTS][infoBasePerAntE][basePerAntE][vrFGTSE]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>

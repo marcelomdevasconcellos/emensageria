@@ -246,7 +246,7 @@ Não preencher nas demais situações."><i class="fa fa-fw fa-question-circle"><
             <label>percAliment<a data-toggle="tooltip" title="Percentual a ser destinado a pensão alimentícia.
 Validação: Deve ser maior que 0 (zero) e menor ou igual a 100 (cem).
 Informação obrigatória e exclusiva se pensAlim = [1, 3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVTermino__infoTSVTermino__id__percAliment" maxlength="5" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.percAliment'}}" name="[evtTSVTermino][infoTSVTermino][percAliment]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVTermino__infoTSVTermino__id__percAliment" maxlength="5" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.percAliment'}}" name="[evtTSVTermino][infoTSVTermino][percAliment]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -257,7 +257,7 @@ Informação obrigatória e exclusiva se pensAlim = [1, 3]."><i class="fa fa-fw 
             <label>vrAlim<a data-toggle="tooltip" title="Valor da pensão alimentícia.
 Validação: Deve ser maior que 0 (zero).
 Informação obrigatória e exclusiva se pensAlim = [2, 3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVTermino__infoTSVTermino__id__vrAlim" maxlength="14" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.vrAlim'}}" name="[evtTSVTermino][infoTSVTermino][vrAlim]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVTermino__infoTSVTermino__id__vrAlim" maxlength="14" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.vrAlim'}}" name="[evtTSVTermino][infoTSVTermino][vrAlim]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -403,7 +403,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/
             <label>qtdRubr<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
 Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
 Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.verbasResc.dmDev.ideEstabLot.detVerbas.qtdRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][ideEstabLot][detVerbas][qtdRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.verbasResc.dmDev.ideEstabLot.detVerbas.qtdRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][ideEstabLot][detVerbas][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -413,7 +413,7 @@ Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr t
         <div class="form-group">
             <label>fatorRubr<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário. Ex.: Adicional de horas extras 50%, relacionado a uma rubrica de horas extras: Fator = 50.
 Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.verbasResc.dmDev.ideEstabLot.detVerbas.fatorRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][ideEstabLot][detVerbas][fatorRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__fatorRubr" maxlength="5" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.verbasResc.dmDev.ideEstabLot.detVerbas.fatorRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][ideEstabLot][detVerbas][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -423,7 +423,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
         <div class="form-group">
             <label>vrRubr<a data-toggle="tooltip" title="Valor total da rubrica.
 Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.verbasResc.dmDev.ideEstabLot.detVerbas.vrRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][ideEstabLot][detVerbas][vrRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.verbasResc.dmDev.ideEstabLot.detVerbas.vrRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][ideEstabLot][detVerbas][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -605,7 +605,7 @@ Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa
         <div class="form-group">
             <label>vlrRemunOE<a data-toggle="tooltip" title="Preencher com o valor da remuneração recebida pelo trabalhador na outra empresa/atividade, sobre a qual houve desconto/recolhimento da contribuição do segurado.
 Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__remunOutrEmpr__id__vlrRemunOE" maxlength="14" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.verbasResc.infoMV.remunOutrEmpr.vlrRemunOE'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][remunOutrEmpr][vlrRemunOE]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__remunOutrEmpr__id__vlrRemunOE" maxlength="14" value="{{original.evento_json|readjson:'evtTSVTermino.infoTSVTermino.verbasResc.infoMV.remunOutrEmpr.vlrRemunOE'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][remunOutrEmpr][vlrRemunOE]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>

@@ -206,7 +206,7 @@ Valores válidos:
             <label>vrTotCom<a data-toggle="tooltip" title="Preencher com o valor total da comercialização.
 Validação: Deve ser maior que 0 (zero).
 Se indComerc for igual a [3, 7], deve corresponder à soma do campo vrComerc dos registros vinculados."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__id__vrTotCom" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.vrTotCom'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][vrTotCom]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__id__vrTotCom" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.vrTotCom'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][vrTotCom]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -250,7 +250,7 @@ Se indComerc for igual a [3, 7], deve corresponder à soma do campo vrComerc dos
         <div class="form-group">
             <label>vrComerc<a data-toggle="tooltip" title="Valor bruto da comercialização da produção.
 Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__vrComerc" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.ideAdquir.vrComerc'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][ideAdquir][vrComerc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__vrComerc" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.ideAdquir.vrComerc'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][ideAdquir][vrComerc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -295,7 +295,7 @@ Validação: O mês/ano da emissão da nota fiscal deve ser igual ao mês/ano in
     <div class="col-md-4">
         <div class="form-group">
             <label>vlrBruto<a data-toggle="tooltip" title="Preencher com o valor bruto da(s) nota(s) fiscal(is)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__nfs__id__vlrBruto" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.ideAdquir.nfs.vlrBruto'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][ideAdquir][nfs][vlrBruto]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__nfs__id__vlrBruto" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.ideAdquir.nfs.vlrBruto'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][ideAdquir][nfs][vlrBruto]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -304,7 +304,7 @@ Validação: O mês/ano da emissão da nota fiscal deve ser igual ao mês/ano in
     <div class="col-md-4">
         <div class="form-group">
             <label>vrCPDescPR<a data-toggle="tooltip" title="Preencher com o valor da contribuição previdenciária descontada pelo adquirente na comercialização de produção. Se não houver informação, preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__nfs__id__vrCPDescPR" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.ideAdquir.nfs.vrCPDescPR'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][ideAdquir][nfs][vrCPDescPR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__nfs__id__vrCPDescPR" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.ideAdquir.nfs.vrCPDescPR'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][ideAdquir][nfs][vrCPDescPR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -313,7 +313,7 @@ Validação: O mês/ano da emissão da nota fiscal deve ser igual ao mês/ano in
     <div class="col-md-4">
         <div class="form-group">
             <label>vrRatDescPR<a data-toggle="tooltip" title="Valor da contribuição destinada ao financiamento dos benefícios concedidos em razão do grau de incidência da incapacidade laborativa decorrente dos riscos ambientais do trabalho, incidente sobre a comercialização de produção rural de produtor rural. Se não houver informação, preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__nfs__id__vrRatDescPR" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.ideAdquir.nfs.vrRatDescPR'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][ideAdquir][nfs][vrRatDescPR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__nfs__id__vrRatDescPR" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.ideAdquir.nfs.vrRatDescPR'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][ideAdquir][nfs][vrRatDescPR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -322,7 +322,7 @@ Validação: O mês/ano da emissão da nota fiscal deve ser igual ao mês/ano in
     <div class="col-md-4">
         <div class="form-group">
             <label>vrSenarDesc<a data-toggle="tooltip" title="Valor da contribuição destinada ao SENAR, incidente sobre a comercialização de produção rural de produtor rural pessoa física/segurado especial. Se não houver informação, preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__nfs__id__vrSenarDesc" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.ideAdquir.nfs.vrSenarDesc'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][ideAdquir][nfs][vrSenarDesc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__nfs__id__vrSenarDesc" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.ideAdquir.nfs.vrSenarDesc'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][ideAdquir][nfs][vrSenarDesc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -385,7 +385,7 @@ Validação: A informação prestada deve estar de acordo com o que foi informad
             <label>vrCPSusp<a data-toggle="tooltip" title="Valor da contribuição previdenciária com exigibilidade suspensa.
 Validação: Preenchimento obrigatório se vrRatSusp e vrSenarSusp não tiverem sido preenchidos.
 Deve ser um valor maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__infoProcJud__id__vrCPSusp" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.infoProcJud.vrCPSusp'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][infoProcJud][vrCPSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__infoProcJud__id__vrCPSusp" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.infoProcJud.vrCPSusp'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][infoProcJud][vrCPSusp]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -396,7 +396,7 @@ Deve ser um valor maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></
             <label>vrRatSusp<a data-toggle="tooltip" title="Valor da contribuição para GILRAT com exigibilidade suspensa.
 Validação: Preenchimento obrigatório se vrCPSusp e vrSenarSusp não tiverem sido preenchidos.
 Deve ser um valor maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__infoProcJud__id__vrRatSusp" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.infoProcJud.vrRatSusp'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][infoProcJud][vrRatSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__infoProcJud__id__vrRatSusp" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.infoProcJud.vrRatSusp'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][infoProcJud][vrRatSusp]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -407,7 +407,7 @@ Deve ser um valor maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></
             <label>vrSenarSusp<a data-toggle="tooltip" title="Valor da contribuição para o SENAR com exigibilidade suspensa.
 Validação: Preenchimento obrigatório se vrCPSusp e vrRatSusp não tiverem sido preenchidos.
 Deve ser um valor maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__infoProcJud__id__vrSenarSusp" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.infoProcJud.vrSenarSusp'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][infoProcJud][vrSenarSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__infoProcJud__id__vrSenarSusp" maxlength="14" value="{{original.evento_json|readjson:'evtComProd.infoComProd.ideEstabel.tpComerc.infoProcJud.vrSenarSusp'}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][infoProcJud][vrSenarSusp]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>

@@ -134,7 +134,7 @@ Valores válidos:
         <div class="form-group">
             <label>vrDescCP<a data-toggle="tooltip" title="Valor total da contribuição descontada dos segurados.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [21]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__infoCPSeg__id__vrDescCP" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.infoCPSeg.vrDescCP'}}" name="[evtCS][infoCS][infoCPSeg][vrDescCP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__infoCPSeg__id__vrDescCP" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.infoCPSeg.vrDescCP'}}" name="[evtCS][infoCS][infoCPSeg][vrDescCP]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -144,7 +144,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [21]."><i class="fa fa
         <div class="form-group">
             <label>vrCpSeg<a data-toggle="tooltip" title="Valor total calculado relativo à contribuição dos segurados.
 Origem: campo vrCpSeg de S-5001."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__infoCPSeg__id__vrCpSeg" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.infoCPSeg.vrCpSeg'}}" name="[evtCS][infoCS][infoCPSeg][vrCpSeg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__infoCPSeg__id__vrCpSeg" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.infoCPSeg.vrCpSeg'}}" name="[evtCS][infoCS][infoCPSeg][vrCpSeg]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -232,7 +232,7 @@ Origem: campo indSubstPatr de S-1280."><i class="fa fa-fw fa-question-circle"></
         <div class="form-group">
             <label>percRedContrib<a data-toggle="tooltip" title="Percentual de redução da contribuição prevista na Lei 12.546/2011.
 Evento de origem: S-1280."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__infoContrib__infoPJ__id__percRedContrib" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.infoContrib.infoPJ.percRedContrib'}}" name="[evtCS][infoCS][infoContrib][infoPJ][percRedContrib]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__infoContrib__infoPJ__id__percRedContrib" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.infoContrib.infoPJ.percRedContrib'}}" name="[evtCS][infoCS][infoContrib][infoPJ][percRedContrib]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -250,7 +250,7 @@ Evento de origem: S-1280."><i class="fa fa-fw fa-question-circle"></i></a></labe
         <div class="form-group">
             <label>fatorMes<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006.
 Evento de origem: S-1280."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__infoContrib__infoPJ__infoAtConc__id__fatorMes" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.infoContrib.infoPJ.infoAtConc.fatorMes'}}" name="[evtCS][infoCS][infoContrib][infoPJ][infoAtConc][fatorMes]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__infoContrib__infoPJ__infoAtConc__id__fatorMes" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.infoContrib.infoPJ.infoAtConc.fatorMes'}}" name="[evtCS][infoCS][infoContrib][infoPJ][infoAtConc][fatorMes]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -260,7 +260,7 @@ Evento de origem: S-1280."><i class="fa fa-fw fa-question-circle"></i></a></labe
         <div class="form-group">
             <label>fator13<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006.
 Evento de origem: S-1280."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__infoContrib__infoPJ__infoAtConc__id__fator13" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.infoContrib.infoPJ.infoAtConc.fator13'}}" name="[evtCS][infoCS][infoContrib][infoPJ][infoAtConc][fator13]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__infoContrib__infoPJ__infoAtConc__id__fator13" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.infoContrib.infoPJ.infoAtConc.fator13'}}" name="[evtCS][infoCS][infoContrib][infoPJ][infoAtConc][fator13]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -350,7 +350,7 @@ Validação: Deve corresponder à alíquota declarada no evento S-1005. Caso nã
         <div class="form-group">
             <label>fap<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP.
 Validação: Deve corresponder ao FAP declarado no evento S-1005. Caso não haja informação, retornar o FAP estabelecido para a empresa pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__id__fap" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.infoEstab.fap'}}" name="[evtCS][infoCS][ideEstab][infoEstab][fap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__id__fap" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.infoEstab.fap'}}" name="[evtCS][infoCS][ideEstab][infoEstab][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -360,7 +360,7 @@ Validação: Deve corresponder ao FAP declarado no evento S-1005. Caso não haja
         <div class="form-group">
             <label>aliqRatAjust<a data-toggle="tooltip" title="Alíquota do RAT após ajuste pelo FAP.
 Validação: Deve corresponder ao resultado da multiplicação dos campos infoEstab/aliqRat e infoEstab/fap."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__id__aliqRatAjust" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.infoEstab.aliqRatAjust'}}" name="[evtCS][infoCS][ideEstab][infoEstab][aliqRatAjust]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__id__aliqRatAjust" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.infoEstab.aliqRatAjust'}}" name="[evtCS][infoCS][ideEstab][infoEstab][aliqRatAjust]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -574,7 +574,7 @@ Origem: campo dadosOpPort/aliqRat de S-1020."><i class="fa fa-fw fa-question-cir
         <div class="form-group">
             <label>fap<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP.
 Origem: campo dadosOpPort/fap de S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__dadosOpPort__id__fap" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.dadosOpPort.fap'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][dadosOpPort][fap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__dadosOpPort__id__fap" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.dadosOpPort.fap'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][dadosOpPort][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -584,7 +584,7 @@ Origem: campo dadosOpPort/fap de S-1020."><i class="fa fa-fw fa-question-circle"
         <div class="form-group">
             <label>aliqRatAjust<a data-toggle="tooltip" title="Alíquota do RAT após ajuste pelo FAP.
 Validação: Deve corresponder ao resultado da multiplicação dos campos dadosOpPort/aliqRat e dadosOpPort/fap."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__dadosOpPort__id__aliqRatAjust" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.dadosOpPort.aliqRatAjust'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][dadosOpPort][aliqRatAjust]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__dadosOpPort__id__aliqRatAjust" maxlength="5" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.dadosOpPort.aliqRatAjust'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][dadosOpPort][aliqRatAjust]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -650,7 +650,7 @@ g) Para tpLotacao em S-1020 = [91], todas as bases de cálculo devem ser totaliz
             <label>vrBcCp00<a data-toggle="tooltip" title="Preencher com a base de cálculo da contribuição previdenciária sobre a remuneração.
 Origem: para codCateg diferente de [104]: somatório do campo valor de S-5001, quando tpValor em S-5001 = [11, 15]; para codCateg = [104]: somatório do campo valor de S-5001, quando tpValor em S-5001 = [11, 15], limitado ao teto do salário de contribuição.
 OBS.: A contribuição previdenciária patronal do empregador doméstico tem como base de cálculo o somatório do salário de contribuição de cada empregado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp00" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp00'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp00]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp00" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp00'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp00]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -660,7 +660,7 @@ OBS.: A contribuição previdenciária patronal do empregador doméstico tem com
         <div class="form-group">
             <label>vrBcCp15<a data-toggle="tooltip" title="Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição.
 Origem: campo valor de S-5001, se tpValor em S-5001 = [12, 16]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp15" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp15'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp15]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp15" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp15'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp15]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -670,7 +670,7 @@ Origem: campo valor de S-5001, se tpValor em S-5001 = [12, 16]."><i class="fa fa
         <div class="form-group">
             <label>vrBcCp20<a data-toggle="tooltip" title="Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [13, 17]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp20" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp20'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp20]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp20" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp20'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp20]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -680,7 +680,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [13, 17]."><i class="f
         <div class="form-group">
             <label>vrBcCp25<a data-toggle="tooltip" title="Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [14, 18]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp25" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp25'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp25]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp25" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp25'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp25]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -690,7 +690,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [14, 18]."><i class="f
         <div class="form-group">
             <label>vrSuspBcCp00<a data-toggle="tooltip" title="Valor da BC com incidência suspensa em decorrência de decisão judicial.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [91, 95]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp00" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp00'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp00]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp00" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp00'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp00]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -700,7 +700,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [91, 95]."><i class="f
         <div class="form-group">
             <label>vrSuspBcCp15<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 15 anos de trabalho, com incidência suspensa em decorrência de decisão judicial.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [92, 96]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp15" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp15'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp15]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp15" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp15'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp15]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -710,7 +710,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [92, 96]."><i class="f
         <div class="form-group">
             <label>vrSuspBcCp20<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador expectativa de aposentadoria especial aos 20 anos de trabalho, com incidência suspensa em decorrência de decisão judicial.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [93, 97]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp20" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp20'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp20]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp20" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp20'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp20]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -720,7 +720,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [93, 97]."><i class="f
         <div class="form-group">
             <label>vrSuspBcCp25<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 25 anos de trabalho, com incidência suspensa em decorrência de decisão judicial.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [94, 98]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp25" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp25'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp25]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp25" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp25'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp25]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -730,7 +730,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [94, 98]."><i class="f
         <div class="form-group">
             <label>vrBcCp00VA<a data-toggle="tooltip" title="Preencher com a base de cálculo da contribuição previdenciária sobre a remuneração - Contrato Verde e Amarelo.
 Origem: somatório do campo valor de S-5001, quando tpValor em S-5001 = [41, 45]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp00VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp00VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp00VA]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp00VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp00VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp00VA]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -740,7 +740,7 @@ Origem: somatório do campo valor de S-5001, quando tpValor em S-5001 = [41, 45]
         <div class="form-group">
             <label>vrBcCp15VA<a data-toggle="tooltip" title="Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição - Contrato Verde e Amarelo.
 Origem: campo valor de S-5001, se tpValor em S-5001 = [42, 46]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp15VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp15VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp15VA]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp15VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp15VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp15VA]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -750,7 +750,7 @@ Origem: campo valor de S-5001, se tpValor em S-5001 = [42, 46]."><i class="fa fa
         <div class="form-group">
             <label>vrBcCp20VA<a data-toggle="tooltip" title="Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição - Contrato Verde e Amarelo.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [43, 47]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp20VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp20VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp20VA]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp20VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp20VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp20VA]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -760,7 +760,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [43, 47]."><i class="f
         <div class="form-group">
             <label>vrBcCp25VA<a data-toggle="tooltip" title="Preencher com a base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição - Contrato Verde e Amarelo.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [44, 48]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp25VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp25VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp25VA]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrBcCp25VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrBcCp25VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrBcCp25VA]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -770,7 +770,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [44, 48]."><i class="f
         <div class="form-group">
             <label>vrSuspBcCp00VA<a data-toggle="tooltip" title="Valor da BC com incidência suspensa em decorrência de decisão judicial - Contrato Verde e Amarelo.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [81, 85]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp00VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp00VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp00VA]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp00VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp00VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp00VA]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -780,7 +780,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [81, 85]."><i class="f
         <div class="form-group">
             <label>vrSuspBcCp15VA<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 15 anos de trabalho, com incidência suspensa em decorrência de decisão judicial - Contrato Verde e Amarelo.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [82, 86]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp15VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp15VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp15VA]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp15VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp15VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp15VA]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -790,7 +790,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [82, 86]."><i class="f
         <div class="form-group">
             <label>vrSuspBcCp20VA<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador expectativa de aposentadoria especial aos 20 anos de trabalho, com incidência suspensa em decorrência de decisão judicial - Contrato Verde e Amarelo.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [83, 87]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp20VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp20VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp20VA]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp20VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp20VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp20VA]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -800,7 +800,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [83, 87]."><i class="f
         <div class="form-group">
             <label>vrSuspBcCp25VA<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária adicional correspondente a exposição a agente nocivo que dá ao trabalhador direito a aposentadoria especial aos 25 anos de trabalho, com incidência suspensa em decorrência de decisão judicial - Contrato Verde e Amarelo.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [84, 88]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp25VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp25VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp25VA]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSuspBcCp25VA" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSuspBcCp25VA'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSuspBcCp25VA]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -810,7 +810,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [84, 88]."><i class="f
         <div class="form-group">
             <label>vrDescSest<a data-toggle="tooltip" title="Valor total descontado do trabalhador para recolhimento ao SEST.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [22]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrDescSest" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrDescSest'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrDescSest]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrDescSest" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrDescSest'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrDescSest]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -820,7 +820,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [22]."><i class="fa fa
         <div class="form-group">
             <label>vrCalcSest<a data-toggle="tooltip" title="Valor calculado relativo à contribuição devida pelo trabalhador para recolhimento ao SEST.
 Origem: campo vrCsSegTerc de S-5001, quando calcTerc/tpCR em S-5001 = [121802], exceto se houver informação de processo judicial do trabalhador, quando deve ser utilizado o valor apurado em vrDescSest."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrCalcSest" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrCalcSest'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrCalcSest]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrCalcSest" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrCalcSest'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrCalcSest]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -830,7 +830,7 @@ Origem: campo vrCsSegTerc de S-5001, quando calcTerc/tpCR em S-5001 = [121802], 
         <div class="form-group">
             <label>vrDescSenat<a data-toggle="tooltip" title="Valor total descontado do trabalhador para recolhimento ao SENAT.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [23]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrDescSenat" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrDescSenat'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrDescSenat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrDescSenat" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrDescSenat'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrDescSenat]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -840,7 +840,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [23]."><i class="fa fa
         <div class="form-group">
             <label>vrCalcSenat<a data-toggle="tooltip" title="Valor calculado relativo à contribuição devida pelo trabalhador para recolhimento ao SENAT.
 Origem: campo vrCsSegTerc de S-5001, quando calcTerc/tpCR em S-5001 = [122102], exceto se houver informação de processo judicial do trabalhador, quando deve ser utilizado o valor apurado em vrDescSenat."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrCalcSenat" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrCalcSenat'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrCalcSenat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrCalcSenat" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrCalcSenat'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrCalcSenat]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -850,7 +850,7 @@ Origem: campo vrCsSegTerc de S-5001, quando calcTerc/tpCR em S-5001 = [122102], 
         <div class="form-group">
             <label>vrSalFam<a data-toggle="tooltip" title="Valor total do salário-família para a categoria indicada.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [31]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSalFam" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSalFam'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSalFam]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSalFam" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSalFam'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSalFam]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -860,7 +860,7 @@ Origem: campo valor de S-5001, quando tpValor em S-5001 = [31]."><i class="fa fa
         <div class="form-group">
             <label>vrSalMat<a data-toggle="tooltip" title="Valor total do salário-maternidade para a categoria indicada.
 Origem: campo valor de S-5001, quando tpValor em S-5001 = [32]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSalMat" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSalMat'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSalMat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__basesCp__id__vrSalMat" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesRemun.basesCp.vrSalMat'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesRemun][basesCp][vrSalMat]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -889,7 +889,7 @@ Informações desse grupo conforme informado pelo contribuinte em S-1270.</h4>
         <div class="form-group">
             <label>vrBcCp00<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária sobre a remuneração dos trabalhadores avulsos não portuários.
 Origem: campo vrBcCp00 de S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrBcCp00" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrBcCp00'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrBcCp00]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrBcCp00" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrBcCp00'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrBcCp00]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -899,7 +899,7 @@ Origem: campo vrBcCp00 de S-1270."><i class="fa fa-fw fa-question-circle"></i></
         <div class="form-group">
             <label>vrBcCp15<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição.
 Origem: campo vrBcCp15 de S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrBcCp15" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrBcCp15'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrBcCp15]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrBcCp15" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrBcCp15'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrBcCp15]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -909,7 +909,7 @@ Origem: campo vrBcCp15 de S-1270."><i class="fa fa-fw fa-question-circle"></i></
         <div class="form-group">
             <label>vrBcCp20<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição.
 Origem: campo vrBcCp20 de S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrBcCp20" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrBcCp20'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrBcCp20]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrBcCp20" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrBcCp20'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrBcCp20]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -919,7 +919,7 @@ Origem: campo vrBcCp20 de S-1270."><i class="fa fa-fw fa-question-circle"></i></
         <div class="form-group">
             <label>vrBcCp25<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição.
 Origem: campo vrBcCp25 de S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrBcCp25" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrBcCp25'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrBcCp25]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrBcCp25" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrBcCp25'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrBcCp25]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -929,7 +929,7 @@ Origem: campo vrBcCp25 de S-1270."><i class="fa fa-fw fa-question-circle"></i></
         <div class="form-group">
             <label>vrBcCp13<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária sobre o 13° salário dos trabalhadores avulsos não portuários contratados.
 Origem: campo vrBcCp13 de S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrBcCp13" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrBcCp13'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrBcCp13]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrBcCp13" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrBcCp13'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrBcCp13]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -939,7 +939,7 @@ Origem: campo vrBcCp13 de S-1270."><i class="fa fa-fw fa-question-circle"></i></
         <div class="form-group">
             <label>vrDescCP<a data-toggle="tooltip" title="Preencher com o valor total da contribuição descontada dos trabalhadores avulsos não portuários.
 Origem: campo vrDescCP de S-1270."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrDescCP" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrDescCP'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrDescCP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__basesAvNPort__id__vrDescCP" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.ideLotacao.basesAvNPort.vrDescCP'}}" name="[evtCS][infoCS][ideEstab][ideLotacao][basesAvNPort][vrDescCP]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1010,7 +1010,7 @@ Origem: campo {indAquis} de S-1250."><i class="fa fa-fw fa-question-circle"></i>
         <div class="form-group">
             <label>vlrAquis<a data-toggle="tooltip" title="Valor total da aquisição de produção rural de produtor rural.
 Origem: campo {vlrTotAquis} de S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vlrAquis" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vlrAquis'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vlrAquis]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vlrAquis" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vlrAquis'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vlrAquis]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1020,7 +1020,7 @@ Origem: campo {vlrTotAquis} de S-1250."><i class="fa fa-fw fa-question-circle"><
         <div class="form-group">
             <label>vrCPDescPR<a data-toggle="tooltip" title="Preencher com o valor da contribuição previdenciária descontada pelo adquirente de produção de produtor rural - sub-rogação.
 Origem: somatório do campo {vrCpDescPR} de S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrCPDescPR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrCPDescPR'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrCPDescPR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrCPDescPR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrCPDescPR'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrCPDescPR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1029,7 +1029,7 @@ Origem: somatório do campo {vrCpDescPR} de S-1250."><i class="fa fa-fw fa-quest
     <div class="col-md-4">
         <div class="form-group">
             <label>vrCPNRet<a data-toggle="tooltip" title="Valor da contribuição previdenciária que deixou de ser retida pelo declarante em decorrência de decisão/sentença judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrCPNRet" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrCPNRet'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrCPNRet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrCPNRet" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrCPNRet'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrCPNRet]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1038,7 +1038,7 @@ Origem: somatório do campo {vrCpDescPR} de S-1250."><i class="fa fa-fw fa-quest
     <div class="col-md-4">
         <div class="form-group">
             <label>vrRatNRet<a data-toggle="tooltip" title="Valor da GILRAT, incidente sobre a aquisição de produção rural de produtor rural, cuja retenção deixou de ser efetuada em decorrência de decisão/sentença judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrRatNRet" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrRatNRet'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrRatNRet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrRatNRet" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrRatNRet'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrRatNRet]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1047,7 +1047,7 @@ Origem: somatório do campo {vrCpDescPR} de S-1250."><i class="fa fa-fw fa-quest
     <div class="col-md-4">
         <div class="form-group">
             <label>vrSenarNRet<a data-toggle="tooltip" title="Valor da contribuição destinada ao SENAR, incidente sobre a aquisição de produção rural de produtor rural pessoa física/segurado especial, que deixou de ser retida em decorrência de decisão/sentença judicial."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrSenarNRet" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrSenarNRet'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrSenarNRet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrSenarNRet" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrSenarNRet'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrSenarNRet]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1059,7 +1059,7 @@ Origem: somatório do campo {vrCpDescPR} de S-1250."><i class="fa fa-fw fa-quest
 a) indAquis = [1, 2]: vlrAquis x 1,2%;
 b) indAquis = [3]: vlrAquis x 1,7%;
 c) indAquis = [4, 5, 6]: 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrCPCalcPR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrCPCalcPR'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrCPCalcPR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrCPCalcPR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrCPCalcPR'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrCPCalcPR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1068,7 +1068,7 @@ c) indAquis = [4, 5, 6]: 0 (zero)."><i class="fa fa-fw fa-question-circle"></i><
     <div class="col-md-4">
         <div class="form-group">
             <label>vrRatDescPR<a data-toggle="tooltip" title="Valor da contribuição destinada ao financiamento dos benefícios concedidos em razão do grau de incidência da incapacidade laborativa decorrente dos riscos ambientais do trabalho, incidente sobre a aquisição de produção rural de produtor rural."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrRatDescPR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrRatDescPR'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrRatDescPR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrRatDescPR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrRatDescPR'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrRatDescPR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1079,7 +1079,7 @@ c) indAquis = [4, 5, 6]: 0 (zero)."><i class="fa fa-fw fa-question-circle"></i><
             <label>vrRatCalcPR<a data-toggle="tooltip" title="Valor calculado relativo à contribuição GILRAT devida pelo produtor rural, de acordo com indAquis, conforme segue:
 a) indAquis = [1, 2, 3]: vlrAquis x 0,1%;
 b) indAquis = [4, 5, 6]: 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrRatCalcPR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrRatCalcPR'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrRatCalcPR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrRatCalcPR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrRatCalcPR'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrRatCalcPR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1089,7 +1089,7 @@ b) indAquis = [4, 5, 6]: 0 (zero)."><i class="fa fa-fw fa-question-circle"></i><
         <div class="form-group">
             <label>vrSenarDesc<a data-toggle="tooltip" title="Valor da contribuição destinada ao SENAR, incidente sobre a aquisição de produção rural de produtor rural pessoa física/segurado especial.
 Origem: campo {vrSenarDesc} de S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrSenarDesc" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrSenarDesc'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrSenarDesc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrSenarDesc" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrSenarDesc'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrSenarDesc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1101,7 +1101,7 @@ Origem: campo {vrSenarDesc} de S-1250."><i class="fa fa-fw fa-question-circle"><
 a) indAquis = [1, 2, 4, 5]: vlrAquis x 0,2%;
 b) indAquis = [3, 6]: 0 (zero).
 OBS.: No período de 04/2020 a 06/2020, a alíquota deve ser 0,1%."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrSenarCalc" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrSenarCalc'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrSenarCalc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesAquis__id__vrSenarCalc" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesAquis.vrSenarCalc'}}" name="[evtCS][infoCS][ideEstab][basesAquis][vrSenarCalc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1143,7 +1143,7 @@ Origem: campo indComerc de S-1260."><i class="fa fa-fw fa-question-circle"></i><
         <div class="form-group">
             <label>vrBcComPR<a data-toggle="tooltip" title="Valor da base de cálculo da comercialização da produção rural do produtor rural PF/segurado especial a outra PF no varejo ou a outro produtor rural PF/segurado especial ou no mercado externo, conforme indComerc.
 Origem: campo vrTotCom de S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesComerc__id__vrBcComPR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesComerc.vrBcComPR'}}" name="[evtCS][infoCS][ideEstab][basesComerc][vrBcComPR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesComerc__id__vrBcComPR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesComerc.vrBcComPR'}}" name="[evtCS][infoCS][ideEstab][basesComerc][vrBcComPR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1153,7 +1153,7 @@ Origem: campo vrTotCom de S-1260."><i class="fa fa-fw fa-question-circle"></i></
         <div class="form-group">
             <label>vrCPSusp<a data-toggle="tooltip" title="Valor da contribuição previdenciária com exigibilidade suspensa.
 Origem: campo vrCPSusp de S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesComerc__id__vrCPSusp" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesComerc.vrCPSusp'}}" name="[evtCS][infoCS][ideEstab][basesComerc][vrCPSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesComerc__id__vrCPSusp" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesComerc.vrCPSusp'}}" name="[evtCS][infoCS][ideEstab][basesComerc][vrCPSusp]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1163,7 +1163,7 @@ Origem: campo vrCPSusp de S-1260."><i class="fa fa-fw fa-question-circle"></i></
         <div class="form-group">
             <label>vrRatSusp<a data-toggle="tooltip" title="Valor da contribuição para GILRAT com exigibilidade suspensa.
 Origem: campo vrRatSusp de S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesComerc__id__vrRatSusp" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesComerc.vrRatSusp'}}" name="[evtCS][infoCS][ideEstab][basesComerc][vrRatSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesComerc__id__vrRatSusp" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesComerc.vrRatSusp'}}" name="[evtCS][infoCS][ideEstab][basesComerc][vrRatSusp]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1173,7 +1173,7 @@ Origem: campo vrRatSusp de S-1260."><i class="fa fa-fw fa-question-circle"></i><
         <div class="form-group">
             <label>vrSenarSusp<a data-toggle="tooltip" title="Valor da contribuição para o SENAR com exigibilidade suspensa.
 Origem: campo vrSenarSusp de S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__basesComerc__id__vrSenarSusp" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesComerc.vrSenarSusp'}}" name="[evtCS][infoCS][ideEstab][basesComerc][vrSenarSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__basesComerc__id__vrSenarSusp" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.basesComerc.vrSenarSusp'}}" name="[evtCS][infoCS][ideEstab][basesComerc][vrSenarSusp]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1209,7 +1209,7 @@ Validação: Deve ser um código válido, compatível com a classificação trib
             <label>vrCR<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.
 Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__vrCR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.infoCREstab.vrCR'}}" name="[evtCS][infoCS][ideEstab][infoCREstab][vrCR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__vrCR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.infoCREstab.vrCR'}}" name="[evtCS][infoCS][ideEstab][infoCREstab][vrCR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1219,7 +1219,7 @@ Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></l
         <div class="form-group">
             <label>vrSuspCR<a data-toggle="tooltip" title="Valor suspenso correspondente ao CR apurado.
 Validação: Deve ser apurado de acordo com as informações de processos judiciais e administrativos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__vrSuspCR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.infoCREstab.vrSuspCR'}}" name="[evtCS][infoCS][ideEstab][infoCREstab][vrSuspCR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__vrSuspCR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.ideEstab.infoCREstab.vrSuspCR'}}" name="[evtCS][infoCS][ideEstab][infoCREstab][vrSuspCR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1260,7 +1260,7 @@ Validação: Deve ser um código válido, compatível com a classificação trib
             <label>vrCR<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.
 Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__infoCRContrib__id__vrCR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.infoCRContrib.vrCR'}}" name="[evtCS][infoCS][infoCRContrib][vrCR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__infoCRContrib__id__vrCR" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.infoCRContrib.vrCR'}}" name="[evtCS][infoCS][infoCRContrib][vrCR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1269,7 +1269,7 @@ Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></l
     <div class="col-md-4">
         <div class="form-group">
             <label>vrCRSusp<a data-toggle="tooltip" title="Valor do tributo com exigibilidade suspensa."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCS__infoCS__infoCRContrib__id__vrCRSusp" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.infoCRContrib.vrCRSusp'}}" name="[evtCS][infoCS][infoCRContrib][vrCRSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCS__infoCS__infoCRContrib__id__vrCRSusp" maxlength="14" value="{{original.evento_json|readjson:'evtCS.infoCS.infoCRContrib.vrCRSusp'}}" name="[evtCS][infoCS][infoCRContrib][vrCRSusp]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
