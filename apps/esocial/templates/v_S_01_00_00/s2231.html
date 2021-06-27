@@ -7,6 +7,16 @@
 <div id="evtCessao__div">
     <div class="col-md-12">
         <h4>S-2231 - Cessão/Exercício em Outro Órgão</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="indRetif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indRetif<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
 Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -37,7 +57,7 @@ Valores válidos:
 <div id="nrRecibo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrRecibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCessao__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtCessao.ideEvento.nrRecibo'}}" name="[evtCessao][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -48,7 +68,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtCessao][ideEvento][tpAmb]" id="evtCessao__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -61,7 +81,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtCessao][ideEvento][procEmi]" id="evtCessao__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -76,9 +96,9 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtCessao][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtCessao__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtCessao][ideEvento][verProc]" id="evtCessao__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtCessao][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtCessao__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtCessao][ideEvento][verProc]" id="evtCessao__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -86,10 +106,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -98,7 +127,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtCessao][ideEmpregador][tpInsc]" id="evtCessao__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -115,7 +144,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtCessao__ideEmpregador__id__nrInsc_disabled" name="[evtCessao][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtCessao][ideEmpregador][nrInsc]" id="evtCessao__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -125,10 +154,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideVinculo__div">
     <div class="col-md-12">
         <h4>Informações de identificação do trabalhador e do vínculo.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -137,7 +175,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="cpfTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfTrab<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCessao__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtCessao.ideVinculo.cpfTrab'}}" name="[evtCessao][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -146,7 +184,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="matricula__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
+            <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
 Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCessao__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtCessao.ideVinculo.matricula'}}" name="[evtCessao][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -157,10 +195,19 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
         </blockquote>
     </div>
 </div>
-
 <div id="infoCessao__div">
     <div class="col-md-12">
         <h4>Informações da cessão/exercício em outro órgão.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -169,6 +216,16 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
 <div id="iniCessao__div">
     <div class="col-md-12">
         <h4>Informações de início da cessão/exercício em outro órgão.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -177,7 +234,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
 <div id="dtIniCessao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtIniCessao<a data-toggle="tooltip" title="Data de início da cessão/exercício em outro órgão.
+            <label>Data de início da cessão/exercício em outro órgão<a data-toggle="tooltip" title="Data de início da cessão/exercício em outro órgão.
 Validação: Deve-se obedecer às seguintes regras:
 a) Não pode ser posterior à data atual;
 b) Não pode existir evento de cessão/exercício em outro órgão (ou evento de afastamento pelo código de motivo de afastamento [14]) com data anterior a dtIniCessao sem que tenha sido encerrado."><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -189,7 +246,7 @@ b) Não pode existir evento de cessão/exercício em outro órgão (ou evento de
 <div id="cnpjCess__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cnpjCess<a data-toggle="tooltip" title="Preencher com o CNPJ do empregador/órgão público cessionário/de destino.
+            <label>Preencher com o CNPJ do empregador/órgão público cessionário/de destino<a data-toggle="tooltip" title="Preencher com o CNPJ do empregador/órgão público cessionário/de destino.
 Validação: Deve ser um CNPJ diferente do CNPJ do empregador/órgão público e diferente dos estabelecimentos informados através do evento S-1005.
 Regra de validação:
 REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -201,7 +258,7 @@ REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="respRemun__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>respRemun<a data-toggle="tooltip" title="Informar se o empregador/órgão público declarante continuará informando remunerações (S-1200/S-1202) do trabalhador cedido/em exercício em outro órgão.
+            <label>Informar se o empregador/órgão público declarante continuará informando remunerações (S-1200/S-1202) do trabalhador cedido/em exercício em outro órgão<a data-toggle="tooltip" title="Informar se o empregador/órgão público declarante continuará informando remunerações (S-1200/S-1202) do trabalhador cedido/em exercício em outro órgão.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -216,12 +273,21 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
         </blockquote>
     </div>
 </div>
-
 <div id="fimCessao__div">
     <div class="col-md-12">
         <h4>Informação de término da cessão/exercício em outro órgão.
 Regra de validação:
 REGRA_EXISTE_EVENTO_CESSAO</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -230,7 +296,7 @@ REGRA_EXISTE_EVENTO_CESSAO</h4>
 <div id="dtTermCessao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtTermCessao<a data-toggle="tooltip" title="Preencher com a data de término da cessão/exercício em outro órgão.
+            <label>Preencher com a data de término da cessão/exercício em outro órgão<a data-toggle="tooltip" title="Preencher com a data de término da cessão/exercício em outro órgão.
 Validação: Deve-se obedecer às seguintes regras:
 a) Deve ser igual ou posterior à data de início da cessão/exercício em outro órgão;
 b) Não pode ser posterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -243,17 +309,14 @@ b) Não pode ser posterior à data atual."><i class="fa fa-fw fa-question-circle
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -262,7 +325,7 @@ b) Não pode ser posterior à data atual."><i class="fa fa-fw fa-question-circle
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

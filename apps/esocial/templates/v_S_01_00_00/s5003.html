@@ -7,6 +7,16 @@
 <div id="evtBasesFGTS__div">
     <div class="col-md-12">
         <h4>S-5003 - Informações do FGTS por Trabalhador</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Identificação do evento de retorno.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="nrRecArqBase__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrRecArqBase<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador.
+            <label>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador.
 Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1200, S-2299, S-2399 ou S-3000)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesFGTS__ideEvento__id__nrRecArqBase" maxlength="23" value="{{original.evento_json|readjson:'evtBasesFGTS.ideEvento.nrRecArqBase'}}" name="[evtBasesFGTS][ideEvento][nrRecArqBase]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -33,7 +53,7 @@ Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo qu
 <div id="indApuracao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indApuracao<a data-toggle="tooltip" title="Indicativo de período de apuração.
+            <label>Indicativo de período de apuração<a data-toggle="tooltip" title="Indicativo de período de apuração.
 Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -47,7 +67,7 @@ Valores válidos:
 <div id="perApur__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>perApur<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesFGTS__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtBasesFGTS.ideEvento.perApur'}}" name="[evtBasesFGTS][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -57,10 +77,19 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -69,7 +98,7 @@ Valores válidos:
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtBasesFGTS][ideEmpregador][tpInsc]" id="evtBasesFGTS__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -86,7 +115,7 @@ Valores válidos:
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtBasesFGTS__ideEmpregador__id__nrInsc_disabled" name="[evtBasesFGTS][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtBasesFGTS][ideEmpregador][nrInsc]" id="evtBasesFGTS__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -96,10 +125,19 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
 <div id="ideTrabalhador__div">
     <div class="col-md-12">
         <h4>Grupo que apresenta a identificação básica do trabalhador ao qual se refere o evento de retorno.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -108,7 +146,7 @@ Valores válidos:
 <div id="cpfTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfTrab<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador.
+            <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador.
 Validação: Deve ser um CPF constante no arquivo gerado pelo empregador no evento de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesFGTS__ideTrabalhador__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtBasesFGTS.ideTrabalhador.cpfTrab'}}" name="[evtBasesFGTS][ideTrabalhador][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -119,10 +157,19 @@ Validação: Deve ser um CPF constante no arquivo gerado pelo empregador no even
         </blockquote>
     </div>
 </div>
-
 <div id="infoFGTS__div">
     <div class="col-md-12">
         <h4>Informações relativas ao Fundo de Garantia do Tempo de Serviço - FGTS.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -131,7 +178,7 @@ Validação: Deve ser um CPF constante no arquivo gerado pelo empregador no even
 <div id="dtVenc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtVenc<a data-toggle="tooltip" title="Data de vencimento do FGTS mensal.
+            <label>Data de vencimento do FGTS mensal<a data-toggle="tooltip" title="Data de vencimento do FGTS mensal.
 Validação: Preencher somente se houver informação no grupo infoBaseFGTS.
 Se informada, deve corresponder ao dia 7 (sete) do mês subsequente ao indicado em perApur, se esse dia for útil. Caso não seja, deve corresponder ao dia útil imediatamente anterior.
 Considera-se como dia não útil o sábado, o domingo e todo aquele constante do Calendário Nacional de feriados bancários divulgados pelo Banco Central do Brasil."><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -139,10 +186,20 @@ Considera-se como dia não útil o sábado, o domingo e todo aquele constante do
         </div>
     </div>
 </div>
-
+{% for ideEstab in original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab' %}
 <div id="ideEstab__div">
     <div class="col-md-12">
         <h4>Identificação do estabelecimento ou obra de construção civil.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -151,8 +208,8 @@ Considera-se como dia não útil o sábado, o domingo e todo aquele constante do
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
-            <select name="[evtBasesFGTS][infoFGTS][ideEstab][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__id__tpInsc_disabled" disabled="">
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
+            <select name="[evtBasesFGTS][infoFGTS][ideEstab][][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
                 <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
@@ -161,22 +218,32 @@ Considera-se como dia não útil o sábado, o domingo e todo aquele constante do
                 <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
                 <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
             </select>
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
+            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__id__nrInsc_disabled" name="[evtBasesFGTS][infoFGTS][ideEstab][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][nrInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__id__nrInsc_disabled" name="[evtBasesFGTS][infoFGTS][ideEstab][][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][nrInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
         </div>
     </div>
-</div>
+</div>{% for ideLotacao in original.evento_json|readjson:'ideEstab.ideLotacao' %}
 <div id="ideLotacao__div">
     <div class="col-md-12">
         <h4>Identificação da lotação tributária.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -185,12 +252,12 @@ Considera-se como dia não útil o sábado, o domingo e todo aquele constante do
 <div id="codLotacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codLotacao<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária.
+            <label>Informar o código atribuído pelo empregador para a lotação tributária<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária.
 Origem: campo {ideEstabLot/codLotacao} de:
 a) infoPerApur ou idePeriodo do S-1200;
 b) infoPerApur ou idePeriodo do S-2299;
 c) dmDev do S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__codLotacao" maxlength="30" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.codLotacao'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__codLotacao" maxlength="30" value="{{ideLotacao.codLotacao}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -198,12 +265,12 @@ c) dmDev do S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="tpLotacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpLotacao<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de lotação, conforme Tabela 10.
+            <label>Preencher com o código correspondente ao tipo de lotação<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de lotação, conforme Tabela 10.
 Evento de origem: S-1020.
 Validação: a) Se origem de codLotacao for infoPerApur do S-1200, infoPerApur do S-2299 ou dmDev do S-2399, retornar o tipo de lotação vigente em perApur;
 b) Se origem de codLotacao for idePeriodo do S-1200, retornar o tipo de lotação vigente em perRef desse evento;
 c) Se origem de codLotacao for idePeriodo do S-2299, retornar o tipo de lotação vigente em perRef desse evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__tpLotacao" maxlength="2" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.tpLotacao'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][tpLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__tpLotacao" maxlength="2" value="{{ideLotacao.tpLotacao}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][tpLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -211,8 +278,8 @@ c) Se origem de codLotacao for idePeriodo do S-2299, retornar o tipo de lotaçã
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
-            <select name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__tpInsc_disabled" disabled="">
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
+            <select name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
                 <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
@@ -221,22 +288,32 @@ c) Se origem de codLotacao for idePeriodo do S-2299, retornar o tipo de lotaçã
                 <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
                 <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
             </select>
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__tpInsc" value="{{original.tpinsc}}">
+            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__nrInsc_disabled" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][nrInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__nrInsc" value="{{original.nrinsc}}">
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__nrInsc_disabled" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][nrInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__nrInsc" value="{{original.nrinsc}}">
         </div>
     </div>
-</div>
+</div>{% for infoTrabFGTS in original.evento_json|readjson:'ideLotacao.infoTrabFGTS' %}
 <div id="infoTrabFGTS__div">
     <div class="col-md-12">
         <h4>Informações relativas à matrícula e categoria do trabalhador.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -245,11 +322,11 @@ c) Se origem de codLotacao for idePeriodo do S-2299, retornar o tipo de lotaçã
 <div id="matricula__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
+            <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
 Evento de origem: S-1200, S-2299, S-2399 ou S-3000.
 Validação: a) Se o evento de origem for S-1200/S-2299/S-2399, retornar a matrícula informada nesse evento;
 b) Se o evento de origem for S-3000, retornar a matrícula informada no evento objeto da exclusão."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.matricula'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__matricula" maxlength="30" value="{{infoTrabFGTS.matricula}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -257,13 +334,13 @@ b) Se o evento de origem for S-3000, retornar a matrícula informada no evento o
 <div id="codCateg__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codCateg<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 01.
+            <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador, conforme Tabela 01.
 Evento de origem: S-1200, S-2299, S-2399 ou S-3000.
 Validação: a) Se o evento de origem for S-1200, retornar o código de categoria informado nesse evento;
 b) Se o evento de origem for S-2299 ou S-2399, retornar o código de categoria existente no Registro de Eventos Trabalhistas - RET;
 c) Se o evento de origem for S-3000 (referente a exclusão de S-1200), retornar o código de categoria informado no evento S-1200 (objeto da exclusão);
 d) Se o evento de origem for S-3000 (referente a exclusão de S-2299 ou S-2399), retornar o código de categoria existente no RET relativo ao contrato informado em S-2299 ou S-2399 (objeto da exclusão)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.codCateg'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__codCateg" maxlength="3" value="{{infoTrabFGTS.codCateg}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -271,9 +348,9 @@ d) Se o evento de origem for S-3000 (referente a exclusão de S-2299 ou S-2399),
 <div id="categOrig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>categOrig<a data-toggle="tooltip" title="Preencher com o código correspondente à categoria de origem do dirigente sindical ou do trabalhador cedido.
+            <label>Preencher com o código correspondente à categoria de origem do dirigente sindical ou do trabalhador cedido<a data-toggle="tooltip" title="Preencher com o código correspondente à categoria de origem do dirigente sindical ou do trabalhador cedido.
 Origem: campo infoDirigenteSindical/categOrig ou infoTrabCedido/categOrig de S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__categOrig" maxlength="3" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.categOrig'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][categOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__categOrig" maxlength="3" value="{{infoTrabFGTS.categOrig}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][categOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -281,13 +358,13 @@ Origem: campo infoDirigenteSindical/categOrig ou infoTrabCedido/categOrig de S-2
 <div id="tpRegTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpRegTrab<a data-toggle="tooltip" title="Tipo de regime trabalhista.
+            <label>Tipo de regime trabalhista<a data-toggle="tooltip" title="Tipo de regime trabalhista.
 Valores válidos:
 1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas
 2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)
 Validação: Deve corresponder ao tipo de regime trabalhista existente no RET."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__tpRegTrab" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][tpRegTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.tpRegTrab' '1' %}selected{% endifequal %}>1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas</option><option value='2' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.tpRegTrab' '2' %}selected{% endifequal %}>2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)</option>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__tpRegTrab" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][tpRegTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal infoTrabFGTS.tpRegTrab '1' %}selected{% endifequal %}>1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas</option><option value='2' {% ifequal infoTrabFGTS.tpRegTrab '2' %}selected{% endifequal %}>2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)</option>
             </select>
         </div>
     </div>
@@ -296,13 +373,13 @@ Validação: Deve corresponder ao tipo de regime trabalhista existente no RET.">
 <div id="remunSuc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>remunSuc<a data-toggle="tooltip" title="Indicar se a remuneração é relativa a verbas de natureza salarial ou não salarial devidas pela empresa sucessora a empregados desligados ainda na sucedida.
+            <label>Indicar se a remuneração é relativa a verbas de natureza salarial ou não salarial devidas pela empresa sucessora a empregados desligados ainda na sucedida<a data-toggle="tooltip" title="Indicar se a remuneração é relativa a verbas de natureza salarial ou não salarial devidas pela empresa sucessora a empregados desligados ainda na sucedida.
 Valores válidos:
 S - Sim
 N - Não
 Evento de origem: S-1200."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__remunSuc" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][remunSuc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.remunSuc' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.remunSuc' 'N' %}selected{% endifequal %}>N - Não</option><option value='Evento de origem:' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.remunSuc' 'Evento de origem:' %}selected{% endifequal %}>Evento de origem: S-1200.</option>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__remunSuc" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][remunSuc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal infoTrabFGTS.remunSuc 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal infoTrabFGTS.remunSuc 'N' %}selected{% endifequal %}>N - Não</option><option value='Evento de origem:' {% ifequal infoTrabFGTS.remunSuc 'Evento de origem:' %}selected{% endifequal %}>Evento de origem: S-1200.</option>
             </select>
         </div>
     </div>
@@ -311,9 +388,9 @@ Evento de origem: S-1200."><i class="fa fa-fw fa-question-circle"></i></a></labe
 <div id="dtDeslig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtDeslig<a data-toggle="tooltip" title="Preencher com a data de desligamento do vínculo (último dia trabalhado).
+            <label>Preencher com a data de desligamento do vínculo (último dia trabalhado)<a data-toggle="tooltip" title="Preencher com a data de desligamento do vínculo (último dia trabalhado).
 Validação: Deve corresponder à data de desligamento existente no RET. Não retornar caso haja reintegração com data posterior ao desligamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__dtDeslig" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.dtDeslig'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][dtDeslig]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__dtDeslig" value="{{infoTrabFGTS.dtDeslig}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][dtDeslig]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -321,9 +398,9 @@ Validação: Deve corresponder à data de desligamento existente no RET. Não re
 <div id="mtvDeslig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>mtvDeslig<a data-toggle="tooltip" title="Código de motivo do desligamento, conforme Tabela 19.
+            <label>Código de motivo do desligamento<a data-toggle="tooltip" title="Código de motivo do desligamento, conforme Tabela 19.
 Validação: Deve corresponder ao motivo do desligamento existente no RET. Não retornar caso haja reintegração com data posterior ao desligamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__mtvDeslig" maxlength="2" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.mtvDeslig'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][mtvDeslig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__mtvDeslig" maxlength="2" value="{{infoTrabFGTS.mtvDeslig}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][mtvDeslig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -331,9 +408,9 @@ Validação: Deve corresponder ao motivo do desligamento existente no RET. Não 
 <div id="dtTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtTerm<a data-toggle="tooltip" title="Data do término.
+            <label>Data do término<a data-toggle="tooltip" title="Data do término.
 Validação: Deve corresponder à data do término existente no RET."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__dtTerm" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.dtTerm'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__dtTerm" value="{{infoTrabFGTS.dtTerm}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -341,9 +418,9 @@ Validação: Deve corresponder à data do término existente no RET."><i class="
 <div id="mtvDesligTSV__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>mtvDesligTSV<a data-toggle="tooltip" title="Código de motivo do término do TSVE.
+            <label>Código de motivo do término do TSVE<a data-toggle="tooltip" title="Código de motivo do término do TSVE.
 Validação: Deve corresponder ao motivo do término existente no RET."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__mtvDesligTSV" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][mtvDesligTSV]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__mtvDesligTSV" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][mtvDesligTSV]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option>
             </select>
         </div>
@@ -354,6 +431,16 @@ Validação: Deve corresponder ao motivo do término existente no RET."><i class
     <div class="col-md-12">
         <h4>Grupo de informações da sucessão de vínculo trabalhista.
 Evento de origem: S-1200.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -362,8 +449,8 @@ Evento de origem: S-1200.</h4>
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
-            <select name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][sucessaoVinc][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__tpInsc_disabled" disabled="">
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
+            <select name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
                 <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
@@ -372,24 +459,24 @@ Evento de origem: S-1200.</h4>
                 <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
                 <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
             </select>
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][sucessaoVinc][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__tpInsc" value="{{original.tpinsc}}">
+            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__nrInsc_disabled" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][sucessaoVinc][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][sucessaoVinc][nrInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__nrInsc" value="{{original.nrinsc}}">
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__nrInsc_disabled" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
+            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][nrInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__nrInsc" value="{{original.nrinsc}}">
         </div>
     </div>
 </div>
 <div id="matricAnt__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>matricAnt<a data-toggle="tooltip" title="Matrícula do trabalhador no empregador anterior."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__matricAnt" maxlength="30" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.sucessaoVinc.matricAnt'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][sucessaoVinc][matricAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <label>Matrícula do trabalhador no empregador anterior<a data-toggle="tooltip" title="Matrícula do trabalhador no empregador anterior."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__matricAnt" maxlength="30" value="{{infoTrabFGTS.sucessaoVinc.matricAnt}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][matricAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -397,8 +484,8 @@ Evento de origem: S-1200.</h4>
 <div id="dtAdm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtAdm<a data-toggle="tooltip" title="Preencher com a data de admissão do trabalhador. No caso de transferência do empregado, deve ser preenchida a data inicial do vínculo no primeiro empregador (data de início do vínculo)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__dtAdm" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.sucessaoVinc.dtAdm'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][sucessaoVinc][dtAdm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <label>Preencher com a data de admissão do trabalhador<a data-toggle="tooltip" title="Preencher com a data de admissão do trabalhador. No caso de transferência do empregado, deve ser preenchida a data inicial do vínculo no primeiro empregador (data de início do vínculo)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__dtAdm" value="{{infoTrabFGTS.sucessaoVinc.dtAdm}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][dtAdm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -407,19 +494,38 @@ Evento de origem: S-1200.</h4>
         </blockquote>
     </div>
 </div>
-
 <div id="infoBaseFGTS__div">
     <div class="col-md-12">
         <h4>Informações referentes a bases de cálculo e valores do FGTS.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
             <div class="row">
-
+{% for basePerApur in original.evento_json|readjson:'infoTrabFGTS.infoBaseFGTS.basePerApur' %}
 <div id="basePerApur__div">
     <div class="col-md-12">
         <h4>Informações sobre bases de cálculo e valores do FGTS referentes à remuneração do período de apuração e de períodos anteriores, exceto se {tpAcConv} = [E, H].
 Evento de origem: S-1200, S-2299 ou S-2399.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -428,7 +534,7 @@ Evento de origem: S-1200, S-2299 ou S-2399.</h4>
 <div id="tpValor__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpValor<a data-toggle="tooltip" title="Tipo de valor que influi na apuração do FGTS.
+            <label>Tipo de valor que influi na apuração do FGTS<a data-toggle="tooltip" title="Tipo de valor que influi na apuração do FGTS.
 Valores válidos:
 11 - FGTS mensal
 12 - FGTS 13° salário
@@ -460,8 +566,8 @@ Valores válidos:
 48 - FGTS (período anterior) mês da rescisão - Indenização compensatória do empregado doméstico
 49 - FGTS (período anterior) 13º salário rescisório - Indenização compensatória do empregado doméstico
 50 - FGTS (período anterior) aviso prévio indenizado - Indenização compensatória do empregado doméstico"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__id__tpValor" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][basePerApur][tpValor]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='11' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '11' %}selected{% endifequal %}>11 - FGTS mensal</option><option value='12' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '12' %}selected{% endifequal %}>12 - FGTS 13° salário</option><option value='13' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '13' %}selected{% endifequal %}>13 - FGTS (período anterior) mensal</option><option value='14' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '14' %}selected{% endifequal %}>14 - FGTS (período anterior) 13º salário</option><option value='15' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '15' %}selected{% endifequal %}>15 - FGTS mensal - Aprendiz/Contrato Verde e Amarelo</option><option value='16' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '16' %}selected{% endifequal %}>16 - FGTS 13° salário - Aprendiz/Contrato Verde e Amarelo</option><option value='17' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '17' %}selected{% endifequal %}>17 - FGTS (período anterior) mensal - Aprendiz/Contrato Verde e Amarelo</option><option value='18' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '18' %}selected{% endifequal %}>18 - FGTS (período anterior) 13º salário - Aprendiz/Contrato Verde e Amarelo</option><option value='21' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '21' %}selected{% endifequal %}>21 - FGTS mês da rescisão</option><option value='22' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '22' %}selected{% endifequal %}>22 - FGTS 13° salário rescisório</option><option value='23' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '23' %}selected{% endifequal %}>23 - FGTS aviso prévio indenizado</option><option value='24' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '24' %}selected{% endifequal %}>24 - FGTS (período anterior) mês da rescisão</option><option value='25' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '25' %}selected{% endifequal %}>25 - FGTS (período anterior) 13º salário rescisório</option><option value='26' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '26' %}selected{% endifequal %}>26 - FGTS (período anterior) aviso prévio indenizado</option><option value='27' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '27' %}selected{% endifequal %}>27 - FGTS mês da rescisão - Aprendiz/Contrato Verde e Amarelo</option><option value='28' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '28' %}selected{% endifequal %}>28 - FGTS 13° salário rescisório - Aprendiz/Contrato Verde e Amarelo</option><option value='29' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '29' %}selected{% endifequal %}>29 - FGTS aviso prévio indenizado - Aprendiz/Contrato Verde e Amarelo</option><option value='30' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '30' %}selected{% endifequal %}>30 - FGTS (período anterior) mês da rescisão - Aprendiz/Contrato Verde e Amarelo</option><option value='31' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '31' %}selected{% endifequal %}>31 - FGTS (período anterior) 13° salário rescisório - Aprendiz/Contrato Verde e Amarelo</option><option value='32' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '32' %}selected{% endifequal %}>32 - FGTS (período anterior) aviso prévio indenizado - Aprendiz/Contrato Verde e Amarelo</option><option value='41' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '41' %}selected{% endifequal %}>41 - FGTS mensal - Indenização compensatória do empregado doméstico</option><option value='42' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '42' %}selected{% endifequal %}>42 - FGTS 13° salário - Indenização compensatória do empregado doméstico</option><option value='43' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '43' %}selected{% endifequal %}>43 - FGTS (período anterior) mensal - Indenização compensatória do empregado doméstico</option><option value='44' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '44' %}selected{% endifequal %}>44 - FGTS (período anterior) 13º salário - Indenização compensatória do empregado doméstico</option><option value='45' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '45' %}selected{% endifequal %}>45 - FGTS mês da rescisão - Indenização compensatória do empregado doméstico</option><option value='46' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '46' %}selected{% endifequal %}>46 - FGTS 13° salário rescisório - Indenização compensatória do empregado doméstico</option><option value='47' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '47' %}selected{% endifequal %}>47 - FGTS aviso prévio indenizado - Indenização compensatória do empregado doméstico</option><option value='48' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '48' %}selected{% endifequal %}>48 - FGTS (período anterior) mês da rescisão - Indenização compensatória do empregado doméstico</option><option value='49' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '49' %}selected{% endifequal %}>49 - FGTS (período anterior) 13º salário rescisório - Indenização compensatória do empregado doméstico</option><option value='50' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.tpValor' '50' %}selected{% endifequal %}>50 - FGTS (período anterior) aviso prévio indenizado - Indenização compensatória do empregado doméstico</option>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__id__tpValor" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][basePerApur][][tpValor]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='11' {% ifequal basePerApur.tpValor '11' %}selected{% endifequal %}>11 - FGTS mensal</option><option value='12' {% ifequal basePerApur.tpValor '12' %}selected{% endifequal %}>12 - FGTS 13° salário</option><option value='13' {% ifequal basePerApur.tpValor '13' %}selected{% endifequal %}>13 - FGTS (período anterior) mensal</option><option value='14' {% ifequal basePerApur.tpValor '14' %}selected{% endifequal %}>14 - FGTS (período anterior) 13º salário</option><option value='15' {% ifequal basePerApur.tpValor '15' %}selected{% endifequal %}>15 - FGTS mensal - Aprendiz/Contrato Verde e Amarelo</option><option value='16' {% ifequal basePerApur.tpValor '16' %}selected{% endifequal %}>16 - FGTS 13° salário - Aprendiz/Contrato Verde e Amarelo</option><option value='17' {% ifequal basePerApur.tpValor '17' %}selected{% endifequal %}>17 - FGTS (período anterior) mensal - Aprendiz/Contrato Verde e Amarelo</option><option value='18' {% ifequal basePerApur.tpValor '18' %}selected{% endifequal %}>18 - FGTS (período anterior) 13º salário - Aprendiz/Contrato Verde e Amarelo</option><option value='21' {% ifequal basePerApur.tpValor '21' %}selected{% endifequal %}>21 - FGTS mês da rescisão</option><option value='22' {% ifequal basePerApur.tpValor '22' %}selected{% endifequal %}>22 - FGTS 13° salário rescisório</option><option value='23' {% ifequal basePerApur.tpValor '23' %}selected{% endifequal %}>23 - FGTS aviso prévio indenizado</option><option value='24' {% ifequal basePerApur.tpValor '24' %}selected{% endifequal %}>24 - FGTS (período anterior) mês da rescisão</option><option value='25' {% ifequal basePerApur.tpValor '25' %}selected{% endifequal %}>25 - FGTS (período anterior) 13º salário rescisório</option><option value='26' {% ifequal basePerApur.tpValor '26' %}selected{% endifequal %}>26 - FGTS (período anterior) aviso prévio indenizado</option><option value='27' {% ifequal basePerApur.tpValor '27' %}selected{% endifequal %}>27 - FGTS mês da rescisão - Aprendiz/Contrato Verde e Amarelo</option><option value='28' {% ifequal basePerApur.tpValor '28' %}selected{% endifequal %}>28 - FGTS 13° salário rescisório - Aprendiz/Contrato Verde e Amarelo</option><option value='29' {% ifequal basePerApur.tpValor '29' %}selected{% endifequal %}>29 - FGTS aviso prévio indenizado - Aprendiz/Contrato Verde e Amarelo</option><option value='30' {% ifequal basePerApur.tpValor '30' %}selected{% endifequal %}>30 - FGTS (período anterior) mês da rescisão - Aprendiz/Contrato Verde e Amarelo</option><option value='31' {% ifequal basePerApur.tpValor '31' %}selected{% endifequal %}>31 - FGTS (período anterior) 13° salário rescisório - Aprendiz/Contrato Verde e Amarelo</option><option value='32' {% ifequal basePerApur.tpValor '32' %}selected{% endifequal %}>32 - FGTS (período anterior) aviso prévio indenizado - Aprendiz/Contrato Verde e Amarelo</option><option value='41' {% ifequal basePerApur.tpValor '41' %}selected{% endifequal %}>41 - FGTS mensal - Indenização compensatória do empregado doméstico</option><option value='42' {% ifequal basePerApur.tpValor '42' %}selected{% endifequal %}>42 - FGTS 13° salário - Indenização compensatória do empregado doméstico</option><option value='43' {% ifequal basePerApur.tpValor '43' %}selected{% endifequal %}>43 - FGTS (período anterior) mensal - Indenização compensatória do empregado doméstico</option><option value='44' {% ifequal basePerApur.tpValor '44' %}selected{% endifequal %}>44 - FGTS (período anterior) 13º salário - Indenização compensatória do empregado doméstico</option><option value='45' {% ifequal basePerApur.tpValor '45' %}selected{% endifequal %}>45 - FGTS mês da rescisão - Indenização compensatória do empregado doméstico</option><option value='46' {% ifequal basePerApur.tpValor '46' %}selected{% endifequal %}>46 - FGTS 13° salário rescisório - Indenização compensatória do empregado doméstico</option><option value='47' {% ifequal basePerApur.tpValor '47' %}selected{% endifequal %}>47 - FGTS aviso prévio indenizado - Indenização compensatória do empregado doméstico</option><option value='48' {% ifequal basePerApur.tpValor '48' %}selected{% endifequal %}>48 - FGTS (período anterior) mês da rescisão - Indenização compensatória do empregado doméstico</option><option value='49' {% ifequal basePerApur.tpValor '49' %}selected{% endifequal %}>49 - FGTS (período anterior) 13º salário rescisório - Indenização compensatória do empregado doméstico</option><option value='50' {% ifequal basePerApur.tpValor '50' %}selected{% endifequal %}>50 - FGTS (período anterior) aviso prévio indenizado - Indenização compensatória do empregado doméstico</option>
             </select>
         </div>
     </div>
@@ -470,14 +576,14 @@ Valores válidos:
 <div id="indIncid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indIncid<a data-toggle="tooltip" title="Indicativo de incidência de FGTS.
+            <label>Indicativo de incidência de FGTS<a data-toggle="tooltip" title="Indicativo de incidência de FGTS.
 Valores válidos:
 1 - Normal (incidência de FGTS)
 9 - Incidência de FGTS suspensa em decorrência de decisão judicial
 Validação: Se codIncFGTS em S-1010 for igual a [11, 12, 21], deve ser retornado [1].
 Se codIncFGTS em S-1010 for igual a [91, 92, 93], deve ser retornado [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__id__indIncid" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][basePerApur][indIncid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.indIncid' '1' %}selected{% endifequal %}>1 - Normal (incidência de FGTS)</option><option value='9' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.indIncid' '9' %}selected{% endifequal %}>9 - Incidência de FGTS suspensa em decorrência de decisão judicial</option>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__id__indIncid" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][basePerApur][][indIncid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal basePerApur.indIncid '1' %}selected{% endifequal %}>1 - Normal (incidência de FGTS)</option><option value='9' {% ifequal basePerApur.indIncid '9' %}selected{% endifequal %}>9 - Incidência de FGTS suspensa em decorrência de decisão judicial</option>
             </select>
         </div>
     </div>
@@ -486,10 +592,10 @@ Se codIncFGTS em S-1010 for igual a [91, 92, 93], deve ser retornado [9]."><i cl
 <div id="remFGTS__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>remFGTS<a data-toggle="tooltip" title="Remuneração (valor da base de cálculo) do FGTS, conforme definido nos campos tpValor e indIncid.
+            <label>Remuneração (valor da base de cálculo) do FGTS<a data-toggle="tooltip" title="Remuneração (valor da base de cálculo) do FGTS, conforme definido nos campos tpValor e indIncid.
 Validação: Deve ser maior que 0 (zero).
 Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200 e S-2299 (grupos {infoPerApur} e {infoPerAnt}, quando {tpAcConv} for diferente de [E, H]), e também em S-2399, devendo somar os valores das rubricas cujo tpRubr em S-1010 seja igual a [1, 3] e subtrair os valores das rubricas cujo tpRubr em S-1010 seja igual a [2, 4], observando a Tabela 23."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__id__remFGTS" maxlength="14" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.remFGTS'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][basePerApur][remFGTS]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__id__remFGTS" maxlength="14" value="{{basePerApur.remFGTS}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][basePerApur][][remFGTS]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -497,20 +603,30 @@ Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-12
 <div id="dpsFGTS__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dpsFGTS<a data-toggle="tooltip" title="Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador.
+            <label>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador<a data-toggle="tooltip" title="Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador.
 Validação: Deve ser maior que 0 (zero) e informado somente se indIncid = [1].
 Deve corresponder à multiplicação de remFGTS pela alíquota abaixo:
 a) Se tpValor = [11, 12, 13, 14, 21, 22, 23, 24, 25, 26], alíquota de 8%;
 b) Se tpValor = [15, 16, 17, 18, 27, 28, 29, 30, 31, 32], alíquota de 2%;
 c) Se tpValor = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50], alíquota de 3,2%."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__id__dpsFGTS" maxlength="14" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.dpsFGTS'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][basePerApur][dpsFGTS]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__id__dpsFGTS" maxlength="14" value="{{basePerApur.dpsFGTS}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][basePerApur][][dpsFGTS]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
-
+{% for detRubrSusp in original.evento_json|readjson:'basePerApur.detRubrSusp' %}
 <div id="detRubrSusp__div">
     <div class="col-md-12">
         <h4>Detalhamento da(s) rubrica(s) com incidência de FGTS suspensa em decorrência de decisão judicial.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -519,9 +635,9 @@ c) Se tpValor = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50], alíquota de 3,2%."><i
 <div id="codRubr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codRubr<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento.
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento.
 Evento de origem: S-1200, S-2299 ou S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__detRubrSusp__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.detRubrSusp.codRubr'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][basePerApur][detRubrSusp][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__detRubrSusp__id__codRubr" maxlength="30" value="{{detRubrSusp.codRubr}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][basePerApur][][detRubrSusp][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -529,9 +645,9 @@ Evento de origem: S-1200, S-2299 ou S-2399."><i class="fa fa-fw fa-question-circ
 <div id="ideTabRubr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>ideTabRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr.
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr.
 Evento de origem: S-1200, S-2299 ou S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__detRubrSusp__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.detRubrSusp.ideTabRubr'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][basePerApur][detRubrSusp][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__detRubrSusp__id__ideTabRubr" maxlength="8" value="{{detRubrSusp.ideTabRubr}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][basePerApur][][detRubrSusp][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -539,18 +655,28 @@ Evento de origem: S-1200, S-2299 ou S-2399."><i class="fa fa-fw fa-question-circ
 <div id="vrRubr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>vrRubr<a data-toggle="tooltip" title="Valor total da rubrica.
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
 Evento de origem: S-1200, S-2299 ou S-2399.
 Validação: Deve corresponder ao somatório dos valores informados no campo {vrRubr} dos eventos de origem para a respectiva rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__detRubrSusp__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.detRubrSusp.vrRubr'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][basePerApur][detRubrSusp][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__detRubrSusp__id__vrRubr" maxlength="14" value="{{detRubrSusp.vrRubr}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][basePerApur][][detRubrSusp][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
-
+{% for ideProcessoFGTS in original.evento_json|readjson:'detRubrSusp.ideProcessoFGTS' %}
 <div id="ideProcessoFGTS__div">
     <div class="col-md-12">
         <h4>Processo(s) judicial(is) com decisão/sentença favorável, determinando a não incidência de FGTS.
 Evento de origem: S-1010.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -559,8 +685,8 @@ Evento de origem: S-1010.</h4>
 <div id="nrProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrProc<a data-toggle="tooltip" title="Informar o número do processo."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__detRubrSusp__ideProcessoFGTS__id__nrProc" maxlength="20" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.basePerApur.detRubrSusp.ideProcessoFGTS.nrProc'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][basePerApur][detRubrSusp][ideProcessoFGTS][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <label>Informar o número do processo<a data-toggle="tooltip" title="Informar o número do processo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__basePerApur__detRubrSusp__ideProcessoFGTS__id__nrProc" maxlength="20" value="{{ideProcessoFGTS.nrProc}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][basePerApur][][detRubrSusp][][ideProcessoFGTS][][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -568,21 +694,28 @@ Evento de origem: S-1010.</h4>
             </div>
         </blockquote>
     </div>
-</div>
-
+</div>{% endfor %}
             </div>
         </blockquote>
     </div>
-</div>
-
+</div>{% endfor %}
             </div>
         </blockquote>
     </div>
-</div>
-
+</div>{% endfor %}{% for infoBasePerAntE in original.evento_json|readjson:'infoTrabFGTS.infoBaseFGTS.infoBasePerAntE' %}
 <div id="infoBasePerAntE__div">
     <div class="col-md-12">
         <h4>Informações referentes a bases de cálculo e valores do FGTS de períodos anteriores quando tpAcConv = [E, H].</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -591,10 +724,10 @@ Evento de origem: S-1010.</h4>
 <div id="perRef__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>perRef<a data-toggle="tooltip" title="Informar o período ao qual se refere a remuneração, no formato AAAA-MM.
+            <label>Informar o período ao qual se refere a remuneração no formato AAAA-MM<a data-toggle="tooltip" title="Informar o período ao qual se refere a remuneração, no formato AAAA-MM.
 Evento de origem: S-1200 ou S-2299.
 Validação: Deve corresponder ao período informado no evento de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__id__perRef" maxlength="7" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.perRef'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__id__perRef" maxlength="7" value="{{infoBasePerAntE.perRef}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][infoBasePerAntE][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -602,20 +735,30 @@ Validação: Deve corresponder ao período informado no evento de origem."><i cl
 <div id="tpAcConv__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpAcConv<a data-toggle="tooltip" title="Tipo do instrumento ou situação ensejadora da remuneração relativa a períodos de apuração anteriores.
+            <label>Tipo do instrumento ou situação ensejadora da remuneração relativa a períodos de apuração anteriores<a data-toggle="tooltip" title="Tipo do instrumento ou situação ensejadora da remuneração relativa a períodos de apuração anteriores.
 Valores válidos:
 E - Conversão de licença saúde em acidente de trabalho
 H - Recolhimento mensal de FGTS anterior ao início de obrigatoriedade dos eventos periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__id__tpAcConv" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][tpAcConv]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='E' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.tpAcConv' 'E' %}selected{% endifequal %}>E - Conversão de licença saúde em acidente de trabalho</option><option value='H' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.tpAcConv' 'H' %}selected{% endifequal %}>H - Recolhimento mensal de FGTS anterior ao início de obrigatoriedade dos eventos periódicos</option>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__id__tpAcConv" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][infoBasePerAntE][][tpAcConv]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='E' {% ifequal infoBasePerAntE.tpAcConv 'E' %}selected{% endifequal %}>E - Conversão de licença saúde em acidente de trabalho</option><option value='H' {% ifequal infoBasePerAntE.tpAcConv 'H' %}selected{% endifequal %}>H - Recolhimento mensal de FGTS anterior ao início de obrigatoriedade dos eventos periódicos</option>
             </select>
         </div>
     </div>
 </div>
-
+{% for basePerAntE in original.evento_json|readjson:'infoBasePerAntE.basePerAntE' %}
 <div id="basePerAntE__div">
     <div class="col-md-12">
         <h4>Informações sobre bases de cálculo e valores do FGTS referentes à remuneração de períodos anteriores quando tpAcConv = [E, H].</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -624,7 +767,7 @@ H - Recolhimento mensal de FGTS anterior ao início de obrigatoriedade dos event
 <div id="tpValorE__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpValorE<a data-toggle="tooltip" title="Tipo de valor que influi na apuração do FGTS.
+            <label>Tipo de valor que influi na apuração do FGTS<a data-toggle="tooltip" title="Tipo de valor que influi na apuração do FGTS.
 Valores válidos:
 13 - FGTS (período anterior) mensal
 14 - FGTS (período anterior) 13º salário
@@ -641,8 +784,8 @@ Valores válidos:
 48 - FGTS (período anterior) mês da rescisão - Indenização compensatória do empregado doméstico
 49 - FGTS (período anterior) 13º salário rescisório - Indenização compensatória do empregado doméstico
 50 - FGTS (período anterior) aviso prévio indenizado - Indenização compensatória do empregado doméstico"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__tpValorE" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][basePerAntE][tpValorE]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='13' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '13' %}selected{% endifequal %}>13 - FGTS (período anterior) mensal</option><option value='14' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '14' %}selected{% endifequal %}>14 - FGTS (período anterior) 13º salário</option><option value='17' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '17' %}selected{% endifequal %}>17 - FGTS (período anterior) mensal - Aprendiz/Contrato Verde e Amarelo</option><option value='18' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '18' %}selected{% endifequal %}>18 - FGTS (período anterior) 13º salário - Aprendiz/Contrato Verde e Amarelo</option><option value='24' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '24' %}selected{% endifequal %}>24 - FGTS (período anterior) mês da rescisão</option><option value='25' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '25' %}selected{% endifequal %}>25 - FGTS (período anterior) 13º salário rescisório</option><option value='26' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '26' %}selected{% endifequal %}>26 - FGTS (período anterior) aviso prévio indenizado</option><option value='30' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '30' %}selected{% endifequal %}>30 - FGTS (período anterior) mês da rescisão - Aprendiz/Contrato Verde e Amarelo</option><option value='31' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '31' %}selected{% endifequal %}>31 - FGTS (período anterior) 13° salário rescisório - Aprendiz/Contrato Verde e Amarelo</option><option value='32' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '32' %}selected{% endifequal %}>32 - FGTS (período anterior) aviso prévio indenizado - Aprendiz/Contrato Verde e Amarelo</option><option value='43' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '43' %}selected{% endifequal %}>43 - FGTS (período anterior) mensal - Indenização compensatória do empregado doméstico</option><option value='44' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '44' %}selected{% endifequal %}>44 - FGTS (período anterior) 13º salário - Indenização compensatória do empregado doméstico</option><option value='48' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '48' %}selected{% endifequal %}>48 - FGTS (período anterior) mês da rescisão - Indenização compensatória do empregado doméstico</option><option value='49' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '49' %}selected{% endifequal %}>49 - FGTS (período anterior) 13º salário rescisório - Indenização compensatória do empregado doméstico</option><option value='50' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.tpValorE' '50' %}selected{% endifequal %}>50 - FGTS (período anterior) aviso prévio indenizado - Indenização compensatória do empregado doméstico</option>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__tpValorE" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][infoBasePerAntE][][basePerAntE][][tpValorE]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='13' {% ifequal basePerAntE.tpValorE '13' %}selected{% endifequal %}>13 - FGTS (período anterior) mensal</option><option value='14' {% ifequal basePerAntE.tpValorE '14' %}selected{% endifequal %}>14 - FGTS (período anterior) 13º salário</option><option value='17' {% ifequal basePerAntE.tpValorE '17' %}selected{% endifequal %}>17 - FGTS (período anterior) mensal - Aprendiz/Contrato Verde e Amarelo</option><option value='18' {% ifequal basePerAntE.tpValorE '18' %}selected{% endifequal %}>18 - FGTS (período anterior) 13º salário - Aprendiz/Contrato Verde e Amarelo</option><option value='24' {% ifequal basePerAntE.tpValorE '24' %}selected{% endifequal %}>24 - FGTS (período anterior) mês da rescisão</option><option value='25' {% ifequal basePerAntE.tpValorE '25' %}selected{% endifequal %}>25 - FGTS (período anterior) 13º salário rescisório</option><option value='26' {% ifequal basePerAntE.tpValorE '26' %}selected{% endifequal %}>26 - FGTS (período anterior) aviso prévio indenizado</option><option value='30' {% ifequal basePerAntE.tpValorE '30' %}selected{% endifequal %}>30 - FGTS (período anterior) mês da rescisão - Aprendiz/Contrato Verde e Amarelo</option><option value='31' {% ifequal basePerAntE.tpValorE '31' %}selected{% endifequal %}>31 - FGTS (período anterior) 13° salário rescisório - Aprendiz/Contrato Verde e Amarelo</option><option value='32' {% ifequal basePerAntE.tpValorE '32' %}selected{% endifequal %}>32 - FGTS (período anterior) aviso prévio indenizado - Aprendiz/Contrato Verde e Amarelo</option><option value='43' {% ifequal basePerAntE.tpValorE '43' %}selected{% endifequal %}>43 - FGTS (período anterior) mensal - Indenização compensatória do empregado doméstico</option><option value='44' {% ifequal basePerAntE.tpValorE '44' %}selected{% endifequal %}>44 - FGTS (período anterior) 13º salário - Indenização compensatória do empregado doméstico</option><option value='48' {% ifequal basePerAntE.tpValorE '48' %}selected{% endifequal %}>48 - FGTS (período anterior) mês da rescisão - Indenização compensatória do empregado doméstico</option><option value='49' {% ifequal basePerAntE.tpValorE '49' %}selected{% endifequal %}>49 - FGTS (período anterior) 13º salário rescisório - Indenização compensatória do empregado doméstico</option><option value='50' {% ifequal basePerAntE.tpValorE '50' %}selected{% endifequal %}>50 - FGTS (período anterior) aviso prévio indenizado - Indenização compensatória do empregado doméstico</option>
             </select>
         </div>
     </div>
@@ -651,14 +794,14 @@ Valores válidos:
 <div id="indIncidE__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indIncidE<a data-toggle="tooltip" title="Indicativo de incidência de FGTS.
+            <label>Indicativo de incidência de FGTS<a data-toggle="tooltip" title="Indicativo de incidência de FGTS.
 Valores válidos:
 1 - Normal (incidência de FGTS)
 9 - Incidência de FGTS suspensa em decorrência de decisão judicial
 Validação: Se codIncFGTS em S-1010 for igual a [11, 12, 21], deve ser retornado [1].
 Se codIncFGTS em S-1010 for igual a [91, 92, 93], deve ser retornado [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__indIncidE" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][basePerAntE][indIncidE]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.indIncidE' '1' %}selected{% endifequal %}>1 - Normal (incidência de FGTS)</option><option value='9' {% ifequal original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.indIncidE' '9' %}selected{% endifequal %}>9 - Incidência de FGTS suspensa em decorrência de decisão judicial</option>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__indIncidE" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][infoBasePerAntE][][basePerAntE][][indIncidE]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal basePerAntE.indIncidE '1' %}selected{% endifequal %}>1 - Normal (incidência de FGTS)</option><option value='9' {% ifequal basePerAntE.indIncidE '9' %}selected{% endifequal %}>9 - Incidência de FGTS suspensa em decorrência de decisão judicial</option>
             </select>
         </div>
     </div>
@@ -667,10 +810,10 @@ Se codIncFGTS em S-1010 for igual a [91, 92, 93], deve ser retornado [9]."><i cl
 <div id="remFGTSE__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>remFGTSE<a data-toggle="tooltip" title="Remuneração (valor da base de cálculo) do FGTS, conforme definido nos campos tpValorE e indIncidE.
+            <label>Remuneração (valor da base de cálculo) do FGTS<a data-toggle="tooltip" title="Remuneração (valor da base de cálculo) do FGTS, conforme definido nos campos tpValorE e indIncidE.
 Validação: Deve ser maior que 0 (zero).
 Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-1200 e S-2299 (grupo {infoPerAnt}, agrupado por tpAcConv), devendo somar os valores das rubricas cujo tpRubr em S-1010 seja igual a [1, 3] e subtrair os valores das rubricas cujo tpRubr em S-1010 seja igual a [2, 4], observando a Tabela 23."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__remFGTSE" maxlength="14" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.remFGTSE'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][basePerAntE][remFGTSE]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__remFGTSE" maxlength="14" value="{{basePerAntE.remFGTSE}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][infoBasePerAntE][][basePerAntE][][remFGTSE]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -678,20 +821,30 @@ Deve corresponder ao somatório dos valores informados no campo {vrRubr} em S-12
 <div id="dpsFGTSE__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dpsFGTSE<a data-toggle="tooltip" title="Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador.
+            <label>Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador<a data-toggle="tooltip" title="Valor histórico do FGTS a ser depositado na conta vinculada do trabalhador.
 Validação: Deve ser maior que 0 (zero) e informado somente se indIncidE = [1].
 Deve corresponder à multiplicação de remFGTSE pela alíquota abaixo:
 a) Se tpValorE = [13, 14, 24, 25, 26], alíquota de 8%;
 b) Se tpValorE = [17, 18, 30, 31, 32], alíquota de 2%;
 c) Se tpValorE = [43, 44, 48, 49, 50], alíquota de 3,2%."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__dpsFGTSE" maxlength="14" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.dpsFGTSE'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][basePerAntE][dpsFGTSE]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__id__dpsFGTSE" maxlength="14" value="{{basePerAntE.dpsFGTSE}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][infoBasePerAntE][][basePerAntE][][dpsFGTSE]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
-
+{% for detRubrSusp in original.evento_json|readjson:'basePerAntE.detRubrSusp' %}
 <div id="detRubrSusp__div">
     <div class="col-md-12">
         <h4>Detalhamento da(s) rubrica(s) com incidência de FGTS suspensa em decorrência de decisão judicial.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -700,9 +853,9 @@ c) Se tpValorE = [43, 44, 48, 49, 50], alíquota de 3,2%."><i class="fa fa-fw fa
 <div id="codRubr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codRubr<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento.
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento.
 Evento de origem: S-1200, S-2299 ou S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__detRubrSusp__id__codRubr" maxlength="30" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.detRubrSusp.codRubr'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][basePerAntE][detRubrSusp][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__detRubrSusp__id__codRubr" maxlength="30" value="{{detRubrSusp.codRubr}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][infoBasePerAntE][][basePerAntE][][detRubrSusp][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -710,9 +863,9 @@ Evento de origem: S-1200, S-2299 ou S-2399."><i class="fa fa-fw fa-question-circ
 <div id="ideTabRubr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>ideTabRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr.
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr.
 Evento de origem: S-1200, S-2299 ou S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__detRubrSusp__id__ideTabRubr" maxlength="8" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.detRubrSusp.ideTabRubr'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][basePerAntE][detRubrSusp][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__detRubrSusp__id__ideTabRubr" maxlength="8" value="{{detRubrSusp.ideTabRubr}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][infoBasePerAntE][][basePerAntE][][detRubrSusp][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -720,18 +873,28 @@ Evento de origem: S-1200, S-2299 ou S-2399."><i class="fa fa-fw fa-question-circ
 <div id="vrRubr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>vrRubr<a data-toggle="tooltip" title="Valor total da rubrica.
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
 Evento de origem: S-1200, S-2299 ou S-2399.
 Validação: Deve corresponder ao somatório dos valores informados no campo {vrRubr} dos eventos de origem para a respectiva rubrica."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__detRubrSusp__id__vrRubr" maxlength="14" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.detRubrSusp.vrRubr'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][basePerAntE][detRubrSusp][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__detRubrSusp__id__vrRubr" maxlength="14" value="{{detRubrSusp.vrRubr}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][infoBasePerAntE][][basePerAntE][][detRubrSusp][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
-
+{% for ideProcessoFGTS in original.evento_json|readjson:'detRubrSusp.ideProcessoFGTS' %}
 <div id="ideProcessoFGTS__div">
     <div class="col-md-12">
         <h4>Processo(s) judicial(is) com decisão/sentença favorável, determinando a não incidência de FGTS.
 Evento de origem: S-1010.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -740,8 +903,8 @@ Evento de origem: S-1010.</h4>
 <div id="nrProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrProc<a data-toggle="tooltip" title="Informar o número do processo."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__detRubrSusp__ideProcessoFGTS__id__nrProc" maxlength="20" value="{{original.evento_json|readjson:'evtBasesFGTS.infoFGTS.ideEstab.ideLotacao.infoTrabFGTS.infoBaseFGTS.infoBasePerAntE.basePerAntE.detRubrSusp.ideProcessoFGTS.nrProc'}}" name="[evtBasesFGTS][infoFGTS][ideEstab][ideLotacao][infoTrabFGTS][infoBaseFGTS][infoBasePerAntE][basePerAntE][detRubrSusp][ideProcessoFGTS][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <label>Informar o número do processo<a data-toggle="tooltip" title="Informar o número do processo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__infoBaseFGTS__infoBasePerAntE__basePerAntE__detRubrSusp__ideProcessoFGTS__id__nrProc" maxlength="20" value="{{ideProcessoFGTS.nrProc}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][infoBaseFGTS][infoBasePerAntE][][basePerAntE][][detRubrSusp][][ideProcessoFGTS][][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -749,53 +912,43 @@ Evento de origem: S-1010.</h4>
             </div>
         </blockquote>
     </div>
-</div>
-
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
             </div>
         </blockquote>
     </div>
 </div>
-
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
-            </div>
-        </blockquote>
-    </div>
-</div>
-
-            </div>
-        </blockquote>
-    </div>
-</div>
-
-            </div>
-        </blockquote>
-    </div>
-</div>
-
-            </div>
-        </blockquote>
-    </div>
-</div>
-
-            </div>
-        </blockquote>
-    </div>
-</div>
-
-            </div>
-        </blockquote>
-    </div>
-</div>
-
 </div>
 
 </form>
@@ -804,7 +957,7 @@ Evento de origem: S-1010.</h4>
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

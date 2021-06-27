@@ -7,6 +7,16 @@
 <div id="evtBaixa__div">
     <div class="col-md-12">
         <h4>S-8299 - Baixa Judicial do Vínculo</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="indRetif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indRetif<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
 Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -37,7 +57,7 @@ Valores válidos:
 <div id="nrRecibo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrRecibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBaixa__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtBaixa.ideEvento.nrRecibo'}}" name="[evtBaixa][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -48,7 +68,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtBaixa][ideEvento][tpAmb]" id="evtBaixa__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -61,7 +81,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtBaixa][ideEvento][procEmi]" id="evtBaixa__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -76,9 +96,9 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtBaixa][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtBaixa__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtBaixa][ideEvento][verProc]" id="evtBaixa__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtBaixa][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtBaixa__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtBaixa][ideEvento][verProc]" id="evtBaixa__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -86,10 +106,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -98,7 +127,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtBaixa][ideEmpregador][tpInsc]" id="evtBaixa__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -115,7 +144,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtBaixa__ideEmpregador__id__nrInsc_disabled" name="[evtBaixa][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtBaixa][ideEmpregador][nrInsc]" id="evtBaixa__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -125,10 +154,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideVinculo__div">
     <div class="col-md-12">
         <h4>Informações de identificação do trabalhador e do vínculo.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -137,7 +175,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="cpfTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfTrab<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBaixa__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtBaixa.ideVinculo.cpfTrab'}}" name="[evtBaixa][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -146,7 +184,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="matricula__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
+            <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
 Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBaixa__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtBaixa.ideVinculo.matricula'}}" name="[evtBaixa][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -157,10 +195,19 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
         </blockquote>
     </div>
 </div>
-
 <div id="infoBaixa__div">
     <div class="col-md-12">
         <h4>Informações relativas à baixa judicial do vínculo.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -169,7 +216,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
 <div id="mtvDeslig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>mtvDeslig<a data-toggle="tooltip" title="Código de motivo do desligamento.
+            <label>Código de motivo do desligamento<a data-toggle="tooltip" title="Código de motivo do desligamento.
 Validação: Deve ser um código válido e existente na Tabela 19, bem como compatível com o código de categoria do trabalhador, conforme Tabela 19.
 Não podem ser informados motivos que não implicam rescisão do contrato de trabalho (igual a [11, 12, 13, 25, 28, 29, 30, 34, 36])."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBaixa__infoBaixa__id__mtvDeslig" maxlength="2" value="{{original.evento_json|readjson:'evtBaixa.infoBaixa.mtvDeslig'}}" name="[evtBaixa][infoBaixa][mtvDeslig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -180,7 +227,7 @@ Não podem ser informados motivos que não implicam rescisão do contrato de tra
 <div id="dtDeslig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtDeslig<a data-toggle="tooltip" title="Preencher com a data de desligamento do vínculo (último dia trabalhado).
+            <label>Preencher com a data de desligamento do vínculo (último dia trabalhado)<a data-toggle="tooltip" title="Preencher com a data de desligamento do vínculo (último dia trabalhado).
 Validação: Deve ser uma data igual ou posterior a 20/09/2019 e igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBaixa__infoBaixa__id__dtDeslig" value="{{original.evento_json|readjson:'evtBaixa.infoBaixa.dtDeslig'}}" name="[evtBaixa][infoBaixa][dtDeslig]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -190,7 +237,7 @@ Validação: Deve ser uma data igual ou posterior a 20/09/2019 e igual ou anteri
 <div id="dtProjFimAPI__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtProjFimAPI<a data-toggle="tooltip" title="Data projetada para o término do aviso prévio indenizado.
+            <label>Data projetada para o término do aviso prévio indenizado<a data-toggle="tooltip" title="Data projetada para o término do aviso prévio indenizado.
 Validação: Se preenchida, deve ser uma data posterior a dtDeslig."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBaixa__infoBaixa__id__dtProjFimAPI" value="{{original.evento_json|readjson:'evtBaixa.infoBaixa.dtProjFimAPI'}}" name="[evtBaixa][infoBaixa][dtProjFimAPI]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -200,7 +247,7 @@ Validação: Se preenchida, deve ser uma data posterior a dtDeslig."><i class="f
 <div id="nrProcTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrProcTrab<a data-toggle="tooltip" title="Número que identifica o processo judicial onde a baixa do vínculo foi determinada.
+            <label>Número que identifica o processo judicial onde a baixa do vínculo foi determinada<a data-toggle="tooltip" title="Número que identifica o processo judicial onde a baixa do vínculo foi determinada.
 Validação: Deve ser um processo judicial válido, com 20 (vinte) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBaixa__infoBaixa__id__nrProcTrab" maxlength="20" value="{{original.evento_json|readjson:'evtBaixa.infoBaixa.nrProcTrab'}}" name="[evtBaixa][infoBaixa][nrProcTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -210,7 +257,7 @@ Validação: Deve ser um processo judicial válido, com 20 (vinte) algarismos.">
 <div id="observacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>observacao<a data-toggle="tooltip" title="Observação relevante sobre o desligamento do trabalhador, que não esteja consignada em outros campos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação relevante sobre o desligamento do trabalhador, que não esteja consignada em outros campos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBaixa__infoBaixa__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtBaixa.infoBaixa.observacao'}}" name="[evtBaixa][infoBaixa][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -220,12 +267,10 @@ Validação: Deve ser um processo judicial válido, com 20 (vinte) algarismos.">
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -234,7 +279,7 @@ Validação: Deve ser um processo judicial válido, com 20 (vinte) algarismos.">
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

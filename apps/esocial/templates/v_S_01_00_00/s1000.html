@@ -7,6 +7,16 @@
 <div id="evtInfoEmpregador__div">
     <div class="col-md-12">
         <h4>S-1000 - Informações do Empregador/Contribuinte/Órgão Público</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtInfoEmpregador][ideEvento][tpAmb]" id="evtInfoEmpregador__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -36,7 +56,7 @@
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtInfoEmpregador][ideEvento][procEmi]" id="evtInfoEmpregador__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -51,9 +71,9 @@
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtInfoEmpregador][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtInfoEmpregador__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtInfoEmpregador][ideEvento][verProc]" id="evtInfoEmpregador__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtInfoEmpregador][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtInfoEmpregador__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtInfoEmpregador][ideEvento][verProc]" id="evtInfoEmpregador__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -61,10 +81,19 @@
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -73,7 +102,7 @@
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtInfoEmpregador][ideEmpregador][tpInsc]" id="evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -90,7 +119,7 @@
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtInfoEmpregador__ideEmpregador__id__nrInsc_disabled" name="[evtInfoEmpregador][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtInfoEmpregador][ideEmpregador][nrInsc]" id="evtInfoEmpregador__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -100,10 +129,19 @@
         </blockquote>
     </div>
 </div>
-
 <div id="infoEmpregador__div">
     <div class="col-md-12">
         <h4>Identificação da operação (inclusão, alteração ou exclusão) e das respectivas informações do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -112,6 +150,16 @@
 <div id="inclusao__div">
     <div class="col-md-12">
         <h4>Inclusão de novas informações.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -120,6 +168,16 @@
 <div id="idePeriodo__div">
     <div class="col-md-12">
         <h4>Período de validade das informações.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -128,7 +186,7 @@
 <div id="iniValid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>iniValid<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.
+            <label>Preencher com o mês e ano de início da validade das informações prestadas no evento<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.
 Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__idePeriodo__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.idePeriodo.iniValid'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][idePeriodo][iniValid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -138,7 +196,7 @@ Validação: Deve ser uma data válida, igual ou posterior à data de início de
 <div id="fimValid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>fimValid<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver.
+            <label>Preencher com o mês e ano de término da validade das informações<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver.
 Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a iniValid."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__idePeriodo__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.idePeriodo.fimValid'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][idePeriodo][fimValid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -149,10 +207,19 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
         </blockquote>
     </div>
 </div>
-
 <div id="infoCadastro__div">
     <div class="col-md-12">
         <h4>Detalhamento das informações do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -161,7 +228,7 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
 <div id="classTrib__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>classTrib<a data-toggle="tooltip" title="Preencher com o código correspondente à classificação tributária do contribuinte.
+            <label>Preencher com o código correspondente à classificação tributária do contribuinte<a data-toggle="tooltip" title="Preencher com o código correspondente à classificação tributária do contribuinte.
 Validação: Deve ser um código válido e existente na Tabela 08. Os códigos [21] e [22] somente podem ser utilizados se tpInsc for igual a [2]. Para os demais códigos, tpInsc deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__classTrib" maxlength="2" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.classTrib'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][classTrib]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -171,7 +238,7 @@ Validação: Deve ser um código válido e existente na Tabela 08. Os códigos [
 <div id="indCoop__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indCoop<a data-toggle="tooltip" title="Indicativo de cooperativa.
+            <label>Indicativo de cooperativa<a data-toggle="tooltip" title="Indicativo de cooperativa.
 Valores válidos:
 0 - Não é cooperativa
 1 - Cooperativa de trabalho
@@ -188,7 +255,7 @@ Validação: O preenchimento do campo é exclusivo e obrigatório para PJ. Somen
 <div id="indConstr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indConstr<a data-toggle="tooltip" title="Indicativo de construtora.
+            <label>Indicativo de construtora<a data-toggle="tooltip" title="Indicativo de construtora.
 Valores válidos:
 0 - Não é construtora
 1 - Empresa construtora
@@ -203,7 +270,7 @@ Validação: O preenchimento do campo é exclusivo e obrigatório para PJ."><i c
 <div id="indDesFolha__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indDesFolha<a data-toggle="tooltip" title="Indicativo de desoneração da folha.
+            <label>Indicativo de desoneração da folha<a data-toggle="tooltip" title="Indicativo de desoneração da folha.
 Valores válidos:
 0 - Não aplicável
 1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011
@@ -218,7 +285,7 @@ Validação: Pode ser igual a [1] apenas se classTrib = [02, 03, 99]. Nos demais
 <div id="indOpcCP__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indOpcCP<a data-toggle="tooltip" title="Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária, nos termos do art. 25, § 13, da Lei 8.212/1991 e do art. 25, § 7°, da Lei 8.870/1994. O não preenchimento deste campo por parte do produtor rural implica opção pela comercialização da sua produção.
+            <label>Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária<a data-toggle="tooltip" title="Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária, nos termos do art. 25, § 13, da Lei 8.212/1991 e do art. 25, § 7°, da Lei 8.870/1994. O não preenchimento deste campo por parte do produtor rural implica opção pela comercialização da sua produção.
 Valores válidos:
 1 - Sobre a comercialização da sua produção
 2 - Sobre a folha de pagamento
@@ -233,7 +300,7 @@ Validação: Não preencher se classTrib for diferente de [07, 21]."><i class="f
 <div id="indPorte__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indPorte<a data-toggle="tooltip" title="Indicativo de microempresa - ME ou empresa de pequeno porte - EPP para permissão de acesso ao módulo simplificado. Não preencher caso o empregador não se enquadre como micro ou pequena empresa.
+            <label>Indicativo de microempresa - ME ou empresa de pequeno porte - EPP para permissão de acesso ao módulo simplificado<a data-toggle="tooltip" title="Indicativo de microempresa - ME ou empresa de pequeno porte - EPP para permissão de acesso ao módulo simplificado. Não preencher caso o empregador não se enquadre como micro ou pequena empresa.
 Valores válidos:
 S - Sim
 Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -247,7 +314,7 @@ Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-ques
 <div id="indOptRegEletron__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indOptRegEletron<a data-toggle="tooltip" title="Indica se houve opção pelo registro eletrônico de empregados.
+            <label>Indica se houve opção pelo registro eletrônico de empregados<a data-toggle="tooltip" title="Indica se houve opção pelo registro eletrônico de empregados.
 Valores válidos:
 0 - Não optou pelo registro eletrônico de empregados
 1 - Optou pelo registro eletrônico de empregados"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -261,7 +328,7 @@ Valores válidos:
 <div id="cnpjEFR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cnpjEFR<a data-toggle="tooltip" title="CNPJ do Ente Federativo Responsável - EFR.
+            <label>CNPJ do Ente Federativo Responsável - EFR<a data-toggle="tooltip" title="CNPJ do Ente Federativo Responsável - EFR.
 Validação: Preenchimento obrigatório e exclusivo se a natureza jurídica do declarante for Administração Pública (grupo [1]). Nesse caso, informar o campo com 14 (catorze) algarismos.
 Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__cnpjEFR" maxlength="14" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.cnpjEFR'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][cnpjEFR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -272,6 +339,16 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
 <div id="dadosIsencao__div">
     <div class="col-md-12">
         <h4>Informações complementares - Empresas isentas - Dados da isenção.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -280,7 +357,7 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
 <div id="ideMinLei__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>ideMinLei<a data-toggle="tooltip" title="Sigla e nome do Ministério ou lei que concedeu o certificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Sigla e nome do Ministério ou lei que concedeu o certificado<a data-toggle="tooltip" title="Sigla e nome do Ministério ou lei que concedeu o certificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__dadosIsencao__id__ideMinLei" maxlength="70" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.dadosIsencao.ideMinLei'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][dadosIsencao][ideMinLei]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -289,7 +366,7 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
 <div id="nrCertif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrCertif<a data-toggle="tooltip" title="Número do Certificado de Entidade Beneficente de Assistência Social - CEBAS, número da portaria de concessão do certificado, ou, no caso de concessão através de lei específica, o número da lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número do Certificado de Entidade Beneficente de Assistência Social - CEBAS<a data-toggle="tooltip" title="Número do Certificado de Entidade Beneficente de Assistência Social - CEBAS, número da portaria de concessão do certificado, ou, no caso de concessão através de lei específica, o número da lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__dadosIsencao__id__nrCertif" maxlength="40" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.dadosIsencao.nrCertif'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][dadosIsencao][nrCertif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -298,7 +375,7 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
 <div id="dtEmisCertif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtEmisCertif<a data-toggle="tooltip" title="Data de emissão do certificado/publicação da lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Data de emissão do certificado/publicação da lei<a data-toggle="tooltip" title="Data de emissão do certificado/publicação da lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__dadosIsencao__id__dtEmisCertif" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.dadosIsencao.dtEmisCertif'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][dadosIsencao][dtEmisCertif]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -307,7 +384,7 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
 <div id="dtVencCertif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtVencCertif<a data-toggle="tooltip" title="Data de vencimento do certificado.
+            <label>Data de vencimento do certificado<a data-toggle="tooltip" title="Data de vencimento do certificado.
 Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__dadosIsencao__id__dtVencCertif" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.dadosIsencao.dtVencCertif'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][dadosIsencao][dtVencCertif]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -317,7 +394,7 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 <div id="nrProtRenov__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrProtRenov<a data-toggle="tooltip" title="Número do protocolo do pedido de renovação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número do protocolo do pedido de renovação<a data-toggle="tooltip" title="Número do protocolo do pedido de renovação."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__dadosIsencao__id__nrProtRenov" maxlength="40" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.dadosIsencao.nrProtRenov'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][dadosIsencao][nrProtRenov]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -326,7 +403,7 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 <div id="dtProtRenov__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtProtRenov<a data-toggle="tooltip" title="Data do protocolo de renovação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Data do protocolo de renovação<a data-toggle="tooltip" title="Data do protocolo de renovação."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__dadosIsencao__id__dtProtRenov" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.dadosIsencao.dtProtRenov'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][dadosIsencao][dtProtRenov]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -335,7 +412,7 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 <div id="dtDou__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtDou<a data-toggle="tooltip" title="Data de publicação no Diário Oficial da União - DOU."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Data de publicação no Diário Oficial da União - DOU<a data-toggle="tooltip" title="Data de publicação no Diário Oficial da União - DOU."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__dadosIsencao__id__dtDou" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.dadosIsencao.dtDou'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][dadosIsencao][dtDou]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -344,7 +421,7 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 <div id="pagDou__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>pagDou<a data-toggle="tooltip" title="Número da página no DOU referente à publicação do documento de concessão do certificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número da página no DOU referente à publicação do documento de concessão do certificado<a data-toggle="tooltip" title="Número da página no DOU referente à publicação do documento de concessão do certificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__dadosIsencao__id__pagDou" maxlength="5" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.dadosIsencao.pagDou'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][dadosIsencao][pagDou]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -354,10 +431,19 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
         </blockquote>
     </div>
 </div>
-
 <div id="infoOrgInternacional__div">
     <div class="col-md-12">
         <h4>Informações exclusivas de organismos internacionais e outras instituições extraterritoriais.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -366,7 +452,7 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 <div id="indAcordoIsenMulta__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indAcordoIsenMulta<a data-toggle="tooltip" title="Indicativo da existência de acordo internacional para isenção de multa.
+            <label>Indicativo da existência de acordo internacional para isenção de multa<a data-toggle="tooltip" title="Indicativo da existência de acordo internacional para isenção de multa.
 Valores válidos:
 0 - Sem acordo
 1 - Com acordo"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -379,20 +465,27 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 <div id="alteracao__div">
     <div class="col-md-12">
         <h4>Alteração das informações.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -401,6 +494,16 @@ Valores válidos:
 <div id="idePeriodo__div">
     <div class="col-md-12">
         <h4>Período de validade das informações.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -409,7 +512,7 @@ Valores válidos:
 <div id="iniValid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>iniValid<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.
+            <label>Preencher com o mês e ano de início da validade das informações prestadas no evento<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.
 Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__idePeriodo__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.idePeriodo.iniValid'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][idePeriodo][iniValid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -419,7 +522,7 @@ Validação: Deve ser uma data válida, igual ou posterior à data de início de
 <div id="fimValid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>fimValid<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver.
+            <label>Preencher com o mês e ano de término da validade das informações<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver.
 Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a iniValid."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__idePeriodo__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.idePeriodo.fimValid'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][idePeriodo][fimValid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -430,10 +533,19 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
         </blockquote>
     </div>
 </div>
-
 <div id="infoCadastro__div">
     <div class="col-md-12">
         <h4>Detalhamento das informações do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -442,7 +554,7 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
 <div id="classTrib__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>classTrib<a data-toggle="tooltip" title="Preencher com o código correspondente à classificação tributária do contribuinte.
+            <label>Preencher com o código correspondente à classificação tributária do contribuinte<a data-toggle="tooltip" title="Preencher com o código correspondente à classificação tributária do contribuinte.
 Validação: Deve ser um código válido e existente na Tabela 08. Os códigos [21] e [22] somente podem ser utilizados se tpInsc for igual a [2]. Para os demais códigos, tpInsc deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__classTrib" maxlength="2" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.classTrib'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][classTrib]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -452,7 +564,7 @@ Validação: Deve ser um código válido e existente na Tabela 08. Os códigos [
 <div id="indCoop__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indCoop<a data-toggle="tooltip" title="Indicativo de cooperativa.
+            <label>Indicativo de cooperativa<a data-toggle="tooltip" title="Indicativo de cooperativa.
 Valores válidos:
 0 - Não é cooperativa
 1 - Cooperativa de trabalho
@@ -469,7 +581,7 @@ Validação: O preenchimento do campo é exclusivo e obrigatório para PJ. Somen
 <div id="indConstr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indConstr<a data-toggle="tooltip" title="Indicativo de construtora.
+            <label>Indicativo de construtora<a data-toggle="tooltip" title="Indicativo de construtora.
 Valores válidos:
 0 - Não é construtora
 1 - Empresa construtora
@@ -484,7 +596,7 @@ Validação: O preenchimento do campo é exclusivo e obrigatório para PJ."><i c
 <div id="indDesFolha__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indDesFolha<a data-toggle="tooltip" title="Indicativo de desoneração da folha.
+            <label>Indicativo de desoneração da folha<a data-toggle="tooltip" title="Indicativo de desoneração da folha.
 Valores válidos:
 0 - Não aplicável
 1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011
@@ -499,7 +611,7 @@ Validação: Pode ser igual a [1] apenas se classTrib = [02, 03, 99]. Nos demais
 <div id="indOpcCP__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indOpcCP<a data-toggle="tooltip" title="Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária, nos termos do art. 25, § 13, da Lei 8.212/1991 e do art. 25, § 7°, da Lei 8.870/1994. O não preenchimento deste campo por parte do produtor rural implica opção pela comercialização da sua produção.
+            <label>Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária<a data-toggle="tooltip" title="Indicativo da opção pelo produtor rural pela forma de tributação da contribuição previdenciária, nos termos do art. 25, § 13, da Lei 8.212/1991 e do art. 25, § 7°, da Lei 8.870/1994. O não preenchimento deste campo por parte do produtor rural implica opção pela comercialização da sua produção.
 Valores válidos:
 1 - Sobre a comercialização da sua produção
 2 - Sobre a folha de pagamento
@@ -514,7 +626,7 @@ Validação: Não preencher se classTrib for diferente de [07, 21]."><i class="f
 <div id="indPorte__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indPorte<a data-toggle="tooltip" title="Indicativo de microempresa - ME ou empresa de pequeno porte - EPP para permissão de acesso ao módulo simplificado. Não preencher caso o empregador não se enquadre como micro ou pequena empresa.
+            <label>Indicativo de microempresa - ME ou empresa de pequeno porte - EPP para permissão de acesso ao módulo simplificado<a data-toggle="tooltip" title="Indicativo de microempresa - ME ou empresa de pequeno porte - EPP para permissão de acesso ao módulo simplificado. Não preencher caso o empregador não se enquadre como micro ou pequena empresa.
 Valores válidos:
 S - Sim
 Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -528,7 +640,7 @@ Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-ques
 <div id="indOptRegEletron__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indOptRegEletron<a data-toggle="tooltip" title="Indica se houve opção pelo registro eletrônico de empregados.
+            <label>Indica se houve opção pelo registro eletrônico de empregados<a data-toggle="tooltip" title="Indica se houve opção pelo registro eletrônico de empregados.
 Valores válidos:
 0 - Não optou pelo registro eletrônico de empregados
 1 - Optou pelo registro eletrônico de empregados"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -542,7 +654,7 @@ Valores válidos:
 <div id="cnpjEFR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cnpjEFR<a data-toggle="tooltip" title="CNPJ do Ente Federativo Responsável - EFR.
+            <label>CNPJ do Ente Federativo Responsável - EFR<a data-toggle="tooltip" title="CNPJ do Ente Federativo Responsável - EFR.
 Validação: Preenchimento obrigatório e exclusivo se a natureza jurídica do declarante for Administração Pública (grupo [1]). Nesse caso, informar o campo com 14 (catorze) algarismos.
 Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__cnpjEFR" maxlength="14" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.cnpjEFR'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][cnpjEFR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -553,6 +665,16 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
 <div id="dadosIsencao__div">
     <div class="col-md-12">
         <h4>Informações complementares - Empresas isentas - Dados da isenção.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -561,7 +683,7 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
 <div id="ideMinLei__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>ideMinLei<a data-toggle="tooltip" title="Sigla e nome do Ministério ou lei que concedeu o certificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Sigla e nome do Ministério ou lei que concedeu o certificado<a data-toggle="tooltip" title="Sigla e nome do Ministério ou lei que concedeu o certificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__dadosIsencao__id__ideMinLei" maxlength="70" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.dadosIsencao.ideMinLei'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][dadosIsencao][ideMinLei]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -570,7 +692,7 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
 <div id="nrCertif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrCertif<a data-toggle="tooltip" title="Número do Certificado de Entidade Beneficente de Assistência Social - CEBAS, número da portaria de concessão do certificado, ou, no caso de concessão através de lei específica, o número da lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número do Certificado de Entidade Beneficente de Assistência Social - CEBAS<a data-toggle="tooltip" title="Número do Certificado de Entidade Beneficente de Assistência Social - CEBAS, número da portaria de concessão do certificado, ou, no caso de concessão através de lei específica, o número da lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__dadosIsencao__id__nrCertif" maxlength="40" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.dadosIsencao.nrCertif'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][dadosIsencao][nrCertif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -579,7 +701,7 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
 <div id="dtEmisCertif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtEmisCertif<a data-toggle="tooltip" title="Data de emissão do certificado/publicação da lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Data de emissão do certificado/publicação da lei<a data-toggle="tooltip" title="Data de emissão do certificado/publicação da lei."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__dadosIsencao__id__dtEmisCertif" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.dadosIsencao.dtEmisCertif'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][dadosIsencao][dtEmisCertif]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -588,7 +710,7 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
 <div id="dtVencCertif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtVencCertif<a data-toggle="tooltip" title="Data de vencimento do certificado.
+            <label>Data de vencimento do certificado<a data-toggle="tooltip" title="Data de vencimento do certificado.
 Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__dadosIsencao__id__dtVencCertif" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.dadosIsencao.dtVencCertif'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][dadosIsencao][dtVencCertif]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -598,7 +720,7 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 <div id="nrProtRenov__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrProtRenov<a data-toggle="tooltip" title="Número do protocolo do pedido de renovação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número do protocolo do pedido de renovação<a data-toggle="tooltip" title="Número do protocolo do pedido de renovação."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__dadosIsencao__id__nrProtRenov" maxlength="40" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.dadosIsencao.nrProtRenov'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][dadosIsencao][nrProtRenov]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -607,7 +729,7 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 <div id="dtProtRenov__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtProtRenov<a data-toggle="tooltip" title="Data do protocolo de renovação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Data do protocolo de renovação<a data-toggle="tooltip" title="Data do protocolo de renovação."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__dadosIsencao__id__dtProtRenov" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.dadosIsencao.dtProtRenov'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][dadosIsencao][dtProtRenov]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -616,7 +738,7 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 <div id="dtDou__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtDou<a data-toggle="tooltip" title="Data de publicação no Diário Oficial da União - DOU."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Data de publicação no Diário Oficial da União - DOU<a data-toggle="tooltip" title="Data de publicação no Diário Oficial da União - DOU."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__dadosIsencao__id__dtDou" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.dadosIsencao.dtDou'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][dadosIsencao][dtDou]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -625,7 +747,7 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 <div id="pagDou__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>pagDou<a data-toggle="tooltip" title="Número da página no DOU referente à publicação do documento de concessão do certificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número da página no DOU referente à publicação do documento de concessão do certificado<a data-toggle="tooltip" title="Número da página no DOU referente à publicação do documento de concessão do certificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__dadosIsencao__id__pagDou" maxlength="5" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.dadosIsencao.pagDou'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][dadosIsencao][pagDou]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -635,10 +757,19 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
         </blockquote>
     </div>
 </div>
-
 <div id="infoOrgInternacional__div">
     <div class="col-md-12">
         <h4>Informações exclusivas de organismos internacionais e outras instituições extraterritoriais.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -647,7 +778,7 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 <div id="indAcordoIsenMulta__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indAcordoIsenMulta<a data-toggle="tooltip" title="Indicativo da existência de acordo internacional para isenção de multa.
+            <label>Indicativo da existência de acordo internacional para isenção de multa<a data-toggle="tooltip" title="Indicativo da existência de acordo internacional para isenção de multa.
 Valores válidos:
 0 - Sem acordo
 1 - Com acordo"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -660,15 +791,23 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 <div id="novaValidade__div">
     <div class="col-md-12">
         <h4>Informação preenchida exclusivamente em caso de alteração do período de validade das informações, apresentando o novo período de validade.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -677,7 +816,7 @@ Valores válidos:
 <div id="iniValid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>iniValid<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.
+            <label>Preencher com o mês e ano de início da validade das informações prestadas no evento<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.
 Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__novaValidade__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.novaValidade.iniValid'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][novaValidade][iniValid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -687,7 +826,7 @@ Validação: Deve ser uma data válida, igual ou posterior à data de início de
 <div id="fimValid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>fimValid<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver.
+            <label>Preencher com o mês e ano de término da validade das informações<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver.
 Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a iniValid."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__novaValidade__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.novaValidade.fimValid'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][novaValidade][fimValid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -698,15 +837,23 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 <div id="exclusao__div">
     <div class="col-md-12">
         <h4>Exclusão das informações.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -715,6 +862,16 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
 <div id="idePeriodo__div">
     <div class="col-md-12">
         <h4>Período de validade das informações.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -723,7 +880,7 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
 <div id="iniValid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>iniValid<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.
+            <label>Preencher com o mês e ano de início da validade das informações prestadas no evento<a data-toggle="tooltip" title="Preencher com o mês e ano de início da validade das informações prestadas no evento, no formato AAAA-MM.
 Validação: Deve ser uma data válida, igual ou posterior à data de início de obrigatoriedade deste evento para o empregador no eSocial, no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__exclusao__idePeriodo__id__iniValid" maxlength="7" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.exclusao.idePeriodo.iniValid'}}" name="[evtInfoEmpregador][infoEmpregador][exclusao][idePeriodo][iniValid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -733,7 +890,7 @@ Validação: Deve ser uma data válida, igual ou posterior à data de início de
 <div id="fimValid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>fimValid<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver.
+            <label>Preencher com o mês e ano de término da validade das informações<a data-toggle="tooltip" title="Preencher com o mês e ano de término da validade das informações, se houver.
 Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual ou posterior a iniValid."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__exclusao__idePeriodo__id__fimValid" maxlength="7" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.exclusao.idePeriodo.fimValid'}}" name="[evtInfoEmpregador][infoEmpregador][exclusao][idePeriodo][fimValid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -744,22 +901,18 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -768,7 +921,7 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

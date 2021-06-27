@@ -7,6 +7,16 @@
 <div id="evtFechaEvPer__div">
     <div class="col-md-12">
         <h4>S-1299 - Fechamento dos Eventos Periódicos</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="indApuracao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indApuracao<a data-toggle="tooltip" title="Indicativo de período de apuração.
+            <label>Indicativo de período de apuração<a data-toggle="tooltip" title="Indicativo de período de apuração.
 Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -37,7 +57,7 @@ Valores válidos:
 <div id="perApur__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>perApur<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
 Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtFechaEvPer__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtFechaEvPer.ideEvento.perApur'}}" name="[evtFechaEvPer][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -47,7 +67,7 @@ Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início 
 <div id="indGuia__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indGuia<a data-toggle="tooltip" title="Indicativo do tipo de guia.
+            <label>Indicativo do tipo de guia<a data-toggle="tooltip" title="Indicativo do tipo de guia.
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__ideEvento__id__indGuia" name="[evtFechaEvPer][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
@@ -60,7 +80,7 @@ Valores válidos:
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtFechaEvPer][ideEvento][tpAmb]" id="evtFechaEvPer__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -73,7 +93,7 @@ Valores válidos:
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtFechaEvPer][ideEvento][procEmi]" id="evtFechaEvPer__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -88,9 +108,9 @@ Valores válidos:
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtFechaEvPer][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtFechaEvPer__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtFechaEvPer][ideEvento][verProc]" id="evtFechaEvPer__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtFechaEvPer][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtFechaEvPer__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtFechaEvPer][ideEvento][verProc]" id="evtFechaEvPer__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -98,10 +118,19 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -110,7 +139,7 @@ Valores válidos:
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtFechaEvPer][ideEmpregador][tpInsc]" id="evtFechaEvPer__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -127,7 +156,7 @@ Valores válidos:
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtFechaEvPer__ideEmpregador__id__nrInsc_disabled" name="[evtFechaEvPer][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtFechaEvPer][ideEmpregador][nrInsc]" id="evtFechaEvPer__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -137,10 +166,19 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
 <div id="infoFech__div">
     <div class="col-md-12">
         <h4>Informações do fechamento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -149,10 +187,9 @@ Valores válidos:
 <div id="evtRemun__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>evtRemun<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtFechaEvPer__infoFech__id__evtRemun" name="[evtFechaEvPer][infoFech][evtRemun]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtRemun' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtRemun' 'N' %}selected{% endifequal %}>N - Não</option>
-            </select>
+            <label>Possui informações relativas a remuneração de trabalhadores ou provento/pensão de beneficiários no período de apuração?
+Valores válidos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtFechaEvPer__infoFech__id__evtRemun" maxlength="1" value="{{original.evento_json|readjson:'evtFechaEvPer.infoFech.evtRemun'}}" name="[evtFechaEvPer][infoFech][evtRemun]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -160,10 +197,9 @@ Valores válidos:
 <div id="evtComProd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>evtComProd<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtFechaEvPer__infoFech__id__evtComProd" name="[evtFechaEvPer][infoFech][evtComProd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtComProd' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtComProd' 'N' %}selected{% endifequal %}>N - Não</option>
-            </select>
+            <label>Possui informações de comercialização de produção?
+Valores válidos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtFechaEvPer__infoFech__id__evtComProd" maxlength="1" value="{{original.evento_json|readjson:'evtFechaEvPer.infoFech.evtComProd'}}" name="[evtFechaEvPer][infoFech][evtComProd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -171,10 +207,8 @@ Valores válidos:
 <div id="evtContratAvNP__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>evtContratAvNP<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtFechaEvPer__infoFech__id__evtContratAvNP" name="[evtFechaEvPer][infoFech][evtContratAvNP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtContratAvNP' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtContratAvNP' 'N' %}selected{% endifequal %}>N - Não</option>
-            </select>
+            <label>Contratou<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtFechaEvPer__infoFech__id__evtContratAvNP" maxlength="1" value="{{original.evento_json|readjson:'evtFechaEvPer.infoFech.evtContratAvNP'}}" name="[evtFechaEvPer][infoFech][evtContratAvNP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -182,10 +216,8 @@ Valores válidos:
 <div id="evtInfoComplPer__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>evtInfoComplPer<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtFechaEvPer__infoFech__id__evtInfoComplPer" name="[evtFechaEvPer][infoFech][evtInfoComplPer]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtInfoComplPer' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtInfoComplPer' 'N' %}selected{% endifequal %}>N - Não</option>
-            </select>
+            <label>Possui informações de desoneração de folha de pagamento ou<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtFechaEvPer__infoFech__id__evtInfoComplPer" maxlength="1" value="{{original.evento_json|readjson:'evtFechaEvPer.infoFech.evtInfoComplPer'}}" name="[evtFechaEvPer][infoFech][evtInfoComplPer]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -193,7 +225,7 @@ Valores válidos:
 <div id="indExcApur1250__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indExcApur1250<a data-toggle="tooltip" title="Indicativo de exclusão de apuração das aquisições de produção rural (eventos S-1250) do período de apuração.
+            <label>Indicativo de exclusão de apuração das aquisições de produção rural (eventos S-1250) do período de apuração<a data-toggle="tooltip" title="Indicativo de exclusão de apuração das aquisições de produção rural (eventos S-1250) do período de apuração.
 Valores válidos:
 S - Sim
 Validação: Não informar se perApur >= [2021-05] ou se indApuracao = [2]. Preenchimento obrigatório caso o campo tenha sido informado em fechamento anterior do mesmo período de apuração."><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -208,12 +240,10 @@ Validação: Não informar se perApur >= [2021-05] ou se indApuracao = [2]. Pree
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -222,7 +252,7 @@ Validação: Não informar se perApur >= [2021-05] ou se indApuracao = [2]. Pree
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

@@ -7,6 +7,16 @@
 <div id="evtAltCadastral__div">
     <div class="col-md-12">
         <h4>S-2205 - Alteração de Dados Cadastrais do Trabalhador</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="indRetif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indRetif<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
 Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -37,7 +57,7 @@ Valores válidos:
 <div id="nrRecibo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrRecibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtAltCadastral.ideEvento.nrRecibo'}}" name="[evtAltCadastral][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -48,7 +68,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtAltCadastral][ideEvento][tpAmb]" id="evtAltCadastral__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -61,7 +81,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtAltCadastral][ideEvento][procEmi]" id="evtAltCadastral__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -76,9 +96,9 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtAltCadastral][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtAltCadastral__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtAltCadastral][ideEvento][verProc]" id="evtAltCadastral__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtAltCadastral][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtAltCadastral__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtAltCadastral][ideEvento][verProc]" id="evtAltCadastral__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -86,10 +106,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -98,7 +127,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtAltCadastral][ideEmpregador][tpInsc]" id="evtAltCadastral__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -115,7 +144,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtAltCadastral__ideEmpregador__id__nrInsc_disabled" name="[evtAltCadastral][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtAltCadastral][ideEmpregador][nrInsc]" id="evtAltCadastral__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -125,10 +154,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideTrabalhador__div">
     <div class="col-md-12">
         <h4>Identificação do trabalhador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -137,7 +175,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="cpfTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfTrab<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__ideTrabalhador__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtAltCadastral.ideTrabalhador.cpfTrab'}}" name="[evtAltCadastral][ideTrabalhador][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -147,10 +185,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="alteracao__div">
     <div class="col-md-12">
         <h4>Alteração de dados cadastrais do trabalhador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -159,7 +206,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="dtAlteracao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtAlteracao<a data-toggle="tooltip" title="Preencher com a data da alteração das informações.
+            <label>Preencher com a data de alteração<a data-toggle="tooltip" title="Preencher com a data da alteração das informações.
 Validação: Não pode ser posterior a 180 (cento e oitenta) dias da data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__id__dtAlteracao" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dtAlteracao'}}" name="[evtAltCadastral][alteracao][dtAlteracao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -169,6 +216,16 @@ Validação: Não pode ser posterior a 180 (cento e oitenta) dias da data atual.
 <div id="dadosTrabalhador__div">
     <div class="col-md-12">
         <h4>Informações pessoais do trabalhador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -177,7 +234,7 @@ Validação: Não pode ser posterior a 180 (cento e oitenta) dias da data atual.
 <div id="nmTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmTrab<a data-toggle="tooltip" title="Informar o nome do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Informar o nome do trabalhador<a data-toggle="tooltip" title="Informar o nome do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__id__nmTrab" maxlength="70" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nmTrab'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nmTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -186,7 +243,7 @@ Validação: Não pode ser posterior a 180 (cento e oitenta) dias da data atual.
 <div id="sexo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>sexo<a data-toggle="tooltip" title="Sexo do trabalhador.
+            <label>Sexo do beneficiário<a data-toggle="tooltip" title="Sexo do trabalhador.
 Valores válidos:
 M - Masculino
 F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -200,7 +257,7 @@ F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="racaCor__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>racaCor<a data-toggle="tooltip" title="Raça e cor do trabalhador.
+            <label>Raça e cor do beneficiário<a data-toggle="tooltip" title="Raça e cor do trabalhador.
 Valores válidos:
 1 - Branca
 2 - Preta
@@ -218,7 +275,7 @@ Valores válidos:
 <div id="estCiv__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>estCiv<a data-toggle="tooltip" title="Estado civil do trabalhador.
+            <label>Estado civil do beneficiário<a data-toggle="tooltip" title="Estado civil do trabalhador.
 Valores válidos:
 1 - Solteiro
 2 - Casado
@@ -235,7 +292,7 @@ Valores válidos:
 <div id="grauInstr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>grauInstr<a data-toggle="tooltip" title="Grau de instrução do trabalhador.
+            <label>Grau de instrução do trabalhador<a data-toggle="tooltip" title="Grau de instrução do trabalhador.
 Valores válidos:
 01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou
 02 - Até o 5º ano incompleto do ensino fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular
@@ -259,7 +316,7 @@ Valores válidos:
 <div id="nmSoc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmSoc<a data-toggle="tooltip" title="Nome social para travesti ou transexual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Nome social para travesti ou transexual<a data-toggle="tooltip" title="Nome social para travesti ou transexual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__id__nmSoc" maxlength="70" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.nmSoc'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][nmSoc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -268,7 +325,7 @@ Valores válidos:
 <div id="paisNac__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>paisNac<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador.
+            <label>Preencher com o código do país de nacionalidade do trabalhador<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador.
 Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__id__paisNac" maxlength="3" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.paisNac'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][paisNac]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -278,6 +335,16 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
 <div id="endereco__div">
     <div class="col-md-12">
         <h4>Grupo de informações do endereço do trabalhador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -286,6 +353,16 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
 <div id="brasil__div">
     <div class="col-md-12">
         <h4>Endereço no Brasil.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -294,7 +371,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
 <div id="tpLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpLograd<a data-toggle="tooltip" title="Tipo de logradouro.
+            <label>Tipo de logradouro<a data-toggle="tooltip" title="Tipo de logradouro.
 Validação: Se informado, deve ser um código válido e existente na Tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__tpLograd" maxlength="4" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.tpLograd'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -304,7 +381,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
 <div id="dscLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscLograd<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.dscLograd'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -313,7 +390,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
 <div id="nrLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrLograd<a data-toggle="tooltip" title="Número do logradouro.
+            <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.nrLograd'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -323,7 +400,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="complemento__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Complemento do logradouro<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.complemento'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -332,7 +409,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="bairro__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.bairro'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -341,7 +418,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="cep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cep<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
+            <label>Código de Endereçamento Postal - CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
 Validação: Deve ser preenchido apenas com números, com 8 (oito) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.cep'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -351,7 +428,7 @@ Validação: Deve ser preenchido apenas com números, com 8 (oito) posições.">
 <div id="codMunic__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codMunic<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
+            <label>Preencher com o código do município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
 Validação: Deve ser um código válido e existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.codMunic'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -361,7 +438,7 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
 <div id="uf__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>uf<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
+            <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__uf" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option>
@@ -374,10 +451,19 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
         </blockquote>
     </div>
 </div>
-
 <div id="exterior__div">
     <div class="col-md-12">
         <h4>Endereço no exterior.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -386,7 +472,7 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
 <div id="paisResid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>paisResid<a data-toggle="tooltip" title="Preencher com o código do país.
+            <label>Preencher com o código do país<a data-toggle="tooltip" title="Preencher com o código do país.
 Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__paisResid" maxlength="3" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.paisResid'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][paisResid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -396,7 +482,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
 <div id="dscLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscLograd<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.dscLograd'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -405,7 +491,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
 <div id="nrLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrLograd<a data-toggle="tooltip" title="Número do logradouro.
+            <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.nrLograd'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -415,7 +501,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="complemento__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Complemento do logradouro<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.complemento'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -424,7 +510,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="bairro__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.bairro'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -433,7 +519,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="nmCid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmCid<a data-toggle="tooltip" title="Nome da cidade."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Nome da cidade<a data-toggle="tooltip" title="Nome da cidade."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__nmCid" maxlength="50" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.nmCid'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][nmCid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -442,7 +528,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="codPostal__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codPostal<a data-toggle="tooltip" title="Código de Endereçamento Postal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Código de Endereçamento Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__exterior__id__codPostal" maxlength="12" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.exterior.codPostal'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][exterior][codPostal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -452,15 +538,23 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 <div id="trabImig__div">
     <div class="col-md-12">
         <h4>Informações do trabalhador imigrante.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -469,7 +563,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="tmpResid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tmpResid<a data-toggle="tooltip" title="Tempo de residência do trabalhador imigrante.
+            <label>Tempo de residência do trabalhador imigrante<a data-toggle="tooltip" title="Tempo de residência do trabalhador imigrante.
 Valores válidos:
 1 - Prazo indeterminado
 2 - Prazo determinado
@@ -484,7 +578,7 @@ Validação: Preenchimento obrigatório quando houver trabalhador com (dtAdm ou 
 <div id="condIng__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>condIng<a data-toggle="tooltip" title="Condição de ingresso do trabalhador imigrante.
+            <label>Condição de ingresso do trabalhador imigrante<a data-toggle="tooltip" title="Condição de ingresso do trabalhador imigrante.
 Valores válidos:
 1 - Refugiado
 2 - Solicitante de refúgio
@@ -505,10 +599,19 @@ Validação: Se tmpResid = [1], não pode ser informado [2, 5]. Se tmpResid = [2
         </blockquote>
     </div>
 </div>
-
 <div id="infoDeficiencia__div">
     <div class="col-md-12">
         <h4>Pessoa com deficiência.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -517,7 +620,7 @@ Validação: Se tmpResid = [1], não pode ser informado [2, 5]. Se tmpResid = [2
 <div id="defFisica__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>defFisica<a data-toggle="tooltip" title="Deficiência física.
+            <label>Deficiência física<a data-toggle="tooltip" title="Deficiência física.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -531,7 +634,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="defVisual__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>defVisual<a data-toggle="tooltip" title="Deficiência visual.
+            <label>Deficiência visual<a data-toggle="tooltip" title="Deficiência visual.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -545,7 +648,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="defAuditiva__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>defAuditiva<a data-toggle="tooltip" title="Deficiência auditiva.
+            <label>Deficiência auditiva<a data-toggle="tooltip" title="Deficiência auditiva.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -559,7 +662,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="defMental__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>defMental<a data-toggle="tooltip" title="Deficiência mental.
+            <label>Deficiência mental<a data-toggle="tooltip" title="Deficiência mental.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -573,7 +676,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="defIntelectual__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>defIntelectual<a data-toggle="tooltip" title="Deficiência intelectual.
+            <label>Deficiência intelectual<a data-toggle="tooltip" title="Deficiência intelectual.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -587,7 +690,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="reabReadap__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>reabReadap<a data-toggle="tooltip" title="Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar).
+            <label>Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar)<a data-toggle="tooltip" title="Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar).
 Reabilitado: estando o empregado incapacitado parcial ou totalmente para o trabalho, cumpriu programa de reabilitação profissional no INSS, recebendo certificado e sendo proporcionados os meios indicados para participar do mercado de trabalho.
 Readaptado: o servidor está investido em cargo de atribuições e responsabilidades compatíveis com a limitação que tenha sofrido em sua capacidade física ou mental verificada em inspeção médica.
 Valores válidos:
@@ -601,7 +704,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="infoCota__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>infoCota<a data-toggle="tooltip" title="Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados.
+            <label>Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados<a data-toggle="tooltip" title="Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados.
 Valores válidos:
 S - Sim
 N - Não
@@ -616,7 +719,7 @@ Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador ca
 <div id="observacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>observacao<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.observacao'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -625,11 +728,20 @@ Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador ca
             </div>
         </blockquote>
     </div>
-</div>
-
+</div>{% for dependente in original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente' %}
 <div id="dependente__div">
     <div class="col-md-12">
         <h4>Informações dos dependentes.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -638,9 +750,9 @@ Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador ca
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpDep<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__tpDep" maxlength="2" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.tpDep'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente.tpDep}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -648,8 +760,8 @@ Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa
 <div id="nmDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmDep<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__nmDep" maxlength="70" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.nmDep'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][nmDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <label>Nome do dependente<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__nmDep" maxlength="70" value="{{dependente.nmDep}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][nmDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -657,9 +769,9 @@ Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa
 <div id="dtNascto__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtNascto<a data-toggle="tooltip" title="Preencher com a data de nascimento.
+            <label>Preencher com a data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento.
 Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__dtNascto" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.dtNascto'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__dtNascto" value="{{dependente.dtNascto}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -667,12 +779,12 @@ Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atu
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfDep<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
 c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__cpfDep" maxlength="11" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.cpfDep'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__cpfDep" maxlength="11" value="{{dependente.cpfDep}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -680,13 +792,13 @@ c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="
 <div id="sexoDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>sexoDep<a data-toggle="tooltip" title="Sexo do dependente.
+            <label>Sexo do dependente<a data-toggle="tooltip" title="Sexo do dependente.
 Valores válidos:
 M - Masculino
 F - Feminino
 Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador cadastrado no evento S-2200, ativo em dtAlteracao e com {tpRegPrev} = [2] no RET."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__sexoDep" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][sexoDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='M' {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.sexoDep' 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.sexoDep' 'F' %}selected{% endifequal %}>F - Feminino</option>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__sexoDep" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][sexoDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='M' {% ifequal dependente.sexoDep 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente.sexoDep 'F' %}selected{% endifequal %}>F - Feminino</option>
             </select>
         </div>
     </div>
@@ -695,12 +807,12 @@ Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador ca
 <div id="depIRRF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>depIRRF<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__depIRRF" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][depIRRF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.depIRRF' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.depIRRF' 'N' %}selected{% endifequal %}>N - Não</option>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__depIRRF" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][depIRRF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.depIRRF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depIRRF 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -709,12 +821,12 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="depSF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>depSF<a data-toggle="tooltip" title="Informar se é dependente para fins de recebimento do benefício de salário-família.
+            <label>Informar se é dependente para fins de recebimento do benefício de salário-família<a data-toggle="tooltip" title="Informar se é dependente para fins de recebimento do benefício de salário-família.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__depSF" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][depSF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.depSF' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.depSF' 'N' %}selected{% endifequal %}>N - Não</option>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__depSF" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][depSF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.depSF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depSF 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -723,12 +835,12 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="incTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>incTrab<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho.
+            <label>Informar se o dependente tem incapacidade física ou mental para o trabalho<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__incTrab" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.incTrab' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.dependente.incTrab' 'N' %}selected{% endifequal %}>N - Não</option>
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__incTrab" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.incTrab 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.incTrab 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -737,11 +849,20 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             </div>
         </blockquote>
     </div>
-</div>
-
+</div>{% endfor %}
 <div id="contato__div">
     <div class="col-md-12">
         <h4>Informações de contato.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -750,7 +871,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="fonePrinc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>fonePrinc<a data-toggle="tooltip" title="Número de telefone do trabalhador, com DDD.
+            <label>Número de telefone do trabalhador<a data-toggle="tooltip" title="Número de telefone do trabalhador, com DDD.
 Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__contato__id__fonePrinc" maxlength="13" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.contato.fonePrinc'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][contato][fonePrinc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -760,7 +881,7 @@ Validação: Se preenchido, deve conter apenas números, com o mínimo de dez d�
 <div id="emailPrinc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>emailPrinc<a data-toggle="tooltip" title="Endereço eletrônico.
+            <label>Endereço eletrônico<a data-toggle="tooltip" title="Endereço eletrônico.
 Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no início ou no final do e-mail."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__contato__id__emailPrinc" maxlength="60" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.contato.emailPrinc'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][contato][emailPrinc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -771,22 +892,18 @@ Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -795,7 +912,7 @@ Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

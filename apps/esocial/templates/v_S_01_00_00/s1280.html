@@ -7,6 +7,16 @@
 <div id="evtInfoComplPer__div">
     <div class="col-md-12">
         <h4>S-1280 - Informações Complementares aos Eventos Periódicos</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="indRetif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indRetif<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
 Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -37,7 +57,7 @@ Valores válidos:
 <div id="nrRecibo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrRecibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoComplPer__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtInfoComplPer.ideEvento.nrRecibo'}}" name="[evtInfoComplPer][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -48,7 +68,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="indApuracao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indApuracao<a data-toggle="tooltip" title="Indicativo de período de apuração.
+            <label>Indicativo de período de apuração<a data-toggle="tooltip" title="Indicativo de período de apuração.
 Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -62,7 +82,7 @@ Valores válidos:
 <div id="perApur__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>perApur<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
 Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoComplPer__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtInfoComplPer.ideEvento.perApur'}}" name="[evtInfoComplPer][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -72,7 +92,7 @@ Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início 
 <div id="indGuia__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indGuia<a data-toggle="tooltip" title="Indicativo do tipo de guia.
+            <label>Indicativo do tipo de guia<a data-toggle="tooltip" title="Indicativo do tipo de guia.
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoComplPer__ideEvento__id__indGuia" name="[evtInfoComplPer][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
@@ -85,7 +105,7 @@ Valores válidos:
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtInfoComplPer][ideEvento][tpAmb]" id="evtInfoComplPer__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -98,7 +118,7 @@ Valores válidos:
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtInfoComplPer][ideEvento][procEmi]" id="evtInfoComplPer__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -113,9 +133,9 @@ Valores válidos:
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtInfoComplPer][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtInfoComplPer__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtInfoComplPer][ideEvento][verProc]" id="evtInfoComplPer__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtInfoComplPer][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtInfoComplPer__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtInfoComplPer][ideEvento][verProc]" id="evtInfoComplPer__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -123,10 +143,19 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -135,7 +164,7 @@ Valores válidos:
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtInfoComplPer][ideEmpregador][tpInsc]" id="evtInfoComplPer__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -152,7 +181,7 @@ Valores válidos:
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtInfoComplPer__ideEmpregador__id__nrInsc_disabled" name="[evtInfoComplPer][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtInfoComplPer][ideEmpregador][nrInsc]" id="evtInfoComplPer__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -162,10 +191,19 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
 <div id="infoSubstPatr__div">
     <div class="col-md-12">
         <h4>Grupo preenchido exclusivamente por empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011, conforme classificação tributária indicada no evento S-1000.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -174,7 +212,7 @@ Valores válidos:
 <div id="indSubstPatr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indSubstPatr<a data-toggle="tooltip" title="Indicativo de substituição da contribuição previdenciária patronal.
+            <label>Indicativo de substituição da contribuição previdenciária patronal<a data-toggle="tooltip" title="Indicativo de substituição da contribuição previdenciária patronal.
 Valores válidos:
 1 - Integralmente substituída
 2 - Parcialmente substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -188,7 +226,7 @@ Valores válidos:
 <div id="percRedContrib__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>percRedContrib<a data-toggle="tooltip" title="Percentual não substituído pela contribuição prevista na Lei 12.546/2011.
+            <label>Percentual de redução da contribuição prevista na Lei 12<a data-toggle="tooltip" title="Percentual não substituído pela contribuição prevista na Lei 12.546/2011.
 Informar 0 (zero) se indSubstPatr = [1]. Caso contrário, preencher com o percentual correspondente à razão entre a receita de atividades não relacionadas nos arts. 7º e 8º da Lei 12.546/2011 e a receita bruta total.
 Validação: Se indSubstPatr = [1], informar 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoComplPer__infoSubstPatr__id__percRedContrib" maxlength="5" value="{{original.evento_json|readjson:'evtInfoComplPer.infoSubstPatr.percRedContrib'}}" name="[evtInfoComplPer][infoSubstPatr][percRedContrib]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
@@ -199,11 +237,20 @@ Validação: Se indSubstPatr = [1], informar 0 (zero)."><i class="fa fa-fw fa-qu
             </div>
         </blockquote>
     </div>
-</div>
-
+</div>{% for infoSubstPatrOpPort in original.evento_json|readjson:'evtInfoComplPer.infoSubstPatrOpPort' %}
 <div id="infoSubstPatrOpPort__div">
     <div class="col-md-12">
         <h4>Grupo preenchido exclusivamente pelo Órgão Gestor de Mão de Obra - OGMO (classTrib em S-1000 = [09]), listando apenas seus códigos de lotação com operadores portuários enquadrados nos arts. 7º a 9º da Lei 12.546/2011.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -212,9 +259,9 @@ Validação: Se indSubstPatr = [1], informar 0 (zero)."><i class="fa fa-fw fa-qu
 <div id="codLotacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codLotacao<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária.
+            <label>Informar o código atribuído pelo empregador para a lotação tributária<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária.
 Validação: Deve ser um código válido e existente na Tabela de Lotações Tributárias (S-1020), com tpLotacao = [08]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtInfoComplPer__infoSubstPatrOpPort__id__codLotacao" maxlength="30" value="{{original.evento_json|readjson:'evtInfoComplPer.infoSubstPatrOpPort.codLotacao'}}" name="[evtInfoComplPer][infoSubstPatrOpPort][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtInfoComplPer__infoSubstPatrOpPort__id__codLotacao" maxlength="30" value="{{infoSubstPatrOpPort.codLotacao}}" name="[evtInfoComplPer][infoSubstPatrOpPort][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -222,11 +269,20 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
             </div>
         </blockquote>
     </div>
-</div>
-
+</div>{% endfor %}
 <div id="infoAtivConcom__div">
     <div class="col-md-12">
         <h4>Grupo preenchido por empresa enquadrada no regime de tributação Simples Nacional com tributação previdenciária substituída e não substituída.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -235,7 +291,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
 <div id="fatorMes__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>fatorMes<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoComplPer__infoAtivConcom__id__fatorMes" maxlength="5" value="{{original.evento_json|readjson:'evtInfoComplPer.infoAtivConcom.fatorMes'}}" name="[evtInfoComplPer][infoAtivConcom][fatorMes]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
@@ -244,7 +300,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
 <div id="fator13__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>fator13<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoComplPer__infoAtivConcom__id__fator13" maxlength="5" value="{{original.evento_json|readjson:'evtInfoComplPer.infoAtivConcom.fator13'}}" name="[evtInfoComplPer][infoAtivConcom][fator13]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
@@ -254,12 +310,10 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -268,7 +322,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

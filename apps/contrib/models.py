@@ -35,6 +35,7 @@ class Leiaute(BaseModel):
     validacao = models.TextField(blank=True, null=True)
     valores_validos = models.TextField(blank=True, null=True)
 
+    is_multiplas_ocorrencias = models.BooleanField(default=False)
     ordenacao = models.IntegerField(blank=True, null=True)
     opcoes = models.TextField(blank=True, null=True)
     grupo = models.CharField(max_length=500, blank=True, null=True)
@@ -45,6 +46,7 @@ class Leiaute(BaseModel):
     input_choices_name = models.CharField(max_length=1000, blank=True, null=True)
     input_choices = models.TextField(blank=True, null=True)
     input_html = models.TextField(blank=True, null=True)
+    input_html_for = models.TextField(blank=True, null=True)
 
     modelo_xml = models.ForeignKey(
         'Leiaute',
@@ -61,3 +63,14 @@ class Leiaute(BaseModel):
     class Meta:
         verbose_name = 'Leiaute'
         verbose_name_plural = 'Leiaute'
+
+
+class Dicionario(BaseModel):
+    esocial_efdreinf = models.CharField(max_length=10)
+    registro_campo = models.CharField(max_length=100)
+    titulo = models.TextField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Dicionário'
+        verbose_name_plural = 'Dicionário'
+        unique_together = ('esocial_efdreinf', 'registro_campo')

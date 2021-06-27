@@ -39,8 +39,8 @@ label {
 {% block content %}
 
 <div class="row">
-    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>
-        
+<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>
+
         {% csrf_token %}{% block form_top %}{% endblock %}
         {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1">{% endif %}
         {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
@@ -112,7 +112,7 @@ label {
                         
                         <div class="form-group">
                           {% if not field.field.is_hidden %}
-                          <label class="control-label text-right">
+                          <label class="control-label">
                             {{ field.field.label }}
                           </label>
                           {% endif %}
@@ -333,8 +333,8 @@ label {
                 </div> 
             </div> 
         </div>
+</form>
         <br class="clear" />
-    </form>
 </div>
 
 {% include "eventos_lista.html" %} 
@@ -372,12 +372,24 @@ label {
 </script>
 {% if original.evento and original.is_aberto %}
 <script type="text/javascript">
-    function atualizar_campos_padronizados() {
+    function atualizar_campos_parronizados() {
         var g_ = document.getElementById("id_evento_json");
         var dst_read = document.getElementById("id_evento_json_read");
         var obj = $('#form_json').serializeJSON();
         dst.value = JSON.stringify(obj);
         dst_read.value = JSON.stringify(obj);
+    };
+    function removeDiv(obj) {
+        obj.parent().parent().remove();
+        set_evento_json();
+        removeSelect2();
+        appendSelect2();
+    };
+    function duplicateDiv(obj){
+        obj.parent().parent().clone().appendTo(obj.parent().parent());
+        set_evento_json();
+        removeSelect2();
+        appendSelect2();
     };
 </script>
 {% endif %}

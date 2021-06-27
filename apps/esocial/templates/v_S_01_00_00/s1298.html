@@ -7,6 +7,16 @@
 <div id="evtReabreEvPer__div">
     <div class="col-md-12">
         <h4>S-1298 - Reabertura dos Eventos Periódicos</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="indApuracao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indApuracao<a data-toggle="tooltip" title="Indicativo de período de apuração.
+            <label>Indicativo de período de apuração<a data-toggle="tooltip" title="Indicativo de período de apuração.
 Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -37,7 +57,7 @@ Valores válidos:
 <div id="perApur__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>perApur<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
 Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtReabreEvPer__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtReabreEvPer.ideEvento.perApur'}}" name="[evtReabreEvPer][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -47,7 +67,7 @@ Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início 
 <div id="indGuia__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indGuia<a data-toggle="tooltip" title="Indicativo do tipo de guia.
+            <label>Indicativo do tipo de guia<a data-toggle="tooltip" title="Indicativo do tipo de guia.
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtReabreEvPer__ideEvento__id__indGuia" name="[evtReabreEvPer][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
@@ -60,7 +80,7 @@ Valores válidos:
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtReabreEvPer][ideEvento][tpAmb]" id="evtReabreEvPer__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -73,7 +93,7 @@ Valores válidos:
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtReabreEvPer][ideEvento][procEmi]" id="evtReabreEvPer__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -88,9 +108,9 @@ Valores válidos:
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtReabreEvPer][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtReabreEvPer__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtReabreEvPer][ideEvento][verProc]" id="evtReabreEvPer__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtReabreEvPer][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtReabreEvPer__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtReabreEvPer][ideEvento][verProc]" id="evtReabreEvPer__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -98,10 +118,19 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -110,7 +139,7 @@ Valores válidos:
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtReabreEvPer][ideEmpregador][tpInsc]" id="evtReabreEvPer__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -127,7 +156,7 @@ Valores válidos:
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtReabreEvPer__ideEmpregador__id__nrInsc_disabled" name="[evtReabreEvPer][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtReabreEvPer][ideEmpregador][nrInsc]" id="evtReabreEvPer__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -137,12 +166,10 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -151,7 +178,7 @@ Valores válidos:
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

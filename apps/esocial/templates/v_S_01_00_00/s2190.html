@@ -7,6 +7,16 @@
 <div id="evtAdmPrelim__div">
     <div class="col-md-12">
         <h4>S-2190 - Registro Preliminar de Trabalhador</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="indRetif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indRetif<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
 Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -37,7 +57,7 @@ Valores válidos:
 <div id="nrRecibo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrRecibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmPrelim__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtAdmPrelim.ideEvento.nrRecibo'}}" name="[evtAdmPrelim][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -48,7 +68,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtAdmPrelim][ideEvento][tpAmb]" id="evtAdmPrelim__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -61,7 +81,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtAdmPrelim][ideEvento][procEmi]" id="evtAdmPrelim__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -76,9 +96,9 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtAdmPrelim][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtAdmPrelim__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtAdmPrelim][ideEvento][verProc]" id="evtAdmPrelim__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtAdmPrelim][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtAdmPrelim__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtAdmPrelim][ideEvento][verProc]" id="evtAdmPrelim__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -86,10 +106,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -98,7 +127,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtAdmPrelim][ideEmpregador][tpInsc]" id="evtAdmPrelim__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -115,7 +144,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtAdmPrelim__ideEmpregador__id__nrInsc_disabled" name="[evtAdmPrelim][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtAdmPrelim][ideEmpregador][nrInsc]" id="evtAdmPrelim__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -125,10 +154,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="infoRegPrelim__div">
     <div class="col-md-12">
         <h4>Informações do registro preliminar do trabalhador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -137,7 +175,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="cpfTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfTrab<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmPrelim__infoRegPrelim__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.cpfTrab'}}" name="[evtAdmPrelim][infoRegPrelim][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -146,7 +184,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="dtNascto__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtNascto<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com a data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmPrelim__infoRegPrelim__id__dtNascto" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.dtNascto'}}" name="[evtAdmPrelim][infoRegPrelim][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -155,7 +193,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="dtAdm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtAdm<a data-toggle="tooltip" title="Preencher com a data de admissão do trabalhador (ou data de início, no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE).
+            <label>Preencher com a data de admissão do trabalhador<a data-toggle="tooltip" title="Preencher com a data de admissão do trabalhador (ou data de início, no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE).
 Validação: Deve ser posterior à data de nascimento do trabalhador e igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmPrelim__infoRegPrelim__id__dtAdm" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.dtAdm'}}" name="[evtAdmPrelim][infoRegPrelim][dtAdm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -165,7 +203,7 @@ Validação: Deve ser posterior à data de nascimento do trabalhador e igual ou 
 <div id="matricula__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa.
+            <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa.
 Validação: O valor informado não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.
 Regra de validação:
 REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -177,7 +215,7 @@ REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label
 <div id="codCateg__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codCateg<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
+            <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Validação: Deve ser um código de categoria sujeito ao Registro de Eventos Trabalhistas - RET de trabalhador não vinculado ao Regime Próprio de Previdência Social - RPPS, ou seja, "Empregado" ([1XX]), algumas categorias de "Agente Público" ([301, 302, 303, 304, 306, 307, 309, 310, 312]), "Avulso" ([2XX]), "Cessão" ([4XX]), algumas categorias de "Contribuinte Individual" ([721, 722, 723, 731, 734, 738, 761, 771]) ou de "Bolsista" ([901, 902])."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmPrelim__infoRegPrelim__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.codCateg'}}" name="[evtAdmPrelim][infoRegPrelim][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -187,7 +225,7 @@ Validação: Deve ser um código de categoria sujeito ao Registro de Eventos Tra
 <div id="natAtividade__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>natAtividade<a data-toggle="tooltip" title="Natureza da atividade.
+            <label>Natureza da atividade<a data-toggle="tooltip" title="Natureza da atividade.
 Valores válidos:
 1 - Trabalho urbano
 2 - Trabalho rural
@@ -203,6 +241,16 @@ Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [102], deve ser 
 <div id="infoRegCTPS__div">
     <div class="col-md-12">
         <h4>Informações referentes ao registro eletrônico de empregados e à Carteira de Trabalho e Previdência Digital - CTPS Digital.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -211,7 +259,7 @@ Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [102], deve ser 
 <div id="CBOCargo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>CBOCargo<a data-toggle="tooltip" title="Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo.
+            <label>Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo<a data-toggle="tooltip" title="Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo.
 Validação: Deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__CBOCargo" maxlength="6" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.CBOCargo'}}" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][CBOCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -221,7 +269,7 @@ Validação: Deve ser um código válido e existente na tabela de CBO, com 6 (se
 <div id="vrSalFx__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>vrSalFx<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração.
+            <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração.
 Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__vrSalFx" maxlength="14" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.vrSalFx'}}" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -231,7 +279,7 @@ Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="f
 <div id="undSalFixo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>undSalFixo<a data-toggle="tooltip" title="Unidade de pagamento da parte fixa da remuneração.
+            <label>Unidade de pagamento da parte fixa da remuneração<a data-toggle="tooltip" title="Unidade de pagamento da parte fixa da remuneração.
 Valores válidos:
 1 - Por hora
 2 - Por dia
@@ -250,7 +298,7 @@ Valores válidos:
 <div id="tpContr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpContr<a data-toggle="tooltip" title="Tipo de contrato de trabalho.
+            <label>Tipo de contrato de trabalho<a data-toggle="tooltip" title="Tipo de contrato de trabalho.
 Valores válidos:
 1 - Prazo indeterminado
 2 - Prazo determinado, definido em dias
@@ -265,7 +313,7 @@ Valores válidos:
 <div id="dtTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtTerm<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
+            <label>Data do término<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
 Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se tpContr = [1]. Deve ser igual ou posterior à data de admissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__dtTerm" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.dtTerm'}}" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -276,17 +324,14 @@ Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se 
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -295,7 +340,7 @@ Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se 
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

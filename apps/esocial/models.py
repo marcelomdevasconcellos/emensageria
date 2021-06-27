@@ -948,12 +948,31 @@ class Eventos(BaseModelEsocial):
         from json2xml.utils import readfromstring
         import xml.etree.ElementTree as ET
         from .choices import EVENTO_COD
+        import dicttoxml
 
         data = readfromstring(self.evento_json or '{}')
+
         wrapper = 'eSocial'
-        xml = json2xml.Json2xml(data,
-                                wrapper=wrapper, pretty=False,
-                                attr_type=False).to_xml().decode()
+        xml = dicttoxml.dicttoxml(
+            data,
+            attr_type=False,
+            custom_root='eSocial',
+            item_func=lambda x: x).decode()
+
+        xmlTree = ET.fromstring(xml)
+        elemList = []
+        for elem in xmlTree.iter():
+            elemList.append(elem.tag)
+        elemList = list(set(elemList))
+
+        for elem in elemList:
+            xml = xml.replace('<%s><%s>' % (elem, elem), '<%s>' % elem)
+            xml = xml.replace('</%s></%s>' % (elem, elem), '</%s>' % elem)
+
+        # xml = json2xml.Json2xml(data,
+        #                         wrapper=wrapper, pretty=False,
+        #                         attr_type=False).to_xml().decode()
+
         evento_codigo = EVENTO_COD[self.evento]['codigo']
         ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
         xml_obj = ET.fromstring(xml)

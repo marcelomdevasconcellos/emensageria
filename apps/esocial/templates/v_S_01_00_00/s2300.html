@@ -7,6 +7,16 @@
 <div id="evtTSVInicio__div">
     <div class="col-md-12">
         <h4>S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="indRetif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indRetif<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
 Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -37,7 +57,7 @@ Valores válidos:
 <div id="nrRecibo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrRecibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtTSVInicio.ideEvento.nrRecibo'}}" name="[evtTSVInicio][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -48,7 +68,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtTSVInicio][ideEvento][tpAmb]" id="evtTSVInicio__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -61,7 +81,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtTSVInicio][ideEvento][procEmi]" id="evtTSVInicio__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -76,9 +96,9 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtTSVInicio][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtTSVInicio__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtTSVInicio][ideEvento][verProc]" id="evtTSVInicio__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtTSVInicio][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtTSVInicio__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtTSVInicio][ideEvento][verProc]" id="evtTSVInicio__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -86,10 +106,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -98,7 +127,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtTSVInicio][ideEmpregador][tpInsc]" id="evtTSVInicio__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -115,7 +144,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtTSVInicio__ideEmpregador__id__nrInsc_disabled" name="[evtTSVInicio][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtTSVInicio][ideEmpregador][nrInsc]" id="evtTSVInicio__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -125,10 +154,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="trabalhador__div">
     <div class="col-md-12">
         <h4>Grupo de informações do trabalhador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -137,7 +175,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="cpfTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfTrab<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.cpfTrab'}}" name="[evtTSVInicio][trabalhador][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -146,7 +184,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="nmTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmTrab<a data-toggle="tooltip" title="Informar o nome do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Informar o nome do trabalhador<a data-toggle="tooltip" title="Informar o nome do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__id__nmTrab" maxlength="70" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.nmTrab'}}" name="[evtTSVInicio][trabalhador][nmTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -155,7 +193,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="sexo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>sexo<a data-toggle="tooltip" title="Sexo do trabalhador.
+            <label>Sexo do beneficiário<a data-toggle="tooltip" title="Sexo do trabalhador.
 Valores válidos:
 M - Masculino
 F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -169,7 +207,7 @@ F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="racaCor__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>racaCor<a data-toggle="tooltip" title="Raça e cor do trabalhador.
+            <label>Raça e cor do beneficiário<a data-toggle="tooltip" title="Raça e cor do trabalhador.
 Valores válidos:
 1 - Branca
 2 - Preta
@@ -187,7 +225,7 @@ Valores válidos:
 <div id="estCiv__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>estCiv<a data-toggle="tooltip" title="Estado civil do trabalhador.
+            <label>Estado civil do beneficiário<a data-toggle="tooltip" title="Estado civil do trabalhador.
 Valores válidos:
 1 - Solteiro
 2 - Casado
@@ -204,7 +242,7 @@ Valores válidos:
 <div id="grauInstr__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>grauInstr<a data-toggle="tooltip" title="Grau de instrução do trabalhador.
+            <label>Grau de instrução do trabalhador<a data-toggle="tooltip" title="Grau de instrução do trabalhador.
 Valores válidos:
 01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou
 02 - Até o 5º ano incompleto do ensino fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular
@@ -228,7 +266,7 @@ Valores válidos:
 <div id="nmSoc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmSoc<a data-toggle="tooltip" title="Nome social para travesti ou transexual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Nome social para travesti ou transexual<a data-toggle="tooltip" title="Nome social para travesti ou transexual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__id__nmSoc" maxlength="70" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.nmSoc'}}" name="[evtTSVInicio][trabalhador][nmSoc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -237,6 +275,16 @@ Valores válidos:
 <div id="nascimento__div">
     <div class="col-md-12">
         <h4>Grupo de informações do nascimento do trabalhador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -245,7 +293,7 @@ Valores válidos:
 <div id="dtNascto__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtNascto<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com a data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__nascimento__id__dtNascto" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.nascimento.dtNascto'}}" name="[evtTSVInicio][trabalhador][nascimento][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -254,7 +302,7 @@ Valores válidos:
 <div id="paisNascto__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>paisNascto<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do trabalhador.
+            <label>Preencher com o código do país de nascimento do trabalhador<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do trabalhador.
 Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__nascimento__id__paisNascto" maxlength="3" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.nascimento.paisNascto'}}" name="[evtTSVInicio][trabalhador][nascimento][paisNascto]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -264,7 +312,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
 <div id="paisNac__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>paisNac<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador.
+            <label>Preencher com o código do país de nacionalidade do trabalhador<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador.
 Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__nascimento__id__paisNac" maxlength="3" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.nascimento.paisNac'}}" name="[evtTSVInicio][trabalhador][nascimento][paisNac]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -275,10 +323,19 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
         </blockquote>
     </div>
 </div>
-
 <div id="endereco__div">
     <div class="col-md-12">
         <h4>Grupo de informações do endereço do trabalhador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -287,6 +344,16 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
 <div id="brasil__div">
     <div class="col-md-12">
         <h4>Endereço no Brasil.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -295,7 +362,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
 <div id="tpLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpLograd<a data-toggle="tooltip" title="Tipo de logradouro.
+            <label>Tipo de logradouro<a data-toggle="tooltip" title="Tipo de logradouro.
 Validação: Se informado, deve ser um código válido e existente na Tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__brasil__id__tpLograd" maxlength="4" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.brasil.tpLograd'}}" name="[evtTSVInicio][trabalhador][endereco][brasil][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -305,7 +372,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
 <div id="dscLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscLograd<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__brasil__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.brasil.dscLograd'}}" name="[evtTSVInicio][trabalhador][endereco][brasil][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -314,7 +381,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
 <div id="nrLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrLograd<a data-toggle="tooltip" title="Número do logradouro.
+            <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__brasil__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.brasil.nrLograd'}}" name="[evtTSVInicio][trabalhador][endereco][brasil][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -324,7 +391,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="complemento__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Complemento do logradouro<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__brasil__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.brasil.complemento'}}" name="[evtTSVInicio][trabalhador][endereco][brasil][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -333,7 +400,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="bairro__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__brasil__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.brasil.bairro'}}" name="[evtTSVInicio][trabalhador][endereco][brasil][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -342,7 +409,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="cep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cep<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
+            <label>Código de Endereçamento Postal - CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
 Validação: Deve ser preenchido apenas com números, com 8 (oito) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__brasil__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.brasil.cep'}}" name="[evtTSVInicio][trabalhador][endereco][brasil][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -352,7 +419,7 @@ Validação: Deve ser preenchido apenas com números, com 8 (oito) posições.">
 <div id="codMunic__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codMunic<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
+            <label>Preencher com o código do município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
 Validação: Deve ser um código válido e existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__brasil__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.brasil.codMunic'}}" name="[evtTSVInicio][trabalhador][endereco][brasil][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -362,7 +429,7 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
 <div id="uf__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>uf<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
+            <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVInicio__trabalhador__endereco__brasil__id__uf" name="[evtTSVInicio][trabalhador][endereco][brasil][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option>
@@ -375,10 +442,19 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
         </blockquote>
     </div>
 </div>
-
 <div id="exterior__div">
     <div class="col-md-12">
         <h4>Endereço no exterior.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -387,7 +463,7 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
 <div id="paisResid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>paisResid<a data-toggle="tooltip" title="Preencher com o código do país.
+            <label>Preencher com o código do país<a data-toggle="tooltip" title="Preencher com o código do país.
 Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__exterior__id__paisResid" maxlength="3" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.exterior.paisResid'}}" name="[evtTSVInicio][trabalhador][endereco][exterior][paisResid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -397,7 +473,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
 <div id="dscLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscLograd<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__exterior__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.exterior.dscLograd'}}" name="[evtTSVInicio][trabalhador][endereco][exterior][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -406,7 +482,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
 <div id="nrLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrLograd<a data-toggle="tooltip" title="Número do logradouro.
+            <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__exterior__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.exterior.nrLograd'}}" name="[evtTSVInicio][trabalhador][endereco][exterior][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -416,7 +492,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="complemento__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Complemento do logradouro<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__exterior__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.exterior.complemento'}}" name="[evtTSVInicio][trabalhador][endereco][exterior][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -425,7 +501,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="bairro__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__exterior__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.exterior.bairro'}}" name="[evtTSVInicio][trabalhador][endereco][exterior][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -434,7 +510,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="nmCid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmCid<a data-toggle="tooltip" title="Nome da cidade."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Nome da cidade<a data-toggle="tooltip" title="Nome da cidade."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__exterior__id__nmCid" maxlength="50" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.exterior.nmCid'}}" name="[evtTSVInicio][trabalhador][endereco][exterior][nmCid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -443,7 +519,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="codPostal__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codPostal<a data-toggle="tooltip" title="Código de Endereçamento Postal."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Código de Endereçamento Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__endereco__exterior__id__codPostal" maxlength="12" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.exterior.codPostal'}}" name="[evtTSVInicio][trabalhador][endereco][exterior][codPostal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -453,15 +529,23 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 <div id="trabImig__div">
     <div class="col-md-12">
         <h4>Informações do trabalhador imigrante.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -470,7 +554,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="tmpResid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tmpResid<a data-toggle="tooltip" title="Tempo de residência do trabalhador imigrante.
+            <label>Tempo de residência do trabalhador imigrante<a data-toggle="tooltip" title="Tempo de residência do trabalhador imigrante.
 Valores válidos:
 1 - Prazo indeterminado
 2 - Prazo determinado
@@ -485,7 +569,7 @@ Validação: Preenchimento obrigatório se dtInicio >= [2021-05-10]."><i class="
 <div id="condIng__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>condIng<a data-toggle="tooltip" title="Condição de ingresso do trabalhador imigrante.
+            <label>Condição de ingresso do trabalhador imigrante<a data-toggle="tooltip" title="Condição de ingresso do trabalhador imigrante.
 Valores válidos:
 1 - Refugiado
 2 - Solicitante de refúgio
@@ -506,10 +590,19 @@ Validação: Se tmpResid = [1], não pode ser informado [2, 5]. Se tmpResid = [2
         </blockquote>
     </div>
 </div>
-
 <div id="infoDeficiencia__div">
     <div class="col-md-12">
         <h4>Pessoa com deficiência.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -518,7 +611,7 @@ Validação: Se tmpResid = [1], não pode ser informado [2, 5]. Se tmpResid = [2
 <div id="defFisica__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>defFisica<a data-toggle="tooltip" title="Deficiência física.
+            <label>Deficiência física<a data-toggle="tooltip" title="Deficiência física.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -532,7 +625,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="defVisual__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>defVisual<a data-toggle="tooltip" title="Deficiência visual.
+            <label>Deficiência visual<a data-toggle="tooltip" title="Deficiência visual.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -546,7 +639,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="defAuditiva__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>defAuditiva<a data-toggle="tooltip" title="Deficiência auditiva.
+            <label>Deficiência auditiva<a data-toggle="tooltip" title="Deficiência auditiva.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -560,7 +653,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="defMental__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>defMental<a data-toggle="tooltip" title="Deficiência mental.
+            <label>Deficiência mental<a data-toggle="tooltip" title="Deficiência mental.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -574,7 +667,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="defIntelectual__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>defIntelectual<a data-toggle="tooltip" title="Deficiência intelectual.
+            <label>Deficiência intelectual<a data-toggle="tooltip" title="Deficiência intelectual.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -588,7 +681,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="reabReadap__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>reabReadap<a data-toggle="tooltip" title="Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar).
+            <label>Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar)<a data-toggle="tooltip" title="Informar se o trabalhador é reabilitado (empregado) ou readaptado (servidor público/militar).
 Reabilitado: estando o empregado incapacitado parcial ou totalmente para o trabalho, cumpriu programa de reabilitação profissional no INSS, recebendo certificado e sendo proporcionados os meios indicados para participar do mercado de trabalho.
 Readaptado: o servidor está investido em cargo de atribuições e responsabilidades compatíveis com a limitação que tenha sofrido em sua capacidade física ou mental verificada em inspeção médica.
 Valores válidos:
@@ -602,7 +695,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="observacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>observacao<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__infoDeficiencia__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.infoDeficiencia.observacao'}}" name="[evtTSVInicio][trabalhador][infoDeficiencia][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -611,11 +704,20 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             </div>
         </blockquote>
     </div>
-</div>
-
+</div>{% for dependente in original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente' %}
 <div id="dependente__div">
     <div class="col-md-12">
         <h4>Informações dos dependentes.</h4>
+        {% if True %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -624,9 +726,9 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpDep<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__tpDep" maxlength="2" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente.tpDep'}}" name="[evtTSVInicio][trabalhador][dependente][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente.tpDep}}" name="[evtTSVInicio][trabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -634,8 +736,8 @@ Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa
 <div id="nmDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmDep<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__nmDep" maxlength="70" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente.nmDep'}}" name="[evtTSVInicio][trabalhador][dependente][nmDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <label>Nome do dependente<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__nmDep" maxlength="70" value="{{dependente.nmDep}}" name="[evtTSVInicio][trabalhador][dependente][][nmDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -643,9 +745,9 @@ Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa
 <div id="dtNascto__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtNascto<a data-toggle="tooltip" title="Preencher com a data de nascimento.
+            <label>Preencher com a data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento.
 Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__dtNascto" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente.dtNascto'}}" name="[evtTSVInicio][trabalhador][dependente][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__dtNascto" value="{{dependente.dtNascto}}" name="[evtTSVInicio][trabalhador][dependente][][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -653,12 +755,12 @@ Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atu
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfDep<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
 c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__cpfDep" maxlength="11" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente.cpfDep'}}" name="[evtTSVInicio][trabalhador][dependente][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__cpfDep" maxlength="11" value="{{dependente.cpfDep}}" name="[evtTSVInicio][trabalhador][dependente][][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -666,12 +768,12 @@ c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="
 <div id="depIRRF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>depIRRF<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTSVInicio__trabalhador__dependente__id__depIRRF" name="[evtTSVInicio][trabalhador][dependente][depIRRF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente.depIRRF' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente.depIRRF' 'N' %}selected{% endifequal %}>N - Não</option>
+            <select id="evtTSVInicio__trabalhador__dependente__id__depIRRF" name="[evtTSVInicio][trabalhador][dependente][][depIRRF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.depIRRF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depIRRF 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -680,12 +782,12 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="depSF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>depSF<a data-toggle="tooltip" title="Informar se é dependente para fins de recebimento do benefício de salário-família.
+            <label>Informar se é dependente para fins de recebimento do benefício de salário-família<a data-toggle="tooltip" title="Informar se é dependente para fins de recebimento do benefício de salário-família.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTSVInicio__trabalhador__dependente__id__depSF" name="[evtTSVInicio][trabalhador][dependente][depSF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente.depSF' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente.depSF' 'N' %}selected{% endifequal %}>N - Não</option>
+            <select id="evtTSVInicio__trabalhador__dependente__id__depSF" name="[evtTSVInicio][trabalhador][dependente][][depSF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.depSF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depSF 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -694,12 +796,12 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="incTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>incTrab<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho.
+            <label>Informar se o dependente tem incapacidade física ou mental para o trabalho<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTSVInicio__trabalhador__dependente__id__incTrab" name="[evtTSVInicio][trabalhador][dependente][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente.incTrab' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtTSVInicio.trabalhador.dependente.incTrab' 'N' %}selected{% endifequal %}>N - Não</option>
+            <select id="evtTSVInicio__trabalhador__dependente__id__incTrab" name="[evtTSVInicio][trabalhador][dependente][][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.incTrab 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.incTrab 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -708,11 +810,20 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             </div>
         </blockquote>
     </div>
-</div>
-
+</div>{% endfor %}
 <div id="contato__div">
     <div class="col-md-12">
         <h4>Informações de contato.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -721,7 +832,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="fonePrinc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>fonePrinc<a data-toggle="tooltip" title="Número de telefone do trabalhador, com DDD.
+            <label>Número de telefone do trabalhador<a data-toggle="tooltip" title="Número de telefone do trabalhador, com DDD.
 Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__contato__id__fonePrinc" maxlength="13" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.contato.fonePrinc'}}" name="[evtTSVInicio][trabalhador][contato][fonePrinc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -731,7 +842,7 @@ Validação: Se preenchido, deve conter apenas números, com o mínimo de dez d�
 <div id="emailPrinc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>emailPrinc<a data-toggle="tooltip" title="Endereço eletrônico.
+            <label>Endereço eletrônico<a data-toggle="tooltip" title="Endereço eletrônico.
 Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no início ou no final do e-mail."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__contato__id__emailPrinc" maxlength="60" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.contato.emailPrinc'}}" name="[evtTSVInicio][trabalhador][contato][emailPrinc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -742,15 +853,23 @@ Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 <div id="infoTSVInicio__div">
     <div class="col-md-12">
         <h4>Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE - Início.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -759,7 +878,7 @@ Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no
 <div id="cadIni__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cadIni<a data-toggle="tooltip" title="Indicar se o evento se refere a cadastramento inicial (o ingresso do trabalhador no empregador declarante é anterior à data de início da obrigatoriedade de envio de seus eventos não periódicos) ou se refere a início de TSVE (o ingresso do trabalhador no empregador declarante é igual ou posterior à data de início da obrigatoriedade de envio de seus eventos não periódicos).
+            <label>Indicar se a data de início do benefício é anterior à obrigatoriedade dos eventos não periódicos para o ente público no eSocial<a data-toggle="tooltip" title="Indicar se o evento se refere a cadastramento inicial (o ingresso do trabalhador no empregador declarante é anterior à data de início da obrigatoriedade de envio de seus eventos não periódicos) ou se refere a início de TSVE (o ingresso do trabalhador no empregador declarante é igual ou posterior à data de início da obrigatoriedade de envio de seus eventos não periódicos).
 Valores válidos:
 S - Sim (Cadastramento Inicial)
 N - Não (Início de TSVE)"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -773,7 +892,7 @@ N - Não (Início de TSVE)"><i class="fa fa-fw fa-question-circle"></i></a></lab
 <div id="matricula__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa.
+            <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa.
 Validação: Preenchimento obrigatório se indRetif = [1]. No caso de retificação (indRetif = [2]), a matrícula deve ser preenchida caso tenha sido informada no evento original.
 O valor informado não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.
 Regra de validação:
@@ -786,7 +905,7 @@ REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label
 <div id="codCateg__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codCateg<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
+            <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.codCateg'}}" name="[evtTSVInicio][infoTSVInicio][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -796,7 +915,7 @@ Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa
 <div id="dtInicio__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtInicio<a data-toggle="tooltip" title="Data de início, que pode ser:
+            <label>Preencher com a data de início do cadastro do beneficiário<a data-toggle="tooltip" title="Data de início, que pode ser:
 a) Para o cooperado, a data de ingresso na cooperativa;
 b) Para o diretor não empregado, a data de posse no cargo;
 c) Para o dirigente sindical, a data de início do mandato no sindicato;
@@ -816,7 +935,7 @@ c) Se cadIni = [N], deve ser igual ou posterior à data de início da obrigatori
 <div id="nrProcTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrProcTrab<a data-toggle="tooltip" title="Número que identifica o processo trabalhista, quando o início de TSVE se der por decisão judicial.
+            <label>Número que identifica o processo judicial onde a baixa do vínculo foi determinada<a data-toggle="tooltip" title="Número que identifica o processo trabalhista, quando o início de TSVE se der por decisão judicial.
 Validação: Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__id__nrProcTrab" maxlength="20" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.nrProcTrab'}}" name="[evtTSVInicio][infoTSVInicio][nrProcTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -826,7 +945,7 @@ Validação: Se preenchido, deve ser um processo judicial válido, com 20 (vinte
 <div id="natAtividade__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>natAtividade<a data-toggle="tooltip" title="Natureza da atividade.
+            <label>Natureza da atividade<a data-toggle="tooltip" title="Natureza da atividade.
 Valores válidos:
 1 - Trabalho urbano
 2 - Trabalho rural
@@ -841,6 +960,16 @@ Validação: Preenchimento obrigatório se codCateg = [201, 202, 401, 731, 734, 
 <div id="infoComplementares__div">
     <div class="col-md-12">
         <h4>Grupo onde são fornecidas informações complementares, preenchidas conforme a categoria do TSVE.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -849,6 +978,16 @@ Validação: Preenchimento obrigatório se codCateg = [201, 202, 401, 731, 734, 
 <div id="cargoFuncao__div">
     <div class="col-md-12">
         <h4>Grupo que apresenta o cargo e/ou função ocupada pelo TSVE.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -857,7 +996,7 @@ Validação: Preenchimento obrigatório se codCateg = [201, 202, 401, 731, 734, 
 <div id="nmCargo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmCargo<a data-toggle="tooltip" title="Informar o nome do cargo.
+            <label>Informar o nome do cargo<a data-toggle="tooltip" title="Informar o nome do cargo.
 Validação: Preenchimento obrigatório se codCateg for diferente de [410]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__cargoFuncao__id__nmCargo" maxlength="100" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.cargoFuncao.nmCargo'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][cargoFuncao][nmCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -867,7 +1006,7 @@ Validação: Preenchimento obrigatório se codCateg for diferente de [410]."><i 
 <div id="CBOCargo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>CBOCargo<a data-toggle="tooltip" title="Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo.
+            <label>Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo<a data-toggle="tooltip" title="Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo.
 Validação: Informação obrigatória e exclusiva se nmCargo for preenchido. Se informado, deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__cargoFuncao__id__CBOCargo" maxlength="6" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.cargoFuncao.CBOCargo'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][cargoFuncao][CBOCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -877,7 +1016,7 @@ Validação: Informação obrigatória e exclusiva se nmCargo for preenchido. Se
 <div id="nmFuncao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmFuncao<a data-toggle="tooltip" title="Informar o nome da função de confiança.
+            <label>Informar o nome da função de confiança<a data-toggle="tooltip" title="Informar o nome da função de confiança.
 Validação: Preenchimento obrigatório se codCateg = [410] e não houver informação de nmCargo."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__cargoFuncao__id__nmFuncao" maxlength="100" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.cargoFuncao.nmFuncao'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][cargoFuncao][nmFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -887,7 +1026,7 @@ Validação: Preenchimento obrigatório se codCateg = [410] e não houver inform
 <div id="CBOFuncao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>CBOFuncao<a data-toggle="tooltip" title="Informar a CBO relativa à função de confiança/cargo em comissão.
+            <label>Informar a CBO relativa à função de confiança/cargo em comissão<a data-toggle="tooltip" title="Informar a CBO relativa à função de confiança/cargo em comissão.
 Validação: Informação obrigatória e exclusiva se nmFuncao for preenchido. Se informado, deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__cargoFuncao__id__CBOFuncao" maxlength="6" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.cargoFuncao.CBOFuncao'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][cargoFuncao][CBOFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -898,10 +1037,19 @@ Validação: Informação obrigatória e exclusiva se nmFuncao for preenchido. S
         </blockquote>
     </div>
 </div>
-
 <div id="remuneracao__div">
     <div class="col-md-12">
         <h4>Informações da remuneração e periodicidade de pagamento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -910,7 +1058,7 @@ Validação: Informação obrigatória e exclusiva se nmFuncao for preenchido. S
 <div id="vrSalFx__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>vrSalFx<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração.
+            <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração.
 Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__remuneracao__id__vrSalFx" maxlength="14" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.remuneracao.vrSalFx'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][remuneracao][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -920,7 +1068,7 @@ Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="f
 <div id="undSalFixo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>undSalFixo<a data-toggle="tooltip" title="Unidade de pagamento da parte fixa da remuneração.
+            <label>Unidade de pagamento da parte fixa da remuneração<a data-toggle="tooltip" title="Unidade de pagamento da parte fixa da remuneração.
 Valores válidos:
 1 - Por hora
 2 - Por dia
@@ -939,7 +1087,7 @@ Valores válidos:
 <div id="dscSalVar__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscSalVar<a data-toggle="tooltip" title="Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas.
+            <label>Descrição do salário por tarefa ou variável e como este é calculado<a data-toggle="tooltip" title="Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas.
 Validação: Preenchimento obrigatório se undSalFixo for igual a [6, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__remuneracao__id__dscSalVar" maxlength="999" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.remuneracao.dscSalVar'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][remuneracao][dscSalVar]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -950,10 +1098,19 @@ Validação: Preenchimento obrigatório se undSalFixo for igual a [6, 7]."><i cl
         </blockquote>
     </div>
 </div>
-
 <div id="FGTS__div">
     <div class="col-md-12">
         <h4>Informações do Fundo de Garantia do Tempo de Serviço - FGTS.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -962,7 +1119,7 @@ Validação: Preenchimento obrigatório se undSalFixo for igual a [6, 7]."><i cl
 <div id="dtOpcFGTS__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtOpcFGTS<a data-toggle="tooltip" title="Informar a data de opção do trabalhador pelo FGTS."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Informar a data de opção do trabalhador pelo FGTS<a data-toggle="tooltip" title="Informar a data de opção do trabalhador pelo FGTS."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__FGTS__id__dtOpcFGTS" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.FGTS.dtOpcFGTS'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][FGTS][dtOpcFGTS]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -972,10 +1129,19 @@ Validação: Preenchimento obrigatório se undSalFixo for igual a [6, 7]."><i cl
         </blockquote>
     </div>
 </div>
-
 <div id="infoDirigenteSindical__div">
     <div class="col-md-12">
         <h4>Informações relativas ao dirigente sindical.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -984,7 +1150,7 @@ Validação: Preenchimento obrigatório se undSalFixo for igual a [6, 7]."><i cl
 <div id="categOrig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>categOrig<a data-toggle="tooltip" title="Preencher com o código correspondente à categoria de origem do dirigente sindical.
+            <label>Preencher com o código correspondente à categoria de origem do dirigente sindical ou do trabalhador cedido<a data-toggle="tooltip" title="Preencher com o código correspondente à categoria de origem do dirigente sindical.
 Validação: Deve ser um código válido e existente na Tabela 01, diferente de [401]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__categOrig" maxlength="3" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoDirigenteSindical.categOrig'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][categOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -994,7 +1160,7 @@ Validação: Deve ser um código válido e existente na Tabela 01, diferente de 
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][tpInsc]" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -1011,7 +1177,7 @@ Validação: Deve ser um código válido e existente na Tabela 01, diferente de 
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__nrInsc_disabled" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][nrInsc]" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -1020,7 +1186,7 @@ Validação: Deve ser um código válido e existente na Tabela 01, diferente de 
 <div id="dtAdmOrig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtAdmOrig<a data-toggle="tooltip" title="Preencher com a data de admissão (ou de início) do dirigente sindical na empresa de origem.
+            <label>Preencher com a data de admissão (ou de início) do dirigente sindical na empresa de origem<a data-toggle="tooltip" title="Preencher com a data de admissão (ou de início) do dirigente sindical na empresa de origem.
 Validação: O preenchimento é obrigatório se infoDirigenteSindical/categOrig corresponder a "Empregado", "Agente Público", "Avulso" ou for igual a [721]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__dtAdmOrig" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoDirigenteSindical.dtAdmOrig'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][dtAdmOrig]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -1030,7 +1196,7 @@ Validação: O preenchimento é obrigatório se infoDirigenteSindical/categOrig 
 <div id="matricOrig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>matricOrig<a data-toggle="tooltip" title="Preencher com a matrícula do trabalhador na empresa de origem.
+            <label>Preencher com a matrícula do trabalhador na empresa de origem<a data-toggle="tooltip" title="Preencher com a matrícula do trabalhador na empresa de origem.
 Validação: Preenchimento obrigatório se infoDirigenteSindical/categOrig corresponder a "Empregado" ou "Agente Público"."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__matricOrig" maxlength="30" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoDirigenteSindical.matricOrig'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][matricOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1040,7 +1206,7 @@ Validação: Preenchimento obrigatório se infoDirigenteSindical/categOrig corre
 <div id="tpRegTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpRegTrab<a data-toggle="tooltip" title="Tipo de regime trabalhista.
+            <label>Tipo de regime trabalhista<a data-toggle="tooltip" title="Tipo de regime trabalhista.
 Valores válidos:
 1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas
 2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)
@@ -1055,7 +1221,7 @@ Validação: O preenchimento é obrigatório e exclusivo se infoDirigenteSindica
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpRegPrev<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
 2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
@@ -1072,10 +1238,19 @@ Validação: Se infoDirigenteSindical/categOrig for relativa a "Empregado", não
         </blockquote>
     </div>
 </div>
-
 <div id="infoTrabCedido__div">
     <div class="col-md-12">
         <h4>Informações relativas ao trabalhador cedido/em exercício em outro órgão, preenchidas exclusivamente pelo cessionário/órgão de destino.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1084,7 +1259,7 @@ Validação: Se infoDirigenteSindical/categOrig for relativa a "Empregado", não
 <div id="categOrig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>categOrig<a data-toggle="tooltip" title="Preencher com o código correspondente à categoria de origem do trabalhador cedido.
+            <label>Preencher com o código correspondente à categoria de origem do dirigente sindical ou do trabalhador cedido<a data-toggle="tooltip" title="Preencher com o código correspondente à categoria de origem do trabalhador cedido.
 Validação: Deve ser um código válido e existente na Tabela 01, diferente de [410]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoTrabCedido__id__categOrig" maxlength="3" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoTrabCedido.categOrig'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoTrabCedido][categOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1094,7 +1269,7 @@ Validação: Deve ser um código válido e existente na Tabela 01, diferente de 
 <div id="cnpjCednt__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cnpjCednt<a data-toggle="tooltip" title="Informar o CNPJ do empregador/órgão público cedente/de origem.
+            <label>Informar o CNPJ do empregador/órgão público cedente/de origem<a data-toggle="tooltip" title="Informar o CNPJ do empregador/órgão público cedente/de origem.
 Validação: Deve ser um CNPJ diferente do CNPJ do empregador/órgão público e diferente dos estabelecimentos informados através do evento S-1005.
 Regra de validação:
 REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -1106,7 +1281,7 @@ REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="matricCed__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>matricCed<a data-toggle="tooltip" title="Preencher com a matrícula do trabalhador no empregador/órgão público cedente/de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com a matrícula do trabalhador no empregador/órgão público cedente/de origem<a data-toggle="tooltip" title="Preencher com a matrícula do trabalhador no empregador/órgão público cedente/de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoTrabCedido__id__matricCed" maxlength="30" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoTrabCedido.matricCed'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoTrabCedido][matricCed]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1115,7 +1290,7 @@ REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="dtAdmCed__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtAdmCed<a data-toggle="tooltip" title="Preencher com a data de admissão (ou de exercício) do trabalhador no empregador/órgão público cedente/de origem.
+            <label>Preencher com a data de admissão (ou de exercício) do trabalhador no empregador/órgão público cedente/de origem<a data-toggle="tooltip" title="Preencher com a data de admissão (ou de exercício) do trabalhador no empregador/órgão público cedente/de origem.
 Validação: Deve ser uma data anterior a dtInicio e igual ou posterior a 01/01/1890."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoTrabCedido__id__dtAdmCed" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoTrabCedido.dtAdmCed'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoTrabCedido][dtAdmCed]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -1125,7 +1300,7 @@ Validação: Deve ser uma data anterior a dtInicio e igual ou posterior a 01/01/
 <div id="tpRegTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpRegTrab<a data-toggle="tooltip" title="Tipo de regime trabalhista.
+            <label>Tipo de regime trabalhista<a data-toggle="tooltip" title="Tipo de regime trabalhista.
 Valores válidos:
 1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas
 2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -1139,7 +1314,7 @@ Valores válidos:
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpRegPrev<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
 2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
@@ -1156,10 +1331,19 @@ Validação: Se infoTrabCedido/categOrig for relativa a "Empregado", não pode s
         </blockquote>
     </div>
 </div>
-
 <div id="infoMandElet__div">
     <div class="col-md-12">
         <h4>Informações relativas a servidor público exercente de mandato eletivo.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1168,7 +1352,7 @@ Validação: Se infoTrabCedido/categOrig for relativa a "Empregado", não pode s
 <div id="indRemunCargo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indRemunCargo<a data-toggle="tooltip" title="Indicar se o servidor optou pela remuneração do cargo efetivo.
+            <label>Indicar se o servidor optou pela remuneração do cargo efetivo<a data-toggle="tooltip" title="Indicar se o servidor optou pela remuneração do cargo efetivo.
 Valores válidos:
 S - Sim
 N - Não
@@ -1183,7 +1367,7 @@ Validação: Informação obrigatória e exclusiva se CBOCargo = [111120, 111250
 <div id="tpRegTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpRegTrab<a data-toggle="tooltip" title="Tipo de regime trabalhista.
+            <label>Tipo de regime trabalhista<a data-toggle="tooltip" title="Tipo de regime trabalhista.
 Valores válidos:
 1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas
 2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -1197,7 +1381,7 @@ Valores válidos:
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpRegPrev<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
 2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
@@ -1213,10 +1397,19 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
 <div id="infoEstagiario__div">
     <div class="col-md-12">
         <h4>Informações relativas ao estagiário.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1225,7 +1418,7 @@ Valores válidos:
 <div id="natEstagio__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>natEstagio<a data-toggle="tooltip" title="Natureza do estágio.
+            <label>Natureza do estágio<a data-toggle="tooltip" title="Natureza do estágio.
 Valores válidos:
 O - Obrigatório
 N - Não obrigatório"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -1239,7 +1432,7 @@ N - Não obrigatório"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="nivEstagio__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nivEstagio<a data-toggle="tooltip" title="Informar o nível do estágio.
+            <label>Informar o nível do estágio<a data-toggle="tooltip" title="Informar o nível do estágio.
 Valores válidos:
 1 - Fundamental
 2 - Médio
@@ -1257,7 +1450,7 @@ Valores válidos:
 <div id="areaAtuacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>areaAtuacao<a data-toggle="tooltip" title="Área de atuação do estagiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Área de atuação do estagiário<a data-toggle="tooltip" title="Área de atuação do estagiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__id__areaAtuacao" maxlength="100" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.areaAtuacao'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][areaAtuacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1266,7 +1459,7 @@ Valores válidos:
 <div id="nrApol__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrApol<a data-toggle="tooltip" title="Número da apólice de seguro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número da apólice de seguro<a data-toggle="tooltip" title="Número da apólice de seguro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__id__nrApol" maxlength="30" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.nrApol'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][nrApol]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1275,7 +1468,7 @@ Valores válidos:
 <div id="dtPrevTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtPrevTerm<a data-toggle="tooltip" title="Data prevista para o término do estágio.
+            <label>Data prevista para o término do estágio<a data-toggle="tooltip" title="Data prevista para o término do estágio.
 Validação: Deve ser uma data posterior à data de início do estágio."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__id__dtPrevTerm" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.dtPrevTerm'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][dtPrevTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -1285,6 +1478,16 @@ Validação: Deve ser uma data posterior à data de início do estágio."><i cla
 <div id="instEnsino__div">
     <div class="col-md-12">
         <h4>Instituição de ensino.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1293,7 +1496,7 @@ Validação: Deve ser uma data posterior à data de início do estágio."><i cla
 <div id="cnpjInstEnsino__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cnpjInstEnsino<a data-toggle="tooltip" title="Preencher com o CNPJ da instituição de ensino. Deve ser preenchido apenas se a instituição de ensino for brasileira.
+            <label>Preencher com o CNPJ da instituição de ensino<a data-toggle="tooltip" title="Preencher com o CNPJ da instituição de ensino. Deve ser preenchido apenas se a instituição de ensino for brasileira.
 Validação: Se informado, deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__cnpjInstEnsino" maxlength="14" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.instEnsino.cnpjInstEnsino'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][cnpjInstEnsino]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1303,7 +1506,7 @@ Validação: Se informado, deve ser um CNPJ válido, com 14 (catorze) algarismos
 <div id="nmRazao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmRazao<a data-toggle="tooltip" title="Informar a razão social.
+            <label>Informar a razão social<a data-toggle="tooltip" title="Informar a razão social.
 Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino não estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__nmRazao" maxlength="100" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.instEnsino.nmRazao'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][nmRazao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1313,7 +1516,7 @@ Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino n�
 <div id="dscLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscLograd<a data-toggle="tooltip" title="Descrição do logradouro.
+            <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro.
 Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino não estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.instEnsino.dscLograd'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1323,7 +1526,7 @@ Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino n�
 <div id="nrLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrLograd<a data-toggle="tooltip" title="Número do logradouro.
+            <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N".
 Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino não estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.instEnsino.nrLograd'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -1334,7 +1537,7 @@ Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino n�
 <div id="bairro__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>bairro<a data-toggle="tooltip" title="Nome do bairro/distrito.
+            <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito.
 Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino não estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.instEnsino.bairro'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1344,7 +1547,7 @@ Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino n�
 <div id="cep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cep<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
+            <label>Código de Endereçamento Postal - CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
 Validação: Não informar se o campo cnpjInstEnsino estiver preenchido. Se informado, deve ser preenchido apenas com números, com 8 (oito) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.instEnsino.cep'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1354,7 +1557,7 @@ Validação: Não informar se o campo cnpjInstEnsino estiver preenchido. Se info
 <div id="codMunic__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codMunic<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
+            <label>Preencher com o código do município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
 Validação: Não informar se o campo cnpjInstEnsino estiver preenchido. Se informado, deve ser um código válido e existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.instEnsino.codMunic'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1364,7 +1567,7 @@ Validação: Não informar se o campo cnpjInstEnsino estiver preenchido. Se info
 <div id="uf__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>uf<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
+            <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO
 Validação: Não informar se o campo cnpjInstEnsino estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__uf" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
@@ -1378,10 +1581,19 @@ Validação: Não informar se o campo cnpjInstEnsino estiver preenchido."><i cla
         </blockquote>
     </div>
 </div>
-
 <div id="ageIntegracao__div">
     <div class="col-md-12">
         <h4>Agente de integração.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1390,7 +1602,7 @@ Validação: Não informar se o campo cnpjInstEnsino estiver preenchido."><i cla
 <div id="cnpjAgntInteg__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cnpjAgntInteg<a data-toggle="tooltip" title="CNPJ do agente de integração.
+            <label>CNPJ do agente de integração<a data-toggle="tooltip" title="CNPJ do agente de integração.
 Validação: Deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__ageIntegracao__id__cnpjAgntInteg" maxlength="14" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.ageIntegracao.cnpjAgntInteg'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][ageIntegracao][cnpjAgntInteg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1401,10 +1613,19 @@ Validação: Deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="f
         </blockquote>
     </div>
 </div>
-
 <div id="supervisorEstagio__div">
     <div class="col-md-12">
         <h4>Supervisor do estágio.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1413,7 +1634,7 @@ Validação: Deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="f
 <div id="cpfSupervisor__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfSupervisor<a data-toggle="tooltip" title="CPF do responsável pela supervisão do estagiário.
+            <label>CPF do responsável pela supervisão do estagiário<a data-toggle="tooltip" title="CPF do responsável pela supervisão do estagiário.
 Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__supervisorEstagio__id__cpfSupervisor" maxlength="11" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.supervisorEstagio.cpfSupervisor'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][supervisorEstagio][cpfSupervisor]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1424,20 +1645,27 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 <div id="mudancaCPF__div">
     <div class="col-md-12">
         <h4>Informações de mudança de CPF do trabalhador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1446,7 +1674,7 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
 <div id="cpfAnt__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfAnt<a data-toggle="tooltip" title="Preencher com o número do CPF antigo do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número do CPF antigo do beneficiário<a data-toggle="tooltip" title="Preencher com o número do CPF antigo do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__mudancaCPF__id__cpfAnt" maxlength="11" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.mudancaCPF.cpfAnt'}}" name="[evtTSVInicio][infoTSVInicio][mudancaCPF][cpfAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1455,7 +1683,7 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
 <div id="matricAnt__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>matricAnt<a data-toggle="tooltip" title="Preencher com a matrícula anterior do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Matrícula do trabalhador no empregador anterior<a data-toggle="tooltip" title="Preencher com a matrícula anterior do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__mudancaCPF__id__matricAnt" maxlength="30" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.mudancaCPF.matricAnt'}}" name="[evtTSVInicio][infoTSVInicio][mudancaCPF][matricAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1464,7 +1692,7 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
 <div id="dtAltCPF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtAltCPF<a data-toggle="tooltip" title="Data de alteração do CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Data de alteração do CPF<a data-toggle="tooltip" title="Data de alteração do CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__mudancaCPF__id__dtAltCPF" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.mudancaCPF.dtAltCPF'}}" name="[evtTSVInicio][infoTSVInicio][mudancaCPF][dtAltCPF]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -1473,7 +1701,7 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
 <div id="observacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>observacao<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__mudancaCPF__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.mudancaCPF.observacao'}}" name="[evtTSVInicio][infoTSVInicio][mudancaCPF][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1483,11 +1711,20 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
         </blockquote>
     </div>
 </div>
-
 <div id="afastamento__div">
     <div class="col-md-12">
         <h4>Informações de afastamento do TSVE.
 Preenchimento exclusivo em caso de trabalhador que permaneça afastado na data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial ou na data de alteração do CPF.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1496,7 +1733,7 @@ Preenchimento exclusivo em caso de trabalhador que permaneça afastado na data d
 <div id="dtIniAfast__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtIniAfast<a data-toggle="tooltip" title="Data de início do afastamento.
+            <label>Data de início do afastamento<a data-toggle="tooltip" title="Data de início do afastamento.
 Validação: Devem ser observadas as seguintes regras:
 a) Deve ser igual ou posterior à data de início do TSVE;
 b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador;
@@ -1509,7 +1746,7 @@ c) Se cadIni = [N], deve ser anterior à data de alteração do CPF do trabalhad
 <div id="codMotAfast__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codMotAfast<a data-toggle="tooltip" title="Preencher com o código do motivo de afastamento temporário.
+            <label>Preencher com o código do motivo de afastamento temporário<a data-toggle="tooltip" title="Preencher com o código do motivo de afastamento temporário.
 Validação: Deve ser um código válido e existente na Tabela 18, bem como compatível com o código de categoria do trabalhador, conforme Tabela 18."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__afastamento__id__codMotAfast" maxlength="2" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.afastamento.codMotAfast'}}" name="[evtTSVInicio][infoTSVInicio][afastamento][codMotAfast]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1520,11 +1757,20 @@ Validação: Deve ser um código válido e existente na Tabela 18, bem como comp
         </blockquote>
     </div>
 </div>
-
 <div id="termino__div">
     <div class="col-md-12">
         <h4>Informação do término do TSVE.
 Grupo preenchido exclusivamente caso seja necessário enviar cadastramento inicial referente a trabalhador com data de término anterior ao início dos eventos não periódicos para o empregador no eSocial (por exemplo, envio para pagamento de retiradas em meses posteriores à data de término e sob vigência dos eventos periódicos para o empregador no eSocial).</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -1533,7 +1779,7 @@ Grupo preenchido exclusivamente caso seja necessário enviar cadastramento inici
 <div id="dtTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtTerm<a data-toggle="tooltip" title="Preencher com a data do término.
+            <label>Data do término<a data-toggle="tooltip" title="Preencher com a data do término.
 Validação: Devem ser observadas as seguintes regras:
 a) Deve ser igual ou posterior à data de início do TSVE;
 b) Deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -1546,17 +1792,14 @@ b) Deve ser anterior à data de início da obrigatoriedade dos eventos não peri
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -1565,7 +1808,7 @@ b) Deve ser anterior à data de início da obrigatoriedade dos eventos não peri
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

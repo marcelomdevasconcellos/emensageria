@@ -7,6 +7,16 @@
 <div id="evtCdBenAlt__div">
     <div class="col-md-12">
         <h4>S-2416 - Cadastro de Benefício - Entes Públicos - Alteração</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="indRetif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indRetif<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
 Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -37,7 +57,7 @@ Valores válidos:
 <div id="nrRecibo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrRecibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenAlt__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtCdBenAlt.ideEvento.nrRecibo'}}" name="[evtCdBenAlt][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -48,7 +68,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtCdBenAlt][ideEvento][tpAmb]" id="evtCdBenAlt__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -61,7 +81,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtCdBenAlt][ideEvento][procEmi]" id="evtCdBenAlt__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -76,9 +96,9 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtCdBenAlt][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtCdBenAlt__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtCdBenAlt][ideEvento][verProc]" id="evtCdBenAlt__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtCdBenAlt][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtCdBenAlt__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtCdBenAlt][ideEvento][verProc]" id="evtCdBenAlt__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -86,10 +106,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -98,7 +127,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtCdBenAlt][ideEmpregador][tpInsc]" id="evtCdBenAlt__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -115,7 +144,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtCdBenAlt__ideEmpregador__id__nrInsc_disabled" name="[evtCdBenAlt][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtCdBenAlt][ideEmpregador][nrInsc]" id="evtCdBenAlt__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -125,10 +154,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideBeneficio__div">
     <div class="col-md-12">
         <h4>Identificação do beneficiário e do benefício.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -137,7 +175,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="cpfBenef__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfBenef<a data-toggle="tooltip" title="Informar o CPF do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número de inscrição no Cadastro de Pessoas Físicas - CPF do beneficiário do pagamento<a data-toggle="tooltip" title="Informar o CPF do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenAlt__ideBeneficio__id__cpfBenef" maxlength="11" value="{{original.evento_json|readjson:'evtCdBenAlt.ideBeneficio.cpfBenef'}}" name="[evtCdBenAlt][ideBeneficio][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -146,7 +184,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="nrBeneficio__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrBeneficio<a data-toggle="tooltip" title="Número do benefício."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número do benefício<a data-toggle="tooltip" title="Número do benefício."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenAlt__ideBeneficio__id__nrBeneficio" maxlength="20" value="{{original.evento_json|readjson:'evtCdBenAlt.ideBeneficio.nrBeneficio'}}" name="[evtCdBenAlt][ideBeneficio][nrBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -156,10 +194,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="infoBenAlteracao__div">
     <div class="col-md-12">
         <h4>Informações do benefício - Alteração.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -168,7 +215,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="dtAltBeneficio__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtAltBeneficio<a data-toggle="tooltip" title="Data de alteração das informações relativas ao benefício.
+            <label>Data de alteração das informações relativas ao benefício<a data-toggle="tooltip" title="Data de alteração das informações relativas ao benefício.
 Validação: Deve ser igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenAlt__infoBenAlteracao__id__dtAltBeneficio" value="{{original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dtAltBeneficio'}}" name="[evtCdBenAlt][infoBenAlteracao][dtAltBeneficio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -178,6 +225,16 @@ Validação: Deve ser igual ou anterior à data atual."><i class="fa fa-fw fa-qu
 <div id="dadosBeneficio__div">
     <div class="col-md-12">
         <h4>Dados relativos ao benefício.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -186,7 +243,7 @@ Validação: Deve ser igual ou anterior à data atual."><i class="fa fa-fw fa-qu
 <div id="tpBeneficio__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpBeneficio<a data-toggle="tooltip" title="Tipo de benefício.
+            <label>Tipo de benefício<a data-toggle="tooltip" title="Tipo de benefício.
 Validação: Deve ser um código válido e existente na Tabela 25. Se cadIni em S-2410 for igual a [N], não é permitido utilizar código do grupo [08] dessa tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__id__tpBeneficio" maxlength="4" value="{{original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.tpBeneficio'}}" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][tpBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -196,7 +253,7 @@ Validação: Deve ser um código válido e existente na Tabela 25. Se cadIni em 
 <div id="tpPlanRP__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpPlanRP<a data-toggle="tooltip" title="Tipo de plano de segregação da massa.
+            <label>Tipo de plano de segregação da massa<a data-toggle="tooltip" title="Tipo de plano de segregação da massa.
 Valores válidos:
 0 - Sem segregação da massa
 1 - Fundo em capitalização
@@ -212,7 +269,7 @@ Valores válidos:
 <div id="dsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dsc<a data-toggle="tooltip" title="Descrição do instrumento ou situação que originou o pagamento do benefício.
+            <label>Descrição do instrumento ou situação que originou o pagamento das verbas relativas a períodos anteriores<a data-toggle="tooltip" title="Descrição do instrumento ou situação que originou o pagamento do benefício.
 Validação: Preenchimento obrigatório se tpBeneficio = [0909, 1001, 1009]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__id__dsc" maxlength="255" value="{{original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.dsc'}}" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][dsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -222,7 +279,7 @@ Validação: Preenchimento obrigatório se tpBeneficio = [0909, 1001, 1009]."><i
 <div id="indSuspensao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indSuspensao<a data-toggle="tooltip" title="Indicativo de suspensão do benefício.
+            <label>Indicativo de suspensão do benefício<a data-toggle="tooltip" title="Indicativo de suspensão do benefício.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -236,6 +293,16 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="infoPenMorte__div">
     <div class="col-md-12">
         <h4>Informações relativas à pensão por morte.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -244,7 +311,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="tpPenMorte__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpPenMorte<a data-toggle="tooltip" title="Tipo de pensão por morte.
+            <label>Tipo de pensão por morte<a data-toggle="tooltip" title="Tipo de pensão por morte.
 Valores válidos:
 1 - Vitalícia
 2 - Temporária"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -257,10 +324,19 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
 <div id="suspensao__div">
     <div class="col-md-12">
         <h4>Informações referentes à suspensão do benefício.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -269,7 +345,7 @@ Valores válidos:
 <div id="mtvSuspensao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>mtvSuspensao<a data-toggle="tooltip" title="Motivo da suspensão do benefício.
+            <label>Motivo da suspensão do benefício<a data-toggle="tooltip" title="Motivo da suspensão do benefício.
 Valores válidos:
 01 - Suspensão por não recadastramento
 99 - Outros motivos de suspensão"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -283,7 +359,7 @@ Valores válidos:
 <div id="dscSuspensao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscSuspensao<a data-toggle="tooltip" title="Descrição do motivo da suspensão do benefício.
+            <label>Descrição do motivo da suspensão do benefício<a data-toggle="tooltip" title="Descrição do motivo da suspensão do benefício.
 Validação: Preenchimento obrigatório e exclusivo se mtvSuspensao = [99]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__suspensao__id__dscSuspensao" maxlength="255" value="{{original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.suspensao.dscSuspensao'}}" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][suspensao][dscSuspensao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -294,22 +370,18 @@ Validação: Preenchimento obrigatório e exclusivo se mtvSuspensao = [99]."><i 
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -318,7 +390,7 @@ Validação: Preenchimento obrigatório e exclusivo se mtvSuspensao = [99]."><i 
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };

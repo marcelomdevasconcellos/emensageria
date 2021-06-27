@@ -7,6 +7,16 @@
 <div id="evtCAT__div">
     <div class="col-md-12">
         <h4>S-2210 - Comunicação de Acidente de Trabalho</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -15,6 +25,16 @@
 <div id="ideEvento__div">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -23,7 +43,7 @@
 <div id="indRetif__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indRetif<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
+            <label>Informe [1] para arquivo original ou [2] para arquivo de retificação<a data-toggle="tooltip" title="Informe [1] para arquivo original ou [2] para arquivo de retificação.
 Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -37,7 +57,7 @@ Valores válidos:
 <div id="nrRecibo__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrRecibo<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
+            <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtCAT.ideEvento.nrRecibo'}}" name="[evtCAT][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -48,7 +68,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpAmb__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpAmb</label>
+            <label class="control-label">Identificação do ambiente</label>
             <select name="[evtCAT][ideEvento][tpAmb]" id="evtCAT__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
@@ -61,7 +81,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="procEmi__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">procEmi</label>
+            <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtCAT][ideEvento][procEmi]" id="evtCAT__ideEvento__id__procEmi_disabled" disabled="">
                 <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
                 <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
@@ -76,9 +96,9 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="verProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">verProc</label>
-            <input type="text" name="[evtCAT][ideEvento][verProc]" value="{{original.procemi}}" class="vTextField" maxlength="20" id="evtCAT__ideEvento__id__verProc_disabled" disabled="">
-            <input type="hidden" name="[evtCAT][ideEvento][verProc]" id="evtCAT__ideEvento__id__verProc" value="{{original.procemi}}">
+            <label class="control-label">Versão do processo de emissão do evento</label>
+            <input type="text" name="[evtCAT][ideEvento][verProc]" value="{{original.verproc}}" class="vTextField" maxlength="20" id="evtCAT__ideEvento__id__verProc_disabled" disabled="">
+            <input type="hidden" name="[evtCAT][ideEvento][verProc]" id="evtCAT__ideEvento__id__verProc" value="{{original.verproc}}">
         </div>
     </div>
 </div>
@@ -86,10 +106,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideEmpregador__div">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -98,7 +127,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtCAT][ideEmpregador][tpInsc]" id="evtCAT__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -115,7 +144,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtCAT__ideEmpregador__id__nrInsc_disabled" name="[evtCAT][ideEmpregador][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtCAT][ideEmpregador][nrInsc]" id="evtCAT__ideEmpregador__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -125,10 +154,19 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         </blockquote>
     </div>
 </div>
-
 <div id="ideVinculo__div">
     <div class="col-md-12">
         <h4>Informações de identificação do trabalhador e do vínculo.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -137,7 +175,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="cpfTrab__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cpfTrab<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtCAT.ideVinculo.cpfTrab'}}" name="[evtCAT][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -146,7 +184,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="matricula__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>matricula<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
+            <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
 Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2190, S-2200 ou S-2300 do respectivo contrato. Não preencher no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE sem informação de matrícula no evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtCAT.ideVinculo.matricula'}}" name="[evtCAT][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -156,7 +194,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
 <div id="codCateg__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codCateg<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
+            <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Informar somente no caso de TSVE sem informação de matrícula no evento S-2300.
 Validação: Informação obrigatória e exclusiva se não houver preenchimento de matricula. Se informado, deve ser um código válido e existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__ideVinculo__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtCAT.ideVinculo.codCateg'}}" name="[evtCAT][ideVinculo][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -168,10 +206,19 @@ Validação: Informação obrigatória e exclusiva se não houver preenchimento 
         </blockquote>
     </div>
 </div>
-
 <div id="cat__div">
     <div class="col-md-12">
         <h4>Comunicação de Acidente de Trabalho - CAT.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -180,7 +227,7 @@ Validação: Informação obrigatória e exclusiva se não houver preenchimento 
 <div id="dtAcid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtAcid<a data-toggle="tooltip" title="Data do acidente.
+            <label>Data do acidente<a data-toggle="tooltip" title="Data do acidente.
 Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de admissão do trabalhador e à data de início da obrigatoriedade deste evento para o empregador no eSocial.
 Se tpCat = [2, 3], deve ser informado valor igual ao preenchido no evento de CAT anterior, quando informado em nrRecCatOrig."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__id__dtAcid" value="{{original.evento_json|readjson:'evtCAT.cat.dtAcid'}}" name="[evtCAT][cat][dtAcid]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
@@ -191,7 +238,7 @@ Se tpCat = [2, 3], deve ser informado valor igual ao preenchido no evento de CAT
 <div id="tpAcid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpAcid<a data-toggle="tooltip" title="Tipo de acidente de trabalho.
+            <label>Tipo de acidente de trabalho<a data-toggle="tooltip" title="Tipo de acidente de trabalho.
 Valores válidos:
 1 - Típico
 2 - Doença
@@ -206,7 +253,7 @@ Valores válidos:
 <div id="hrAcid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>hrAcid<a data-toggle="tooltip" title="Hora do acidente, no formato HHMM.
+            <label>Hora do acidente<a data-toggle="tooltip" title="Hora do acidente, no formato HHMM.
 Validação: Preenchimento obrigatório e exclusivo se tpAcid = [1]. Se informada, deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.
 Se tpCat = [2, 3], deve ser informado valor igual ao preenchido no evento de CAT anterior, quando informado em nrRecCatOrig."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__id__hrAcid" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.hrAcid'}}" name="[evtCAT][cat][hrAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -217,7 +264,7 @@ Se tpCat = [2, 3], deve ser informado valor igual ao preenchido no evento de CAT
 <div id="hrsTrabAntesAcid__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>hrsTrabAntesAcid<a data-toggle="tooltip" title="Horas trabalhadas antes da ocorrência do acidente, no formato HHMM.
+            <label>Horas trabalhadas antes da ocorrência do acidente<a data-toggle="tooltip" title="Horas trabalhadas antes da ocorrência do acidente, no formato HHMM.
 Validação: Preenchimento obrigatório e exclusivo se tpAcid = [1]. Se informada, deve estar no intervalo entre [0000] e [9959], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__id__hrsTrabAntesAcid" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.hrsTrabAntesAcid'}}" name="[evtCAT][cat][hrsTrabAntesAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -227,7 +274,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpAcid = [1]. Se informad
 <div id="tpCat__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpCat<a data-toggle="tooltip" title="Tipo de CAT.
+            <label>Tipo de CAT<a data-toggle="tooltip" title="Tipo de CAT.
 Valores válidos:
 1 - Inicial
 2 - Reabertura
@@ -242,7 +289,8 @@ Valores válidos:
 <div id="indCatObito__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indCatObito<a data-toggle="tooltip" title="Houve óbito?
+            <label>Houve óbito?
+Valores válidos<a data-toggle="tooltip" title="Houve óbito?
 Valores válidos:
 S - Sim
 N - Não
@@ -257,7 +305,7 @@ Validação: Se o tpCat for igual a [3], o campo deverá sempre ser preenchido c
 <div id="dtObito__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtObito<a data-toggle="tooltip" title="Data do óbito.
+            <label>Data do óbito<a data-toggle="tooltip" title="Data do óbito.
 Validação: Deve ser uma data válida, igual ou posterior a dtAcid e igual ou anterior à data atual.
 Preenchimento obrigatório e exclusivo se indCatObito = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__id__dtObito" value="{{original.evento_json|readjson:'evtCAT.cat.dtObito'}}" name="[evtCAT][cat][dtObito]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
@@ -268,7 +316,8 @@ Preenchimento obrigatório e exclusivo se indCatObito = [S]."><i class="fa fa-fw
 <div id="indComunPolicia__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indComunPolicia<a data-toggle="tooltip" title="Houve comunicação à autoridade policial?
+            <label>Houve comunicação à autoridade policial?
+Valores válidos<a data-toggle="tooltip" title="Houve comunicação à autoridade policial?
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -282,7 +331,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="codSitGeradora__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codSitGeradora<a data-toggle="tooltip" title="Preencher com o código da situação geradora do acidente ou da doença profissional.
+            <label>Preencher com o código da situação geradora do acidente ou da doença profissional<a data-toggle="tooltip" title="Preencher com o código da situação geradora do acidente ou da doença profissional.
 Validação: Deve ser um código válido e existente na Tabela 15 ou na Tabela 16."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__id__codSitGeradora" maxlength="9" value="{{original.evento_json|readjson:'evtCAT.cat.codSitGeradora'}}" name="[evtCAT][cat][codSitGeradora]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -292,7 +341,7 @@ Validação: Deve ser um código válido e existente na Tabela 15 ou na Tabela 1
 <div id="iniciatCAT__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>iniciatCAT<a data-toggle="tooltip" title="Iniciativa da CAT.
+            <label>Iniciativa da CAT<a data-toggle="tooltip" title="Iniciativa da CAT.
 Valores válidos:
 1 - Empregador
 2 - Ordem judicial
@@ -307,7 +356,7 @@ Valores válidos:
 <div id="obsCAT__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>obsCAT<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Observação<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__id__obsCAT" maxlength="999" value="{{original.evento_json|readjson:'evtCAT.cat.obsCAT'}}" name="[evtCAT][cat][obsCAT]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -316,6 +365,16 @@ Valores válidos:
 <div id="localAcidente__div">
     <div class="col-md-12">
         <h4>Local do acidente.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -324,7 +383,7 @@ Valores válidos:
 <div id="tpLocal__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpLocal<a data-toggle="tooltip" title="Tipo de local do acidente.
+            <label>Tipo de local do acidente<a data-toggle="tooltip" title="Tipo de local do acidente.
 Valores válidos:
 1 - Estabelecimento do empregador no Brasil
 2 - Estabelecimento do empregador no exterior
@@ -343,7 +402,7 @@ Valores válidos:
 <div id="dscLocal__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscLocal<a data-toggle="tooltip" title="Especificação do local do acidente (pátio, rampa de acesso, posto de trabalho, etc.)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Especificação do local do acidente (pátio<a data-toggle="tooltip" title="Especificação do local do acidente (pátio, rampa de acesso, posto de trabalho, etc.)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__id__dscLocal" maxlength="255" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.dscLocal'}}" name="[evtCAT][cat][localAcidente][dscLocal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -352,7 +411,7 @@ Valores válidos:
 <div id="tpLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>tpLograd<a data-toggle="tooltip" title="Tipo de logradouro.
+            <label>Tipo de logradouro<a data-toggle="tooltip" title="Tipo de logradouro.
 Validação: Se informado, deve ser um código válido e existente na Tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__id__tpLograd" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.tpLograd'}}" name="[evtCAT][cat][localAcidente][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -362,7 +421,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
 <div id="dscLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscLograd<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.dscLograd'}}" name="[evtCAT][cat][localAcidente][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -371,7 +430,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
 <div id="nrLograd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrLograd<a data-toggle="tooltip" title="Número do logradouro.
+            <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.nrLograd'}}" name="[evtCAT][cat][localAcidente][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -381,7 +440,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="complemento__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>complemento<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Complemento do logradouro<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.complemento'}}" name="[evtCAT][cat][localAcidente][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -390,7 +449,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="bairro__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>bairro<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.bairro'}}" name="[evtCAT][cat][localAcidente][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -399,7 +458,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="cep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>cep<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
+            <label>Código de Endereçamento Postal - CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
 Validação: Preenchimento obrigatório se tpLocal = [1, 3, 5]. Não preencher se tpLocal = [2].
 Se preenchido, deve ser informado apenas com números, com 8 (oito) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.cep'}}" name="[evtCAT][cat][localAcidente][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -410,7 +469,7 @@ Se preenchido, deve ser informado apenas com números, com 8 (oito) posições."
 <div id="codMunic__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codMunic<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
+            <label>Preencher com o código do município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
 Validação: Preenchimento obrigatório se tpLocal = [1, 3, 4, 5]. Não preencher se tpLocal = [2].
 Se informado, deve ser um código válido e existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.codMunic'}}" name="[evtCAT][cat][localAcidente][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -421,7 +480,7 @@ Se informado, deve ser um código válido e existente na tabela do IBGE."><i cla
 <div id="uf__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>uf<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
+            <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO
 Validação: Preenchimento obrigatório se tpLocal = [1, 3, 4, 5]. Não preencher se tpLocal = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__localAcidente__id__uf" name="[evtCAT][cat][localAcidente][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
@@ -434,7 +493,7 @@ Validação: Preenchimento obrigatório se tpLocal = [1, 3, 4, 5]. Não preenche
 <div id="pais__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>pais<a data-toggle="tooltip" title="Preencher com o código do país.
+            <label>Preencher com o código do país<a data-toggle="tooltip" title="Preencher com o código do país.
 Validação: Deve ser um código de país válido e existente na Tabela 06.
 Preenchimento obrigatório se tpLocal = [2]. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__id__pais" maxlength="3" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.pais'}}" name="[evtCAT][cat][localAcidente][pais]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -445,7 +504,7 @@ Preenchimento obrigatório se tpLocal = [2]. Não preencher nos demais casos."><
 <div id="codPostal__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codPostal<a data-toggle="tooltip" title="Código de Endereçamento Postal.
+            <label>Código de Endereçamento Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal.
 Validação: Preenchimento obrigatório se tpLocal = [2]. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__id__codPostal" maxlength="12" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.codPostal'}}" name="[evtCAT][cat][localAcidente][codPostal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -455,6 +514,16 @@ Validação: Preenchimento obrigatório se tpLocal = [2]. Não preencher nos dem
 <div id="ideLocalAcid__div">
     <div class="col-md-12">
         <h4>Identificação do local onde ocorreu o acidente.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -463,7 +532,7 @@ Validação: Preenchimento obrigatório se tpLocal = [2]. Não preencher nos dem
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">tpInsc</label>
+            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtCAT][cat][localAcidente][ideLocalAcid][tpInsc]" id="evtCAT__cat__localAcidente__ideLocalAcid__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
                 <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
@@ -480,7 +549,7 @@ Validação: Preenchimento obrigatório se tpLocal = [2]. Não preencher nos dem
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label text-right">nrInsc</label>
+            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
             <input type="text" id="evtCAT__cat__localAcidente__ideLocalAcid__id__nrInsc_disabled" name="[evtCAT][cat][localAcidente][ideLocalAcid][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
             <input type="hidden" name="[evtCAT][cat][localAcidente][ideLocalAcid][nrInsc]" id="evtCAT__cat__localAcidente__ideLocalAcid__id__nrInsc" value="{{original.nrinsc}}">
         </div>
@@ -490,15 +559,23 @@ Validação: Preenchimento obrigatório se tpLocal = [2]. Não preencher nos dem
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 <div id="parteAtingida__div">
     <div class="col-md-12">
         <h4>Detalhamento da parte atingida pelo acidente de trabalho.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -507,7 +584,7 @@ Validação: Preenchimento obrigatório se tpLocal = [2]. Não preencher nos dem
 <div id="codParteAting__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codParteAting<a data-toggle="tooltip" title="Preencher com o código correspondente à parte atingida.
+            <label>Preencher com o código correspondente à parte atingida<a data-toggle="tooltip" title="Preencher com o código correspondente à parte atingida.
 Validação: Deve ser um código válido e existente na Tabela 13."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__parteAtingida__id__codParteAting" maxlength="9" value="{{original.evento_json|readjson:'evtCAT.cat.parteAtingida.codParteAting'}}" name="[evtCAT][cat][parteAtingida][codParteAting]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -517,7 +594,7 @@ Validação: Deve ser um código válido e existente na Tabela 13."><i class="fa
 <div id="lateralidade__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>lateralidade<a data-toggle="tooltip" title="Lateralidade da(s) parte(s) atingida(s).
+            <label>Lateralidade da(s) parte(s) atingida(s)<a data-toggle="tooltip" title="Lateralidade da(s) parte(s) atingida(s).
 Nos casos de órgãos bilaterais, ou seja, que se situam dos lados do corpo, assinalar o lado (direito ou esquerdo). Ex.: Caso o órgão atingido seja perna, apontar qual foi a atingida (perna direita, perna esquerda ou ambas). Se o órgão atingido é único (como, por exemplo, a cabeça), assinalar este campo como não aplicável.
 Valores válidos:
 0 - Não aplicável
@@ -535,10 +612,19 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
-
 <div id="agenteCausador__div">
     <div class="col-md-12">
         <h4>Detalhamento do agente causador do acidente de trabalho.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -547,7 +633,7 @@ Valores válidos:
 <div id="codAgntCausador__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codAgntCausador<a data-toggle="tooltip" title="Preencher com o código correspondente ao agente causador do acidente.
+            <label>Preencher com o código correspondente ao agente causador do acidente<a data-toggle="tooltip" title="Preencher com o código correspondente ao agente causador do acidente.
 Validação: Deve ser um código válido e existente na Tabela 14 ou na Tabela 15."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__agenteCausador__id__codAgntCausador" maxlength="9" value="{{original.evento_json|readjson:'evtCAT.cat.agenteCausador.codAgntCausador'}}" name="[evtCAT][cat][agenteCausador][codAgntCausador]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -558,10 +644,19 @@ Validação: Deve ser um código válido e existente na Tabela 14 ou na Tabela 1
         </blockquote>
     </div>
 </div>
-
 <div id="atestado__div">
     <div class="col-md-12">
         <h4>Atestado médico.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -570,7 +665,7 @@ Validação: Deve ser um código válido e existente na Tabela 14 ou na Tabela 1
 <div id="dtAtendimento__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dtAtendimento<a data-toggle="tooltip" title="Data do atendimento.
+            <label>Data do atendimento<a data-toggle="tooltip" title="Data do atendimento.
 Validação: Deve ser uma data válida, igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__id__dtAtendimento" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.dtAtendimento'}}" name="[evtCAT][cat][atestado][dtAtendimento]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -580,7 +675,7 @@ Validação: Deve ser uma data válida, igual ou anterior à data atual."><i cla
 <div id="hrAtendimento__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>hrAtendimento<a data-toggle="tooltip" title="Hora do atendimento, no formato HHMM.
+            <label>Hora do atendimento<a data-toggle="tooltip" title="Hora do atendimento, no formato HHMM.
 Validação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__id__hrAtendimento" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.hrAtendimento'}}" name="[evtCAT][cat][atestado][hrAtendimento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -590,7 +685,7 @@ Validação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive
 <div id="indInternacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indInternacao<a data-toggle="tooltip" title="Indicativo de internação.
+            <label>Indicativo de internação<a data-toggle="tooltip" title="Indicativo de internação.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -604,7 +699,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="durTrat__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>durTrat<a data-toggle="tooltip" title="Duração estimada do tratamento, em dias."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Duração estimada do tratamento<a data-toggle="tooltip" title="Duração estimada do tratamento, em dias."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__id__durTrat" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.durTrat'}}" name="[evtCAT][cat][atestado][durTrat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -613,7 +708,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="indAfast__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>indAfast<a data-toggle="tooltip" title="Indicativo de afastamento do trabalho durante o tratamento.
+            <label>Indicativo de afastamento do trabalho durante o tratamento<a data-toggle="tooltip" title="Indicativo de afastamento do trabalho durante o tratamento.
 Valores válidos:
 S - Sim
 N - Não
@@ -628,7 +723,7 @@ Validação: Se o campo indCatObito for igual a [S], o campo deve sempre ser pre
 <div id="dscLesao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscLesao<a data-toggle="tooltip" title="Preencher com a descrição da natureza da lesão.
+            <label>Preencher com a descrição da natureza da lesão<a data-toggle="tooltip" title="Preencher com a descrição da natureza da lesão.
 Validação: Deve ser um código válido e existente na Tabela 17."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__id__dscLesao" maxlength="9" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.dscLesao'}}" name="[evtCAT][cat][atestado][dscLesao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -638,7 +733,7 @@ Validação: Deve ser um código válido e existente na Tabela 17."><i class="fa
 <div id="dscCompLesao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>dscCompLesao<a data-toggle="tooltip" title="Descrição complementar da lesão."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Descrição complementar da lesão<a data-toggle="tooltip" title="Descrição complementar da lesão."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__id__dscCompLesao" maxlength="200" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.dscCompLesao'}}" name="[evtCAT][cat][atestado][dscCompLesao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -647,7 +742,7 @@ Validação: Deve ser um código válido e existente na Tabela 17."><i class="fa
 <div id="diagProvavel__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>diagProvavel<a data-toggle="tooltip" title="Diagnóstico provável."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Diagnóstico provável<a data-toggle="tooltip" title="Diagnóstico provável."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__id__diagProvavel" maxlength="100" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.diagProvavel'}}" name="[evtCAT][cat][atestado][diagProvavel]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -656,7 +751,7 @@ Validação: Deve ser um código válido e existente na Tabela 17."><i class="fa
 <div id="codCID__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>codCID<a data-toggle="tooltip" title="Informar o código da tabela de Classificação Internacional de Doenças - CID.
+            <label>Informar o código da tabela de Classificação Internacional de Doenças - CID<a data-toggle="tooltip" title="Informar o código da tabela de Classificação Internacional de Doenças - CID.
 Validação: Deve ser preenchido com caracteres alfanuméricos, conforme opções constantes na tabela CID."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__id__codCID" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.codCID'}}" name="[evtCAT][cat][atestado][codCID]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -666,7 +761,7 @@ Validação: Deve ser preenchido com caracteres alfanuméricos, conforme opçõe
 <div id="observacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>observacao<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.observacao'}}" name="[evtCAT][cat][atestado][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -675,6 +770,16 @@ Validação: Deve ser preenchido com caracteres alfanuméricos, conforme opçõe
 <div id="emitente__div">
     <div class="col-md-12">
         <h4>Médico/Dentista que emitiu o atestado.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -683,7 +788,7 @@ Validação: Deve ser preenchido com caracteres alfanuméricos, conforme opçõe
 <div id="nmEmit__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nmEmit<a data-toggle="tooltip" title="Nome do médico/dentista que emitiu o atestado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Nome do médico/dentista que emitiu o atestado<a data-toggle="tooltip" title="Nome do médico/dentista que emitiu o atestado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__emitente__id__nmEmit" maxlength="70" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.emitente.nmEmit'}}" name="[evtCAT][cat][atestado][emitente][nmEmit]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -692,7 +797,7 @@ Validação: Deve ser preenchido com caracteres alfanuméricos, conforme opçõe
 <div id="ideOC__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>ideOC<a data-toggle="tooltip" title="Órgão de classe.
+            <label>Órgão de classe ao qual o responsável pelos registros ambientais está vinculado<a data-toggle="tooltip" title="Órgão de classe.
 Valores válidos:
 1 - Conselho Regional de Medicina - CRM
 2 - Conselho Regional de Odontologia - CRO
@@ -707,7 +812,7 @@ Valores válidos:
 <div id="nrOC__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrOC<a data-toggle="tooltip" title="Número de inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número de inscrição no órgão de classe<a data-toggle="tooltip" title="Número de inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__emitente__id__nrOC" maxlength="14" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.emitente.nrOC'}}" name="[evtCAT][cat][atestado][emitente][nrOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -716,7 +821,7 @@ Valores válidos:
 <div id="ufOC__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>ufOC<a data-toggle="tooltip" title="Sigla da UF do órgão de classe.
+            <label>Sigla da Unidade da Federação - UF do órgão de classe<a data-toggle="tooltip" title="Sigla da UF do órgão de classe.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__atestado__emitente__id__ufOC" name="[evtCAT][cat][atestado][emitente][ufOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option>
@@ -729,15 +834,23 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 <div id="catOrigem__div">
     <div class="col-md-12">
         <h4>Grupo que indica a CAT anterior, no caso de CAT de reabertura ou de comunicação de óbito.</h4>
+        {% if False %}
+        <button type="button" onclick="removeDiv($(this))" 
+                class="btn btn-danger btn-flat">
+                <i class="fa fa-minus-circle"></i>
+        </button>
+        <button type="button" onclick="duplicateDiv($(this))" 
+                class="btn btn-success btn-flat">
+                <i class="fa fa-plus-circle"></i>
+        </button>
+        {% endif %}
     </div>
     <div class="col-md-12">
         <blockquote>
@@ -746,7 +859,7 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
 <div id="nrRecCatOrig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>nrRecCatOrig<a data-toggle="tooltip" title="Informar o número do recibo da última CAT referente ao mesmo acidente/doença relacionada ao trabalho, nos casos:
+            <label>Informar o número do recibo da última CAT referente ao mesmo acidente/doença relacionada ao trabalho<a data-toggle="tooltip" title="Informar o número do recibo da última CAT referente ao mesmo acidente/doença relacionada ao trabalho, nos casos:
 a) de CAT de reabertura;
 b) de óbito, quando houver CAT anterior.
 Validação: Deve corresponder ao número do recibo do arquivo relativo à última CAT informada anteriormente, pertencente ao mesmo contrato, desde que indCatObito da última CAT informada seja igual a [N]. O sistema não efetuará a conferência da informação se dtAcid for anterior a sucessaoVinc/dtTransf, transfDom/dtTransf ou dtAltCPF do evento S-2200.
@@ -760,17 +873,14 @@ OBS.: Quando a data do acidente for anterior à data de obrigatoriedade do empre
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
             </div>
         </blockquote>
     </div>
 </div>
-
 </div>
 
 </form>
@@ -779,7 +889,7 @@ OBS.: Quando a data do acidente for anterior à data de obrigatoriedade do empre
 function set_evento_json() {
     var dst = document.getElementById("id_evento_json");
     var dst_read = document.getElementById("id_evento_json_read");
-    var obj = $('#form_json').serializeJSON();
+    var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
     dst.value = JSON.stringify(obj);
     dst_read.value = JSON.stringify(obj);
 };
