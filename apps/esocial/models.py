@@ -1001,7 +1001,6 @@ class Eventos(BaseModelEsocial):
         def recursive_update_datefield(elem2):
             from dateutil import parser as dateutil_parser
             for elem in elem2:
-                print(elem.text)
                 if elem.text and len(elem.text) == 10 and len(elem.text.split('/')) == 3:
                     data = dateutil_parser.parse(elem.text, dayfirst=True)
                     elem.text = data.strftime('%Y-%m-%d')
