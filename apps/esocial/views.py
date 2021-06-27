@@ -198,28 +198,26 @@ def enviar_transmissores(request):
     for e in evt:
         e.vincular_transmissor()
     tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_AGUARDANDO)
-    n = 0
     for te in tes:
-        n += 1
         te.enviar()
     if request.META.get('HTTP_REFERER'):
-        messages.success(request, '%s lotes enviados' % n)
+        messages.success(request, '%s lotes enviados' % len(tes))
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return HttpResponse('{"mensagem": "%s lotes enviados"}' % n, content_type='application/json')
+    return HttpResponse('{"mensagem": "%s lotes enviados"}' % len(tes),
+                        content_type='application/json')
 
 
 @login_required
 def consultar_transmissores(request):
     from .choices import STATUS_TRANSMISSOR_ENVIADO
     tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_ENVIADO)
-    n = 0
     for te in tes:
-        n += 1
         te.consultar()
     if request.META.get('HTTP_REFERER'):
-        messages.success(request, '%s lotes consultados' % n)
+        messages.success(request, '%s lotes consultados' % len(tes))
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return HttpResponse('{"mensagem": "%s lotes consultados"}' % n, content_type='application/json')
+    return HttpResponse('{"mensagem": "%s lotes consultados"}' % len(tes),
+                        content_type='application/json')
 
 
 @login_required

@@ -811,6 +811,14 @@ class Eventos(BaseModelEsocial):
     is_aberto = models.BooleanField(
         'Está aberto para edição', default=True, )
 
+    def get_grupo_esocial(self):
+        if self.evento in ['s1000', 's1005', 's1010', 's1020', 's1070']:
+            return EVENTOS_GRUPOS_TABELAS
+        elif self.evento in ['s1200', 's1202', 's1207', 's1210', 's1260', 's1270', 's1280', 's1298', 's1299']:
+            return EVENTOS_GRUPOS_PERIODICOS
+        else:
+            return EVENTOS_GRUPOS_NAO_PERIODICOS
+
     def retorno_envio(self):
         return json.loads(self.retorno_envio_json or '{}')
 
@@ -873,7 +881,7 @@ class Eventos(BaseModelEsocial):
                 tevt = TransmissorEventos.objects.filter(
                     empregador_tpinsc=transmissor.tpinsc,
                     empregador_nrinsc=transmissor.nrinsc,
-                    grupo=EVENTOS_GRUPOS_TABELAS,
+                    grupo=self.get_grupo_esocial(),
                     status=STATUS_TRANSMISSOR_AGUARDANDO).all()
                 tra = None
                 for t in tevt:
@@ -885,7 +893,7 @@ class Eventos(BaseModelEsocial):
                         'transmissor': transmissor,
                         'empregador_tpinsc': transmissor.tpinsc,
                         'empregador_nrinsc': transmissor.nrinsc,
-                        'grupo': EVENTOS_GRUPOS_TABELAS,
+                        'grupo': self.get_grupo_esocial(),
                         'status': STATUS_TRANSMISSOR_AGUARDANDO,
                     }
                     tra = TransmissorEventos(**tevt_data)
