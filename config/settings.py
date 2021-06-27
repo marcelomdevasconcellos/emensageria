@@ -144,9 +144,12 @@ USE_THOUSAND_SEPARATOR = True
 
 # Configurações de Versão do Aplicativo
 
-VERSAO_EMENSAGERIA = '2'  # eSocial V2.5 (até NT18/2019)
+VERSAO_EMENSAGERIA = '1.0.0'
 VERSAO_LAYOUT_ESOCIAL = 'v_S_01_00_00'
 VERSAO_LAYOUT_REINF = 'v1_04_00'
+ESOCIAL_TPAMB = env('ESOCIAL_TPAMB', default='2')
+ESOCIAL_PROCEMI = env('ESOCIAL_PROCEMI', default='1')
+
 
 VERSOES_ESOCIAL = [
     'v_S_01_00_00']
@@ -220,6 +223,14 @@ CONSTANCE_CONFIG = {
         bool),
 
     'LOGO_IMAGE': ('', 'Logotipo da empresa', 'image_field'),
+
+    'REPRESENTANTE_NOME': ('EMENSAGERIA',
+        'Nome da empresa que está disponibilizando o sistema',
+        str),
+
+    'REPRESENTANTE_CENTRAL_SERVICOS': ('Central de Serviços (99) 99999.9999',
+        'Contrato da central de serviços',
+        str),
 
     'SYSTEM_TOKEN_SCHEDULE': ('9944b09199c62bcf9418ad846dd0123e4bbdfc6ee4b',
          'Token de autenticação do sistema para acesso aos webservices',

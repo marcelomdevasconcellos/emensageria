@@ -11,7 +11,7 @@ from ..models import (
     Eventos,
 )
 
-from ..choices import EVENTO_ORIGEM_API, EVENTO_ORIGEM
+from ..choices import EVENTO_ORIGEM_API, EVENTO_ORIGEM, STATUS_EVENTO_IMPORTADO
 
 
 class EventosSerializer(ModelSerializer):
@@ -22,6 +22,7 @@ class EventosSerializer(ModelSerializer):
     def create(self, validated_data):
         validated_data['origem'] = EVENTO_ORIGEM_API
         validated_data['is_aberto'] = False
+        validated_data['status'] = STATUS_EVENTO_IMPORTADO
         if validated_data['evento_xml'] and not validated_data['evento_json']:
             import json
             dict = xmltodict.parse(validated_data['evento_xml'])

@@ -237,7 +237,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.is_aberto and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ENVIADO_ERRO %}
+                        {% if original.pk and original.is_aberto and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ERRO or original.status == STATUS_EVENTO_IMPORTADO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="submit"
@@ -259,13 +259,24 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ENVIADO_ERRO %}
+                        {% if original.pk and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ERRO or original.status == STATUS_EVENTO_IMPORTADO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="submit"
                                        value="Validar"
                                        class="btn btn-primary form-control"
                                        name="_validar"
+                                       style="margin-bottom: 3px; margin-right:3px">
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if original.pk and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ERRO %}
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="submit"
+                                       value="Apagar"
+                                       class="btn btn-danger form-control"
+                                       name="_apagar"
                                        style="margin-bottom: 3px; margin-right:3px">
                             </div>
                         </div>
@@ -317,7 +328,7 @@ label {
 {#                            </div>#}
 {#                        </div>#}
 {#                        {% endifequal %}#}
-                        {% if original.pk and not original.is_aberto and original.status == STATUS_EVENTO_PROCESSADO %}
+                        {% if original.pk and not original.is_aberto and original.status == STATUS_EVENTO_ERRO or original.status == STATUS_EVENTO_PROCESSADO or original.status == STATUS_EVENTO_ENVIADO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <a href="{% url 'esocial:eventos_recibo' pk=original.pk %}" target="_blank">

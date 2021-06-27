@@ -208,8 +208,8 @@ class EventosAdmin(AuditoriaAdmin):
     def acoes(self, obj):
         from django.urls import reverse
         from .choices import (
-            STATUS_EVENTO_ENVIADO_ERRO,
-            STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_ERRO,
+            STATUS_EVENTO_ERRO,
             STATUS_EVENTO_ENVIADO,
             STATUS_EVENTO_AGUARD_ENVIO,
             STATUS_EVENTO_PROCESSADO,
@@ -220,7 +220,7 @@ class EventosAdmin(AuditoriaAdmin):
             return mark_safe("<a href='{}' class='btn btn-primary form-control'>"
                              "<i class='fa fa-thumbs-o-up'></i>&nbsp;Validar</a>".format(url))
 
-        elif obj.status in (STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_VALIDADO_ERRO):
+        elif obj.status in (STATUS_EVENTO_ERRO, STATUS_EVENTO_ERRO):
             url = '#'
             return mark_safe("<a href='{}' class='btn btn-danger form-control'>"
                              "<i class='fa fa-minus-square-o'></i>&nbsp;Corrigir</a>".format(url))

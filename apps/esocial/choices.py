@@ -88,17 +88,19 @@ MAKE_RETRIEVE = """
 </soapenv:Envelope>"""
 
 
+STATUS_EVENTO_IMPORTADO = -1
 STATUS_EVENTO_CADASTRADO = 0
-STATUS_EVENTO_VALIDADO_ERRO = 1
+STATUS_EVENTO_ERRO = 1
 STATUS_EVENTO_AGUARD_ENVIO = 2
 STATUS_EVENTO_ENVIADO = 3
-STATUS_EVENTO_ENVIADO_ERRO = 4
+#STATUS_EVENTO_ERRO = 4
 STATUS_EVENTO_PROCESSADO = 5
 
 EVENTO_STATUS = [
+    (STATUS_EVENTO_IMPORTADO, 'Importado pela API'),
     (STATUS_EVENTO_CADASTRADO, 'Cadastrado (Aguardando validação)'),
-    (STATUS_EVENTO_VALIDADO_ERRO, 'Erro (Aguardando correção)'),
-    (STATUS_EVENTO_ENVIADO_ERRO, 'Erro (Aguardando correção)'),
+    (STATUS_EVENTO_ERRO, 'Erro (Aguardando correção)'),
+    #(STATUS_EVENTO_ERRO, 'Erro (Aguardando correção)'),
     (STATUS_EVENTO_AGUARD_ENVIO, 'Validado (Aguardando envio)'),
     (STATUS_EVENTO_ENVIADO, 'Enviado (Aguardando consulta)'),
     (STATUS_EVENTO_PROCESSADO, 'Consultado'),

@@ -9,10 +9,10 @@ from wkhtmltopdf.views import PDFTemplateResponse
 
 from .choices import (
     STATUS_EVENTO_CADASTRADO,
-    STATUS_EVENTO_VALIDADO_ERRO,
+    STATUS_EVENTO_ERRO,
     STATUS_EVENTO_AGUARD_ENVIO,
     STATUS_EVENTO_ENVIADO,
-    STATUS_EVENTO_ENVIADO_ERRO,
+    STATUS_EVENTO_ERRO,
     STATUS_EVENTO_PROCESSADO, )
 from .models import (
     Eventos,
@@ -27,9 +27,9 @@ from .models import (
 def dashboard_json(request):
     import json
     eventos_cadastrados = Eventos.objects.filter(status=STATUS_EVENTO_CADASTRADO)
-    eventos_erros_validacao = Eventos.objects.filter(status=STATUS_EVENTO_VALIDADO_ERRO)
+    eventos_erros_validacao = Eventos.objects.filter(status=STATUS_EVENTO_ERRO)
     eventos_validados = Eventos.objects.filter(status__in=(STATUS_EVENTO_AGUARD_ENVIO,))
-    eventos_erros_envio = Eventos.objects.filter(status=STATUS_EVENTO_ENVIADO_ERRO)
+    eventos_erros_envio = Eventos.objects.filter(status=STATUS_EVENTO_ERRO)
     eventos_enviados = Eventos.objects.filter(status=STATUS_EVENTO_ENVIADO)
     eventos_processados = Eventos.objects.filter(status=STATUS_EVENTO_PROCESSADO)
     dashboars_data = {

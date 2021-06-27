@@ -121,18 +121,18 @@ curl -X GET http://localhost:8000/esocial/validar-eventos/ -H
 ```
 
 #### Enviando eventos para o eSocial em lote
-- URL: http://localhost:8000/esocial/enviar/
+- URL: http://localhost:8000/esocial/enviar-transmissores/
 - Exemplo CURL:
 ```
-curl -X GET http://localhost:8000/esocial/enviar/ -H 'Authorization:
+curl -X GET http://localhost:8000/esocial/enviar-transmissores/ -H 'Authorization:
 Token <token>'
 ```
 
 #### Consultando eventos no eSocial em lote
-- URL: http://localhost:8000/esocial/consultar/
+- URL: http://localhost:8000/esocial/consultar-transmissores/
 - Exemplo CURL:
 ```
-curl -X GET http://localhost:8000/esocial/consultar/ -H
+curl -X GET http://localhost:8000/esocial/consultar-transmissores/ -H
 'Authorization: Token <token>'
 ```
 

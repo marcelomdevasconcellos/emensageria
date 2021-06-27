@@ -840,9 +840,9 @@ class Eventos(BaseModelReinf):
     def abrir_evento_para_edicao(self):
         status_list = [
             STATUS_EVENTO_CADASTRADO,
-            STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_ERRO,
             STATUS_EVENTO_AGUARD_ENVIO,
-            STATUS_EVENTO_ENVIADO_ERRO
+            STATUS_EVENTO_ERRO
         ]
         if self.status in status_list:
             self.status = STATUS_EVENTO_CADASTRADO

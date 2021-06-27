@@ -1,10 +1,10 @@
-from django import forms
-
-from .choices import STATUS_EVENTO_CADASTRADO
-from .models import Eventos, Certificados, Arquivos, Transmissor
 from constance import config
+from django import forms
 from django.core.exceptions import ValidationError
 from django_currentuser.middleware import get_current_user
+
+from .models import Eventos, Certificados, Arquivos, Transmissor
+
 
 class EventosForm(forms.ModelForm):
     evento_json = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -16,6 +16,8 @@ class EventosForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventosForm, self).__init__(*args, **kwargs)
         self.fields['tpamb'].disabled = True
+        self.fields['procemi'].disabled = True
+        self.fields['verproc'].disabled = True
 
         if self.instance.pk:
             self.fields['evento'].disabled = True

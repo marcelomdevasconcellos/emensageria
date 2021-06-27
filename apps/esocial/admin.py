@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.contrib import messages
 from django.utils.safestring import mark_safe
-from constance import config
-from django_currentuser.middleware import get_current_user, get_current_authenticated_user
+
 from config.mixins import AuditoriaAdminEventos, AuditoriaAdminStackedInlineInline, AuditoriaAdminInline
+from .choices import (STATUS_EVENTO_CADASTRADO,
+                      STATUS_EVENTO_ERRO)
 from .forms import (
     EventosForm,
     CertificadosForm,
@@ -273,8 +274,7 @@ class EventosAdmin(AuditoriaAdminEventos):
     def acoes(self, obj):
         from django.urls import reverse
         from .choices import (
-            STATUS_EVENTO_ENVIADO_ERRO,
-            STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_ERRO,
             STATUS_EVENTO_ENVIADO,
             STATUS_EVENTO_AGUARD_ENVIO,
             STATUS_EVENTO_PROCESSADO,
@@ -285,7 +285,7 @@ class EventosAdmin(AuditoriaAdminEventos):
             return mark_safe("<a href='{}' class='btn btn-primary form-control'>"
                              "<i class='fa fa-thumbs-o-up'></i>&nbsp;Validar</a>".format(url))
 
-        elif obj.status in (STATUS_EVENTO_ENVIADO_ERRO, STATUS_EVENTO_VALIDADO_ERRO):
+        elif obj.status in (STATUS_EVENTO_ERRO, STATUS_EVENTO_ERRO):
             url = reverse('admin:esocial_eventos_change', kwargs={'object_id': obj.pk})
             url_recibo = reverse('esocial:eventos_recibo', kwargs={'pk': obj.pk})
             return mark_safe("<a href='{}' class='btn btn-danger form-control'>"
@@ -320,31 +320,55 @@ class EventosAdmin(AuditoriaAdminEventos):
     acoes.short_description = 'Ações'
 
     def atualizar_identidade(modeladmin, request, queryset):
+        from .choices import (STATUS_EVENTO_CADASTRADO,
+                              STATUS_EVENTO_ERRO)
         for obj in queryset:
-            obj.identidade = obj.make_identidade()
-            obj.save()
-            messages.add_message(request, messages.INFO, 'Identidade atualizada do evento %s!' % obj.identidade)
+            if obj.status in (STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO):
+                obj.identidade = obj.make_identidade()
+                obj.save()
+                messages.add_message(request, messages.INFO, 'Identidade atualizada do evento %s!' % obj.identidade)
 
     atualizar_identidade.short_description = "Atualizar identidade"
 
+    def delete_model(modeladmin, request, queryset):
+        from .choices import (STATUS_EVENTO_CADASTRADO,
+                              STATUS_EVENTO_ERRO)
+        n = 0
+        for obj in queryset:
+            if obj.status in (STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO):
+                n += 1
+                obj.delete()
+            else:
+                messages.add_message(request,
+                    messages.ERROR,
+                    'Não é possível apagar o evento %s, pois o mesmo está com status %s!' % (
+                                         obj.identidade, obj.get_status_display()))
+        messages.add_message(request, messages.INFO, '%s eventos apagados!' % n)
+
+    delete_model.short_description = "Remover eventos selecionados"
+
     def validar(modeladmin, request, queryset):
-        from .choices import STATUS_EVENTO_AGUARD_ENVIO
+        from .choices import (STATUS_EVENTO_CADASTRADO,
+                              STATUS_EVENTO_ERRO)
+        n = 0
         for obj in queryset:
-            if not obj.transmissor_evento:
-                obj.vincular_transmissor()
-            obj.create_xml()
-            obj.validar()
-            messages.add_message(request, messages.INFO, 'Evento validado %s!' % obj.identidade)
+            if obj.status in (STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO):
+                n += 1
+                if not obj.transmissor_evento:
+                    obj.vincular_transmissor()
+                obj.create_xml()
+                obj.validar()
+        messages.add_message(request, messages.INFO, '%s eventos validados!' % n)
 
-    validar.short_description = "Autorizar envio de evento"
+    validar.short_description = "Validar evento"
 
-    def desvincular_evento_transmissor(modeladmin, request, queryset):
-        for obj in queryset:
-            Eventos.objects.filter(id=obj.id).\
-                update(transmissor_evento=None)
-            messages.add_message(request, messages.INFO, '%s desvinculado do transmissor!' % obj.identidade)
-
-    desvincular_evento_transmissor.short_description = "Desvincular evento de transmissor"
+    # def desvincular_evento_transmissor(modeladmin, request, queryset):
+    #     for obj in queryset:
+    #         Eventos.objects.filter(id=obj.id).\
+    #             update(transmissor_evento=None)
+    #         messages.add_message(request, messages.INFO, '%s desvinculado do transmissor!' % obj.identidade)
+    #
+    # desvincular_evento_transmissor.short_description = "Desvincular evento de transmissor"
 
     def abrir_evento_edicao(modeladmin, request, queryset):
         for obj in queryset:
@@ -355,8 +379,9 @@ class EventosAdmin(AuditoriaAdminEventos):
     actions = [
         atualizar_identidade,
         validar,
-        desvincular_evento_transmissor,
+        # desvincular_evento_transmissor,
         abrir_evento_edicao,
+        delete_model,
     ]
 
     form = EventosForm
@@ -386,8 +411,8 @@ class EventosAdmin(AuditoriaAdminEventos):
             'evento',
             'operacao',
             'identidade',
-            'nrinsc',
             'tpinsc',
+            'nrinsc',
             'tpamb',
             'procemi',
             'verproc',
@@ -407,18 +432,9 @@ class EventosAdmin(AuditoriaAdminEventos):
         'updated_at',
         'updated_by',
     )
-    #
-    # def has_change_permission(self, request, obj=None):
-    #     from .choices import STATUS_EVENTO_CADASTRADO
-    #     if obj and obj.status != STATUS_EVENTO_CADASTRADO:
-    #         return False
-    #     return super().has_change_permission(request)
 
     def has_delete_permission(self, request, obj=None):
-        from .choices import STATUS_EVENTO_CADASTRADO
-        if obj and obj.status != STATUS_EVENTO_CADASTRADO:
-            return False
-        return super().has_delete_permission(request)
+        return False
 
     def response_change(self, request, obj):
         from django.http import HttpResponseRedirect
@@ -434,6 +450,16 @@ class EventosAdmin(AuditoriaAdminEventos):
             retorno = obj.duplicar_evento(request=request)
             self.message_user(request, "Novo evento criado com sucesso! %s" % retorno.identidade)
             return HttpResponseRedirect(".")
+
+        elif "_apagar" in request.POST:
+            if obj.status in (STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO):
+                obj.delete()
+                return HttpResponseRedirect(".")
+            else:
+                messages.add_message(request,
+                    messages.ERROR,
+                    'Não é possível apagar o evento %s, pois o mesmo está com status %s!' % (
+                                         obj.identidade, obj.get_status_display()))
 
         elif "_enviar" in request.POST:
             retorno = obj.enviar(request=request)

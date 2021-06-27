@@ -4,15 +4,14 @@ import re
 from datetime import datetime
 
 import xmltodict
+from bs4 import BeautifulSoup
 from constance import config
 from django.apps import apps
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 from config.functions import (create_dir, read_file, save_file)
 from config.mixins import BaseModelEsocial, BaseModelSerializer, BaseModel
@@ -359,6 +358,8 @@ class TransmissorEventos(BaseModelEsocial):
                     tipo=ARQUIVO_TIPO_RESPONSE,
                     conteudo=read_file(dados['response'])).save()
 
+                soup = BeautifulSoup(read_file(dados['response']), 'xml')
+
                 response_dict = xmltodict.parse(read_file(dados['response']))
 
                 response_dict = response_dict["s:Envelope"]["s:Body"]["EnviarLoteEventosResponse"] \
@@ -389,6 +390,23 @@ class TransmissorEventos(BaseModelEsocial):
                 self.arquivo_header = dados['header']
                 self.arquivo_request = dados['request']
                 self.arquivo_response = dados['response']
+
+                for evt in soup.find_all('evento'):
+                    import xml.etree.ElementTree as ET
+                    identidade = evt["Id"]
+                    retorno_consulta_dict = xmltodict.parse(evt.retornoEvento.prettify())
+                    retorno_consulta_json = json.dumps(retorno_consulta_dict)
+                    ocorrencias = evt.retornoEvento.eSocial.retornoEvento.processamento.ocorrencias
+                    oco_json = None
+                    if ocorrencias:
+                        oco_dict = xmltodict.parse(ocorrencias.prettify())
+                        oco_json = json.dumps(oco_dict)
+                    evento = Eventos.objects.get(identidade=identidade)
+                    evento.retorno_consulta_json = retorno_consulta_json
+                    evento.ocorrencias_json = oco_json
+                    if oco_json and oco_json != '{}':
+                        evento.status = STATUS_EVENTO_ERRO
+                    evento.save()
 
                 if response_dict["status"]["cdResposta"] not in ('101', '201', '202'):
                     self.status = STATUS_TRANSMISSOR_ERRO_ENVIO
@@ -449,7 +467,6 @@ class TransmissorEventos(BaseModelEsocial):
 
     def consultar(self, service='WsConsultarLoteEventos', request=None):
 
-        from bs4 import BeautifulSoup
         date_now = datetime.now().strftime('%Y%m%d%H%M%S')
         dados = {'quant_eventos': self.quant_eventos(), 'empregador_tpinsc': self.empregador_tpinsc,
                  'empregador_nrinsc': self.empregador_nrinsc, 'transmissor_tpinsc': self.transmissor.transmissor_tpinsc,
@@ -545,7 +562,7 @@ class TransmissorEventos(BaseModelEsocial):
                     evento.retorno_consulta_json = retorno_consulta_json
                     evento.ocorrencias_json = oco_json
                     if oco_json and oco_json != '{}':
-                        evento.status = STATUS_EVENTO_ENVIADO_ERRO
+                        evento.status = STATUS_EVENTO_ERRO
                     evento.save()
 
                 return {
@@ -700,6 +717,8 @@ class Eventos(BaseModelEsocial):
         'identidade': 3,
         'evento_json': 12,
         'certificado': 4,
+        'tpinsc': 4,
+        'nrinsc': 8,
     }
     identidade = models.CharField('Identidade',
                                   max_length=36,
@@ -732,13 +751,13 @@ class Eventos(BaseModelEsocial):
                   "os demais empregadores deverão informar somente o CNPJ base (8 primeiros dígitos do CNPJ)" )
     tpamb = models.IntegerField(
         'Identificação do ambiente',
-        choices=CHOICES_TPAMB, default=2)
+        choices=CHOICES_TPAMB, default=settings.ESOCIAL_TPAMB)
     procemi = models.IntegerField(
         'Processo de emissão do evento',
-        choices=CHOICES_PROCEMI, default=1, )
+        choices=CHOICES_PROCEMI, default=settings.ESOCIAL_PROCEMI, )
     verproc = models.CharField(
         'Versão do processo',
-        max_length=20, null=True, )
+        max_length=20, null=True, default=settings.VERSAO_EMENSAGERIA, )
     certificado = models.ForeignKey(
         'Certificados',
         on_delete=models.PROTECT,
@@ -841,8 +860,7 @@ class Eventos(BaseModelEsocial):
     def vincular_transmissor(self, request=None):
         from .models import Eventos, Transmissor, TransmissorEventos
         from .choices import (
-            STATUS_EVENTO_AGUARD_ENVIO,
-            STATUS_TRANSMISSOR_CADASTRADO,
+            STATUS_TRANSMISSOR_AGUARDANDO,
             EVENTOS_GRUPOS_TABELAS, )
 
         if not self.transmissor_evento:
@@ -856,22 +874,25 @@ class Eventos(BaseModelEsocial):
                     empregador_tpinsc=transmissor.tpinsc,
                     empregador_nrinsc=transmissor.nrinsc,
                     grupo=EVENTOS_GRUPOS_TABELAS,
-                    status=STATUS_TRANSMISSOR_CADASTRADO).all()
-                if tevt:
-                    tevt = tevt[0]
-                else:
+                    status=STATUS_TRANSMISSOR_AGUARDANDO).all()
+                tra = None
+                for t in tevt:
+                    evts = Eventos.objects.filter(transmissor_evento=t).all()
+                    if len(evts) < config.ESOCIAL_LOTE_MAX:
+                        tra = t
+                if not tra:
                     tevt_data = {
                         'transmissor': transmissor,
                         'empregador_tpinsc': transmissor.tpinsc,
                         'empregador_nrinsc': transmissor.nrinsc,
                         'grupo': EVENTOS_GRUPOS_TABELAS,
-                        'status': STATUS_TRANSMISSOR_CADASTRADO,
+                        'status': STATUS_TRANSMISSOR_AGUARDANDO,
                     }
-                    tevt = TransmissorEventos(**tevt_data)
-                    tevt.save()
-                self.transmissor_evento = tevt
+                    tra = TransmissorEventos(**tevt_data)
+                    tra.save()
+                self.transmissor_evento = tra
                 self.save()
-                return tevt
+                return tra
             else:
                 if request:
                     messages.error(
@@ -944,7 +965,6 @@ class Eventos(BaseModelEsocial):
         # return signed_root
 
     def create_xml(self, request=None):
-        from json2xml import json2xml
         from json2xml.utils import readfromstring
         import xml.etree.ElementTree as ET
         from .choices import EVENTO_COD
@@ -1024,7 +1044,7 @@ class Eventos(BaseModelEsocial):
                     {"ocorrencia": {'tipo': '1', 'codigo': '-', 'descricao': e.reason, 'localizacao': e.path}})
             self.ocorrencias_json = json.dumps(err_dict)
             self.is_aberto = False
-            self.status = STATUS_EVENTO_ENVIADO_ERRO
+            self.status = STATUS_EVENTO_ERRO
             self.transmissor_evento = None
             self.save()
             if request:
@@ -1043,6 +1063,7 @@ class Eventos(BaseModelEsocial):
         ev_new = self
         ev_new.status = STATUS_EVENTO_CADASTRADO
         ev_new.identidade = STATUS_EVENTO_CADASTRADO
+        ev_new.transmissor_evento = None
         ev_new.created_at = datetime.now()
         ev_new.updated_at = None
         ev_new.created_by = None
@@ -1054,9 +1075,9 @@ class Eventos(BaseModelEsocial):
     def abrir_evento_para_edicao_lista(self):
         return [
             STATUS_EVENTO_CADASTRADO,
-            STATUS_EVENTO_VALIDADO_ERRO,
+            STATUS_EVENTO_ERRO,
             STATUS_EVENTO_AGUARD_ENVIO,
-            STATUS_EVENTO_ENVIADO_ERRO
+            STATUS_EVENTO_ERRO
         ]
 
     def abrir_evento_para_edicao(self, request=None):

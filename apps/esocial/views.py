@@ -4,18 +4,17 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404, render
-from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas
 from reportlab.lib import utils
+from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
-from wkhtmltopdf.views import PDFTemplateResponse
+from reportlab.pdfgen import canvas
 
 from .choices import (
+STATUS_EVENTO_IMPORTADO,
     STATUS_EVENTO_CADASTRADO,
-    STATUS_EVENTO_VALIDADO_ERRO,
     STATUS_EVENTO_AGUARD_ENVIO,
     STATUS_EVENTO_ENVIADO,
-    STATUS_EVENTO_ENVIADO_ERRO,
+    STATUS_EVENTO_ERRO,
     STATUS_EVENTO_PROCESSADO, )
 from .models import (
     Eventos,
@@ -27,23 +26,23 @@ from .models import (
 @login_required
 def dashboard_json(request):
     import json
+    eventos_importados = Eventos.objects.filter(status=STATUS_EVENTO_IMPORTADO)
     eventos_cadastrados = Eventos.objects.filter(status=STATUS_EVENTO_CADASTRADO)
-    eventos_erros_validacao = Eventos.objects.filter(status=STATUS_EVENTO_VALIDADO_ERRO)
+    eventos_erros = Eventos.objects.filter(status=STATUS_EVENTO_ERRO)
     eventos_validados = Eventos.objects.filter(status__in=(STATUS_EVENTO_AGUARD_ENVIO,))
-    eventos_erros_envio = Eventos.objects.filter(status=STATUS_EVENTO_ENVIADO_ERRO)
     eventos_enviados = Eventos.objects.filter(status=STATUS_EVENTO_ENVIADO)
     eventos_processados = Eventos.objects.filter(status=STATUS_EVENTO_PROCESSADO)
     dashboars_data = {
         'esocial_quant_cadastrados': eventos_cadastrados.count(),
-        'esocial_quant_erros_validacao': eventos_erros_validacao.count(),
+        'esocial_quant_erros': eventos_erros.count(),
+        'eventos_quant_importados': eventos_importados.count(),
         'esocial_quant_validados': eventos_validados.count(),
-        'esocial_quant_erros_envio': eventos_erros_envio.count(),
         'esocial_quant_enviados': eventos_enviados.count(),
         'esocial_quant_processados': eventos_processados.count(),
         'esocial_cadastrados': list(eventos_cadastrados.values('id', 'evento', 'identidade')),
-        'esocial_erros_validacao': list(eventos_erros_validacao.values('id', 'evento', 'identidade')),
+        'esocial_erros': list(eventos_erros.values('id', 'evento', 'identidade')),
         'esocial_validados': list(eventos_validados.values('id', 'evento', 'identidade')),
-        'esocial_erros_envio': list(eventos_erros_envio.values('id', 'evento', 'identidade')),
+        'eventos_importados': list(eventos_importados.values('id', 'evento', 'identidade')),
         'esocial_enviados': list(eventos_enviados.values('id', 'evento', 'identidade')),
         'esocial_processados': list(eventos_processados.values('id', 'evento', 'identidade')),
     }
@@ -193,24 +192,34 @@ def consultar_transmissor(request, pk):
 
 @login_required
 def enviar_transmissores(request):
-    from .choices import STATUS_TRANSMISSOR_AGUARDANDO
+    from .choices import STATUS_TRANSMISSOR_AGUARDANDO, STATUS_TRANSMISSOR_CADASTRADO
+    TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_CADASTRADO).update(status=STATUS_TRANSMISSOR_AGUARDANDO)
+    evt = Eventos.objects.filter(status=STATUS_EVENTO_AGUARD_ENVIO)
+    for e in evt:
+        e.vincular_transmissor()
     tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_AGUARDANDO)
+    n = 0
     for te in tes:
+        n += 1
         te.enviar()
     if request.META.get('HTTP_REFERER'):
+        messages.success(request, '%s lotes enviados' % n)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return HttpResponse('{}', content_type='application/json')
+    return HttpResponse('{"mensagem": "%s lotes enviados"}' % n, content_type='application/json')
 
 
 @login_required
 def consultar_transmissores(request):
     from .choices import STATUS_TRANSMISSOR_ENVIADO
     tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_ENVIADO)
+    n = 0
     for te in tes:
+        n += 1
         te.consultar()
     if request.META.get('HTTP_REFERER'):
+        messages.success(request, '%s lotes consultados' % n)
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return HttpResponse('{}', content_type='application/json')
+    return HttpResponse('{"mensagem": "%s lotes consultados"}' % n, content_type='application/json')
 
 
 @login_required
@@ -284,7 +293,7 @@ def pdf_recibo_evento(evento):
         0*mm, 0*mm,
         width=210*mm,
         height=297*mm, mask='auto')
-    if evento.transmissor_evento.transmissor.logotipo:
+    if evento.transmissor_evento and evento.transmissor_evento.transmissor.logotipo:
         logo = os.path.join(
             settings.BASE_DIR,
             settings.MEDIA_ROOT,
@@ -296,13 +305,14 @@ def pdf_recibo_evento(evento):
     my_canvas.setFont('Helvetica', 12)
     my_canvas.drawString(20*mm, 280*mm, evento.get_evento_display())
     my_canvas.setFont('Helvetica', 8)
-    ends = evento.transmissor_evento.transmissor.endereco_completo.replace('\r', '').split('\n')
-    ini = 16
-    for end in ends:
-        my_canvas.drawString(20*mm, ini*mm, end)
-        ini -= 4
+    if evento.transmissor_evento and evento.transmissor_evento.transmissor.logotipo:
+        ends = evento.transmissor_evento.transmissor.endereco_completo.replace('\r', '').split('\n')
+        ini = 16
+        for end in ends:
+            my_canvas.drawString(20*mm, ini*mm, end)
+            ini -= 4
 
-    my_canvas.setFont('Helvetica', 10)
+    my_canvas.setFont('Helvetica', 9)
     my_canvas.drawString(22*mm, 252*mm, evento.identidade)
     my_canvas.drawString(108*mm, 252*mm, evento.versao)
     my_canvas.drawString(150*mm, 252*mm, evento.get_tpamb_display())
@@ -313,49 +323,52 @@ def pdf_recibo_evento(evento):
     re = json.loads(evento.retorno_consulta_json)
 
     # RECEPÇÃO
-    rec = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('recepcao')
-    if rec:
-        my_canvas.drawString(22*mm, 214*mm, rec.get('tpAmb'))
-        my_canvas.setFont('Helvetica', 9)
-        my_canvas.drawString(50*mm, 214*mm, rec.get('dhRecepcao') or '')
-        my_canvas.setFont('Helvetica', 10)
-        my_canvas.drawString(94*mm, 214*mm, rec.get('versaoAppRecepcao') or '')
-        my_canvas.drawString(122*mm, 214*mm, rec.get('protocoloEnvioLote') or '')
+    if re.get('retornoEvento'):
+        rec = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('recepcao')
+        if rec:
+            my_canvas.drawString(22*mm, 214*mm, rec.get('tpAmb'))
+            my_canvas.setFont('Helvetica', 9)
+            my_canvas.drawString(50*mm, 214*mm, rec.get('dhRecepcao') or '')
+            my_canvas.setFont('Helvetica', 9)
+            my_canvas.drawString(94*mm, 214*mm, rec.get('versaoAppRecepcao') or '')
+            my_canvas.drawString(122*mm, 214*mm, rec.get('protocoloEnvioLote') or '')
 
-    # PROCESSAMENTO
-    pro = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('processamento')
-    if pro:
-        my_canvas.drawString(22*mm, 195*mm, pro.get('cdResposta'))
-        my_canvas.drawString(36*mm, 195*mm, pro.get('descResposta'))
-        my_canvas.drawString(122*mm, 195*mm, pro.get('versaoAppProcessamento') or '')
-        my_canvas.drawString(150*mm, 195*mm, pro.get('dhProcessamento'))
+        # PROCESSAMENTO
+        pro = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('processamento')
+        if pro:
+            my_canvas.drawString(22*mm, 195*mm, pro.get('cdResposta'))
+            my_canvas.drawString(36*mm, 195*mm, pro.get('descResposta'))
+            my_canvas.drawString(122*mm, 195*mm, pro.get('versaoAppProcessamento') or '')
+            my_canvas.drawString(150*mm, 195*mm, pro.get('dhProcessamento'))
 
-    # RECIBO
-    reci = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('recibo')
-    if reci:
-        my_canvas.drawString(22*mm, 176*mm, reci.get('nrRecibo') or '')
-        my_canvas.drawString(79*mm, 176*mm, reci.get('hash') or '')
+        # RECIBO
+        reci = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('recibo')
+        if reci:
+            my_canvas.drawString(22*mm, 176*mm, reci.get('nrRecibo') or '')
+            my_canvas.drawString(79*mm, 176*mm, reci.get('hash') or '')
 
-    # OCORRÊNCIAS
-    if pro.get('ocorrencias') and pro.get('ocorrencias').get('ocorrencia'):
-        ocor = pro.get('ocorrencias').get('ocorrencia')
-        ini = 160
-        for oco in ocor:
-            my_canvas.drawString(22*mm, ini*mm, oco.get('tipo') or '')
-            my_canvas.drawString(32*mm, ini*mm, oco.get('codigo') or '')
-            desc_txt = oco.get('descricao').replace('\n', ' ')
-            desc_list = generate_text_list(desc_txt, 88)
-            for des in desc_list:
-                my_canvas.drawString(42*mm, ini*mm, des)
-                ini -= 5
-            if oco.get('localizacao'):
-                my_canvas.drawString(42*mm, ini*mm, oco.get('localizacao') or '')
-            else:
-                ini +=5
-            ini -= 7
-    else:
-        ini = 160
-        my_canvas.drawString(22 * mm, ini * mm, 'Não há')
+        # OCORRÊNCIAS
+        if pro.get('ocorrencias'):
+            ocor = pro.get('ocorrencias').get('ocorrencia')
+            if not isinstance(ocor, list):
+                ocor = [ocor, ]
+            ini = 160
+            for oco in ocor:
+                my_canvas.drawString(22*mm, ini*mm, oco.get('tipo') or '')
+                my_canvas.drawString(32*mm, ini*mm, oco.get('codigo') or '')
+                desc_txt = oco.get('descricao').replace('\n', ' ')
+                desc_list = generate_text_list(desc_txt, 88)
+                for des in desc_list:
+                    my_canvas.drawString(42*mm, ini*mm, des)
+                    ini -= 5
+                if oco.get('localizacao'):
+                    my_canvas.drawString(42*mm, ini*mm, oco.get('localizacao') or '')
+                else:
+                    ini +=5
+                ini -= 7
+        else:
+            ini = 160
+            my_canvas.drawString(22 * mm, ini * mm, 'Não há')
 
     my_canvas.save()
 
