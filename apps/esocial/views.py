@@ -8,9 +8,8 @@ from reportlab.lib import utils
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
-
 from .choices import (
-STATUS_EVENTO_IMPORTADO,
+    STATUS_EVENTO_IMPORTADO,
     STATUS_EVENTO_CADASTRADO,
     STATUS_EVENTO_AGUARD_ENVIO,
     STATUS_EVENTO_ENVIADO,
@@ -152,7 +151,7 @@ def validar_evento(request, pk):
 
 @login_required
 def validar_eventos(request):
-    evts = Eventos.objects.filter(status=STATUS_EVENTO_CADASTRADO)
+    evts = Eventos.objects.filter(status__in=[STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO])
     for evt in evts:
         if not evt.transmissor_evento:
             evt.vincular_transmissor()
