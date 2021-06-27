@@ -12,15 +12,19 @@
          {% if perms.esocial.view_eventos %}
          <li><a href="/esocial/eventos/"><i class="fa fa-circle-o"></i>Eventos</a></li>
          {% endif %}
+      {% comment %}
          {% if perms.esocial.view_arquivos %}
          <li><a href="/esocial/arquivos/"><i class="fa fa-circle-o"></i>Arquivos</a></li>
          {% endif %}
+      {% endcomment %}
          {% if perms.esocial.view_certificados %}
          <li><a href="/esocial/certificados/"><i class="fa fa-circle-o"></i>Certificados</a></li>
          {% endif %}
+      {% comment %}
          {% if perms.esocial.view_relatorios %}
          <li><a href="/esocial/relatorios/"><i class="fa fa-circle-o"></i>Relatórios</a></li>
          {% endif %}
+      {% endcomment %}
          {% if perms.esocial.view_transmissor %}
          <li><a href="/esocial/transmissor/"><i class="fa fa-circle-o"></i>Transmissor</a></li>
          {% endif %}
@@ -77,12 +81,14 @@
       </span>
       </a>
       <ul class="treeview-menu">
+      {% comment %}
          {% if '/django_admin_settings/options/general_option/' in request.get_full_path %}
          <li><a href="/django_admin_settings/options/general_option/"><i class="fa fa-circle-o"></i>Opções Gerais</a></li>
          {% endif %}
          {% if perms.django_admin_settings.view_options %}
          <li><a href="/django_admin_settings/options/"><i class="fa fa-circle-o"></i>Opções</a></li>
          {% endif %}
+      {% endcomment %}
          {% if perms.constance.view_config %}
          <li><a href="/constance/config/"><i class="fa fa-circle-o"></i>Configurações</a></li>
          {% endif %}

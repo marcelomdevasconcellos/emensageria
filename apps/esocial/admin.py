@@ -43,7 +43,7 @@ admin.site.register(Certificados, CertificadosAdmin)
 
 
 class ArquivosAdmin(AuditoriaAdminEventos):
-    
+
     def arquivo_visualizar(self, obj):
         from django.urls import reverse
         url = reverse('esocial:arquivos_visualizar', kwargs={'pk': obj.pk})
@@ -60,7 +60,7 @@ class ArquivosAdmin(AuditoriaAdminEventos):
         'permite_recuperacao', )
     list_display = (
         'arquivo_visualizar',
-        'fonte', 
+        'fonte',
         'permite_recuperacao', )
     readonly_fields = (
         'permite_recuperacao',
@@ -72,7 +72,7 @@ class ArquivosAdmin(AuditoriaAdminEventos):
 
     def has_add_permission(self, request, obj=None):
         return False
-    
+
     def has_change_permission(self, request, obj=None):
         return False
 
