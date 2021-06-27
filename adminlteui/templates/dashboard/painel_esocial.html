@@ -187,13 +187,12 @@
         </div>
     </div>
 </div>
+
 <script>
 $("#btn_esocial_enviar").click(function() {
-    console.log('enviar');
     $.getJSON("{% url 'esocial:enviar_transmissores' %}", function(data) {});
 });
 $("#btn_esocial_consultar").click(function() {
-    console.log('consultar');
     $.getJSON("{% url 'esocial:consultar_transmissores' %}", function(data) {});
 });
 $.getJSON("{% url 'esocial:dashboard_json' %}", function(data) {

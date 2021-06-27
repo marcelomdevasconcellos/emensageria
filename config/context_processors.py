@@ -15,6 +15,7 @@ def admin_media(request):
     return {
         'hoje': datetime.datetime.today(),
         'DEBUG': settings.DEBUG,
+        'VERSAO_EMENSAGERIA': settings.VERSAO_EMENSAGERIA,
         'DATABASE_NAME': settings.DATABASES['default']['NAME'],
         'get_tags': False,
         'MEDIA_URL': settings.MEDIA_URL,
