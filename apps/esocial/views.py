@@ -197,26 +197,26 @@ def enviar_transmissores(request):
     evt = Eventos.objects.filter(status=STATUS_EVENTO_AGUARD_ENVIO)
     for e in evt:
         e.vincular_transmissor()
-    tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_AGUARDANDO)
+    tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_AGUARDANDO).all()
     for te in tes:
         te.enviar()
     if request.META.get('HTTP_REFERER'):
-        messages.success(request, '%s lotes enviados' % len(tes))
+        messages.success(request, 'Lotes enviados')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return HttpResponse('{"mensagem": "%s lotes enviados"}' % len(tes),
+    return HttpResponse('{"mensagem": "Lotes enviados"}',
                         content_type='application/json')
 
 
 @login_required
 def consultar_transmissores(request):
     from .choices import STATUS_TRANSMISSOR_ENVIADO
-    tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_ENVIADO)
+    tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_ENVIADO).all()
     for te in tes:
         te.consultar()
     if request.META.get('HTTP_REFERER'):
-        messages.success(request, '%s lotes consultados' % len(tes))
+        messages.success(request, 'Lotes consultados')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return HttpResponse('{"mensagem": "%s lotes consultados"}' % len(tes),
+    return HttpResponse('{"mensagem": "Lotes consultados"}',
                         content_type='application/json')
 
 
