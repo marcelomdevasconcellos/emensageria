@@ -292,7 +292,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk %}
+                        {% if original.pk and not original.is_aberto %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <a href="{% url 'esocial:visualizar_xml' pk=original.pk %}"
@@ -379,17 +379,31 @@ label {
         dst.value = JSON.stringify(obj);
         dst_read.value = JSON.stringify(obj);
     };
-    function removeDiv(obj) {
-        obj.parent().parent().remove();
-        set_evento_json();
-        removeSelect2();
-        appendSelect2();
+    function appendSelect2Div() {
+        $('select:not(.filtered):not(.admin-autocomplete)').select2({dropdownAutoWidth : true});
     };
-    function duplicateDiv(obj){
-        obj.parent().parent().clone().appendTo(obj.parent().parent());
-        set_evento_json();
-        removeSelect2();
-        appendSelect2();
+    function removeSelect2Div() {
+        $('select:not(.filtered):not(.admin-autocomplete)').select2('destroy');
+
+    };
+    function set_evento_json_div() {
+        var dst = document.getElementById("id_evento_json");
+        var dst_read = document.getElementById("id_evento_json_read");
+        var obj = $('#form_json').serializeJSON({useIntKeysAsArrayIndex: true});
+        dst.value = JSON.stringify(obj);
+        dst_read.value = JSON.stringify(obj);
+    };
+    function removeDiv(obj) {
+        removeSelect2Div();
+        obj.parent().parent().parent().remove();
+        appendSelect2Div();
+        set_evento_json_div();
+    };
+    function duplicateDiv(obj) {
+        removeSelect2Div();
+        obj.parent().parent().parent().clone().appendTo(obj.parent().parent().parent());
+        appendSelect2Div();
+        set_evento_json_div();
     };
 </script>
 {% endif %}
