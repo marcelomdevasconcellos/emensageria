@@ -440,29 +440,27 @@ REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][tpInsc]" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição do estabelecimento, de acordo com as opções da Tabela 05.
+Valores válidos:
+1 - CNPJ
+4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__id__tpInsc" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstabLot.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='4' {% ifequal ideEstabLot.tpInsc '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
-            <input type="hidden" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][tpInsc]" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__id__nrInsc_disabled" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][nrInsc]" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo ideEstabLot/tpInsc.
+Validação: A inscrição informada deve ser compatível com ideEstabLot/tpInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__id__nrInsc" maxlength="14" value="{{ideEstabLot.nrInsc}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="codLotacao__div">
     <div class="col-md-4">
         <div class="form-group">
@@ -726,29 +724,28 @@ Valores válidos:
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][remunOutrEmpr][][tpInsc]" id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__remunOutrEmpr__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__remunOutrEmpr__id__tpInsc" name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][remunOutrEmpr][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal remunOutrEmpr.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal remunOutrEmpr.tpInsc '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
-            <input type="hidden" name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][remunOutrEmpr][][tpInsc]" id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__remunOutrEmpr__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__remunOutrEmpr__id__nrInsc_disabled" name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][remunOutrEmpr][][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][remunOutrEmpr][][nrInsc]" id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__remunOutrEmpr__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo remunOutrEmpr/tpInsc.
+Validação: a) Se remunOutrEmpr/tpInsc = [1], deve ser um CNPJ válido, diferente do CNPJ base indicado no evento de Informações do Empregador (S-1000) e dos estabelecimentos informados através do evento S-1005.
+b) Se remunOutrEmpr/tpInsc = [2], deve ser um CPF válido e diferente do CPF do trabalhador e ainda, caso o empregador seja pessoa física, diferente do CPF do empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__remunOutrEmpr__id__nrInsc" maxlength="14" value="{{remunOutrEmpr.nrInsc}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][remunOutrEmpr][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="codCateg__div">
     <div class="col-md-4">
         <div class="form-group">

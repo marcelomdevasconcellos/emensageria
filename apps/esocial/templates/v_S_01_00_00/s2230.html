@@ -301,7 +301,9 @@ Valores válidos:
 2 - Colisão
 3 - Outros
 Validação: Somente pode ser preenchido se codMotAfast = [01, 03]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__id__tpAcidTransito" maxlength="1" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.tpAcidTransito'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][tpAcidTransito]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <select id="evtAfastTemp__infoAfastamento__iniAfastamento__id__tpAcidTransito" name="[evtAfastTemp][infoAfastamento][iniAfastamento][tpAcidTransito]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.tpAcidTransito' '1' %}selected{% endifequal %}>1 - Atropelamento</option><option value='2' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.tpAcidTransito' '2' %}selected{% endifequal %}>2 - Colisão</option><option value='3' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.tpAcidTransito' '3' %}selected{% endifequal %}>3 - Outros</option>
+            </select>
         </div>
     </div>
 </div>

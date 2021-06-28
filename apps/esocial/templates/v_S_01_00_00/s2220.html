@@ -423,9 +423,7 @@ Valores válidos:
         <div class="form-group">
             <label>Preencher com a sigla da UF de expedição do CRM<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF de expedição do CRM.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtMonit__exMedOcup__aso__medico__id__ufCRM" name="[evtMonit][exMedOcup][aso][medico][ufCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtMonit__exMedOcup__aso__medico__id__ufCRM" maxlength="2" value="{{original.evento_json|readjson:'evtMonit.exMedOcup.aso.medico.ufCRM'}}" name="[evtMonit][exMedOcup][aso][medico][ufCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -491,9 +489,7 @@ Validação: Se informado, deve ser um CPF válido."><i class="fa fa-fw fa-quest
         <div class="form-group">
             <label>Preencher com a sigla da UF de expedição do CRM<a data-toggle="tooltip" title="Preencher com a sigla da UF de expedição do CRM.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtMonit__exMedOcup__respMonit__id__ufCRM" name="[evtMonit][exMedOcup][respMonit][ufCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtMonit__exMedOcup__respMonit__id__ufCRM" maxlength="2" value="{{original.evento_json|readjson:'evtMonit.exMedOcup.respMonit.ufCRM'}}" name="[evtMonit][exMedOcup][respMonit][ufCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>

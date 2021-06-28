@@ -495,9 +495,7 @@ Se informado, deve ser um código válido e existente na tabela do IBGE."><i cla
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO
 Validação: Preenchimento obrigatório se tpLocal = [1, 3, 4, 5]. Não preencher se tpLocal = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtCAT__cat__localAcidente__id__uf" name="[evtCAT][cat][localAcidente][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtCAT__cat__localAcidente__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.uf'}}" name="[evtCAT][cat][localAcidente][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -546,29 +544,30 @@ Validação: Preenchimento obrigatório se tpLocal = [2]. Não preencher nos dem
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtCAT][cat][localAcidente][ideLocalAcid][tpInsc]" id="evtCAT__cat__localAcidente__ideLocalAcid__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição do local onde ocorreu o acidente ou a doença ocupacional, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+3 - CAEPF
+4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCAT__cat__localAcidente__ideLocalAcid__id__tpInsc" name="[evtCAT][cat][localAcidente][ideLocalAcid][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.ideLocalAcid.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.ideLocalAcid.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.ideLocalAcid.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
-            <input type="hidden" name="[evtCAT][cat][localAcidente][ideLocalAcid][tpInsc]" id="evtCAT__cat__localAcidente__ideLocalAcid__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtCAT__cat__localAcidente__ideLocalAcid__id__nrInsc_disabled" name="[evtCAT][cat][localAcidente][ideLocalAcid][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtCAT][cat][localAcidente][ideLocalAcid][nrInsc]" id="evtCAT__cat__localAcidente__ideLocalAcid__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento, de acordo com o tipo de inscrição indicado no campo ideLocalAcid/tpInsc. Se o acidente ou a doença ocupacional ocorreu em local onde o trabalhador presta serviços, deve ser um número de inscrição pertencente à contratante dos serviços.
+Validação: Deve ser compatível com o conteúdo do campo ideLocalAcid/tpInsc. Deve ser um identificador válido, constante das bases da RFB, e:
+a) Se tpLocal = [1], deve ser válido e existente na Tabela de Estabelecimentos (S-1005);
+b) Se tpLocal = [3], deve ser diferente dos estabelecimentos informados na Tabela S-1005 e, se ideLocalAcid/tpInsc = [1], diferente do CNPJ base indicado em S-1000."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCAT__cat__localAcidente__ideLocalAcid__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.ideLocalAcid.nrInsc'}}" name="[evtCAT][cat][localAcidente][ideLocalAcid][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
             </div>
         </blockquote>
     </div>
@@ -845,9 +844,7 @@ Valores válidos:
         <div class="form-group">
             <label>Sigla da Unidade da Federação - UF do órgão de classe<a data-toggle="tooltip" title="Sigla da UF do órgão de classe.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtCAT__cat__atestado__emitente__id__ufOC" name="[evtCAT][cat][atestado][emitente][ufOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtCAT__cat__atestado__emitente__id__ufOC" maxlength="2" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.emitente.ufOC'}}" name="[evtCAT][cat][atestado][emitente][ufOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>

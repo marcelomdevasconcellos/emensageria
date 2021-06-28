@@ -404,9 +404,7 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
         <div class="form-group">
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtCdBenefIn__beneficiario__endereco__brasil__id__uf" name="[evtCdBenefIn][beneficiario][endereco][brasil][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtCdBenefIn__beneficiario__endereco__brasil__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtCdBenefIn.beneficiario.endereco.brasil.uf'}}" name="[evtCdBenefIn][beneficiario][endereco][brasil][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>

@@ -474,7 +474,9 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 Valores válidos:
 0 - Sem acordo
 1 - Com acordo"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__infoOrgInternacional__id__indAcordoIsenMulta" maxlength="1" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][infoOrgInternacional][indAcordoIsenMulta]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__infoOrgInternacional__id__indAcordoIsenMulta" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][infoOrgInternacional][indAcordoIsenMulta]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta' '0' %}selected{% endifequal %}>0 - Sem acordo</option><option value='1' {% ifequal original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.inclusao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta' '1' %}selected{% endifequal %}>1 - Com acordo</option>
+            </select>
         </div>
     </div>
 </div>
@@ -810,7 +812,9 @@ Validação: Não pode ser anterior a dtEmisCertif."><i class="fa fa-fw fa-quest
 Valores válidos:
 0 - Sem acordo
 1 - Com acordo"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__infoOrgInternacional__id__indAcordoIsenMulta" maxlength="1" value="{{original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][infoOrgInternacional][indAcordoIsenMulta]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__infoOrgInternacional__id__indAcordoIsenMulta" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][infoOrgInternacional][indAcordoIsenMulta]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta' '0' %}selected{% endifequal %}>0 - Sem acordo</option><option value='1' {% ifequal original.evento_json|readjson:'evtInfoEmpregador.infoEmpregador.alteracao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta' '1' %}selected{% endifequal %}>1 - Com acordo</option>
+            </select>
         </div>
     </div>
 </div>

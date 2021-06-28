@@ -304,29 +304,28 @@ Se indComerc for igual a [3, 7], deve corresponder à soma do campo vrComerc dos
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtComProd][infoComProd][ideEstabel][tpComerc][][ideAdquir][][tpInsc]" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+2 - CPF
+Validação: Se indComerc for igual a [3, 7], deve ser igual a [1, 2]. Se indComerc for igual a [8], deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__tpInsc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][ideAdquir][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideAdquir.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideAdquir.tpInsc '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
-            <input type="hidden" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][ideAdquir][][tpInsc]" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__nrInsc_disabled" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][ideAdquir][][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][ideAdquir][][nrInsc]" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideAdquir/tpInsc.
+Validação: A inscrição informada deve ser compatível com o ideAdquir/tpInsc e diferente da inscrição do declarante."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__nrInsc" maxlength="14" value="{{ideAdquir.nrInsc}}" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][ideAdquir][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="vrComerc__div">
     <div class="col-md-4">
         <div class="form-group">

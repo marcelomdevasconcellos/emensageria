@@ -290,29 +290,30 @@ Valores válidos:
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtExpRisco][infoExpRisco][infoAmb][tpInsc]" id="evtExpRisco__infoExpRisco__infoAmb__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+3 - CAEPF
+4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__infoAmb__id__tpInsc" name="[evtExpRisco][infoExpRisco][infoAmb][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.infoAmb.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.infoAmb.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtExpRisco.infoExpRisco.infoAmb.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
-            <input type="hidden" name="[evtExpRisco][infoExpRisco][infoAmb][tpInsc]" id="evtExpRisco__infoExpRisco__infoAmb__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtExpRisco__infoExpRisco__infoAmb__id__nrInsc_disabled" name="[evtExpRisco][infoExpRisco][infoAmb][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtExpRisco][infoExpRisco][infoAmb][nrInsc]" id="evtExpRisco__infoExpRisco__infoAmb__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Número de inscrição onde está localizado o ambiente.
+Validação: Deve ser um identificador válido, compatível com o conteúdo do campo infoAmb/tpInsc e:
+a) Se localAmb = [1], deve ser válido e existente na Tabela de Estabelecimentos (S-1005);
+b) Se localAmb = [2], deve ser diferente dos estabelecimentos informados na Tabela S-1005 e, se infoAmb/tpInsc = [1] e o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente da constante em S-1000."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__infoAmb__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtExpRisco.infoExpRisco.infoAmb.nrInsc'}}" name="[evtExpRisco][infoExpRisco][infoAmb][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
             </div>
         </blockquote>
     </div>
@@ -460,7 +461,9 @@ Valores válidos:
 29 - milhão de partículas por decímetro cúbico (mppdc)
 30 - umidade relativa do ar (UR (%))
 Validação: Preenchimento obrigatório e exclusivo se tpAval = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__unMed" maxlength="2" value="{{agNoc.unMed}}" name="[evtExpRisco][infoExpRisco][agNoc][][unMed]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <select id="evtExpRisco__infoExpRisco__agNoc__id__unMed" name="[evtExpRisco][infoExpRisco][agNoc][][unMed]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal agNoc.unMed '1' %}selected{% endifequal %}>1 - dose diária de ruído</option><option value='2' {% ifequal agNoc.unMed '2' %}selected{% endifequal %}>2 - decibel linear (dB (linear))</option><option value='3' {% ifequal agNoc.unMed '3' %}selected{% endifequal %}>3 - decibel (C) (dB(C))</option><option value='4' {% ifequal agNoc.unMed '4' %}selected{% endifequal %}>4 - decibel (A) (dB(A))</option><option value='5' {% ifequal agNoc.unMed '5' %}selected{% endifequal %}>5 - metro por segundo ao quadrado (m/s2)</option><option value='6' {% ifequal agNoc.unMed '6' %}selected{% endifequal %}>6 - metro por segundo elevado a 1,75 (m/s1,75)</option><option value='7' {% ifequal agNoc.unMed '7' %}selected{% endifequal %}>7 - parte de vapor ou gás por milhão de partes de ar contaminado (ppm)</option><option value='8' {% ifequal agNoc.unMed '8' %}selected{% endifequal %}>8 - miligrama por metro cúbico de ar (mg/m3)</option><option value='9' {% ifequal agNoc.unMed '9' %}selected{% endifequal %}>9 - fibra por centímetro cúbico (f/cm3)</option><option value='10' {% ifequal agNoc.unMed '10' %}selected{% endifequal %}>10 - grau Celsius (ºC)</option><option value='11' {% ifequal agNoc.unMed '11' %}selected{% endifequal %}>11 - metro por segundo (m/s)</option><option value='12' {% ifequal agNoc.unMed '12' %}selected{% endifequal %}>12 - porcentual</option><option value='13' {% ifequal agNoc.unMed '13' %}selected{% endifequal %}>13 - lux (lx)</option><option value='14' {% ifequal agNoc.unMed '14' %}selected{% endifequal %}>14 - unidade formadora de colônias por metro cúbico (ufc/m3)</option><option value='15' {% ifequal agNoc.unMed '15' %}selected{% endifequal %}>15 - dose diária</option><option value='16' {% ifequal agNoc.unMed '16' %}selected{% endifequal %}>16 - dose mensal</option><option value='17' {% ifequal agNoc.unMed '17' %}selected{% endifequal %}>17 - dose trimestral</option><option value='18' {% ifequal agNoc.unMed '18' %}selected{% endifequal %}>18 - dose anual</option><option value='19' {% ifequal agNoc.unMed '19' %}selected{% endifequal %}>19 - watt por metro quadrado (W/m2)</option><option value='20' {% ifequal agNoc.unMed '20' %}selected{% endifequal %}>20 - ampère por metro (A/m)</option><option value='21' {% ifequal agNoc.unMed '21' %}selected{% endifequal %}>21 - militesla (mT)</option><option value='22' {% ifequal agNoc.unMed '22' %}selected{% endifequal %}>22 - microtesla (μT)</option><option value='23' {% ifequal agNoc.unMed '23' %}selected{% endifequal %}>23 - miliampère (mA)</option><option value='24' {% ifequal agNoc.unMed '24' %}selected{% endifequal %}>24 - quilovolt por metro (kV/m)</option><option value='25' {% ifequal agNoc.unMed '25' %}selected{% endifequal %}>25 - volt por metro (V/m)</option><option value='26' {% ifequal agNoc.unMed '26' %}selected{% endifequal %}>26 - joule por metro quadrado (J/m2)</option><option value='27' {% ifequal agNoc.unMed '27' %}selected{% endifequal %}>27 - milijoule por centímetro quadrado (mJ/cm2)</option><option value='28' {% ifequal agNoc.unMed '28' %}selected{% endifequal %}>28 - milisievert (mSv)</option><option value='29' {% ifequal agNoc.unMed '29' %}selected{% endifequal %}>29 - milhão de partículas por decímetro cúbico (mppdc)</option><option value='30' {% ifequal agNoc.unMed '30' %}selected{% endifequal %}>30 - umidade relativa do ar (UR (#))</option>
+            </select>
         </div>
     </div>
 </div>
@@ -520,7 +523,9 @@ Valores válidos:
 S - Sim
 N - Não
 Validação: Preenchimento obrigatório e exclusivo se utilizEPC = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__eficEpc" maxlength="1" value="{{agNoc.epcEpi.eficEpc}}" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][eficEpc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__eficEpc" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][eficEpc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal agNoc.epcEpi.eficEpc 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal agNoc.epcEpi.eficEpc 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
         </div>
     </div>
 </div>
@@ -785,9 +790,7 @@ Validação: Preenchimento obrigatório e exclusivo se ideOC = [9]."><i class="f
         <div class="form-group">
             <label>Sigla da Unidade da Federação - UF do órgão de classe<a data-toggle="tooltip" title="Sigla da Unidade da Federação - UF do órgão de classe.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtExpRisco__infoExpRisco__respReg__id__ufOC" name="[evtExpRisco][infoExpRisco][respReg][][ufOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtExpRisco__infoExpRisco__respReg__id__ufOC" maxlength="2" value="{{respReg.ufOC}}" name="[evtExpRisco][infoExpRisco][respReg][][ufOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>

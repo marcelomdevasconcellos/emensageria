@@ -456,9 +456,7 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
         <div class="form-group">
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__uf" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__endereco__brasil__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.endereco.brasil.uf'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][endereco][brasil][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -718,7 +716,9 @@ Readaptado: o servidor está investido em cargo de atribuições e responsabilid
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__reabReadap" maxlength="1" value="{{original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.reabReadap'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][reabReadap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <select id="evtAltCadastral__alteracao__dadosTrabalhador__infoDeficiencia__id__reabReadap" name="[evtAltCadastral][alteracao][dadosTrabalhador][infoDeficiencia][reabReadap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.reabReadap' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAltCadastral.alteracao.dadosTrabalhador.infoDeficiencia.reabReadap' 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
         </div>
     </div>
 </div>

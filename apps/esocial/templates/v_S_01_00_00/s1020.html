@@ -264,29 +264,30 @@ Validação: Deve ser um código válido e existente na Tabela 10, bem como comp
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][tpInsc]" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+2 - CPF
+4 - CNO
+Validação: O campo não deve ser preenchido se tpLotacao for igual a [01, 10, 21, 24, 90, 91]. Nos demais casos, observar conteúdo exigido para o campo dadosLotacao/nrInsc, conforme Tabela 10."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__id__tpInsc" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTabLotacao.infoLotacao.inclusao.dadosLotacao.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal original.evento_json|readjson:'evtTabLotacao.infoLotacao.inclusao.dadosLotacao.tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtTabLotacao.infoLotacao.inclusao.dadosLotacao.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
-            <input type="hidden" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][tpInsc]" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__id__nrInsc_disabled" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][nrInsc]" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ, CPF, CNO) ao qual pertence a lotação tributária.
+Validação: a) Deve ser preenchido de acordo com o conteúdo exigido, conforme especificado no campo dadosLotacao/tpInsc e na Tabela 10;
+b) Deve ser um identificador válido, constante das bases da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtTabLotacao.infoLotacao.inclusao.dadosLotacao.nrInsc'}}" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="fpasLotacao__div">
     <div class="col-md-12">
         <h4>Informações de FPAS e Terceiros relativos à lotação tributária.</h4>
@@ -517,9 +518,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpInscProp for informado.
         <div class="form-group">
             <label>Informar a alíquota RAT<a data-toggle="tooltip" title="Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante.
 Valores válidos: 1, 2, 3"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__dadosOpPort__id__aliqRat" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][dadosOpPort][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__dadosOpPort__id__aliqRat" maxlength="1" value="{{original.evento_json|readjson:'evtTabLotacao.infoLotacao.inclusao.dadosLotacao.dadosOpPort.aliqRat'}}" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][dadosOpPort][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -655,29 +654,30 @@ Validação: Deve ser um código válido e existente na Tabela 10, bem como comp
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][tpInsc]" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+2 - CPF
+4 - CNO
+Validação: O campo não deve ser preenchido se tpLotacao for igual a [01, 10, 21, 24, 90, 91]. Nos demais casos, observar conteúdo exigido para o campo dadosLotacao/nrInsc, conforme Tabela 10."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__id__tpInsc" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTabLotacao.infoLotacao.alteracao.dadosLotacao.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal original.evento_json|readjson:'evtTabLotacao.infoLotacao.alteracao.dadosLotacao.tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtTabLotacao.infoLotacao.alteracao.dadosLotacao.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
-            <input type="hidden" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][tpInsc]" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__id__nrInsc_disabled" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][nrInsc]" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ, CPF, CNO) ao qual pertence a lotação tributária.
+Validação: a) Deve ser preenchido de acordo com o conteúdo exigido, conforme especificado no campo dadosLotacao/tpInsc e na Tabela 10;
+b) Deve ser um identificador válido, constante das bases da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtTabLotacao.infoLotacao.alteracao.dadosLotacao.nrInsc'}}" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="fpasLotacao__div">
     <div class="col-md-12">
         <h4>Informações de FPAS e Terceiros relativos à lotação tributária.</h4>
@@ -908,9 +908,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpInscProp for informado.
         <div class="form-group">
             <label>Informar a alíquota RAT<a data-toggle="tooltip" title="Preencher com a alíquota definida na legislação vigente para a atividade (CNAE) preponderante.
 Valores válidos: 1, 2, 3"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__dadosOpPort__id__aliqRat" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][dadosOpPort][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__dadosOpPort__id__aliqRat" maxlength="1" value="{{original.evento_json|readjson:'evtTabLotacao.infoLotacao.alteracao.dadosLotacao.dadosOpPort.aliqRat'}}" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][dadosOpPort][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>

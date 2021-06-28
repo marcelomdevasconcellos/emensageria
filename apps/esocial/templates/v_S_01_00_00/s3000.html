@@ -159,9 +159,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o tipo de evento<a data-toggle="tooltip" title="Preencher com o tipo de evento. Ex.: S-1200, S-2200, etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtExclusao__infoExclusao__id__tpEvento" name="[evtExclusao][infoExclusao][tpEvento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtExclusao__infoExclusao__id__tpEvento" maxlength="6" value="{{original.evento_json|readjson:'evtExclusao.infoExclusao.tpEvento'}}" name="[evtExclusao][infoExclusao][tpEvento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>

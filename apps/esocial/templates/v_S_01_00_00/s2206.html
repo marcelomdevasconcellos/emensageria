@@ -437,29 +437,29 @@ Preenchimento obrigatório no caso de contratação de aprendiz por entidade edu
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][aprend][tpInsc]" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__aprend__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__aprend__id__tpInsc" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][aprend][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.aprend.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.aprend.tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
-            <input type="hidden" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][aprend][tpInsc]" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__aprend__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__aprend__id__nrInsc_disabled" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][aprend][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][aprend][nrInsc]" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__aprend__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento para o qual a contratação de aprendiz foi efetivada, de acordo com o tipo de inscrição indicado no campo aprend/tpInsc.
+Validação: Deve ser um identificador válido e:
+a) Se aprend/tpInsc = [1], deve ser informado com 14 (catorze) algarismos. Se o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente de ideEmpregador/nrInsc.
+b) Se aprend/tpInsc = [2], deve ser diferente do CPF do empregado. Se o empregador for pessoa física, também deve ser diferente do CPF do empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__aprend__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.aprend.nrInsc'}}" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][aprend][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
             </div>
         </blockquote>
     </div>
@@ -511,7 +511,9 @@ Valores válidos:
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoEstatutario__id__indTetoRGPS" maxlength="1" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS'}}" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoEstatutario][indTetoRGPS]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <select id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoEstatutario__id__indTetoRGPS" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoEstatutario][indTetoRGPS]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS' 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
         </div>
     </div>
 </div>
@@ -788,29 +790,28 @@ Validação: O preenchimento é obrigatório e exclusivo se tpContr = [3]."><i c
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][tpInsc]" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+3 - CAEPF
+4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__tpInsc" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
-            <input type="hidden" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][tpInsc]" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__nrInsc_disabled" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][nrInsc]" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo localTrabGeral/tpInsc.
+Validação: Deve ser um número de inscrição válido e existente na Tabela de Estabelecimentos (S-1005), bem como compatível com localTrabGeral/tpInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.nrInsc'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="descComp__div">
     <div class="col-md-4">
         <div class="form-group">
@@ -916,9 +917,7 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
         <div class="form-group">
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__uf" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTempDom.uf'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>

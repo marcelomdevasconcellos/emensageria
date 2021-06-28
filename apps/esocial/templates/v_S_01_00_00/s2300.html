@@ -445,9 +445,7 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
         <div class="form-group">
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTSVInicio__trabalhador__endereco__brasil__id__uf" name="[evtTSVInicio][trabalhador][endereco][brasil][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtTSVInicio__trabalhador__endereco__brasil__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.endereco.brasil.uf'}}" name="[evtTSVInicio][trabalhador][endereco][brasil][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -707,7 +705,9 @@ Readaptado: o servidor está investido em cargo de atribuições e responsabilid
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVInicio__trabalhador__infoDeficiencia__id__reabReadap" maxlength="1" value="{{original.evento_json|readjson:'evtTSVInicio.trabalhador.infoDeficiencia.reabReadap'}}" name="[evtTSVInicio][trabalhador][infoDeficiencia][reabReadap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <select id="evtTSVInicio__trabalhador__infoDeficiencia__id__reabReadap" name="[evtTSVInicio][trabalhador][infoDeficiencia][reabReadap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtTSVInicio.trabalhador.infoDeficiencia.reabReadap' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtTSVInicio.trabalhador.infoDeficiencia.reabReadap' 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
         </div>
     </div>
 </div>
@@ -1196,29 +1196,30 @@ Validação: Deve ser um código válido e existente na Tabela 01, diferente de 
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][tpInsc]" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+2 - CPF
+Validação: O preenchimento é obrigatório e exclusivo se infoDirigenteSindical/categOrig corresponder a "Empregado", "Agente Público", "Avulso" ou for igual a [721]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__tpInsc" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoDirigenteSindical.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoDirigenteSindical.tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
-            <input type="hidden" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][tpInsc]" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__nrInsc_disabled" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][nrInsc]" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do empregador de origem do dirigente sindical, de acordo com o tipo de inscrição indicado no campo infoDirigenteSindical/tpInsc.
+Validação: Preenchimento obrigatório e exclusivo se infoDirigenteSindical/tpInsc for informado. Se preenchido, deve ser um número de inscrição válido e diferente da inscrição do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000.
+Se infoDirigenteSindical/tpInsc = [1], deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do empregador e dos estabelecimentos informados através do evento S-1005.
+Se infoDirigenteSindical/tpInsc = [2], deve possuir 11 (onze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoDirigenteSindical.nrInsc'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="dtAdmOrig__div">
     <div class="col-md-4">
         <div class="form-group">
@@ -1614,9 +1615,7 @@ Validação: Não informar se o campo cnpjInstEnsino estiver preenchido. Se info
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO
 Validação: Não informar se o campo cnpjInstEnsino estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__uf" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtTSVInicio.infoTSVInicio.infoComplementares.infoEstagiario.instEnsino.uf'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>

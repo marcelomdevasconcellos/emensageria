@@ -220,29 +220,36 @@ Considera-se como dia não útil o sábado, o domingo e todo aquele constante do
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtBasesFGTS][infoFGTS][ideEstab][][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+2 - CPF
+3 - CAEPF
+4 - CNO
+Origem: campo {ideEstabLot/tpInsc} de:
+a) infoPerApur ou idePeriodo do S-1200;
+b) infoPerApur ou idePeriodo do S-2299;
+c) dmDev do S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__id__tpInsc" name="[evtBasesFGTS][infoFGTS][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideEstab.tpInsc '2' %}selected{% endifequal %}>2 - CPF</option><option value='3' {% ifequal ideEstab.tpInsc '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal ideEstab.tpInsc '4' %}selected{% endifequal %}>4 - CNO</option><option value='Origem:' {% ifequal ideEstab.tpInsc 'Origem:' %}selected{% endifequal %}>Origem: campo {ideEstabLot/tpInsc} de: a) infoPerApur ou idePeriodo do S-1200; b) infoPerApur ou idePeriodo do S-2299; c) dmDev do S-2399.</option>
             </select>
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__id__nrInsc_disabled" name="[evtBasesFGTS][infoFGTS][ideEstab][][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][nrInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEstab/tpInsc.
+Origem: campo {ideEstabLot/nrInsc} de:
+a) infoPerApur ou idePeriodo do S-1200;
+b) infoPerApur ou idePeriodo do S-2299;
+c) dmDev do S-2399."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
-</div>{% for ideLotacao in original.evento_json|readjson:'ideEstab.ideLotacao' %}
+</div>
+{% for ideLotacao in original.evento_json|readjson:'ideEstab.ideLotacao' %}
 <div id="ideLotacao__div">
     <div class="col-md-12">
         <h4>Identificação da lotação tributária.</h4>
@@ -292,29 +299,35 @@ c) Se origem de codLotacao for idePeriodo do S-2299, retornar o tipo de lotaçã
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+2 - CPF
+4 - CNO
+Evento de origem: S-1020.
+Validação: a) Se origem de codLotacao for infoPerApur do S-1200, infoPerApur do S-2299 ou dmDev do S-2399, retornar o tipo de inscrição vigente em perApur;
+b) Se origem de codLotacao for idePeriodo do S-1200, retornar o tipo de inscrição vigente em perRef desse evento;
+c) Se origem de codLotacao for idePeriodo do S-2299, retornar o tipo de inscrição vigente em perRef desse evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__tpInsc" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideLotacao.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao.tpInsc '2' %}selected{% endifequal %}>2 - CPF</option><option value='4' {% ifequal ideLotacao.tpInsc '4' %}selected{% endifequal %}>4 - CNO</option><option value='Evento de origem:' {% ifequal ideLotacao.tpInsc 'Evento de origem:' %}selected{% endifequal %}>Evento de origem: S-1020.</option>
             </select>
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__nrInsc_disabled" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][nrInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ, CPF, CNO) ao qual pertence a lotação tributária, conforme indicado na Tabela 10.
+Evento de origem: S-1020.
+Validação: a) Se origem de codLotacao for infoPerApur do S-1200, infoPerApur do S-2299 ou dmDev do S-2399, retornar o número de inscrição vigente em perApur;
+b) Se origem de codLotacao for idePeriodo do S-1200, retornar o número de inscrição vigente em perRef desse evento;
+c) Se origem de codLotacao for idePeriodo do S-2299, retornar o número de inscrição vigente em perRef desse evento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__id__nrInsc" maxlength="14" value="{{ideLotacao.nrInsc}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
-</div>{% for infoTrabFGTS in original.evento_json|readjson:'ideLotacao.infoTrabFGTS' %}
+</div>
+{% for infoTrabFGTS in original.evento_json|readjson:'ideLotacao.infoTrabFGTS' %}
 <div id="infoTrabFGTS__div">
     <div class="col-md-12">
         <h4>Informações relativas à matrícula e categoria do trabalhador.</h4>
@@ -436,9 +449,7 @@ Validação: Deve corresponder à data do término existente no RET."><i class="
         <div class="form-group">
             <label>Código de motivo do término do TSVE<a data-toggle="tooltip" title="Código de motivo do término do TSVE.
 Validação: Deve corresponder ao motivo do término existente no RET."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__mtvDesligTSV" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][mtvDesligTSV]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__id__mtvDesligTSV" maxlength="2" value="{{infoTrabFGTS.mtvDesligTSV}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][mtvDesligTSV]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -467,29 +478,26 @@ Evento de origem: S-1200.</h4>
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__tpInsc" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal infoTrabFGTS.sucessaoVinc.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal infoTrabFGTS.sucessaoVinc.tpInsc '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][tpInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__nrInsc_disabled" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][nrInsc]" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do empregador anterior, de acordo com o tipo de inscrição indicado no campo sucessaoVinc/tpInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__ideEstab__ideLotacao__infoTrabFGTS__sucessaoVinc__id__nrInsc" maxlength="14" value="{{infoTrabFGTS.sucessaoVinc.nrInsc}}" name="[evtBasesFGTS][infoFGTS][ideEstab][][ideLotacao][][infoTrabFGTS][][sucessaoVinc][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="matricAnt__div">
     <div class="col-md-4">
         <div class="form-group">

@@ -717,9 +717,7 @@ Validação: Não informar se o campo cnpjInstEnsino estiver preenchido. Se info
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO
 Validação: Não informar se o campo cnpjInstEnsino estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__uf" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.uf'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>

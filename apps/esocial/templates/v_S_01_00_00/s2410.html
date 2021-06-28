@@ -397,7 +397,9 @@ Validação: Preenchimento obrigatório se cadIni = [N]."><i class="fa fa-fw fa-
 Valores válidos:
 1 - Vitalícia
 2 - Temporária"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__dadosBeneficio__infoPenMorte__id__tpPenMorte" maxlength="1" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte'}}" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][infoPenMorte][tpPenMorte]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <select id="evtCdBenIn__infoBenInicio__dadosBeneficio__infoPenMorte__id__tpPenMorte" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][infoPenMorte][tpPenMorte]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte' '1' %}selected{% endifequal %}>1 - Vitalícia</option><option value='2' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte' '2' %}selected{% endifequal %}>2 - Temporária</option>
+            </select>
         </div>
     </div>
 </div>

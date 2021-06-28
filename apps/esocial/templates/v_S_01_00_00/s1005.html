@@ -198,29 +198,28 @@
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtTabEstab][infoEstab][inclusao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+3 - CAEPF
+4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__inclusao__ideEstab__id__tpInsc" name="[evtTabEstab][infoEstab][inclusao][ideEstab][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.ideEstab.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.ideEstab.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.ideEstab.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
-            <input type="hidden" name="[evtTabEstab][infoEstab][inclusao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__nrInsc_disabled" name="[evtTabEstab][infoEstab][inclusao][ideEstab][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtTabEstab][infoEstab][inclusao][ideEstab][nrInsc]" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo ideEstab/tpInsc.
+Validação: Deve ser compatível com o conteúdo do campo ideEstab/tpInsc. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.ideEstab.nrInsc'}}" name="[evtTabEstab][infoEstab][inclusao][ideEstab][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="iniValid__div">
     <div class="col-md-4">
         <div class="form-group">
@@ -302,9 +301,7 @@ Validação: Deve ser um número existente na tabela CNAE."><i class="fa fa-fw f
 Valores válidos: 1, 2, 3
 Validação: Preenchimento obrigatório e exclusivo se a alíquota informada for diferente da definida na legislação vigente para o código CNAE informado (neste caso, deverá haver informações de processo em procAdmJudRat).
 Se informada, deve ser diferente da alíquota definida na legislação vigente para a atividade (CNAE) preponderante."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__id__aliqRat" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__id__aliqRat" maxlength="1" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.inclusao.dadosEstab.aliqGilrat.aliqRat'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -593,12 +590,13 @@ Validação: Se informado, deve ser um número de processo judicial válido."><i
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc_disabled" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoTrab][infoApr][infoEntEduc][][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoTrab][infoApr][infoEntEduc][][nrInsc]" id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da entidade educativa ou de prática desportiva.
+Validação: Deve ser um número de CNPJ válido, com 14 (catorze) algarismos. Se o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente de ideEmpregador/nrInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc" maxlength="14" value="{{infoEntEduc.nrInsc}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoTrab][infoApr][infoEntEduc][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
             </div>
         </blockquote>
     </div>
@@ -698,29 +696,28 @@ Validação: Deve ser um número de processo judicial válido."><i class="fa fa-
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtTabEstab][infoEstab][alteracao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+3 - CAEPF
+4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__alteracao__ideEstab__id__tpInsc" name="[evtTabEstab][infoEstab][alteracao][ideEstab][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.ideEstab.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.ideEstab.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.ideEstab.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
-            <input type="hidden" name="[evtTabEstab][infoEstab][alteracao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__nrInsc_disabled" name="[evtTabEstab][infoEstab][alteracao][ideEstab][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtTabEstab][infoEstab][alteracao][ideEstab][nrInsc]" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo ideEstab/tpInsc.
+Validação: Deve ser compatível com o conteúdo do campo ideEstab/tpInsc. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.ideEstab.nrInsc'}}" name="[evtTabEstab][infoEstab][alteracao][ideEstab][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="iniValid__div">
     <div class="col-md-4">
         <div class="form-group">
@@ -802,9 +799,7 @@ Validação: Deve ser um número existente na tabela CNAE."><i class="fa fa-fw f
 Valores válidos: 1, 2, 3
 Validação: Preenchimento obrigatório e exclusivo se a alíquota informada for diferente da definida na legislação vigente para o código CNAE informado (neste caso, deverá haver informações de processo em procAdmJudRat).
 Se informada, deve ser diferente da alíquota definida na legislação vigente para a atividade (CNAE) preponderante."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__id__aliqRat" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__id__aliqRat" maxlength="1" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.aliqGilrat.aliqRat'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1093,12 +1088,13 @@ Validação: Se informado, deve ser um número de processo judicial válido."><i
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc_disabled" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoTrab][infoApr][infoEntEduc][][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoTrab][infoApr][infoEntEduc][][nrInsc]" id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da entidade educativa ou de prática desportiva.
+Validação: Deve ser um número de CNPJ válido, com 14 (catorze) algarismos. Se o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente de ideEmpregador/nrInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc" maxlength="14" value="{{infoEntEduc.nrInsc}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoTrab][infoApr][infoEntEduc][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
             </div>
         </blockquote>
     </div>
@@ -1242,29 +1238,28 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
-            <select name="[evtTabEstab][infoEstab][exclusao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__tpInsc_disabled" disabled="">
-                <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+3 - CAEPF
+4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabEstab__infoEstab__exclusao__ideEstab__id__tpInsc" name="[evtTabEstab][infoEstab][exclusao][ideEstab][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.exclusao.ideEstab.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.exclusao.ideEstab.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtTabEstab.infoEstab.exclusao.ideEstab.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
-            <input type="hidden" name="[evtTabEstab][infoEstab][exclusao][ideEstab][tpInsc]" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__tpInsc" value="{{original.tpinsc}}">
         </div>
     </div>
 </div>
+
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000</label>
-            <input type="text" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__nrInsc_disabled" name="[evtTabEstab][infoEstab][exclusao][ideEstab][nrInsc]" value="{{original.nrinsc}}" class="vTextField" maxlength="15" disabled="">
-            <input type="hidden" name="[evtTabEstab][infoEstab][exclusao][ideEstab][nrInsc]" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__nrInsc" value="{{original.nrinsc}}">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo ideEstab/tpInsc.
+Validação: Deve ser compatível com o conteúdo do campo ideEstab/tpInsc. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtTabEstab.infoEstab.exclusao.ideEstab.nrInsc'}}" name="[evtTabEstab][infoEstab][exclusao][ideEstab][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
+
 <div id="iniValid__div">
     <div class="col-md-4">
         <div class="form-group">

@@ -330,9 +330,7 @@ Valores válidos:
         <div class="form-group">
             <label>Identificação da Unidade da Federação - UF da Seção Judiciária<a data-toggle="tooltip" title="Identificação da Unidade da Federação - UF da Seção Judiciária.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabProcesso__infoProcesso__inclusao__dadosProc__dadosProcJud__id__ufVara" name="[evtTabProcesso][infoProcesso][inclusao][dadosProc][dadosProcJud][ufVara]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtTabProcesso__infoProcesso__inclusao__dadosProc__dadosProcJud__id__ufVara" maxlength="2" value="{{original.evento_json|readjson:'evtTabProcesso.infoProcesso.inclusao.dadosProc.dadosProcJud.ufVara'}}" name="[evtTabProcesso][infoProcesso][inclusao][dadosProc][dadosProcJud][ufVara]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -630,9 +628,7 @@ Valores válidos:
         <div class="form-group">
             <label>Identificação da Unidade da Federação - UF da Seção Judiciária<a data-toggle="tooltip" title="Identificação da Unidade da Federação - UF da Seção Judiciária.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabProcesso__infoProcesso__alteracao__dadosProc__dadosProcJud__id__ufVara" name="[evtTabProcesso][infoProcesso][alteracao][dadosProc][dadosProcJud][ufVara]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option>
-            </select>
+            <input type="text" id="evtTabProcesso__infoProcesso__alteracao__dadosProc__dadosProcJud__id__ufVara" maxlength="2" value="{{original.evento_json|readjson:'evtTabProcesso.infoProcesso.alteracao.dadosProc.dadosProcJud.ufVara'}}" name="[evtTabProcesso][infoProcesso][alteracao][dadosProc][dadosProcJud][ufVara]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
