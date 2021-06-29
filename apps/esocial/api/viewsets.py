@@ -2,6 +2,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
+import json
 
 from django.shortcuts import redirect, get_object_or_404, render
 
@@ -30,28 +31,51 @@ class EventosViewSet(ModelViewSet):
     def atualizar_identidade(self, request, pk=None):
         obj = get_object_or_404(Eventos, id=pk)
         obj.make_identidade()
-        return Response(model_to_dict(obj))
+        return Response(
+            {'id': obj.id,
+             'identidade': obj.identidade,})
 
     @action(detail=True, methods=['get'], url_path='abrir-evento-para-edicao')
     def abrir_evento_para_edicao(self, request, pk=None):
         obj = get_object_or_404(Eventos, id=pk)
         obj.abrir_evento_para_edicao()
-        return Response(model_to_dict(obj))
+        return Response(
+            {'id': obj.id,
+             'identidade': obj.identidade,
+             'status': obj.status,
+             'status_txt': obj.get_status_display(),})
 
     @action(detail=True, methods=['get'], url_path='validar')
     def validar(self, request, pk=None):
         obj = get_object_or_404(Eventos, id=pk)
         obj.validar()
-        return Response(model_to_dict(obj))
+        return Response(
+            {'id': obj.id,
+             'identidade': obj.identidade,
+             'status': obj.status,
+             'status_txt': obj.get_status_display(),
+             'ocorrencias': json.loads(obj.ocorrencias_json or '{}'), })
 
     @action(detail=True, methods=['get'], url_path='enviar')
     def enviar(self, request, pk=None):
         obj = get_object_or_404(Eventos, id=pk)
-        obj.enviar()
-        return Response(model_to_dict(obj))
+        retorno = obj.enviar()
+        retorno.update({'id': obj.id,
+             'identidade': obj.identidade,
+             'status': obj.status,
+             'status_txt': obj.get_status_display(),
+             'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
+             'retorno_evento': json.loads(obj.retorno_evento_json or '{}'), })
+        return Response(retorno)
 
     @action(detail=True, methods=['get'], url_path='consultar')
     def consultar(self, request, pk=None):
         obj = get_object_or_404(Eventos, id=pk)
-        obj.consultar()
-        return Response(model_to_dict(obj))
+        retorno = obj.consultar()
+        retorno.update({'id': obj.id,
+             'identidade': obj.identidade,
+             'status': obj.status,
+             'status_txt': obj.get_status_display(),
+             'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
+             'retorno_consulta': json.loads(obj.retorno_consulta_json or '{}'), })
+        return Response(retorno)

@@ -4,7 +4,8 @@ from rest_framework.serializers import (
     JSONField,
     IntegerField,
     BooleanField,
-    ChoiceField
+    ChoiceField,
+    CharField,
 )
 
 from ..models import (
@@ -18,6 +19,11 @@ class EventosSerializer(ModelSerializer):
     retorno_envio = JSONField(read_only=True)
     retorno_consulta = JSONField(read_only=True)
     ocorrencias = JSONField(read_only=True)
+    status_txt = CharField(source='get_status_display', read_only=True)
+    tpinsc_txt = CharField(source='get_tpinsc_display', read_only=True)
+    tpamb_txt = CharField(source='get_tpamb_display', read_only=True)
+    procemi_txt = CharField(source='get_procemi_display', read_only=True)
+    origem_txt = CharField(source='get_origem_display', read_only=True)
 
     def create(self, validated_data):
         validated_data['origem'] = EVENTO_ORIGEM_API

@@ -69,18 +69,24 @@ O resto é configurações pelo sistema. Siga a sequência:
 
 ## APIs
 
+#### Atenção: O apache deverá estar configurado para passar o headers para o Django, para isso inclua a configuração abaixo no servidor de produção.
+
+```
+WSGIPassAuthorization On
+```
+
 #### Gerar token via GET:
 - URL: http://localhost:8000/api-token-auth/
 - Exemplo CURL (gerando token via requisição GET):
 ```
 curl --data "username=admin&password=admin"
-http://localhost:8000/api-token-auth/
+http://localhost:8000/api-token-auth/?format=json
 ```
 
 - Exemplo CURL (gerando token via requisição REST):
 ```
 curl -d '{"username":"admin", "password":"admin"}' -H "Content-Type:
-application/json" -X POST http://localhost:8000/api-token-auth/
+application/json" -X POST http://localhost:8000/api-token-auth/?format=json
 ```
 
 #### Consulta de eventos
@@ -88,28 +94,28 @@ application/json" -X POST http://localhost:8000/api-token-auth/
 - Metódos: 'get', 'put', 'patch', 'post', 'head'
 - Exemplo CURL:
 ```
-curl -X GET http://localhost:8000/esocial/api/eventos/ -H
+curl -X GET http://localhost:8000/esocial/api/eventos/?format=json -H
 'Authorization: Token <token>'
 ```
 - Filtros:
 ```
-http://localhost:8000/esocial/api/eventos/?user_id=1&identidade=ID1346866130001462021062221014900001
+http://localhost:8000/esocial/api/eventos/?format=json&user_id=1&identidade=ID1346866130001462021062221014900001
 ```
 
 #### Executando funções nos eventos individualmente ou consultando e alterando
 - URL: http://localhost:8000/esocial/api/eventos/<evento_id>/
 - Exemplo CURL:
 ```
-curl -X GET http://localhost:8000/esocial/api/eventos/1/ -H
+curl -X GET http://localhost:8000/esocial/api/eventos/1/?format=json -H
 'Authorization: Token <token>'
 ```
 - Funções:
 ```
-http://localhost:8000/esocial/api/eventos/<evento_id>/atualizar-identidade/
-http://localhost:8000/esocial/api/eventos/<evento_id>/abrir-evento-para-edicao/
-http://localhost:8000/esocial/api/eventos/<evento_id>/validar/
-http://localhost:8000/esocial/api/eventos/<evento_id>/enviar/
-http://localhost:8000/esocial/api/eventos/<evento_id>/consultar/
+http://localhost:8000/esocial/api/eventos/<evento_id>/atualizar-identidade/?format=json
+http://localhost:8000/esocial/api/eventos/<evento_id>/abrir-evento-para-edicao/?format=json
+http://localhost:8000/esocial/api/eventos/<evento_id>/validar/?format=json
+http://localhost:8000/esocial/api/eventos/<evento_id>/enviar/?format=json
+http://localhost:8000/esocial/api/eventos/<evento_id>/consultar/?format=json
 ```
 
 #### Validando eventos em lote

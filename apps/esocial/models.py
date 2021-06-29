@@ -300,7 +300,7 @@ class TransmissorEventos(BaseModelEsocial):
                  'key': self.transmissor.certificado.key_pem_file(), 'capath': self.transmissor.certificado.capath(),
                  'timeout': int(config.ESOCIAL_TIMEOUT)}
 
-        if self.transmissor.certificado and dados['quant_eventos']:
+        if self.transmissor.certificado and dados['quant_eventos'] and self.status == STATUS_TRANSMISSOR_CADASTRADO:
 
             if dados['esocial_lote_min'] <= dados['quant_eventos'] <= dados['esocial_lote_max']:
 
@@ -320,7 +320,7 @@ class TransmissorEventos(BaseModelEsocial):
                             pode ter ocorrido erro de timeout.
                             Timeout atual %(timeout)s''' % dados)
                     return {
-                        'status': 'error',
+                        'retorno': 'error',
                         'mensagem': '''Não foi recebida nenhuma resposta do servidor. 
                             Verifique se a pasta /arquivos/ está com permissão de escrita ou 
                             pode ter ocorrido erro de timeout.
@@ -334,7 +334,7 @@ class TransmissorEventos(BaseModelEsocial):
                         messages.error(request, 'Retorno do servidor: ' + read_file(dados['header']))
 
                     return {
-                        'status': 'warning',
+                        'retorno': 'warning',
                         'mensagem': 'Retorno do servidor: ' + read_file(dados['header'])}
 
                 TransmissorEventosArquivos(
@@ -394,15 +394,15 @@ class TransmissorEventos(BaseModelEsocial):
                 for evt in soup.find_all('evento'):
                     import xml.etree.ElementTree as ET
                     identidade = evt["Id"]
-                    retorno_consulta_dict = xmltodict.parse(evt.retornoEvento.prettify())
-                    retorno_consulta_json = json.dumps(retorno_consulta_dict)
+                    retorno_envio_dict = xmltodict.parse(evt.retornoEvento.prettify())
+                    retorno_envio_json = json.dumps(retorno_envio_dict)
                     ocorrencias = evt.retornoEvento.eSocial.retornoEvento.processamento.ocorrencias
                     oco_json = None
                     if ocorrencias:
                         oco_dict = xmltodict.parse(ocorrencias.prettify())
                         oco_json = json.dumps(oco_dict)
                     evento = Eventos.objects.get(identidade=identidade)
-                    evento.retorno_consulta_json = retorno_consulta_json
+                    evento.retorno_envio_json = retorno_envio_json
                     evento.ocorrencias_json = oco_json
                     if oco_json and oco_json != '{}':
                         evento.status = STATUS_EVENTO_ERRO
@@ -416,7 +416,7 @@ class TransmissorEventos(BaseModelEsocial):
                             resposta_codigo,
                             resposta_descricao))
                     return {
-                        'status': 'error',
+                        'retorno': 'error',
                         'mensagem': '{} {}'.format(
                             resposta_codigo,
                             resposta_descricao)}
@@ -430,7 +430,7 @@ class TransmissorEventos(BaseModelEsocial):
                         resposta_codigo,
                         resposta_descricao))
                 return {
-                    'status': 'success',
+                    'retorno': 'success',
                     'mensagem': '{} {}'.format(
                         resposta_codigo,
                         resposta_descricao)}
@@ -439,21 +439,21 @@ class TransmissorEventos(BaseModelEsocial):
                 if request:
                     messages.error(request, 'Lote com quantidade inferior a mínima permitida!')
                 return {
-                    'status': 'error',
+                    'retorno': 'error',
                     'mensagem': 'Lote com quantidade inferior a mínima permitida!'}
 
             elif dados['quant_eventos'] > dados['esocial_lote_max']:
                 if request:
                     messages.error(request, 'Lote com quantidade de eventos superior a máxima permitida!')
                 return {
-                    'status': 'error',
+                    'retorno': 'error',
                     'mensagem': 'Lote com quantidade de eventos superior a máxima permitida!'}
 
             else:
                 if request:
                     messages.error(request, 'Ops! Algo aconteceu!')
                 return {
-                    'status': 'error',
+                    'retorno': 'error',
                     'mensagem': 'Ops! Algo aconteceu!'}
 
         else:
@@ -461,7 +461,7 @@ class TransmissorEventos(BaseModelEsocial):
                 messages.error(request, '''O certificado não está configurado ou não
                                 possuem eventos validados para envio neste lote!''')
             return {
-                'status': 'error',
+                'retorno': 'error',
                 'mensagem': '''O certificado não está configurado ou não
                                 possuem eventos validados para envio neste lote!'''}
 
@@ -481,7 +481,7 @@ class TransmissorEventos(BaseModelEsocial):
                  'key': self.transmissor.certificado.key_pem_file(), 'capath': self.transmissor.certificado.capath(),
                  'timeout': int(config.ESOCIAL_TIMEOUT)}
 
-        if self.transmissor.certificado and self.protocolo:
+        if self.transmissor.certificado and self.protocolo and self.status in (STATUS_TRANSMISSOR_ENVIADO, STATUS_TRANSMISSOR_CONSULTADO):
 
             save_file(dados['request'], self.make_retrieve())
             save_file(self.get_command(service, date_now), COMMAND_CURL % dados)
@@ -493,7 +493,7 @@ class TransmissorEventos(BaseModelEsocial):
                 self.save()
 
                 return {
-                    'status': 'error',
+                    'retorno': 'error',
                     'mensagem': '''Não foi recebida nenhuma resposta do servidor. 
                         Verifique se a pasta /arquivos/ está com permissão de escrita ou 
                         pode ter ocorrido erro de timeout.
@@ -505,7 +505,7 @@ class TransmissorEventos(BaseModelEsocial):
                 self.save()
 
                 return {
-                    'status': 'warning',
+                    'retorno': 'warning',
                     'mensagem': 'Retorno do servidor: ' + read_file(dados['header'])}
 
             else:
@@ -566,17 +566,17 @@ class TransmissorEventos(BaseModelEsocial):
                     evento.save()
 
                 return {
-                    'status': 'success',
+                    'retorno': 'success',
                     'mensagem': 'Lote consultado com sucesso!'}
 
         elif not self.protocolo:
             return {
-                'status': 'error',
+                'retorno': 'error',
                 'mensagem': '''O transmissor ainda não possui um número de protocolo!'''}
 
         else:
             return {
-                'status': 'error',
+                'retorno': 'error',
                 'mensagem': '''O certificado não está configurado ou não
                                    possuem eventos validados para envio neste lote!'''}
 
@@ -894,7 +894,7 @@ class Eventos(BaseModelEsocial):
                         'empregador_tpinsc': transmissor.tpinsc,
                         'empregador_nrinsc': transmissor.nrinsc,
                         'grupo': self.get_grupo_esocial(),
-                        'status': STATUS_TRANSMISSOR_AGUARDANDO,
+                        'status': STATUS_TRANSMISSOR_CADASTRADO,
                     }
                     tra = TransmissorEventos(**tevt_data)
                     tra.save()
@@ -916,7 +916,7 @@ class Eventos(BaseModelEsocial):
             'transmissor': tra,
             'empregador_tpinsc': tra.tpinsc,
             'empregador_nrinsc': tra.nrinsc,
-            'grupo': EVENTOS_GRUPOS_TABELAS,
+            'grupo': self.get_grupo_esocial(),
             'status': STATUS_TRANSMISSOR_CADASTRADO,
         }
         tra_evt = TransmissorEventos(**tra_evt_data)
