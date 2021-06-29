@@ -152,7 +152,7 @@ ESOCIAL_PROCEMI = env('ESOCIAL_PROCEMI', default='1')
 
 
 VERSOES_ESOCIAL = [
-    'v_S_01_00_00']
+    'v_S_01_00_00',]
 
 VERSOES_REINF = [
     'v1_04_00',

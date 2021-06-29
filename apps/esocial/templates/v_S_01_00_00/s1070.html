@@ -444,6 +444,93 @@ Se indSusp = [02, 03] preencher obrigatoriamente com [S]."><i class="fa fa-fw fa
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="infoSusp__div">
+    <div class="col-md-12">
+        <h4>Informações de suspensão de exigibilidade de tributos em virtude de processo administrativo ou judicial.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabProcesso__infoProcesso__inclusao__dadosProc__infoSusp__id__codSusp" maxlength="14" value="{{infoSusp.codSusp}}" name="[evtTabProcesso][infoProcesso][inclusao][dadosProc][infoSusp][][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de suspensão da exigibilidade<a data-toggle="tooltip" title="Indicativo de suspensão da exigibilidade.
+Valores válidos:
+01 - Liminar em mandado de segurança
+02 - Depósito judicial do montante integral
+03 - Depósito administrativo do montante integral
+04 - Antecipação de tutela
+05 - Liminar em medida cautelar
+08 - Sentença em mandado de segurança favorável ao contribuinte
+09 - Sentença em ação ordinária favorável ao contribuinte e confirmada pelo TRF
+10 - Acórdão do TRF favorável ao contribuinte
+11 - Acórdão do STJ em recurso especial favorável ao contribuinte
+12 - Acórdão do STF em recurso extraordinário favorável ao contribuinte
+13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo
+14 - Contestação administrativa FAP
+90 - Decisão definitiva a favor do contribuinte
+92 - Sem suspensão da exigibilidade
+Validação: Se tpProc = [1], deve ser preenchido com [03, 14, 92].
+Se tpProc = [2], deve ser preenchido com [01, 02, 04, 05, 08, 09, 10, 11, 12, 13, 90, 92].
+Se tpProc = [4], deve ser preenchido com [14]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabProcesso__infoProcesso__inclusao__dadosProc__infoSusp__id__indSusp" name="[evtTabProcesso][infoProcesso][inclusao][dadosProc][infoSusp][][indSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='01' {% ifequal infoSusp.indSusp '01' %}selected{% endifequal %}>01 - Liminar em mandado de segurança</option><option value='02' {% ifequal infoSusp.indSusp '02' %}selected{% endifequal %}>02 - Depósito judicial do montante integral</option><option value='03' {% ifequal infoSusp.indSusp '03' %}selected{% endifequal %}>03 - Depósito administrativo do montante integral</option><option value='04' {% ifequal infoSusp.indSusp '04' %}selected{% endifequal %}>04 - Antecipação de tutela</option><option value='05' {% ifequal infoSusp.indSusp '05' %}selected{% endifequal %}>05 - Liminar em medida cautelar</option><option value='08' {% ifequal infoSusp.indSusp '08' %}selected{% endifequal %}>08 - Sentença em mandado de segurança favorável ao contribuinte</option><option value='09' {% ifequal infoSusp.indSusp '09' %}selected{% endifequal %}>09 - Sentença em ação ordinária favorável ao contribuinte e confirmada pelo TRF</option><option value='10' {% ifequal infoSusp.indSusp '10' %}selected{% endifequal %}>10 - Acórdão do TRF favorável ao contribuinte</option><option value='11' {% ifequal infoSusp.indSusp '11' %}selected{% endifequal %}>11 - Acórdão do STJ em recurso especial favorável ao contribuinte</option><option value='12' {% ifequal infoSusp.indSusp '12' %}selected{% endifequal %}>12 - Acórdão do STF em recurso extraordinário favorável ao contribuinte</option><option value='13' {% ifequal infoSusp.indSusp '13' %}selected{% endifequal %}>13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo</option><option value='14' {% ifequal infoSusp.indSusp '14' %}selected{% endifequal %}>14 - Contestação administrativa FAP</option><option value='90' {% ifequal infoSusp.indSusp '90' %}selected{% endifequal %}>90 - Decisão definitiva a favor do contribuinte</option><option value='92' {% ifequal infoSusp.indSusp '92' %}selected{% endifequal %}>92 - Sem suspensão da exigibilidade</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dtDecisao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data da decisão<a data-toggle="tooltip" title="Data da decisão, sentença ou despacho administrativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabProcesso__infoProcesso__inclusao__dadosProc__infoSusp__id__dtDecisao" value="{{infoSusp.dtDecisao}}" name="[evtTabProcesso][infoProcesso][inclusao][dadosProc][infoSusp][][dtDecisao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indDeposito__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de depósito do montante integral<a data-toggle="tooltip" title="Indicativo de depósito do montante integral.
+Valores válidos:
+S - Sim
+N - Não
+Validação: Se indSusp = [90], preencher obrigatoriamente com [N].
+Se indSusp = [02, 03] preencher obrigatoriamente com [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabProcesso__infoProcesso__inclusao__dadosProc__infoSusp__id__indDeposito" name="[evtTabProcesso][infoProcesso][inclusao][dadosProc][infoSusp][][indDeposito]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal infoSusp.indDeposito 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal infoSusp.indDeposito 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}
             </div>
         </blockquote>
@@ -656,6 +743,93 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
         </blockquote>
     </div>
 </div>{% for infoSusp in original.evento_json|readjson:'evtTabProcesso.infoProcesso.alteracao.dadosProc.infoSusp' %}
+<div id="infoSusp__div">
+    <div class="col-md-12">
+        <h4>Informações de suspensão de exigibilidade de tributos em virtude de processo administrativo ou judicial.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabProcesso__infoProcesso__alteracao__dadosProc__infoSusp__id__codSusp" maxlength="14" value="{{infoSusp.codSusp}}" name="[evtTabProcesso][infoProcesso][alteracao][dadosProc][infoSusp][][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de suspensão da exigibilidade<a data-toggle="tooltip" title="Indicativo de suspensão da exigibilidade.
+Valores válidos:
+01 - Liminar em mandado de segurança
+02 - Depósito judicial do montante integral
+03 - Depósito administrativo do montante integral
+04 - Antecipação de tutela
+05 - Liminar em medida cautelar
+08 - Sentença em mandado de segurança favorável ao contribuinte
+09 - Sentença em ação ordinária favorável ao contribuinte e confirmada pelo TRF
+10 - Acórdão do TRF favorável ao contribuinte
+11 - Acórdão do STJ em recurso especial favorável ao contribuinte
+12 - Acórdão do STF em recurso extraordinário favorável ao contribuinte
+13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo
+14 - Contestação administrativa FAP
+90 - Decisão definitiva a favor do contribuinte
+92 - Sem suspensão da exigibilidade
+Validação: Se tpProc = [1], deve ser preenchido com [03, 14, 92].
+Se tpProc = [2], deve ser preenchido com [01, 02, 04, 05, 08, 09, 10, 11, 12, 13, 90, 92].
+Se tpProc = [4], deve ser preenchido com [14]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabProcesso__infoProcesso__alteracao__dadosProc__infoSusp__id__indSusp" name="[evtTabProcesso][infoProcesso][alteracao][dadosProc][infoSusp][][indSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='01' {% ifequal infoSusp.indSusp '01' %}selected{% endifequal %}>01 - Liminar em mandado de segurança</option><option value='02' {% ifequal infoSusp.indSusp '02' %}selected{% endifequal %}>02 - Depósito judicial do montante integral</option><option value='03' {% ifequal infoSusp.indSusp '03' %}selected{% endifequal %}>03 - Depósito administrativo do montante integral</option><option value='04' {% ifequal infoSusp.indSusp '04' %}selected{% endifequal %}>04 - Antecipação de tutela</option><option value='05' {% ifequal infoSusp.indSusp '05' %}selected{% endifequal %}>05 - Liminar em medida cautelar</option><option value='08' {% ifequal infoSusp.indSusp '08' %}selected{% endifequal %}>08 - Sentença em mandado de segurança favorável ao contribuinte</option><option value='09' {% ifequal infoSusp.indSusp '09' %}selected{% endifequal %}>09 - Sentença em ação ordinária favorável ao contribuinte e confirmada pelo TRF</option><option value='10' {% ifequal infoSusp.indSusp '10' %}selected{% endifequal %}>10 - Acórdão do TRF favorável ao contribuinte</option><option value='11' {% ifequal infoSusp.indSusp '11' %}selected{% endifequal %}>11 - Acórdão do STJ em recurso especial favorável ao contribuinte</option><option value='12' {% ifequal infoSusp.indSusp '12' %}selected{% endifequal %}>12 - Acórdão do STF em recurso extraordinário favorável ao contribuinte</option><option value='13' {% ifequal infoSusp.indSusp '13' %}selected{% endifequal %}>13 - Sentença 1ª instância não transitada em julgado com efeito suspensivo</option><option value='14' {% ifequal infoSusp.indSusp '14' %}selected{% endifequal %}>14 - Contestação administrativa FAP</option><option value='90' {% ifequal infoSusp.indSusp '90' %}selected{% endifequal %}>90 - Decisão definitiva a favor do contribuinte</option><option value='92' {% ifequal infoSusp.indSusp '92' %}selected{% endifequal %}>92 - Sem suspensão da exigibilidade</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dtDecisao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data da decisão<a data-toggle="tooltip" title="Data da decisão, sentença ou despacho administrativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabProcesso__infoProcesso__alteracao__dadosProc__infoSusp__id__dtDecisao" value="{{infoSusp.dtDecisao}}" name="[evtTabProcesso][infoProcesso][alteracao][dadosProc][infoSusp][][dtDecisao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indDeposito__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de depósito do montante integral<a data-toggle="tooltip" title="Indicativo de depósito do montante integral.
+Valores válidos:
+S - Sim
+N - Não
+Validação: Se indSusp = [90], preencher obrigatoriamente com [N].
+Se indSusp = [02, 03] preencher obrigatoriamente com [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTabProcesso__infoProcesso__alteracao__dadosProc__infoSusp__id__indDeposito" name="[evtTabProcesso][infoProcesso][alteracao][dadosProc][infoSusp][][indDeposito]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal infoSusp.indDeposito 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal infoSusp.indDeposito 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
 <div id="infoSusp__div">
     <div class="col-md-12">
         <h4>Informações de suspensão de exigibilidade de tributos em virtude de processo administrativo ou judicial.</h4>

@@ -379,6 +379,89 @@ Valores válidos:
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="exame__div">
+    <div class="col-md-12">
+        <h4>Grupo que detalha as avaliações clínicas e os exames complementares porventura realizados pelo trabalhador em virtude do determinado nos Anexos da NR-07, além de outros solicitados pelo médico e os referentes ao ASO.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="dtExm__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data do exame realizado<a data-toggle="tooltip" title="Data do exame realizado.
+Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__dtExm" value="{{exame.dtExm}}" name="[evtMonit][exMedOcup][aso][exame][][dtExm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="procRealizado__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do procedimento diagnóstico<a data-toggle="tooltip" title="Código do procedimento diagnóstico.
+Validação: Deve ser um código válido e existente na Tabela 27."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__procRealizado" maxlength="4" value="{{exame.procRealizado}}" name="[evtMonit][exMedOcup][aso][exame][][procRealizado]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="obsProc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observação sobre o procedimento diagnóstico realizado<a data-toggle="tooltip" title="Observação sobre o procedimento diagnóstico realizado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__obsProc" maxlength="999" value="{{exame.obsProc}}" name="[evtMonit][exMedOcup][aso][exame][][obsProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ordExame__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Ordem do exame<a data-toggle="tooltip" title="Ordem do exame.
+Valores válidos:
+1 - Inicial
+2 - Sequencial"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtMonit__exMedOcup__aso__exame__id__ordExame" name="[evtMonit][exMedOcup][aso][exame][][ordExame]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal exame.ordExame '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame.ordExame '2' %}selected{% endifequal %}>2 - Sequencial</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="indResult__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicação dos resultados<a data-toggle="tooltip" title="Indicação dos resultados.
+Valores válidos:
+1 - Normal
+2 - Alterado
+3 - Estável
+4 - Agravamento"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtMonit__exMedOcup__aso__exame__id__indResult" name="[evtMonit][exMedOcup][aso][exame][][indResult]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal exame.indResult '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal exame.indResult '2' %}selected{% endifequal %}>2 - Alterado</option><option value='3' {% ifequal exame.indResult '3' %}selected{% endifequal %}>3 - Estável</option><option value='4' {% ifequal exame.indResult '4' %}selected{% endifequal %}>4 - Agravamento</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}
 <div id="medico__div">
     <div class="col-md-12">

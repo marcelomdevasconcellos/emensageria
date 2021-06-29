@@ -613,6 +613,114 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="dependente__div">
+    <div class="col-md-12">
+        <h4>Informações dos dependentes.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenefIn__beneficiario__dependente__id__tpDep" maxlength="2" value="{{dependente.tpDep}}" name="[evtCdBenefIn][beneficiario][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome do dependente<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenefIn__beneficiario__dependente__id__nmDep" maxlength="70" value="{{dependente.nmDep}}" name="[evtCdBenefIn][beneficiario][dependente][][nmDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtNascto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com a data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento.
+Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenefIn__beneficiario__dependente__id__dtNascto" value="{{dependente.dtNascto}}" name="[evtCdBenefIn][beneficiario][dependente][][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cpfDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+Validação: Deve ser um número de CPF válido, observando o que segue:
+a) O preenchimento é obrigatório se depIRRF = [S];
+b) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCdBenefIn__beneficiario__dependente__id__cpfDep" maxlength="11" value="{{dependente.cpfDep}}" name="[evtCdBenefIn][beneficiario][dependente][][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="sexoDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Sexo do dependente<a data-toggle="tooltip" title="Sexo do dependente.
+Valores válidos:
+M - Masculino
+F - Feminino
+Validação: Informação obrigatória se dtInicio for posterior ao início da obrigatoriedade dos eventos não periódicos para o ente público no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCdBenefIn__beneficiario__dependente__id__sexoDep" name="[evtCdBenefIn][beneficiario][dependente][][sexoDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='M' {% ifequal dependente.sexoDep 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente.sexoDep 'F' %}selected{% endifequal %}>F - Feminino</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="depIRRF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCdBenefIn__beneficiario__dependente__id__depIRRF" name="[evtCdBenefIn][beneficiario][dependente][][depIRRF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.depIRRF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depIRRF 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="incFisMen__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar se o dependente é pessoa com doença incapacitante<a data-toggle="tooltip" title="Informar se o dependente é pessoa com doença incapacitante, na forma da lei.
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCdBenefIn__beneficiario__dependente__id__incFisMen" name="[evtCdBenefIn][beneficiario][dependente][][incFisMen]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.incFisMen 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.incFisMen 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}
             </div>
         </blockquote>

@@ -1090,7 +1090,74 @@ Validação: Deve ser um número de processo judicial válido."><i class="fa fa-
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="observacoes__div">
+    <div class="col-md-12">
+        <h4>Observações do contrato de trabalho.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="observacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação relacionada ao contrato de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__observacoes__id__observacao" maxlength="255" value="{{observacoes.observacao}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][observacoes][][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}{% for treiCap in original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.treiCap' %}
+<div id="treiCap__div">
+    <div class="col-md-12">
+        <h4>Treinamentos, capacitações, exercícios simulados, autorizações ou outras anotações que devam ser anotadas no registro de empregados e/ou na CTPS, por determinação de Norma Regulamentadora - NR.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codTreiCap__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código do treinamento<a data-toggle="tooltip" title="Informar o código do treinamento, capacitação, exercício simulado ou outra anotação, conforme Tabela 28.
+Validação: Deve ser um código válido e existente na Tabela 28."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__treiCap__id__codTreiCap" maxlength="4" value="{{treiCap.codTreiCap}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][treiCap][][codTreiCap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
 <div id="treiCap__div">
     <div class="col-md-12">
         <h4>Treinamentos, capacitações, exercícios simulados, autorizações ou outras anotações que devam ser anotadas no registro de empregados e/ou na CTPS, por determinação de Norma Regulamentadora - NR.</h4>

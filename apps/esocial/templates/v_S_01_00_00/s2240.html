@@ -602,6 +602,492 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="epi__div">
+    <div class="col-md-12">
+        <h4>EPI.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="docAval__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Certificado de Aprovação - CA ou documento de avaliação do EPI<a data-toggle="tooltip" title="Certificado de Aprovação - CA ou documento de avaliação do EPI."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__docAval" maxlength="255" value="{{epi.docAval}}" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][docAval]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscEPI__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição do EPI<a data-toggle="tooltip" title="Descrição do EPI.
+Validação: Preenchimento obrigatório e exclusivo se docAval não for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__dscEPI" maxlength="999" value="{{epi.dscEPI}}" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][dscEPI]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="eficEpi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>O EPI é eficaz na neutralização do risco ao trabalhador?
+Valores válidos<a data-toggle="tooltip" title="O EPI é eficaz na neutralização do risco ao trabalhador?
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__eficEpi" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][eficEpi]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal epi.eficEpi 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal epi.eficEpi 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+<div id="epiCompl__div">
+    <div class="col-md-12">
+        <h4>Requisitos da Norma Regulamentadora 06 - NR-06 e da Norma Regulamentadora 09 - NR-09 pelo(s) EPI(s) informado(s).</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="medProtecao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Foi tentada a implementação de medidas de proteção coletiva<a data-toggle="tooltip" title="Foi tentada a implementação de medidas de proteção coletiva, de caráter administrativo ou de organização, optando-se pelo EPI por inviabilidade técnica, insuficiência ou interinidade, ou ainda em caráter complementar ou emergencial?
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__medProtecao" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epiCompl][medProtecao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal agNoc.epcEpi.epiCompl.medProtecao 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal agNoc.epcEpi.epiCompl.medProtecao 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="condFuncto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Foram observadas as condições de funcionamento do EPI ao longo do tempo<a data-toggle="tooltip" title="Foram observadas as condições de funcionamento do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo?
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__condFuncto" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epiCompl][condFuncto]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal agNoc.epcEpi.epiCompl.condFuncto 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal agNoc.epcEpi.epiCompl.condFuncto 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="usoInint__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Foi observado o uso ininterrupto do EPI ao longo do tempo<a data-toggle="tooltip" title="Foi observado o uso ininterrupto do EPI ao longo do tempo, conforme especificação técnica do fabricante nacional ou importador, ajustadas às condições de campo?
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__usoInint" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epiCompl][usoInint]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal agNoc.epcEpi.epiCompl.usoInint 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal agNoc.epcEpi.epiCompl.usoInint 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="przValid__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Foi observado o prazo de validade do CA no momento da compra do EPI?
+Valores válidos<a data-toggle="tooltip" title="Foi observado o prazo de validade do CA no momento da compra do EPI?
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__przValid" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epiCompl][przValid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal agNoc.epcEpi.epiCompl.przValid 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal agNoc.epcEpi.epiCompl.przValid 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="periodicTroca__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>É observada a periodicidade de troca definida pelo fabricante nacional ou importador e/ou programas ambientais<a data-toggle="tooltip" title="É observada a periodicidade de troca definida pelo fabricante nacional ou importador e/ou programas ambientais, comprovada mediante recibo assinado pelo usuário em época própria?
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__periodicTroca" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epiCompl][periodicTroca]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal agNoc.epcEpi.epiCompl.periodicTroca 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal agNoc.epcEpi.epiCompl.periodicTroca 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="higienizacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>É observada a higienização conforme orientação do fabricante nacional ou importador?
+Valores válidos<a data-toggle="tooltip" title="É observada a higienização conforme orientação do fabricante nacional ou importador?
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epiCompl__id__higienizacao" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epiCompl][higienizacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal agNoc.epcEpi.epiCompl.higienizacao 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal agNoc.epcEpi.epiCompl.higienizacao 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="agNoc__div">
+    <div class="col-md-12">
+        <h4>Agente(s) nocivo(s) ao(s) qual(is) o trabalhador está exposto.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codAgNoc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código do agente nocivo ao qual o trabalhador está exposto<a data-toggle="tooltip" title="Informar o código do agente nocivo ao qual o trabalhador está exposto. Preencher com números e pontos. Caso não haja exposição, informar o código [09.01.001] (Ausência de agente nocivo ou de atividades previstas no Anexo IV do Decreto 3.048/1999).
+Validação: Deve ser um código válido e existente na Tabela 24. Não é possível informar nenhum outro código de agente nocivo quando houver o código [09.01.001]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__codAgNoc" maxlength="9" value="{{agNoc.codAgNoc}}" name="[evtExpRisco][infoExpRisco][agNoc][][codAgNoc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscAgNoc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição do agente nocivo<a data-toggle="tooltip" title="Descrição do agente nocivo.
+Validação: Preenchimento obrigatório se codAgNoc = [01.01.001, 01.02.001, 01.03.001, 01.04.001, 01.05.001, 01.06.001, 01.07.001, 01.08.001, 01.09.001, 01.10.001, 01.12.001, 01.13.001, 01.14.001, 01.15.001, 01.16.001, 01.17.001, 01.18.001, 05.01.001]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__dscAgNoc" maxlength="999" value="{{agNoc.dscAgNoc}}" name="[evtExpRisco][infoExpRisco][agNoc][][dscAgNoc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpAval__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de avaliação do agente nocivo<a data-toggle="tooltip" title="Tipo de avaliação do agente nocivo.
+Valores válidos:
+1 - Critério quantitativo
+2 - Critério qualitativo"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__id__tpAval" name="[evtExpRisco][infoExpRisco][agNoc][][tpAval]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal agNoc.tpAval '1' %}selected{% endifequal %}>1 - Critério quantitativo</option><option value='2' {% ifequal agNoc.tpAval '2' %}selected{% endifequal %}>2 - Critério qualitativo</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="intConc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Intensidade<a data-toggle="tooltip" title="Intensidade, concentração ou dose da exposição do trabalhador ao agente nocivo cujo critério de avaliação seja quantitativo.
+Validação: Preenchimento obrigatório e exclusivo se tpAval = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__intConc" maxlength="10" value="{{agNoc.intConc}}" name="[evtExpRisco][infoExpRisco][agNoc][][intConc]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="limTol__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Limite de tolerância calculado para agentes específicos<a data-toggle="tooltip" title="Limite de tolerância calculado para agentes específicos, conforme técnica de medição exigida na legislação.
+Validação: Preenchimento obrigatório e exclusivo se tpAval = [1] e codAgNoc = [01.18.001, 02.01.014]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__limTol" maxlength="10" value="{{agNoc.limTol}}" name="[evtExpRisco][infoExpRisco][agNoc][][limTol]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="unMed__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Dose ou unidade de medida da intensidade ou concentração do agente<a data-toggle="tooltip" title="Dose ou unidade de medida da intensidade ou concentração do agente.
+Valores válidos:
+1 - dose diária de ruído
+2 - decibel linear (dB (linear))
+3 - decibel (C) (dB(C))
+4 - decibel (A) (dB(A))
+5 - metro por segundo ao quadrado (m/s2)
+6 - metro por segundo elevado a 1,75 (m/s1,75)
+7 - parte de vapor ou gás por milhão de partes de ar contaminado (ppm)
+8 - miligrama por metro cúbico de ar (mg/m3)
+9 - fibra por centímetro cúbico (f/cm3)
+10 - grau Celsius (ºC)
+11 - metro por segundo (m/s)
+12 - porcentual
+13 - lux (lx)
+14 - unidade formadora de colônias por metro cúbico (ufc/m3)
+15 - dose diária
+16 - dose mensal
+17 - dose trimestral
+18 - dose anual
+19 - watt por metro quadrado (W/m2)
+20 - ampère por metro (A/m)
+21 - militesla (mT)
+22 - microtesla (μT)
+23 - miliampère (mA)
+24 - quilovolt por metro (kV/m)
+25 - volt por metro (V/m)
+26 - joule por metro quadrado (J/m2)
+27 - milijoule por centímetro quadrado (mJ/cm2)
+28 - milisievert (mSv)
+29 - milhão de partículas por decímetro cúbico (mppdc)
+30 - umidade relativa do ar (UR (%))
+Validação: Preenchimento obrigatório e exclusivo se tpAval = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__id__unMed" name="[evtExpRisco][infoExpRisco][agNoc][][unMed]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal agNoc.unMed '1' %}selected{% endifequal %}>1 - dose diária de ruído</option><option value='2' {% ifequal agNoc.unMed '2' %}selected{% endifequal %}>2 - decibel linear (dB (linear))</option><option value='3' {% ifequal agNoc.unMed '3' %}selected{% endifequal %}>3 - decibel (C) (dB(C))</option><option value='4' {% ifequal agNoc.unMed '4' %}selected{% endifequal %}>4 - decibel (A) (dB(A))</option><option value='5' {% ifequal agNoc.unMed '5' %}selected{% endifequal %}>5 - metro por segundo ao quadrado (m/s2)</option><option value='6' {% ifequal agNoc.unMed '6' %}selected{% endifequal %}>6 - metro por segundo elevado a 1,75 (m/s1,75)</option><option value='7' {% ifequal agNoc.unMed '7' %}selected{% endifequal %}>7 - parte de vapor ou gás por milhão de partes de ar contaminado (ppm)</option><option value='8' {% ifequal agNoc.unMed '8' %}selected{% endifequal %}>8 - miligrama por metro cúbico de ar (mg/m3)</option><option value='9' {% ifequal agNoc.unMed '9' %}selected{% endifequal %}>9 - fibra por centímetro cúbico (f/cm3)</option><option value='10' {% ifequal agNoc.unMed '10' %}selected{% endifequal %}>10 - grau Celsius (ºC)</option><option value='11' {% ifequal agNoc.unMed '11' %}selected{% endifequal %}>11 - metro por segundo (m/s)</option><option value='12' {% ifequal agNoc.unMed '12' %}selected{% endifequal %}>12 - porcentual</option><option value='13' {% ifequal agNoc.unMed '13' %}selected{% endifequal %}>13 - lux (lx)</option><option value='14' {% ifequal agNoc.unMed '14' %}selected{% endifequal %}>14 - unidade formadora de colônias por metro cúbico (ufc/m3)</option><option value='15' {% ifequal agNoc.unMed '15' %}selected{% endifequal %}>15 - dose diária</option><option value='16' {% ifequal agNoc.unMed '16' %}selected{% endifequal %}>16 - dose mensal</option><option value='17' {% ifequal agNoc.unMed '17' %}selected{% endifequal %}>17 - dose trimestral</option><option value='18' {% ifequal agNoc.unMed '18' %}selected{% endifequal %}>18 - dose anual</option><option value='19' {% ifequal agNoc.unMed '19' %}selected{% endifequal %}>19 - watt por metro quadrado (W/m2)</option><option value='20' {% ifequal agNoc.unMed '20' %}selected{% endifequal %}>20 - ampère por metro (A/m)</option><option value='21' {% ifequal agNoc.unMed '21' %}selected{% endifequal %}>21 - militesla (mT)</option><option value='22' {% ifequal agNoc.unMed '22' %}selected{% endifequal %}>22 - microtesla (μT)</option><option value='23' {% ifequal agNoc.unMed '23' %}selected{% endifequal %}>23 - miliampère (mA)</option><option value='24' {% ifequal agNoc.unMed '24' %}selected{% endifequal %}>24 - quilovolt por metro (kV/m)</option><option value='25' {% ifequal agNoc.unMed '25' %}selected{% endifequal %}>25 - volt por metro (V/m)</option><option value='26' {% ifequal agNoc.unMed '26' %}selected{% endifequal %}>26 - joule por metro quadrado (J/m2)</option><option value='27' {% ifequal agNoc.unMed '27' %}selected{% endifequal %}>27 - milijoule por centímetro quadrado (mJ/cm2)</option><option value='28' {% ifequal agNoc.unMed '28' %}selected{% endifequal %}>28 - milisievert (mSv)</option><option value='29' {% ifequal agNoc.unMed '29' %}selected{% endifequal %}>29 - milhão de partículas por decímetro cúbico (mppdc)</option><option value='30' {% ifequal agNoc.unMed '30' %}selected{% endifequal %}>30 - umidade relativa do ar (UR (#))</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="tecMedicao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Técnica utilizada para medição da intensidade ou concentração<a data-toggle="tooltip" title="Técnica utilizada para medição da intensidade ou concentração.
+Validação: Preenchimento obrigatório e exclusivo se tpAval = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__id__tecMedicao" maxlength="40" value="{{agNoc.tecMedicao}}" name="[evtExpRisco][infoExpRisco][agNoc][][tecMedicao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="epcEpi__div">
+    <div class="col-md-12">
+        <h4>Informações relativas a Equipamentos de Proteção Coletiva - EPC e Equipamentos de Proteção Individual - EPI.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="utilizEPC__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>O empregador implementa medidas de proteção coletiva (EPC) para eliminar ou reduzir a exposição dos trabalhadores ao agente nocivo?
+Valores válidos<a data-toggle="tooltip" title="O empregador implementa medidas de proteção coletiva (EPC) para eliminar ou reduzir a exposição dos trabalhadores ao agente nocivo?
+Valores válidos:
+0 - Não se aplica
+1 - Não implementa
+2 - Implementa"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__utilizEPC" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][utilizEPC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal agNoc.epcEpi.utilizEPC '0' %}selected{% endifequal %}>0 - Não se aplica</option><option value='1' {% ifequal agNoc.epcEpi.utilizEPC '1' %}selected{% endifequal %}>1 - Não implementa</option><option value='2' {% ifequal agNoc.epcEpi.utilizEPC '2' %}selected{% endifequal %}>2 - Implementa</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="eficEpc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Os EPCs são eficazes na neutralização dos riscos ao trabalhador?
+Valores válidos<a data-toggle="tooltip" title="Os EPCs são eficazes na neutralização dos riscos ao trabalhador?
+Valores válidos:
+S - Sim
+N - Não
+Validação: Preenchimento obrigatório e exclusivo se utilizEPC = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__eficEpc" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][eficEpc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal agNoc.epcEpi.eficEpc 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal agNoc.epcEpi.eficEpc 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="utilizEPI__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Utilização de EPI<a data-toggle="tooltip" title="Utilização de EPI.
+Valores válidos:
+0 - Não se aplica
+1 - Não utilizado
+2 - Utilizado"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__utilizEPI" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][utilizEPI]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal agNoc.epcEpi.utilizEPI '0' %}selected{% endifequal %}>0 - Não se aplica</option><option value='1' {% ifequal agNoc.epcEpi.utilizEPI '1' %}selected{% endifequal %}>1 - Não utilizado</option><option value='2' {% ifequal agNoc.epcEpi.utilizEPI '2' %}selected{% endifequal %}>2 - Utilizado</option>
+            </select>
+        </div>
+    </div>
+</div>
+{% for epi in original.evento_json|readjson:'agNoc.epcEpi.epi' %}
+<div id="epi__div">
+    <div class="col-md-12">
+        <h4>EPI.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="docAval__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Certificado de Aprovação - CA ou documento de avaliação do EPI<a data-toggle="tooltip" title="Certificado de Aprovação - CA ou documento de avaliação do EPI."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__docAval" maxlength="255" value="{{epi.docAval}}" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][docAval]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscEPI__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição do EPI<a data-toggle="tooltip" title="Descrição do EPI.
+Validação: Preenchimento obrigatório e exclusivo se docAval não for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__dscEPI" maxlength="999" value="{{epi.dscEPI}}" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][dscEPI]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="eficEpi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>O EPI é eficaz na neutralização do risco ao trabalhador?
+Valores válidos<a data-toggle="tooltip" title="O EPI é eficaz na neutralização do risco ao trabalhador?
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__eficEpi" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][eficEpi]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal epi.eficEpi 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal epi.eficEpi 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="epi__div">
+    <div class="col-md-12">
+        <h4>EPI.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="docAval__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Certificado de Aprovação - CA ou documento de avaliação do EPI<a data-toggle="tooltip" title="Certificado de Aprovação - CA ou documento de avaliação do EPI."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__docAval" maxlength="255" value="{{epi.docAval}}" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][docAval]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dscEPI__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição do EPI<a data-toggle="tooltip" title="Descrição do EPI.
+Validação: Preenchimento obrigatório e exclusivo se docAval não for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__dscEPI" maxlength="999" value="{{epi.dscEPI}}" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][dscEPI]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="eficEpi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>O EPI é eficaz na neutralização do risco ao trabalhador?
+Valores válidos<a data-toggle="tooltip" title="O EPI é eficaz na neutralização do risco ao trabalhador?
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__eficEpi" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][eficEpi]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal epi.eficEpi 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal epi.eficEpi 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}
 <div id="epiCompl__div">
     <div class="col-md-12">
@@ -721,6 +1207,84 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
         </blockquote>
     </div>
 </div>{% endfor %}{% for respReg in original.evento_json|readjson:'evtExpRisco.infoExpRisco.respReg' %}
+<div id="respReg__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao responsável pelos registros ambientais.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="cpfResp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o CPF do responsável pelos registros ambientais<a data-toggle="tooltip" title="Preencher com o CPF do responsável pelos registros ambientais.
+Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__respReg__id__cpfResp" maxlength="11" value="{{respReg.cpfResp}}" name="[evtExpRisco][infoExpRisco][respReg][][cpfResp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideOC__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Órgão de classe ao qual o responsável pelos registros ambientais está vinculado<a data-toggle="tooltip" title="Órgão de classe ao qual o responsável pelos registros ambientais está vinculado.
+Valores válidos:
+1 - Conselho Regional de Medicina - CRM
+4 - Conselho Regional de Engenharia e Agronomia - CREA
+9 - Outros"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__respReg__id__ideOC" name="[evtExpRisco][infoExpRisco][respReg][][ideOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal respReg.ideOC '1' %}selected{% endifequal %}>1 - Conselho Regional de Medicina - CRM</option><option value='4' {% ifequal respReg.ideOC '4' %}selected{% endifequal %}>4 - Conselho Regional de Engenharia e Agronomia - CREA</option><option value='9' {% ifequal respReg.ideOC '9' %}selected{% endifequal %}>9 - Outros</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dscOC__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado<a data-toggle="tooltip" title="Descrição (sigla) do órgão de classe ao qual o responsável pelos registros ambientais está vinculado.
+Validação: Preenchimento obrigatório e exclusivo se ideOC = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__respReg__id__dscOC" maxlength="20" value="{{respReg.dscOC}}" name="[evtExpRisco][infoExpRisco][respReg][][dscOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrOC__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número de inscrição no órgão de classe<a data-toggle="tooltip" title="Número de inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__respReg__id__nrOC" maxlength="14" value="{{respReg.nrOC}}" name="[evtExpRisco][infoExpRisco][respReg][][nrOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ufOC__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Sigla da Unidade da Federação - UF do órgão de classe<a data-toggle="tooltip" title="Sigla da Unidade da Federação - UF do órgão de classe.
+Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtExpRisco__infoExpRisco__respReg__id__ufOC" maxlength="2" value="{{respReg.ufOC}}" name="[evtExpRisco][infoExpRisco][respReg][][ufOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
 <div id="respReg__div">
     <div class="col-md-12">
         <h4>Informações relativas ao responsável pelos registros ambientais.</h4>

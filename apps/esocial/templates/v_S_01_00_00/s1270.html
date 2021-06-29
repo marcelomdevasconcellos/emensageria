@@ -304,6 +304,128 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="remunAvNP__div">
+    <div class="col-md-12">
+        <h4>Grupo que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+3 - CAEPF
+4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtContratAvNP__remunAvNP__id__tpInsc" name="[evtContratAvNP][remunAvNP][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal remunAvNP.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal remunAvNP.tpInsc '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal remunAvNP.tpInsc '4' %}selected{% endifequal %}>4 - CNO</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo remunAvNP/tpInsc.
+Validação: Deve ser um número de inscrição válido e existente na Tabela de Estabelecimentos (S-1005)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtContratAvNP__remunAvNP__id__nrInsc" maxlength="14" value="{{remunAvNP.nrInsc}}" name="[evtContratAvNP][remunAvNP][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codLotacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador para a lotação tributária<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária.
+Validação: Deve ser um código válido e existente na Tabela de Lotações Tributárias (S-1020)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtContratAvNP__remunAvNP__id__codLotacao" maxlength="30" value="{{remunAvNP.codLotacao}}" name="[evtContratAvNP][remunAvNP][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrBcCp00__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base de cálculo da contribuição previdenciária sobre a remuneração dos trabalhadores avulsos não portuários<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária sobre a remuneração dos trabalhadores avulsos não portuários."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp00" maxlength="14" value="{{remunAvNP.vrBcCp00}}" name="[evtContratAvNP][remunAvNP][][vrBcCp00]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrBcCp15__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp15" maxlength="14" value="{{remunAvNP.vrBcCp15}}" name="[evtContratAvNP][remunAvNP][][vrBcCp15]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrBcCp20__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp20" maxlength="14" value="{{remunAvNP.vrBcCp20}}" name="[evtContratAvNP][remunAvNP][][vrBcCp20]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrBcCp25__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp25" maxlength="14" value="{{remunAvNP.vrBcCp25}}" name="[evtContratAvNP][remunAvNP][][vrBcCp25]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrBcCp13__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base de cálculo da contribuição previdenciária sobre o 13° salário dos trabalhadores avulsos não portuários contratados<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária sobre o 13° salário dos trabalhadores avulsos não portuários contratados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp13" maxlength="14" value="{{remunAvNP.vrBcCp13}}" name="[evtContratAvNP][remunAvNP][][vrBcCp13]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrBcFgts__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcFgts" maxlength="14" value="{{remunAvNP.vrBcFgts}}" name="[evtContratAvNP][remunAvNP][][vrBcFgts]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrDescCP__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o valor total da contribuição descontada dos trabalhadores avulsos não portuários<a data-toggle="tooltip" title="Preencher com o valor total da contribuição descontada dos trabalhadores avulsos não portuários."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrDescCP" maxlength="14" value="{{remunAvNP.vrDescCP}}" name="[evtContratAvNP][remunAvNP][][vrDescCP]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}
             </div>
         </blockquote>

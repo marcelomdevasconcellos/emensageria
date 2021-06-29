@@ -412,6 +412,60 @@ Validação: A informação prestada deve estar de acordo com o que foi informad
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="procJudTerceiro__div">
+    <div class="col-md-12">
+        <h4>Identificação do processo judicial.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codTerc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código de Terceiro<a data-toggle="tooltip" title="Informar o código de Terceiro.
+Validação: Deve ser um código de Terceiro válido e compatível com o FPAS/Terceiros informado no grupo superior, conforme Tabela 04."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__fpasLotacao__infoProcJudTerceiros__procJudTerceiro__id__codTerc" maxlength="4" value="{{procJudTerceiro.codTerc}}" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][fpasLotacao][infoProcJudTerceiros][procJudTerceiro][][codTerc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrProcJud__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
+Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__fpasLotacao__infoProcJudTerceiros__procJudTerceiro__id__nrProcJud" maxlength="20" value="{{procJudTerceiro.nrProcJud}}" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][fpasLotacao][infoProcJudTerceiros][procJudTerceiro][][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070.
+Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__fpasLotacao__infoProcJudTerceiros__procJudTerceiro__id__codSusp" maxlength="14" value="{{procJudTerceiro.codSusp}}" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][fpasLotacao][infoProcJudTerceiros][procJudTerceiro][][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}
             </div>
         </blockquote>
@@ -749,6 +803,60 @@ Deve haver um processo em procJudTerceiro para cada código de Terceiro cujo rec
         <blockquote>
             <div class="row">
 {% for procJudTerceiro in original.evento_json|readjson:'evtTabLotacao.infoLotacao.alteracao.dadosLotacao.fpasLotacao.infoProcJudTerceiros.procJudTerceiro' %}
+<div id="procJudTerceiro__div">
+    <div class="col-md-12">
+        <h4>Identificação do processo judicial.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codTerc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código de Terceiro<a data-toggle="tooltip" title="Informar o código de Terceiro.
+Validação: Deve ser um código de Terceiro válido e compatível com o FPAS/Terceiros informado no grupo superior, conforme Tabela 04."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__fpasLotacao__infoProcJudTerceiros__procJudTerceiro__id__codTerc" maxlength="4" value="{{procJudTerceiro.codTerc}}" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][fpasLotacao][infoProcJudTerceiros][procJudTerceiro][][codTerc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrProcJud__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
+Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__fpasLotacao__infoProcJudTerceiros__procJudTerceiro__id__nrProcJud" maxlength="20" value="{{procJudTerceiro.nrProcJud}}" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][fpasLotacao][infoProcJudTerceiros][procJudTerceiro][][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codSusp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070.
+Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__fpasLotacao__infoProcJudTerceiros__procJudTerceiro__id__codSusp" maxlength="14" value="{{procJudTerceiro.codSusp}}" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][fpasLotacao][infoProcJudTerceiros][procJudTerceiro][][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
 <div id="procJudTerceiro__div">
     <div class="col-md-12">
         <h4>Identificação do processo judicial.</h4>

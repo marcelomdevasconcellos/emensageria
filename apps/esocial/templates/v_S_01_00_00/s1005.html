@@ -600,6 +600,40 @@ Validação: Deve ser um número de CNPJ válido, com 14 (catorze) algarismos. S
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="infoEntEduc__div">
+    <div class="col-md-12">
+        <h4>Identificação da(s) entidade(s) educativa(s) ou de prática desportiva.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da entidade educativa ou de prática desportiva.
+Validação: Deve ser um número de CNPJ válido, com 14 (catorze) algarismos. Se o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente de ideEmpregador/nrInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc" maxlength="14" value="{{infoEntEduc.nrInsc}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoTrab][infoApr][infoEntEduc][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}
             </div>
         </blockquote>
@@ -1065,6 +1099,40 @@ Validação: Se informado, deve ser um número de processo judicial válido."><i
     </div>
 </div>
 {% for infoEntEduc in original.evento_json|readjson:'evtTabEstab.infoEstab.alteracao.dadosEstab.infoTrab.infoApr.infoEntEduc' %}
+<div id="infoEntEduc__div">
+    <div class="col-md-12">
+        <h4>Identificação da(s) entidade(s) educativa(s) ou de prática desportiva.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da entidade educativa ou de prática desportiva.
+Validação: Deve ser um número de CNPJ válido, com 14 (catorze) algarismos. Se o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente de ideEmpregador/nrInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoTrab__infoApr__infoEntEduc__id__nrInsc" maxlength="14" value="{{infoEntEduc.nrInsc}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoTrab][infoApr][infoEntEduc][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
 <div id="infoEntEduc__div">
     <div class="col-md-12">
         <h4>Identificação da(s) entidade(s) educativa(s) ou de prática desportiva.</h4>

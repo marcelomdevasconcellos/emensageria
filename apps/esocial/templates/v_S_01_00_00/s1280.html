@@ -279,6 +279,40 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="infoSubstPatrOpPort__div">
+    <div class="col-md-12">
+        <h4>Grupo preenchido exclusivamente pelo Órgão Gestor de Mão de Obra - OGMO (classTrib em S-1000 = [09]), listando apenas seus códigos de lotação com operadores portuários enquadrados nos arts. 7º a 9º da Lei 12.546/2011.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codLotacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador para a lotação tributária<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária.
+Validação: Deve ser um código válido e existente na Tabela de Lotações Tributárias (S-1020), com tpLotacao = [08]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtInfoComplPer__infoSubstPatrOpPort__id__codLotacao" maxlength="30" value="{{infoSubstPatrOpPort.codLotacao}}" name="[evtInfoComplPer][infoSubstPatrOpPort][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}
 <div id="infoAtivConcom__div">
     <div class="col-md-12">

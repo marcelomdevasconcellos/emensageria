@@ -832,6 +832,114 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="dependente__div">
+    <div class="col-md-12">
+        <h4>Informações dos dependentes.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente.tpDep}}" name="[evtTSVInicio][trabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nmDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome do dependente<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__nmDep" maxlength="70" value="{{dependente.nmDep}}" name="[evtTSVInicio][trabalhador][dependente][][nmDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtNascto__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com a data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento.
+Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__dtNascto" value="{{dependente.dtNascto}}" name="[evtTSVInicio][trabalhador][dependente][][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cpfDep__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+Validação: Deve ser um número de CPF válido, observando o que segue:
+a) O preenchimento é obrigatório se depIRRF = [S];
+b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
+c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVInicio__trabalhador__dependente__id__cpfDep" maxlength="11" value="{{dependente.cpfDep}}" name="[evtTSVInicio][trabalhador][dependente][][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="depIRRF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTSVInicio__trabalhador__dependente__id__depIRRF" name="[evtTSVInicio][trabalhador][dependente][][depIRRF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.depIRRF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depIRRF 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="depSF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar se é dependente para fins de recebimento do benefício de salário-família<a data-toggle="tooltip" title="Informar se é dependente para fins de recebimento do benefício de salário-família.
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTSVInicio__trabalhador__dependente__id__depSF" name="[evtTSVInicio][trabalhador][dependente][][depSF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.depSF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depSF 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="incTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar se o dependente tem incapacidade física ou mental para o trabalho<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho.
+Valores válidos:
+S - Sim
+N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtTSVInicio__trabalhador__dependente__id__incTrab" name="[evtTSVInicio][trabalhador][dependente][][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal dependente.incTrab 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.incTrab 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}
 <div id="contato__div">
     <div class="col-md-12">

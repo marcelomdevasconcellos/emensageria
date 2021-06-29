@@ -409,6 +409,313 @@ Valores válidos:
             </div>
         </blockquote>
     </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerApur__ideEstab__id__tpInsc" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da unidade do órgão público."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
 </div>{% endfor %}
             </div>
         </blockquote>
@@ -511,6 +818,2273 @@ Valores válidos:
     </div>
 </div>
 {% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da unidade do órgão público."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="idePeriodo__div">
+    <div class="col-md-12">
+        <h4>Identificação do período ao qual se referem as diferenças de provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o período ao qual se refere a remuneração no formato AAAA-MM<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
+Validação: Deve ser igual ou anterior ao período de apuração informado em perApur.
+Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__id__perRef" maxlength="7" value="{{idePeriodo.perRef}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for ideEstab in original.evento_json|readjson:'idePeriodo.ideEstab' %}
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da unidade do órgão público."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da unidade do órgão público."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="dmDev__div">
+    <div class="col-md-12">
+        <h4>Identificação de cada um dos demonstrativos de valores devidos ao beneficiário.
+Regra de validação:
+REGRA_DEMONSTRATIVO</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="ideDmDev__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Identificador atribuído pela fonte pagadora para o demonstrativo de valores devidos ao trabalhador<a data-toggle="tooltip" title="Identificador atribuído pelo órgão público para o demonstrativo de valores devidos ao beneficiário. O ente público pode preencher este campo utilizando-se de um identificador padrão para todos os beneficiários; no entanto, havendo mais de um demonstrativo relativo a uma mesma competência, devem ser utilizados identificadores diferentes para cada um dos demonstrativos.
+Validação: Deve ser um identificador único dentro do mesmo perApur para cada um dos demonstrativos do beneficiário.
+Regra de validação:
+REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__id__ideDmDev" maxlength="30" value="{{dmDev.ideDmDev}}" name="[evtBenPrRP][dmDev][][ideDmDev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="nrBeneficio__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Número do benefício<a data-toggle="tooltip" title="Preencher com o número do benefício."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__id__nrBeneficio" maxlength="20" value="{{dmDev.nrBeneficio}}" name="[evtBenPrRP][dmDev][][nrBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="infoPerApur__div">
+    <div class="col-md-12">
+        <h4>Informações relativas ao período de apuração.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+{% for ideEstab in original.evento_json|readjson:'dmDev.infoPerApur.ideEstab' %}
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerApur__ideEstab__id__tpInsc" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da unidade do órgão público."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerApur__ideEstab__id__tpInsc" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da unidade do órgão público."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerApur__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerApur][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>
+<div id="infoPerAnt__div">
+    <div class="col-md-12">
+        <h4>Grupo destinado às informações relativas a períodos anteriores. Somente preencher esse grupo se houver proventos ou pensões retroativos.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+{% for idePeriodo in original.evento_json|readjson:'dmDev.infoPerAnt.idePeriodo' %}
+<div id="idePeriodo__div">
+    <div class="col-md-12">
+        <h4>Identificação do período ao qual se referem as diferenças de provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o período ao qual se refere a remuneração no formato AAAA-MM<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
+Validação: Deve ser igual ou anterior ao período de apuração informado em perApur.
+Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__id__perRef" maxlength="7" value="{{idePeriodo.perRef}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for ideEstab in original.evento_json|readjson:'idePeriodo.ideEstab' %}
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da unidade do órgão público."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da unidade do órgão público."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="idePeriodo__div">
+    <div class="col-md-12">
+        <h4>Identificação do período ao qual se referem as diferenças de provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="perRef__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o período ao qual se refere a remuneração no formato AAAA-MM<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
+Validação: Deve ser igual ou anterior ao período de apuração informado em perApur.
+Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__id__perRef" maxlength="7" value="{{idePeriodo.perRef}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for ideEstab in original.evento_json|readjson:'idePeriodo.ideEstab' %}
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da unidade do órgão público."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="ideEstab__div">
+    <div class="col-md-12">
+        <h4>Identificação da unidade do órgão público na qual o beneficiário possui provento ou pensão.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal ideEstab.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição da unidade do órgão público."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__id__nrInsc" maxlength="14" value="{{ideEstab.nrInsc}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+{% for itensRemun in original.evento_json|readjson:'ideEstab.itensRemun' %}
+<div id="itensRemun__div">
+    <div class="col-md-12">
+        <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__codRubr" maxlength="30" value="{{itensRemun.codRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="ideTabRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr<a data-toggle="tooltip" title="Preencher com o identificador da Tabela de Rubricas para a rubrica definida em codRubr."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__ideTabRubr" maxlength="8" value="{{itensRemun.ideTabRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][ideTabRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="qtdRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.).
+Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
+Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__qtdRubr" maxlength="12" value="{{itensRemun.qtdRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fatorRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o fator<a data-toggle="tooltip" title="Informar o fator, percentual, etc. da rubrica, quando necessário.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__fatorRubr" maxlength="5" value="{{itensRemun.fatorRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][fatorRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="vrRubr__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Valor total da rubrica<a data-toggle="tooltip" title="Valor total da rubrica.
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__vrRubr" maxlength="14" value="{{itensRemun.vrRubr}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][vrRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="indApurIR__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicativo de tipo de apuração de IR<a data-toggle="tooltip" title="Indicativo de tipo de apuração de IR.
+Valores válidos:
+0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
+1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__ideEstab__itensRemun__id__indApurIR" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal itensRemun.indApurIR '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun.indApurIR '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
 <div id="itensRemun__div">
     <div class="col-md-12">
         <h4>Rubricas que compõem o provento ou pensão do beneficiário.</h4>
