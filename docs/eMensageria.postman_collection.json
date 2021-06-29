@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "e7f7aaea-cdff-4ef4-bf15-aa4784579d4f",
+		"name": "eMensageria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Criando TOKEN",
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false,
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"admin\", \"password\":\"admin\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api-token-auth/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-token-auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta dos dados do evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/23/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"23",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Abrindo evento para edição",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/23/abrir-evento-para-edicao/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"23",
+						"abrir-evento-para-edicao",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validar evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/23/validar/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"23",
+						"validar",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enviar evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/23/enviar/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"23",
+						"enviar",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/2/consultar/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"2",
+						"consultar",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar identidade do evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/2/atualizar-identidade/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"2",
+						"atualizar-identidade",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
