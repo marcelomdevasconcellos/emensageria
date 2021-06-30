@@ -946,97 +946,83 @@ class Eventos(BaseModelEsocial):
             certificado.senha)
         evt = esocial.xml.load_fromfile(self.xml_file())
         evt_signed = esocial.xml.sign(evt, cert_data)
-        #xml_header = '<?xml version="1.0" encoding="UTF-8"?>'
-        #evt_signed = ''.join([xml_header, etree.tostring(evt_signed).decode("utf-8")])
         evt_signed = etree.tostring(evt_signed).decode("utf-8")
         self.evento_xml = evt_signed
         self.save()
         save_file(self.xml_file(), evt_signed)
-        #esocial.xml.dump_tofile(evt_signed, self.xml_file())
 
-
-        # from signxml import XMLSigner, methods, XMLVerifier
-        # if not self.transmissor_evento:
-        #     self.vincular_transmissor()
-        # cert = self.transmissor_evento.transmissor.certificado.create_pem_files()
-        # signed_root = XMLSigner(
-        #     method=methods.enveloped,
-        #     signature_algorithm='rsa-sha256',
-        #     digest_algorithm='sha256',
-        #     c14n_algorithm='http://www.w3.org/TR/2001/REC-xml-c14n-20010315'). \
-        #     sign(xml_obj,
-        #          key=cert['key_str'],
-        #          cert=cert['cert_str'])
-        # #verified_data = XMLVerifier().verify(signed_root).signed_xml
-        # return signed_root
 
     def create_xml(self, request=None):
         from json2xml.utils import readfromstring
         import xml.etree.ElementTree as ET
-        from .choices import EVENTO_COD
+        from .choices import EVENTO_COD, EVENTO_ORIGEM_API
         import dicttoxml
 
-        data = readfromstring(self.evento_json or '{}')
-
         wrapper = 'eSocial'
-        xml = dicttoxml.dicttoxml(
-            data,
-            attr_type=False,
-            custom_root='eSocial',
-            item_func=lambda x: x).decode()
-
-        xmlTree = ET.fromstring(xml)
-        elemList = []
-        for elem in xmlTree.iter():
-            elemList.append(elem.tag)
-        elemList = list(set(elemList))
-
-        for elem in elemList:
-            xml = xml.replace('<%s><%s>' % (elem, elem), '<%s>' % elem)
-            xml = xml.replace('</%s></%s>' % (elem, elem), '</%s>' % elem)
-
-        # xml = json2xml.Json2xml(data,
-        #                         wrapper=wrapper, pretty=False,
-        #                         attr_type=False).to_xml().decode()
-
         evento_codigo = EVENTO_COD[self.evento]['codigo']
-        ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
-        xml_obj = ET.fromstring(xml)
-        xml_obj.set('xmlns', f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
 
-        def recursive_update_datefield(elem2):
-            from dateutil import parser as dateutil_parser
-            for elem in elem2:
-                if elem.text and len(elem.text) == 10 and len(elem.text.split('/')) == 3:
-                    data = dateutil_parser.parse(elem.text, dayfirst=True)
-                    elem.text = data.strftime('%Y-%m-%d')
-                else:
+        if self.evento_xml and self.origem == EVENTO_ORIGEM_API and self.STATUS_EVENTO_IMPORTADO:
+
+            save_file(self.xml_file(), self.evento_xml)
+            if 'Signature' not in self.evento_xml:
+                self.assinar()
+
+        else:
+
+            data = readfromstring(self.evento_json or '{}')
+            xml = dicttoxml.dicttoxml(
+                data,
+                attr_type=False,
+                custom_root=wrapper,
+                item_func=lambda x: x).decode()
+
+            xmlTree = ET.fromstring(xml)
+            elemList = []
+            for elem in xmlTree.iter():
+                elemList.append(elem.tag)
+            elemList = list(set(elemList))
+
+            for elem in elemList:
+                xml = xml.replace('<%s><%s>' % (elem, elem), '<%s>' % elem)
+                xml = xml.replace('</%s></%s>' % (elem, elem), '</%s>' % elem)
+
+            ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
+            xml_obj = ET.fromstring(xml)
+            xml_obj.set('xmlns', f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
+
+            def recursive_update_datefield(elem2):
+                from dateutil import parser as dateutil_parser
+                for elem in elem2:
+                    if elem.text and len(elem.text) == 10 and len(elem.text.split('/')) == 3:
+                        data = dateutil_parser.parse(elem.text, dayfirst=True)
+                        elem.text = data.strftime('%Y-%m-%d')
+                    else:
+                        recursive_update_datefield(elem)
+
+            def recursive_remove(elem2):
+                for elem in elem2:
+                    if len(elem) == 0 and (elem.text is None or not elem.text.strip()):
+                        elem2.remove(elem)
+                    else:
+                        recursive_remove(elem)
+
+            def get_empty_tags():
+                empty_tags = []
+                for el in xml_obj.iter():
+                    if len(el) == 0 and (el.text is None or not el.text.strip()):
+                        empty_tags.append(el)
+                return empty_tags
+
+            while get_empty_tags():
+                for elem in xml_obj:
                     recursive_update_datefield(elem)
-
-        def recursive_remove(elem2):
-            for elem in elem2:
-                if len(elem) == 0 and (elem.text is None or not elem.text.strip()):
-                    elem2.remove(elem)
-                else:
                     recursive_remove(elem)
 
-        def get_empty_tags():
-            empty_tags = []
-            for el in xml_obj.iter():
-                if len(el) == 0 and (el.text is None or not el.text.strip()):
-                    empty_tags.append(el)
-            return empty_tags
-
-        while get_empty_tags():
-            for elem in xml_obj:
-                recursive_update_datefield(elem)
-                recursive_remove(elem)
-
-        xml_obj.find(EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
-        evento_xml = ET.tostring(xml_obj)
-        Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode())
-        save_file(self.xml_file(), evento_xml.decode())
-        xml_obj = self.assinar()
+            xml_obj.find(EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
+            evento_xml = ET.tostring(xml_obj)
+            Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode())
+            save_file(self.xml_file(), evento_xml.decode())
+            xml_obj = self.assinar()
 
     def validar(self, request=None):
         from config.functions import validar_schema
