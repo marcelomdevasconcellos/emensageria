@@ -48,6 +48,9 @@ class EventosViewSet(ModelViewSet):
     @action(detail=True, methods=['get'], url_path='validar')
     def validar(self, request, pk=None):
         obj = get_object_or_404(Eventos, id=pk)
+        if not obj.transmissor_evento:
+            obj.vincular_transmissor()
+        obj.create_xml()
         obj.validar()
         return Response(
             {'id': obj.id,
@@ -65,7 +68,7 @@ class EventosViewSet(ModelViewSet):
              'status': obj.status,
              'status_txt': obj.get_status_display(),
              'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
-             'retorno_evento': json.loads(obj.retorno_evento_json or '{}'), })
+             'retorno_envio': json.loads(obj.retorno_envio_json or '{}'), })
         return Response(retorno)
 
     @action(detail=True, methods=['get'], url_path='consultar')

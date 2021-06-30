@@ -797,11 +797,9 @@ class Eventos(BaseModelEsocial):
         blank=True, )
 
     retorno_envio_json = models.TextField(
-        'Retorno do envio',
-        "retorno_envio_json", default='{}', blank=True)
+        'Retorno do envio', default='{}', blank=True)
     retorno_consulta_json = models.TextField(
-        'Retorno da consulta',
-        "retorno_consulta_json", default='{}', blank=True)
+        'Retorno da consulta', default='{}', blank=True)
     evento_json = models.TextField("JSON", null=True, blank=True)
     evento_xml = models.TextField("XML", null=True, blank=True)
     ocorrencias_json = models.TextField("Ocorrências", null=True, blank=True)
