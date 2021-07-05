@@ -76,11 +76,11 @@ class EventosManager(models.Manager):
             return QuerySet(self.model)
         elif self.model.__name__ not in ('Certificados', 'Transmissor'):
             if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
-                return QuerySet(self.model).filter(created_by=current_user)
+                return QuerySet(self.model).filter(created_by_id=current_user.id)
             return QuerySet(self.model)
         else:
             if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
-                return QuerySet(self.model).filter(Q(created_by=current_user)|Q(users__id=current_user.id))
+                return QuerySet(self.model).filter(Q(created_by_id=current_user.id)|Q(users__id=current_user.id))
             return QuerySet(self.model)
 
 
