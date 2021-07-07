@@ -127,20 +127,32 @@ curl -X GET http://localhost:8000/esocial/validar-eventos/ -H
 ```
 
 #### Enviando eventos para o eSocial em lote
+- Inclua esta chamada em uma CRON para que possa ser realizada periodicamente
 - URL: http://localhost:8000/esocial/enviar-transmissores/
 - Exemplo CURL:
 ```
 curl -X GET http://localhost:8000/esocial/enviar-transmissores/ -H 'Authorization:
 Token <token>'
 ```
+- Exemplo em linha de comando:
+```
+python manage.py esocial_enviar
+```
+
 
 #### Consultando eventos no eSocial em lote
+- Inclua esta chamada em uma CRON para que possa ser realizada periodicamente
 - URL: http://localhost:8000/esocial/consultar-transmissores/
 - Exemplo CURL:
 ```
 curl -X GET http://localhost:8000/esocial/consultar-transmissores/ -H
 'Authorization: Token <token>'
 ```
+- Exemplo em linha de comando:
+```
+python manage.py esocial_consultar
+```
+
 
 ## Licença AGPL-3
 
