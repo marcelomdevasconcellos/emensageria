@@ -191,9 +191,9 @@ def consultar_transmissor(request, pk):
 
 @login_required
 def enviar_transmissores(request):
-    from .choices import STATUS_TRANSMISSOR_AGUARDANDO, STATUS_TRANSMISSOR_CADASTRADO
+    from .choices import STATUS_TRANSMISSOR_AGUARDANDO, STATUS_TRANSMISSOR_CADASTRADO, STATUS_EVENTO_IMPORTADO
     TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_CADASTRADO).update(status=STATUS_TRANSMISSOR_AGUARDANDO)
-    evt = Eventos.objects.filter(status=STATUS_EVENTO_AGUARD_ENVIO)
+    evt = Eventos.objects.filter(status__in=[STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_IMPORTADO])
     for e in evt:
         e.vincular_transmissor()
     tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_AGUARDANDO).all()
@@ -250,8 +250,6 @@ def transmissores_recibo(request, pk):
     #                  'javascript-delay': 1000,
     #                  'footer-center': '[page]/[topage]',
     #                  "no-stop-slow-scripts": True}, )
-
-
 
 
 def get_size_image(path):

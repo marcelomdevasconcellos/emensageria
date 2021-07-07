@@ -119,7 +119,7 @@ class TransmissorAdmin(AuditoriaAdminEventos):
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super(TransmissorAdmin, self).get_fieldsets(request, obj)
-        if request.user.is_superuser:
+        if request.user.has_perm('auth.view_user'):
             return (('Transmissor', {
                         'fields': ('transmissor_tpinsc', 'transmissor_nrinsc',)
                     }), ('Empregador', {
