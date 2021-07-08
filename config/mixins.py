@@ -119,11 +119,11 @@ class AuditoriaManager(models.Manager):
         if self.all_obj:
             return super().get_queryset()
         elif self.model.__name__ not in ('Certificados', 'Transmissor'):
-            if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
+            if current_user and not current_user.has_perm('auth.view_user') and config.FILTER_BY_USER:
                 return super().get_queryset().filter(created_by=current_user)
             return super().get_queryset()
         else:
-            if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
+            if current_user and not current_user.has_perm('auth.view_user') and config.FILTER_BY_USER:
                 return super().get_queryset().filter(Q(created_by=current_user)|Q(users__id=current_user.id))
             return super().get_queryset()
 
@@ -133,7 +133,7 @@ class AuditoriaAdminEventos(admin.ModelAdmin):
 
     def has_view_permission(self, request, obj=None):
         current_user = get_current_user()
-        if current_user and not current_user.is_superuser and config.FILTER_BY_USER and \
+        if current_user and not current_user.has_perm('auth.view_user') and config.FILTER_BY_USER and \
             obj and obj.created_by != current_user:
             return False
         return super().has_view_permission(request)
@@ -142,7 +142,7 @@ class AuditoriaAdminEventos(admin.ModelAdmin):
         from django.db.models import Q
         current_user = get_current_user()
         queryset = super().get_queryset(request)
-        if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
+        if current_user and not current_user.has_perm('auth.view_user') and config.FILTER_BY_USER:
             if self.model.__name__ in ('Certificados', 'Transmissor'):
                 return queryset.filter(Q(created_by=current_user)|Q(users__id=current_user.id))
             else:
@@ -158,7 +158,7 @@ class AuditoriaAdminEventos(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         if self.model.__name__ in ('Certificados', 'Transmissor'):
-            if request.user.is_superuser:
+            if request.user.has_perm('auth.view_user'):
                 return super(AuditoriaAdminEventos, self).get_readonly_fields(request, obj)
             else:
                 return self.readonly_fields + ('users',)

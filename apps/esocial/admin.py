@@ -29,6 +29,20 @@ class CertificadosAdmin(AuditoriaAdminEventos):
         'nome',)
     list_display = (
         'nome',)
+    fieldsets = ((None, {
+        'fields': ('nome', 'certificado', 'senha',)
+    }),)
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super(CertificadosAdmin, self).get_fieldsets(request, obj)
+        print(request.user.has_perm('auth.view_user'))
+        if request.user.has_perm('auth.view_user'):
+            return ((None, {
+                        'fields': ('nome', 'certificado', 'senha',)
+                    }), ('Usuários', {
+                        'fields': ('users', )
+                    }))
+        return fieldsets
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
