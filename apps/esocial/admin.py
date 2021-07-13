@@ -476,9 +476,9 @@ class EventosAdmin(AuditoriaAdminEventos):
 
         elif "_enviar" in request.POST:
             retorno = obj.enviar(request=request)
-            if retorno['status'] == 'error':
+            if retorno['retorno'] == 'error':
                 messages.error(request, retorno['mensagem'])
-            elif retorno['status'] == 'warning':
+            elif retorno['retorno'] == 'warning':
                 messages.warning(request, retorno['mensagem'])
             else:
                 self.message_user(request, retorno['mensagem'])
@@ -486,9 +486,9 @@ class EventosAdmin(AuditoriaAdminEventos):
 
         elif "_consultar" in request.POST:
             retorno = obj.transmissor_evento.consultar(request=request)
-            if retorno['status'] == 'error':
+            if retorno['retorno'] == 'error':
                 messages.error(request, retorno['mensagem'])
-            elif retorno['status'] == 'warning':
+            elif retorno['retorno'] == 'warning':
                 messages.warning(request, retorno['mensagem'])
             else:
                 self.message_user(request, retorno['mensagem'])
