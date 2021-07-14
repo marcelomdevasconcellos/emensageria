@@ -161,6 +161,11 @@ VERSOES_REINF = [
 # caminho dos certificados
 CERT_PATH = env('CERT_PATH', default='certificados/')
 
+# Somente no Windows Server
+# caminho do CURL
+# Necessário baixar o curl para windows no endereço: https://curl.se/windows/
+CURL_PATH = env('CURL_PATH', default='')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
