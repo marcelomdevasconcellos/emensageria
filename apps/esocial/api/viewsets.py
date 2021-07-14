@@ -52,12 +52,13 @@ class EventosViewSet(ModelViewSet):
             obj.vincular_transmissor()
         obj.create_xml()
         obj.validar()
+        obj = get_object_or_404(Eventos, id=pk)
         return Response(
             {'id': obj.id,
              'identidade': obj.identidade,
              'status': obj.status,
              'status_txt': obj.get_status_display(),
-             'ocorrencias': json.loads(obj.ocorrencias_json or '{}').get("ocorrencias"), })
+             'ocorrencias': json.loads(obj.ocorrencias_json or '{}'), })
 
     @action(detail=True, methods=['get'], url_path='enviar')
     def enviar(self, request, pk=None):
@@ -66,16 +67,23 @@ class EventosViewSet(ModelViewSet):
 
         if obj.status in [STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_IMPORTADO]:
             retorno = obj.enviar()
-            retorno.update({'id': obj.id,
+            dic = {'id': obj.id,
                  'identidade': obj.identidade,
                  'status': obj.status,
                  'status_txt': obj.get_status_display(),
-                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}').get("ocorrencias"),
+                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
+                 'retorno_envio': json.loads(obj.retorno_envio_json or '{}'), }
+            retorno.update(dic)
+            obj = get_object_or_404(Eventos, id=pk)
+            return Response({'id': obj.id,
+                 'identidade': obj.identidade,
+                 'status': obj.status,
+                 'status_txt': obj.get_status_display(),
+                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
                  'retorno_envio': json.loads(obj.retorno_envio_json or '{}'), })
-            return Response(retorno)
         else:
-            return {'retorno': 'error',
-                    'mensagem': 'Não foi possivel enviar o evento, pois somente poderá ser enviado com os status "Aguardando envio" ou "Importado"'}
+            return Response({'retorno': 'error',
+                    'mensagem': 'Não foi possivel enviar o evento, pois somente poderá ser enviado com os status "Aguardando envio" ou "Importado"'})
 
     @action(detail=True, methods=['get'], url_path='consultar')
     def consultar(self, request, pk=None):
@@ -83,13 +91,20 @@ class EventosViewSet(ModelViewSet):
         obj = get_object_or_404(Eventos, id=pk)
         if obj.status in [STATUS_EVENTO_ENVIADO, STATUS_EVENTO_PROCESSADO]:
             retorno = obj.consultar()
-            retorno.update({'id': obj.id,
+            dic = {'id': obj.id,
                  'identidade': obj.identidade,
                  'status': obj.status,
                  'status_txt': obj.get_status_display(),
-                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}').get("ocorrencias"),
+                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
+                 'retorno_consulta': json.loads(obj.retorno_consulta_json or '{}'), }
+            retorno.update(dic)
+            obj = get_object_or_404(Eventos, id=pk)
+            return Response({'id': obj.id,
+                 'identidade': obj.identidade,
+                 'status': obj.status,
+                 'status_txt': obj.get_status_display(),
+                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
                  'retorno_consulta': json.loads(obj.retorno_consulta_json or '{}'), })
-            return Response(retorno)
         else:
-            return {'retorno': 'error',
-                    'mensagem': 'Não foi possivel consultar o evento, pois o mesmo somente poderá ser consultado caso esteja com os status "Enviado" ou "Consultado"'}
+            return Response({'retorno': 'error',
+                    'mensagem': 'Não foi possivel consultar o evento, pois o mesmo somente poderá ser consultado caso esteja com os status "Enviado" ou "Consultado"'})

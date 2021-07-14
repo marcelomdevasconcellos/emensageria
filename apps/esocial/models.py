@@ -402,7 +402,7 @@ class TransmissorEventos(BaseModelEsocial):
                     oco_dict = {}
                     if ocorrencias:
                         oco_dict = xmltodict.parse(ocorrencias.prettify())
-                        oco_json = json.dumps(oco_dict)
+                        oco_json = json.dumps(oco_dict.get('ocorrencias'))
                     evento = Eventos.objects.get(identidade=identidade)
                     evento.retorno_envio_json = retorno_envio_json
                     evento.ocorrencias_json = oco_json
@@ -488,7 +488,7 @@ class TransmissorEventos(BaseModelEsocial):
                  'key': self.transmissor.certificado.key_pem_file(), 'capath': self.transmissor.certificado.capath(),
                  'timeout': int(config.ESOCIAL_TIMEOUT)}
 
-        if self.transmissor.certificado and self.protocolo and self.status in (STATUS_TRANSMISSOR_ENVIADO, STATUS_TRANSMISSOR_CONSULTADO):
+        if self.transmissor.certificado and self.protocolo and self.status in [STATUS_TRANSMISSOR_ENVIADO, STATUS_TRANSMISSOR_ERRO_CONSULTA, STATUS_TRANSMISSOR_CONSULTADO]:
 
             save_file(dados['request'], self.make_retrieve())
             save_file(self.get_command(service, date_now), COMMAND_CURL % dados)
@@ -566,7 +566,7 @@ class TransmissorEventos(BaseModelEsocial):
                     oco_dict = {}
                     if ocorrencias:
                         oco_dict = xmltodict.parse(ocorrencias.prettify())
-                        oco_json = json.dumps(oco_dict)
+                        oco_json = json.dumps(oco_dict.get('ocorrencias'))
                     evento = Eventos.objects.get(identidade=identidade)
                     evento.retorno_consulta_json = retorno_consulta_json
                     evento.ocorrencias_json = oco_json
@@ -584,13 +584,12 @@ class TransmissorEventos(BaseModelEsocial):
         elif not self.protocolo:
             return {
                 'retorno': 'error',
-                'mensagem': '''O transmissor ainda não possui um número de protocolo!'''}
+                'mensagem': 'O transmissor ainda não possui um número de protocolo!'}
 
         else:
             return {
                 'retorno': 'error',
-                'mensagem': '''O certificado não está configurado ou não
-                                   possuem eventos validados para envio neste lote!'''}
+                'mensagem': '''O certificado não está configurado ou não possuem eventos validados para envio neste lote!'''}
 
     def __str__(self):
         return '{} - {}'.format(
@@ -951,7 +950,7 @@ class Eventos(BaseModelEsocial):
         else:
             if not self.transmissor_evento:
                 self.transmissor_evento = self.vincular_transmissor()
-            certificado = self.transmissor_evento.certificado
+            certificado = self.transmissor_evento.transmissor.certificado
             self.certificado = certificado
             self.save()
 
@@ -977,7 +976,25 @@ class Eventos(BaseModelEsocial):
 
         if self.evento_xml and self.origem == EVENTO_ORIGEM_API and STATUS_EVENTO_IMPORTADO:
 
-            save_file(self.xml_file(), self.evento_xml)
+            xml = self.evento_xml
+            if '<eSocial' not in self.evento_xml:
+                xml = '<eSocial>' + self.evento_xml + '</eSocial>'
+
+            xml_obj = ET.fromstring(xml)
+            if 'www.esocial.gov.br/schema/evt' not in xml:
+                ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
+                xml_obj.set('xmlns', f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
+
+            if 'Id="ID' not in xml:
+                if not self.identidade:
+                    self.make_identidade()
+                print(1)
+                xml_obj.find(EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
+
+            evento_xml = ET.tostring(xml_obj)
+            Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode())
+            save_file(self.xml_file(), evento_xml.decode())
+
             if 'Signature' not in self.evento_xml:
                 self.assinar()
 
@@ -1041,17 +1058,16 @@ class Eventos(BaseModelEsocial):
     def validar(self, request=None):
         from config.functions import validar_schema
         err = validar_schema(self.xsd_file(), self.xml_file())
-        err_dict = {}
-        err_dict['ocorrencias'] = []
+        err_list = []
         if err:
             for e in err:
-                err_dict['ocorrencias'].append(
+                err_list.append(
                     {"ocorrencia": {
                         'tipo': '1',
                         'codigo': '-',
                         'descricao': e.reason,
                         'localizacao': e.path}})
-            self.ocorrencias_json = json.dumps(err_dict)
+            self.ocorrencias_json = json.dumps(err_list)
             self.is_aberto = False
             self.status = STATUS_EVENTO_ERRO
             self.transmissor_evento = None
@@ -1120,8 +1136,7 @@ class Eventos(BaseModelEsocial):
             using=None,
             update_fields=None)
         if not self.identidade:
-            Eventos.objects.filter(id=self.id). \
-                update(identidade=self.make_identidade())
+            self.make_identidade()
         data = Eventos.objects.filter(id=self.id).values().first()
         data['evt_id'] = self.pk or None
         data['id'] = None

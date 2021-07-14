@@ -1,3 +1,5 @@
+from config.settings import CURL_PATH
+
 TPAMB = {
     'Produção': 1,
     'Produção Restrita': 2,
@@ -36,7 +38,7 @@ URLS_ESOCIAL = {
 }
 
 
-COMMAND_CURL = 'curl --insecure --connect-timeout %(timeout)s ' \
+COMMAND_CURL = CURL_PATH + 'curl --insecure --connect-timeout %(timeout)s ' \
                '--cert %(cert)s --key %(key)s --capath %(capath)s ' \
                '-H "Content-Type: text/xml;charset=UTF-8" ' \
                '-H "SOAPAction:%(action)s" ' \
@@ -95,6 +97,8 @@ STATUS_EVENTO_AGUARD_ENVIO = 2
 STATUS_EVENTO_ENVIADO = 3
 #STATUS_EVENTO_ERRO = 4
 STATUS_EVENTO_PROCESSADO = 5
+STATUS_EVENTO_ENVIANDO = 6
+STATUS_EVENTO_CONSULTANDO = 7
 
 EVENTO_STATUS = [
     (STATUS_EVENTO_IMPORTADO, 'Importado pela API'),
@@ -102,7 +106,9 @@ EVENTO_STATUS = [
     (STATUS_EVENTO_ERRO, 'Erro (Aguardando correção)'),
     #(STATUS_EVENTO_ERRO, 'Erro (Aguardando correção)'),
     (STATUS_EVENTO_AGUARD_ENVIO, 'Validado (Aguardando envio)'),
+    (STATUS_EVENTO_ENVIANDO, 'Enviando ...'),
     (STATUS_EVENTO_ENVIADO, 'Enviado (Aguardando consulta)'),
+    (STATUS_EVENTO_CONSULTANDO, 'Consultando ...'),
     (STATUS_EVENTO_PROCESSADO, 'Consultado'),
 ]
 
