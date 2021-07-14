@@ -40,6 +40,49 @@
 			"response": []
 		},
 		{
+			"name": "Importando evento via API (xml)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identidade\": \"ID1346866130000002021062918112900003\",\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s1000\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<eSocial><evtInfoEmpregador><ideEvento><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>v6.0.0.0</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>34686613</nrInsc></ideEmpregador><infoEmpregador><inclusao><idePeriodo><iniValid>2021-06</iniValid></idePeriodo><infoCadastro><classTrib>01</classTrib><indCoop>0</indCoop><indConstr>0</indConstr><indDesFolha>0</indDesFolha><indOptRegEletron>0</indOptRegEletron><cnpjEFR>34686613000108</cnpjEFR></infoCadastro></inclusao></infoEmpregador></evtInfoEmpregador></eSocial>\",\n    \"certificado\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Consulta dos dados do evento",
 			"request": {
 				"method": "GET",
@@ -116,7 +159,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/23/validar/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/29/validar/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -126,7 +169,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"23",
+						"29",
 						"validar",
 						""
 					],
