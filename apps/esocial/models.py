@@ -955,13 +955,13 @@ class Eventos(BaseModelEsocial):
     def create_xml(self, request=None):
         from json2xml.utils import readfromstring
         import xml.etree.ElementTree as ET
-        from .choices import EVENTO_COD, EVENTO_ORIGEM_API
+        from .choices import EVENTO_COD, EVENTO_ORIGEM_API, STATUS_EVENTO_IMPORTADO
         import dicttoxml
 
         wrapper = 'eSocial'
         evento_codigo = EVENTO_COD[self.evento]['codigo']
 
-        if self.evento_xml and self.origem == EVENTO_ORIGEM_API and self.STATUS_EVENTO_IMPORTADO:
+        if self.evento_xml and self.origem == EVENTO_ORIGEM_API and STATUS_EVENTO_IMPORTADO:
 
             save_file(self.xml_file(), self.evento_xml)
             if 'Signature' not in self.evento_xml:
@@ -1032,7 +1032,11 @@ class Eventos(BaseModelEsocial):
         if err:
             for e in err:
                 err_dict['ocorrencias'].append(
-                    {"ocorrencia": {'tipo': '1', 'codigo': '-', 'descricao': e.reason, 'localizacao': e.path}})
+                    {"ocorrencia": {
+                        'tipo': '1',
+                        'codigo': '-', 
+                        'descricao': e.reason,
+                        'localizacao': e.path}})
             self.ocorrencias_json = json.dumps(err_dict)
             self.is_aberto = False
             self.status = STATUS_EVENTO_ERRO
