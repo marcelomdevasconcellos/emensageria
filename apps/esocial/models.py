@@ -390,6 +390,7 @@ class TransmissorEventos(BaseModelEsocial):
                 self.arquivo_header = dados['header']
                 self.arquivo_request = dados['request']
                 self.arquivo_response = dados['response']
+                ocorrencias_lista = []
 
                 for evt in soup.find_all('evento'):
                     import xml.etree.ElementTree as ET
@@ -398,6 +399,7 @@ class TransmissorEventos(BaseModelEsocial):
                     retorno_envio_json = json.dumps(retorno_envio_dict)
                     ocorrencias = evt.retornoEvento.eSocial.retornoEvento.processamento.ocorrencias
                     oco_json = None
+                    oco_dict = {}
                     if ocorrencias:
                         oco_dict = xmltodict.parse(ocorrencias.prettify())
                         oco_json = json.dumps(oco_dict)
@@ -407,6 +409,7 @@ class TransmissorEventos(BaseModelEsocial):
                     if oco_json and oco_json != '{}':
                         evento.status = STATUS_EVENTO_ERRO
                     evento.save()
+                    ocorrencias_lista.append({'identidade': identidade, 'ocorrencias': oco_dict, })
 
                 if response_dict["status"]["cdResposta"] not in ('101', '201', '202'):
                     self.status = STATUS_TRANSMISSOR_ERRO_ENVIO
@@ -417,6 +420,8 @@ class TransmissorEventos(BaseModelEsocial):
                             resposta_descricao))
                     return {
                         'retorno': 'error',
+                        'retorno_envio': response_dict,
+                        'ocorrencias': ocorrencias_lista,
                         'mensagem': '{} {}'.format(
                             resposta_codigo,
                             resposta_descricao)}
@@ -431,6 +436,8 @@ class TransmissorEventos(BaseModelEsocial):
                         resposta_descricao))
                 return {
                     'retorno': 'success',
+                    'retorno_envio': response_dict,
+                    'ocorrencias': ocorrencias_lista,
                     'mensagem': '{} {}'.format(
                         resposta_codigo,
                         resposta_descricao)}
@@ -547,6 +554,7 @@ class TransmissorEventos(BaseModelEsocial):
                 self.arquivo_response = dados['response']
                 self.save()
                 self.transmissor_esocial.update(status=STATUS_EVENTO_PROCESSADO)
+                ocorrencias_lista = []
 
                 for evt in soup.find_all('evento'):
                     import xml.etree.ElementTree as ET
@@ -555,18 +563,22 @@ class TransmissorEventos(BaseModelEsocial):
                     retorno_consulta_json = json.dumps(retorno_consulta_dict)
                     ocorrencias = evt.retornoEvento.eSocial.retornoEvento.processamento.ocorrencias
                     oco_json = None
+                    oco_dict = {}
                     if ocorrencias:
                         oco_dict = xmltodict.parse(ocorrencias.prettify())
                         oco_json = json.dumps(oco_dict)
                     evento = Eventos.objects.get(identidade=identidade)
                     evento.retorno_consulta_json = retorno_consulta_json
                     evento.ocorrencias_json = oco_json
+                    ocorrencias_lista.append({'identidade': identidade, 'ocorrencias': oco_dict, })
                     if oco_json and oco_json != '{}':
                         evento.status = STATUS_EVENTO_ERRO
                     evento.save()
 
                 return {
                     'retorno': 'success',
+                    'retorno_consulta': response_dict,
+                    'ocorrencias': ocorrencias_lista,
                     'mensagem': 'Lote consultado com sucesso!'}
 
         elif not self.protocolo:
@@ -906,8 +918,7 @@ class Eventos(BaseModelEsocial):
 
     def enviar(self, request=None):
         from .choices import (
-            STATUS_TRANSMISSOR_CADASTRADO,
-            EVENTOS_GRUPOS_TABELAS, )
+            STATUS_TRANSMISSOR_CADASTRADO, )
         tra = Transmissor.objects. \
             get(nrinsc=self.nrinsc)
         tra_evt_data = {
@@ -925,7 +936,10 @@ class Eventos(BaseModelEsocial):
 
     def consultar(self, request=None):
         tra_evt = self.transmissor_evento
-        return tra_evt.consultar()
+        if tra_evt:
+            return tra_evt.consultar()
+        else:
+            return {}
 
     def assinar(self, request=None):
         import esocial.xml
@@ -1034,7 +1048,7 @@ class Eventos(BaseModelEsocial):
                 err_dict['ocorrencias'].append(
                     {"ocorrencia": {
                         'tipo': '1',
-                        'codigo': '-', 
+                        'codigo': '-',
                         'descricao': e.reason,
                         'localizacao': e.path}})
             self.ocorrencias_json = json.dumps(err_dict)

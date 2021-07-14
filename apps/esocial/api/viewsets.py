@@ -33,7 +33,7 @@ class EventosViewSet(ModelViewSet):
         obj.make_identidade()
         return Response(
             {'id': obj.id,
-             'identidade': obj.identidade,})
+             'identidade': obj.identidade, })
 
     @action(detail=True, methods=['get'], url_path='abrir-evento-para-edicao')
     def abrir_evento_para_edicao(self, request, pk=None):
@@ -43,7 +43,7 @@ class EventosViewSet(ModelViewSet):
             {'id': obj.id,
              'identidade': obj.identidade,
              'status': obj.status,
-             'status_txt': obj.get_status_display(),})
+             'status_txt': obj.get_status_display(), })
 
     @action(detail=True, methods=['get'], url_path='validar')
     def validar(self, request, pk=None):
@@ -57,28 +57,39 @@ class EventosViewSet(ModelViewSet):
              'identidade': obj.identidade,
              'status': obj.status,
              'status_txt': obj.get_status_display(),
-             'ocorrencias': json.loads(obj.ocorrencias_json or '{}'), })
+             'ocorrencias': json.loads(obj.ocorrencias_json or '{}').get("ocorrencias"), })
 
     @action(detail=True, methods=['get'], url_path='enviar')
     def enviar(self, request, pk=None):
+        from ..choices import STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_IMPORTADO
         obj = get_object_or_404(Eventos, id=pk)
-        retorno = obj.enviar()
-        retorno.update({'id': obj.id,
-             'identidade': obj.identidade,
-             'status': obj.status,
-             'status_txt': obj.get_status_display(),
-             'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
-             'retorno_envio': json.loads(obj.retorno_envio_json or '{}'), })
-        return Response(retorno)
+
+        if obj.status in [STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_IMPORTADO]:
+            retorno = obj.enviar()
+            retorno.update({'id': obj.id,
+                 'identidade': obj.identidade,
+                 'status': obj.status,
+                 'status_txt': obj.get_status_display(),
+                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}').get("ocorrencias"),
+                 'retorno_envio': json.loads(obj.retorno_envio_json or '{}'), })
+            return Response(retorno)
+        else:
+            return {'retorno': 'error',
+                    'mensagem': 'Não foi possivel enviar o evento, pois somente poderá ser enviado com os status "Aguardando envio" ou "Importado"'}
 
     @action(detail=True, methods=['get'], url_path='consultar')
     def consultar(self, request, pk=None):
+        from ..choices import STATUS_EVENTO_ENVIADO, STATUS_EVENTO_PROCESSADO
         obj = get_object_or_404(Eventos, id=pk)
-        retorno = obj.consultar()
-        retorno.update({'id': obj.id,
-             'identidade': obj.identidade,
-             'status': obj.status,
-             'status_txt': obj.get_status_display(),
-             'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
-             'retorno_consulta': json.loads(obj.retorno_consulta_json or '{}'), })
-        return Response(retorno)
+        if obj.status in [STATUS_EVENTO_ENVIADO, STATUS_EVENTO_PROCESSADO]:
+            retorno = obj.consultar()
+            retorno.update({'id': obj.id,
+                 'identidade': obj.identidade,
+                 'status': obj.status,
+                 'status_txt': obj.get_status_display(),
+                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}').get("ocorrencias"),
+                 'retorno_consulta': json.loads(obj.retorno_consulta_json or '{}'), })
+            return Response(retorno)
+        else:
+            return {'retorno': 'error',
+                    'mensagem': 'Não foi possivel consultar o evento, pois o mesmo somente poderá ser consultado caso esteja com os status "Enviado" ou "Consultado"'}
