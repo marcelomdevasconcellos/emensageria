@@ -42,23 +42,37 @@ def read_ocorrencias(string):
     import json
     lista = []
     obj = json.loads(string or '{}')
-    if isinstance(obj.get('ocorrencias'), list):
-        for o in obj.get('ocorrencias'):
-            lista.append({'tipo': o['ocorrencia'].get('tipo'),
-                 'codigo': o['ocorrencia'].get('codigo'),
-                 'descricao': o['ocorrencia'].get('descricao'),
-                 'localizacao': o['ocorrencia'].get('localizacao')})
-    elif obj.get('ocorrencias') and isinstance(obj['ocorrencias'].get('ocorrencia'), list):
-        for o in obj['ocorrencias'].get('ocorrencia'):
+    if isinstance(obj, list):
+        for o in obj:
+            lista.append({'tipo': o.get('ocorrencia').get('tipo'),
+                 'codigo': o.get('ocorrencia').get('codigo'),
+                 'descricao': o.get('ocorrencia').get('descricao'),
+                 'localizacao': o.get('ocorrencia').get('localizacao')})
+    elif isinstance(obj, dict) and isinstance(obj.get('ocorrencias'), dict) and isinstance(obj.get('ocorrencias').get('ocorrencia'), list):
+        for o in obj.get('ocorrencias').get('ocorrencia'):
             lista.append({'tipo': o.get('tipo'),
                  'codigo': o.get('codigo'),
                  'descricao': o.get('descricao'),
                  'localizacao': o.get('localizacao')})
+    elif isinstance(obj, dict) and isinstance(obj.get('ocorrencia'), dict):
+        lista.append({'tipo': obj.get('ocorrencia').get('tipo'),
+             'codigo': obj.get('ocorrencia').get('codigo'),
+             'descricao': obj.get('ocorrencia').get('descricao'),
+             'localizacao': obj.get('ocorrencia').get('localizacao')})
+    elif isinstance(obj, dict) and isinstance(obj.get('ocorrencia'), list):
+        for o in obj.get('ocorrencia'):
+            lista.append({'tipo': o.get('tipo'),
+                 'codigo': o.get('codigo'),
+                 'descricao': o.get('descricao'),
+                 'localizacao': o.get('localizacao')})
+    elif isinstance(obj, dict) and isinstance(obj.get('ocorrencias'), list):
+        for o in obj.get('ocorrencias'):
+            lista.append({'tipo': o.get('ocorrencia').get('tipo'),
+                 'codigo': o.get('ocorrencia').get('codigo'),
+                 'descricao': o.get('ocorrencia').get('descricao'),
+                 'localizacao': o.get('ocorrencia').get('localizacao')})
     else:
-        lista.append({'tipo': obj['ocorrencias']['ocorrencia']['tipo'],
-                      'codigo': obj['ocorrencias']['ocorrencia']['codigo'],
-                      'descricao': obj['ocorrencias']['ocorrencia']['descricao'],
-                      'localizacao': obj['ocorrencias']['ocorrencia']['localizacao']})
+        raise Exception(obj)
     return lista
 
 
