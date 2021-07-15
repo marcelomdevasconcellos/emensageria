@@ -1099,6 +1099,7 @@ class Eventos(BaseModelEsocial):
 
     def abrir_evento_para_edicao_lista(self):
         return [
+            STATUS_EVENTO_IMPORTADO,
             STATUS_EVENTO_CADASTRADO,
             STATUS_EVENTO_ERRO,
             STATUS_EVENTO_AGUARD_ENVIO,
@@ -1108,7 +1109,7 @@ class Eventos(BaseModelEsocial):
     def abrir_evento_para_edicao(self, request=None):
         status_list = self.abrir_evento_para_edicao_lista()
         if self.status in status_list:
-            if self.status == STATUS_EVENTO_AGUARD_ENVIO:
+            if self.status == STATUS_EVENTO_AGUARD_ENVIO or self.status == STATUS_EVENTO_IMPORTADO:
                 self.status = STATUS_EVENTO_CADASTRADO
             self.is_aberto = True
             self.transmissor_evento = None
