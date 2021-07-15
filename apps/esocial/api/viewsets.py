@@ -16,7 +16,7 @@ class EventosViewSet(ModelViewSet):
     queryset = Eventos.objects.all()
     serializer_class = EventosSerializer
     # filterset_class = EventosFilter
-    http_method_names = ['get', 'put', 'patch', 'post', 'head']
+    http_method_names = ['get', 'put', 'patch', 'post', 'head', 'delete']
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
