@@ -218,7 +218,7 @@ EVENTOS = [
     ('s2205', 'S-2205 - Alteração de Dados Cadastrais do Trabalhador'),
     ('s2206', 'S-2206 - Alteração de Contrato de Trabalho/Relação Estatutária'),
     ('s2210', 'S-2210 - Comunicação de Acidente de Trabalho'),
-    ('s2020', 'S-2220 - Monitoramento da Saúde do Trabalhador'),
+    ('s2220', 'S-2220 - Monitoramento da Saúde do Trabalhador'),
     ('s2230', 'S-2230 - Afastamento Temporário'),
     ('s2231', 'S-2231 - Cessão/Exercício em Outro Órgão'),
     ('s2240', 'S-2240 - Condições Ambientais do Trabalho - Agentes Nocivos'),
