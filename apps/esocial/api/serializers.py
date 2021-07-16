@@ -33,7 +33,20 @@ class EventosSerializer(ModelSerializer):
             import json
             dict = xmltodict.parse(validated_data['evento_xml'])
             validated_data['evento_json'] = json.dumps(dict.get('eSocial'))
-        return Eventos.objects.create(**validated_data)
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        validated_data['origem'] = EVENTO_ORIGEM_API
+        validated_data['is_aberto'] = False
+        validated_data['status'] = STATUS_EVENTO_IMPORTADO
+        validated_data['ocorrencias_json'] = None
+        validated_data['retorno_envio_json'] = '{}'
+        validated_data['retorno_consulta_json'] = '{}'
+        if validated_data['evento_xml'] and not validated_data['evento_json']:
+            import json
+            dict = xmltodict.parse(validated_data['evento_xml'])
+            validated_data['evento_json'] = json.dumps(dict.get('eSocial'))
+        return super().update(instance, validated_data)
 
     class Meta:
         model = Eventos
