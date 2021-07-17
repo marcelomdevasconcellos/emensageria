@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtAdmissao=original.evento_json|readjson:'evtAdmissao' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__ideEvento__id__indRetif" name="[evtAdmissao][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtAdmissao|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtAdmissao.ideEvento.nrRecibo'}}" name="[evtAdmissao][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__ideEvento__id__nrRecibo" maxlength="23" value="{{evtAdmissao|readjson:'ideEvento.nrRecibo'}}" name="[evtAdmissao][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -184,7 +185,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.cpfTrab'}}" name="[evtAdmissao][trabalhador][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__id__cpfTrab" maxlength="11" value="{{evtAdmissao|readjson:'trabalhador.cpfTrab'}}" name="[evtAdmissao][trabalhador][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -193,7 +194,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o nome do trabalhador<a data-toggle="tooltip" title="Informar o nome do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__id__nmTrab" maxlength="70" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.nmTrab'}}" name="[evtAdmissao][trabalhador][nmTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__id__nmTrab" maxlength="70" value="{{evtAdmissao|readjson:'trabalhador.nmTrab'}}" name="[evtAdmissao][trabalhador][nmTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -206,7 +207,7 @@ Valores válidos:
 M - Masculino
 F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__id__sexo" name="[evtAdmissao][trabalhador][sexo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='M' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.sexo' 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.sexo' 'F' %}selected{% endifequal %}>F - Feminino</option>
+            <option value="">---</option><option value='M' {% ifequal evtAdmissao|readjson:'trabalhador.sexo' 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal evtAdmissao|readjson:'trabalhador.sexo' 'F' %}selected{% endifequal %}>F - Feminino</option>
             </select>
         </div>
     </div>
@@ -224,7 +225,7 @@ Valores válidos:
 5 - Indígena
 6 - Não informado"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__id__racaCor" name="[evtAdmissao][trabalhador][racaCor]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.racaCor' '1' %}selected{% endifequal %}>1 - Branca</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.racaCor' '2' %}selected{% endifequal %}>2 - Preta</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.racaCor' '3' %}selected{% endifequal %}>3 - Parda</option><option value='4' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.racaCor' '4' %}selected{% endifequal %}>4 - Amarela</option><option value='5' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.racaCor' '5' %}selected{% endifequal %}>5 - Indígena</option><option value='6' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.racaCor' '6' %}selected{% endifequal %}>6 - Não informado</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'trabalhador.racaCor' '1' %}selected{% endifequal %}>1 - Branca</option><option value='2' {% ifequal evtAdmissao|readjson:'trabalhador.racaCor' '2' %}selected{% endifequal %}>2 - Preta</option><option value='3' {% ifequal evtAdmissao|readjson:'trabalhador.racaCor' '3' %}selected{% endifequal %}>3 - Parda</option><option value='4' {% ifequal evtAdmissao|readjson:'trabalhador.racaCor' '4' %}selected{% endifequal %}>4 - Amarela</option><option value='5' {% ifequal evtAdmissao|readjson:'trabalhador.racaCor' '5' %}selected{% endifequal %}>5 - Indígena</option><option value='6' {% ifequal evtAdmissao|readjson:'trabalhador.racaCor' '6' %}selected{% endifequal %}>6 - Não informado</option>
             </select>
         </div>
     </div>
@@ -241,7 +242,7 @@ Valores válidos:
 4 - Separado
 5 - Viúvo"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__id__estCiv" name="[evtAdmissao][trabalhador][estCiv]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.estCiv' '1' %}selected{% endifequal %}>1 - Solteiro</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.estCiv' '2' %}selected{% endifequal %}>2 - Casado</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.estCiv' '3' %}selected{% endifequal %}>3 - Divorciado</option><option value='4' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.estCiv' '4' %}selected{% endifequal %}>4 - Separado</option><option value='5' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.estCiv' '5' %}selected{% endifequal %}>5 - Viúvo</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'trabalhador.estCiv' '1' %}selected{% endifequal %}>1 - Solteiro</option><option value='2' {% ifequal evtAdmissao|readjson:'trabalhador.estCiv' '2' %}selected{% endifequal %}>2 - Casado</option><option value='3' {% ifequal evtAdmissao|readjson:'trabalhador.estCiv' '3' %}selected{% endifequal %}>3 - Divorciado</option><option value='4' {% ifequal evtAdmissao|readjson:'trabalhador.estCiv' '4' %}selected{% endifequal %}>4 - Separado</option><option value='5' {% ifequal evtAdmissao|readjson:'trabalhador.estCiv' '5' %}selected{% endifequal %}>5 - Viúvo</option>
             </select>
         </div>
     </div>
@@ -265,7 +266,7 @@ Valores válidos:
 11 - Mestrado completo
 12 - Doutorado completo"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__id__grauInstr" name="[evtAdmissao][trabalhador][grauInstr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='01' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '01' %}selected{% endifequal %}>01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou</option><option value='02' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '02' %}selected{% endifequal %}>02 - Até o 5º ano incompleto do ensino fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular</option><option value='03' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '03' %}selected{% endifequal %}>03 - 5º ano completo do ensino fundamental</option><option value='04' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '04' %}selected{% endifequal %}>04 - Do 6º ao 9º ano do ensino fundamental incompleto (antiga 5ª a 8ª série)</option><option value='05' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '05' %}selected{% endifequal %}>05 - Ensino fundamental completo</option><option value='06' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '06' %}selected{% endifequal %}>06 - Ensino médio incompleto</option><option value='07' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '07' %}selected{% endifequal %}>07 - Ensino médio completo</option><option value='08' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '08' %}selected{% endifequal %}>08 - Educação superior incompleta</option><option value='09' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '09' %}selected{% endifequal %}>09 - Educação superior completa</option><option value='10' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '10' %}selected{% endifequal %}>10 - Pós-graduação completa</option><option value='11' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '11' %}selected{% endifequal %}>11 - Mestrado completo</option><option value='12' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.grauInstr' '12' %}selected{% endifequal %}>12 - Doutorado completo</option>
+            <option value="">---</option><option value='01' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '01' %}selected{% endifequal %}>01 - Analfabeto, inclusive o que, embora tenha recebido instrução, não se alfabetizou</option><option value='02' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '02' %}selected{% endifequal %}>02 - Até o 5º ano incompleto do ensino fundamental (antiga 4ª série) ou que se tenha alfabetizado sem ter frequentado escola regular</option><option value='03' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '03' %}selected{% endifequal %}>03 - 5º ano completo do ensino fundamental</option><option value='04' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '04' %}selected{% endifequal %}>04 - Do 6º ao 9º ano do ensino fundamental incompleto (antiga 5ª a 8ª série)</option><option value='05' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '05' %}selected{% endifequal %}>05 - Ensino fundamental completo</option><option value='06' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '06' %}selected{% endifequal %}>06 - Ensino médio incompleto</option><option value='07' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '07' %}selected{% endifequal %}>07 - Ensino médio completo</option><option value='08' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '08' %}selected{% endifequal %}>08 - Educação superior incompleta</option><option value='09' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '09' %}selected{% endifequal %}>09 - Educação superior completa</option><option value='10' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '10' %}selected{% endifequal %}>10 - Pós-graduação completa</option><option value='11' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '11' %}selected{% endifequal %}>11 - Mestrado completo</option><option value='12' {% ifequal evtAdmissao|readjson:'trabalhador.grauInstr' '12' %}selected{% endifequal %}>12 - Doutorado completo</option>
             </select>
         </div>
     </div>
@@ -275,7 +276,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Nome social para travesti ou transexual<a data-toggle="tooltip" title="Nome social para travesti ou transexual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__id__nmSoc" maxlength="70" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.nmSoc'}}" name="[evtAdmissao][trabalhador][nmSoc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__id__nmSoc" maxlength="70" value="{{evtAdmissao|readjson:'trabalhador.nmSoc'}}" name="[evtAdmissao][trabalhador][nmSoc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -304,7 +305,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com a data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__nascimento__id__dtNascto" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.nascimento.dtNascto'}}" name="[evtAdmissao][trabalhador][nascimento][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__nascimento__id__dtNascto" value="{{evtAdmissao|readjson:'trabalhador.nascimento.dtNascto'}}" name="[evtAdmissao][trabalhador][nascimento][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -314,7 +315,7 @@ Valores válidos:
         <div class="form-group">
             <label>Preencher com o código do país de nascimento do trabalhador<a data-toggle="tooltip" title="Preencher com o código do país de nascimento do trabalhador.
 Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__nascimento__id__paisNascto" maxlength="3" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.nascimento.paisNascto'}}" name="[evtAdmissao][trabalhador][nascimento][paisNascto]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__nascimento__id__paisNascto" maxlength="3" value="{{evtAdmissao|readjson:'trabalhador.nascimento.paisNascto'}}" name="[evtAdmissao][trabalhador][nascimento][paisNascto]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -324,7 +325,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
         <div class="form-group">
             <label>Preencher com o código do país de nacionalidade do trabalhador<a data-toggle="tooltip" title="Preencher com o código do país de nacionalidade do trabalhador.
 Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__nascimento__id__paisNac" maxlength="3" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.nascimento.paisNac'}}" name="[evtAdmissao][trabalhador][nascimento][paisNac]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__nascimento__id__paisNac" maxlength="3" value="{{evtAdmissao|readjson:'trabalhador.nascimento.paisNac'}}" name="[evtAdmissao][trabalhador][nascimento][paisNac]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -378,7 +379,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
         <div class="form-group">
             <label>Tipo de logradouro<a data-toggle="tooltip" title="Tipo de logradouro.
 Validação: Se informado, deve ser um código válido e existente na Tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__tpLograd" maxlength="4" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.brasil.tpLograd'}}" name="[evtAdmissao][trabalhador][endereco][brasil][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__tpLograd" maxlength="4" value="{{evtAdmissao|readjson:'trabalhador.endereco.brasil.tpLograd'}}" name="[evtAdmissao][trabalhador][endereco][brasil][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -387,7 +388,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.brasil.dscLograd'}}" name="[evtAdmissao][trabalhador][endereco][brasil][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__dscLograd" maxlength="100" value="{{evtAdmissao|readjson:'trabalhador.endereco.brasil.dscLograd'}}" name="[evtAdmissao][trabalhador][endereco][brasil][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -397,7 +398,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
         <div class="form-group">
             <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.brasil.nrLograd'}}" name="[evtAdmissao][trabalhador][endereco][brasil][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__nrLograd" maxlength="10" value="{{evtAdmissao|readjson:'trabalhador.endereco.brasil.nrLograd'}}" name="[evtAdmissao][trabalhador][endereco][brasil][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -406,7 +407,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Complemento do logradouro<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.brasil.complemento'}}" name="[evtAdmissao][trabalhador][endereco][brasil][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__complemento" maxlength="30" value="{{evtAdmissao|readjson:'trabalhador.endereco.brasil.complemento'}}" name="[evtAdmissao][trabalhador][endereco][brasil][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -415,7 +416,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.brasil.bairro'}}" name="[evtAdmissao][trabalhador][endereco][brasil][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__bairro" maxlength="90" value="{{evtAdmissao|readjson:'trabalhador.endereco.brasil.bairro'}}" name="[evtAdmissao][trabalhador][endereco][brasil][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -425,7 +426,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
         <div class="form-group">
             <label>Código de Endereçamento Postal - CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
 Validação: Deve ser preenchido apenas com números, com 8 (oito) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.brasil.cep'}}" name="[evtAdmissao][trabalhador][endereco][brasil][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__cep" maxlength="8" value="{{evtAdmissao|readjson:'trabalhador.endereco.brasil.cep'}}" name="[evtAdmissao][trabalhador][endereco][brasil][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -435,7 +436,7 @@ Validação: Deve ser preenchido apenas com números, com 8 (oito) posições.">
         <div class="form-group">
             <label>Preencher com o código do município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
 Validação: Deve ser um código válido e existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.brasil.codMunic'}}" name="[evtAdmissao][trabalhador][endereco][brasil][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__codMunic" maxlength="7" value="{{evtAdmissao|readjson:'trabalhador.endereco.brasil.codMunic'}}" name="[evtAdmissao][trabalhador][endereco][brasil][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -445,7 +446,7 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
         <div class="form-group">
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.brasil.uf'}}" name="[evtAdmissao][trabalhador][endereco][brasil][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__brasil__id__uf" maxlength="2" value="{{evtAdmissao|readjson:'trabalhador.endereco.brasil.uf'}}" name="[evtAdmissao][trabalhador][endereco][brasil][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -479,7 +480,7 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
         <div class="form-group">
             <label>Preencher com o código do país<a data-toggle="tooltip" title="Preencher com o código do país.
 Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__paisResid" maxlength="3" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.exterior.paisResid'}}" name="[evtAdmissao][trabalhador][endereco][exterior][paisResid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__paisResid" maxlength="3" value="{{evtAdmissao|readjson:'trabalhador.endereco.exterior.paisResid'}}" name="[evtAdmissao][trabalhador][endereco][exterior][paisResid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -488,7 +489,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.exterior.dscLograd'}}" name="[evtAdmissao][trabalhador][endereco][exterior][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__dscLograd" maxlength="100" value="{{evtAdmissao|readjson:'trabalhador.endereco.exterior.dscLograd'}}" name="[evtAdmissao][trabalhador][endereco][exterior][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -498,7 +499,7 @@ Validação: Deve ser um código válido e existente na Tabela 06."><i class="fa
         <div class="form-group">
             <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.exterior.nrLograd'}}" name="[evtAdmissao][trabalhador][endereco][exterior][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__nrLograd" maxlength="10" value="{{evtAdmissao|readjson:'trabalhador.endereco.exterior.nrLograd'}}" name="[evtAdmissao][trabalhador][endereco][exterior][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -507,7 +508,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Complemento do logradouro<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.exterior.complemento'}}" name="[evtAdmissao][trabalhador][endereco][exterior][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__complemento" maxlength="30" value="{{evtAdmissao|readjson:'trabalhador.endereco.exterior.complemento'}}" name="[evtAdmissao][trabalhador][endereco][exterior][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -516,7 +517,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.exterior.bairro'}}" name="[evtAdmissao][trabalhador][endereco][exterior][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__bairro" maxlength="90" value="{{evtAdmissao|readjson:'trabalhador.endereco.exterior.bairro'}}" name="[evtAdmissao][trabalhador][endereco][exterior][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -525,7 +526,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Nome da cidade<a data-toggle="tooltip" title="Nome da cidade."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__nmCid" maxlength="50" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.exterior.nmCid'}}" name="[evtAdmissao][trabalhador][endereco][exterior][nmCid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__nmCid" maxlength="50" value="{{evtAdmissao|readjson:'trabalhador.endereco.exterior.nmCid'}}" name="[evtAdmissao][trabalhador][endereco][exterior][nmCid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -534,7 +535,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Código de Endereçamento Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__codPostal" maxlength="12" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.endereco.exterior.codPostal'}}" name="[evtAdmissao][trabalhador][endereco][exterior][codPostal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__endereco__exterior__id__codPostal" maxlength="12" value="{{evtAdmissao|readjson:'trabalhador.endereco.exterior.codPostal'}}" name="[evtAdmissao][trabalhador][endereco][exterior][codPostal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -576,7 +577,7 @@ Valores válidos:
 2 - Prazo determinado
 Validação: Preenchimento obrigatório se (dtAdm ou dtExercicio) >= [2021-05-10]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__trabImig__id__tmpResid" name="[evtAdmissao][trabalhador][trabImig][tmpResid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.trabImig.tmpResid' '1' %}selected{% endifequal %}>1 - Prazo indeterminado</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.trabImig.tmpResid' '2' %}selected{% endifequal %}>2 - Prazo determinado</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'trabalhador.trabImig.tmpResid' '1' %}selected{% endifequal %}>1 - Prazo indeterminado</option><option value='2' {% ifequal evtAdmissao|readjson:'trabalhador.trabImig.tmpResid' '2' %}selected{% endifequal %}>2 - Prazo determinado</option>
             </select>
         </div>
     </div>
@@ -596,7 +597,7 @@ Valores válidos:
 7 - Outra condição
 Validação: Se tmpResid = [1], não pode ser informado [2, 5]. Se tmpResid = [2], não pode ser informado [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__trabImig__id__condIng" name="[evtAdmissao][trabalhador][trabImig][condIng]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.trabImig.condIng' '1' %}selected{% endifequal %}>1 - Refugiado</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.trabImig.condIng' '2' %}selected{% endifequal %}>2 - Solicitante de refúgio</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.trabImig.condIng' '3' %}selected{% endifequal %}>3 - Permanência no Brasil em razão de reunião familiar</option><option value='4' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.trabImig.condIng' '4' %}selected{% endifequal %}>4 - Beneficiado pelo acordo entre países do Mercosul</option><option value='5' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.trabImig.condIng' '5' %}selected{% endifequal %}>5 - Dependente de agente diplomático e/ou consular de países que mantêm acordo de reciprocidade para o exercício de atividade remunerada no Brasil</option><option value='6' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.trabImig.condIng' '6' %}selected{% endifequal %}>6 - Beneficiado pelo Tratado de Amizade, Cooperação e Consulta entre a República Federativa do Brasil e a República Portuguesa</option><option value='7' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.trabImig.condIng' '7' %}selected{% endifequal %}>7 - Outra condição</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'trabalhador.trabImig.condIng' '1' %}selected{% endifequal %}>1 - Refugiado</option><option value='2' {% ifequal evtAdmissao|readjson:'trabalhador.trabImig.condIng' '2' %}selected{% endifequal %}>2 - Solicitante de refúgio</option><option value='3' {% ifequal evtAdmissao|readjson:'trabalhador.trabImig.condIng' '3' %}selected{% endifequal %}>3 - Permanência no Brasil em razão de reunião familiar</option><option value='4' {% ifequal evtAdmissao|readjson:'trabalhador.trabImig.condIng' '4' %}selected{% endifequal %}>4 - Beneficiado pelo acordo entre países do Mercosul</option><option value='5' {% ifequal evtAdmissao|readjson:'trabalhador.trabImig.condIng' '5' %}selected{% endifequal %}>5 - Dependente de agente diplomático e/ou consular de países que mantêm acordo de reciprocidade para o exercício de atividade remunerada no Brasil</option><option value='6' {% ifequal evtAdmissao|readjson:'trabalhador.trabImig.condIng' '6' %}selected{% endifequal %}>6 - Beneficiado pelo Tratado de Amizade, Cooperação e Consulta entre a República Federativa do Brasil e a República Portuguesa</option><option value='7' {% ifequal evtAdmissao|readjson:'trabalhador.trabImig.condIng' '7' %}selected{% endifequal %}>7 - Outra condição</option>
             </select>
         </div>
     </div>
@@ -634,7 +635,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__infoDeficiencia__id__defFisica" name="[evtAdmissao][trabalhador][infoDeficiencia][defFisica]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.defFisica' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.defFisica' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.defFisica' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.defFisica' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -648,7 +649,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__infoDeficiencia__id__defVisual" name="[evtAdmissao][trabalhador][infoDeficiencia][defVisual]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.defVisual' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.defVisual' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.defVisual' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.defVisual' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -662,7 +663,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__infoDeficiencia__id__defAuditiva" name="[evtAdmissao][trabalhador][infoDeficiencia][defAuditiva]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.defAuditiva' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.defAuditiva' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.defAuditiva' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.defAuditiva' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -676,7 +677,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__infoDeficiencia__id__defMental" name="[evtAdmissao][trabalhador][infoDeficiencia][defMental]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.defMental' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.defMental' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.defMental' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.defMental' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -690,7 +691,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__infoDeficiencia__id__defIntelectual" name="[evtAdmissao][trabalhador][infoDeficiencia][defIntelectual]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.defIntelectual' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.defIntelectual' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.defIntelectual' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.defIntelectual' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -706,7 +707,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__infoDeficiencia__id__reabReadap" name="[evtAdmissao][trabalhador][infoDeficiencia][reabReadap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.reabReadap' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.reabReadap' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.reabReadap' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.reabReadap' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -721,7 +722,7 @@ S - Sim
 N - Não
 Validação: Preenchimento obrigatório e exclusivo se tpRegTrab = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__infoDeficiencia__id__infoCota" name="[evtAdmissao][trabalhador][infoDeficiencia][infoCota]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.infoCota' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.infoCota' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.infoCota' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'trabalhador.infoDeficiencia.infoCota' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -731,7 +732,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpRegTrab = [1]."><i clas
     <div class="col-md-4">
         <div class="form-group">
             <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__infoDeficiencia__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.infoDeficiencia.observacao'}}" name="[evtAdmissao][trabalhador][infoDeficiencia][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__infoDeficiencia__id__observacao" maxlength="255" value="{{evtAdmissao|readjson:'trabalhador.infoDeficiencia.observacao'}}" name="[evtAdmissao][trabalhador][infoDeficiencia][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -739,7 +740,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpRegTrab = [1]."><i clas
             </div>
         </blockquote>
     </div>
-</div>{% for dependente in original.evento_json|readjson:'evtAdmissao.trabalhador.dependente' %}
+</div>{% for dependente in evtAdmissao|readjson:'trabalhador.dependente' %}
 <div id="dependente__div">
     <div class="col-md-12">
         <h4>Informações dos dependentes.</h4>
@@ -765,7 +766,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpRegTrab = [1]."><i clas
         <div class="form-group">
             <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente.tpDep}}" name="[evtAdmissao][trabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtAdmissao][trabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -774,7 +775,7 @@ Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa
     <div class="col-md-4">
         <div class="form-group">
             <label>Nome do dependente<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__dependente__id__nmDep" maxlength="70" value="{{dependente.nmDep}}" name="[evtAdmissao][trabalhador][dependente][][nmDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__dependente__id__nmDep" maxlength="70" value="{{dependente|readjson:'nmDep'}}" name="[evtAdmissao][trabalhador][dependente][][nmDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -784,7 +785,7 @@ Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa
         <div class="form-group">
             <label>Preencher com a data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento.
 Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__dependente__id__dtNascto" value="{{dependente.dtNascto}}" name="[evtAdmissao][trabalhador][dependente][][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__dependente__id__dtNascto" value="{{dependente|readjson:'dtNascto'}}" name="[evtAdmissao][trabalhador][dependente][][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -797,7 +798,7 @@ Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
 c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__dependente__id__cpfDep" maxlength="11" value="{{dependente.cpfDep}}" name="[evtAdmissao][trabalhador][dependente][][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__dependente__id__cpfDep" maxlength="11" value="{{dependente|readjson:'cpfDep'}}" name="[evtAdmissao][trabalhador][dependente][][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -811,7 +812,7 @@ M - Masculino
 F - Feminino
 Validação: Preenchimento obrigatório se tpRegPrev = [2] e cadIni = [N]. Não informar se tpRegPrev for diferente de [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__dependente__id__sexoDep" name="[evtAdmissao][trabalhador][dependente][][sexoDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='M' {% ifequal dependente.sexoDep 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente.sexoDep 'F' %}selected{% endifequal %}>F - Feminino</option>
+            <option value="">---</option><option value='M' {% ifequal dependente|readjson:'sexoDep' 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente|readjson:'sexoDep' 'F' %}selected{% endifequal %}>F - Feminino</option>
             </select>
         </div>
     </div>
@@ -825,7 +826,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__dependente__id__depIRRF" name="[evtAdmissao][trabalhador][dependente][][depIRRF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dependente.depIRRF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depIRRF 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'depIRRF' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'depIRRF' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -839,7 +840,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__dependente__id__depSF" name="[evtAdmissao][trabalhador][dependente][][depSF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dependente.depSF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depSF 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'depSF' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'depSF' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -853,7 +854,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__dependente__id__incTrab" name="[evtAdmissao][trabalhador][dependente][][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dependente.incTrab 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.incTrab 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'incTrab' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'incTrab' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -888,7 +889,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
         <div class="form-group">
             <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente.tpDep}}" name="[evtAdmissao][trabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtAdmissao][trabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -897,7 +898,7 @@ Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa
     <div class="col-md-4">
         <div class="form-group">
             <label>Nome do dependente<a data-toggle="tooltip" title="Nome do dependente."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__dependente__id__nmDep" maxlength="70" value="{{dependente.nmDep}}" name="[evtAdmissao][trabalhador][dependente][][nmDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__dependente__id__nmDep" maxlength="70" value="{{dependente|readjson:'nmDep'}}" name="[evtAdmissao][trabalhador][dependente][][nmDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -907,7 +908,7 @@ Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa
         <div class="form-group">
             <label>Preencher com a data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento.
 Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__dependente__id__dtNascto" value="{{dependente.dtNascto}}" name="[evtAdmissao][trabalhador][dependente][][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__dependente__id__dtNascto" value="{{dependente|readjson:'dtNascto'}}" name="[evtAdmissao][trabalhador][dependente][][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -920,7 +921,7 @@ Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
 c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__dependente__id__cpfDep" maxlength="11" value="{{dependente.cpfDep}}" name="[evtAdmissao][trabalhador][dependente][][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__dependente__id__cpfDep" maxlength="11" value="{{dependente|readjson:'cpfDep'}}" name="[evtAdmissao][trabalhador][dependente][][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -934,7 +935,7 @@ M - Masculino
 F - Feminino
 Validação: Preenchimento obrigatório se tpRegPrev = [2] e cadIni = [N]. Não informar se tpRegPrev for diferente de [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__dependente__id__sexoDep" name="[evtAdmissao][trabalhador][dependente][][sexoDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='M' {% ifequal dependente.sexoDep 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente.sexoDep 'F' %}selected{% endifequal %}>F - Feminino</option>
+            <option value="">---</option><option value='M' {% ifequal dependente|readjson:'sexoDep' 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente|readjson:'sexoDep' 'F' %}selected{% endifequal %}>F - Feminino</option>
             </select>
         </div>
     </div>
@@ -948,7 +949,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__dependente__id__depIRRF" name="[evtAdmissao][trabalhador][dependente][][depIRRF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dependente.depIRRF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depIRRF 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'depIRRF' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'depIRRF' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -962,7 +963,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__dependente__id__depSF" name="[evtAdmissao][trabalhador][dependente][][depSF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dependente.depSF 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.depSF 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'depSF' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'depSF' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -976,7 +977,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__dependente__id__incTrab" name="[evtAdmissao][trabalhador][dependente][][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dependente.incTrab 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente.incTrab 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'incTrab' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'incTrab' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -1011,7 +1012,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
         <div class="form-group">
             <label>Número de telefone do trabalhador<a data-toggle="tooltip" title="Número de telefone do trabalhador, com DDD.
 Validação: Se preenchido, deve conter apenas números, com o mínimo de dez dígitos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__contato__id__fonePrinc" maxlength="13" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.contato.fonePrinc'}}" name="[evtAdmissao][trabalhador][contato][fonePrinc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__contato__id__fonePrinc" maxlength="13" value="{{evtAdmissao|readjson:'trabalhador.contato.fonePrinc'}}" name="[evtAdmissao][trabalhador][contato][fonePrinc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1021,7 +1022,7 @@ Validação: Se preenchido, deve conter apenas números, com o mínimo de dez d�
         <div class="form-group">
             <label>Endereço eletrônico<a data-toggle="tooltip" title="Endereço eletrônico.
 Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no início e no fim do e-mail. Deve possuir no mínimo um caractere "." depois do @ e não pode estar no início ou no final do e-mail."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__trabalhador__contato__id__emailPrinc" maxlength="60" value="{{original.evento_json|readjson:'evtAdmissao.trabalhador.contato.emailPrinc'}}" name="[evtAdmissao][trabalhador][contato][emailPrinc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__trabalhador__contato__id__emailPrinc" maxlength="60" value="{{evtAdmissao|readjson:'trabalhador.contato.emailPrinc'}}" name="[evtAdmissao][trabalhador][contato][emailPrinc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1061,7 +1062,7 @@ Validação: O e-mail deve ser possuir o caractere "@" e este não pode estar no
 Validação: O valor informado não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.
 Regra de validação:
 REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.matricula'}}" name="[evtAdmissao][vinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__id__matricula" maxlength="30" value="{{evtAdmissao|readjson:'vinculo.matricula'}}" name="[evtAdmissao][vinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1075,7 +1076,7 @@ Valores válidos:
 2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)
 Validação: Se codCateg = [104], deve ser preenchido com [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__id__tpRegTrab" name="[evtAdmissao][vinculo][tpRegTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.tpRegTrab' '1' %}selected{% endifequal %}>1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.tpRegTrab' '2' %}selected{% endifequal %}>2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.tpRegTrab' '1' %}selected{% endifequal %}>1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.tpRegTrab' '2' %}selected{% endifequal %}>2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)</option>
             </select>
         </div>
     </div>
@@ -1091,7 +1092,7 @@ Valores válidos:
 3 - Regime de Previdência Social no exterior
 Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__id__tpRegPrev" name="[evtAdmissao][vinculo][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.tpRegPrev' '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.tpRegPrev' '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.tpRegPrev' '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.tpRegPrev' '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.tpRegPrev' '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.tpRegPrev' '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>
@@ -1105,7 +1106,7 @@ Valores válidos:
 S - Sim (Cadastramento Inicial)
 N - Não (Admissão)"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__id__cadIni" name="[evtAdmissao][vinculo][cadIni]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.cadIni' 'S' %}selected{% endifequal %}>S - Sim (Cadastramento Inicial)</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.cadIni' 'N' %}selected{% endifequal %}>N - Não (Admissão)</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'vinculo.cadIni' 'S' %}selected{% endifequal %}>S - Sim (Cadastramento Inicial)</option><option value='N' {% ifequal evtAdmissao|readjson:'vinculo.cadIni' 'N' %}selected{% endifequal %}>N - Não (Admissão)</option>
             </select>
         </div>
     </div>
@@ -1160,7 +1161,7 @@ Validação: Devem ser observadas as seguintes regras:
 a) Deve ser posterior à data de nascimento do trabalhador;
 b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial;
 c) Se cadIni = [N] e tpAdmissao = [1], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__dtAdm" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.dtAdm'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][dtAdm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__dtAdm" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.dtAdm'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][dtAdm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1179,7 +1180,7 @@ Valores válidos:
 Validação: Se for igual a [5], codCateg deve ser igual a [104] e procEmi deve ser igual a [2, 22].
 Se for igual a [6], cadIni deve ser igual a [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__tpAdmissao" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][tpAdmissao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '1' %}selected{% endifequal %}>1 - Admissão</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '2' %}selected{% endifequal %}>2 - Transferência de empresa do mesmo grupo econômico</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '3' %}selected{% endifequal %}>3 - Transferência de empresa consorciada ou de consórcio</option><option value='4' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '4' %}selected{% endifequal %}>4 - Transferência por motivo de sucessão, incorporação, cisão ou fusão</option><option value='5' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '5' %}selected{% endifequal %}>5 - Transferência do empregado doméstico para outro representante da mesma unidade familiar</option><option value='6' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '6' %}selected{% endifequal %}>6 - Mudança de CPF</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '1' %}selected{% endifequal %}>1 - Admissão</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '2' %}selected{% endifequal %}>2 - Transferência de empresa do mesmo grupo econômico</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '3' %}selected{% endifequal %}>3 - Transferência de empresa consorciada ou de consórcio</option><option value='4' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '4' %}selected{% endifequal %}>4 - Transferência por motivo de sucessão, incorporação, cisão ou fusão</option><option value='5' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '5' %}selected{% endifequal %}>5 - Transferência do empregado doméstico para outro representante da mesma unidade familiar</option><option value='6' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.tpAdmissao' '6' %}selected{% endifequal %}>6 - Mudança de CPF</option>
             </select>
         </div>
     </div>
@@ -1194,7 +1195,7 @@ Valores válidos:
 2 - Decorrente de ação fiscal
 3 - Decorrente de decisão judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__indAdmissao" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][indAdmissao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.indAdmissao' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.indAdmissao' '2' %}selected{% endifequal %}>2 - Decorrente de ação fiscal</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.indAdmissao' '3' %}selected{% endifequal %}>3 - Decorrente de decisão judicial</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.indAdmissao' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.indAdmissao' '2' %}selected{% endifequal %}>2 - Decorrente de ação fiscal</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.indAdmissao' '3' %}selected{% endifequal %}>3 - Decorrente de decisão judicial</option>
             </select>
         </div>
     </div>
@@ -1205,7 +1206,7 @@ Valores válidos:
         <div class="form-group">
             <label>Número que identifica o processo judicial onde a baixa do vínculo foi determinada<a data-toggle="tooltip" title="Número que identifica o processo trabalhista, quando a admissão se der por decisão judicial.
 Validação: Não informar se indAdmissao = [1, 2]. Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__nrProcTrab" maxlength="20" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.nrProcTrab'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][nrProcTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__nrProcTrab" maxlength="20" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.nrProcTrab'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][nrProcTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1220,7 +1221,7 @@ Valores válidos:
 3 - Função especificada no inciso II do art. 62 da CLT
 4 - Teletrabalho, previsto no inciso III do art. 62 da CLT"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__tpRegJor" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][tpRegJor]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '1' %}selected{% endifequal %}>1 - Submetido a horário de trabalho (Capítulo II do Título II da CLT)</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '2' %}selected{% endifequal %}>2 - Atividade externa especificada no inciso I do art. 62 da CLT</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '3' %}selected{% endifequal %}>3 - Função especificada no inciso II do art. 62 da CLT</option><option value='4' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '4' %}selected{% endifequal %}>4 - Teletrabalho, previsto no inciso III do art. 62 da CLT</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '1' %}selected{% endifequal %}>1 - Submetido a horário de trabalho (Capítulo II do Título II da CLT)</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '2' %}selected{% endifequal %}>2 - Atividade externa especificada no inciso I do art. 62 da CLT</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '3' %}selected{% endifequal %}>3 - Função especificada no inciso II do art. 62 da CLT</option><option value='4' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '4' %}selected{% endifequal %}>4 - Teletrabalho, previsto no inciso III do art. 62 da CLT</option>
             </select>
         </div>
     </div>
@@ -1235,7 +1236,7 @@ Valores válidos:
 2 - Trabalho rural
 Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [102], deve ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__natAtividade" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][natAtividade]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.natAtividade' '1' %}selected{% endifequal %}>1 - Trabalho urbano</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.natAtividade' '2' %}selected{% endifequal %}>2 - Trabalho rural</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.natAtividade' '1' %}selected{% endifequal %}>1 - Trabalho urbano</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.natAtividade' '2' %}selected{% endifequal %}>2 - Trabalho rural</option>
             </select>
         </div>
     </div>
@@ -1246,7 +1247,7 @@ Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [10
         <div class="form-group">
             <label>Mês relativo à data base da categoria profissional do trabalhador<a data-toggle="tooltip" title="Mês relativo à data base da categoria profissional do trabalhador.
 Validação: Se informado, deve ser maior ou igual a 1 e menor ou igual a 12."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__dtBase" maxlength="2" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.dtBase'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][dtBase]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__dtBase" maxlength="2" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.dtBase'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][dtBase]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1256,7 +1257,7 @@ Validação: Se informado, deve ser maior ou igual a 1 e menor ou igual a 12."><
         <div class="form-group">
             <label>Preencher com o CNPJ do sindicato representativo da categoria (preponderante ou diferenciada)<a data-toggle="tooltip" title="Preencher com o CNPJ do sindicato representativo da categoria (preponderante ou diferenciada).
 Validação: Deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__cnpjSindCategProf" maxlength="14" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.cnpjSindCategProf'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][cnpjSindCategProf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__cnpjSindCategProf" maxlength="14" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.cnpjSindCategProf'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][cnpjSindCategProf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1285,7 +1286,7 @@ Validação: Deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="f
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar a data de opção do trabalhador pelo FGTS<a data-toggle="tooltip" title="Informar a data de opção do trabalhador pelo FGTS."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__FGTS__id__dtOpcFGTS" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.FGTS.dtOpcFGTS'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][FGTS][dtOpcFGTS]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__FGTS__id__dtOpcFGTS" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.FGTS.dtOpcFGTS'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][FGTS][dtOpcFGTS]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1322,7 +1323,7 @@ Valores válidos:
 1 - Necessidade de substituição transitória de pessoal permanente
 2 - Demanda complementar de serviços"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__id__hipLeg" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][hipLeg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.trabTemporario.hipLeg' '1' %}selected{% endifequal %}>1 - Necessidade de substituição transitória de pessoal permanente</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.trabTemporario.hipLeg' '2' %}selected{% endifequal %}>2 - Demanda complementar de serviços</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.trabTemporario.hipLeg' '1' %}selected{% endifequal %}>1 - Necessidade de substituição transitória de pessoal permanente</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.trabTemporario.hipLeg' '2' %}selected{% endifequal %}>2 - Demanda complementar de serviços</option>
             </select>
         </div>
     </div>
@@ -1332,7 +1333,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição do fato determinado que<a data-toggle="tooltip" title="Descrição do fato determinado que, no caso concreto, justifica a hipótese legal para a contratação de trabalho temporário. O prazo de contratação do trabalho temporário deve ser compatível com o motivo justificador alegado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__id__justContr" maxlength="999" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.trabTemporario.justContr'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][justContr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__id__justContr" maxlength="999" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.trabTemporario.justContr'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][justContr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1365,7 +1366,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__ideEstabVinc__id__tpInsc" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][ideEstabVinc][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.trabTemporario.ideEstabVinc.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.trabTemporario.ideEstabVinc.tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.trabTemporario.ideEstabVinc.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.trabTemporario.ideEstabVinc.tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -1376,7 +1377,7 @@ Valores válidos:
         <div class="form-group">
             <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do contratante de serviços, de acordo com o tipo de inscrição informado em ideEstabVinc/tpInsc.
 Validação: Se ideEstabVinc/tpInsc for igual a [1], deve ser um CNPJ válido, com 14 (catorze) algarismos. Se ideEstabVinc/tpInsc for igual a [2], deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__ideEstabVinc__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.trabTemporario.ideEstabVinc.nrInsc'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][ideEstabVinc][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__ideEstabVinc__id__nrInsc" maxlength="14" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.trabTemporario.ideEstabVinc.nrInsc'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][ideEstabVinc][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1384,7 +1385,7 @@ Validação: Se ideEstabVinc/tpInsc for igual a [1], deve ser um CNPJ válido, c
             </div>
         </blockquote>
     </div>
-</div>{% for ideTrabSubstituido in original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.trabTemporario.ideTrabSubstituido' %}
+</div>{% for ideTrabSubstituido in evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.trabTemporario.ideTrabSubstituido' %}
 <div id="ideTrabSubstituido__div">
     <div class="col-md-12">
         <h4>Identificação do(s) trabalhador(es) substituído(s).</h4>
@@ -1410,7 +1411,7 @@ Validação: Se ideEstabVinc/tpInsc for igual a [1], deve ser um CNPJ válido, c
         <div class="form-group">
             <label>CPF do trabalhador substituído<a data-toggle="tooltip" title="CPF do trabalhador substituído.
 Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__ideTrabSubstituido__id__cpfTrabSubst" maxlength="11" value="{{ideTrabSubstituido.cpfTrabSubst}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][ideTrabSubstituido][][cpfTrabSubst]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__ideTrabSubstituido__id__cpfTrabSubst" maxlength="11" value="{{ideTrabSubstituido|readjson:'cpfTrabSubst'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][ideTrabSubstituido][][cpfTrabSubst]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1444,7 +1445,7 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
         <div class="form-group">
             <label>CPF do trabalhador substituído<a data-toggle="tooltip" title="CPF do trabalhador substituído.
 Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__ideTrabSubstituido__id__cpfTrabSubst" maxlength="11" value="{{ideTrabSubstituido.cpfTrabSubst}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][ideTrabSubstituido][][cpfTrabSubst]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__ideTrabSubstituido__id__cpfTrabSubst" maxlength="11" value="{{ideTrabSubstituido|readjson:'cpfTrabSubst'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][ideTrabSubstituido][][cpfTrabSubst]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1486,7 +1487,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__aprend__id__tpInsc" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][aprend][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.aprend.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.aprend.tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.aprend.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.aprend.tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -1499,7 +1500,7 @@ Valores válidos:
 Validação: Deve ser um identificador válido e:
 a) Se aprend/tpInsc = [1], deve ser informado com 14 (catorze) algarismos. Se o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente de ideEmpregador/nrInsc.
 b) Se aprend/tpInsc = [2], deve ser diferente do CPF do empregado. Se o empregador for pessoa física, também deve ser diferente do CPF do empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__aprend__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoCeletista.aprend.nrInsc'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][aprend][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__aprend__id__nrInsc" maxlength="14" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.aprend.nrInsc'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][aprend][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1550,7 +1551,7 @@ Valores válidos:
 Validação: Os valores [3, 5, 6, 7, 8, 9] só são permitidos se a natureza jurídica do declarante for Administração Pública (grupo [1]).
 Se codCateg = [302], deve ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoEstatutario__id__tpProv" name="[evtAdmissao][vinculo][infoRegimeTrab][infoEstatutario][tpProv]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpProv' '1' %}selected{% endifequal %}>1 - Nomeação em cargo efetivo</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpProv' '2' %}selected{% endifequal %}>2 - Nomeação exclusivamente em cargo em comissão</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpProv' '3' %}selected{% endifequal %}>3 - Incorporação, matrícula ou nomeação (militar)</option><option value='5' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpProv' '5' %}selected{% endifequal %}>5 - Redistribuição</option><option value='6' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpProv' '6' %}selected{% endifequal %}>6 - Diplomação</option><option value='7' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpProv' '7' %}selected{% endifequal %}>7 - Contratação por tempo determinado</option><option value='8' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpProv' '8' %}selected{% endifequal %}>8 - Remoção (em caso de alteração do órgão declarante)</option><option value='9' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpProv' '9' %}selected{% endifequal %}>9 - Designação</option><option value='10' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpProv' '10' %}selected{% endifequal %}>10 - Mudança de CPF</option><option value='99' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpProv' '99' %}selected{% endifequal %}>99 - Outros não relacionados acima</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv' '1' %}selected{% endifequal %}>1 - Nomeação em cargo efetivo</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv' '2' %}selected{% endifequal %}>2 - Nomeação exclusivamente em cargo em comissão</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv' '3' %}selected{% endifequal %}>3 - Incorporação, matrícula ou nomeação (militar)</option><option value='5' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv' '5' %}selected{% endifequal %}>5 - Redistribuição</option><option value='6' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv' '6' %}selected{% endifequal %}>6 - Diplomação</option><option value='7' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv' '7' %}selected{% endifequal %}>7 - Contratação por tempo determinado</option><option value='8' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv' '8' %}selected{% endifequal %}>8 - Remoção (em caso de alteração do órgão declarante)</option><option value='9' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv' '9' %}selected{% endifequal %}>9 - Designação</option><option value='10' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv' '10' %}selected{% endifequal %}>10 - Mudança de CPF</option><option value='99' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv' '99' %}selected{% endifequal %}>99 - Outros não relacionados acima</option>
             </select>
         </div>
     </div>
@@ -1564,7 +1565,7 @@ Validação: Devem ser observadas as seguintes regras:
 a) Deve ser posterior à data de nascimento do trabalhador;
 b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador/ente público no eSocial;
 c) Se cadIni = [N] e tpProv for diferente de [5, 8, 10], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador/ente público no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoEstatutario__id__dtExercicio" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.dtExercicio'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoEstatutario][dtExercicio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoEstatutario__id__dtExercicio" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.dtExercicio'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoEstatutario][dtExercicio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1580,7 +1581,7 @@ Valores válidos:
 3 - Mantido pelo Tesouro
 Validação: Preenchimento obrigatório e exclusivo se tpRegPrev = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoEstatutario__id__tpPlanRP" name="[evtAdmissao][vinculo][infoRegimeTrab][infoEstatutario][tpPlanRP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '0' %}selected{% endifequal %}>0 - Sem segregação da massa</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '1' %}selected{% endifequal %}>1 - Fundo em capitalização</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '2' %}selected{% endifequal %}>2 - Fundo em repartição</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '3' %}selected{% endifequal %}>3 - Mantido pelo Tesouro</option>
+            <option value="">---</option><option value='0' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '0' %}selected{% endifequal %}>0 - Sem segregação da massa</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '1' %}selected{% endifequal %}>1 - Fundo em capitalização</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '2' %}selected{% endifequal %}>2 - Fundo em repartição</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '3' %}selected{% endifequal %}>3 - Mantido pelo Tesouro</option>
             </select>
         </div>
     </div>
@@ -1595,7 +1596,7 @@ S - Sim
 N - Não
 Validação: Preenchimento obrigatório e exclusivo se tpRegPrev = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoEstatutario__id__indTetoRGPS" name="[evtAdmissao][vinculo][infoRegimeTrab][infoEstatutario][indTetoRGPS]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -1610,7 +1611,7 @@ S - Sim
 N - Não
 Validação: Preenchimento obrigatório e exclusivo se tpRegPrev = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoEstatutario__id__indAbonoPerm" name="[evtAdmissao][vinculo][infoRegimeTrab][infoEstatutario][indAbonoPerm]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.indAbonoPerm' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.indAbonoPerm' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.indAbonoPerm' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.indAbonoPerm' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -1624,7 +1625,7 @@ Validação: Preenchimento obrigatório se indAbonoPerm = [S] e cadIni = [N]. N�
 a) Deve ser igual ou posterior à data de exercício do servidor;
 b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o ente público;
 c) Se cadIni = [N], deve ser igual ou anterior à data da transferência ou alteração do CPF do servidor (sucessaoVinc/dtTransf ou dtAltCPF). Não informar se tpProv for diferente de [5, 8, 10]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoEstatutario__id__dtIniAbono" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoRegimeTrab.infoEstatutario.dtIniAbono'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoEstatutario][dtIniAbono]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoEstatutario__id__dtIniAbono" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.dtIniAbono'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoEstatutario][dtIniAbono]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1662,7 +1663,7 @@ c) Se cadIni = [N], deve ser igual ou anterior à data da transferência ou alte
         <div class="form-group">
             <label>Informar o nome do cargo<a data-toggle="tooltip" title="Informar o nome do cargo.
 Validação: O preenchimento é obrigatório, exceto se for relativo a servidor nomeado em cargo em comissão (tpRegTrab = [2] e tpProv = [2])."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__nmCargo" maxlength="100" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.nmCargo'}}" name="[evtAdmissao][vinculo][infoContrato][nmCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__nmCargo" maxlength="100" value="{{evtAdmissao|readjson:'vinculo.infoContrato.nmCargo'}}" name="[evtAdmissao][vinculo][infoContrato][nmCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1672,7 +1673,7 @@ Validação: O preenchimento é obrigatório, exceto se for relativo a servidor 
         <div class="form-group">
             <label>Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo<a data-toggle="tooltip" title="Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo.
 Validação: Informação obrigatória e exclusiva se nmCargo for preenchido. Se informado, deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__CBOCargo" maxlength="6" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.CBOCargo'}}" name="[evtAdmissao][vinculo][infoContrato][CBOCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__CBOCargo" maxlength="6" value="{{evtAdmissao|readjson:'vinculo.infoContrato.CBOCargo'}}" name="[evtAdmissao][vinculo][infoContrato][CBOCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1685,7 +1686,7 @@ Validação: Não preencher se tpRegTrab = [1] ou se CBOCargo não for informado
 a) Deve ser igual ou posterior à data de exercício do servidor;
 b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o ente público;
 c) Se cadIni = [N], deve ser igual ou anterior à data da transferência ou alteração do CPF do servidor (sucessaoVinc/dtTransf ou dtAltCPF). Não informar se tpProv for diferente de [5, 8, 10]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__dtIngrCargo" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.dtIngrCargo'}}" name="[evtAdmissao][vinculo][infoContrato][dtIngrCargo]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__dtIngrCargo" value="{{evtAdmissao|readjson:'vinculo.infoContrato.dtIngrCargo'}}" name="[evtAdmissao][vinculo][infoContrato][dtIngrCargo]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1695,7 +1696,7 @@ c) Se cadIni = [N], deve ser igual ou anterior à data da transferência ou alte
         <div class="form-group">
             <label>Informar o nome da função de confiança<a data-toggle="tooltip" title="Informar o nome da função de confiança/cargo em comissão.
 Validação: Preenchimento obrigatório se for relativo a servidor nomeado em cargo em comissão (tpRegTrab = [2] e tpProv = [2])."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__nmFuncao" maxlength="100" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.nmFuncao'}}" name="[evtAdmissao][vinculo][infoContrato][nmFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__nmFuncao" maxlength="100" value="{{evtAdmissao|readjson:'vinculo.infoContrato.nmFuncao'}}" name="[evtAdmissao][vinculo][infoContrato][nmFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1705,7 +1706,7 @@ Validação: Preenchimento obrigatório se for relativo a servidor nomeado em ca
         <div class="form-group">
             <label>Informar a CBO relativa à função de confiança/cargo em comissão<a data-toggle="tooltip" title="Informar a CBO relativa à função de confiança/cargo em comissão.
 Validação: Informação obrigatória e exclusiva se nmFuncao for preenchido. Se informado, deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__CBOFuncao" maxlength="6" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.CBOFuncao'}}" name="[evtAdmissao][vinculo][infoContrato][CBOFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__CBOFuncao" maxlength="6" value="{{evtAdmissao|readjson:'vinculo.infoContrato.CBOFuncao'}}" name="[evtAdmissao][vinculo][infoContrato][CBOFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1719,7 +1720,7 @@ S - Sim
 N - Não
 Validação: Preenchimento obrigatório se cadIni = [N] e se a natureza jurídica do declarante for igual a 1XX-X, 201-1 ou 203-8."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoContrato__id__acumCargo" name="[evtAdmissao][vinculo][infoContrato][acumCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.acumCargo' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.acumCargo' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.acumCargo' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.acumCargo' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -1730,7 +1731,7 @@ Validação: Preenchimento obrigatório se cadIni = [N] e se a natureza jurídic
         <div class="form-group">
             <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.codCateg'}}" name="[evtAdmissao][vinculo][infoContrato][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__id__codCateg" maxlength="3" value="{{evtAdmissao|readjson:'vinculo.infoContrato.codCateg'}}" name="[evtAdmissao][vinculo][infoContrato][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1760,7 +1761,7 @@ Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa
         <div class="form-group">
             <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração.
 Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__remuneracao__id__vrSalFx" maxlength="14" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.remuneracao.vrSalFx'}}" name="[evtAdmissao][vinculo][infoContrato][remuneracao][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__remuneracao__id__vrSalFx" maxlength="14" value="{{evtAdmissao|readjson:'vinculo.infoContrato.remuneracao.vrSalFx'}}" name="[evtAdmissao][vinculo][infoContrato][remuneracao][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1778,7 +1779,7 @@ Valores válidos:
 6 - Por tarefa
 7 - Não aplicável - Salário exclusivamente variável"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoContrato__remuneracao__id__undSalFixo" name="[evtAdmissao][vinculo][infoContrato][remuneracao][undSalFixo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.remuneracao.undSalFixo' '1' %}selected{% endifequal %}>1 - Por hora</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.remuneracao.undSalFixo' '2' %}selected{% endifequal %}>2 - Por dia</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.remuneracao.undSalFixo' '3' %}selected{% endifequal %}>3 - Por semana</option><option value='4' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.remuneracao.undSalFixo' '4' %}selected{% endifequal %}>4 - Por quinzena</option><option value='5' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.remuneracao.undSalFixo' '5' %}selected{% endifequal %}>5 - Por mês</option><option value='6' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.remuneracao.undSalFixo' '6' %}selected{% endifequal %}>6 - Por tarefa</option><option value='7' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.remuneracao.undSalFixo' '7' %}selected{% endifequal %}>7 - Não aplicável - Salário exclusivamente variável</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.remuneracao.undSalFixo' '1' %}selected{% endifequal %}>1 - Por hora</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.remuneracao.undSalFixo' '2' %}selected{% endifequal %}>2 - Por dia</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.remuneracao.undSalFixo' '3' %}selected{% endifequal %}>3 - Por semana</option><option value='4' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.remuneracao.undSalFixo' '4' %}selected{% endifequal %}>4 - Por quinzena</option><option value='5' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.remuneracao.undSalFixo' '5' %}selected{% endifequal %}>5 - Por mês</option><option value='6' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.remuneracao.undSalFixo' '6' %}selected{% endifequal %}>6 - Por tarefa</option><option value='7' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.remuneracao.undSalFixo' '7' %}selected{% endifequal %}>7 - Não aplicável - Salário exclusivamente variável</option>
             </select>
         </div>
     </div>
@@ -1789,7 +1790,7 @@ Valores válidos:
         <div class="form-group">
             <label>Descrição do salário por tarefa ou variável e como este é calculado<a data-toggle="tooltip" title="Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas.
 Validação: Preenchimento obrigatório se undSalFixo for igual a [6, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__remuneracao__id__dscSalVar" maxlength="999" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.remuneracao.dscSalVar'}}" name="[evtAdmissao][vinculo][infoContrato][remuneracao][dscSalVar]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__remuneracao__id__dscSalVar" maxlength="999" value="{{evtAdmissao|readjson:'vinculo.infoContrato.remuneracao.dscSalVar'}}" name="[evtAdmissao][vinculo][infoContrato][remuneracao][dscSalVar]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1827,7 +1828,7 @@ Valores válidos:
 2 - Prazo determinado, definido em dias
 3 - Prazo determinado, vinculado à ocorrência de um fato"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoContrato__duracao__id__tpContr" name="[evtAdmissao][vinculo][infoContrato][duracao][tpContr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.duracao.tpContr' '1' %}selected{% endifequal %}>1 - Prazo indeterminado</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.duracao.tpContr' '2' %}selected{% endifequal %}>2 - Prazo determinado, definido em dias</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.duracao.tpContr' '3' %}selected{% endifequal %}>3 - Prazo determinado, vinculado à ocorrência de um fato</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.duracao.tpContr' '1' %}selected{% endifequal %}>1 - Prazo indeterminado</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.duracao.tpContr' '2' %}selected{% endifequal %}>2 - Prazo determinado, definido em dias</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.duracao.tpContr' '3' %}selected{% endifequal %}>3 - Prazo determinado, vinculado à ocorrência de um fato</option>
             </select>
         </div>
     </div>
@@ -1838,7 +1839,7 @@ Valores válidos:
         <div class="form-group">
             <label>Data do término<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
 Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se tpContr = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência ou mudança de CPF, igual ou posterior a sucessaoVinc/dtTransf, transfDom/dtTransf ou dtAltCPF do evento S-2200, conforme o caso)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__duracao__id__dtTerm" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.duracao.dtTerm'}}" name="[evtAdmissao][vinculo][infoContrato][duracao][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__duracao__id__dtTerm" value="{{evtAdmissao|readjson:'vinculo.infoContrato.duracao.dtTerm'}}" name="[evtAdmissao][vinculo][infoContrato][duracao][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1852,7 +1853,7 @@ S - Sim
 N - Não
 Validação: O preenchimento é obrigatório se tpContr = [2, 3]. Não preencher se tpContr = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoContrato__duracao__id__clauAssec" name="[evtAdmissao][vinculo][infoContrato][duracao][clauAssec]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.duracao.clauAssec' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.duracao.clauAssec' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.duracao.clauAssec' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.duracao.clauAssec' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -1863,7 +1864,7 @@ Validação: O preenchimento é obrigatório se tpContr = [2, 3]. Não preencher
         <div class="form-group">
             <label>Indicação do objeto determinante da contratação por prazo determinado (obra<a data-toggle="tooltip" title="Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.).
 Validação: O preenchimento é obrigatório e exclusivo se tpContr = [3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__duracao__id__objDet" maxlength="255" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.duracao.objDet'}}" name="[evtAdmissao][vinculo][infoContrato][duracao][objDet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__duracao__id__objDet" maxlength="255" value="{{evtAdmissao|readjson:'vinculo.infoContrato.duracao.objDet'}}" name="[evtAdmissao][vinculo][infoContrato][duracao][objDet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1921,7 +1922,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTrabGeral__id__tpInsc" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTrabGeral][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -1932,7 +1933,7 @@ Valores válidos:
         <div class="form-group">
             <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo localTrabGeral/tpInsc.
 Validação: Deve ser um número de inscrição válido e existente na Tabela de Estabelecimentos (S-1005), bem como compatível com localTrabGeral/tpInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTrabGeral__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTrabGeral.nrInsc'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTrabGeral][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTrabGeral__id__nrInsc" maxlength="14" value="{{evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTrabGeral.nrInsc'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTrabGeral][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1941,7 +1942,7 @@ Validação: Deve ser um número de inscrição válido e existente na Tabela de
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição complementar do local de trabalho<a data-toggle="tooltip" title="Descrição complementar do local de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTrabGeral__id__descComp" maxlength="80" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTrabGeral.descComp'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTrabGeral][descComp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTrabGeral__id__descComp" maxlength="80" value="{{evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTrabGeral.descComp'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTrabGeral][descComp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1975,7 +1976,7 @@ Validação: Deve ser um número de inscrição válido e existente na Tabela de
         <div class="form-group">
             <label>Tipo de logradouro<a data-toggle="tooltip" title="Tipo de logradouro.
 Validação: Se informado, deve ser um código válido e existente na Tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__tpLograd" maxlength="4" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTempDom.tpLograd'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__tpLograd" maxlength="4" value="{{evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTempDom.tpLograd'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1984,7 +1985,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTempDom.dscLograd'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__dscLograd" maxlength="100" value="{{evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTempDom.dscLograd'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1994,7 +1995,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
         <div class="form-group">
             <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTempDom.nrLograd'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__nrLograd" maxlength="10" value="{{evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTempDom.nrLograd'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -2003,7 +2004,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Complemento do logradouro<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTempDom.complemento'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__complemento" maxlength="30" value="{{evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTempDom.complemento'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -2012,7 +2013,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTempDom.bairro'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__bairro" maxlength="90" value="{{evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTempDom.bairro'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -2022,7 +2023,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
         <div class="form-group">
             <label>Código de Endereçamento Postal - CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
 Validação: Deve ser preenchido apenas com números, com 8 (oito) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTempDom.cep'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__cep" maxlength="8" value="{{evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTempDom.cep'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -2032,7 +2033,7 @@ Validação: Deve ser preenchido apenas com números, com 8 (oito) posições.">
         <div class="form-group">
             <label>Preencher com o código do município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
 Validação: Deve ser um código válido e existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTempDom.codMunic'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__codMunic" maxlength="7" value="{{evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTempDom.codMunic'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -2042,7 +2043,7 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
         <div class="form-group">
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtAdmissao.vinculo.infoContrato.localTrabalho.localTempDom.uf'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__localTrabalho__localTempDom__id__uf" maxlength="2" value="{{evtAdmissao|readjson:'vinculo.infoContrato.localTrabalho.localTempDom.uf'}}" name="[evtAdmissao][vinculo][infoContrato][localTrabalho][localTempDom][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -2070,6 +2071,7 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

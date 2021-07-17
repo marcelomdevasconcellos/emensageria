@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtPgtos=original.evento_json|readjson:'evtPgtos' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtPgtos__ideEvento__id__indRetif" name="[evtPgtos][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtPgtos.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtPgtos.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtPgtos|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtPgtos|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtPgtos.ideEvento.nrRecibo'}}" name="[evtPgtos][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideEvento__id__nrRecibo" maxlength="23" value="{{evtPgtos|readjson:'ideEvento.nrRecibo'}}" name="[evtPgtos][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -74,7 +75,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações.
 Validação: Deve ser um mês/ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtPgtos.ideEvento.perApur'}}" name="[evtPgtos][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideEvento__id__perApur" maxlength="7" value="{{evtPgtos|readjson:'ideEvento.perApur'}}" name="[evtPgtos][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -86,7 +87,7 @@ Validação: Deve ser um mês/ano válido, igual ou posterior ao início da obri
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtPgtos__ideEvento__id__indGuia" name="[evtPgtos][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtPgtos.ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            <option value="">---</option><option value='1' {% ifequal evtPgtos|readjson:'ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
             </select>
         </div>
     </div>
@@ -208,11 +209,11 @@ Valores válidos:
         <div class="form-group">
             <label>Número de inscrição no Cadastro de Pessoas Físicas - CPF do beneficiário do pagamento<a data-toggle="tooltip" title="Informar o CPF do beneficiário.
 Validação: Deve ser o mesmo CPF informado no evento de remuneração ou desligamento (S-1200, S-1202, S-1207, S-2299 ou S-2399)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideBenef__id__cpfBenef" maxlength="11" value="{{original.evento_json|readjson:'evtPgtos.ideBenef.cpfBenef'}}" name="[evtPgtos][ideBenef][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideBenef__id__cpfBenef" maxlength="11" value="{{evtPgtos|readjson:'ideBenef.cpfBenef'}}" name="[evtPgtos][ideBenef][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
-{% for infoPgto in original.evento_json|readjson:'evtPgtos.ideBenef.infoPgto' %}
+{% for infoPgto in evtPgtos|readjson:'ideBenef.infoPgto' %}
 <div id="infoPgto__div">
     <div class="col-md-12">
         <h4>Informações dos pagamentos efetuados.</h4>
@@ -238,7 +239,7 @@ Validação: Deve ser o mesmo CPF informado no evento de remuneração ou deslig
         <div class="form-group">
             <label>Informar a data de pagamento<a data-toggle="tooltip" title="Informar a data de pagamento.
 Validação: A data informada deve estar compreendida no período de apuração (perApur), exceto se procEmi = [2, 4, 22]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__dtPgto" value="{{infoPgto.dtPgto}}" name="[evtPgtos][ideBenef][infoPgto][][dtPgto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__dtPgto" value="{{infoPgto|readjson:'dtPgto'}}" name="[evtPgtos][ideBenef][infoPgto][][dtPgto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -254,7 +255,7 @@ Valores válidos:
 4 - Pagamento de remuneração conforme apurado em ideDmDev do S-1202
 5 - Pagamento de benefícios previdenciários, conforme apurado em ideDmDev do S-1207"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtPgtos__ideBenef__infoPgto__id__tpPgto" name="[evtPgtos][ideBenef][infoPgto][][tpPgto]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal infoPgto.tpPgto '1' %}selected{% endifequal %}>1 - Pagamento de remuneração, conforme apurado em ideDmDev do S-1200</option><option value='2' {% ifequal infoPgto.tpPgto '2' %}selected{% endifequal %}>2 - Pagamento de verbas rescisórias conforme apurado em ideDmDev do S-2299</option><option value='3' {% ifequal infoPgto.tpPgto '3' %}selected{% endifequal %}>3 - Pagamento de verbas rescisórias conforme apurado em ideDmDev do S-2399</option><option value='4' {% ifequal infoPgto.tpPgto '4' %}selected{% endifequal %}>4 - Pagamento de remuneração conforme apurado em ideDmDev do S-1202</option><option value='5' {% ifequal infoPgto.tpPgto '5' %}selected{% endifequal %}>5 - Pagamento de benefícios previdenciários, conforme apurado em ideDmDev do S-1207</option>
+            <option value="">---</option><option value='1' {% ifequal infoPgto|readjson:'tpPgto' '1' %}selected{% endifequal %}>1 - Pagamento de remuneração, conforme apurado em ideDmDev do S-1200</option><option value='2' {% ifequal infoPgto|readjson:'tpPgto' '2' %}selected{% endifequal %}>2 - Pagamento de verbas rescisórias conforme apurado em ideDmDev do S-2299</option><option value='3' {% ifequal infoPgto|readjson:'tpPgto' '3' %}selected{% endifequal %}>3 - Pagamento de verbas rescisórias conforme apurado em ideDmDev do S-2399</option><option value='4' {% ifequal infoPgto|readjson:'tpPgto' '4' %}selected{% endifequal %}>4 - Pagamento de remuneração conforme apurado em ideDmDev do S-1202</option><option value='5' {% ifequal infoPgto|readjson:'tpPgto' '5' %}selected{% endifequal %}>5 - Pagamento de benefícios previdenciários, conforme apurado em ideDmDev do S-1207</option>
             </select>
         </div>
     </div>
@@ -270,7 +271,7 @@ Se tpPgto = [2], mês/ano de dtDeslig do S-2299 (formato AAAA-MM);
 Se tpPgto = [3], mês/ano de dtTerm do S-2399 (formato AAAA-MM);
 Se tpPgto = [4], perApur do S-1202;
 Se tpPgto = [5], perApur do S-1207."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__perRef" maxlength="7" value="{{infoPgto.perRef}}" name="[evtPgtos][ideBenef][infoPgto][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__perRef" maxlength="7" value="{{infoPgto|readjson:'perRef'}}" name="[evtPgtos][ideBenef][infoPgto][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -285,7 +286,7 @@ Se tpPgto = [2], em S-2299;
 Se tpPgto = [3], em S-2399;
 Se tpPgto = [4], em S-1202;
 Se tpPgto = [5], em S-1207."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__ideDmDev" maxlength="30" value="{{infoPgto.ideDmDev}}" name="[evtPgtos][ideBenef][infoPgto][][ideDmDev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__ideDmDev" maxlength="30" value="{{infoPgto|readjson:'ideDmDev'}}" name="[evtPgtos][ideBenef][infoPgto][][ideDmDev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -295,7 +296,7 @@ Se tpPgto = [5], em S-1207."><i class="fa fa-fw fa-question-circle"></i></a></la
         <div class="form-group">
             <label>Valor líquido recebido pelo trabalhador<a data-toggle="tooltip" title="Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver).
 Validação: Não pode ser um valor negativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__vrLiq" maxlength="14" value="{{infoPgto.vrLiq}}" name="[evtPgtos][ideBenef][infoPgto][][vrLiq]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__vrLiq" maxlength="14" value="{{infoPgto|readjson:'vrLiq'}}" name="[evtPgtos][ideBenef][infoPgto][][vrLiq]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -329,7 +330,7 @@ Validação: Não pode ser um valor negativo."><i class="fa fa-fw fa-question-ci
         <div class="form-group">
             <label>Informar a data de pagamento<a data-toggle="tooltip" title="Informar a data de pagamento.
 Validação: A data informada deve estar compreendida no período de apuração (perApur), exceto se procEmi = [2, 4, 22]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__dtPgto" value="{{infoPgto.dtPgto}}" name="[evtPgtos][ideBenef][infoPgto][][dtPgto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__dtPgto" value="{{infoPgto|readjson:'dtPgto'}}" name="[evtPgtos][ideBenef][infoPgto][][dtPgto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -345,7 +346,7 @@ Valores válidos:
 4 - Pagamento de remuneração conforme apurado em ideDmDev do S-1202
 5 - Pagamento de benefícios previdenciários, conforme apurado em ideDmDev do S-1207"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtPgtos__ideBenef__infoPgto__id__tpPgto" name="[evtPgtos][ideBenef][infoPgto][][tpPgto]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal infoPgto.tpPgto '1' %}selected{% endifequal %}>1 - Pagamento de remuneração, conforme apurado em ideDmDev do S-1200</option><option value='2' {% ifequal infoPgto.tpPgto '2' %}selected{% endifequal %}>2 - Pagamento de verbas rescisórias conforme apurado em ideDmDev do S-2299</option><option value='3' {% ifequal infoPgto.tpPgto '3' %}selected{% endifequal %}>3 - Pagamento de verbas rescisórias conforme apurado em ideDmDev do S-2399</option><option value='4' {% ifequal infoPgto.tpPgto '4' %}selected{% endifequal %}>4 - Pagamento de remuneração conforme apurado em ideDmDev do S-1202</option><option value='5' {% ifequal infoPgto.tpPgto '5' %}selected{% endifequal %}>5 - Pagamento de benefícios previdenciários, conforme apurado em ideDmDev do S-1207</option>
+            <option value="">---</option><option value='1' {% ifequal infoPgto|readjson:'tpPgto' '1' %}selected{% endifequal %}>1 - Pagamento de remuneração, conforme apurado em ideDmDev do S-1200</option><option value='2' {% ifequal infoPgto|readjson:'tpPgto' '2' %}selected{% endifequal %}>2 - Pagamento de verbas rescisórias conforme apurado em ideDmDev do S-2299</option><option value='3' {% ifequal infoPgto|readjson:'tpPgto' '3' %}selected{% endifequal %}>3 - Pagamento de verbas rescisórias conforme apurado em ideDmDev do S-2399</option><option value='4' {% ifequal infoPgto|readjson:'tpPgto' '4' %}selected{% endifequal %}>4 - Pagamento de remuneração conforme apurado em ideDmDev do S-1202</option><option value='5' {% ifequal infoPgto|readjson:'tpPgto' '5' %}selected{% endifequal %}>5 - Pagamento de benefícios previdenciários, conforme apurado em ideDmDev do S-1207</option>
             </select>
         </div>
     </div>
@@ -361,7 +362,7 @@ Se tpPgto = [2], mês/ano de dtDeslig do S-2299 (formato AAAA-MM);
 Se tpPgto = [3], mês/ano de dtTerm do S-2399 (formato AAAA-MM);
 Se tpPgto = [4], perApur do S-1202;
 Se tpPgto = [5], perApur do S-1207."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__perRef" maxlength="7" value="{{infoPgto.perRef}}" name="[evtPgtos][ideBenef][infoPgto][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__perRef" maxlength="7" value="{{infoPgto|readjson:'perRef'}}" name="[evtPgtos][ideBenef][infoPgto][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -376,7 +377,7 @@ Se tpPgto = [2], em S-2299;
 Se tpPgto = [3], em S-2399;
 Se tpPgto = [4], em S-1202;
 Se tpPgto = [5], em S-1207."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__ideDmDev" maxlength="30" value="{{infoPgto.ideDmDev}}" name="[evtPgtos][ideBenef][infoPgto][][ideDmDev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__ideDmDev" maxlength="30" value="{{infoPgto|readjson:'ideDmDev'}}" name="[evtPgtos][ideBenef][infoPgto][][ideDmDev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -386,7 +387,7 @@ Se tpPgto = [5], em S-1207."><i class="fa fa-fw fa-question-circle"></i></a></la
         <div class="form-group">
             <label>Valor líquido recebido pelo trabalhador<a data-toggle="tooltip" title="Valor líquido recebido pelo trabalhador, composto pelos vencimentos e descontos, inclusive os descontos de IRRF e de pensão alimentícia (se houver).
 Validação: Não pode ser um valor negativo."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__vrLiq" maxlength="14" value="{{infoPgto.vrLiq}}" name="[evtPgtos][ideBenef][infoPgto][][vrLiq]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtPgtos__ideBenef__infoPgto__id__vrLiq" maxlength="14" value="{{infoPgto|readjson:'vrLiq'}}" name="[evtPgtos][ideBenef][infoPgto][][vrLiq]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -406,6 +407,7 @@ Validação: Não pode ser um valor negativo."><i class="fa fa-fw fa-question-ci
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

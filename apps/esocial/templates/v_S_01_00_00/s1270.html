@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtContratAvNP=original.evento_json|readjson:'evtContratAvNP' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtContratAvNP__ideEvento__id__indRetif" name="[evtContratAvNP][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtContratAvNP.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtContratAvNP.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtContratAvNP|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtContratAvNP|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtContratAvNP.ideEvento.nrRecibo'}}" name="[evtContratAvNP][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__ideEvento__id__nrRecibo" maxlength="23" value="{{evtContratAvNP|readjson:'ideEvento.nrRecibo'}}" name="[evtContratAvNP][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -74,7 +75,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações.
 Validação: Deve ser um mês/ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtContratAvNP.ideEvento.perApur'}}" name="[evtContratAvNP][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__ideEvento__id__perApur" maxlength="7" value="{{evtContratAvNP|readjson:'ideEvento.perApur'}}" name="[evtContratAvNP][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -86,7 +87,7 @@ Validação: Deve ser um mês/ano válido, igual ou posterior ao início da obri
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtContratAvNP__ideEvento__id__indGuia" name="[evtContratAvNP][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtContratAvNP.ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            <option value="">---</option><option value='1' {% ifequal evtContratAvNP|readjson:'ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
             </select>
         </div>
     </div>
@@ -182,7 +183,7 @@ Valores válidos:
             </div>
         </blockquote>
     </div>
-</div>{% for remunAvNP in original.evento_json|readjson:'evtContratAvNP.remunAvNP' %}
+</div>{% for remunAvNP in evtContratAvNP|readjson:'' %}
 <div id="remunAvNP__div">
     <div class="col-md-12">
         <h4>Grupo que apresenta a remuneração dos trabalhadores avulsos não portuários, de forma totalizada por estabelecimento contratante.</h4>
@@ -212,7 +213,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtContratAvNP__remunAvNP__id__tpInsc" name="[evtContratAvNP][remunAvNP][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal remunAvNP.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal remunAvNP.tpInsc '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal remunAvNP.tpInsc '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal remunAvNP|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal remunAvNP|readjson:'tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal remunAvNP|readjson:'tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -223,7 +224,7 @@ Valores válidos:
         <div class="form-group">
             <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo remunAvNP/tpInsc.
 Validação: Deve ser um número de inscrição válido e existente na Tabela de Estabelecimentos (S-1005)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__nrInsc" maxlength="14" value="{{remunAvNP.nrInsc}}" name="[evtContratAvNP][remunAvNP][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__nrInsc" maxlength="14" value="{{remunAvNP|readjson:'nrInsc'}}" name="[evtContratAvNP][remunAvNP][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -233,7 +234,7 @@ Validação: Deve ser um número de inscrição válido e existente na Tabela de
         <div class="form-group">
             <label>Informar o código atribuído pelo empregador para a lotação tributária<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária.
 Validação: Deve ser um código válido e existente na Tabela de Lotações Tributárias (S-1020)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__codLotacao" maxlength="30" value="{{remunAvNP.codLotacao}}" name="[evtContratAvNP][remunAvNP][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__codLotacao" maxlength="30" value="{{remunAvNP|readjson:'codLotacao'}}" name="[evtContratAvNP][remunAvNP][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -242,7 +243,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo da contribuição previdenciária sobre a remuneração dos trabalhadores avulsos não portuários<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária sobre a remuneração dos trabalhadores avulsos não portuários."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp00" maxlength="14" value="{{remunAvNP.vrBcCp00}}" name="[evtContratAvNP][remunAvNP][][vrBcCp00]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp00" maxlength="14" value="{{remunAvNP|readjson:'vrBcCp00'}}" name="[evtContratAvNP][remunAvNP][][vrBcCp00]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -251,7 +252,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp15" maxlength="14" value="{{remunAvNP.vrBcCp15}}" name="[evtContratAvNP][remunAvNP][][vrBcCp15]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp15" maxlength="14" value="{{remunAvNP|readjson:'vrBcCp15'}}" name="[evtContratAvNP][remunAvNP][][vrBcCp15]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -260,7 +261,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp20" maxlength="14" value="{{remunAvNP.vrBcCp20}}" name="[evtContratAvNP][remunAvNP][][vrBcCp20]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp20" maxlength="14" value="{{remunAvNP|readjson:'vrBcCp20'}}" name="[evtContratAvNP][remunAvNP][][vrBcCp20]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -269,7 +270,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp25" maxlength="14" value="{{remunAvNP.vrBcCp25}}" name="[evtContratAvNP][remunAvNP][][vrBcCp25]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp25" maxlength="14" value="{{remunAvNP|readjson:'vrBcCp25'}}" name="[evtContratAvNP][remunAvNP][][vrBcCp25]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -278,7 +279,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo da contribuição previdenciária sobre o 13° salário dos trabalhadores avulsos não portuários contratados<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária sobre o 13° salário dos trabalhadores avulsos não portuários contratados."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp13" maxlength="14" value="{{remunAvNP.vrBcCp13}}" name="[evtContratAvNP][remunAvNP][][vrBcCp13]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp13" maxlength="14" value="{{remunAvNP|readjson:'vrBcCp13'}}" name="[evtContratAvNP][remunAvNP][][vrBcCp13]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -287,7 +288,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcFgts" maxlength="14" value="{{remunAvNP.vrBcFgts}}" name="[evtContratAvNP][remunAvNP][][vrBcFgts]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcFgts" maxlength="14" value="{{remunAvNP|readjson:'vrBcFgts'}}" name="[evtContratAvNP][remunAvNP][][vrBcFgts]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -296,7 +297,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o valor total da contribuição descontada dos trabalhadores avulsos não portuários<a data-toggle="tooltip" title="Preencher com o valor total da contribuição descontada dos trabalhadores avulsos não portuários."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrDescCP" maxlength="14" value="{{remunAvNP.vrDescCP}}" name="[evtContratAvNP][remunAvNP][][vrDescCP]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrDescCP" maxlength="14" value="{{remunAvNP|readjson:'vrDescCP'}}" name="[evtContratAvNP][remunAvNP][][vrDescCP]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -334,7 +335,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtContratAvNP__remunAvNP__id__tpInsc" name="[evtContratAvNP][remunAvNP][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal remunAvNP.tpInsc '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal remunAvNP.tpInsc '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal remunAvNP.tpInsc '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal remunAvNP|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal remunAvNP|readjson:'tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal remunAvNP|readjson:'tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -345,7 +346,7 @@ Valores válidos:
         <div class="form-group">
             <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo remunAvNP/tpInsc.
 Validação: Deve ser um número de inscrição válido e existente na Tabela de Estabelecimentos (S-1005)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__nrInsc" maxlength="14" value="{{remunAvNP.nrInsc}}" name="[evtContratAvNP][remunAvNP][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__nrInsc" maxlength="14" value="{{remunAvNP|readjson:'nrInsc'}}" name="[evtContratAvNP][remunAvNP][][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -355,7 +356,7 @@ Validação: Deve ser um número de inscrição válido e existente na Tabela de
         <div class="form-group">
             <label>Informar o código atribuído pelo empregador para a lotação tributária<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária.
 Validação: Deve ser um código válido e existente na Tabela de Lotações Tributárias (S-1020)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__codLotacao" maxlength="30" value="{{remunAvNP.codLotacao}}" name="[evtContratAvNP][remunAvNP][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__codLotacao" maxlength="30" value="{{remunAvNP|readjson:'codLotacao'}}" name="[evtContratAvNP][remunAvNP][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -364,7 +365,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo da contribuição previdenciária sobre a remuneração dos trabalhadores avulsos não portuários<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária sobre a remuneração dos trabalhadores avulsos não portuários."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp00" maxlength="14" value="{{remunAvNP.vrBcCp00}}" name="[evtContratAvNP][remunAvNP][][vrBcCp00]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp00" maxlength="14" value="{{remunAvNP|readjson:'vrBcCp00'}}" name="[evtContratAvNP][remunAvNP][][vrBcCp00]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -373,7 +374,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 15 anos de contribuição."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp15" maxlength="14" value="{{remunAvNP.vrBcCp15}}" name="[evtContratAvNP][remunAvNP][][vrBcCp15]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp15" maxlength="14" value="{{remunAvNP|readjson:'vrBcCp15'}}" name="[evtContratAvNP][remunAvNP][][vrBcCp15]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -382,7 +383,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 20 anos de contribuição."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp20" maxlength="14" value="{{remunAvNP.vrBcCp20}}" name="[evtContratAvNP][remunAvNP][][vrBcCp20]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp20" maxlength="14" value="{{remunAvNP|readjson:'vrBcCp20'}}" name="[evtContratAvNP][remunAvNP][][vrBcCp20]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -391,7 +392,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição adicional para o financiamento dos benefícios de aposentadoria especial após 25 anos de contribuição."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp25" maxlength="14" value="{{remunAvNP.vrBcCp25}}" name="[evtContratAvNP][remunAvNP][][vrBcCp25]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp25" maxlength="14" value="{{remunAvNP|readjson:'vrBcCp25'}}" name="[evtContratAvNP][remunAvNP][][vrBcCp25]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -400,7 +401,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo da contribuição previdenciária sobre o 13° salário dos trabalhadores avulsos não portuários contratados<a data-toggle="tooltip" title="Valor da base de cálculo da contribuição previdenciária sobre o 13° salário dos trabalhadores avulsos não portuários contratados."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp13" maxlength="14" value="{{remunAvNP.vrBcCp13}}" name="[evtContratAvNP][remunAvNP][][vrBcCp13]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcCp13" maxlength="14" value="{{remunAvNP|readjson:'vrBcCp13'}}" name="[evtContratAvNP][remunAvNP][][vrBcCp13]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -409,7 +410,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcFgts" maxlength="14" value="{{remunAvNP.vrBcFgts}}" name="[evtContratAvNP][remunAvNP][][vrBcFgts]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrBcFgts" maxlength="14" value="{{remunAvNP|readjson:'vrBcFgts'}}" name="[evtContratAvNP][remunAvNP][][vrBcFgts]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -418,7 +419,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o valor total da contribuição descontada dos trabalhadores avulsos não portuários<a data-toggle="tooltip" title="Preencher com o valor total da contribuição descontada dos trabalhadores avulsos não portuários."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtContratAvNP__remunAvNP__id__vrDescCP" maxlength="14" value="{{remunAvNP.vrDescCP}}" name="[evtContratAvNP][remunAvNP][][vrDescCP]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtContratAvNP__remunAvNP__id__vrDescCP" maxlength="14" value="{{remunAvNP|readjson:'vrDescCP'}}" name="[evtContratAvNP][remunAvNP][][vrDescCP]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -434,6 +435,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

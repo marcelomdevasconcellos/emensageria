@@ -134,6 +134,8 @@ def test(obj):
 @register.filter(name='readjson')
 def readjson(json_string, arg):
     import json
+    if not isinstance(json_string, str):
+        json_string = json.dumps(json_string)
     if json_string:
         json_obj = json.loads(json_string)
         arg = "['%s']" % arg.replace(".", "']['")

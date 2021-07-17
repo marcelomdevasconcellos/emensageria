@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtCdBenTerm=original.evento_json|readjson:'evtCdBenTerm' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenTerm__ideEvento__id__indRetif" name="[evtCdBenTerm][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCdBenTerm.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtCdBenTerm.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenTerm|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCdBenTerm|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenTerm__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtCdBenTerm.ideEvento.nrRecibo'}}" name="[evtCdBenTerm][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenTerm__ideEvento__id__nrRecibo" maxlength="23" value="{{evtCdBenTerm|readjson:'ideEvento.nrRecibo'}}" name="[evtCdBenTerm][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -184,7 +185,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Número de inscrição no Cadastro de Pessoas Físicas - CPF do beneficiário do pagamento<a data-toggle="tooltip" title="Informar o CPF do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenTerm__ideBeneficio__id__cpfBenef" maxlength="11" value="{{original.evento_json|readjson:'evtCdBenTerm.ideBeneficio.cpfBenef'}}" name="[evtCdBenTerm][ideBeneficio][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenTerm__ideBeneficio__id__cpfBenef" maxlength="11" value="{{evtCdBenTerm|readjson:'ideBeneficio.cpfBenef'}}" name="[evtCdBenTerm][ideBeneficio][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -193,7 +194,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Número do benefício<a data-toggle="tooltip" title="Número do benefício."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenTerm__ideBeneficio__id__nrBeneficio" maxlength="20" value="{{original.evento_json|readjson:'evtCdBenTerm.ideBeneficio.nrBeneficio'}}" name="[evtCdBenTerm][ideBeneficio][nrBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenTerm__ideBeneficio__id__nrBeneficio" maxlength="20" value="{{evtCdBenTerm|readjson:'ideBeneficio.nrBeneficio'}}" name="[evtCdBenTerm][ideBeneficio][nrBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -227,7 +228,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Data de cessação do benefício<a data-toggle="tooltip" title="Data de cessação do benefício.
 Validação: Deve ser igual ou anterior à data atual. No caso de benefício reativado, também deve ser uma data igual ou posterior a dtEfetReativ do evento S-2418."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenTerm__infoBenTermino__id__dtTermBeneficio" value="{{original.evento_json|readjson:'evtCdBenTerm.infoBenTermino.dtTermBeneficio'}}" name="[evtCdBenTerm][infoBenTermino][dtTermBeneficio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCdBenTerm__infoBenTermino__id__dtTermBeneficio" value="{{evtCdBenTerm|readjson:'infoBenTermino.dtTermBeneficio'}}" name="[evtCdBenTerm][infoBenTermino][dtTermBeneficio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -237,7 +238,7 @@ Validação: Deve ser igual ou anterior à data atual. No caso de benefício rea
         <div class="form-group">
             <label>Motivo da cessação do benefício<a data-toggle="tooltip" title="Motivo da cessação do benefício.
 Validação: Deve ser um código válido e existente na Tabela 26."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenTerm__infoBenTermino__id__mtvTermino" maxlength="2" value="{{original.evento_json|readjson:'evtCdBenTerm.infoBenTermino.mtvTermino'}}" name="[evtCdBenTerm][infoBenTermino][mtvTermino]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenTerm__infoBenTermino__id__mtvTermino" maxlength="2" value="{{evtCdBenTerm|readjson:'infoBenTermino.mtvTermino'}}" name="[evtCdBenTerm][infoBenTermino][mtvTermino]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -248,7 +249,7 @@ Validação: Deve ser um código válido e existente na Tabela 26."><i class="fa
             <label>Informar o CNPJ do órgão público sucessor<a data-toggle="tooltip" title="Informar o CNPJ do órgão público sucessor.
 Validação: Preenchimento obrigatório e exclusivo se mtvTermino = [09].
 Deve ser um CNPJ válido e diferente da inscrição do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000. Além disso, deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do órgão público declarante (exceto se ideEmpregador/nrInsc tiver 14 (catorze) algarismos) e dos estabelecimentos informados através do evento S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenTerm__infoBenTermino__id__cnpjOrgaoSuc" maxlength="14" value="{{original.evento_json|readjson:'evtCdBenTerm.infoBenTermino.cnpjOrgaoSuc'}}" name="[evtCdBenTerm][infoBenTermino][cnpjOrgaoSuc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenTerm__infoBenTermino__id__cnpjOrgaoSuc" maxlength="14" value="{{evtCdBenTerm|readjson:'infoBenTermino.cnpjOrgaoSuc'}}" name="[evtCdBenTerm][infoBenTermino][cnpjOrgaoSuc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -259,7 +260,7 @@ Deve ser um CNPJ válido e diferente da inscrição do declarante, considerando 
             <label>Preencher com o novo CPF do beneficiário<a data-toggle="tooltip" title="Preencher com o novo CPF do beneficiário.
 Validação: Preenchimento obrigatório e exclusivo se mtvTermino = [10].
 Deve ser um CPF válido e diferente do antigo CPF do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenTerm__infoBenTermino__id__novoCPF" maxlength="11" value="{{original.evento_json|readjson:'evtCdBenTerm.infoBenTermino.novoCPF'}}" name="[evtCdBenTerm][infoBenTermino][novoCPF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenTerm__infoBenTermino__id__novoCPF" maxlength="11" value="{{evtCdBenTerm|readjson:'infoBenTermino.novoCPF'}}" name="[evtCdBenTerm][infoBenTermino][novoCPF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -275,6 +276,7 @@ Deve ser um CPF válido e diferente do antigo CPF do beneficiário."><i class="f
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtTSVAltContr=original.evento_json|readjson:'evtTSVAltContr' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__ideEvento__id__indRetif" name="[evtTSVAltContr][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTSVAltContr.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtTSVAltContr.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtTSVAltContr|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtTSVAltContr.ideEvento.nrRecibo'}}" name="[evtTSVAltContr][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__ideEvento__id__nrRecibo" maxlength="23" value="{{evtTSVAltContr|readjson:'ideEvento.nrRecibo'}}" name="[evtTSVAltContr][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -184,7 +185,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__ideTrabSemVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtTSVAltContr.ideTrabSemVinculo.cpfTrab'}}" name="[evtTSVAltContr][ideTrabSemVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__ideTrabSemVinculo__id__cpfTrab" maxlength="11" value="{{evtTSVAltContr|readjson:'ideTrabSemVinculo.cpfTrab'}}" name="[evtTSVAltContr][ideTrabSemVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -194,7 +195,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa.
 Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2300 do respectivo contrato. Não preencher no caso de TSVE sem informação de matrícula no evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__ideTrabSemVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtTSVAltContr.ideTrabSemVinculo.matricula'}}" name="[evtTSVAltContr][ideTrabSemVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__ideTrabSemVinculo__id__matricula" maxlength="30" value="{{evtTSVAltContr|readjson:'ideTrabSemVinculo.matricula'}}" name="[evtTSVAltContr][ideTrabSemVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -205,7 +206,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
             <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Informar somente no caso de TSVE sem informação de matrícula no evento S-2300.
 Validação: Informação obrigatória e exclusiva se não houver preenchimento de matricula. Se informado, deve ser um código válido e existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__ideTrabSemVinculo__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtTSVAltContr.ideTrabSemVinculo.codCateg'}}" name="[evtTSVAltContr][ideTrabSemVinculo][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__ideTrabSemVinculo__id__codCateg" maxlength="3" value="{{evtTSVAltContr|readjson:'ideTrabSemVinculo.codCateg'}}" name="[evtTSVAltContr][ideTrabSemVinculo][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -239,7 +240,7 @@ Validação: Informação obrigatória e exclusiva se não houver preenchimento 
         <div class="form-group">
             <label>Preencher com a data de alteração<a data-toggle="tooltip" title="Preencher com a data da alteração das informações.
 Validação: Não pode ser posterior a 180 (cento e oitenta) dias da data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__id__dtAlteracao" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.dtAlteracao'}}" name="[evtTSVAltContr][infoTSVAlteracao][dtAlteracao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__id__dtAlteracao" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.dtAlteracao'}}" name="[evtTSVAltContr][infoTSVAlteracao][dtAlteracao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -253,7 +254,7 @@ Valores válidos:
 2 - Trabalho rural
 Validação: Preenchimento obrigatório se o código de categoria no Registro de Eventos Trabalhistas - RET for igual a [201, 202, 401, 731, 734, 738]. Não deve ser preenchido se o código de categoria no RET for igual a [721, 722, 771, 901]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__id__natAtividade" name="[evtTSVAltContr][infoTSVAlteracao][natAtividade]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.natAtividade' '1' %}selected{% endifequal %}>1 - Trabalho urbano</option><option value='2' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.natAtividade' '2' %}selected{% endifequal %}>2 - Trabalho rural</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.natAtividade' '1' %}selected{% endifequal %}>1 - Trabalho urbano</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.natAtividade' '2' %}selected{% endifequal %}>2 - Trabalho rural</option>
             </select>
         </div>
     </div>
@@ -304,7 +305,7 @@ Validação: Preenchimento obrigatório se o código de categoria no Registro de
         <div class="form-group">
             <label>Informar o nome do cargo<a data-toggle="tooltip" title="Informar o nome do cargo.
 Validação: Preenchimento obrigatório se o código de categoria no RET for diferente de [410]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__cargoFuncao__id__nmCargo" maxlength="100" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.cargoFuncao.nmCargo'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][cargoFuncao][nmCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__cargoFuncao__id__nmCargo" maxlength="100" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.cargoFuncao.nmCargo'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][cargoFuncao][nmCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -314,7 +315,7 @@ Validação: Preenchimento obrigatório se o código de categoria no RET for dif
         <div class="form-group">
             <label>Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo<a data-toggle="tooltip" title="Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo.
 Validação: Informação obrigatória e exclusiva se nmCargo for preenchido. Se informado, deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__cargoFuncao__id__CBOCargo" maxlength="6" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.cargoFuncao.CBOCargo'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][cargoFuncao][CBOCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__cargoFuncao__id__CBOCargo" maxlength="6" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.cargoFuncao.CBOCargo'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][cargoFuncao][CBOCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -324,7 +325,7 @@ Validação: Informação obrigatória e exclusiva se nmCargo for preenchido. Se
         <div class="form-group">
             <label>Informar o nome da função de confiança<a data-toggle="tooltip" title="Informar o nome da função de confiança.
 Validação: Preenchimento obrigatório se o código de categoria no RET for igual a [410] e não houver informação de nmCargo."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__cargoFuncao__id__nmFuncao" maxlength="100" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.cargoFuncao.nmFuncao'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][cargoFuncao][nmFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__cargoFuncao__id__nmFuncao" maxlength="100" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.cargoFuncao.nmFuncao'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][cargoFuncao][nmFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -334,7 +335,7 @@ Validação: Preenchimento obrigatório se o código de categoria no RET for igu
         <div class="form-group">
             <label>Informar a CBO relativa à função de confiança/cargo em comissão<a data-toggle="tooltip" title="Informar a CBO relativa à função de confiança/cargo em comissão.
 Validação: Informação obrigatória e exclusiva se nmFuncao for preenchido. Se informado, deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__cargoFuncao__id__CBOFuncao" maxlength="6" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.cargoFuncao.CBOFuncao'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][cargoFuncao][CBOFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__cargoFuncao__id__CBOFuncao" maxlength="6" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.cargoFuncao.CBOFuncao'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][cargoFuncao][CBOFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -368,7 +369,7 @@ Validação: Informação obrigatória e exclusiva se nmFuncao for preenchido. S
         <div class="form-group">
             <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração.
 Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__remuneracao__id__vrSalFx" maxlength="14" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao.vrSalFx'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][remuneracao][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__remuneracao__id__vrSalFx" maxlength="14" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.remuneracao.vrSalFx'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][remuneracao][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -386,7 +387,7 @@ Valores válidos:
 6 - Por tarefa
 7 - Não aplicável - Salário exclusivamente variável"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__remuneracao__id__undSalFixo" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][remuneracao][undSalFixo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '1' %}selected{% endifequal %}>1 - Por hora</option><option value='2' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '2' %}selected{% endifequal %}>2 - Por dia</option><option value='3' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '3' %}selected{% endifequal %}>3 - Por semana</option><option value='4' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '4' %}selected{% endifequal %}>4 - Por quinzena</option><option value='5' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '5' %}selected{% endifequal %}>5 - Por mês</option><option value='6' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '6' %}selected{% endifequal %}>6 - Por tarefa</option><option value='7' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '7' %}selected{% endifequal %}>7 - Não aplicável - Salário exclusivamente variável</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '1' %}selected{% endifequal %}>1 - Por hora</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '2' %}selected{% endifequal %}>2 - Por dia</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '3' %}selected{% endifequal %}>3 - Por semana</option><option value='4' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '4' %}selected{% endifequal %}>4 - Por quinzena</option><option value='5' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '5' %}selected{% endifequal %}>5 - Por mês</option><option value='6' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '6' %}selected{% endifequal %}>6 - Por tarefa</option><option value='7' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.remuneracao.undSalFixo' '7' %}selected{% endifequal %}>7 - Não aplicável - Salário exclusivamente variável</option>
             </select>
         </div>
     </div>
@@ -397,7 +398,7 @@ Valores válidos:
         <div class="form-group">
             <label>Descrição do salário por tarefa ou variável e como este é calculado<a data-toggle="tooltip" title="Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas.
 Validação: Preenchimento obrigatório se undSalFixo for igual a [6, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__remuneracao__id__dscSalVar" maxlength="999" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.remuneracao.dscSalVar'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][remuneracao][dscSalVar]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__remuneracao__id__dscSalVar" maxlength="999" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.remuneracao.dscSalVar'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][remuneracao][dscSalVar]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -436,7 +437,7 @@ Valores válidos:
 3 - Regime de Previdência Social no exterior
 Validação: Se infoDirigenteSindical/categOrig do evento S-2300 for relativa a "Empregado", não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoDirigenteSindical__id__tpRegPrev" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoDirigenteSindical][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev' '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev' '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev' '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev' '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev' '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev' '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>
@@ -476,7 +477,7 @@ Valores válidos:
 3 - Regime de Previdência Social no exterior
 Validação: Se infoTrabCedido/categOrig do evento S-2300 for relativa a "Empregado", não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoTrabCedido__id__tpRegPrev" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoTrabCedido][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev' '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev' '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev' '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev' '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev' '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev' '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>
@@ -515,7 +516,7 @@ S - Sim
 N - Não
 Validação: Informação obrigatória e exclusiva se CBOCargo = [111120, 111250, 111255])."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoMandElet__id__indRemunCargo" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoMandElet][indRemunCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoMandElet.indRemunCargo' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoMandElet.indRemunCargo' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.indRemunCargo' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.indRemunCargo' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -530,7 +531,7 @@ Valores válidos:
 2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
 3 - Regime de Previdência Social no exterior"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoMandElet__id__tpRegPrev" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoMandElet][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev' '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev' '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev' '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev' '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev' '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev' '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>
@@ -568,7 +569,7 @@ Valores válidos:
 O - Obrigatório
 N - Não obrigatório"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__id__natEstagio" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][natEstagio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='O' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.natEstagio' 'O' %}selected{% endifequal %}>O - Obrigatório</option><option value='N' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.natEstagio' 'N' %}selected{% endifequal %}>N - Não obrigatório</option>
+            <option value="">---</option><option value='O' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.natEstagio' 'O' %}selected{% endifequal %}>O - Obrigatório</option><option value='N' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.natEstagio' 'N' %}selected{% endifequal %}>N - Não obrigatório</option>
             </select>
         </div>
     </div>
@@ -586,7 +587,7 @@ Valores válidos:
 8 - Especial
 9 - Mãe social (Lei 7.644/1987)"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__id__nivEstagio" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][nivEstagio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '1' %}selected{% endifequal %}>1 - Fundamental</option><option value='2' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '2' %}selected{% endifequal %}>2 - Médio</option><option value='3' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '3' %}selected{% endifequal %}>3 - Formação profissional</option><option value='4' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '4' %}selected{% endifequal %}>4 - Superior</option><option value='8' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '8' %}selected{% endifequal %}>8 - Especial</option><option value='9' {% ifequal original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '9' %}selected{% endifequal %}>9 - Mãe social (Lei 7.644/1987)</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '1' %}selected{% endifequal %}>1 - Fundamental</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '2' %}selected{% endifequal %}>2 - Médio</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '3' %}selected{% endifequal %}>3 - Formação profissional</option><option value='4' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '4' %}selected{% endifequal %}>4 - Superior</option><option value='8' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '8' %}selected{% endifequal %}>8 - Especial</option><option value='9' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.nivEstagio' '9' %}selected{% endifequal %}>9 - Mãe social (Lei 7.644/1987)</option>
             </select>
         </div>
     </div>
@@ -596,7 +597,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Área de atuação do estagiário<a data-toggle="tooltip" title="Área de atuação do estagiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__id__areaAtuacao" maxlength="100" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.areaAtuacao'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][areaAtuacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__id__areaAtuacao" maxlength="100" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.areaAtuacao'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][areaAtuacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -605,7 +606,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Número da apólice de seguro<a data-toggle="tooltip" title="Número da apólice de seguro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__id__nrApol" maxlength="30" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.nrApol'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][nrApol]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__id__nrApol" maxlength="30" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.nrApol'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][nrApol]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -615,7 +616,7 @@ Valores válidos:
         <div class="form-group">
             <label>Data prevista para o término do estágio<a data-toggle="tooltip" title="Data prevista para o término do estágio.
 Validação: Deve ser uma data posterior à data de início do estágio."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__id__dtPrevTerm" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.dtPrevTerm'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][dtPrevTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__id__dtPrevTerm" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.dtPrevTerm'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][dtPrevTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -645,7 +646,7 @@ Validação: Deve ser uma data posterior à data de início do estágio."><i cla
         <div class="form-group">
             <label>Preencher com o CNPJ da instituição de ensino<a data-toggle="tooltip" title="Preencher com o CNPJ da instituição de ensino. Deve ser preenchido apenas se a instituição de ensino for brasileira.
 Validação: Se informado, deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__cnpjInstEnsino" maxlength="14" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.cnpjInstEnsino'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][cnpjInstEnsino]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__cnpjInstEnsino" maxlength="14" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.cnpjInstEnsino'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][cnpjInstEnsino]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -655,7 +656,7 @@ Validação: Se informado, deve ser um CNPJ válido, com 14 (catorze) algarismos
         <div class="form-group">
             <label>Informar a razão social<a data-toggle="tooltip" title="Informar a razão social.
 Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino não estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__nmRazao" maxlength="100" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.nmRazao'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][nmRazao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__nmRazao" maxlength="100" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.nmRazao'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][nmRazao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -665,7 +666,7 @@ Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino n�
         <div class="form-group">
             <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro.
 Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino não estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.dscLograd'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__dscLograd" maxlength="100" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.dscLograd'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -676,7 +677,7 @@ Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino n�
             <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N".
 Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino não estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.nrLograd'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__nrLograd" maxlength="10" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.nrLograd'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -686,7 +687,7 @@ Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino n�
         <div class="form-group">
             <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito.
 Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino não estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.bairro'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__bairro" maxlength="90" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.bairro'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -696,7 +697,7 @@ Validação: Preenchimento obrigatório e exclusivo se o campo cnpjInstEnsino n�
         <div class="form-group">
             <label>Código de Endereçamento Postal - CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
 Validação: Não informar se o campo cnpjInstEnsino estiver preenchido. Se informado, deve ser preenchido apenas com números, com 8 (oito) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.cep'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__cep" maxlength="8" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.cep'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -706,7 +707,7 @@ Validação: Não informar se o campo cnpjInstEnsino estiver preenchido. Se info
         <div class="form-group">
             <label>Preencher com o código do município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
 Validação: Não informar se o campo cnpjInstEnsino estiver preenchido. Se informado, deve ser um código válido e existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.codMunic'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__codMunic" maxlength="7" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.codMunic'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -717,7 +718,7 @@ Validação: Não informar se o campo cnpjInstEnsino estiver preenchido. Se info
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO
 Validação: Não informar se o campo cnpjInstEnsino estiver preenchido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.uf'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__instEnsino__id__uf" maxlength="2" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.instEnsino.uf'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][instEnsino][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -751,7 +752,7 @@ Validação: Não informar se o campo cnpjInstEnsino estiver preenchido."><i cla
         <div class="form-group">
             <label>CNPJ do agente de integração<a data-toggle="tooltip" title="CNPJ do agente de integração.
 Validação: Deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__ageIntegracao__id__cnpjAgntInteg" maxlength="14" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.ageIntegracao.cnpjAgntInteg'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][ageIntegracao][cnpjAgntInteg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__ageIntegracao__id__cnpjAgntInteg" maxlength="14" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.ageIntegracao.cnpjAgntInteg'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][ageIntegracao][cnpjAgntInteg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -785,7 +786,7 @@ Validação: Deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="f
         <div class="form-group">
             <label>CPF do responsável pela supervisão do estagiário<a data-toggle="tooltip" title="CPF do responsável pela supervisão do estagiário.
 Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__supervisorEstagio__id__cpfSupervisor" maxlength="11" value="{{original.evento_json|readjson:'evtTSVAltContr.infoTSVAlteracao.infoComplementares.infoEstagiario.supervisorEstagio.cpfSupervisor'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][supervisorEstagio][cpfSupervisor]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoEstagiario__supervisorEstagio__id__cpfSupervisor" maxlength="11" value="{{evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoEstagiario.supervisorEstagio.cpfSupervisor'}}" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoEstagiario][supervisorEstagio][cpfSupervisor]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -813,6 +814,7 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

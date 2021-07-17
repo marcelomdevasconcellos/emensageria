@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtAdmPrelim=original.evento_json|readjson:'evtAdmPrelim' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmPrelim__ideEvento__id__indRetif" name="[evtAdmPrelim][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmPrelim.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmPrelim.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmPrelim|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtAdmPrelim|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmPrelim__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtAdmPrelim.ideEvento.nrRecibo'}}" name="[evtAdmPrelim][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmPrelim__ideEvento__id__nrRecibo" maxlength="23" value="{{evtAdmPrelim|readjson:'ideEvento.nrRecibo'}}" name="[evtAdmPrelim][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -184,7 +185,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmPrelim__infoRegPrelim__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.cpfTrab'}}" name="[evtAdmPrelim][infoRegPrelim][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmPrelim__infoRegPrelim__id__cpfTrab" maxlength="11" value="{{evtAdmPrelim|readjson:'infoRegPrelim.cpfTrab'}}" name="[evtAdmPrelim][infoRegPrelim][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -193,7 +194,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com a data de nascimento<a data-toggle="tooltip" title="Preencher com a data de nascimento."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmPrelim__infoRegPrelim__id__dtNascto" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.dtNascto'}}" name="[evtAdmPrelim][infoRegPrelim][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmPrelim__infoRegPrelim__id__dtNascto" value="{{evtAdmPrelim|readjson:'infoRegPrelim.dtNascto'}}" name="[evtAdmPrelim][infoRegPrelim][dtNascto]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -203,7 +204,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Preencher com a data de admissão do trabalhador<a data-toggle="tooltip" title="Preencher com a data de admissão do trabalhador (ou data de início, no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE).
 Validação: Deve ser posterior à data de nascimento do trabalhador e igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmPrelim__infoRegPrelim__id__dtAdm" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.dtAdm'}}" name="[evtAdmPrelim][infoRegPrelim][dtAdm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmPrelim__infoRegPrelim__id__dtAdm" value="{{evtAdmPrelim|readjson:'infoRegPrelim.dtAdm'}}" name="[evtAdmPrelim][infoRegPrelim][dtAdm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -215,7 +216,7 @@ Validação: Deve ser posterior à data de nascimento do trabalhador e igual ou 
 Validação: O valor informado não pode conter a expressão 'eSocial' nas 7 (sete) primeiras posições.
 Regra de validação:
 REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmPrelim__infoRegPrelim__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.matricula'}}" name="[evtAdmPrelim][infoRegPrelim][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmPrelim__infoRegPrelim__id__matricula" maxlength="30" value="{{evtAdmPrelim|readjson:'infoRegPrelim.matricula'}}" name="[evtAdmPrelim][infoRegPrelim][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -225,7 +226,7 @@ REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label
         <div class="form-group">
             <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Validação: Deve ser um código de categoria sujeito ao Registro de Eventos Trabalhistas - RET de trabalhador não vinculado ao Regime Próprio de Previdência Social - RPPS, ou seja, "Empregado" ([1XX]), algumas categorias de "Agente Público" ([301, 302, 303, 304, 306, 307, 309, 310, 312]), "Avulso" ([2XX]), "Cessão" ([4XX]), algumas categorias de "Contribuinte Individual" ([721, 722, 723, 731, 734, 738, 761, 771]) ou de "Bolsista" ([901, 902])."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmPrelim__infoRegPrelim__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.codCateg'}}" name="[evtAdmPrelim][infoRegPrelim][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmPrelim__infoRegPrelim__id__codCateg" maxlength="3" value="{{evtAdmPrelim|readjson:'infoRegPrelim.codCateg'}}" name="[evtAdmPrelim][infoRegPrelim][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -240,7 +241,7 @@ Valores válidos:
 Validação: Preenchimento obrigatório se codCateg for relativo a "Empregado", "Agente Público", "Avulso" ou igual a [401, 731, 734, 738]. Não deve ser preenchido se codCateg = [721, 722, 771, 901].
 Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [102], deve ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmPrelim__infoRegPrelim__id__natAtividade" name="[evtAdmPrelim][infoRegPrelim][natAtividade]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.natAtividade' '1' %}selected{% endifequal %}>1 - Trabalho urbano</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.natAtividade' '2' %}selected{% endifequal %}>2 - Trabalho rural</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.natAtividade' '1' %}selected{% endifequal %}>1 - Trabalho urbano</option><option value='2' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.natAtividade' '2' %}selected{% endifequal %}>2 - Trabalho rural</option>
             </select>
         </div>
     </div>
@@ -271,7 +272,7 @@ Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [102], deve ser 
         <div class="form-group">
             <label>Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo<a data-toggle="tooltip" title="Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo.
 Validação: Deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__CBOCargo" maxlength="6" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.CBOCargo'}}" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][CBOCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__CBOCargo" maxlength="6" value="{{evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.CBOCargo'}}" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][CBOCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -281,7 +282,7 @@ Validação: Deve ser um código válido e existente na tabela de CBO, com 6 (se
         <div class="form-group">
             <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração.
 Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__vrSalFx" maxlength="14" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.vrSalFx'}}" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__vrSalFx" maxlength="14" value="{{evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.vrSalFx'}}" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -299,7 +300,7 @@ Valores válidos:
 6 - Por tarefa
 7 - Não aplicável - Salário exclusivamente variável"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__undSalFixo" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][undSalFixo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.undSalFixo' '1' %}selected{% endifequal %}>1 - Por hora</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.undSalFixo' '2' %}selected{% endifequal %}>2 - Por dia</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.undSalFixo' '3' %}selected{% endifequal %}>3 - Por semana</option><option value='4' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.undSalFixo' '4' %}selected{% endifequal %}>4 - Por quinzena</option><option value='5' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.undSalFixo' '5' %}selected{% endifequal %}>5 - Por mês</option><option value='6' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.undSalFixo' '6' %}selected{% endifequal %}>6 - Por tarefa</option><option value='7' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.undSalFixo' '7' %}selected{% endifequal %}>7 - Não aplicável - Salário exclusivamente variável</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.undSalFixo' '1' %}selected{% endifequal %}>1 - Por hora</option><option value='2' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.undSalFixo' '2' %}selected{% endifequal %}>2 - Por dia</option><option value='3' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.undSalFixo' '3' %}selected{% endifequal %}>3 - Por semana</option><option value='4' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.undSalFixo' '4' %}selected{% endifequal %}>4 - Por quinzena</option><option value='5' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.undSalFixo' '5' %}selected{% endifequal %}>5 - Por mês</option><option value='6' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.undSalFixo' '6' %}selected{% endifequal %}>6 - Por tarefa</option><option value='7' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.undSalFixo' '7' %}selected{% endifequal %}>7 - Não aplicável - Salário exclusivamente variável</option>
             </select>
         </div>
     </div>
@@ -314,7 +315,7 @@ Valores válidos:
 2 - Prazo determinado, definido em dias
 3 - Prazo determinado, vinculado à ocorrência de um fato"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__tpContr" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][tpContr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.tpContr' '1' %}selected{% endifequal %}>1 - Prazo indeterminado</option><option value='2' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.tpContr' '2' %}selected{% endifequal %}>2 - Prazo determinado, definido em dias</option><option value='3' {% ifequal original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.tpContr' '3' %}selected{% endifequal %}>3 - Prazo determinado, vinculado à ocorrência de um fato</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.tpContr' '1' %}selected{% endifequal %}>1 - Prazo indeterminado</option><option value='2' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.tpContr' '2' %}selected{% endifequal %}>2 - Prazo determinado, definido em dias</option><option value='3' {% ifequal evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.tpContr' '3' %}selected{% endifequal %}>3 - Prazo determinado, vinculado à ocorrência de um fato</option>
             </select>
         </div>
     </div>
@@ -325,7 +326,7 @@ Valores válidos:
         <div class="form-group">
             <label>Data do término<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
 Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se tpContr = [1]. Deve ser igual ou posterior à data de admissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__dtTerm" value="{{original.evento_json|readjson:'evtAdmPrelim.infoRegPrelim.infoRegCTPS.dtTerm'}}" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAdmPrelim__infoRegPrelim__infoRegCTPS__id__dtTerm" value="{{evtAdmPrelim|readjson:'infoRegPrelim.infoRegCTPS.dtTerm'}}" name="[evtAdmPrelim][infoRegPrelim][infoRegCTPS][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -345,6 +346,7 @@ Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se 
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

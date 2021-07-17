@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtCdBenIn=original.evento_json|readjson:'evtCdBenIn' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__ideEvento__id__indRetif" name="[evtCdBenIn][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCdBenIn.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtCdBenIn.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenIn|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCdBenIn|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtCdBenIn.ideEvento.nrRecibo'}}" name="[evtCdBenIn][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__ideEvento__id__nrRecibo" maxlength="23" value="{{evtCdBenIn|readjson:'ideEvento.nrRecibo'}}" name="[evtCdBenIn][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -188,7 +189,7 @@ Validação: Deve observar o que segue:
 a) Se cadIni = [S], deve estar cadastrado no evento S-2400 com data de início igual à data de obrigatoriedade dos eventos não periódicos para o ente público no eSocial;
 b) Se indSitBenef = [1], deve estar cadastrado no evento S-2400 com data de início igual ou anterior a dtIniBeneficio (ou a dtPublic, caso este campo tenha sido informado);
 c) Se indSitBenef = [2, 3], deve estar cadastrado no evento S-2400 com data de início igual ou anterior a dtTransf ou dtAltCPF, respectivamente."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__beneficiario__id__cpfBenef" maxlength="11" value="{{original.evento_json|readjson:'evtCdBenIn.beneficiario.cpfBenef'}}" name="[evtCdBenIn][beneficiario][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__beneficiario__id__cpfBenef" maxlength="11" value="{{evtCdBenIn|readjson:'beneficiario.cpfBenef'}}" name="[evtCdBenIn][beneficiario][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -198,7 +199,7 @@ c) Se indSitBenef = [2, 3], deve estar cadastrado no evento S-2400 com data de i
         <div class="form-group">
             <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula do servidor/militar constante no Sistema de Administração de Recursos Humanos do órgão cujo vínculo deu ensejo ao benefício. No caso de pensão por morte, informar a matrícula do instituidor da pensão.
 Validação: Informação obrigatória se cadIni = [N] e tpBeneficio pertencer ao grupo [01, 02, 03, 04, 05, 06, 11] da Tabela 25."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__beneficiario__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtCdBenIn.beneficiario.matricula'}}" name="[evtCdBenIn][beneficiario][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__beneficiario__id__matricula" maxlength="30" value="{{evtCdBenIn|readjson:'beneficiario.matricula'}}" name="[evtCdBenIn][beneficiario][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -209,7 +210,7 @@ Validação: Informação obrigatória se cadIni = [N] e tpBeneficio pertencer a
             <label>Preencher com o CNPJ do órgão público responsável pela matrícula do servidor/militar<a data-toggle="tooltip" title="Preencher com o CNPJ do órgão público responsável pela matrícula do servidor/militar. Informação obrigatória se cadIni = [N], desde que haja informação de matrícula e que o CNPJ seja diferente do CNPJ do órgão declarante.
 Validação: Preenchimento obrigatório se cadIni = [N] e houver informação de matricula, exceto se existir vínculo (evento S-2200) para o beneficiário (indicado em cpfBenef e matricula) no órgão declarante.
 Se informado, deve ser um CNPJ válido e diferente do CNPJ do órgão público declarante, com 14 (catorze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__beneficiario__id__cnpjOrigem" maxlength="14" value="{{original.evento_json|readjson:'evtCdBenIn.beneficiario.cnpjOrigem'}}" name="[evtCdBenIn][beneficiario][cnpjOrigem]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__beneficiario__id__cnpjOrigem" maxlength="14" value="{{evtCdBenIn|readjson:'beneficiario.cnpjOrigem'}}" name="[evtCdBenIn][beneficiario][cnpjOrigem]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -246,7 +247,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__infoBenInicio__id__cadIni" name="[evtCdBenIn][infoBenInicio][cadIni]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.cadIni' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.cadIni' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCdBenIn|readjson:'infoBenInicio.cadIni' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCdBenIn|readjson:'infoBenInicio.cadIni' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -262,7 +263,7 @@ Valores válidos:
 3 - Mudança de CPF do beneficiário
 Validação: Preenchimento obrigatório e exclusivo se cadIni = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__infoBenInicio__id__indSitBenef" name="[evtCdBenIn][infoBenInicio][indSitBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.indSitBenef' '1' %}selected{% endifequal %}>1 - Benefício concedido pelo próprio órgão declarante</option><option value='2' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.indSitBenef' '2' %}selected{% endifequal %}>2 - Benefício transferido de outro órgão</option><option value='3' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.indSitBenef' '3' %}selected{% endifequal %}>3 - Mudança de CPF do beneficiário</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenIn|readjson:'infoBenInicio.indSitBenef' '1' %}selected{% endifequal %}>1 - Benefício concedido pelo próprio órgão declarante</option><option value='2' {% ifequal evtCdBenIn|readjson:'infoBenInicio.indSitBenef' '2' %}selected{% endifequal %}>2 - Benefício transferido de outro órgão</option><option value='3' {% ifequal evtCdBenIn|readjson:'infoBenInicio.indSitBenef' '3' %}selected{% endifequal %}>3 - Mudança de CPF do beneficiário</option>
             </select>
         </div>
     </div>
@@ -272,7 +273,7 @@ Validação: Preenchimento obrigatório e exclusivo se cadIni = [N]."><i class="
     <div class="col-md-4">
         <div class="form-group">
             <label>Número do benefício<a data-toggle="tooltip" title="Número do benefício."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__id__nrBeneficio" maxlength="20" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.nrBeneficio'}}" name="[evtCdBenIn][infoBenInicio][nrBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__id__nrBeneficio" maxlength="20" value="{{evtCdBenIn|readjson:'infoBenInicio.nrBeneficio'}}" name="[evtCdBenIn][infoBenInicio][nrBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -284,7 +285,7 @@ Validação: Preenchimento obrigatório e exclusivo se cadIni = [N]."><i class="
 Validação: Deve observar o que segue:
 a) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o ente público no eSocial;
 b) Se cadIni = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o ente público no eSocial e igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__id__dtIniBeneficio" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dtIniBeneficio'}}" name="[evtCdBenIn][infoBenInicio][dtIniBeneficio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__id__dtIniBeneficio" value="{{evtCdBenIn|readjson:'infoBenInicio.dtIniBeneficio'}}" name="[evtCdBenIn][infoBenInicio][dtIniBeneficio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -294,7 +295,7 @@ b) Se cadIni = [N], deve ser igual ou posterior à data de início da obrigatori
         <div class="form-group">
             <label>Informar a data de publicação da concessão do benefício<a data-toggle="tooltip" title="Informar a data de publicação da concessão do benefício, somente quando o ato concessório tiver vigência retroativa.
 Validação: Deve ser posterior a dtIniBeneficio."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__id__dtPublic" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dtPublic'}}" name="[evtCdBenIn][infoBenInicio][dtPublic]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__id__dtPublic" value="{{evtCdBenIn|readjson:'infoBenInicio.dtPublic'}}" name="[evtCdBenIn][infoBenInicio][dtPublic]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -324,7 +325,7 @@ Validação: Deve ser posterior a dtIniBeneficio."><i class="fa fa-fw fa-questio
         <div class="form-group">
             <label>Tipo de benefício<a data-toggle="tooltip" title="Tipo de benefício.
 Validação: Deve ser um código válido e existente na Tabela 25. Se cadIni = [N], não é permitido utilizar código do grupo [08] dessa tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__dadosBeneficio__id__tpBeneficio" maxlength="4" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.tpBeneficio'}}" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][tpBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__dadosBeneficio__id__tpBeneficio" maxlength="4" value="{{evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpBeneficio'}}" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][tpBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -339,7 +340,7 @@ Valores válidos:
 2 - Fundo em repartição
 3 - Mantido pelo Tesouro"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__infoBenInicio__dadosBeneficio__id__tpPlanRP" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][tpPlanRP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.tpPlanRP' '0' %}selected{% endifequal %}>0 - Sem segregação da massa</option><option value='1' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.tpPlanRP' '1' %}selected{% endifequal %}>1 - Fundo em capitalização</option><option value='2' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.tpPlanRP' '2' %}selected{% endifequal %}>2 - Fundo em repartição</option><option value='3' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.tpPlanRP' '3' %}selected{% endifequal %}>3 - Mantido pelo Tesouro</option>
+            <option value="">---</option><option value='0' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP' '0' %}selected{% endifequal %}>0 - Sem segregação da massa</option><option value='1' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP' '1' %}selected{% endifequal %}>1 - Fundo em capitalização</option><option value='2' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP' '2' %}selected{% endifequal %}>2 - Fundo em repartição</option><option value='3' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP' '3' %}selected{% endifequal %}>3 - Mantido pelo Tesouro</option>
             </select>
         </div>
     </div>
@@ -350,7 +351,7 @@ Valores válidos:
         <div class="form-group">
             <label>Descrição do instrumento ou situação que originou o pagamento das verbas relativas a períodos anteriores<a data-toggle="tooltip" title="Descrição do instrumento ou situação que originou o pagamento do benefício.
 Validação: Preenchimento obrigatório se tpBeneficio = [0909, 1001, 1009]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__dadosBeneficio__id__dsc" maxlength="255" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.dsc'}}" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][dsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__dadosBeneficio__id__dsc" maxlength="255" value="{{evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.dsc'}}" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][dsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -364,7 +365,7 @@ S - Sim
 N - Não
 Validação: Preenchimento obrigatório se cadIni = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__infoBenInicio__dadosBeneficio__id__indDecJud" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][indDecJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.indDecJud' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.indDecJud' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.indDecJud' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.indDecJud' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -398,7 +399,7 @@ Valores válidos:
 1 - Vitalícia
 2 - Temporária"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__infoBenInicio__dadosBeneficio__infoPenMorte__id__tpPenMorte" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][infoPenMorte][tpPenMorte]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte' '1' %}selected{% endifequal %}>1 - Vitalícia</option><option value='2' {% ifequal original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte' '2' %}selected{% endifequal %}>2 - Temporária</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte' '1' %}selected{% endifequal %}>1 - Vitalícia</option><option value='2' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte' '2' %}selected{% endifequal %}>2 - Temporária</option>
             </select>
         </div>
     </div>
@@ -429,7 +430,7 @@ Valores válidos:
         <div class="form-group">
             <label>Preencher com o CPF do instituidor da pensão por morte<a data-toggle="tooltip" title="Preencher com o CPF do instituidor da pensão por morte.
 Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__dadosBeneficio__infoPenMorte__instPenMorte__id__cpfInst" maxlength="11" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte.instPenMorte.cpfInst'}}" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][infoPenMorte][instPenMorte][cpfInst]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__dadosBeneficio__infoPenMorte__instPenMorte__id__cpfInst" maxlength="11" value="{{evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.infoPenMorte.instPenMorte.cpfInst'}}" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][infoPenMorte][instPenMorte][cpfInst]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -438,7 +439,7 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
     <div class="col-md-4">
         <div class="form-group">
             <label>Data de óbito do instituidor da pensão por morte<a data-toggle="tooltip" title="Data de óbito do instituidor da pensão por morte."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__dadosBeneficio__infoPenMorte__instPenMorte__id__dtInst" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.dadosBeneficio.infoPenMorte.instPenMorte.dtInst'}}" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][infoPenMorte][instPenMorte][dtInst]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__dadosBeneficio__infoPenMorte__instPenMorte__id__dtInst" value="{{evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.infoPenMorte.instPenMorte.dtInst'}}" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][infoPenMorte][instPenMorte][dtInst]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -480,7 +481,7 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
         <div class="form-group">
             <label>Informar o CNPJ do órgão público anterior<a data-toggle="tooltip" title="Informar o CNPJ do órgão público anterior.
 Validação: Deve ser um CNPJ válido e diferente da inscrição do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000. Além disso, deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do órgão público declarante (exceto se ideEmpregador/nrInsc tiver 14 (catorze) algarismos) e dos estabelecimentos informados através do evento S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__sucessaoBenef__id__cnpjOrgaoAnt" maxlength="14" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.sucessaoBenef.cnpjOrgaoAnt'}}" name="[evtCdBenIn][infoBenInicio][sucessaoBenef][cnpjOrgaoAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__sucessaoBenef__id__cnpjOrgaoAnt" maxlength="14" value="{{evtCdBenIn|readjson:'infoBenInicio.sucessaoBenef.cnpjOrgaoAnt'}}" name="[evtCdBenIn][infoBenInicio][sucessaoBenef][cnpjOrgaoAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -489,7 +490,7 @@ Validação: Deve ser um CNPJ válido e diferente da inscrição do declarante, 
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do benefício anterior<a data-toggle="tooltip" title="Número do benefício no ente público anterior."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__sucessaoBenef__id__nrBeneficioAnt" maxlength="20" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.sucessaoBenef.nrBeneficioAnt'}}" name="[evtCdBenIn][infoBenInicio][sucessaoBenef][nrBeneficioAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__sucessaoBenef__id__nrBeneficioAnt" maxlength="20" value="{{evtCdBenIn|readjson:'infoBenInicio.sucessaoBenef.nrBeneficioAnt'}}" name="[evtCdBenIn][infoBenInicio][sucessaoBenef][nrBeneficioAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -501,7 +502,7 @@ Validação: Deve ser um CNPJ válido e diferente da inscrição do declarante, 
 Validação: Devem ser observadas as seguintes regras:
 a) Deve ser posterior à data de início do benefício;
 b) Deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o ente público no eSocial e igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__sucessaoBenef__id__dtTransf" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.sucessaoBenef.dtTransf'}}" name="[evtCdBenIn][infoBenInicio][sucessaoBenef][dtTransf]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__sucessaoBenef__id__dtTransf" value="{{evtCdBenIn|readjson:'infoBenInicio.sucessaoBenef.dtTransf'}}" name="[evtCdBenIn][infoBenInicio][sucessaoBenef][dtTransf]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -510,7 +511,7 @@ b) Deve ser igual ou posterior à data de início da obrigatoriedade dos eventos
     <div class="col-md-4">
         <div class="form-group">
             <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__sucessaoBenef__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.sucessaoBenef.observacao'}}" name="[evtCdBenIn][infoBenInicio][sucessaoBenef][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__sucessaoBenef__id__observacao" maxlength="255" value="{{evtCdBenIn|readjson:'infoBenInicio.sucessaoBenef.observacao'}}" name="[evtCdBenIn][infoBenInicio][sucessaoBenef][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -543,7 +544,7 @@ b) Deve ser igual ou posterior à data de início da obrigatoriedade dos eventos
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do CPF antigo do beneficiário<a data-toggle="tooltip" title="Preencher com o número do CPF antigo do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__mudancaCPF__id__cpfAnt" maxlength="11" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.mudancaCPF.cpfAnt'}}" name="[evtCdBenIn][infoBenInicio][mudancaCPF][cpfAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__mudancaCPF__id__cpfAnt" maxlength="11" value="{{evtCdBenIn|readjson:'infoBenInicio.mudancaCPF.cpfAnt'}}" name="[evtCdBenIn][infoBenInicio][mudancaCPF][cpfAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -552,7 +553,7 @@ b) Deve ser igual ou posterior à data de início da obrigatoriedade dos eventos
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do benefício anterior<a data-toggle="tooltip" title="Preencher com o número do benefício anterior."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__mudancaCPF__id__nrBeneficioAnt" maxlength="20" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.mudancaCPF.nrBeneficioAnt'}}" name="[evtCdBenIn][infoBenInicio][mudancaCPF][nrBeneficioAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__mudancaCPF__id__nrBeneficioAnt" maxlength="20" value="{{evtCdBenIn|readjson:'infoBenInicio.mudancaCPF.nrBeneficioAnt'}}" name="[evtCdBenIn][infoBenInicio][mudancaCPF][nrBeneficioAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -561,7 +562,7 @@ b) Deve ser igual ou posterior à data de início da obrigatoriedade dos eventos
     <div class="col-md-4">
         <div class="form-group">
             <label>Data de alteração do CPF<a data-toggle="tooltip" title="Data de alteração do CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__mudancaCPF__id__dtAltCPF" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.mudancaCPF.dtAltCPF'}}" name="[evtCdBenIn][infoBenInicio][mudancaCPF][dtAltCPF]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__mudancaCPF__id__dtAltCPF" value="{{evtCdBenIn|readjson:'infoBenInicio.mudancaCPF.dtAltCPF'}}" name="[evtCdBenIn][infoBenInicio][mudancaCPF][dtAltCPF]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -570,7 +571,7 @@ b) Deve ser igual ou posterior à data de início da obrigatoriedade dos eventos
     <div class="col-md-4">
         <div class="form-group">
             <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__mudancaCPF__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.mudancaCPF.observacao'}}" name="[evtCdBenIn][infoBenInicio][mudancaCPF][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__mudancaCPF__id__observacao" maxlength="255" value="{{evtCdBenIn|readjson:'infoBenInicio.mudancaCPF.observacao'}}" name="[evtCdBenIn][infoBenInicio][mudancaCPF][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -608,7 +609,7 @@ Validação: Devem ser observadas as seguintes regras:
 a) Deve ser igual ou posterior à data de início do benefício;
 b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o ente público no eSocial;
 c) Se indSitBenef = [2], deve ser anterior a dtTransf."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__infoBenTermino__id__dtTermBeneficio" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.infoBenTermino.dtTermBeneficio'}}" name="[evtCdBenIn][infoBenInicio][infoBenTermino][dtTermBeneficio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__infoBenTermino__id__dtTermBeneficio" value="{{evtCdBenIn|readjson:'infoBenInicio.infoBenTermino.dtTermBeneficio'}}" name="[evtCdBenIn][infoBenInicio][infoBenTermino][dtTermBeneficio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -618,7 +619,7 @@ c) Se indSitBenef = [2], deve ser anterior a dtTransf."><i class="fa fa-fw fa-qu
         <div class="form-group">
             <label>Motivo da cessação do benefício<a data-toggle="tooltip" title="Motivo da cessação do benefício.
 Validação: Deve ser um código válido e existente na Tabela 26, com exceção dos códigos [09, 10]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenIn__infoBenInicio__infoBenTermino__id__mtvTermino" maxlength="2" value="{{original.evento_json|readjson:'evtCdBenIn.infoBenInicio.infoBenTermino.mtvTermino'}}" name="[evtCdBenIn][infoBenInicio][infoBenTermino][mtvTermino]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenIn__infoBenInicio__infoBenTermino__id__mtvTermino" maxlength="2" value="{{evtCdBenIn|readjson:'infoBenInicio.infoBenTermino.mtvTermino'}}" name="[evtCdBenIn][infoBenInicio][infoBenTermino][mtvTermino]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -638,6 +639,7 @@ Validação: Deve ser um código válido e existente na Tabela 26, com exceção
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtExclusao=original.evento_json|readjson:'evtExclusao' %}
 <form id="form_json">
 
 <div class="row">
@@ -159,7 +160,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o tipo de evento<a data-toggle="tooltip" title="Preencher com o tipo de evento. Ex.: S-1200, S-2200, etc."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtExclusao__infoExclusao__id__tpEvento" maxlength="6" value="{{original.evento_json|readjson:'evtExclusao.infoExclusao.tpEvento'}}" name="[evtExclusao][infoExclusao][tpEvento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtExclusao__infoExclusao__id__tpEvento" maxlength="6" value="{{evtExclusao|readjson:'infoExclusao.tpEvento'}}" name="[evtExclusao][infoExclusao][tpEvento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -169,7 +170,7 @@
         <div class="form-group">
             <label>Preencher com o número do recibo do evento que será excluído<a data-toggle="tooltip" title="Preencher com o número do recibo do evento que será excluído.
 Validação: O recibo deve ser relativo ao mesmo tipo de evento indicado em tpEvento e o respectivo evento não deve constar como excluído ou retificado. Além disso, no caso de exclusão de eventos em que existe a identificação do trabalhador, o evento que está sendo excluído deve referir-se ao mesmo trabalhador identificado por cpfTrab."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtExclusao__infoExclusao__id__nrRecEvt" maxlength="23" value="{{original.evento_json|readjson:'evtExclusao.infoExclusao.nrRecEvt'}}" name="[evtExclusao][infoExclusao][nrRecEvt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtExclusao__infoExclusao__id__nrRecEvt" maxlength="23" value="{{evtExclusao|readjson:'infoExclusao.nrRecEvt'}}" name="[evtExclusao][infoExclusao][nrRecEvt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -199,7 +200,7 @@ Validação: O recibo deve ser relativo ao mesmo tipo de evento indicado em tpEv
         <div class="form-group">
             <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador ou do beneficiário.
 Validação: O CPF indicado deve existir na base de dados do RET."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtExclusao__infoExclusao__ideTrabalhador__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtExclusao.infoExclusao.ideTrabalhador.cpfTrab'}}" name="[evtExclusao][infoExclusao][ideTrabalhador][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtExclusao__infoExclusao__ideTrabalhador__id__cpfTrab" maxlength="11" value="{{evtExclusao|readjson:'infoExclusao.ideTrabalhador.cpfTrab'}}" name="[evtExclusao][infoExclusao][ideTrabalhador][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -237,7 +238,7 @@ Valores válidos:
 2 - Anual (13° salário)
 Validação: Preenchimento obrigatório e exclusivo se tpEvento = [S-1200, S-1202, S-1207, S-1280, S-1300]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtExclusao__infoExclusao__ideFolhaPagto__id__indApuracao" name="[evtExclusao][infoExclusao][ideFolhaPagto][indApuracao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtExclusao.infoExclusao.ideFolhaPagto.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal original.evento_json|readjson:'evtExclusao.infoExclusao.ideFolhaPagto.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
+            <option value="">---</option><option value='1' {% ifequal evtExclusao|readjson:'infoExclusao.ideFolhaPagto.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtExclusao|readjson:'infoExclusao.ideFolhaPagto.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
             </select>
         </div>
     </div>
@@ -248,7 +249,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpEvento = [S-1200, S-120
         <div class="form-group">
             <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) ou apenas o ano (formato AAAA) de referência das informações.
 Validação: Deve ser um mês/ano ou ano válido, posterior à implementação do eSocial. Somente pode ser informado ano (formato AAAA) se indApuracao = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtExclusao__infoExclusao__ideFolhaPagto__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtExclusao.infoExclusao.ideFolhaPagto.perApur'}}" name="[evtExclusao][infoExclusao][ideFolhaPagto][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtExclusao__infoExclusao__ideFolhaPagto__id__perApur" maxlength="7" value="{{evtExclusao|readjson:'infoExclusao.ideFolhaPagto.perApur'}}" name="[evtExclusao][infoExclusao][ideFolhaPagto][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -268,6 +269,7 @@ Validação: Deve ser um mês/ano ou ano válido, posterior à implementação d
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

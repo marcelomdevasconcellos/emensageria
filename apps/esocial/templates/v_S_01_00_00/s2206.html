@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtAltContratual=original.evento_json|readjson:'evtAltContratual' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__ideEvento__id__indRetif" name="[evtAltContratual][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtAltContratual|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtAltContratual|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtAltContratual.ideEvento.nrRecibo'}}" name="[evtAltContratual][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__ideEvento__id__nrRecibo" maxlength="23" value="{{evtAltContratual|readjson:'ideEvento.nrRecibo'}}" name="[evtAltContratual][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -184,7 +185,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtAltContratual.ideVinculo.cpfTrab'}}" name="[evtAltContratual][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__ideVinculo__id__cpfTrab" maxlength="11" value="{{evtAltContratual|readjson:'ideVinculo.cpfTrab'}}" name="[evtAltContratual][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -194,7 +195,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
 Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtAltContratual.ideVinculo.matricula'}}" name="[evtAltContratual][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__ideVinculo__id__matricula" maxlength="30" value="{{evtAltContratual|readjson:'ideVinculo.matricula'}}" name="[evtAltContratual][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -228,7 +229,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
         <div class="form-group">
             <label>Preencher com a data de alteração<a data-toggle="tooltip" title="Preencher com a data da alteração das informações.
 Validação: Não pode ser posterior a 180 (cento e oitenta) dias da data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__id__dtAlteracao" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.dtAlteracao'}}" name="[evtAltContratual][altContratual][dtAlteracao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__id__dtAlteracao" value="{{evtAltContratual|readjson:'altContratual.dtAlteracao'}}" name="[evtAltContratual][altContratual][dtAlteracao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -239,7 +240,7 @@ Validação: Não pode ser posterior a 180 (cento e oitenta) dias da data atual.
             <label>Data dos efeitos remuneratórios da alteração contratual<a data-toggle="tooltip" title="Data dos efeitos remuneratórios da alteração contratual.
 Se a alteração foi fruto de lei, acordo coletivo, convenção coletiva ou sentença normativa, informar a data a partir da qual a alteração produz efeitos remuneratórios.
 Validação: Deve ser uma data válida, igual ou posterior à data de admissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__id__dtEf" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.dtEf'}}" name="[evtAltContratual][altContratual][dtEf]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__id__dtEf" value="{{evtAltContratual|readjson:'altContratual.dtEf'}}" name="[evtAltContratual][altContratual][dtEf]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -248,7 +249,7 @@ Validação: Deve ser uma data válida, igual ou posterior à data de admissão.
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição da alteração ou do instrumento que a gerou<a data-toggle="tooltip" title="Descrição da alteração ou do instrumento que a gerou."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__id__dscAlt" maxlength="150" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.dscAlt'}}" name="[evtAltContratual][altContratual][dscAlt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__id__dscAlt" maxlength="150" value="{{evtAltContratual|readjson:'altContratual.dscAlt'}}" name="[evtAltContratual][altContratual][dscAlt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -283,7 +284,7 @@ Valores válidos:
 3 - Regime de Previdência Social no exterior
 Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__id__tpRegPrev" name="[evtAltContratual][altContratual][vinculo][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.tpRegPrev' '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.tpRegPrev' '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.tpRegPrev' '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.tpRegPrev' '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.tpRegPrev' '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.tpRegPrev' '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>
@@ -339,7 +340,7 @@ Valores válidos:
 3 - Função especificada no inciso II do art. 62 da CLT
 4 - Teletrabalho, previsto no inciso III do art. 62 da CLT"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__id__tpRegJor" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][tpRegJor]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '1' %}selected{% endifequal %}>1 - Submetido a horário de trabalho (Capítulo II do Título II da CLT)</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '2' %}selected{% endifequal %}>2 - Atividade externa especificada no inciso I do art. 62 da CLT</option><option value='3' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '3' %}selected{% endifequal %}>3 - Função especificada no inciso II do art. 62 da CLT</option><option value='4' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '4' %}selected{% endifequal %}>4 - Teletrabalho, previsto no inciso III do art. 62 da CLT</option>
+            <option value="">---</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '1' %}selected{% endifequal %}>1 - Submetido a horário de trabalho (Capítulo II do Título II da CLT)</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '2' %}selected{% endifequal %}>2 - Atividade externa especificada no inciso I do art. 62 da CLT</option><option value='3' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '3' %}selected{% endifequal %}>3 - Função especificada no inciso II do art. 62 da CLT</option><option value='4' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.tpRegJor' '4' %}selected{% endifequal %}>4 - Teletrabalho, previsto no inciso III do art. 62 da CLT</option>
             </select>
         </div>
     </div>
@@ -354,7 +355,7 @@ Valores válidos:
 2 - Trabalho rural
 Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [102], deve ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__id__natAtividade" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][natAtividade]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.natAtividade' '1' %}selected{% endifequal %}>1 - Trabalho urbano</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.natAtividade' '2' %}selected{% endifequal %}>2 - Trabalho rural</option>
+            <option value="">---</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.natAtividade' '1' %}selected{% endifequal %}>1 - Trabalho urbano</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.natAtividade' '2' %}selected{% endifequal %}>2 - Trabalho rural</option>
             </select>
         </div>
     </div>
@@ -365,7 +366,7 @@ Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [10
         <div class="form-group">
             <label>Mês relativo à data base da categoria profissional do trabalhador<a data-toggle="tooltip" title="Mês relativo à data base da categoria profissional do trabalhador.
 Validação: Se informado, deve ser maior ou igual a 1 e menor ou igual a 12."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__id__dtBase" maxlength="2" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.dtBase'}}" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][dtBase]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__id__dtBase" maxlength="2" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.dtBase'}}" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][dtBase]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -375,7 +376,7 @@ Validação: Se informado, deve ser maior ou igual a 1 e menor ou igual a 12."><
         <div class="form-group">
             <label>Preencher com o CNPJ do sindicato representativo da categoria (preponderante ou diferenciada)<a data-toggle="tooltip" title="Preencher com o CNPJ do sindicato representativo da categoria (preponderante ou diferenciada).
 Validação: Deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__id__cnpjSindCategProf" maxlength="14" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.cnpjSindCategProf'}}" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][cnpjSindCategProf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__id__cnpjSindCategProf" maxlength="14" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.cnpjSindCategProf'}}" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][cnpjSindCategProf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -404,7 +405,7 @@ Validação: Deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="f
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrever a justificativa para a prorrogação do contrato de trabalho temporário<a data-toggle="tooltip" title="Descrever a justificativa para a prorrogação do contrato de trabalho temporário."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__id__justProrr" maxlength="999" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.trabTemporario.justProrr'}}" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][justProrr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__trabTemporario__id__justProrr" maxlength="999" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.trabTemporario.justProrr'}}" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][trabTemporario][justProrr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -442,7 +443,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__aprend__id__tpInsc" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][aprend][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.aprend.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.aprend.tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.aprend.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.aprend.tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -455,7 +456,7 @@ Valores válidos:
 Validação: Deve ser um identificador válido e:
 a) Se aprend/tpInsc = [1], deve ser informado com 14 (catorze) algarismos. Se o empregador for pessoa jurídica, a raiz do CNPJ informado deve ser diferente de ideEmpregador/nrInsc.
 b) Se aprend/tpInsc = [2], deve ser diferente do CPF do empregado. Se o empregador for pessoa física, também deve ser diferente do CPF do empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__aprend__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoCeletista.aprend.nrInsc'}}" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][aprend][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoCeletista__aprend__id__nrInsc" maxlength="14" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoCeletista.aprend.nrInsc'}}" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoCeletista][aprend][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -498,7 +499,7 @@ Valores válidos:
 2 - Fundo em repartição
 3 - Mantido pelo Tesouro"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoEstatutario__id__tpPlanRP" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoEstatutario][tpPlanRP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '0' %}selected{% endifequal %}>0 - Sem segregação da massa</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '1' %}selected{% endifequal %}>1 - Fundo em capitalização</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '2' %}selected{% endifequal %}>2 - Fundo em repartição</option><option value='3' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '3' %}selected{% endifequal %}>3 - Mantido pelo Tesouro</option>
+            <option value="">---</option><option value='0' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '0' %}selected{% endifequal %}>0 - Sem segregação da massa</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '1' %}selected{% endifequal %}>1 - Fundo em capitalização</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '2' %}selected{% endifequal %}>2 - Fundo em repartição</option><option value='3' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoEstatutario.tpPlanRP' '3' %}selected{% endifequal %}>3 - Mantido pelo Tesouro</option>
             </select>
         </div>
     </div>
@@ -512,7 +513,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoEstatutario__id__indTetoRGPS" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoEstatutario][indTetoRGPS]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoEstatutario.indTetoRGPS' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -526,7 +527,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoRegimeTrab__infoEstatutario__id__indAbonoPerm" name="[evtAltContratual][altContratual][vinculo][infoRegimeTrab][infoEstatutario][indAbonoPerm]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.indAbonoPerm' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoRegimeTrab.infoEstatutario.indAbonoPerm' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoEstatutario.indAbonoPerm' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoRegimeTrab.infoEstatutario.indAbonoPerm' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -565,7 +566,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
         <div class="form-group">
             <label>Informar o nome do cargo<a data-toggle="tooltip" title="Informar o nome do cargo.
 Validação: O preenchimento é obrigatório, exceto se for relativo a servidor nomeado em cargo em comissão (no evento S-2200, tpRegTrab = [2] e tpProv = [2])."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__id__nmCargo" maxlength="100" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.nmCargo'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][nmCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__id__nmCargo" maxlength="100" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.nmCargo'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][nmCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -575,7 +576,7 @@ Validação: O preenchimento é obrigatório, exceto se for relativo a servidor 
         <div class="form-group">
             <label>Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo<a data-toggle="tooltip" title="Informar a Classificação Brasileira de Ocupações - CBO relativa ao cargo.
 Validação: Informação obrigatória e exclusiva se nmCargo for preenchido. Se informado, deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__id__CBOCargo" maxlength="6" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.CBOCargo'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][CBOCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__id__CBOCargo" maxlength="6" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.CBOCargo'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][CBOCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -585,7 +586,7 @@ Validação: Informação obrigatória e exclusiva se nmCargo for preenchido. Se
         <div class="form-group">
             <label>Informar o nome da função de confiança<a data-toggle="tooltip" title="Informar o nome da função de confiança/cargo em comissão.
 Validação: Preenchimento obrigatório se for relativo a servidor nomeado em cargo em comissão (no evento S-2200, tpRegTrab = [2] e tpProv = [2])."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__id__nmFuncao" maxlength="100" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.nmFuncao'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][nmFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__id__nmFuncao" maxlength="100" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.nmFuncao'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][nmFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -595,7 +596,7 @@ Validação: Preenchimento obrigatório se for relativo a servidor nomeado em ca
         <div class="form-group">
             <label>Informar a CBO relativa à função de confiança/cargo em comissão<a data-toggle="tooltip" title="Informar a CBO relativa à função de confiança/cargo em comissão.
 Validação: Informação obrigatória e exclusiva se nmFuncao for preenchido. Se informado, deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__id__CBOFuncao" maxlength="6" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.CBOFuncao'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][CBOFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__id__CBOFuncao" maxlength="6" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.CBOFuncao'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][CBOFuncao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -609,7 +610,7 @@ S - Sim
 N - Não
 Validação: Preenchimento obrigatório se a natureza jurídica do declarante for igual a 1XX-X, 201-1 ou 203-8."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoContrato__id__acumCargo" name="[evtAltContratual][altContratual][vinculo][infoContrato][acumCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.acumCargo' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.acumCargo' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.acumCargo' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.acumCargo' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -620,7 +621,7 @@ Validação: Preenchimento obrigatório se a natureza jurídica do declarante fo
         <div class="form-group">
             <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.codCateg'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__id__codCateg" maxlength="3" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.codCateg'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -650,7 +651,7 @@ Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa
         <div class="form-group">
             <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração.
 Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__remuneracao__id__vrSalFx" maxlength="14" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.remuneracao.vrSalFx'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][remuneracao][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__remuneracao__id__vrSalFx" maxlength="14" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.remuneracao.vrSalFx'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][remuneracao][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -668,7 +669,7 @@ Valores válidos:
 6 - Por tarefa
 7 - Não aplicável - Salário exclusivamente variável"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoContrato__remuneracao__id__undSalFixo" name="[evtAltContratual][altContratual][vinculo][infoContrato][remuneracao][undSalFixo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '1' %}selected{% endifequal %}>1 - Por hora</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '2' %}selected{% endifequal %}>2 - Por dia</option><option value='3' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '3' %}selected{% endifequal %}>3 - Por semana</option><option value='4' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '4' %}selected{% endifequal %}>4 - Por quinzena</option><option value='5' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '5' %}selected{% endifequal %}>5 - Por mês</option><option value='6' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '6' %}selected{% endifequal %}>6 - Por tarefa</option><option value='7' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '7' %}selected{% endifequal %}>7 - Não aplicável - Salário exclusivamente variável</option>
+            <option value="">---</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '1' %}selected{% endifequal %}>1 - Por hora</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '2' %}selected{% endifequal %}>2 - Por dia</option><option value='3' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '3' %}selected{% endifequal %}>3 - Por semana</option><option value='4' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '4' %}selected{% endifequal %}>4 - Por quinzena</option><option value='5' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '5' %}selected{% endifequal %}>5 - Por mês</option><option value='6' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '6' %}selected{% endifequal %}>6 - Por tarefa</option><option value='7' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.remuneracao.undSalFixo' '7' %}selected{% endifequal %}>7 - Não aplicável - Salário exclusivamente variável</option>
             </select>
         </div>
     </div>
@@ -679,7 +680,7 @@ Valores válidos:
         <div class="form-group">
             <label>Descrição do salário por tarefa ou variável e como este é calculado<a data-toggle="tooltip" title="Descrição do salário por tarefa ou variável e como este é calculado. Ex.: Comissões pagas no percentual de 10% sobre as vendas.
 Validação: Preenchimento obrigatório se undSalFixo for igual a [6, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__remuneracao__id__dscSalVar" maxlength="999" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.remuneracao.dscSalVar'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][remuneracao][dscSalVar]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__remuneracao__id__dscSalVar" maxlength="999" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.remuneracao.dscSalVar'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][remuneracao][dscSalVar]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -717,7 +718,7 @@ Valores válidos:
 2 - Prazo determinado, definido em dias
 3 - Prazo determinado, vinculado à ocorrência de um fato"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoContrato__duracao__id__tpContr" name="[evtAltContratual][altContratual][vinculo][infoContrato][duracao][tpContr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.duracao.tpContr' '1' %}selected{% endifequal %}>1 - Prazo indeterminado</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.duracao.tpContr' '2' %}selected{% endifequal %}>2 - Prazo determinado, definido em dias</option><option value='3' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.duracao.tpContr' '3' %}selected{% endifequal %}>3 - Prazo determinado, vinculado à ocorrência de um fato</option>
+            <option value="">---</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.duracao.tpContr' '1' %}selected{% endifequal %}>1 - Prazo indeterminado</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.duracao.tpContr' '2' %}selected{% endifequal %}>2 - Prazo determinado, definido em dias</option><option value='3' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.duracao.tpContr' '3' %}selected{% endifequal %}>3 - Prazo determinado, vinculado à ocorrência de um fato</option>
             </select>
         </div>
     </div>
@@ -728,7 +729,7 @@ Valores válidos:
         <div class="form-group">
             <label>Data do término<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
 Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se tpContr = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência ou mudança de CPF, igual ou posterior a sucessaoVinc/dtTransf, transfDom/dtTransf ou dtAltCPF do evento S-2200, conforme o caso)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__duracao__id__dtTerm" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.duracao.dtTerm'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][duracao][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__duracao__id__dtTerm" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.duracao.dtTerm'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][duracao][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -738,7 +739,7 @@ Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se 
         <div class="form-group">
             <label>Indicação do objeto determinante da contratação por prazo determinado (obra<a data-toggle="tooltip" title="Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.).
 Validação: O preenchimento é obrigatório e exclusivo se tpContr = [3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__duracao__id__objDet" maxlength="255" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.duracao.objDet'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][duracao][objDet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__duracao__id__objDet" maxlength="255" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.duracao.objDet'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][duracao][objDet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -796,7 +797,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__tpInsc" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -807,7 +808,7 @@ Valores válidos:
         <div class="form-group">
             <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo localTrabGeral/tpInsc.
 Validação: Deve ser um número de inscrição válido e existente na Tabela de Estabelecimentos (S-1005), bem como compatível com localTrabGeral/tpInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.nrInsc'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__nrInsc" maxlength="14" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.nrInsc'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -816,7 +817,7 @@ Validação: Deve ser um número de inscrição válido e existente na Tabela de
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição complementar do local de trabalho<a data-toggle="tooltip" title="Descrição complementar do local de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__descComp" maxlength="80" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.descComp'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][descComp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTrabGeral__id__descComp" maxlength="80" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTrabGeral.descComp'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTrabGeral][descComp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -850,7 +851,7 @@ Validação: Deve ser um número de inscrição válido e existente na Tabela de
         <div class="form-group">
             <label>Tipo de logradouro<a data-toggle="tooltip" title="Tipo de logradouro.
 Validação: Se informado, deve ser um código válido e existente na Tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__tpLograd" maxlength="4" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTempDom.tpLograd'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__tpLograd" maxlength="4" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTempDom.tpLograd'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -859,7 +860,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTempDom.dscLograd'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__dscLograd" maxlength="100" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTempDom.dscLograd'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -869,7 +870,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
         <div class="form-group">
             <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTempDom.nrLograd'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__nrLograd" maxlength="10" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTempDom.nrLograd'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -878,7 +879,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Complemento do logradouro<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTempDom.complemento'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__complemento" maxlength="30" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTempDom.complemento'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -887,7 +888,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTempDom.bairro'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__bairro" maxlength="90" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTempDom.bairro'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -897,7 +898,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
         <div class="form-group">
             <label>Código de Endereçamento Postal - CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
 Validação: Deve ser preenchido apenas com números, com 8 (oito) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTempDom.cep'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__cep" maxlength="8" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTempDom.cep'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -907,7 +908,7 @@ Validação: Deve ser preenchido apenas com números, com 8 (oito) posições.">
         <div class="form-group">
             <label>Preencher com o código do município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
 Validação: Deve ser um código válido e existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTempDom.codMunic'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__codMunic" maxlength="7" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTempDom.codMunic'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -917,7 +918,7 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
         <div class="form-group">
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.localTrabalho.localTempDom.uf'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__localTrabalho__localTempDom__id__uf" maxlength="2" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.localTrabalho.localTempDom.uf'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][localTrabalho][localTempDom][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -955,7 +956,7 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
         <div class="form-group">
             <label>Quantidade média de horas relativas à jornada semanal do trabalhador<a data-toggle="tooltip" title="Quantidade média de horas relativas à jornada semanal do trabalhador.
 Validação: Deve ser preenchida se codCateg for diferente de [111]. Se informada, deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__horContratual__id__qtdHrsSem" maxlength="4" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.qtdHrsSem'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][horContratual][qtdHrsSem]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__horContratual__id__qtdHrsSem" maxlength="4" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.qtdHrsSem'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][horContratual][qtdHrsSem]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -973,7 +974,7 @@ Valores válidos:
 7 - Turno ininterrupto de revezamento
 9 - Demais tipos de jornada"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoContrato__horContratual__id__tpJornada" name="[evtAltContratual][altContratual][vinculo][infoContrato][horContratual][tpJornada]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tpJornada' '2' %}selected{% endifequal %}>2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)</option><option value='3' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tpJornada' '3' %}selected{% endifequal %}>3 - Jornada com horário diário fixo e folga variável</option><option value='4' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tpJornada' '4' %}selected{% endifequal %}>4 - Jornada com horário diário fixo e folga fixa (no domingo)</option><option value='5' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tpJornada' '5' %}selected{% endifequal %}>5 - Jornada com horário diário fixo e folga fixa (exceto no domingo)</option><option value='6' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tpJornada' '6' %}selected{% endifequal %}>6 - Jornada com horário diário fixo e folga fixa (em outro dia da semana), com folga adicional periódica no domingo</option><option value='7' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tpJornada' '7' %}selected{% endifequal %}>7 - Turno ininterrupto de revezamento</option><option value='9' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tpJornada' '9' %}selected{% endifequal %}>9 - Demais tipos de jornada</option>
+            <option value="">---</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tpJornada' '2' %}selected{% endifequal %}>2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)</option><option value='3' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tpJornada' '3' %}selected{% endifequal %}>3 - Jornada com horário diário fixo e folga variável</option><option value='4' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tpJornada' '4' %}selected{% endifequal %}>4 - Jornada com horário diário fixo e folga fixa (no domingo)</option><option value='5' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tpJornada' '5' %}selected{% endifequal %}>5 - Jornada com horário diário fixo e folga fixa (exceto no domingo)</option><option value='6' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tpJornada' '6' %}selected{% endifequal %}>6 - Jornada com horário diário fixo e folga fixa (em outro dia da semana), com folga adicional periódica no domingo</option><option value='7' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tpJornada' '7' %}selected{% endifequal %}>7 - Turno ininterrupto de revezamento</option><option value='9' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tpJornada' '9' %}selected{% endifequal %}>9 - Demais tipos de jornada</option>
             </select>
         </div>
     </div>
@@ -990,7 +991,7 @@ Valores válidos:
 3 - Limitado a 26 horas semanais
 Validação: O código [1] só é válido se codCateg = [104]. Os códigos [2, 3] não são válidos se codCateg = [104]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoContrato__horContratual__id__tmpParc" name="[evtAltContratual][altContratual][vinculo][infoContrato][horContratual][tmpParc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tmpParc' '0' %}selected{% endifequal %}>0 - Não é contrato em tempo parcial</option><option value='1' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tmpParc' '1' %}selected{% endifequal %}>1 - Limitado a 25 horas semanais</option><option value='2' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tmpParc' '2' %}selected{% endifequal %}>2 - Limitado a 30 horas semanais</option><option value='3' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.tmpParc' '3' %}selected{% endifequal %}>3 - Limitado a 26 horas semanais</option>
+            <option value="">---</option><option value='0' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tmpParc' '0' %}selected{% endifequal %}>0 - Não é contrato em tempo parcial</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tmpParc' '1' %}selected{% endifequal %}>1 - Limitado a 25 horas semanais</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tmpParc' '2' %}selected{% endifequal %}>2 - Limitado a 30 horas semanais</option><option value='3' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.tmpParc' '3' %}selected{% endifequal %}>3 - Limitado a 26 horas semanais</option>
             </select>
         </div>
     </div>
@@ -1005,7 +1006,7 @@ S - Sim
 N - Não
 Validação: Informação obrigatória se codCateg for diferente de [111]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__infoContrato__horContratual__id__horNoturno" name="[evtAltContratual][altContratual][vinculo][infoContrato][horContratual][horNoturno]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.horNoturno' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.horNoturno' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.horNoturno' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.horNoturno' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -1015,7 +1016,7 @@ Validação: Informação obrigatória se codCateg for diferente de [111]."><i c
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição da jornada semanal contratual<a data-toggle="tooltip" title="Descrição da jornada semanal contratual, contendo os dias da semana e os respectivos horários contratuais (entrada, saída e intervalos)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__horContratual__id__dscJorn" maxlength="999" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.horContratual.dscJorn'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][horContratual][dscJorn]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__horContratual__id__dscJorn" maxlength="999" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.horContratual.dscJorn'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][horContratual][dscJorn]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1049,7 +1050,7 @@ Validação: Informação obrigatória se codCateg for diferente de [111]."><i c
         <div class="form-group">
             <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
 Validação: Deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__alvaraJudicial__id__nrProcJud" maxlength="20" value="{{original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.alvaraJudicial.nrProcJud'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][alvaraJudicial][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__alvaraJudicial__id__nrProcJud" maxlength="20" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.alvaraJudicial.nrProcJud'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][alvaraJudicial][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1057,7 +1058,7 @@ Validação: Deve ser um número de processo judicial válido."><i class="fa fa-
             </div>
         </blockquote>
     </div>
-</div>{% for observacoes in original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.observacoes' %}
+</div>{% for observacoes in evtAltContratual|readjson:'altContratual.vinculo.infoContrato.observacoes' %}
 <div id="observacoes__div">
     <div class="col-md-12">
         <h4>Observações do contrato de trabalho.</h4>
@@ -1082,7 +1083,7 @@ Validação: Deve ser um número de processo judicial válido."><i class="fa fa-
     <div class="col-md-4">
         <div class="form-group">
             <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação relacionada ao contrato de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__observacoes__id__observacao" maxlength="255" value="{{observacoes.observacao}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][observacoes][][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__observacoes__id__observacao" maxlength="255" value="{{observacoes|readjson:'observacao'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][observacoes][][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1115,7 +1116,7 @@ Validação: Deve ser um número de processo judicial válido."><i class="fa fa-
     <div class="col-md-4">
         <div class="form-group">
             <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação relacionada ao contrato de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__observacoes__id__observacao" maxlength="255" value="{{observacoes.observacao}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][observacoes][][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__observacoes__id__observacao" maxlength="255" value="{{observacoes|readjson:'observacao'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][observacoes][][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1123,7 +1124,7 @@ Validação: Deve ser um número de processo judicial válido."><i class="fa fa-
             </div>
         </blockquote>
     </div>
-</div>{% endfor %}{% for treiCap in original.evento_json|readjson:'evtAltContratual.altContratual.vinculo.infoContrato.treiCap' %}
+</div>{% endfor %}{% for treiCap in evtAltContratual|readjson:'altContratual.vinculo.infoContrato.treiCap' %}
 <div id="treiCap__div">
     <div class="col-md-12">
         <h4>Treinamentos, capacitações, exercícios simulados, autorizações ou outras anotações que devam ser anotadas no registro de empregados e/ou na CTPS, por determinação de Norma Regulamentadora - NR.</h4>
@@ -1149,7 +1150,7 @@ Validação: Deve ser um número de processo judicial válido."><i class="fa fa-
         <div class="form-group">
             <label>Informar o código do treinamento<a data-toggle="tooltip" title="Informar o código do treinamento, capacitação, exercício simulado ou outra anotação, conforme Tabela 28.
 Validação: Deve ser um código válido e existente na Tabela 28."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__treiCap__id__codTreiCap" maxlength="4" value="{{treiCap.codTreiCap}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][treiCap][][codTreiCap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__treiCap__id__codTreiCap" maxlength="4" value="{{treiCap|readjson:'codTreiCap'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][treiCap][][codTreiCap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1183,7 +1184,7 @@ Validação: Deve ser um código válido e existente na Tabela 28."><i class="fa
         <div class="form-group">
             <label>Informar o código do treinamento<a data-toggle="tooltip" title="Informar o código do treinamento, capacitação, exercício simulado ou outra anotação, conforme Tabela 28.
 Validação: Deve ser um código válido e existente na Tabela 28."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__treiCap__id__codTreiCap" maxlength="4" value="{{treiCap.codTreiCap}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][treiCap][][codTreiCap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__treiCap__id__codTreiCap" maxlength="4" value="{{treiCap|readjson:'codTreiCap'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][treiCap][][codTreiCap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -1211,6 +1212,7 @@ Validação: Deve ser um código válido e existente na Tabela 28."><i class="fa
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

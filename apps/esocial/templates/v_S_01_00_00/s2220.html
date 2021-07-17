@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtMonit=original.evento_json|readjson:'evtMonit' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__ideEvento__id__indRetif" name="[evtMonit][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtMonit.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtMonit.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtMonit|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtMonit|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtMonit.ideEvento.nrRecibo'}}" name="[evtMonit][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__ideEvento__id__nrRecibo" maxlength="23" value="{{evtMonit|readjson:'ideEvento.nrRecibo'}}" name="[evtMonit][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -184,7 +185,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtMonit.ideVinculo.cpfTrab'}}" name="[evtMonit][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__ideVinculo__id__cpfTrab" maxlength="11" value="{{evtMonit|readjson:'ideVinculo.cpfTrab'}}" name="[evtMonit][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -194,7 +195,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
 Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2190, S-2200 ou S-2300 do respectivo contrato. Não preencher no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE sem informação de matrícula no evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtMonit.ideVinculo.matricula'}}" name="[evtMonit][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__ideVinculo__id__matricula" maxlength="30" value="{{evtMonit|readjson:'ideVinculo.matricula'}}" name="[evtMonit][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -205,7 +206,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
             <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Informar somente no caso de TSVE sem informação de matrícula no evento S-2300.
 Validação: Informação obrigatória e exclusiva se não houver preenchimento de matricula. Se informado, deve ser um código válido e existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__ideVinculo__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtMonit.ideVinculo.codCateg'}}" name="[evtMonit][ideVinculo][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__ideVinculo__id__codCateg" maxlength="3" value="{{evtMonit|readjson:'ideVinculo.codCateg'}}" name="[evtMonit][ideVinculo][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -247,7 +248,7 @@ Valores válidos:
 9 - Exame médico demissional
 Validação: Se informado [0], não pode existir outro evento S-2220 para o mesmo contrato com dtAso anterior."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__id__tpExameOcup" name="[evtMonit][exMedOcup][tpExameOcup]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtMonit.exMedOcup.tpExameOcup' '0' %}selected{% endifequal %}>0 - Exame médico admissional</option><option value='1' {% ifequal original.evento_json|readjson:'evtMonit.exMedOcup.tpExameOcup' '1' %}selected{% endifequal %}>1 - Exame médico periódico, conforme Norma Regulamentadora 07 - NR-07 e/ou planejamento do Programa de Controle Médico de Saúde Ocupacional - PCMSO</option><option value='2' {% ifequal original.evento_json|readjson:'evtMonit.exMedOcup.tpExameOcup' '2' %}selected{% endifequal %}>2 - Exame médico de retorno ao trabalho</option><option value='3' {% ifequal original.evento_json|readjson:'evtMonit.exMedOcup.tpExameOcup' '3' %}selected{% endifequal %}>3 - Exame médico de mudança de função ou de mudança de risco ocupacional</option><option value='4' {% ifequal original.evento_json|readjson:'evtMonit.exMedOcup.tpExameOcup' '4' %}selected{% endifequal %}>4 - Exame médico de monitoração pontual, não enquadrado nos demais casos</option><option value='9' {% ifequal original.evento_json|readjson:'evtMonit.exMedOcup.tpExameOcup' '9' %}selected{% endifequal %}>9 - Exame médico demissional</option>
+            <option value="">---</option><option value='0' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '0' %}selected{% endifequal %}>0 - Exame médico admissional</option><option value='1' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '1' %}selected{% endifequal %}>1 - Exame médico periódico, conforme Norma Regulamentadora 07 - NR-07 e/ou planejamento do Programa de Controle Médico de Saúde Ocupacional - PCMSO</option><option value='2' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '2' %}selected{% endifequal %}>2 - Exame médico de retorno ao trabalho</option><option value='3' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '3' %}selected{% endifequal %}>3 - Exame médico de mudança de função ou de mudança de risco ocupacional</option><option value='4' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '4' %}selected{% endifequal %}>4 - Exame médico de monitoração pontual, não enquadrado nos demais casos</option><option value='9' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '9' %}selected{% endifequal %}>9 - Exame médico demissional</option>
             </select>
         </div>
     </div>
@@ -278,7 +279,7 @@ Validação: Se informado [0], não pode existir outro evento S-2220 para o mesm
         <div class="form-group">
             <label>Data de emissão do ASO<a data-toggle="tooltip" title="Data de emissão do ASO.
 Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__aso__id__dtAso" value="{{original.evento_json|readjson:'evtMonit.exMedOcup.aso.dtAso'}}" name="[evtMonit][exMedOcup][aso][dtAso]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__aso__id__dtAso" value="{{evtMonit|readjson:'exMedOcup.aso.dtAso'}}" name="[evtMonit][exMedOcup][aso][dtAso]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -291,12 +292,12 @@ Valores válidos:
 1 - Apto
 2 - Inapto"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__id__resAso" name="[evtMonit][exMedOcup][aso][resAso]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtMonit.exMedOcup.aso.resAso' '1' %}selected{% endifequal %}>1 - Apto</option><option value='2' {% ifequal original.evento_json|readjson:'evtMonit.exMedOcup.aso.resAso' '2' %}selected{% endifequal %}>2 - Inapto</option>
+            <option value="">---</option><option value='1' {% ifequal evtMonit|readjson:'exMedOcup.aso.resAso' '1' %}selected{% endifequal %}>1 - Apto</option><option value='2' {% ifequal evtMonit|readjson:'exMedOcup.aso.resAso' '2' %}selected{% endifequal %}>2 - Inapto</option>
             </select>
         </div>
     </div>
 </div>
-{% for exame in original.evento_json|readjson:'evtMonit.exMedOcup.aso.exame' %}
+{% for exame in evtMonit|readjson:'exMedOcup.aso.exame' %}
 <div id="exame__div">
     <div class="col-md-12">
         <h4>Grupo que detalha as avaliações clínicas e os exames complementares porventura realizados pelo trabalhador em virtude do determinado nos Anexos da NR-07, além de outros solicitados pelo médico e os referentes ao ASO.</h4>
@@ -322,7 +323,7 @@ Valores válidos:
         <div class="form-group">
             <label>Data do exame realizado<a data-toggle="tooltip" title="Data do exame realizado.
 Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__dtExm" value="{{exame.dtExm}}" name="[evtMonit][exMedOcup][aso][exame][][dtExm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__dtExm" value="{{exame|readjson:'dtExm'}}" name="[evtMonit][exMedOcup][aso][exame][][dtExm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -332,7 +333,7 @@ Validação: Deve ser uma data válida, igual ou anterior à data do ASO informa
         <div class="form-group">
             <label>Código do procedimento diagnóstico<a data-toggle="tooltip" title="Código do procedimento diagnóstico.
 Validação: Deve ser um código válido e existente na Tabela 27."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__procRealizado" maxlength="4" value="{{exame.procRealizado}}" name="[evtMonit][exMedOcup][aso][exame][][procRealizado]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__procRealizado" maxlength="4" value="{{exame|readjson:'procRealizado'}}" name="[evtMonit][exMedOcup][aso][exame][][procRealizado]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -341,7 +342,7 @@ Validação: Deve ser um código válido e existente na Tabela 27."><i class="fa
     <div class="col-md-4">
         <div class="form-group">
             <label>Observação sobre o procedimento diagnóstico realizado<a data-toggle="tooltip" title="Observação sobre o procedimento diagnóstico realizado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__obsProc" maxlength="999" value="{{exame.obsProc}}" name="[evtMonit][exMedOcup][aso][exame][][obsProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__obsProc" maxlength="999" value="{{exame|readjson:'obsProc'}}" name="[evtMonit][exMedOcup][aso][exame][][obsProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -354,7 +355,7 @@ Valores válidos:
 1 - Inicial
 2 - Sequencial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__exame__id__ordExame" name="[evtMonit][exMedOcup][aso][exame][][ordExame]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal exame.ordExame '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame.ordExame '2' %}selected{% endifequal %}>2 - Sequencial</option>
+            <option value="">---</option><option value='1' {% ifequal exame|readjson:'ordExame' '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame|readjson:'ordExame' '2' %}selected{% endifequal %}>2 - Sequencial</option>
             </select>
         </div>
     </div>
@@ -370,7 +371,7 @@ Valores válidos:
 3 - Estável
 4 - Agravamento"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__exame__id__indResult" name="[evtMonit][exMedOcup][aso][exame][][indResult]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal exame.indResult '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal exame.indResult '2' %}selected{% endifequal %}>2 - Alterado</option><option value='3' {% ifequal exame.indResult '3' %}selected{% endifequal %}>3 - Estável</option><option value='4' {% ifequal exame.indResult '4' %}selected{% endifequal %}>4 - Agravamento</option>
+            <option value="">---</option><option value='1' {% ifequal exame|readjson:'indResult' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal exame|readjson:'indResult' '2' %}selected{% endifequal %}>2 - Alterado</option><option value='3' {% ifequal exame|readjson:'indResult' '3' %}selected{% endifequal %}>3 - Estável</option><option value='4' {% ifequal exame|readjson:'indResult' '4' %}selected{% endifequal %}>4 - Agravamento</option>
             </select>
         </div>
     </div>
@@ -405,7 +406,7 @@ Valores válidos:
         <div class="form-group">
             <label>Data do exame realizado<a data-toggle="tooltip" title="Data do exame realizado.
 Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__dtExm" value="{{exame.dtExm}}" name="[evtMonit][exMedOcup][aso][exame][][dtExm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__dtExm" value="{{exame|readjson:'dtExm'}}" name="[evtMonit][exMedOcup][aso][exame][][dtExm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -415,7 +416,7 @@ Validação: Deve ser uma data válida, igual ou anterior à data do ASO informa
         <div class="form-group">
             <label>Código do procedimento diagnóstico<a data-toggle="tooltip" title="Código do procedimento diagnóstico.
 Validação: Deve ser um código válido e existente na Tabela 27."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__procRealizado" maxlength="4" value="{{exame.procRealizado}}" name="[evtMonit][exMedOcup][aso][exame][][procRealizado]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__procRealizado" maxlength="4" value="{{exame|readjson:'procRealizado'}}" name="[evtMonit][exMedOcup][aso][exame][][procRealizado]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -424,7 +425,7 @@ Validação: Deve ser um código válido e existente na Tabela 27."><i class="fa
     <div class="col-md-4">
         <div class="form-group">
             <label>Observação sobre o procedimento diagnóstico realizado<a data-toggle="tooltip" title="Observação sobre o procedimento diagnóstico realizado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__obsProc" maxlength="999" value="{{exame.obsProc}}" name="[evtMonit][exMedOcup][aso][exame][][obsProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__aso__exame__id__obsProc" maxlength="999" value="{{exame|readjson:'obsProc'}}" name="[evtMonit][exMedOcup][aso][exame][][obsProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -437,7 +438,7 @@ Valores válidos:
 1 - Inicial
 2 - Sequencial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__exame__id__ordExame" name="[evtMonit][exMedOcup][aso][exame][][ordExame]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal exame.ordExame '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame.ordExame '2' %}selected{% endifequal %}>2 - Sequencial</option>
+            <option value="">---</option><option value='1' {% ifequal exame|readjson:'ordExame' '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame|readjson:'ordExame' '2' %}selected{% endifequal %}>2 - Sequencial</option>
             </select>
         </div>
     </div>
@@ -453,7 +454,7 @@ Valores válidos:
 3 - Estável
 4 - Agravamento"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__exame__id__indResult" name="[evtMonit][exMedOcup][aso][exame][][indResult]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal exame.indResult '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal exame.indResult '2' %}selected{% endifequal %}>2 - Alterado</option><option value='3' {% ifequal exame.indResult '3' %}selected{% endifequal %}>3 - Estável</option><option value='4' {% ifequal exame.indResult '4' %}selected{% endifequal %}>4 - Agravamento</option>
+            <option value="">---</option><option value='1' {% ifequal exame|readjson:'indResult' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal exame|readjson:'indResult' '2' %}selected{% endifequal %}>2 - Alterado</option><option value='3' {% ifequal exame|readjson:'indResult' '3' %}selected{% endifequal %}>3 - Estável</option><option value='4' {% ifequal exame|readjson:'indResult' '4' %}selected{% endifequal %}>4 - Agravamento</option>
             </select>
         </div>
     </div>
@@ -487,7 +488,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o nome do médico emitente do ASO<a data-toggle="tooltip" title="Preencher com o nome do médico emitente do ASO."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__aso__medico__id__nmMed" maxlength="70" value="{{original.evento_json|readjson:'evtMonit.exMedOcup.aso.medico.nmMed'}}" name="[evtMonit][exMedOcup][aso][medico][nmMed]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__aso__medico__id__nmMed" maxlength="70" value="{{evtMonit|readjson:'exMedOcup.aso.medico.nmMed'}}" name="[evtMonit][exMedOcup][aso][medico][nmMed]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -496,7 +497,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Número de inscrição do médico responsável/coordenador do PCMSO no CRM<a data-toggle="tooltip" title="Número de inscrição do médico emitente do ASO no Conselho Regional de Medicina - CRM."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__aso__medico__id__nrCRM" maxlength="8" value="{{original.evento_json|readjson:'evtMonit.exMedOcup.aso.medico.nrCRM'}}" name="[evtMonit][exMedOcup][aso][medico][nrCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__aso__medico__id__nrCRM" maxlength="8" value="{{evtMonit|readjson:'exMedOcup.aso.medico.nrCRM'}}" name="[evtMonit][exMedOcup][aso][medico][nrCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -506,7 +507,7 @@ Valores válidos:
         <div class="form-group">
             <label>Preencher com a sigla da UF de expedição do CRM<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF de expedição do CRM.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__aso__medico__id__ufCRM" maxlength="2" value="{{original.evento_json|readjson:'evtMonit.exMedOcup.aso.medico.ufCRM'}}" name="[evtMonit][exMedOcup][aso][medico][ufCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__aso__medico__id__ufCRM" maxlength="2" value="{{evtMonit|readjson:'exMedOcup.aso.medico.ufCRM'}}" name="[evtMonit][exMedOcup][aso][medico][ufCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -544,7 +545,7 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
         <div class="form-group">
             <label>Preencher com o CPF do responsável pelos registros ambientais<a data-toggle="tooltip" title="Preencher com o CPF do médico responsável/coordenador do PCMSO.
 Validação: Se informado, deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__respMonit__id__cpfResp" maxlength="11" value="{{original.evento_json|readjson:'evtMonit.exMedOcup.respMonit.cpfResp'}}" name="[evtMonit][exMedOcup][respMonit][cpfResp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__respMonit__id__cpfResp" maxlength="11" value="{{evtMonit|readjson:'exMedOcup.respMonit.cpfResp'}}" name="[evtMonit][exMedOcup][respMonit][cpfResp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -553,7 +554,7 @@ Validação: Se informado, deve ser um CPF válido."><i class="fa fa-fw fa-quest
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o nome do médico responsável/coordenador do PCMSO<a data-toggle="tooltip" title="Preencher com o nome do médico responsável/coordenador do PCMSO."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__respMonit__id__nmResp" maxlength="70" value="{{original.evento_json|readjson:'evtMonit.exMedOcup.respMonit.nmResp'}}" name="[evtMonit][exMedOcup][respMonit][nmResp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__respMonit__id__nmResp" maxlength="70" value="{{evtMonit|readjson:'exMedOcup.respMonit.nmResp'}}" name="[evtMonit][exMedOcup][respMonit][nmResp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -562,7 +563,7 @@ Validação: Se informado, deve ser um CPF válido."><i class="fa fa-fw fa-quest
     <div class="col-md-4">
         <div class="form-group">
             <label>Número de inscrição do médico responsável/coordenador do PCMSO no CRM<a data-toggle="tooltip" title="Número de inscrição do médico responsável/coordenador do PCMSO no CRM."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__respMonit__id__nrCRM" maxlength="8" value="{{original.evento_json|readjson:'evtMonit.exMedOcup.respMonit.nrCRM'}}" name="[evtMonit][exMedOcup][respMonit][nrCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__respMonit__id__nrCRM" maxlength="8" value="{{evtMonit|readjson:'exMedOcup.respMonit.nrCRM'}}" name="[evtMonit][exMedOcup][respMonit][nrCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -572,7 +573,7 @@ Validação: Se informado, deve ser um CPF válido."><i class="fa fa-fw fa-quest
         <div class="form-group">
             <label>Preencher com a sigla da UF de expedição do CRM<a data-toggle="tooltip" title="Preencher com a sigla da UF de expedição do CRM.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtMonit__exMedOcup__respMonit__id__ufCRM" maxlength="2" value="{{original.evento_json|readjson:'evtMonit.exMedOcup.respMonit.ufCRM'}}" name="[evtMonit][exMedOcup][respMonit][ufCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtMonit__exMedOcup__respMonit__id__ufCRM" maxlength="2" value="{{evtMonit|readjson:'exMedOcup.respMonit.ufCRM'}}" name="[evtMonit][exMedOcup][respMonit][ufCRM]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -592,6 +593,7 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

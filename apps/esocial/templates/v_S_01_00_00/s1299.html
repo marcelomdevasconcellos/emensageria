@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtFechaEvPer=original.evento_json|readjson:'evtFechaEvPer' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__ideEvento__id__indApuracao" name="[evtFechaEvPer][ideEvento][indApuracao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtFechaEvPer.ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal original.evento_json|readjson:'evtFechaEvPer.ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
+            <option value="">---</option><option value='1' {% ifequal evtFechaEvPer|readjson:'ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtFechaEvPer|readjson:'ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
             </select>
         </div>
     </div>
@@ -63,7 +64,7 @@ Valores válidos:
         <div class="form-group">
             <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
 Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtFechaEvPer__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtFechaEvPer.ideEvento.perApur'}}" name="[evtFechaEvPer][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtFechaEvPer__ideEvento__id__perApur" maxlength="7" value="{{evtFechaEvPer|readjson:'ideEvento.perApur'}}" name="[evtFechaEvPer][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -75,7 +76,7 @@ Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início 
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__ideEvento__id__indGuia" name="[evtFechaEvPer][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtFechaEvPer.ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            <option value="">---</option><option value='1' {% ifequal evtFechaEvPer|readjson:'ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
             </select>
         </div>
     </div>
@@ -195,10 +196,9 @@ Valores válidos:
 <div id="evtRemun__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Possui informações relativas a remuneração de trabalhadores ou provento/pensão de beneficiários no período de apuração?
-Valores válidos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>S-1299 - Fechamento dos Eventos Periódicos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__infoFech__id__evtRemun" name="[evtFechaEvPer][infoFech][evtRemun]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtRemun' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtRemun' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtFechaEvPer|readjson:'infoFech.evtRemun' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtFechaEvPer|readjson:'infoFech.evtRemun' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -207,10 +207,9 @@ Valores válidos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos 
 <div id="evtComProd__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Possui informações de comercialização de produção?
-Valores válidos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>S-1299 - Fechamento dos Eventos Periódicos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__infoFech__id__evtComProd" name="[evtFechaEvPer][infoFech][evtComProd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtComProd' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtComProd' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtFechaEvPer|readjson:'infoFech.evtComProd' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtFechaEvPer|readjson:'infoFech.evtComProd' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -219,9 +218,9 @@ Valores válidos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos 
 <div id="evtContratAvNP__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Contratou<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>S-1299 - Fechamento dos Eventos Periódicos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__infoFech__id__evtContratAvNP" name="[evtFechaEvPer][infoFech][evtContratAvNP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtContratAvNP' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtContratAvNP' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtFechaEvPer|readjson:'infoFech.evtContratAvNP' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtFechaEvPer|readjson:'infoFech.evtContratAvNP' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -230,9 +229,9 @@ Valores válidos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos 
 <div id="evtInfoComplPer__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Possui informações de desoneração de folha de pagamento ou<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>S-1299 - Fechamento dos Eventos Periódicos<a data-toggle="tooltip" title="S-1299 - Fechamento dos Eventos Periódicos"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__infoFech__id__evtInfoComplPer" name="[evtFechaEvPer][infoFech][evtInfoComplPer]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtInfoComplPer' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.evtInfoComplPer' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtFechaEvPer|readjson:'infoFech.evtInfoComplPer' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtFechaEvPer|readjson:'infoFech.evtInfoComplPer' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -246,7 +245,7 @@ Valores válidos:
 S - Sim
 Validação: Não informar se perApur >= [2021-05] ou se indApuracao = [2]. Preenchimento obrigatório caso o campo tenha sido informado em fechamento anterior do mesmo período de apuração."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__infoFech__id__indExcApur1250" name="[evtFechaEvPer][infoFech][indExcApur1250]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtFechaEvPer.infoFech.indExcApur1250' 'S' %}selected{% endifequal %}>S - Sim</option>
+            <option value="">---</option><option value='S' {% ifequal evtFechaEvPer|readjson:'infoFech.indExcApur1250' 'S' %}selected{% endifequal %}>S - Sim</option>
             </select>
         </div>
     </div>
@@ -263,6 +262,7 @@ Validação: Não informar se perApur >= [2021-05] ou se indApuracao = [2]. Pree
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

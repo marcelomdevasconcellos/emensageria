@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtReabreEvPer=original.evento_json|readjson:'evtReabreEvPer' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtReabreEvPer__ideEvento__id__indApuracao" name="[evtReabreEvPer][ideEvento][indApuracao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtReabreEvPer.ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal original.evento_json|readjson:'evtReabreEvPer.ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
+            <option value="">---</option><option value='1' {% ifequal evtReabreEvPer|readjson:'ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtReabreEvPer|readjson:'ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
             </select>
         </div>
     </div>
@@ -63,7 +64,7 @@ Valores válidos:
         <div class="form-group">
             <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
 Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtReabreEvPer__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtReabreEvPer.ideEvento.perApur'}}" name="[evtReabreEvPer][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtReabreEvPer__ideEvento__id__perApur" maxlength="7" value="{{evtReabreEvPer|readjson:'ideEvento.perApur'}}" name="[evtReabreEvPer][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -75,7 +76,7 @@ Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início 
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtReabreEvPer__ideEvento__id__indGuia" name="[evtReabreEvPer][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtReabreEvPer.ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            <option value="">---</option><option value='1' {% ifequal evtReabreEvPer|readjson:'ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
             </select>
         </div>
     </div>
@@ -179,6 +180,7 @@ Valores válidos:
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

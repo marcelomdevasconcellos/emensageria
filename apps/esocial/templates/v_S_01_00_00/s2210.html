@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtCAT=original.evento_json|readjson:'evtCAT' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__ideEvento__id__indRetif" name="[evtCAT][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCAT.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtCAT.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCAT|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtCAT.ideEvento.nrRecibo'}}" name="[evtCAT][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__ideEvento__id__nrRecibo" maxlength="23" value="{{evtCAT|readjson:'ideEvento.nrRecibo'}}" name="[evtCAT][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -184,7 +185,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtCAT.ideVinculo.cpfTrab'}}" name="[evtCAT][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__ideVinculo__id__cpfTrab" maxlength="11" value="{{evtCAT|readjson:'ideVinculo.cpfTrab'}}" name="[evtCAT][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -194,7 +195,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
 Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2190, S-2200 ou S-2300 do respectivo contrato. Não preencher no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE sem informação de matrícula no evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtCAT.ideVinculo.matricula'}}" name="[evtCAT][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__ideVinculo__id__matricula" maxlength="30" value="{{evtCAT|readjson:'ideVinculo.matricula'}}" name="[evtCAT][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -205,7 +206,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
             <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Informar somente no caso de TSVE sem informação de matrícula no evento S-2300.
 Validação: Informação obrigatória e exclusiva se não houver preenchimento de matricula. Se informado, deve ser um código válido e existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__ideVinculo__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtCAT.ideVinculo.codCateg'}}" name="[evtCAT][ideVinculo][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__ideVinculo__id__codCateg" maxlength="3" value="{{evtCAT|readjson:'ideVinculo.codCateg'}}" name="[evtCAT][ideVinculo][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -240,7 +241,7 @@ Validação: Informação obrigatória e exclusiva se não houver preenchimento 
             <label>Data do acidente<a data-toggle="tooltip" title="Data do acidente.
 Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de admissão do trabalhador e à data de início da obrigatoriedade deste evento para o empregador no eSocial.
 Se tpCat = [2, 3], deve ser informado valor igual ao preenchido no evento de CAT anterior, quando informado em nrRecCatOrig."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__id__dtAcid" value="{{original.evento_json|readjson:'evtCAT.cat.dtAcid'}}" name="[evtCAT][cat][dtAcid]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__id__dtAcid" value="{{evtCAT|readjson:'cat.dtAcid'}}" name="[evtCAT][cat][dtAcid]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -254,7 +255,7 @@ Valores válidos:
 2 - Doença
 3 - Trajeto"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__id__tpAcid" name="[evtCAT][cat][tpAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCAT.cat.tpAcid' '1' %}selected{% endifequal %}>1 - Típico</option><option value='2' {% ifequal original.evento_json|readjson:'evtCAT.cat.tpAcid' '2' %}selected{% endifequal %}>2 - Doença</option><option value='3' {% ifequal original.evento_json|readjson:'evtCAT.cat.tpAcid' '3' %}selected{% endifequal %}>3 - Trajeto</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.tpAcid' '1' %}selected{% endifequal %}>1 - Típico</option><option value='2' {% ifequal evtCAT|readjson:'cat.tpAcid' '2' %}selected{% endifequal %}>2 - Doença</option><option value='3' {% ifequal evtCAT|readjson:'cat.tpAcid' '3' %}selected{% endifequal %}>3 - Trajeto</option>
             </select>
         </div>
     </div>
@@ -266,7 +267,7 @@ Valores válidos:
             <label>Hora do acidente<a data-toggle="tooltip" title="Hora do acidente, no formato HHMM.
 Validação: Preenchimento obrigatório e exclusivo se tpAcid = [1]. Se informada, deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.
 Se tpCat = [2, 3], deve ser informado valor igual ao preenchido no evento de CAT anterior, quando informado em nrRecCatOrig."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__id__hrAcid" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.hrAcid'}}" name="[evtCAT][cat][hrAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__id__hrAcid" maxlength="4" value="{{evtCAT|readjson:'cat.hrAcid'}}" name="[evtCAT][cat][hrAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -276,7 +277,7 @@ Se tpCat = [2, 3], deve ser informado valor igual ao preenchido no evento de CAT
         <div class="form-group">
             <label>Horas trabalhadas antes da ocorrência do acidente<a data-toggle="tooltip" title="Horas trabalhadas antes da ocorrência do acidente, no formato HHMM.
 Validação: Preenchimento obrigatório e exclusivo se tpAcid = [1]. Se informada, deve estar no intervalo entre [0000] e [9959], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__id__hrsTrabAntesAcid" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.hrsTrabAntesAcid'}}" name="[evtCAT][cat][hrsTrabAntesAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__id__hrsTrabAntesAcid" maxlength="4" value="{{evtCAT|readjson:'cat.hrsTrabAntesAcid'}}" name="[evtCAT][cat][hrsTrabAntesAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -290,7 +291,7 @@ Valores válidos:
 2 - Reabertura
 3 - Comunicação de óbito"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__id__tpCat" name="[evtCAT][cat][tpCat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCAT.cat.tpCat' '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal original.evento_json|readjson:'evtCAT.cat.tpCat' '2' %}selected{% endifequal %}>2 - Reabertura</option><option value='3' {% ifequal original.evento_json|readjson:'evtCAT.cat.tpCat' '3' %}selected{% endifequal %}>3 - Comunicação de óbito</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.tpCat' '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal evtCAT|readjson:'cat.tpCat' '2' %}selected{% endifequal %}>2 - Reabertura</option><option value='3' {% ifequal evtCAT|readjson:'cat.tpCat' '3' %}selected{% endifequal %}>3 - Comunicação de óbito</option>
             </select>
         </div>
     </div>
@@ -306,7 +307,7 @@ S - Sim
 N - Não
 Validação: Se o tpCat for igual a [3], o campo deverá sempre ser preenchido com [S]. Se o tpCat for igual a [2], o campo deverá sempre ser preenchido com [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__id__indCatObito" name="[evtCAT][cat][indCatObito]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtCAT.cat.indCatObito' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtCAT.cat.indCatObito' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.indCatObito' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.indCatObito' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -318,7 +319,7 @@ Validação: Se o tpCat for igual a [3], o campo deverá sempre ser preenchido c
             <label>Data do óbito<a data-toggle="tooltip" title="Data do óbito.
 Validação: Deve ser uma data válida, igual ou posterior a dtAcid e igual ou anterior à data atual.
 Preenchimento obrigatório e exclusivo se indCatObito = [S]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__id__dtObito" value="{{original.evento_json|readjson:'evtCAT.cat.dtObito'}}" name="[evtCAT][cat][dtObito]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__id__dtObito" value="{{evtCAT|readjson:'cat.dtObito'}}" name="[evtCAT][cat][dtObito]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -332,7 +333,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__id__indComunPolicia" name="[evtCAT][cat][indComunPolicia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtCAT.cat.indComunPolicia' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtCAT.cat.indComunPolicia' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.indComunPolicia' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.indComunPolicia' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -343,7 +344,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
         <div class="form-group">
             <label>Preencher com o código da situação geradora do acidente ou da doença profissional<a data-toggle="tooltip" title="Preencher com o código da situação geradora do acidente ou da doença profissional.
 Validação: Deve ser um código válido e existente na Tabela 15 ou na Tabela 16."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__id__codSitGeradora" maxlength="9" value="{{original.evento_json|readjson:'evtCAT.cat.codSitGeradora'}}" name="[evtCAT][cat][codSitGeradora]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__id__codSitGeradora" maxlength="9" value="{{evtCAT|readjson:'cat.codSitGeradora'}}" name="[evtCAT][cat][codSitGeradora]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -357,7 +358,7 @@ Valores válidos:
 2 - Ordem judicial
 3 - Determinação de órgão fiscalizador"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__id__iniciatCAT" name="[evtCAT][cat][iniciatCAT]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCAT.cat.iniciatCAT' '1' %}selected{% endifequal %}>1 - Empregador</option><option value='2' {% ifequal original.evento_json|readjson:'evtCAT.cat.iniciatCAT' '2' %}selected{% endifequal %}>2 - Ordem judicial</option><option value='3' {% ifequal original.evento_json|readjson:'evtCAT.cat.iniciatCAT' '3' %}selected{% endifequal %}>3 - Determinação de órgão fiscalizador</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.iniciatCAT' '1' %}selected{% endifequal %}>1 - Empregador</option><option value='2' {% ifequal evtCAT|readjson:'cat.iniciatCAT' '2' %}selected{% endifequal %}>2 - Ordem judicial</option><option value='3' {% ifequal evtCAT|readjson:'cat.iniciatCAT' '3' %}selected{% endifequal %}>3 - Determinação de órgão fiscalizador</option>
             </select>
         </div>
     </div>
@@ -367,7 +368,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Observação<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__id__obsCAT" maxlength="999" value="{{original.evento_json|readjson:'evtCAT.cat.obsCAT'}}" name="[evtCAT][cat][obsCAT]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__id__obsCAT" maxlength="999" value="{{evtCAT|readjson:'cat.obsCAT'}}" name="[evtCAT][cat][obsCAT]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -405,7 +406,7 @@ Valores válidos:
 6 - Embarcação
 9 - Outros"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__localAcidente__id__tpLocal" name="[evtCAT][cat][localAcidente][tpLocal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.tpLocal' '1' %}selected{% endifequal %}>1 - Estabelecimento do empregador no Brasil</option><option value='2' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.tpLocal' '2' %}selected{% endifequal %}>2 - Estabelecimento do empregador no exterior</option><option value='3' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.tpLocal' '3' %}selected{% endifequal %}>3 - Estabelecimento de terceiros onde o empregador presta serviços</option><option value='4' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.tpLocal' '4' %}selected{% endifequal %}>4 - Via pública</option><option value='5' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.tpLocal' '5' %}selected{% endifequal %}>5 - Área rural</option><option value='6' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.tpLocal' '6' %}selected{% endifequal %}>6 - Embarcação</option><option value='9' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.tpLocal' '9' %}selected{% endifequal %}>9 - Outros</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '1' %}selected{% endifequal %}>1 - Estabelecimento do empregador no Brasil</option><option value='2' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '2' %}selected{% endifequal %}>2 - Estabelecimento do empregador no exterior</option><option value='3' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '3' %}selected{% endifequal %}>3 - Estabelecimento de terceiros onde o empregador presta serviços</option><option value='4' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '4' %}selected{% endifequal %}>4 - Via pública</option><option value='5' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '5' %}selected{% endifequal %}>5 - Área rural</option><option value='6' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '6' %}selected{% endifequal %}>6 - Embarcação</option><option value='9' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '9' %}selected{% endifequal %}>9 - Outros</option>
             </select>
         </div>
     </div>
@@ -415,7 +416,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Especificação do local do acidente (pátio<a data-toggle="tooltip" title="Especificação do local do acidente (pátio, rampa de acesso, posto de trabalho, etc.)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__dscLocal" maxlength="255" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.dscLocal'}}" name="[evtCAT][cat][localAcidente][dscLocal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__dscLocal" maxlength="255" value="{{evtCAT|readjson:'cat.localAcidente.dscLocal'}}" name="[evtCAT][cat][localAcidente][dscLocal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -425,7 +426,7 @@ Valores válidos:
         <div class="form-group">
             <label>Tipo de logradouro<a data-toggle="tooltip" title="Tipo de logradouro.
 Validação: Se informado, deve ser um código válido e existente na Tabela 20."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__tpLograd" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.tpLograd'}}" name="[evtCAT][cat][localAcidente][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__tpLograd" maxlength="4" value="{{evtCAT|readjson:'cat.localAcidente.tpLograd'}}" name="[evtCAT][cat][localAcidente][tpLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -434,7 +435,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição do logradouro<a data-toggle="tooltip" title="Descrição do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__dscLograd" maxlength="100" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.dscLograd'}}" name="[evtCAT][cat][localAcidente][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__dscLograd" maxlength="100" value="{{evtCAT|readjson:'cat.localAcidente.dscLograd'}}" name="[evtCAT][cat][localAcidente][dscLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -444,7 +445,7 @@ Validação: Se informado, deve ser um código válido e existente na Tabela 20.
         <div class="form-group">
             <label>Número do logradouro<a data-toggle="tooltip" title="Número do logradouro.
 Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__nrLograd" maxlength="10" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.nrLograd'}}" name="[evtCAT][cat][localAcidente][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__nrLograd" maxlength="10" value="{{evtCAT|readjson:'cat.localAcidente.nrLograd'}}" name="[evtCAT][cat][localAcidente][nrLograd]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -453,7 +454,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Complemento do logradouro<a data-toggle="tooltip" title="Complemento do logradouro."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__complemento" maxlength="30" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.complemento'}}" name="[evtCAT][cat][localAcidente][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__complemento" maxlength="30" value="{{evtCAT|readjson:'cat.localAcidente.complemento'}}" name="[evtCAT][cat][localAcidente][complemento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -462,7 +463,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
     <div class="col-md-4">
         <div class="form-group">
             <label>Nome do bairro/distrito<a data-toggle="tooltip" title="Nome do bairro/distrito."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__bairro" maxlength="90" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.bairro'}}" name="[evtCAT][cat][localAcidente][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__bairro" maxlength="90" value="{{evtCAT|readjson:'cat.localAcidente.bairro'}}" name="[evtCAT][cat][localAcidente][bairro]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -473,7 +474,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
             <label>Código de Endereçamento Postal - CEP<a data-toggle="tooltip" title="Código de Endereçamento Postal - CEP.
 Validação: Preenchimento obrigatório se tpLocal = [1, 3, 5]. Não preencher se tpLocal = [2].
 Se preenchido, deve ser informado apenas com números, com 8 (oito) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__cep" maxlength="8" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.cep'}}" name="[evtCAT][cat][localAcidente][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__cep" maxlength="8" value="{{evtCAT|readjson:'cat.localAcidente.cep'}}" name="[evtCAT][cat][localAcidente][cep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -484,7 +485,7 @@ Se preenchido, deve ser informado apenas com números, com 8 (oito) posições."
             <label>Preencher com o código do município<a data-toggle="tooltip" title="Preencher com o código do município, conforme tabela do IBGE.
 Validação: Preenchimento obrigatório se tpLocal = [1, 3, 4, 5]. Não preencher se tpLocal = [2].
 Se informado, deve ser um código válido e existente na tabela do IBGE."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__codMunic" maxlength="7" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.codMunic'}}" name="[evtCAT][cat][localAcidente][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__codMunic" maxlength="7" value="{{evtCAT|readjson:'cat.localAcidente.codMunic'}}" name="[evtCAT][cat][localAcidente][codMunic]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -495,7 +496,7 @@ Se informado, deve ser um código válido e existente na tabela do IBGE."><i cla
             <label>Preencher com a sigla da Unidade da Federação - UF<a data-toggle="tooltip" title="Preencher com a sigla da Unidade da Federação - UF.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO
 Validação: Preenchimento obrigatório se tpLocal = [1, 3, 4, 5]. Não preencher se tpLocal = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__uf" maxlength="2" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.uf'}}" name="[evtCAT][cat][localAcidente][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__uf" maxlength="2" value="{{evtCAT|readjson:'cat.localAcidente.uf'}}" name="[evtCAT][cat][localAcidente][uf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -506,7 +507,7 @@ Validação: Preenchimento obrigatório se tpLocal = [1, 3, 4, 5]. Não preenche
             <label>Preencher com o código do país<a data-toggle="tooltip" title="Preencher com o código do país.
 Validação: Deve ser um código de país válido e existente na Tabela 06.
 Preenchimento obrigatório se tpLocal = [2]. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__pais" maxlength="3" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.pais'}}" name="[evtCAT][cat][localAcidente][pais]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__pais" maxlength="3" value="{{evtCAT|readjson:'cat.localAcidente.pais'}}" name="[evtCAT][cat][localAcidente][pais]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -516,7 +517,7 @@ Preenchimento obrigatório se tpLocal = [2]. Não preencher nos demais casos."><
         <div class="form-group">
             <label>Código de Endereçamento Postal<a data-toggle="tooltip" title="Código de Endereçamento Postal.
 Validação: Preenchimento obrigatório se tpLocal = [2]. Não preencher nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__id__codPostal" maxlength="12" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.codPostal'}}" name="[evtCAT][cat][localAcidente][codPostal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__id__codPostal" maxlength="12" value="{{evtCAT|readjson:'cat.localAcidente.codPostal'}}" name="[evtCAT][cat][localAcidente][codPostal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -550,7 +551,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__localAcidente__ideLocalAcid__id__tpInsc" name="[evtCAT][cat][localAcidente][ideLocalAcid][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.ideLocalAcid.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.ideLocalAcid.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal original.evento_json|readjson:'evtCAT.cat.localAcidente.ideLocalAcid.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.localAcidente.ideLocalAcid.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtCAT|readjson:'cat.localAcidente.ideLocalAcid.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtCAT|readjson:'cat.localAcidente.ideLocalAcid.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -563,7 +564,7 @@ Valores válidos:
 Validação: Deve ser compatível com o conteúdo do campo ideLocalAcid/tpInsc. Deve ser um identificador válido, constante das bases da RFB, e:
 a) Se tpLocal = [1], deve ser válido e existente na Tabela de Estabelecimentos (S-1005);
 b) Se tpLocal = [3], deve ser diferente dos estabelecimentos informados na Tabela S-1005 e, se ideLocalAcid/tpInsc = [1], diferente do CNPJ base indicado em S-1000."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__localAcidente__ideLocalAcid__id__nrInsc" maxlength="14" value="{{original.evento_json|readjson:'evtCAT.cat.localAcidente.ideLocalAcid.nrInsc'}}" name="[evtCAT][cat][localAcidente][ideLocalAcid][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__localAcidente__ideLocalAcid__id__nrInsc" maxlength="14" value="{{evtCAT|readjson:'cat.localAcidente.ideLocalAcid.nrInsc'}}" name="[evtCAT][cat][localAcidente][ideLocalAcid][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -601,7 +602,7 @@ b) Se tpLocal = [3], deve ser diferente dos estabelecimentos informados na Tabel
         <div class="form-group">
             <label>Preencher com o código correspondente à parte atingida<a data-toggle="tooltip" title="Preencher com o código correspondente à parte atingida.
 Validação: Deve ser um código válido e existente na Tabela 13."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__parteAtingida__id__codParteAting" maxlength="9" value="{{original.evento_json|readjson:'evtCAT.cat.parteAtingida.codParteAting'}}" name="[evtCAT][cat][parteAtingida][codParteAting]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__parteAtingida__id__codParteAting" maxlength="9" value="{{evtCAT|readjson:'cat.parteAtingida.codParteAting'}}" name="[evtCAT][cat][parteAtingida][codParteAting]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -617,7 +618,7 @@ Valores válidos:
 2 - Direita
 3 - Ambas"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__parteAtingida__id__lateralidade" name="[evtCAT][cat][parteAtingida][lateralidade]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtCAT.cat.parteAtingida.lateralidade' '0' %}selected{% endifequal %}>0 - Não aplicável</option><option value='1' {% ifequal original.evento_json|readjson:'evtCAT.cat.parteAtingida.lateralidade' '1' %}selected{% endifequal %}>1 - Esquerda</option><option value='2' {% ifequal original.evento_json|readjson:'evtCAT.cat.parteAtingida.lateralidade' '2' %}selected{% endifequal %}>2 - Direita</option><option value='3' {% ifequal original.evento_json|readjson:'evtCAT.cat.parteAtingida.lateralidade' '3' %}selected{% endifequal %}>3 - Ambas</option>
+            <option value="">---</option><option value='0' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade' '0' %}selected{% endifequal %}>0 - Não aplicável</option><option value='1' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade' '1' %}selected{% endifequal %}>1 - Esquerda</option><option value='2' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade' '2' %}selected{% endifequal %}>2 - Direita</option><option value='3' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade' '3' %}selected{% endifequal %}>3 - Ambas</option>
             </select>
         </div>
     </div>
@@ -652,7 +653,7 @@ Valores válidos:
         <div class="form-group">
             <label>Preencher com o código correspondente ao agente causador do acidente<a data-toggle="tooltip" title="Preencher com o código correspondente ao agente causador do acidente.
 Validação: Deve ser um código válido e existente na Tabela 14 ou na Tabela 15."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__agenteCausador__id__codAgntCausador" maxlength="9" value="{{original.evento_json|readjson:'evtCAT.cat.agenteCausador.codAgntCausador'}}" name="[evtCAT][cat][agenteCausador][codAgntCausador]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__agenteCausador__id__codAgntCausador" maxlength="9" value="{{evtCAT|readjson:'cat.agenteCausador.codAgntCausador'}}" name="[evtCAT][cat][agenteCausador][codAgntCausador]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -686,7 +687,7 @@ Validação: Deve ser um código válido e existente na Tabela 14 ou na Tabela 1
         <div class="form-group">
             <label>Data do atendimento<a data-toggle="tooltip" title="Data do atendimento.
 Validação: Deve ser uma data válida, igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__id__dtAtendimento" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.dtAtendimento'}}" name="[evtCAT][cat][atestado][dtAtendimento]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__id__dtAtendimento" value="{{evtCAT|readjson:'cat.atestado.dtAtendimento'}}" name="[evtCAT][cat][atestado][dtAtendimento]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -696,7 +697,7 @@ Validação: Deve ser uma data válida, igual ou anterior à data atual."><i cla
         <div class="form-group">
             <label>Hora do atendimento<a data-toggle="tooltip" title="Hora do atendimento, no formato HHMM.
 Validação: Deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__id__hrAtendimento" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.hrAtendimento'}}" name="[evtCAT][cat][atestado][hrAtendimento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__id__hrAtendimento" maxlength="4" value="{{evtCAT|readjson:'cat.atestado.hrAtendimento'}}" name="[evtCAT][cat][atestado][hrAtendimento]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -709,7 +710,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__atestado__id__indInternacao" name="[evtCAT][cat][atestado][indInternacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtCAT.cat.atestado.indInternacao' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtCAT.cat.atestado.indInternacao' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.atestado.indInternacao' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.atestado.indInternacao' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -719,7 +720,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
     <div class="col-md-4">
         <div class="form-group">
             <label>Duração estimada do tratamento<a data-toggle="tooltip" title="Duração estimada do tratamento, em dias."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__id__durTrat" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.durTrat'}}" name="[evtCAT][cat][atestado][durTrat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__id__durTrat" maxlength="4" value="{{evtCAT|readjson:'cat.atestado.durTrat'}}" name="[evtCAT][cat][atestado][durTrat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -733,7 +734,7 @@ S - Sim
 N - Não
 Validação: Se o campo indCatObito for igual a [S], o campo deve sempre ser preenchido com [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__atestado__id__indAfast" name="[evtCAT][cat][atestado][indAfast]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtCAT.cat.atestado.indAfast' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtCAT.cat.atestado.indAfast' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.atestado.indAfast' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.atestado.indAfast' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -744,7 +745,7 @@ Validação: Se o campo indCatObito for igual a [S], o campo deve sempre ser pre
         <div class="form-group">
             <label>Preencher com a descrição da natureza da lesão<a data-toggle="tooltip" title="Preencher com a descrição da natureza da lesão.
 Validação: Deve ser um código válido e existente na Tabela 17."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__id__dscLesao" maxlength="9" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.dscLesao'}}" name="[evtCAT][cat][atestado][dscLesao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__id__dscLesao" maxlength="9" value="{{evtCAT|readjson:'cat.atestado.dscLesao'}}" name="[evtCAT][cat][atestado][dscLesao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -753,7 +754,7 @@ Validação: Deve ser um código válido e existente na Tabela 17."><i class="fa
     <div class="col-md-4">
         <div class="form-group">
             <label>Descrição complementar da lesão<a data-toggle="tooltip" title="Descrição complementar da lesão."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__id__dscCompLesao" maxlength="200" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.dscCompLesao'}}" name="[evtCAT][cat][atestado][dscCompLesao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__id__dscCompLesao" maxlength="200" value="{{evtCAT|readjson:'cat.atestado.dscCompLesao'}}" name="[evtCAT][cat][atestado][dscCompLesao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -762,7 +763,7 @@ Validação: Deve ser um código válido e existente na Tabela 17."><i class="fa
     <div class="col-md-4">
         <div class="form-group">
             <label>Diagnóstico provável<a data-toggle="tooltip" title="Diagnóstico provável."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__id__diagProvavel" maxlength="100" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.diagProvavel'}}" name="[evtCAT][cat][atestado][diagProvavel]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__id__diagProvavel" maxlength="100" value="{{evtCAT|readjson:'cat.atestado.diagProvavel'}}" name="[evtCAT][cat][atestado][diagProvavel]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -772,7 +773,7 @@ Validação: Deve ser um código válido e existente na Tabela 17."><i class="fa
         <div class="form-group">
             <label>Informar o código da tabela de Classificação Internacional de Doenças - CID<a data-toggle="tooltip" title="Informar o código da tabela de Classificação Internacional de Doenças - CID.
 Validação: Deve ser preenchido com caracteres alfanuméricos, conforme opções constantes na tabela CID."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__id__codCID" maxlength="4" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.codCID'}}" name="[evtCAT][cat][atestado][codCID]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__id__codCID" maxlength="4" value="{{evtCAT|readjson:'cat.atestado.codCID'}}" name="[evtCAT][cat][atestado][codCID]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -781,7 +782,7 @@ Validação: Deve ser preenchido com caracteres alfanuméricos, conforme opçõe
     <div class="col-md-4">
         <div class="form-group">
             <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.observacao'}}" name="[evtCAT][cat][atestado][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__id__observacao" maxlength="255" value="{{evtCAT|readjson:'cat.atestado.observacao'}}" name="[evtCAT][cat][atestado][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -810,7 +811,7 @@ Validação: Deve ser preenchido com caracteres alfanuméricos, conforme opçõe
     <div class="col-md-4">
         <div class="form-group">
             <label>Nome do médico/dentista que emitiu o atestado<a data-toggle="tooltip" title="Nome do médico/dentista que emitiu o atestado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__emitente__id__nmEmit" maxlength="70" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.emitente.nmEmit'}}" name="[evtCAT][cat][atestado][emitente][nmEmit]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__emitente__id__nmEmit" maxlength="70" value="{{evtCAT|readjson:'cat.atestado.emitente.nmEmit'}}" name="[evtCAT][cat][atestado][emitente][nmEmit]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -824,7 +825,7 @@ Valores válidos:
 2 - Conselho Regional de Odontologia - CRO
 3 - Registro do Ministério da Saúde - RMS"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__atestado__emitente__id__ideOC" name="[evtCAT][cat][atestado][emitente][ideOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCAT.cat.atestado.emitente.ideOC' '1' %}selected{% endifequal %}>1 - Conselho Regional de Medicina - CRM</option><option value='2' {% ifequal original.evento_json|readjson:'evtCAT.cat.atestado.emitente.ideOC' '2' %}selected{% endifequal %}>2 - Conselho Regional de Odontologia - CRO</option><option value='3' {% ifequal original.evento_json|readjson:'evtCAT.cat.atestado.emitente.ideOC' '3' %}selected{% endifequal %}>3 - Registro do Ministério da Saúde - RMS</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.atestado.emitente.ideOC' '1' %}selected{% endifequal %}>1 - Conselho Regional de Medicina - CRM</option><option value='2' {% ifequal evtCAT|readjson:'cat.atestado.emitente.ideOC' '2' %}selected{% endifequal %}>2 - Conselho Regional de Odontologia - CRO</option><option value='3' {% ifequal evtCAT|readjson:'cat.atestado.emitente.ideOC' '3' %}selected{% endifequal %}>3 - Registro do Ministério da Saúde - RMS</option>
             </select>
         </div>
     </div>
@@ -834,7 +835,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Número de inscrição no órgão de classe<a data-toggle="tooltip" title="Número de inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__emitente__id__nrOC" maxlength="14" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.emitente.nrOC'}}" name="[evtCAT][cat][atestado][emitente][nrOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__emitente__id__nrOC" maxlength="14" value="{{evtCAT|readjson:'cat.atestado.emitente.nrOC'}}" name="[evtCAT][cat][atestado][emitente][nrOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -844,7 +845,7 @@ Valores válidos:
         <div class="form-group">
             <label>Sigla da Unidade da Federação - UF do órgão de classe<a data-toggle="tooltip" title="Sigla da UF do órgão de classe.
 Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__atestado__emitente__id__ufOC" maxlength="2" value="{{original.evento_json|readjson:'evtCAT.cat.atestado.emitente.ufOC'}}" name="[evtCAT][cat][atestado][emitente][ufOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__atestado__emitente__id__ufOC" maxlength="2" value="{{evtCAT|readjson:'cat.atestado.emitente.ufOC'}}" name="[evtCAT][cat][atestado][emitente][ufOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -885,7 +886,7 @@ a) de CAT de reabertura;
 b) de óbito, quando houver CAT anterior.
 Validação: Deve corresponder ao número do recibo do arquivo relativo à última CAT informada anteriormente, pertencente ao mesmo contrato, desde que indCatObito da última CAT informada seja igual a [N]. O sistema não efetuará a conferência da informação se dtAcid for anterior a sucessaoVinc/dtTransf, transfDom/dtTransf ou dtAltCPF do evento S-2200.
 OBS.: Quando a data do acidente for anterior à data de obrigatoriedade do empregador ao envio deste evento, a CAT de reabertura e/ou de óbito não devem ser informadas ao eSocial, mantendo-se o procedimento realizado na emissão da CAT original."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCAT__cat__catOrigem__id__nrRecCatOrig" maxlength="23" value="{{original.evento_json|readjson:'evtCAT.cat.catOrigem.nrRecCatOrig'}}" name="[evtCAT][cat][catOrigem][nrRecCatOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCAT__cat__catOrigem__id__nrRecCatOrig" maxlength="23" value="{{evtCAT|readjson:'cat.catOrigem.nrRecCatOrig'}}" name="[evtCAT][cat][catOrigem][nrRecCatOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -905,6 +906,7 @@ OBS.: Quando a data do acidente for anterior à data de obrigatoriedade do empre
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

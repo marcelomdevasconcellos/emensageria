@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtInfoComplPer=original.evento_json|readjson:'evtInfoComplPer' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoComplPer__ideEvento__id__indRetif" name="[evtInfoComplPer][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtInfoComplPer.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtInfoComplPer.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtInfoComplPer|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtInfoComplPer__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtInfoComplPer.ideEvento.nrRecibo'}}" name="[evtInfoComplPer][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtInfoComplPer__ideEvento__id__nrRecibo" maxlength="23" value="{{evtInfoComplPer|readjson:'ideEvento.nrRecibo'}}" name="[evtInfoComplPer][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -77,7 +78,7 @@ Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoComplPer__ideEvento__id__indApuracao" name="[evtInfoComplPer][ideEvento][indApuracao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtInfoComplPer.ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal original.evento_json|readjson:'evtInfoComplPer.ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
+            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtInfoComplPer|readjson:'ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
             </select>
         </div>
     </div>
@@ -88,7 +89,7 @@ Valores válidos:
         <div class="form-group">
             <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
 Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtInfoComplPer__ideEvento__id__perApur" maxlength="7" value="{{original.evento_json|readjson:'evtInfoComplPer.ideEvento.perApur'}}" name="[evtInfoComplPer][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtInfoComplPer__ideEvento__id__perApur" maxlength="7" value="{{evtInfoComplPer|readjson:'ideEvento.perApur'}}" name="[evtInfoComplPer][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -100,7 +101,7 @@ Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início 
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoComplPer__ideEvento__id__indGuia" name="[evtInfoComplPer][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtInfoComplPer.ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
             </select>
         </div>
     </div>
@@ -225,7 +226,7 @@ Valores válidos:
 1 - Integralmente substituída
 2 - Parcialmente substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoComplPer__infoSubstPatr__id__indSubstPatr" name="[evtInfoComplPer][infoSubstPatr][indSubstPatr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtInfoComplPer.infoSubstPatr.indSubstPatr' '1' %}selected{% endifequal %}>1 - Integralmente substituída</option><option value='2' {% ifequal original.evento_json|readjson:'evtInfoComplPer.infoSubstPatr.indSubstPatr' '2' %}selected{% endifequal %}>2 - Parcialmente substituída</option>
+            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'infoSubstPatr.indSubstPatr' '1' %}selected{% endifequal %}>1 - Integralmente substituída</option><option value='2' {% ifequal evtInfoComplPer|readjson:'infoSubstPatr.indSubstPatr' '2' %}selected{% endifequal %}>2 - Parcialmente substituída</option>
             </select>
         </div>
     </div>
@@ -237,7 +238,7 @@ Valores válidos:
             <label>Percentual de redução da contribuição prevista na Lei 12<a data-toggle="tooltip" title="Percentual não substituído pela contribuição prevista na Lei 12.546/2011.
 Informar 0 (zero) se indSubstPatr = [1]. Caso contrário, preencher com o percentual correspondente à razão entre a receita de atividades não relacionadas nos arts. 7º e 8º da Lei 12.546/2011 e a receita bruta total.
 Validação: Se indSubstPatr = [1], informar 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtInfoComplPer__infoSubstPatr__id__percRedContrib" maxlength="5" value="{{original.evento_json|readjson:'evtInfoComplPer.infoSubstPatr.percRedContrib'}}" name="[evtInfoComplPer][infoSubstPatr][percRedContrib]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtInfoComplPer__infoSubstPatr__id__percRedContrib" maxlength="5" value="{{evtInfoComplPer|readjson:'infoSubstPatr.percRedContrib'}}" name="[evtInfoComplPer][infoSubstPatr][percRedContrib]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -245,7 +246,7 @@ Validação: Se indSubstPatr = [1], informar 0 (zero)."><i class="fa fa-fw fa-qu
             </div>
         </blockquote>
     </div>
-</div>{% for infoSubstPatrOpPort in original.evento_json|readjson:'evtInfoComplPer.infoSubstPatrOpPort' %}
+</div>{% for infoSubstPatrOpPort in evtInfoComplPer|readjson:'' %}
 <div id="infoSubstPatrOpPort__div">
     <div class="col-md-12">
         <h4>Grupo preenchido exclusivamente pelo Órgão Gestor de Mão de Obra - OGMO (classTrib em S-1000 = [09]), listando apenas seus códigos de lotação com operadores portuários enquadrados nos arts. 7º a 9º da Lei 12.546/2011.</h4>
@@ -271,7 +272,7 @@ Validação: Se indSubstPatr = [1], informar 0 (zero)."><i class="fa fa-fw fa-qu
         <div class="form-group">
             <label>Informar o código atribuído pelo empregador para a lotação tributária<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária.
 Validação: Deve ser um código válido e existente na Tabela de Lotações Tributárias (S-1020), com tpLotacao = [08]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtInfoComplPer__infoSubstPatrOpPort__id__codLotacao" maxlength="30" value="{{infoSubstPatrOpPort.codLotacao}}" name="[evtInfoComplPer][infoSubstPatrOpPort][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtInfoComplPer__infoSubstPatrOpPort__id__codLotacao" maxlength="30" value="{{infoSubstPatrOpPort|readjson:'codLotacao'}}" name="[evtInfoComplPer][infoSubstPatrOpPort][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -305,7 +306,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
         <div class="form-group">
             <label>Informar o código atribuído pelo empregador para a lotação tributária<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador para a lotação tributária.
 Validação: Deve ser um código válido e existente na Tabela de Lotações Tributárias (S-1020), com tpLotacao = [08]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtInfoComplPer__infoSubstPatrOpPort__id__codLotacao" maxlength="30" value="{{infoSubstPatrOpPort.codLotacao}}" name="[evtInfoComplPer][infoSubstPatrOpPort][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtInfoComplPer__infoSubstPatrOpPort__id__codLotacao" maxlength="30" value="{{infoSubstPatrOpPort|readjson:'codLotacao'}}" name="[evtInfoComplPer][infoSubstPatrOpPort][][codLotacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -338,7 +339,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do mês dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtInfoComplPer__infoAtivConcom__id__fatorMes" maxlength="5" value="{{original.evento_json|readjson:'evtInfoComplPer.infoAtivConcom.fatorMes'}}" name="[evtInfoComplPer][infoAtivConcom][fatorMes]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtInfoComplPer__infoAtivConcom__id__fatorMes" maxlength="5" value="{{evtInfoComplPer|readjson:'infoAtivConcom.fatorMes'}}" name="[evtInfoComplPer][infoAtivConcom][fatorMes]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -347,7 +348,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
     <div class="col-md-4">
         <div class="form-group">
             <label>Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006<a data-toggle="tooltip" title="Informe o fator a ser utilizado para cálculo da contribuição patronal do décimo terceiro dos trabalhadores envolvidos na execução das atividades enquadradas no Anexo IV em conjunto com as dos Anexos I a III e V da Lei Complementar 123/2006."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtInfoComplPer__infoAtivConcom__id__fator13" maxlength="5" value="{{original.evento_json|readjson:'evtInfoComplPer.infoAtivConcom.fator13'}}" name="[evtInfoComplPer][infoAtivConcom][fator13]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+            <input type="text" id="evtInfoComplPer__infoAtivConcom__id__fator13" maxlength="5" value="{{evtInfoComplPer|readjson:'infoAtivConcom.fator13'}}" name="[evtInfoComplPer][infoAtivConcom][fator13]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -363,6 +364,7 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

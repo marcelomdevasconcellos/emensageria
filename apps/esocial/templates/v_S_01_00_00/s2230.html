@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtAfastTemp=original.evento_json|readjson:'evtAfastTemp' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__ideEvento__id__indRetif" name="[evtAfastTemp][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAfastTemp.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtAfastTemp.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtAfastTemp|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtAfastTemp.ideEvento.nrRecibo'}}" name="[evtAfastTemp][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__ideEvento__id__nrRecibo" maxlength="23" value="{{evtAfastTemp|readjson:'ideEvento.nrRecibo'}}" name="[evtAfastTemp][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -184,7 +185,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtAfastTemp.ideVinculo.cpfTrab'}}" name="[evtAfastTemp][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__ideVinculo__id__cpfTrab" maxlength="11" value="{{evtAfastTemp|readjson:'ideVinculo.cpfTrab'}}" name="[evtAfastTemp][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -194,7 +195,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
 Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 ou S-2300 do respectivo contrato. Não preencher no caso de Trabalhador Sem Vínculo de Emprego/Estatutário - TSVE sem informação de matrícula no evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtAfastTemp.ideVinculo.matricula'}}" name="[evtAfastTemp][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__ideVinculo__id__matricula" maxlength="30" value="{{evtAfastTemp|readjson:'ideVinculo.matricula'}}" name="[evtAfastTemp][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -205,7 +206,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
             <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Informar somente no caso de TSVE sem informação de matrícula no evento S-2300.
 Validação: Informação obrigatória e exclusiva se não houver preenchimento de matricula. Se informado, deve ser um código válido e existente na Tabela 01."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__ideVinculo__id__codCateg" maxlength="3" value="{{original.evento_json|readjson:'evtAfastTemp.ideVinculo.codCateg'}}" name="[evtAfastTemp][ideVinculo][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__ideVinculo__id__codCateg" maxlength="3" value="{{evtAfastTemp|readjson:'ideVinculo.codCateg'}}" name="[evtAfastTemp][ideVinculo][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -263,7 +264,7 @@ a) Não pode ser posterior à data atual, exceto se:
 a1) codMotAfast = [15] (férias), situação em que pode ser até 60 dias posterior à data atual;
 a2) codMotAfast = [18], situação em que pode ser até 120 dias posterior à data atual;
 b) É necessário que o trabalhador esteja, antes da data de início do afastamento, em atividade, ou seja, não pode existir evento de afastamento anterior a dtIniAfast sem que este tenha sido encerrado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__id__dtIniAfast" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.dtIniAfast'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][dtIniAfast]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__id__dtIniAfast" value="{{evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.dtIniAfast'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][dtIniAfast]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -273,7 +274,7 @@ b) É necessário que o trabalhador esteja, antes da data de início do afastame
         <div class="form-group">
             <label>Preencher com o código do motivo de afastamento temporário<a data-toggle="tooltip" title="Preencher com o código do motivo de afastamento temporário.
 Validação: Deve ser um código válido e existente na Tabela 18, bem como compatível com o código de categoria do trabalhador, conforme Tabela 18. Se a natureza jurídica do declarante for Administração Pública (grupo [1]), não pode ser informado [14]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__id__codMotAfast" maxlength="2" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.codMotAfast'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][codMotAfast]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__id__codMotAfast" maxlength="2" value="{{evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.codMotAfast'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][codMotAfast]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -286,7 +287,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__iniAfastamento__id__infoMesmoMtv" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoMesmoMtv]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoMesmoMtv' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoMesmoMtv' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMesmoMtv' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMesmoMtv' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -302,7 +303,7 @@ Valores válidos:
 3 - Outros
 Validação: Somente pode ser preenchido se codMotAfast = [01, 03]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__iniAfastamento__id__tpAcidTransito" name="[evtAfastTemp][infoAfastamento][iniAfastamento][tpAcidTransito]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.tpAcidTransito' '1' %}selected{% endifequal %}>1 - Atropelamento</option><option value='2' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.tpAcidTransito' '2' %}selected{% endifequal %}>2 - Colisão</option><option value='3' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.tpAcidTransito' '3' %}selected{% endifequal %}>3 - Outros</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.tpAcidTransito' '1' %}selected{% endifequal %}>1 - Atropelamento</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.tpAcidTransito' '2' %}selected{% endifequal %}>2 - Colisão</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.tpAcidTransito' '3' %}selected{% endifequal %}>3 - Outros</option>
             </select>
         </div>
     </div>
@@ -313,7 +314,7 @@ Validação: Somente pode ser preenchido se codMotAfast = [01, 03]."><i class="f
         <div class="form-group">
             <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Detalhar as informações sobre o afastamento do trabalhador, de maneira a explicitar os motivos do mesmo.
 Validação: O preenchimento é obrigatório se codMotAfast = [21]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__id__observacao" maxlength="255" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.observacao'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__id__observacao" maxlength="255" value="{{evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.observacao'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -343,7 +344,7 @@ Validação: O preenchimento é obrigatório se codMotAfast = [21]."><i class="f
         <div class="form-group">
             <label>Preencher com a data de início do cadastro do beneficiário<a data-toggle="tooltip" title="Data de início do período aquisitivo de férias.
 Validação: Deve ser igual ou posterior à data de admissão."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__perAquis__id__dtInicio" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.perAquis.dtInicio'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][perAquis][dtInicio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__perAquis__id__dtInicio" value="{{evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.perAquis.dtInicio'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][perAquis][dtInicio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -354,7 +355,7 @@ Validação: Deve ser igual ou posterior à data de admissão."><i class="fa fa-
             <label>Data de término do período aquisitivo de férias<a data-toggle="tooltip" title="Data de término do período aquisitivo de férias.
 Informar o campo somente se o período aquisitivo for diferente de 1 ano.
 Validação: Se informada, deve ser uma data posterior a dtInicio."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__perAquis__id__dtFim" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.perAquis.dtFim'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][perAquis][dtFim]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__perAquis__id__dtFim" value="{{evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.perAquis.dtFim'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][perAquis][dtFim]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -390,7 +391,7 @@ Validação: Se informada, deve ser uma data posterior a dtInicio."><i class="fa
 Validação: Deve ser um CNPJ diferente do CNPJ do empregador e diferente dos estabelecimentos informados através do evento S-1005.
 Regra de validação:
 REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__infoCessao__id__cnpjCess" maxlength="14" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoCessao.cnpjCess'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoCessao][cnpjCess]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__infoCessao__id__cnpjCess" maxlength="14" value="{{evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoCessao.cnpjCess'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoCessao][cnpjCess]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -404,7 +405,7 @@ Valores válidos:
 2 - Ônus do cessionário
 3 - Ônus do cedente e cessionário"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__iniAfastamento__infoCessao__id__infOnus" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoCessao][infOnus]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoCessao.infOnus' '1' %}selected{% endifequal %}>1 - Ônus do cedente</option><option value='2' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoCessao.infOnus' '2' %}selected{% endifequal %}>2 - Ônus do cessionário</option><option value='3' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoCessao.infOnus' '3' %}selected{% endifequal %}>3 - Ônus do cedente e cessionário</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoCessao.infOnus' '1' %}selected{% endifequal %}>1 - Ônus do cedente</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoCessao.infOnus' '2' %}selected{% endifequal %}>2 - Ônus do cessionário</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoCessao.infOnus' '3' %}selected{% endifequal %}>3 - Ônus do cedente e cessionário</option>
             </select>
         </div>
     </div>
@@ -441,7 +442,7 @@ Valores válidos:
 Validação: Deve ser um CNPJ diferente do CNPJ base do empregador e diferente dos informados na Tabela de Estabelecimentos (S-1005).
 Regra de validação:
 REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__infoMandSind__id__cnpjSind" maxlength="14" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoMandSind.cnpjSind'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoMandSind][cnpjSind]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__infoMandSind__id__cnpjSind" maxlength="14" value="{{evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandSind.cnpjSind'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoMandSind][cnpjSind]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -455,7 +456,7 @@ Valores válidos:
 2 - Apenas do sindicato
 3 - Parte do empregador, sendo a diferença e/ou complementação salarial paga pelo sindicato"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__iniAfastamento__infoMandSind__id__infOnusRemun" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoMandSind][infOnusRemun]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun' '1' %}selected{% endifequal %}>1 - Apenas do empregador</option><option value='2' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun' '2' %}selected{% endifequal %}>2 - Apenas do sindicato</option><option value='3' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun' '3' %}selected{% endifequal %}>3 - Parte do empregador, sendo a diferença e/ou complementação salarial paga pelo sindicato</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun' '1' %}selected{% endifequal %}>1 - Apenas do empregador</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun' '2' %}selected{% endifequal %}>2 - Apenas do sindicato</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun' '3' %}selected{% endifequal %}>3 - Parte do empregador, sendo a diferença e/ou complementação salarial paga pelo sindicato</option>
             </select>
         </div>
     </div>
@@ -492,7 +493,7 @@ Valores válidos:
 Validação: Deve ser um CNPJ diferente do CNPJ base do empregador e diferente dos informados na Tabela de Estabelecimentos (S-1005).
 Regra de validação:
 REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__infoMandElet__id__cnpjMandElet" maxlength="14" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoMandElet.cnpjMandElet'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoMandElet][cnpjMandElet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__infoAfastamento__iniAfastamento__infoMandElet__id__cnpjMandElet" maxlength="14" value="{{evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandElet.cnpjMandElet'}}" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoMandElet][cnpjMandElet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -506,7 +507,7 @@ S - Sim
 N - Não
 Validação: Informação obrigatória e exclusiva se o código de categoria no Registro de Eventos Trabalhistas - RET for igual a [301]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__iniAfastamento__infoMandElet__id__indRemunCargo" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoMandElet][indRemunCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoMandElet.indRemunCargo' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.iniAfastamento.infoMandElet.indRemunCargo' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandElet.indRemunCargo' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandElet.indRemunCargo' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -550,7 +551,7 @@ Valores válidos:
 2 - Revisão administrativa
 3 - Determinação judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__infoRetif__id__origRetif" name="[evtAfastTemp][infoAfastamento][infoRetif][origRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.infoRetif.origRetif' '1' %}selected{% endifequal %}>1 - Por iniciativa do empregador</option><option value='2' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.infoRetif.origRetif' '2' %}selected{% endifequal %}>2 - Revisão administrativa</option><option value='3' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.infoRetif.origRetif' '3' %}selected{% endifequal %}>3 - Determinação judicial</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.origRetif' '1' %}selected{% endifequal %}>1 - Por iniciativa do empregador</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.origRetif' '2' %}selected{% endifequal %}>2 - Revisão administrativa</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.origRetif' '3' %}selected{% endifequal %}>3 - Determinação judicial</option>
             </select>
         </div>
     </div>
@@ -566,7 +567,7 @@ Valores válidos:
 3 - Número de Benefício - NB do INSS
 Validação: O preenchimento é obrigatório se origRetif = [2, 3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__infoRetif__id__tpProc" name="[evtAfastTemp][infoAfastamento][infoRetif][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.infoRetif.tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.infoRetif.tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option><option value='3' {% ifequal original.evento_json|readjson:'evtAfastTemp.infoAfastamento.infoRetif.tpProc' '3' %}selected{% endifequal %}>3 - Número de Benefício - NB do INSS</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.tpProc' '3' %}selected{% endifequal %}>3 - Número de Benefício - NB do INSS</option>
             </select>
         </div>
     </div>
@@ -580,7 +581,7 @@ Validação: O preenchimento é obrigatório se origRetif = [2, 3]. Deve ser um 
 a) Se tpProc = [1], deve possuir 17 (dezessete) ou 21 (vinte e um) algarismos;
 b) Se tpProc = [2], deve possuir 20 (vinte) algarismos;
 c) Se tpProc = [3], deve possuir 10 (dez) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__infoRetif__id__nrProc" maxlength="21" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.infoRetif.nrProc'}}" name="[evtAfastTemp][infoAfastamento][infoRetif][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__infoAfastamento__infoRetif__id__nrProc" maxlength="21" value="{{evtAfastTemp|readjson:'infoAfastamento.infoRetif.nrProc'}}" name="[evtAfastTemp][infoAfastamento][infoRetif][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -616,7 +617,7 @@ REGRA_EXISTE_EVENTO_AFASTAMENTO</h4>
         <div class="form-group">
             <label>Preencher com a data do término do afastamento do trabalhador<a data-toggle="tooltip" title="Preencher com a data do término do afastamento do trabalhador.
 Validação: Deve ser igual ou posterior à data de início do afastamento do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtAfastTemp__infoAfastamento__fimAfastamento__id__dtTermAfast" value="{{original.evento_json|readjson:'evtAfastTemp.infoAfastamento.fimAfastamento.dtTermAfast'}}" name="[evtAfastTemp][infoAfastamento][fimAfastamento][dtTermAfast]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtAfastTemp__infoAfastamento__fimAfastamento__id__dtTermAfast" value="{{evtAfastTemp|readjson:'infoAfastamento.fimAfastamento.dtTermAfast'}}" name="[evtAfastTemp][infoAfastamento][fimAfastamento][dtTermAfast]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -636,6 +637,7 @@ Validação: Deve ser igual ou posterior à data de início do afastamento do tr
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

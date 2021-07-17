@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtCessao=original.evento_json|readjson:'evtCessao' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCessao__ideEvento__id__indRetif" name="[evtCessao][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCessao.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtCessao.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtCessao|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCessao|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCessao__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtCessao.ideEvento.nrRecibo'}}" name="[evtCessao][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCessao__ideEvento__id__nrRecibo" maxlength="23" value="{{evtCessao|readjson:'ideEvento.nrRecibo'}}" name="[evtCessao][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -184,7 +185,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número do CPF do trabalhador<a data-toggle="tooltip" title="Preencher com o número do CPF do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCessao__ideVinculo__id__cpfTrab" maxlength="11" value="{{original.evento_json|readjson:'evtCessao.ideVinculo.cpfTrab'}}" name="[evtCessao][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCessao__ideVinculo__id__cpfTrab" maxlength="11" value="{{evtCessao|readjson:'ideVinculo.cpfTrab'}}" name="[evtCessao][ideVinculo][cpfTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -194,7 +195,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Matrícula atribuída ao trabalhador pela empresa ou<a data-toggle="tooltip" title="Matrícula atribuída ao trabalhador pela empresa ou, no caso de servidor público, a matrícula constante no Sistema de Administração de Recursos Humanos do órgão.
 Validação: Deve corresponder à matrícula informada pelo empregador no evento S-2200 do respectivo vínculo trabalhista."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCessao__ideVinculo__id__matricula" maxlength="30" value="{{original.evento_json|readjson:'evtCessao.ideVinculo.matricula'}}" name="[evtCessao][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCessao__ideVinculo__id__matricula" maxlength="30" value="{{evtCessao|readjson:'ideVinculo.matricula'}}" name="[evtCessao][ideVinculo][matricula]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -250,7 +251,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
 Validação: Deve-se obedecer às seguintes regras:
 a) Não pode ser posterior à data atual;
 b) Não pode existir evento de cessão/exercício em outro órgão (ou evento de afastamento pelo código de motivo de afastamento [14]) com data anterior a dtIniCessao sem que tenha sido encerrado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCessao__infoCessao__iniCessao__id__dtIniCessao" value="{{original.evento_json|readjson:'evtCessao.infoCessao.iniCessao.dtIniCessao'}}" name="[evtCessao][infoCessao][iniCessao][dtIniCessao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCessao__infoCessao__iniCessao__id__dtIniCessao" value="{{evtCessao|readjson:'infoCessao.iniCessao.dtIniCessao'}}" name="[evtCessao][infoCessao][iniCessao][dtIniCessao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -262,7 +263,7 @@ b) Não pode existir evento de cessão/exercício em outro órgão (ou evento de
 Validação: Deve ser um CNPJ diferente do CNPJ do empregador/órgão público e diferente dos estabelecimentos informados através do evento S-1005.
 Regra de validação:
 REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCessao__infoCessao__iniCessao__id__cnpjCess" maxlength="14" value="{{original.evento_json|readjson:'evtCessao.infoCessao.iniCessao.cnpjCess'}}" name="[evtCessao][infoCessao][iniCessao][cnpjCess]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCessao__infoCessao__iniCessao__id__cnpjCess" maxlength="14" value="{{evtCessao|readjson:'infoCessao.iniCessao.cnpjCess'}}" name="[evtCessao][infoCessao][iniCessao][cnpjCess]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -275,7 +276,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCessao__infoCessao__iniCessao__id__respRemun" name="[evtCessao][infoCessao][iniCessao][respRemun]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtCessao.infoCessao.iniCessao.respRemun' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtCessao.infoCessao.iniCessao.respRemun' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCessao|readjson:'infoCessao.iniCessao.respRemun' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCessao|readjson:'infoCessao.iniCessao.respRemun' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -314,7 +315,7 @@ REGRA_EXISTE_EVENTO_CESSAO</h4>
 Validação: Deve-se obedecer às seguintes regras:
 a) Deve ser igual ou posterior à data de início da cessão/exercício em outro órgão;
 b) Não pode ser posterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCessao__infoCessao__fimCessao__id__dtTermCessao" value="{{original.evento_json|readjson:'evtCessao.infoCessao.fimCessao.dtTermCessao'}}" name="[evtCessao][infoCessao][fimCessao][dtTermCessao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCessao__infoCessao__fimCessao__id__dtTermCessao" value="{{evtCessao|readjson:'infoCessao.fimCessao.dtTermCessao'}}" name="[evtCessao][infoCessao][fimCessao][dtTermCessao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -334,6 +335,7 @@ b) Não pode ser posterior à data atual."><i class="fa fa-fw fa-question-circle
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {

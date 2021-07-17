@@ -1,5 +1,6 @@
 
 {% load esocial_custom_tags %}
+{% with evtCdBenAlt=original.evento_json|readjson:'evtCdBenAlt' %}
 <form id="form_json">
 
 <div class="row">
@@ -52,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenAlt__ideEvento__id__indRetif" name="[evtCdBenAlt][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCdBenAlt.ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal original.evento_json|readjson:'evtCdBenAlt.ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenAlt|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCdBenAlt|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -64,7 +65,7 @@ Valores válidos:
             <label>Preencher com o número do recibo do arquivo a ser retificado<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo a ser retificado.
 Validação: O preenchimento é obrigatório se indRetif = [2].
 Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo retificado."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenAlt__ideEvento__id__nrRecibo" maxlength="23" value="{{original.evento_json|readjson:'evtCdBenAlt.ideEvento.nrRecibo'}}" name="[evtCdBenAlt][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenAlt__ideEvento__id__nrRecibo" maxlength="23" value="{{evtCdBenAlt|readjson:'ideEvento.nrRecibo'}}" name="[evtCdBenAlt][ideEvento][nrRecibo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -184,7 +185,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Número de inscrição no Cadastro de Pessoas Físicas - CPF do beneficiário do pagamento<a data-toggle="tooltip" title="Informar o CPF do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenAlt__ideBeneficio__id__cpfBenef" maxlength="11" value="{{original.evento_json|readjson:'evtCdBenAlt.ideBeneficio.cpfBenef'}}" name="[evtCdBenAlt][ideBeneficio][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenAlt__ideBeneficio__id__cpfBenef" maxlength="11" value="{{evtCdBenAlt|readjson:'ideBeneficio.cpfBenef'}}" name="[evtCdBenAlt][ideBeneficio][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -193,7 +194,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
     <div class="col-md-4">
         <div class="form-group">
             <label>Número do benefício<a data-toggle="tooltip" title="Número do benefício."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenAlt__ideBeneficio__id__nrBeneficio" maxlength="20" value="{{original.evento_json|readjson:'evtCdBenAlt.ideBeneficio.nrBeneficio'}}" name="[evtCdBenAlt][ideBeneficio][nrBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenAlt__ideBeneficio__id__nrBeneficio" maxlength="20" value="{{evtCdBenAlt|readjson:'ideBeneficio.nrBeneficio'}}" name="[evtCdBenAlt][ideBeneficio][nrBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -227,7 +228,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
         <div class="form-group">
             <label>Data de alteração das informações relativas ao benefício<a data-toggle="tooltip" title="Data de alteração das informações relativas ao benefício.
 Validação: Deve ser igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenAlt__infoBenAlteracao__id__dtAltBeneficio" value="{{original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dtAltBeneficio'}}" name="[evtCdBenAlt][infoBenAlteracao][dtAltBeneficio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+            <input type="text" id="evtCdBenAlt__infoBenAlteracao__id__dtAltBeneficio" value="{{evtCdBenAlt|readjson:'infoBenAlteracao.dtAltBeneficio'}}" name="[evtCdBenAlt][infoBenAlteracao][dtAltBeneficio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -257,7 +258,7 @@ Validação: Deve ser igual ou anterior à data atual."><i class="fa fa-fw fa-qu
         <div class="form-group">
             <label>Tipo de benefício<a data-toggle="tooltip" title="Tipo de benefício.
 Validação: Deve ser um código válido e existente na Tabela 25. Se cadIni em S-2410 for igual a [N], não é permitido utilizar código do grupo [08] dessa tabela."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__id__tpBeneficio" maxlength="4" value="{{original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.tpBeneficio'}}" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][tpBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__id__tpBeneficio" maxlength="4" value="{{evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.tpBeneficio'}}" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][tpBeneficio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -272,7 +273,7 @@ Valores válidos:
 2 - Fundo em repartição
 3 - Mantido pelo Tesouro"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__id__tpPlanRP" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][tpPlanRP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.tpPlanRP' '0' %}selected{% endifequal %}>0 - Sem segregação da massa</option><option value='1' {% ifequal original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.tpPlanRP' '1' %}selected{% endifequal %}>1 - Fundo em capitalização</option><option value='2' {% ifequal original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.tpPlanRP' '2' %}selected{% endifequal %}>2 - Fundo em repartição</option><option value='3' {% ifequal original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.tpPlanRP' '3' %}selected{% endifequal %}>3 - Mantido pelo Tesouro</option>
+            <option value="">---</option><option value='0' {% ifequal evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.tpPlanRP' '0' %}selected{% endifequal %}>0 - Sem segregação da massa</option><option value='1' {% ifequal evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.tpPlanRP' '1' %}selected{% endifequal %}>1 - Fundo em capitalização</option><option value='2' {% ifequal evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.tpPlanRP' '2' %}selected{% endifequal %}>2 - Fundo em repartição</option><option value='3' {% ifequal evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.tpPlanRP' '3' %}selected{% endifequal %}>3 - Mantido pelo Tesouro</option>
             </select>
         </div>
     </div>
@@ -283,7 +284,7 @@ Valores válidos:
         <div class="form-group">
             <label>Descrição do instrumento ou situação que originou o pagamento das verbas relativas a períodos anteriores<a data-toggle="tooltip" title="Descrição do instrumento ou situação que originou o pagamento do benefício.
 Validação: Preenchimento obrigatório se tpBeneficio = [0909, 1001, 1009]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__id__dsc" maxlength="255" value="{{original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.dsc'}}" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][dsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__id__dsc" maxlength="255" value="{{evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.dsc'}}" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][dsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -296,7 +297,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__id__indSuspensao" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][indSuspensao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.indSuspensao' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.indSuspensao' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.indSuspensao' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.indSuspensao' 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -330,7 +331,7 @@ Valores válidos:
 1 - Vitalícia
 2 - Temporária"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__infoPenMorte__id__tpPenMorte" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][infoPenMorte][tpPenMorte]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.infoPenMorte.tpPenMorte' '1' %}selected{% endifequal %}>1 - Vitalícia</option><option value='2' {% ifequal original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.infoPenMorte.tpPenMorte' '2' %}selected{% endifequal %}>2 - Temporária</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.infoPenMorte.tpPenMorte' '1' %}selected{% endifequal %}>1 - Vitalícia</option><option value='2' {% ifequal evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.infoPenMorte.tpPenMorte' '2' %}selected{% endifequal %}>2 - Temporária</option>
             </select>
         </div>
     </div>
@@ -368,7 +369,7 @@ Valores válidos:
 01 - Suspensão por não recadastramento
 99 - Outros motivos de suspensão"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__suspensao__id__mtvSuspensao" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][suspensao][mtvSuspensao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='01' {% ifequal original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.suspensao.mtvSuspensao' '01' %}selected{% endifequal %}>01 - Suspensão por não recadastramento</option><option value='99' {% ifequal original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.suspensao.mtvSuspensao' '99' %}selected{% endifequal %}>99 - Outros motivos de suspensão</option>
+            <option value="">---</option><option value='01' {% ifequal evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.suspensao.mtvSuspensao' '01' %}selected{% endifequal %}>01 - Suspensão por não recadastramento</option><option value='99' {% ifequal evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.suspensao.mtvSuspensao' '99' %}selected{% endifequal %}>99 - Outros motivos de suspensão</option>
             </select>
         </div>
     </div>
@@ -379,7 +380,7 @@ Valores válidos:
         <div class="form-group">
             <label>Descrição do motivo da suspensão do benefício<a data-toggle="tooltip" title="Descrição do motivo da suspensão do benefício.
 Validação: Preenchimento obrigatório e exclusivo se mtvSuspensao = [99]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__suspensao__id__dscSuspensao" maxlength="255" value="{{original.evento_json|readjson:'evtCdBenAlt.infoBenAlteracao.dadosBeneficio.suspensao.dscSuspensao'}}" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][suspensao][dscSuspensao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+            <input type="text" id="evtCdBenAlt__infoBenAlteracao__dadosBeneficio__suspensao__id__dscSuspensao" maxlength="255" value="{{evtCdBenAlt|readjson:'infoBenAlteracao.dadosBeneficio.suspensao.dscSuspensao'}}" name="[evtCdBenAlt][infoBenAlteracao][dadosBeneficio][suspensao][dscSuspensao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
 </div>
@@ -403,6 +404,7 @@ Validação: Preenchimento obrigatório e exclusivo se mtvSuspensao = [99]."><i 
 </div>
 
 </form>
+{% endwith %}
 {% if original.is_aberto %}
 <script type="text/javascript">
 function set_evento_json() {
