@@ -29,7 +29,7 @@ class EventosSerializer(ModelSerializer):
         validated_data['origem'] = EVENTO_ORIGEM_API
         validated_data['is_aberto'] = False
         validated_data['status'] = STATUS_EVENTO_IMPORTADO
-        if validated_data['evento_xml'] and not validated_data['evento_json']:
+        if validated_data.get('evento_xml') and not validated_data.get('evento_json'):
             import json
             dict = xmltodict.parse(validated_data['evento_xml'])
             validated_data['evento_json'] = json.dumps(dict.get('eSocial'))
