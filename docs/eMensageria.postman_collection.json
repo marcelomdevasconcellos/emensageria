@@ -83,6 +83,49 @@
 			"response": []
 		},
 		{
+			"name": "Importando evento via API (json)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s2240\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"{\\\"evtExpRisco\\\":{\\\"ideEvento\\\":{\\\"indRetif\\\":1,\\\"nrRecibo\\\":\\\"\\\",\\\"tpAmb\\\":1,\\\"procEmi\\\":1,\\\"verProc\\\":\\\"1.0\\\"},\\\"ideEmpregador\\\":{\\\"tpInsc\\\":1,\\\"nrInsc\\\":\\\"34686613\\\"},\\\"ideVinculo\\\":{\\\"cpfTrab\\\":\\\"80019714300\\\",\\\"matricula\\\":\\\"1990005800\\\"},\\\"infoExpRisco\\\":{\\\"dtIniCondicao\\\":\\\"09/07/2021\\\",\\\"infoAmb\\\":{\\\"localAmb\\\":1,\\\"dscSetor\\\":\\\"SLAV - SLAV PRODUÇÃO - PRODUÇÃO\\\",\\\"tpInsc\\\":1,\\\"nrInsc\\\":\\\"41164796000103\\\"},\\\"infoAtiv\\\":{\\\"dscAtivDes\\\":\\\"Executar serviços de acabamento e reparos de blocos e superfícies concretadas, assentamento de tijolos, reboco e arremates de estruturas construídas, preparação de argamassa de diversos tipos, colocação de telhas, manilhas e peças sanitárias, de acordo com orientações e solicitações recebidas do superior imediato.\\\"},\\\"agNoc\\\":[{\\\"codAgNoc\\\":\\\"02.01.001\\\",\\\"dscAgNoc\\\":\\\"\\\",\\\"tpAval\\\":1,\\\"intConc\\\":\\\"86.5900\\\",\\\"limTol\\\":\\\"\\\",\\\"unMed\\\":4,\\\"tecMedicao\\\":\\\"DOSIMETRIA DE RUÍDO - NHO 01\\\",\\\"epcEpi\\\":{\\\"utilizEPC\\\":0,\\\"eficEpc\\\":\\\"\\\",\\\"utilizEPI\\\":2,\\\"epi\\\":[{\\\"docAval\\\":\\\"34082\\\",\\\"dscEPI\\\":\\\"\\\",\\\"eficEpi\\\":\\\"S\\\"},{\\\"docAval\\\":\\\"10043\\\",\\\"dscEPI\\\":\\\"\\\",\\\"eficEpi\\\":\\\"N\\\"},{\\\"docAval\\\":\\\"39644\\\",\\\"dscEPI\\\":\\\"\\\",\\\"eficEpi\\\":\\\"S\\\"}],\\\"epiCompl\\\":{\\\"medProtecao\\\":\\\"S\\\",\\\"condFuncto\\\":\\\"S\\\",\\\"usoInint\\\":\\\"S\\\",\\\"przValid\\\":\\\"S\\\",\\\"periodicTroca\\\":\\\"S\\\",\\\"higienizacao\\\":\\\"S\\\"}}}],\\\"respReg\\\":[{\\\"cpfResp\\\":\\\"44089422353\\\",\\\"ideOC\\\":4,\\\"dscOC\\\":\\\"\\\",\\\"nrOC\\\":\\\"0600909735\\\",\\\"ufOC\\\":\\\"CE\\\"}],\\\"obs\\\":{\\\"obsCompl\\\":\\\"\\\"}}}}\",\n    \"certificado\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Alterando evento via API (xml)",
 			"request": {
 				"method": "PUT",
@@ -103,7 +146,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/44/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/46/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -113,7 +156,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"44",
+						"46",
 						""
 					],
 					"query": [
@@ -167,7 +210,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/23/abrir-evento-para-edicao/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/45/abrir-evento-para-edicao/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -177,7 +220,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"23",
+						"45",
 						"abrir-evento-para-edicao",
 						""
 					],
@@ -203,7 +246,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/39/validar/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/46/validar/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -213,7 +256,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"39",
+						"46",
 						"validar",
 						""
 					],
@@ -239,7 +282,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/39/enviar/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/46/enviar/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -249,7 +292,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"39",
+						"46",
 						"enviar",
 						""
 					],
@@ -275,7 +318,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/39/consultar/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/46/consultar/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -285,7 +328,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"39",
+						"46",
 						"consultar",
 						""
 					],
