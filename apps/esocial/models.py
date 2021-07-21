@@ -286,6 +286,12 @@ class TransmissorEventos(BaseModelEsocial):
     def enviar(self, service='WsEnviarLoteEventos', request=None):
         from .choices import COMMAND_CURL
         from config.settings import ESOCIAL_TPAMB
+
+        if int(ESOCIAL_TPAMB) == 1:
+            ESOCIAL_TPAMB = 'Produção'
+        else:
+            ESOCIAL_TPAMB = 'Produção Restrita'
+
         date_now = datetime.now().strftime('%Y%m%d%H%M%S')
 
         dados = {'quant_eventos': self.quant_eventos(), 'empregador_tpinsc': self.empregador_tpinsc,
@@ -475,6 +481,11 @@ class TransmissorEventos(BaseModelEsocial):
 
     def consultar(self, service='WsConsultarLoteEventos', request=None):
         from config.settings import ESOCIAL_TPAMB
+
+        if int(ESOCIAL_TPAMB) == 1:
+            ESOCIAL_TPAMB = 'Produção'
+        else:
+            ESOCIAL_TPAMB = 'Produção Restrita'
 
         date_now = datetime.now().strftime('%Y%m%d%H%M%S')
         dados = {'quant_eventos': self.quant_eventos(), 'empregador_tpinsc': self.empregador_tpinsc,
