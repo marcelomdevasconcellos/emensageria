@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtReintegr__ideEvento__id__indRetif" name="[evtReintegr][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtReintegr|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtReintegr|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtReintegr|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtReintegr|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -237,7 +237,7 @@ Valores válidos:
 9 - Outros
 Validação: Os tipos [3, 4, 5] só podem ser informados se a natureza jurídica do declarante for Administração Pública (grupo [1])."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtReintegr__infoReintegr__id__tpReint" name="[evtReintegr][infoReintegr][tpReint]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint' '1' %}selected{% endifequal %}>1 - Reintegração por decisão judicial</option><option value='2' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint' '2' %}selected{% endifequal %}>2 - Reintegração por anistia legal</option><option value='3' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint' '3' %}selected{% endifequal %}>3 - Reversão de servidor público</option><option value='4' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint' '4' %}selected{% endifequal %}>4 - Recondução de servidor público</option><option value='5' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint' '5' %}selected{% endifequal %}>5 - Reinclusão de militar</option><option value='9' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint' '9' %}selected{% endifequal %}>9 - Outros</option>
+            <option value="">---</option><option value='1' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint'|to_str '1' %}selected{% endifequal %}>1 - Reintegração por decisão judicial</option><option value='2' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint'|to_str '2' %}selected{% endifequal %}>2 - Reintegração por anistia legal</option><option value='3' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint'|to_str '3' %}selected{% endifequal %}>3 - Reversão de servidor público</option><option value='4' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint'|to_str '4' %}selected{% endifequal %}>4 - Recondução de servidor público</option><option value='5' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint'|to_str '5' %}selected{% endifequal %}>5 - Reinclusão de militar</option><option value='9' {% ifequal evtReintegr|readjson:'infoReintegr.tpReint'|to_str '9' %}selected{% endifequal %}>9 - Outros</option>
             </select>
         </div>
     </div>

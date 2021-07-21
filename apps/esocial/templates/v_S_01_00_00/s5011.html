@@ -54,7 +54,7 @@ Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__ideEvento__id__indApuracao" name="[evtCS][ideEvento][indApuracao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCS|readjson:'ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtCS|readjson:'ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
+            <option value="">---</option><option value='1' {% ifequal evtCS|readjson:'ideEvento.indApuracao'|to_str '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtCS|readjson:'ideEvento.indApuracao'|to_str '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
             </select>
         </div>
     </div>
@@ -162,7 +162,7 @@ Valores válidos:
 2 - Há movimento, porém sem apuração de contribuições sociais
 3 - Não há movimento no período informado em perApur"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__id__indExistInfo" name="[evtCS][infoCS][indExistInfo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCS|readjson:'infoCS.indExistInfo' '1' %}selected{% endifequal %}>1 - Há informações com apuração de contribuições sociais</option><option value='2' {% ifequal evtCS|readjson:'infoCS.indExistInfo' '2' %}selected{% endifequal %}>2 - Há movimento, porém sem apuração de contribuições sociais</option><option value='3' {% ifequal evtCS|readjson:'infoCS.indExistInfo' '3' %}selected{% endifequal %}>3 - Não há movimento no período informado em perApur</option>
+            <option value="">---</option><option value='1' {% ifequal evtCS|readjson:'infoCS.indExistInfo'|to_str '1' %}selected{% endifequal %}>1 - Há informações com apuração de contribuições sociais</option><option value='2' {% ifequal evtCS|readjson:'infoCS.indExistInfo'|to_str '2' %}selected{% endifequal %}>2 - Há movimento, porém sem apuração de contribuições sociais</option><option value='3' {% ifequal evtCS|readjson:'infoCS.indExistInfo'|to_str '3' %}selected{% endifequal %}>3 - Não há movimento no período informado em perApur</option>
             </select>
         </div>
     </div>
@@ -273,7 +273,7 @@ Valores válidos:
 3 - Outras cooperativas
 Evento de origem: S-1000."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__infoContrib__infoPJ__id__indCoop" name="[evtCS][infoCS][infoContrib][infoPJ][indCoop]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indCoop' '0' %}selected{% endifequal %}>0 - Não é cooperativa</option><option value='1' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indCoop' '1' %}selected{% endifequal %}>1 - Cooperativa de trabalho</option><option value='2' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indCoop' '2' %}selected{% endifequal %}>2 - Cooperativa de produção</option><option value='3' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indCoop' '3' %}selected{% endifequal %}>3 - Outras cooperativas</option><option value='Evento de origem:' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indCoop' 'Evento de origem:' %}selected{% endifequal %}>Evento de origem: S-1000.</option>
+            <option value="">---</option><option value='0' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indCoop'|to_str '0' %}selected{% endifequal %}>0 - Não é cooperativa</option><option value='1' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indCoop'|to_str '1' %}selected{% endifequal %}>1 - Cooperativa de trabalho</option><option value='2' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indCoop'|to_str '2' %}selected{% endifequal %}>2 - Cooperativa de produção</option><option value='3' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indCoop'|to_str '3' %}selected{% endifequal %}>3 - Outras cooperativas</option><option value='Evento de origem:' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indCoop'|to_str 'Evento de origem:' %}selected{% endifequal %}>Evento de origem: S-1000.</option>
             </select>
         </div>
     </div>
@@ -288,7 +288,7 @@ Valores válidos:
 1 - Empresa construtora
 Evento de origem: S-1000."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__infoContrib__infoPJ__id__indConstr" name="[evtCS][infoCS][infoContrib][infoPJ][indConstr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indConstr' '0' %}selected{% endifequal %}>0 - Não é construtora</option><option value='1' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indConstr' '1' %}selected{% endifequal %}>1 - Empresa construtora</option><option value='Evento de origem:' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indConstr' 'Evento de origem:' %}selected{% endifequal %}>Evento de origem: S-1000.</option>
+            <option value="">---</option><option value='0' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indConstr'|to_str '0' %}selected{% endifequal %}>0 - Não é construtora</option><option value='1' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indConstr'|to_str '1' %}selected{% endifequal %}>1 - Empresa construtora</option><option value='Evento de origem:' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indConstr'|to_str 'Evento de origem:' %}selected{% endifequal %}>Evento de origem: S-1000.</option>
             </select>
         </div>
     </div>
@@ -303,7 +303,7 @@ Valores válidos:
 2 - Parcialmente substituída
 Origem: campo indSubstPatr de S-1280."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__infoContrib__infoPJ__id__indSubstPatr" name="[evtCS][infoCS][infoContrib][infoPJ][indSubstPatr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indSubstPatr' '1' %}selected{% endifequal %}>1 - Integralmente substituída</option><option value='2' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indSubstPatr' '2' %}selected{% endifequal %}>2 - Parcialmente substituída</option><option value='Origem:' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indSubstPatr' 'Origem:' %}selected{% endifequal %}>Origem: campo indSubstPatr de S-1280.</option>
+            <option value="">---</option><option value='1' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indSubstPatr'|to_str '1' %}selected{% endifequal %}>1 - Integralmente substituída</option><option value='2' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indSubstPatr'|to_str '2' %}selected{% endifequal %}>2 - Parcialmente substituída</option><option value='Origem:' {% ifequal evtCS|readjson:'infoCS.infoContrib.infoPJ.indSubstPatr'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo indSubstPatr de S-1280.</option>
             </select>
         </div>
     </div>
@@ -401,7 +401,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__id__tpInsc" name="[evtCS][infoCS][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideEstab|readjson:'tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option><option value='3' {% ifequal ideEstab|readjson:'tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal ideEstab|readjson:'tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideEstab|readjson:'tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option><option value='3' {% ifequal ideEstab|readjson:'tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal ideEstab|readjson:'tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -507,7 +507,7 @@ Valores válidos:
 2 - Contribuição patronal não substituída
 Origem: campo indSubstPatrObra de S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__infoEstab__infoComplObra__id__indSubstPatrObra" name="[evtCS][infoCS][ideEstab][][infoEstab][infoComplObra][indSubstPatrObra]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra' '1' %}selected{% endifequal %}>1 - Contribuição patronal substituída</option><option value='2' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra' '2' %}selected{% endifequal %}>2 - Contribuição patronal não substituída</option><option value='Origem:' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra' 'Origem:' %}selected{% endifequal %}>Origem: campo indSubstPatrObra de S-1005.</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra'|to_str '1' %}selected{% endifequal %}>1 - Contribuição patronal substituída</option><option value='2' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra'|to_str '2' %}selected{% endifequal %}>2 - Contribuição patronal não substituída</option><option value='Origem:' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo indSubstPatrObra de S-1005.</option>
             </select>
         </div>
     </div>
@@ -678,7 +678,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscContrat" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscContrat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -701,7 +701,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -766,7 +766,7 @@ Origem: campo dadosLotacao/nrInsc de S-1020."><i class="fa fa-fw fa-question-cir
 Valores válidos: 1, 2, 3
 Origem: campo dadosOpPort/aliqRat de S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__dadosOpPort__id__aliqRat" name="[evtCS][infoCS][ideEstab][][ideLotacao][][dadosOpPort][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='Origem:' {% ifequal ideLotacao|readjson:'dadosOpPort.aliqRat' 'Origem:' %}selected{% endifequal %}>Origem: campo dadosOpPort/aliqRat de S-1020.</option>
+            <option value="">---</option><option value='Origem:' {% ifequal ideLotacao|readjson:'dadosOpPort.aliqRat'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo dadosOpPort/aliqRat de S-1020.</option>
             </select>
         </div>
     </div>
@@ -835,7 +835,7 @@ e) Para contribuinte com classTrib = [99] e com indCoop = [1] (cooperativa de tr
 f) Para contribuintes com classTrib = [11], as bases de cálculo dos trabalhadores devem ser totalizadas com indIncid = [9], EXCETO para as categorias de contribuinte individual, que devem ser totalizadas com indIncid = [1].
 g) Para tpLotacao em S-1020 = [91], todas as bases de cálculo devem ser totalizadas com indIncid = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__id__indIncid" name="[evtCS][infoCS][ideEstab][][ideLotacao][][basesRemun][][indIncid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid' '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid' '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
+            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid'|to_str '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid'|to_str '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid'|to_str '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
             </select>
         </div>
     </div>
@@ -1138,7 +1138,7 @@ e) Para contribuinte com classTrib = [99] e com indCoop = [1] (cooperativa de tr
 f) Para contribuintes com classTrib = [11], as bases de cálculo dos trabalhadores devem ser totalizadas com indIncid = [9], EXCETO para as categorias de contribuinte individual, que devem ser totalizadas com indIncid = [1].
 g) Para tpLotacao em S-1020 = [91], todas as bases de cálculo devem ser totalizadas com indIncid = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__id__indIncid" name="[evtCS][infoCS][ideEstab][][ideLotacao][][basesRemun][][indIncid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid' '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid' '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
+            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid'|to_str '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid'|to_str '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid'|to_str '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
             </select>
         </div>
     </div>
@@ -1682,7 +1682,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscContrat" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscContrat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -1705,7 +1705,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -1770,7 +1770,7 @@ Origem: campo dadosLotacao/nrInsc de S-1020."><i class="fa fa-fw fa-question-cir
 Valores válidos: 1, 2, 3
 Origem: campo dadosOpPort/aliqRat de S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__dadosOpPort__id__aliqRat" name="[evtCS][infoCS][ideEstab][][ideLotacao][][dadosOpPort][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='Origem:' {% ifequal ideLotacao|readjson:'dadosOpPort.aliqRat' 'Origem:' %}selected{% endifequal %}>Origem: campo dadosOpPort/aliqRat de S-1020.</option>
+            <option value="">---</option><option value='Origem:' {% ifequal ideLotacao|readjson:'dadosOpPort.aliqRat'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo dadosOpPort/aliqRat de S-1020.</option>
             </select>
         </div>
     </div>
@@ -1839,7 +1839,7 @@ e) Para contribuinte com classTrib = [99] e com indCoop = [1] (cooperativa de tr
 f) Para contribuintes com classTrib = [11], as bases de cálculo dos trabalhadores devem ser totalizadas com indIncid = [9], EXCETO para as categorias de contribuinte individual, que devem ser totalizadas com indIncid = [1].
 g) Para tpLotacao em S-1020 = [91], todas as bases de cálculo devem ser totalizadas com indIncid = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__id__indIncid" name="[evtCS][infoCS][ideEstab][][ideLotacao][][basesRemun][][indIncid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid' '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid' '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
+            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid'|to_str '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid'|to_str '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid'|to_str '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
             </select>
         </div>
     </div>
@@ -2142,7 +2142,7 @@ e) Para contribuinte com classTrib = [99] e com indCoop = [1] (cooperativa de tr
 f) Para contribuintes com classTrib = [11], as bases de cálculo dos trabalhadores devem ser totalizadas com indIncid = [9], EXCETO para as categorias de contribuinte individual, que devem ser totalizadas com indIncid = [1].
 g) Para tpLotacao em S-1020 = [91], todas as bases de cálculo devem ser totalizadas com indIncid = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__id__indIncid" name="[evtCS][infoCS][ideEstab][][ideLotacao][][basesRemun][][indIncid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid' '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid' '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
+            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid'|to_str '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid'|to_str '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid'|to_str '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
             </select>
         </div>
     </div>
@@ -2563,7 +2563,7 @@ Valores válidos:
 6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)
 Origem: campo {indAquis} de S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__basesAquis__id__indAquis" name="[evtCS][infoCS][ideEstab][][basesAquis][][indAquis]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesAquis|readjson:'indAquis' '1' %}selected{% endifequal %}>1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral</option><option value='2' {% ifequal basesAquis|readjson:'indAquis' '2' %}selected{% endifequal %}>2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA</option><option value='3' {% ifequal basesAquis|readjson:'indAquis' '3' %}selected{% endifequal %}>3 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA</option><option value='4' {% ifequal basesAquis|readjson:'indAquis' '4' %}selected{% endifequal %}>4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção isenta (Lei 13.606/2018)</option><option value='5' {% ifequal basesAquis|readjson:'indAquis' '5' %}selected{% endifequal %}>5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='6' {% ifequal basesAquis|readjson:'indAquis' '6' %}selected{% endifequal %}>6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='Origem:' {% ifequal basesAquis|readjson:'indAquis' 'Origem:' %}selected{% endifequal %}>Origem: campo {indAquis} de S-1250.</option>
+            <option value="">---</option><option value='1' {% ifequal basesAquis|readjson:'indAquis'|to_str '1' %}selected{% endifequal %}>1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral</option><option value='2' {% ifequal basesAquis|readjson:'indAquis'|to_str '2' %}selected{% endifequal %}>2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA</option><option value='3' {% ifequal basesAquis|readjson:'indAquis'|to_str '3' %}selected{% endifequal %}>3 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA</option><option value='4' {% ifequal basesAquis|readjson:'indAquis'|to_str '4' %}selected{% endifequal %}>4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção isenta (Lei 13.606/2018)</option><option value='5' {% ifequal basesAquis|readjson:'indAquis'|to_str '5' %}selected{% endifequal %}>5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='6' {% ifequal basesAquis|readjson:'indAquis'|to_str '6' %}selected{% endifequal %}>6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='Origem:' {% ifequal basesAquis|readjson:'indAquis'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo {indAquis} de S-1250.</option>
             </select>
         </div>
     </div>
@@ -2708,7 +2708,7 @@ Valores válidos:
 6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)
 Origem: campo {indAquis} de S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__basesAquis__id__indAquis" name="[evtCS][infoCS][ideEstab][][basesAquis][][indAquis]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesAquis|readjson:'indAquis' '1' %}selected{% endifequal %}>1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral</option><option value='2' {% ifequal basesAquis|readjson:'indAquis' '2' %}selected{% endifequal %}>2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA</option><option value='3' {% ifequal basesAquis|readjson:'indAquis' '3' %}selected{% endifequal %}>3 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA</option><option value='4' {% ifequal basesAquis|readjson:'indAquis' '4' %}selected{% endifequal %}>4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção isenta (Lei 13.606/2018)</option><option value='5' {% ifequal basesAquis|readjson:'indAquis' '5' %}selected{% endifequal %}>5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='6' {% ifequal basesAquis|readjson:'indAquis' '6' %}selected{% endifequal %}>6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='Origem:' {% ifequal basesAquis|readjson:'indAquis' 'Origem:' %}selected{% endifequal %}>Origem: campo {indAquis} de S-1250.</option>
+            <option value="">---</option><option value='1' {% ifequal basesAquis|readjson:'indAquis'|to_str '1' %}selected{% endifequal %}>1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral</option><option value='2' {% ifequal basesAquis|readjson:'indAquis'|to_str '2' %}selected{% endifequal %}>2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA</option><option value='3' {% ifequal basesAquis|readjson:'indAquis'|to_str '3' %}selected{% endifequal %}>3 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA</option><option value='4' {% ifequal basesAquis|readjson:'indAquis'|to_str '4' %}selected{% endifequal %}>4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção isenta (Lei 13.606/2018)</option><option value='5' {% ifequal basesAquis|readjson:'indAquis'|to_str '5' %}selected{% endifequal %}>5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='6' {% ifequal basesAquis|readjson:'indAquis'|to_str '6' %}selected{% endifequal %}>6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='Origem:' {% ifequal basesAquis|readjson:'indAquis'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo {indAquis} de S-1250.</option>
             </select>
         </div>
     </div>
@@ -2852,7 +2852,7 @@ Valores válidos:
 9 - Comercialização da produção no mercado externo
 Origem: campo indComerc de S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__basesComerc__id__indComerc" name="[evtCS][infoCS][ideEstab][][basesComerc][][indComerc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='2' {% ifequal basesComerc|readjson:'indComerc' '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal basesComerc|readjson:'indComerc' '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal basesComerc|readjson:'indComerc' '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal basesComerc|readjson:'indComerc' '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal basesComerc|readjson:'indComerc' '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option><option value='Origem:' {% ifequal basesComerc|readjson:'indComerc' 'Origem:' %}selected{% endifequal %}>Origem: campo indComerc de S-1260.</option>
+            <option value="">---</option><option value='2' {% ifequal basesComerc|readjson:'indComerc'|to_str '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal basesComerc|readjson:'indComerc'|to_str '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal basesComerc|readjson:'indComerc'|to_str '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal basesComerc|readjson:'indComerc'|to_str '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal basesComerc|readjson:'indComerc'|to_str '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option><option value='Origem:' {% ifequal basesComerc|readjson:'indComerc'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo indComerc de S-1260.</option>
             </select>
         </div>
     </div>
@@ -2935,7 +2935,7 @@ Valores válidos:
 9 - Comercialização da produção no mercado externo
 Origem: campo indComerc de S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__basesComerc__id__indComerc" name="[evtCS][infoCS][ideEstab][][basesComerc][][indComerc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='2' {% ifequal basesComerc|readjson:'indComerc' '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal basesComerc|readjson:'indComerc' '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal basesComerc|readjson:'indComerc' '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal basesComerc|readjson:'indComerc' '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal basesComerc|readjson:'indComerc' '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option><option value='Origem:' {% ifequal basesComerc|readjson:'indComerc' 'Origem:' %}selected{% endifequal %}>Origem: campo indComerc de S-1260.</option>
+            <option value="">---</option><option value='2' {% ifequal basesComerc|readjson:'indComerc'|to_str '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal basesComerc|readjson:'indComerc'|to_str '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal basesComerc|readjson:'indComerc'|to_str '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal basesComerc|readjson:'indComerc'|to_str '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal basesComerc|readjson:'indComerc'|to_str '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option><option value='Origem:' {% ifequal basesComerc|readjson:'indComerc'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo indComerc de S-1260.</option>
             </select>
         </div>
     </div>
@@ -3129,7 +3129,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__id__tpInsc" name="[evtCS][infoCS][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideEstab|readjson:'tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option><option value='3' {% ifequal ideEstab|readjson:'tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal ideEstab|readjson:'tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideEstab|readjson:'tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option><option value='3' {% ifequal ideEstab|readjson:'tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal ideEstab|readjson:'tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -3235,7 +3235,7 @@ Valores válidos:
 2 - Contribuição patronal não substituída
 Origem: campo indSubstPatrObra de S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__infoEstab__infoComplObra__id__indSubstPatrObra" name="[evtCS][infoCS][ideEstab][][infoEstab][infoComplObra][indSubstPatrObra]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra' '1' %}selected{% endifequal %}>1 - Contribuição patronal substituída</option><option value='2' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra' '2' %}selected{% endifequal %}>2 - Contribuição patronal não substituída</option><option value='Origem:' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra' 'Origem:' %}selected{% endifequal %}>Origem: campo indSubstPatrObra de S-1005.</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra'|to_str '1' %}selected{% endifequal %}>1 - Contribuição patronal substituída</option><option value='2' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra'|to_str '2' %}selected{% endifequal %}>2 - Contribuição patronal não substituída</option><option value='Origem:' {% ifequal ideEstab|readjson:'infoEstab.infoComplObra.indSubstPatrObra'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo indSubstPatrObra de S-1005.</option>
             </select>
         </div>
     </div>
@@ -3406,7 +3406,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscContrat" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscContrat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -3429,7 +3429,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -3494,7 +3494,7 @@ Origem: campo dadosLotacao/nrInsc de S-1020."><i class="fa fa-fw fa-question-cir
 Valores válidos: 1, 2, 3
 Origem: campo dadosOpPort/aliqRat de S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__dadosOpPort__id__aliqRat" name="[evtCS][infoCS][ideEstab][][ideLotacao][][dadosOpPort][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='Origem:' {% ifequal ideLotacao|readjson:'dadosOpPort.aliqRat' 'Origem:' %}selected{% endifequal %}>Origem: campo dadosOpPort/aliqRat de S-1020.</option>
+            <option value="">---</option><option value='Origem:' {% ifequal ideLotacao|readjson:'dadosOpPort.aliqRat'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo dadosOpPort/aliqRat de S-1020.</option>
             </select>
         </div>
     </div>
@@ -3563,7 +3563,7 @@ e) Para contribuinte com classTrib = [99] e com indCoop = [1] (cooperativa de tr
 f) Para contribuintes com classTrib = [11], as bases de cálculo dos trabalhadores devem ser totalizadas com indIncid = [9], EXCETO para as categorias de contribuinte individual, que devem ser totalizadas com indIncid = [1].
 g) Para tpLotacao em S-1020 = [91], todas as bases de cálculo devem ser totalizadas com indIncid = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__id__indIncid" name="[evtCS][infoCS][ideEstab][][ideLotacao][][basesRemun][][indIncid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid' '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid' '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
+            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid'|to_str '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid'|to_str '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid'|to_str '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
             </select>
         </div>
     </div>
@@ -3866,7 +3866,7 @@ e) Para contribuinte com classTrib = [99] e com indCoop = [1] (cooperativa de tr
 f) Para contribuintes com classTrib = [11], as bases de cálculo dos trabalhadores devem ser totalizadas com indIncid = [9], EXCETO para as categorias de contribuinte individual, que devem ser totalizadas com indIncid = [1].
 g) Para tpLotacao em S-1020 = [91], todas as bases de cálculo devem ser totalizadas com indIncid = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__id__indIncid" name="[evtCS][infoCS][ideEstab][][ideLotacao][][basesRemun][][indIncid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid' '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid' '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
+            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid'|to_str '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid'|to_str '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid'|to_str '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
             </select>
         </div>
     </div>
@@ -4410,7 +4410,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscContrat" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscContrat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscContrat'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -4433,7 +4433,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -4498,7 +4498,7 @@ Origem: campo dadosLotacao/nrInsc de S-1020."><i class="fa fa-fw fa-question-cir
 Valores válidos: 1, 2, 3
 Origem: campo dadosOpPort/aliqRat de S-1020."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__dadosOpPort__id__aliqRat" name="[evtCS][infoCS][ideEstab][][ideLotacao][][dadosOpPort][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='Origem:' {% ifequal ideLotacao|readjson:'dadosOpPort.aliqRat' 'Origem:' %}selected{% endifequal %}>Origem: campo dadosOpPort/aliqRat de S-1020.</option>
+            <option value="">---</option><option value='Origem:' {% ifequal ideLotacao|readjson:'dadosOpPort.aliqRat'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo dadosOpPort/aliqRat de S-1020.</option>
             </select>
         </div>
     </div>
@@ -4567,7 +4567,7 @@ e) Para contribuinte com classTrib = [99] e com indCoop = [1] (cooperativa de tr
 f) Para contribuintes com classTrib = [11], as bases de cálculo dos trabalhadores devem ser totalizadas com indIncid = [9], EXCETO para as categorias de contribuinte individual, que devem ser totalizadas com indIncid = [1].
 g) Para tpLotacao em S-1020 = [91], todas as bases de cálculo devem ser totalizadas com indIncid = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__id__indIncid" name="[evtCS][infoCS][ideEstab][][ideLotacao][][basesRemun][][indIncid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid' '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid' '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
+            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid'|to_str '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid'|to_str '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid'|to_str '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
             </select>
         </div>
     </div>
@@ -4870,7 +4870,7 @@ e) Para contribuinte com classTrib = [99] e com indCoop = [1] (cooperativa de tr
 f) Para contribuintes com classTrib = [11], as bases de cálculo dos trabalhadores devem ser totalizadas com indIncid = [9], EXCETO para as categorias de contribuinte individual, que devem ser totalizadas com indIncid = [1].
 g) Para tpLotacao em S-1020 = [91], todas as bases de cálculo devem ser totalizadas com indIncid = [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__basesRemun__id__indIncid" name="[evtCS][infoCS][ideEstab][][ideLotacao][][basesRemun][][indIncid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid' '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid' '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
+            <option value="">---</option><option value='1' {% ifequal basesRemun|readjson:'indIncid'|to_str '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal basesRemun|readjson:'indIncid'|to_str '2' %}selected{% endifequal %}>2 - Atividade concomitante</option><option value='9' {% ifequal basesRemun|readjson:'indIncid'|to_str '9' %}selected{% endifequal %}>9 - Substituída ou isenta</option>
             </select>
         </div>
     </div>
@@ -5291,7 +5291,7 @@ Valores válidos:
 6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)
 Origem: campo {indAquis} de S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__basesAquis__id__indAquis" name="[evtCS][infoCS][ideEstab][][basesAquis][][indAquis]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesAquis|readjson:'indAquis' '1' %}selected{% endifequal %}>1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral</option><option value='2' {% ifequal basesAquis|readjson:'indAquis' '2' %}selected{% endifequal %}>2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA</option><option value='3' {% ifequal basesAquis|readjson:'indAquis' '3' %}selected{% endifequal %}>3 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA</option><option value='4' {% ifequal basesAquis|readjson:'indAquis' '4' %}selected{% endifequal %}>4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção isenta (Lei 13.606/2018)</option><option value='5' {% ifequal basesAquis|readjson:'indAquis' '5' %}selected{% endifequal %}>5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='6' {% ifequal basesAquis|readjson:'indAquis' '6' %}selected{% endifequal %}>6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='Origem:' {% ifequal basesAquis|readjson:'indAquis' 'Origem:' %}selected{% endifequal %}>Origem: campo {indAquis} de S-1250.</option>
+            <option value="">---</option><option value='1' {% ifequal basesAquis|readjson:'indAquis'|to_str '1' %}selected{% endifequal %}>1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral</option><option value='2' {% ifequal basesAquis|readjson:'indAquis'|to_str '2' %}selected{% endifequal %}>2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA</option><option value='3' {% ifequal basesAquis|readjson:'indAquis'|to_str '3' %}selected{% endifequal %}>3 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA</option><option value='4' {% ifequal basesAquis|readjson:'indAquis'|to_str '4' %}selected{% endifequal %}>4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção isenta (Lei 13.606/2018)</option><option value='5' {% ifequal basesAquis|readjson:'indAquis'|to_str '5' %}selected{% endifequal %}>5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='6' {% ifequal basesAquis|readjson:'indAquis'|to_str '6' %}selected{% endifequal %}>6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='Origem:' {% ifequal basesAquis|readjson:'indAquis'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo {indAquis} de S-1250.</option>
             </select>
         </div>
     </div>
@@ -5436,7 +5436,7 @@ Valores válidos:
 6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)
 Origem: campo {indAquis} de S-1250."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__basesAquis__id__indAquis" name="[evtCS][infoCS][ideEstab][][basesAquis][][indAquis]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal basesAquis|readjson:'indAquis' '1' %}selected{% endifequal %}>1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral</option><option value='2' {% ifequal basesAquis|readjson:'indAquis' '2' %}selected{% endifequal %}>2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA</option><option value='3' {% ifequal basesAquis|readjson:'indAquis' '3' %}selected{% endifequal %}>3 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA</option><option value='4' {% ifequal basesAquis|readjson:'indAquis' '4' %}selected{% endifequal %}>4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção isenta (Lei 13.606/2018)</option><option value='5' {% ifequal basesAquis|readjson:'indAquis' '5' %}selected{% endifequal %}>5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='6' {% ifequal basesAquis|readjson:'indAquis' '6' %}selected{% endifequal %}>6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='Origem:' {% ifequal basesAquis|readjson:'indAquis' 'Origem:' %}selected{% endifequal %}>Origem: campo {indAquis} de S-1250.</option>
+            <option value="">---</option><option value='1' {% ifequal basesAquis|readjson:'indAquis'|to_str '1' %}selected{% endifequal %}>1 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral</option><option value='2' {% ifequal basesAquis|readjson:'indAquis'|to_str '2' %}selected{% endifequal %}>2 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA</option><option value='3' {% ifequal basesAquis|readjson:'indAquis'|to_str '3' %}selected{% endifequal %}>3 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA</option><option value='4' {% ifequal basesAquis|readjson:'indAquis'|to_str '4' %}selected{% endifequal %}>4 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral - Produção isenta (Lei 13.606/2018)</option><option value='5' {% ifequal basesAquis|readjson:'indAquis'|to_str '5' %}selected{% endifequal %}>5 - Aquisição da produção de produtor rural pessoa física ou segurado especial em geral por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='6' {% ifequal basesAquis|readjson:'indAquis'|to_str '6' %}selected{% endifequal %}>6 - Aquisição da produção de produtor rural pessoa jurídica por entidade do PAA - Produção isenta (Lei 13.606/2018)</option><option value='Origem:' {% ifequal basesAquis|readjson:'indAquis'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo {indAquis} de S-1250.</option>
             </select>
         </div>
     </div>
@@ -5580,7 +5580,7 @@ Valores válidos:
 9 - Comercialização da produção no mercado externo
 Origem: campo indComerc de S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__basesComerc__id__indComerc" name="[evtCS][infoCS][ideEstab][][basesComerc][][indComerc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='2' {% ifequal basesComerc|readjson:'indComerc' '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal basesComerc|readjson:'indComerc' '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal basesComerc|readjson:'indComerc' '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal basesComerc|readjson:'indComerc' '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal basesComerc|readjson:'indComerc' '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option><option value='Origem:' {% ifequal basesComerc|readjson:'indComerc' 'Origem:' %}selected{% endifequal %}>Origem: campo indComerc de S-1260.</option>
+            <option value="">---</option><option value='2' {% ifequal basesComerc|readjson:'indComerc'|to_str '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal basesComerc|readjson:'indComerc'|to_str '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal basesComerc|readjson:'indComerc'|to_str '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal basesComerc|readjson:'indComerc'|to_str '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal basesComerc|readjson:'indComerc'|to_str '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option><option value='Origem:' {% ifequal basesComerc|readjson:'indComerc'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo indComerc de S-1260.</option>
             </select>
         </div>
     </div>
@@ -5663,7 +5663,7 @@ Valores válidos:
 9 - Comercialização da produção no mercado externo
 Origem: campo indComerc de S-1260."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__basesComerc__id__indComerc" name="[evtCS][infoCS][ideEstab][][basesComerc][][indComerc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='2' {% ifequal basesComerc|readjson:'indComerc' '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal basesComerc|readjson:'indComerc' '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal basesComerc|readjson:'indComerc' '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal basesComerc|readjson:'indComerc' '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal basesComerc|readjson:'indComerc' '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option><option value='Origem:' {% ifequal basesComerc|readjson:'indComerc' 'Origem:' %}selected{% endifequal %}>Origem: campo indComerc de S-1260.</option>
+            <option value="">---</option><option value='2' {% ifequal basesComerc|readjson:'indComerc'|to_str '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal basesComerc|readjson:'indComerc'|to_str '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal basesComerc|readjson:'indComerc'|to_str '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal basesComerc|readjson:'indComerc'|to_str '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal basesComerc|readjson:'indComerc'|to_str '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option><option value='Origem:' {% ifequal basesComerc|readjson:'indComerc'|to_str 'Origem:' %}selected{% endifequal %}>Origem: campo indComerc de S-1260.</option>
             </select>
         </div>
     </div>

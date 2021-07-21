@@ -268,6 +268,12 @@ def valor(var):
     return a
 
 
+@register.filter(name='to_str')
+def to_str(var):
+    a = str(var)
+    return a
+
+
 @register.filter('json_tab')
 def json_return_page(json_str, variavel):
     if json_str == '{}':

@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__ideEvento__id__indRetif" name="[evtTSVTermino][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTSVTermino|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtTSVTermino|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVTermino|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtTSVTermino|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -77,7 +77,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__ideEvento__id__indGuia" name="[evtTSVTermino][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTSVTermino|readjson:'ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVTermino|readjson:'ideEvento.indGuia'|to_str '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
             </select>
         </div>
     </div>
@@ -273,7 +273,7 @@ Valores válidos:
 99 - Outros
 Validação: Informação obrigatória se o código de categoria no Registro de Eventos Trabalhistas - RET for igual a [721] ou se o grupo mudancaCPF estiver preenchido. Não preencher nas demais situações."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__id__mtvDesligTSV" name="[evtTSVTermino][infoTSVTermino][mtvDesligTSV]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='01' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV' '01' %}selected{% endifequal %}>01 - Exoneração do diretor não empregado sem justa causa, por deliberação da assembleia, dos sócios cotistas ou da autoridade competente</option><option value='02' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV' '02' %}selected{% endifequal %}>02 - Término de mandato do diretor não empregado que não tenha sido reconduzido ao cargo</option><option value='03' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV' '03' %}selected{% endifequal %}>03 - Exoneração a pedido de diretor não empregado</option><option value='04' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV' '04' %}selected{% endifequal %}>04 - Exoneração do diretor não empregado por culpa recíproca ou força maior</option><option value='05' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV' '05' %}selected{% endifequal %}>05 - Morte do diretor não empregado</option><option value='06' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV' '06' %}selected{% endifequal %}>06 - Exoneração do diretor não empregado por falência, encerramento ou supressão de parte da empresa</option><option value='07' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV' '07' %}selected{% endifequal %}>07 - Mudança de CPF</option><option value='99' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV' '99' %}selected{% endifequal %}>99 - Outros</option>
+            <option value="">---</option><option value='01' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV'|to_str '01' %}selected{% endifequal %}>01 - Exoneração do diretor não empregado sem justa causa, por deliberação da assembleia, dos sócios cotistas ou da autoridade competente</option><option value='02' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV'|to_str '02' %}selected{% endifequal %}>02 - Término de mandato do diretor não empregado que não tenha sido reconduzido ao cargo</option><option value='03' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV'|to_str '03' %}selected{% endifequal %}>03 - Exoneração a pedido de diretor não empregado</option><option value='04' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV'|to_str '04' %}selected{% endifequal %}>04 - Exoneração do diretor não empregado por culpa recíproca ou força maior</option><option value='05' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV'|to_str '05' %}selected{% endifequal %}>05 - Morte do diretor não empregado</option><option value='06' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV'|to_str '06' %}selected{% endifequal %}>06 - Exoneração do diretor não empregado por falência, encerramento ou supressão de parte da empresa</option><option value='07' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV'|to_str '07' %}selected{% endifequal %}>07 - Mudança de CPF</option><option value='99' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.mtvDesligTSV'|to_str '99' %}selected{% endifequal %}>99 - Outros</option>
             </select>
         </div>
     </div>
@@ -292,7 +292,7 @@ Validação: Informação obrigatória se o código de categoria no RET for igua
 Informação opcional se o código de categoria no RET for igual a [201, 202, 721] e se dtTerm for igual ou anterior a 21/04/2019.
 Não preencher nas demais situações."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__id__pensAlim" name="[evtTSVTermino][infoTSVTermino][pensAlim]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.pensAlim' '0' %}selected{% endifequal %}>0 - Não existe pensão alimentícia</option><option value='1' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.pensAlim' '1' %}selected{% endifequal %}>1 - Percentual de pensão alimentícia</option><option value='2' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.pensAlim' '2' %}selected{% endifequal %}>2 - Valor de pensão alimentícia</option><option value='3' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.pensAlim' '3' %}selected{% endifequal %}>3 - Percentual e valor de pensão alimentícia</option>
+            <option value="">---</option><option value='0' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.pensAlim'|to_str '0' %}selected{% endifequal %}>0 - Não existe pensão alimentícia</option><option value='1' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.pensAlim'|to_str '1' %}selected{% endifequal %}>1 - Percentual de pensão alimentícia</option><option value='2' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.pensAlim'|to_str '2' %}selected{% endifequal %}>2 - Valor de pensão alimentícia</option><option value='3' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.pensAlim'|to_str '3' %}selected{% endifequal %}>3 - Percentual e valor de pensão alimentícia</option>
             </select>
         </div>
     </div>
@@ -446,7 +446,7 @@ Valores válidos:
 1 - CNPJ
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__id__tpInsc" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='4' {% ifequal ideEstabLot|readjson:'tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='4' {% ifequal ideEstabLot|readjson:'tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -552,7 +552,7 @@ Valores válidos:
 1 - Situação especial de apuração de IR
 Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -643,7 +643,7 @@ Valores válidos:
 1 - Situação especial de apuração de IR
 Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -682,7 +682,7 @@ Valores válidos:
 2 - Contribuição não substituída
 3 - Contribuição não substituída concomitante com contribuição substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__infoSimples__id__indSimples" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][infoSimples][indSimples]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '1' %}selected{% endifequal %}>1 - Contribuição substituída integralmente</option><option value='2' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '2' %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value='3' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '3' %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '1' %}selected{% endifequal %}>1 - Contribuição substituída integralmente</option><option value='2' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '2' %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value='3' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '3' %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída</option>
             </select>
         </div>
     </div>
@@ -724,7 +724,7 @@ Valores válidos:
 1 - CNPJ
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__id__tpInsc" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='4' {% ifequal ideEstabLot|readjson:'tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='4' {% ifequal ideEstabLot|readjson:'tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -830,7 +830,7 @@ Valores válidos:
 1 - Situação especial de apuração de IR
 Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -921,7 +921,7 @@ Valores válidos:
 1 - Situação especial de apuração de IR
 Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -960,7 +960,7 @@ Valores válidos:
 2 - Contribuição não substituída
 3 - Contribuição não substituída concomitante com contribuição substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__infoSimples__id__indSimples" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][infoSimples][indSimples]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '1' %}selected{% endifequal %}>1 - Contribuição substituída integralmente</option><option value='2' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '2' %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value='3' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '3' %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '1' %}selected{% endifequal %}>1 - Contribuição substituída integralmente</option><option value='2' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '2' %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value='3' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '3' %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída</option>
             </select>
         </div>
     </div>
@@ -1040,7 +1040,7 @@ Valores válidos:
 1 - CNPJ
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__id__tpInsc" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='4' {% ifequal ideEstabLot|readjson:'tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='4' {% ifequal ideEstabLot|readjson:'tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -1146,7 +1146,7 @@ Valores válidos:
 1 - Situação especial de apuração de IR
 Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1237,7 +1237,7 @@ Valores válidos:
 1 - Situação especial de apuração de IR
 Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1276,7 +1276,7 @@ Valores válidos:
 2 - Contribuição não substituída
 3 - Contribuição não substituída concomitante com contribuição substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__infoSimples__id__indSimples" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][infoSimples][indSimples]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '1' %}selected{% endifequal %}>1 - Contribuição substituída integralmente</option><option value='2' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '2' %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value='3' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '3' %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '1' %}selected{% endifequal %}>1 - Contribuição substituída integralmente</option><option value='2' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '2' %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value='3' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '3' %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída</option>
             </select>
         </div>
     </div>
@@ -1318,7 +1318,7 @@ Valores válidos:
 1 - CNPJ
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__id__tpInsc" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='4' {% ifequal ideEstabLot|readjson:'tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='4' {% ifequal ideEstabLot|readjson:'tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -1424,7 +1424,7 @@ Valores válidos:
 1 - Situação especial de apuração de IR
 Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1515,7 +1515,7 @@ Valores válidos:
 1 - Situação especial de apuração de IR
 Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1554,7 +1554,7 @@ Valores válidos:
 2 - Contribuição não substituída
 3 - Contribuição não substituída concomitante com contribuição substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__infoSimples__id__indSimples" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][infoSimples][indSimples]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '1' %}selected{% endifequal %}>1 - Contribuição substituída integralmente</option><option value='2' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '2' %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value='3' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples' '3' %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '1' %}selected{% endifequal %}>1 - Contribuição substituída integralmente</option><option value='2' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '2' %}selected{% endifequal %}>2 - Contribuição não substituída</option><option value='3' {% ifequal ideEstabLot|readjson:'infoSimples.indSimples'|to_str '3' %}selected{% endifequal %}>3 - Contribuição não substituída concomitante com contribuição substituída</option>
             </select>
         </div>
     </div>
@@ -1600,7 +1600,7 @@ Valores válidos:
 1 - IRRF
 2 - Contribuições sociais do trabalhador"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__procJudTrab__id__tpTrib" name="[evtTSVTermino][infoTSVTermino][verbasResc][procJudTrab][][tpTrib]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal procJudTrab|readjson:'tpTrib' '1' %}selected{% endifequal %}>1 - IRRF</option><option value='2' {% ifequal procJudTrab|readjson:'tpTrib' '2' %}selected{% endifequal %}>2 - Contribuições sociais do trabalhador</option>
+            <option value="">---</option><option value='1' {% ifequal procJudTrab|readjson:'tpTrib'|to_str '1' %}selected{% endifequal %}>1 - IRRF</option><option value='2' {% ifequal procJudTrab|readjson:'tpTrib'|to_str '2' %}selected{% endifequal %}>2 - Contribuições sociais do trabalhador</option>
             </select>
         </div>
     </div>
@@ -1658,7 +1658,7 @@ Valores válidos:
 1 - IRRF
 2 - Contribuições sociais do trabalhador"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__procJudTrab__id__tpTrib" name="[evtTSVTermino][infoTSVTermino][verbasResc][procJudTrab][][tpTrib]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal procJudTrab|readjson:'tpTrib' '1' %}selected{% endifequal %}>1 - IRRF</option><option value='2' {% ifequal procJudTrab|readjson:'tpTrib' '2' %}selected{% endifequal %}>2 - Contribuições sociais do trabalhador</option>
+            <option value="">---</option><option value='1' {% ifequal procJudTrab|readjson:'tpTrib'|to_str '1' %}selected{% endifequal %}>1 - IRRF</option><option value='2' {% ifequal procJudTrab|readjson:'tpTrib'|to_str '2' %}selected{% endifequal %}>2 - Contribuições sociais do trabalhador</option>
             </select>
         </div>
     </div>
@@ -1717,7 +1717,7 @@ Valores válidos:
 2 - O declarante aplica a(s) alíquota(s) de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto
 3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s)"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__id__indMV" name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][indMV]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.verbasResc.infoMV.indMV' '1' %}selected{% endifequal %}>1 - O declarante aplica a(s) alíquota(s) de desconto do segurado sobre a remuneração por ele informada (o percentual da(s) alíquota(s) será(ão) obtido(s) considerando a remuneração total do trabalhador)</option><option value='2' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.verbasResc.infoMV.indMV' '2' %}selected{% endifequal %}>2 - O declarante aplica a(s) alíquota(s) de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto</option><option value='3' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.verbasResc.infoMV.indMV' '3' %}selected{% endifequal %}>3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s)</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.verbasResc.infoMV.indMV'|to_str '1' %}selected{% endifequal %}>1 - O declarante aplica a(s) alíquota(s) de desconto do segurado sobre a remuneração por ele informada (o percentual da(s) alíquota(s) será(ão) obtido(s) considerando a remuneração total do trabalhador)</option><option value='2' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.verbasResc.infoMV.indMV'|to_str '2' %}selected{% endifequal %}>2 - O declarante aplica a(s) alíquota(s) de desconto do segurado sobre a diferença entre o limite máximo do salário de contribuição e a remuneração de outra(s) empresa(s) para as quais o trabalhador informou que houve o desconto</option><option value='3' {% ifequal evtTSVTermino|readjson:'infoTSVTermino.verbasResc.infoMV.indMV'|to_str '3' %}selected{% endifequal %}>3 - O declarante não realiza desconto do segurado, uma vez que houve desconto sobre o limite máximo de salário de contribuição em outra(s) empresa(s)</option>
             </select>
         </div>
     </div>
@@ -1751,7 +1751,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__remunOutrEmpr__id__tpInsc" name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][remunOutrEmpr][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal remunOutrEmpr|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal remunOutrEmpr|readjson:'tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal remunOutrEmpr|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal remunOutrEmpr|readjson:'tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -1820,7 +1820,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__infoMV__remunOutrEmpr__id__tpInsc" name="[evtTSVTermino][infoTSVTermino][verbasResc][infoMV][remunOutrEmpr][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal remunOutrEmpr|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal remunOutrEmpr|readjson:'tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal remunOutrEmpr|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal remunOutrEmpr|readjson:'tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>

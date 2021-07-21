@@ -53,7 +53,7 @@ Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtReabreEvPer__ideEvento__id__indApuracao" name="[evtReabreEvPer][ideEvento][indApuracao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtReabreEvPer|readjson:'ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtReabreEvPer|readjson:'ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
+            <option value="">---</option><option value='1' {% ifequal evtReabreEvPer|readjson:'ideEvento.indApuracao'|to_str '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtReabreEvPer|readjson:'ideEvento.indApuracao'|to_str '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
             </select>
         </div>
     </div>
@@ -76,7 +76,7 @@ Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início 
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtReabreEvPer__ideEvento__id__indGuia" name="[evtReabreEvPer][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtReabreEvPer|readjson:'ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            <option value="">---</option><option value='1' {% ifequal evtReabreEvPer|readjson:'ideEvento.indGuia'|to_str '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
             </select>
         </div>
     </div>

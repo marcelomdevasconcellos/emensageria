@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__ideEvento__id__indRetif" name="[evtCdBenIn][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCdBenIn|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCdBenIn|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenIn|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCdBenIn|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -247,7 +247,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__infoBenInicio__id__cadIni" name="[evtCdBenIn][infoBenInicio][cadIni]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtCdBenIn|readjson:'infoBenInicio.cadIni' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCdBenIn|readjson:'infoBenInicio.cadIni' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCdBenIn|readjson:'infoBenInicio.cadIni'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCdBenIn|readjson:'infoBenInicio.cadIni'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -263,7 +263,7 @@ Valores válidos:
 3 - Mudança de CPF do beneficiário
 Validação: Preenchimento obrigatório e exclusivo se cadIni = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__infoBenInicio__id__indSitBenef" name="[evtCdBenIn][infoBenInicio][indSitBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCdBenIn|readjson:'infoBenInicio.indSitBenef' '1' %}selected{% endifequal %}>1 - Benefício concedido pelo próprio órgão declarante</option><option value='2' {% ifequal evtCdBenIn|readjson:'infoBenInicio.indSitBenef' '2' %}selected{% endifequal %}>2 - Benefício transferido de outro órgão</option><option value='3' {% ifequal evtCdBenIn|readjson:'infoBenInicio.indSitBenef' '3' %}selected{% endifequal %}>3 - Mudança de CPF do beneficiário</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenIn|readjson:'infoBenInicio.indSitBenef'|to_str '1' %}selected{% endifequal %}>1 - Benefício concedido pelo próprio órgão declarante</option><option value='2' {% ifequal evtCdBenIn|readjson:'infoBenInicio.indSitBenef'|to_str '2' %}selected{% endifequal %}>2 - Benefício transferido de outro órgão</option><option value='3' {% ifequal evtCdBenIn|readjson:'infoBenInicio.indSitBenef'|to_str '3' %}selected{% endifequal %}>3 - Mudança de CPF do beneficiário</option>
             </select>
         </div>
     </div>
@@ -340,7 +340,7 @@ Valores válidos:
 2 - Fundo em repartição
 3 - Mantido pelo Tesouro"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__infoBenInicio__dadosBeneficio__id__tpPlanRP" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][tpPlanRP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP' '0' %}selected{% endifequal %}>0 - Sem segregação da massa</option><option value='1' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP' '1' %}selected{% endifequal %}>1 - Fundo em capitalização</option><option value='2' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP' '2' %}selected{% endifequal %}>2 - Fundo em repartição</option><option value='3' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP' '3' %}selected{% endifequal %}>3 - Mantido pelo Tesouro</option>
+            <option value="">---</option><option value='0' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP'|to_str '0' %}selected{% endifequal %}>0 - Sem segregação da massa</option><option value='1' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP'|to_str '1' %}selected{% endifequal %}>1 - Fundo em capitalização</option><option value='2' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP'|to_str '2' %}selected{% endifequal %}>2 - Fundo em repartição</option><option value='3' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.tpPlanRP'|to_str '3' %}selected{% endifequal %}>3 - Mantido pelo Tesouro</option>
             </select>
         </div>
     </div>
@@ -365,7 +365,7 @@ S - Sim
 N - Não
 Validação: Preenchimento obrigatório se cadIni = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__infoBenInicio__dadosBeneficio__id__indDecJud" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][indDecJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.indDecJud' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.indDecJud' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.indDecJud'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.indDecJud'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -399,7 +399,7 @@ Valores válidos:
 1 - Vitalícia
 2 - Temporária"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenIn__infoBenInicio__dadosBeneficio__infoPenMorte__id__tpPenMorte" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][infoPenMorte][tpPenMorte]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte' '1' %}selected{% endifequal %}>1 - Vitalícia</option><option value='2' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte' '2' %}selected{% endifequal %}>2 - Temporária</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte'|to_str '1' %}selected{% endifequal %}>1 - Vitalícia</option><option value='2' {% ifequal evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.infoPenMorte.tpPenMorte'|to_str '2' %}selected{% endifequal %}>2 - Temporária</option>
             </select>
         </div>
     </div>

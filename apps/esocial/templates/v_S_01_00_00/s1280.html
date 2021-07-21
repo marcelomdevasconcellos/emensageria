@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoComplPer__ideEvento__id__indRetif" name="[evtInfoComplPer][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtInfoComplPer|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtInfoComplPer|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -78,7 +78,7 @@ Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoComplPer__ideEvento__id__indApuracao" name="[evtInfoComplPer][ideEvento][indApuracao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtInfoComplPer|readjson:'ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
+            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'ideEvento.indApuracao'|to_str '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtInfoComplPer|readjson:'ideEvento.indApuracao'|to_str '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
             </select>
         </div>
     </div>
@@ -101,7 +101,7 @@ Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início 
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoComplPer__ideEvento__id__indGuia" name="[evtInfoComplPer][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'ideEvento.indGuia'|to_str '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
             </select>
         </div>
     </div>
@@ -226,7 +226,7 @@ Valores válidos:
 1 - Integralmente substituída
 2 - Parcialmente substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoComplPer__infoSubstPatr__id__indSubstPatr" name="[evtInfoComplPer][infoSubstPatr][indSubstPatr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'infoSubstPatr.indSubstPatr' '1' %}selected{% endifequal %}>1 - Integralmente substituída</option><option value='2' {% ifequal evtInfoComplPer|readjson:'infoSubstPatr.indSubstPatr' '2' %}selected{% endifequal %}>2 - Parcialmente substituída</option>
+            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'infoSubstPatr.indSubstPatr'|to_str '1' %}selected{% endifequal %}>1 - Integralmente substituída</option><option value='2' {% ifequal evtInfoComplPer|readjson:'infoSubstPatr.indSubstPatr'|to_str '2' %}selected{% endifequal %}>2 - Parcialmente substituída</option>
             </select>
         </div>
     </div>

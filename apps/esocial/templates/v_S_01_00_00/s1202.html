@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__ideEvento__id__indRetif" name="[evtRmnRPPS][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtRmnRPPS|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtRmnRPPS|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtRmnRPPS|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtRmnRPPS|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -78,7 +78,7 @@ Valores válidos:
 1 - Mensal
 2 - Anual (13° salário)"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__ideEvento__id__indApuracao" name="[evtRmnRPPS][ideEvento][indApuracao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtRmnRPPS|readjson:'ideEvento.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtRmnRPPS|readjson:'ideEvento.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
+            <option value="">---</option><option value='1' {% ifequal evtRmnRPPS|readjson:'ideEvento.indApuracao'|to_str '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtRmnRPPS|readjson:'ideEvento.indApuracao'|to_str '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
             </select>
         </div>
     </div>
@@ -414,7 +414,7 @@ Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -536,7 +536,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -623,7 +623,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -710,7 +710,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -797,7 +797,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -918,7 +918,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1005,7 +1005,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1092,7 +1092,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1179,7 +1179,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1224,7 +1224,7 @@ Valores válidos:
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -1346,7 +1346,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1433,7 +1433,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1520,7 +1520,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1607,7 +1607,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1728,7 +1728,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1815,7 +1815,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1902,7 +1902,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -1989,7 +1989,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -2043,7 +2043,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerAnt__id__remunOrgSuc" name="[evtRmnRPPS][dmDev][][infoPerAnt][remunOrgSuc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dmDev|readjson:'infoPerAnt.remunOrgSuc' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dmDev|readjson:'infoPerAnt.remunOrgSuc' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dmDev|readjson:'infoPerAnt.remunOrgSuc'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dmDev|readjson:'infoPerAnt.remunOrgSuc'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -2107,7 +2107,7 @@ Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"><
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -2221,7 +2221,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -2370,7 +2370,7 @@ Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"><
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -2484,7 +2484,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -2674,7 +2674,7 @@ Validação: Deve ser um código válido e existente na Tabela 01."><i class="fa
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -2796,7 +2796,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -2883,7 +2883,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -2970,7 +2970,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -3057,7 +3057,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -3178,7 +3178,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -3265,7 +3265,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -3352,7 +3352,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -3439,7 +3439,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -3484,7 +3484,7 @@ Valores válidos:
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -3606,7 +3606,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -3693,7 +3693,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -3780,7 +3780,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -3867,7 +3867,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -3988,7 +3988,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -4075,7 +4075,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -4162,7 +4162,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -4249,7 +4249,7 @@ Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerApur__ideEstab__remunPerApur__itensRemun__id__indApurIR" name="[evtRmnRPPS][dmDev][][infoPerApur][ideEstab][][remunPerApur][][itensRemun][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR' '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR' '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
+            <option value="">---</option><option value='0' {% ifequal itensRemun|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal itensRemun|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
         </div>
     </div>
@@ -4303,7 +4303,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerAnt__id__remunOrgSuc" name="[evtRmnRPPS][dmDev][][infoPerAnt][remunOrgSuc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dmDev|readjson:'infoPerAnt.remunOrgSuc' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dmDev|readjson:'infoPerAnt.remunOrgSuc' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dmDev|readjson:'infoPerAnt.remunOrgSuc'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dmDev|readjson:'infoPerAnt.remunOrgSuc'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -4367,7 +4367,7 @@ Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"><
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -4481,7 +4481,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -4630,7 +4630,7 @@ Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"><
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>
@@ -4744,7 +4744,7 @@ Validação: Deve corresponder à matrícula informada pelo empregador no evento
 Valores válidos:
 1 - CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtRmnRPPS__dmDev__infoPerAnt__idePeriodo__ideEstab__id__tpInsc" name="[evtRmnRPPS][dmDev][][infoPerAnt][idePeriodo][][ideEstab][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option>
+            <option value="">---</option><option value='1' {% ifequal ideEstab|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option>
             </select>
         </div>
     </div>

@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__ideEvento__id__indRetif" name="[evtAfastTemp][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtAfastTemp|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtAfastTemp|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -287,7 +287,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__iniAfastamento__id__infoMesmoMtv" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoMesmoMtv]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMesmoMtv' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMesmoMtv' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMesmoMtv'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMesmoMtv'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -303,7 +303,7 @@ Valores válidos:
 3 - Outros
 Validação: Somente pode ser preenchido se codMotAfast = [01, 03]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__iniAfastamento__id__tpAcidTransito" name="[evtAfastTemp][infoAfastamento][iniAfastamento][tpAcidTransito]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.tpAcidTransito' '1' %}selected{% endifequal %}>1 - Atropelamento</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.tpAcidTransito' '2' %}selected{% endifequal %}>2 - Colisão</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.tpAcidTransito' '3' %}selected{% endifequal %}>3 - Outros</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.tpAcidTransito'|to_str '1' %}selected{% endifequal %}>1 - Atropelamento</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.tpAcidTransito'|to_str '2' %}selected{% endifequal %}>2 - Colisão</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.tpAcidTransito'|to_str '3' %}selected{% endifequal %}>3 - Outros</option>
             </select>
         </div>
     </div>
@@ -405,7 +405,7 @@ Valores válidos:
 2 - Ônus do cessionário
 3 - Ônus do cedente e cessionário"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__iniAfastamento__infoCessao__id__infOnus" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoCessao][infOnus]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoCessao.infOnus' '1' %}selected{% endifequal %}>1 - Ônus do cedente</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoCessao.infOnus' '2' %}selected{% endifequal %}>2 - Ônus do cessionário</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoCessao.infOnus' '3' %}selected{% endifequal %}>3 - Ônus do cedente e cessionário</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoCessao.infOnus'|to_str '1' %}selected{% endifequal %}>1 - Ônus do cedente</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoCessao.infOnus'|to_str '2' %}selected{% endifequal %}>2 - Ônus do cessionário</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoCessao.infOnus'|to_str '3' %}selected{% endifequal %}>3 - Ônus do cedente e cessionário</option>
             </select>
         </div>
     </div>
@@ -456,7 +456,7 @@ Valores válidos:
 2 - Apenas do sindicato
 3 - Parte do empregador, sendo a diferença e/ou complementação salarial paga pelo sindicato"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__iniAfastamento__infoMandSind__id__infOnusRemun" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoMandSind][infOnusRemun]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun' '1' %}selected{% endifequal %}>1 - Apenas do empregador</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun' '2' %}selected{% endifequal %}>2 - Apenas do sindicato</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun' '3' %}selected{% endifequal %}>3 - Parte do empregador, sendo a diferença e/ou complementação salarial paga pelo sindicato</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun'|to_str '1' %}selected{% endifequal %}>1 - Apenas do empregador</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun'|to_str '2' %}selected{% endifequal %}>2 - Apenas do sindicato</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandSind.infOnusRemun'|to_str '3' %}selected{% endifequal %}>3 - Parte do empregador, sendo a diferença e/ou complementação salarial paga pelo sindicato</option>
             </select>
         </div>
     </div>
@@ -507,7 +507,7 @@ S - Sim
 N - Não
 Validação: Informação obrigatória e exclusiva se o código de categoria no Registro de Eventos Trabalhistas - RET for igual a [301]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__iniAfastamento__infoMandElet__id__indRemunCargo" name="[evtAfastTemp][infoAfastamento][iniAfastamento][infoMandElet][indRemunCargo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandElet.indRemunCargo' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandElet.indRemunCargo' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandElet.indRemunCargo'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAfastTemp|readjson:'infoAfastamento.iniAfastamento.infoMandElet.indRemunCargo'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -551,7 +551,7 @@ Valores válidos:
 2 - Revisão administrativa
 3 - Determinação judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__infoRetif__id__origRetif" name="[evtAfastTemp][infoAfastamento][infoRetif][origRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.origRetif' '1' %}selected{% endifequal %}>1 - Por iniciativa do empregador</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.origRetif' '2' %}selected{% endifequal %}>2 - Revisão administrativa</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.origRetif' '3' %}selected{% endifequal %}>3 - Determinação judicial</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.origRetif'|to_str '1' %}selected{% endifequal %}>1 - Por iniciativa do empregador</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.origRetif'|to_str '2' %}selected{% endifequal %}>2 - Revisão administrativa</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.origRetif'|to_str '3' %}selected{% endifequal %}>3 - Determinação judicial</option>
             </select>
         </div>
     </div>
@@ -567,7 +567,7 @@ Valores válidos:
 3 - Número de Benefício - NB do INSS
 Validação: O preenchimento é obrigatório se origRetif = [2, 3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAfastTemp__infoAfastamento__infoRetif__id__tpProc" name="[evtAfastTemp][infoAfastamento][infoRetif][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.tpProc' '3' %}selected{% endifequal %}>3 - Número de Benefício - NB do INSS</option>
+            <option value="">---</option><option value='1' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.tpProc'|to_str '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.tpProc'|to_str '2' %}selected{% endifequal %}>2 - Judicial</option><option value='3' {% ifequal evtAfastTemp|readjson:'infoAfastamento.infoRetif.tpProc'|to_str '3' %}selected{% endifequal %}>3 - Número de Benefício - NB do INSS</option>
             </select>
         </div>
     </div>

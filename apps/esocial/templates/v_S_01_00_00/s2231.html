@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCessao__ideEvento__id__indRetif" name="[evtCessao][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCessao|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCessao|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtCessao|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCessao|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -276,7 +276,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCessao__infoCessao__iniCessao__id__respRemun" name="[evtCessao][infoCessao][iniCessao][respRemun]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtCessao|readjson:'infoCessao.iniCessao.respRemun' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCessao|readjson:'infoCessao.iniCessao.respRemun' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCessao|readjson:'infoCessao.iniCessao.respRemun'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCessao|readjson:'infoCessao.iniCessao.respRemun'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>

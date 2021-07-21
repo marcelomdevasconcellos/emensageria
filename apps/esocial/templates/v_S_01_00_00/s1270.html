@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtContratAvNP__ideEvento__id__indRetif" name="[evtContratAvNP][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtContratAvNP|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtContratAvNP|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtContratAvNP|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtContratAvNP|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -87,7 +87,7 @@ Validação: Deve ser um mês/ano válido, igual ou posterior ao início da obri
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtContratAvNP__ideEvento__id__indGuia" name="[evtContratAvNP][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtContratAvNP|readjson:'ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            <option value="">---</option><option value='1' {% ifequal evtContratAvNP|readjson:'ideEvento.indGuia'|to_str '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
             </select>
         </div>
     </div>
@@ -213,7 +213,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtContratAvNP__remunAvNP__id__tpInsc" name="[evtContratAvNP][remunAvNP][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal remunAvNP|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal remunAvNP|readjson:'tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal remunAvNP|readjson:'tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal remunAvNP|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal remunAvNP|readjson:'tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal remunAvNP|readjson:'tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -335,7 +335,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtContratAvNP__remunAvNP__id__tpInsc" name="[evtContratAvNP][remunAvNP][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal remunAvNP|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal remunAvNP|readjson:'tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal remunAvNP|readjson:'tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal remunAvNP|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal remunAvNP|readjson:'tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal remunAvNP|readjson:'tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>

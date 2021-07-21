@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__ideEvento__id__indRetif" name="[evtComProd][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtComProd|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtComProd|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtComProd|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtComProd|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -87,7 +87,7 @@ Validação: Deve ser um mês/ano válido, igual ou posterior ao início da obri
 Valores válidos:
 1 - Documento de Arrecadação do eSocial - DAE"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__ideEvento__id__indGuia" name="[evtComProd][ideEvento][indGuia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtComProd|readjson:'ideEvento.indGuia' '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
+            <option value="">---</option><option value='1' {% ifequal evtComProd|readjson:'ideEvento.indGuia'|to_str '1' %}selected{% endifequal %}>1 - Documento de Arrecadação do eSocial - DAE</option>
             </select>
         </div>
     </div>
@@ -265,7 +265,7 @@ Valores válidos:
 8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA
 9 - Comercialização da produção no mercado externo"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__infoComProd__ideEstabel__tpComerc__id__indComerc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][indComerc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='2' {% ifequal tpComerc|readjson:'indComerc' '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal tpComerc|readjson:'indComerc' '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal tpComerc|readjson:'indComerc' '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal tpComerc|readjson:'indComerc' '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal tpComerc|readjson:'indComerc' '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option>
+            <option value="">---</option><option value='2' {% ifequal tpComerc|readjson:'indComerc'|to_str '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal tpComerc|readjson:'indComerc'|to_str '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal tpComerc|readjson:'indComerc'|to_str '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal tpComerc|readjson:'indComerc'|to_str '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal tpComerc|readjson:'indComerc'|to_str '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option>
             </select>
         </div>
     </div>
@@ -311,7 +311,7 @@ Valores válidos:
 2 - CPF
 Validação: Se indComerc for igual a [3, 7], deve ser igual a [1, 2]. Se indComerc for igual a [8], deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__tpInsc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][ideAdquir][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideAdquir|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideAdquir|readjson:'tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideAdquir|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideAdquir|readjson:'tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -546,7 +546,7 @@ Valores válidos:
 2 - CPF
 Validação: Se indComerc for igual a [3, 7], deve ser igual a [1, 2]. Se indComerc for igual a [8], deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__tpInsc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][ideAdquir][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideAdquir|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideAdquir|readjson:'tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideAdquir|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideAdquir|readjson:'tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -780,7 +780,7 @@ Valores válidos:
 1 - Administrativo
 2 - Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__infoComProd__ideEstabel__tpComerc__infoProcJud__id__tpProc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][infoProcJud][][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal infoProcJud|readjson:'tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal infoProcJud|readjson:'tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option>
+            <option value="">---</option><option value='1' {% ifequal infoProcJud|readjson:'tpProc'|to_str '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal infoProcJud|readjson:'tpProc'|to_str '2' %}selected{% endifequal %}>2 - Judicial</option>
             </select>
         </div>
     </div>
@@ -871,7 +871,7 @@ Valores válidos:
 1 - Administrativo
 2 - Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__infoComProd__ideEstabel__tpComerc__infoProcJud__id__tpProc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][infoProcJud][][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal infoProcJud|readjson:'tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal infoProcJud|readjson:'tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option>
+            <option value="">---</option><option value='1' {% ifequal infoProcJud|readjson:'tpProc'|to_str '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal infoProcJud|readjson:'tpProc'|to_str '2' %}selected{% endifequal %}>2 - Judicial</option>
             </select>
         </div>
     </div>
@@ -969,7 +969,7 @@ Valores válidos:
 8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA
 9 - Comercialização da produção no mercado externo"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__infoComProd__ideEstabel__tpComerc__id__indComerc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][indComerc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='2' {% ifequal tpComerc|readjson:'indComerc' '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal tpComerc|readjson:'indComerc' '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal tpComerc|readjson:'indComerc' '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal tpComerc|readjson:'indComerc' '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal tpComerc|readjson:'indComerc' '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option>
+            <option value="">---</option><option value='2' {% ifequal tpComerc|readjson:'indComerc'|to_str '2' %}selected{% endifequal %}>2 - Comercialização da produção efetuada diretamente no varejo a consumidor final ou a outro produtor rural pessoa física por produtor rural pessoa física, inclusive por segurado especial, ou por pessoa física não produtor rural</option><option value='3' {% ifequal tpComerc|readjson:'indComerc'|to_str '3' %}selected{% endifequal %}>3 - Comercialização da produção por prod. rural PF/seg. especial - Vendas a PJ (exceto entidade inscrita no Programa de Aquisição de Alimentos - PAA) ou a intermediário PF</option><option value='7' {% ifequal tpComerc|readjson:'indComerc'|to_str '7' %}selected{% endifequal %}>7 - Comercialização da produção isenta de acordo com a Lei 13.606/2018</option><option value='8' {% ifequal tpComerc|readjson:'indComerc'|to_str '8' %}selected{% endifequal %}>8 - Comercialização da produção da pessoa física/segurado especial para entidade inscrita no PAA</option><option value='9' {% ifequal tpComerc|readjson:'indComerc'|to_str '9' %}selected{% endifequal %}>9 - Comercialização da produção no mercado externo</option>
             </select>
         </div>
     </div>
@@ -1015,7 +1015,7 @@ Valores válidos:
 2 - CPF
 Validação: Se indComerc for igual a [3, 7], deve ser igual a [1, 2]. Se indComerc for igual a [8], deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__tpInsc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][ideAdquir][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideAdquir|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideAdquir|readjson:'tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideAdquir|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideAdquir|readjson:'tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -1250,7 +1250,7 @@ Valores válidos:
 2 - CPF
 Validação: Se indComerc for igual a [3, 7], deve ser igual a [1, 2]. Se indComerc for igual a [8], deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__infoComProd__ideEstabel__tpComerc__ideAdquir__id__tpInsc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][ideAdquir][][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal ideAdquir|readjson:'tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideAdquir|readjson:'tpInsc' '2' %}selected{% endifequal %}>2 - CPF</option>
+            <option value="">---</option><option value='1' {% ifequal ideAdquir|readjson:'tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideAdquir|readjson:'tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
         </div>
     </div>
@@ -1484,7 +1484,7 @@ Valores válidos:
 1 - Administrativo
 2 - Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__infoComProd__ideEstabel__tpComerc__infoProcJud__id__tpProc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][infoProcJud][][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal infoProcJud|readjson:'tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal infoProcJud|readjson:'tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option>
+            <option value="">---</option><option value='1' {% ifequal infoProcJud|readjson:'tpProc'|to_str '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal infoProcJud|readjson:'tpProc'|to_str '2' %}selected{% endifequal %}>2 - Judicial</option>
             </select>
         </div>
     </div>
@@ -1575,7 +1575,7 @@ Valores válidos:
 1 - Administrativo
 2 - Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtComProd__infoComProd__ideEstabel__tpComerc__infoProcJud__id__tpProc" name="[evtComProd][infoComProd][ideEstabel][tpComerc][][infoProcJud][][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal infoProcJud|readjson:'tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal infoProcJud|readjson:'tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option>
+            <option value="">---</option><option value='1' {% ifequal infoProcJud|readjson:'tpProc'|to_str '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal infoProcJud|readjson:'tpProc'|to_str '2' %}selected{% endifequal %}>2 - Judicial</option>
             </select>
         </div>
     </div>

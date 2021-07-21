@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__ideEvento__id__indRetif" name="[evtCdBenefAlt][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCdBenefAlt|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCdBenefAlt|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenefAlt|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCdBenefAlt|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -262,7 +262,7 @@ Valores válidos:
 M - Masculino
 F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__alteracao__dadosBenef__id__sexo" name="[evtCdBenefAlt][alteracao][dadosBenef][sexo]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='M' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.sexo' 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.sexo' 'F' %}selected{% endifequal %}>F - Feminino</option>
+            <option value="">---</option><option value='M' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.sexo'|to_str 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.sexo'|to_str 'F' %}selected{% endifequal %}>F - Feminino</option>
             </select>
         </div>
     </div>
@@ -280,7 +280,7 @@ Valores válidos:
 5 - Indígena
 6 - Não informado"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__alteracao__dadosBenef__id__racaCor" name="[evtCdBenefAlt][alteracao][dadosBenef][racaCor]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor' '1' %}selected{% endifequal %}>1 - Branca</option><option value='2' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor' '2' %}selected{% endifequal %}>2 - Preta</option><option value='3' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor' '3' %}selected{% endifequal %}>3 - Parda</option><option value='4' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor' '4' %}selected{% endifequal %}>4 - Amarela</option><option value='5' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor' '5' %}selected{% endifequal %}>5 - Indígena</option><option value='6' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor' '6' %}selected{% endifequal %}>6 - Não informado</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor'|to_str '1' %}selected{% endifequal %}>1 - Branca</option><option value='2' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor'|to_str '2' %}selected{% endifequal %}>2 - Preta</option><option value='3' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor'|to_str '3' %}selected{% endifequal %}>3 - Parda</option><option value='4' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor'|to_str '4' %}selected{% endifequal %}>4 - Amarela</option><option value='5' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor'|to_str '5' %}selected{% endifequal %}>5 - Indígena</option><option value='6' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.racaCor'|to_str '6' %}selected{% endifequal %}>6 - Não informado</option>
             </select>
         </div>
     </div>
@@ -297,7 +297,7 @@ Valores válidos:
 4 - Separado
 5 - Viúvo"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__alteracao__dadosBenef__id__estCiv" name="[evtCdBenefAlt][alteracao][dadosBenef][estCiv]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.estCiv' '1' %}selected{% endifequal %}>1 - Solteiro</option><option value='2' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.estCiv' '2' %}selected{% endifequal %}>2 - Casado</option><option value='3' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.estCiv' '3' %}selected{% endifequal %}>3 - Divorciado</option><option value='4' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.estCiv' '4' %}selected{% endifequal %}>4 - Separado</option><option value='5' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.estCiv' '5' %}selected{% endifequal %}>5 - Viúvo</option>
+            <option value="">---</option><option value='1' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.estCiv'|to_str '1' %}selected{% endifequal %}>1 - Solteiro</option><option value='2' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.estCiv'|to_str '2' %}selected{% endifequal %}>2 - Casado</option><option value='3' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.estCiv'|to_str '3' %}selected{% endifequal %}>3 - Divorciado</option><option value='4' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.estCiv'|to_str '4' %}selected{% endifequal %}>4 - Separado</option><option value='5' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.estCiv'|to_str '5' %}selected{% endifequal %}>5 - Viúvo</option>
             </select>
         </div>
     </div>
@@ -311,7 +311,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__alteracao__dadosBenef__id__incFisMen" name="[evtCdBenefAlt][alteracao][dadosBenef][incFisMen]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.incFisMen' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.incFisMen' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.incFisMen'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCdBenefAlt|readjson:'alteracao.dadosBenef.incFisMen'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -600,7 +600,7 @@ Valores válidos:
 M - Masculino
 F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__alteracao__dadosBenef__dependente__id__sexoDep" name="[evtCdBenefAlt][alteracao][dadosBenef][dependente][][sexoDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='M' {% ifequal dependente|readjson:'sexoDep' 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente|readjson:'sexoDep' 'F' %}selected{% endifequal %}>F - Feminino</option>
+            <option value="">---</option><option value='M' {% ifequal dependente|readjson:'sexoDep'|to_str 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente|readjson:'sexoDep'|to_str 'F' %}selected{% endifequal %}>F - Feminino</option>
             </select>
         </div>
     </div>
@@ -614,7 +614,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__alteracao__dadosBenef__dependente__id__depIRRF" name="[evtCdBenefAlt][alteracao][dadosBenef][dependente][][depIRRF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'depIRRF' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'depIRRF' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'depIRRF'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'depIRRF'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -628,7 +628,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__alteracao__dadosBenef__dependente__id__incFisMen" name="[evtCdBenefAlt][alteracao][dadosBenef][dependente][][incFisMen]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'incFisMen' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'incFisMen' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'incFisMen'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'incFisMen'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -707,7 +707,7 @@ Valores válidos:
 M - Masculino
 F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__alteracao__dadosBenef__dependente__id__sexoDep" name="[evtCdBenefAlt][alteracao][dadosBenef][dependente][][sexoDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='M' {% ifequal dependente|readjson:'sexoDep' 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente|readjson:'sexoDep' 'F' %}selected{% endifequal %}>F - Feminino</option>
+            <option value="">---</option><option value='M' {% ifequal dependente|readjson:'sexoDep'|to_str 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente|readjson:'sexoDep'|to_str 'F' %}selected{% endifequal %}>F - Feminino</option>
             </select>
         </div>
     </div>
@@ -721,7 +721,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__alteracao__dadosBenef__dependente__id__depIRRF" name="[evtCdBenefAlt][alteracao][dadosBenef][dependente][][depIRRF]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'depIRRF' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'depIRRF' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'depIRRF'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'depIRRF'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -735,7 +735,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCdBenefAlt__alteracao__dadosBenef__dependente__id__incFisMen" name="[evtCdBenefAlt][alteracao][dadosBenef][dependente][][incFisMen]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'incFisMen' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'incFisMen' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal dependente|readjson:'incFisMen'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'incFisMen'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>

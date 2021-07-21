@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__ideEvento__id__indRetif" name="[evtMonit][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtMonit|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtMonit|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtMonit|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtMonit|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -248,7 +248,7 @@ Valores válidos:
 9 - Exame médico demissional
 Validação: Se informado [0], não pode existir outro evento S-2220 para o mesmo contrato com dtAso anterior."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__id__tpExameOcup" name="[evtMonit][exMedOcup][tpExameOcup]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '0' %}selected{% endifequal %}>0 - Exame médico admissional</option><option value='1' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '1' %}selected{% endifequal %}>1 - Exame médico periódico, conforme Norma Regulamentadora 07 - NR-07 e/ou planejamento do Programa de Controle Médico de Saúde Ocupacional - PCMSO</option><option value='2' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '2' %}selected{% endifequal %}>2 - Exame médico de retorno ao trabalho</option><option value='3' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '3' %}selected{% endifequal %}>3 - Exame médico de mudança de função ou de mudança de risco ocupacional</option><option value='4' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '4' %}selected{% endifequal %}>4 - Exame médico de monitoração pontual, não enquadrado nos demais casos</option><option value='9' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup' '9' %}selected{% endifequal %}>9 - Exame médico demissional</option>
+            <option value="">---</option><option value='0' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup'|to_str '0' %}selected{% endifequal %}>0 - Exame médico admissional</option><option value='1' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup'|to_str '1' %}selected{% endifequal %}>1 - Exame médico periódico, conforme Norma Regulamentadora 07 - NR-07 e/ou planejamento do Programa de Controle Médico de Saúde Ocupacional - PCMSO</option><option value='2' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup'|to_str '2' %}selected{% endifequal %}>2 - Exame médico de retorno ao trabalho</option><option value='3' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup'|to_str '3' %}selected{% endifequal %}>3 - Exame médico de mudança de função ou de mudança de risco ocupacional</option><option value='4' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup'|to_str '4' %}selected{% endifequal %}>4 - Exame médico de monitoração pontual, não enquadrado nos demais casos</option><option value='9' {% ifequal evtMonit|readjson:'exMedOcup.tpExameOcup'|to_str '9' %}selected{% endifequal %}>9 - Exame médico demissional</option>
             </select>
         </div>
     </div>
@@ -292,7 +292,7 @@ Valores válidos:
 1 - Apto
 2 - Inapto"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__id__resAso" name="[evtMonit][exMedOcup][aso][resAso]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtMonit|readjson:'exMedOcup.aso.resAso' '1' %}selected{% endifequal %}>1 - Apto</option><option value='2' {% ifequal evtMonit|readjson:'exMedOcup.aso.resAso' '2' %}selected{% endifequal %}>2 - Inapto</option>
+            <option value="">---</option><option value='1' {% ifequal evtMonit|readjson:'exMedOcup.aso.resAso'|to_str '1' %}selected{% endifequal %}>1 - Apto</option><option value='2' {% ifequal evtMonit|readjson:'exMedOcup.aso.resAso'|to_str '2' %}selected{% endifequal %}>2 - Inapto</option>
             </select>
         </div>
     </div>
@@ -355,7 +355,7 @@ Valores válidos:
 1 - Inicial
 2 - Sequencial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__exame__id__ordExame" name="[evtMonit][exMedOcup][aso][exame][][ordExame]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal exame|readjson:'ordExame' '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame|readjson:'ordExame' '2' %}selected{% endifequal %}>2 - Sequencial</option>
+            <option value="">---</option><option value='1' {% ifequal exame|readjson:'ordExame'|to_str '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame|readjson:'ordExame'|to_str '2' %}selected{% endifequal %}>2 - Sequencial</option>
             </select>
         </div>
     </div>
@@ -371,7 +371,7 @@ Valores válidos:
 3 - Estável
 4 - Agravamento"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__exame__id__indResult" name="[evtMonit][exMedOcup][aso][exame][][indResult]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal exame|readjson:'indResult' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal exame|readjson:'indResult' '2' %}selected{% endifequal %}>2 - Alterado</option><option value='3' {% ifequal exame|readjson:'indResult' '3' %}selected{% endifequal %}>3 - Estável</option><option value='4' {% ifequal exame|readjson:'indResult' '4' %}selected{% endifequal %}>4 - Agravamento</option>
+            <option value="">---</option><option value='1' {% ifequal exame|readjson:'indResult'|to_str '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal exame|readjson:'indResult'|to_str '2' %}selected{% endifequal %}>2 - Alterado</option><option value='3' {% ifequal exame|readjson:'indResult'|to_str '3' %}selected{% endifequal %}>3 - Estável</option><option value='4' {% ifequal exame|readjson:'indResult'|to_str '4' %}selected{% endifequal %}>4 - Agravamento</option>
             </select>
         </div>
     </div>
@@ -438,7 +438,7 @@ Valores válidos:
 1 - Inicial
 2 - Sequencial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__exame__id__ordExame" name="[evtMonit][exMedOcup][aso][exame][][ordExame]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal exame|readjson:'ordExame' '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame|readjson:'ordExame' '2' %}selected{% endifequal %}>2 - Sequencial</option>
+            <option value="">---</option><option value='1' {% ifequal exame|readjson:'ordExame'|to_str '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame|readjson:'ordExame'|to_str '2' %}selected{% endifequal %}>2 - Sequencial</option>
             </select>
         </div>
     </div>
@@ -454,7 +454,7 @@ Valores válidos:
 3 - Estável
 4 - Agravamento"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__exame__id__indResult" name="[evtMonit][exMedOcup][aso][exame][][indResult]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal exame|readjson:'indResult' '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal exame|readjson:'indResult' '2' %}selected{% endifequal %}>2 - Alterado</option><option value='3' {% ifequal exame|readjson:'indResult' '3' %}selected{% endifequal %}>3 - Estável</option><option value='4' {% ifequal exame|readjson:'indResult' '4' %}selected{% endifequal %}>4 - Agravamento</option>
+            <option value="">---</option><option value='1' {% ifequal exame|readjson:'indResult'|to_str '1' %}selected{% endifequal %}>1 - Normal</option><option value='2' {% ifequal exame|readjson:'indResult'|to_str '2' %}selected{% endifequal %}>2 - Alterado</option><option value='3' {% ifequal exame|readjson:'indResult'|to_str '3' %}selected{% endifequal %}>3 - Estável</option><option value='4' {% ifequal exame|readjson:'indResult'|to_str '4' %}selected{% endifequal %}>4 - Agravamento</option>
             </select>
         </div>
     </div>

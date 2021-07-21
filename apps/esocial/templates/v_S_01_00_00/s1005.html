@@ -205,7 +205,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__inclusao__ideEstab__id__tpInsc" name="[evtTabEstab][infoEstab][inclusao][ideEstab][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.ideEstab.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.ideEstab.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.ideEstab.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.ideEstab.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.ideEstab.tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.ideEstab.tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -346,7 +346,7 @@ Valores válidos:
 1 - Administrativo
 2 - Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__procAdmJudRat__id__tpProc" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][procAdmJudRat][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc'|to_str '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc'|to_str '2' %}selected{% endifequal %}>2 - Judicial</option>
             </select>
         </div>
     </div>
@@ -405,7 +405,7 @@ Valores válidos:
 2 - Judicial
 4 - Processo FAP de exercício anterior a 2019"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__procAdmJudFap__id__tpProc" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][procAdmJudFap][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' '4' %}selected{% endifequal %}>4 - Processo FAP de exercício anterior a 2019</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc'|to_str '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc'|to_str '2' %}selected{% endifequal %}>2 - Judicial</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc'|to_str '4' %}selected{% endifequal %}>4 - Processo FAP de exercício anterior a 2019</option>
             </select>
         </div>
     </div>
@@ -469,7 +469,7 @@ Valores válidos:
 3 - Segurado especial
 Validação: Deve ser compatível com o cadastro da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoCaepf__id__tpCaepf" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoCaepf][tpCaepf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoCaepf.tpCaepf' '1' %}selected{% endifequal %}>1 - Contribuinte individual</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoCaepf.tpCaepf' '2' %}selected{% endifequal %}>2 - Produtor rural</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoCaepf.tpCaepf' '3' %}selected{% endifequal %}>3 - Segurado especial</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoCaepf.tpCaepf'|to_str '1' %}selected{% endifequal %}>1 - Contribuinte individual</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoCaepf.tpCaepf'|to_str '2' %}selected{% endifequal %}>2 - Produtor rural</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoCaepf.tpCaepf'|to_str '3' %}selected{% endifequal %}>3 - Segurado especial</option>
             </select>
         </div>
     </div>
@@ -507,7 +507,7 @@ Valores válidos:
 1 - Contribuição patronal substituída
 2 - Contribuição patronal não substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoObra__id__indSubstPatrObra" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoObra][indSubstPatrObra]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoObra.indSubstPatrObra' '1' %}selected{% endifequal %}>1 - Contribuição patronal substituída</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoObra.indSubstPatrObra' '2' %}selected{% endifequal %}>2 - Contribuição patronal não substituída</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoObra.indSubstPatrObra'|to_str '1' %}selected{% endifequal %}>1 - Contribuição patronal substituída</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoObra.indSubstPatrObra'|to_str '2' %}selected{% endifequal %}>2 - Contribuição patronal não substituída</option>
             </select>
         </div>
     </div>
@@ -737,7 +737,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__alteracao__ideEstab__id__tpInsc" name="[evtTabEstab][infoEstab][alteracao][ideEstab][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.ideEstab.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.ideEstab.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.ideEstab.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.ideEstab.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.ideEstab.tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.ideEstab.tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -878,7 +878,7 @@ Valores válidos:
 1 - Administrativo
 2 - Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__procAdmJudRat__id__tpProc" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][procAdmJudRat][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc'|to_str '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudRat.tpProc'|to_str '2' %}selected{% endifequal %}>2 - Judicial</option>
             </select>
         </div>
     </div>
@@ -937,7 +937,7 @@ Valores válidos:
 2 - Judicial
 4 - Processo FAP de exercício anterior a 2019"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__procAdmJudFap__id__tpProc" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][procAdmJudFap][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' '2' %}selected{% endifequal %}>2 - Judicial</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc' '4' %}selected{% endifequal %}>4 - Processo FAP de exercício anterior a 2019</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc'|to_str '1' %}selected{% endifequal %}>1 - Administrativo</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc'|to_str '2' %}selected{% endifequal %}>2 - Judicial</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.procAdmJudFap.tpProc'|to_str '4' %}selected{% endifequal %}>4 - Processo FAP de exercício anterior a 2019</option>
             </select>
         </div>
     </div>
@@ -1001,7 +1001,7 @@ Valores válidos:
 3 - Segurado especial
 Validação: Deve ser compatível com o cadastro da RFB."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoCaepf__id__tpCaepf" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoCaepf][tpCaepf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoCaepf.tpCaepf' '1' %}selected{% endifequal %}>1 - Contribuinte individual</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoCaepf.tpCaepf' '2' %}selected{% endifequal %}>2 - Produtor rural</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoCaepf.tpCaepf' '3' %}selected{% endifequal %}>3 - Segurado especial</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoCaepf.tpCaepf'|to_str '1' %}selected{% endifequal %}>1 - Contribuinte individual</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoCaepf.tpCaepf'|to_str '2' %}selected{% endifequal %}>2 - Produtor rural</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoCaepf.tpCaepf'|to_str '3' %}selected{% endifequal %}>3 - Segurado especial</option>
             </select>
         </div>
     </div>
@@ -1039,7 +1039,7 @@ Valores válidos:
 1 - Contribuição patronal substituída
 2 - Contribuição patronal não substituída"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoObra__id__indSubstPatrObra" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoObra][indSubstPatrObra]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoObra.indSubstPatrObra' '1' %}selected{% endifequal %}>1 - Contribuição patronal substituída</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoObra.indSubstPatrObra' '2' %}selected{% endifequal %}>2 - Contribuição patronal não substituída</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoObra.indSubstPatrObra'|to_str '1' %}selected{% endifequal %}>1 - Contribuição patronal substituída</option><option value='2' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoObra.indSubstPatrObra'|to_str '2' %}selected{% endifequal %}>2 - Contribuição patronal não substituída</option>
             </select>
         </div>
     </div>
@@ -1313,7 +1313,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__exclusao__ideEstab__id__tpInsc" name="[evtTabEstab][infoEstab][exclusao][ideEstab][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.exclusao.ideEstab.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.exclusao.ideEstab.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.exclusao.ideEstab.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.exclusao.ideEstab.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.exclusao.ideEstab.tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.exclusao.ideEstab.tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>

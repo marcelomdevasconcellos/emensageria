@@ -53,7 +53,7 @@ Valores válidos:
 1 - Original
 2 - Retificação"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__ideEvento__id__indRetif" name="[evtCAT][ideEvento][indRetif]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'ideEvento.indRetif' '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCAT|readjson:'ideEvento.indRetif' '2' %}selected{% endifequal %}>2 - Retificação</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'ideEvento.indRetif'|to_str '1' %}selected{% endifequal %}>1 - Original</option><option value='2' {% ifequal evtCAT|readjson:'ideEvento.indRetif'|to_str '2' %}selected{% endifequal %}>2 - Retificação</option>
             </select>
         </div>
     </div>
@@ -255,7 +255,7 @@ Valores válidos:
 2 - Doença
 3 - Trajeto"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__id__tpAcid" name="[evtCAT][cat][tpAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.tpAcid' '1' %}selected{% endifequal %}>1 - Típico</option><option value='2' {% ifequal evtCAT|readjson:'cat.tpAcid' '2' %}selected{% endifequal %}>2 - Doença</option><option value='3' {% ifequal evtCAT|readjson:'cat.tpAcid' '3' %}selected{% endifequal %}>3 - Trajeto</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.tpAcid'|to_str '1' %}selected{% endifequal %}>1 - Típico</option><option value='2' {% ifequal evtCAT|readjson:'cat.tpAcid'|to_str '2' %}selected{% endifequal %}>2 - Doença</option><option value='3' {% ifequal evtCAT|readjson:'cat.tpAcid'|to_str '3' %}selected{% endifequal %}>3 - Trajeto</option>
             </select>
         </div>
     </div>
@@ -291,7 +291,7 @@ Valores válidos:
 2 - Reabertura
 3 - Comunicação de óbito"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__id__tpCat" name="[evtCAT][cat][tpCat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.tpCat' '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal evtCAT|readjson:'cat.tpCat' '2' %}selected{% endifequal %}>2 - Reabertura</option><option value='3' {% ifequal evtCAT|readjson:'cat.tpCat' '3' %}selected{% endifequal %}>3 - Comunicação de óbito</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.tpCat'|to_str '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal evtCAT|readjson:'cat.tpCat'|to_str '2' %}selected{% endifequal %}>2 - Reabertura</option><option value='3' {% ifequal evtCAT|readjson:'cat.tpCat'|to_str '3' %}selected{% endifequal %}>3 - Comunicação de óbito</option>
             </select>
         </div>
     </div>
@@ -307,7 +307,7 @@ S - Sim
 N - Não
 Validação: Se o tpCat for igual a [3], o campo deverá sempre ser preenchido com [S]. Se o tpCat for igual a [2], o campo deverá sempre ser preenchido com [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__id__indCatObito" name="[evtCAT][cat][indCatObito]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.indCatObito' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.indCatObito' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.indCatObito'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.indCatObito'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -333,7 +333,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__id__indComunPolicia" name="[evtCAT][cat][indComunPolicia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.indComunPolicia' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.indComunPolicia' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.indComunPolicia'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.indComunPolicia'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -358,7 +358,7 @@ Valores válidos:
 2 - Ordem judicial
 3 - Determinação de órgão fiscalizador"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__id__iniciatCAT" name="[evtCAT][cat][iniciatCAT]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.iniciatCAT' '1' %}selected{% endifequal %}>1 - Empregador</option><option value='2' {% ifequal evtCAT|readjson:'cat.iniciatCAT' '2' %}selected{% endifequal %}>2 - Ordem judicial</option><option value='3' {% ifequal evtCAT|readjson:'cat.iniciatCAT' '3' %}selected{% endifequal %}>3 - Determinação de órgão fiscalizador</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.iniciatCAT'|to_str '1' %}selected{% endifequal %}>1 - Empregador</option><option value='2' {% ifequal evtCAT|readjson:'cat.iniciatCAT'|to_str '2' %}selected{% endifequal %}>2 - Ordem judicial</option><option value='3' {% ifequal evtCAT|readjson:'cat.iniciatCAT'|to_str '3' %}selected{% endifequal %}>3 - Determinação de órgão fiscalizador</option>
             </select>
         </div>
     </div>
@@ -406,7 +406,7 @@ Valores válidos:
 6 - Embarcação
 9 - Outros"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__localAcidente__id__tpLocal" name="[evtCAT][cat][localAcidente][tpLocal]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '1' %}selected{% endifequal %}>1 - Estabelecimento do empregador no Brasil</option><option value='2' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '2' %}selected{% endifequal %}>2 - Estabelecimento do empregador no exterior</option><option value='3' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '3' %}selected{% endifequal %}>3 - Estabelecimento de terceiros onde o empregador presta serviços</option><option value='4' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '4' %}selected{% endifequal %}>4 - Via pública</option><option value='5' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '5' %}selected{% endifequal %}>5 - Área rural</option><option value='6' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '6' %}selected{% endifequal %}>6 - Embarcação</option><option value='9' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal' '9' %}selected{% endifequal %}>9 - Outros</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal'|to_str '1' %}selected{% endifequal %}>1 - Estabelecimento do empregador no Brasil</option><option value='2' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal'|to_str '2' %}selected{% endifequal %}>2 - Estabelecimento do empregador no exterior</option><option value='3' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal'|to_str '3' %}selected{% endifequal %}>3 - Estabelecimento de terceiros onde o empregador presta serviços</option><option value='4' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal'|to_str '4' %}selected{% endifequal %}>4 - Via pública</option><option value='5' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal'|to_str '5' %}selected{% endifequal %}>5 - Área rural</option><option value='6' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal'|to_str '6' %}selected{% endifequal %}>6 - Embarcação</option><option value='9' {% ifequal evtCAT|readjson:'cat.localAcidente.tpLocal'|to_str '9' %}selected{% endifequal %}>9 - Outros</option>
             </select>
         </div>
     </div>
@@ -551,7 +551,7 @@ Valores válidos:
 3 - CAEPF
 4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__localAcidente__ideLocalAcid__id__tpInsc" name="[evtCAT][cat][localAcidente][ideLocalAcid][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.localAcidente.ideLocalAcid.tpInsc' '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtCAT|readjson:'cat.localAcidente.ideLocalAcid.tpInsc' '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtCAT|readjson:'cat.localAcidente.ideLocalAcid.tpInsc' '4' %}selected{% endifequal %}>4 - CNO</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.localAcidente.ideLocalAcid.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtCAT|readjson:'cat.localAcidente.ideLocalAcid.tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtCAT|readjson:'cat.localAcidente.ideLocalAcid.tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
         </div>
     </div>
@@ -618,7 +618,7 @@ Valores válidos:
 2 - Direita
 3 - Ambas"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__parteAtingida__id__lateralidade" name="[evtCAT][cat][parteAtingida][lateralidade]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade' '0' %}selected{% endifequal %}>0 - Não aplicável</option><option value='1' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade' '1' %}selected{% endifequal %}>1 - Esquerda</option><option value='2' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade' '2' %}selected{% endifequal %}>2 - Direita</option><option value='3' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade' '3' %}selected{% endifequal %}>3 - Ambas</option>
+            <option value="">---</option><option value='0' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade'|to_str '0' %}selected{% endifequal %}>0 - Não aplicável</option><option value='1' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade'|to_str '1' %}selected{% endifequal %}>1 - Esquerda</option><option value='2' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade'|to_str '2' %}selected{% endifequal %}>2 - Direita</option><option value='3' {% ifequal evtCAT|readjson:'cat.parteAtingida.lateralidade'|to_str '3' %}selected{% endifequal %}>3 - Ambas</option>
             </select>
         </div>
     </div>
@@ -710,7 +710,7 @@ Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__atestado__id__indInternacao" name="[evtCAT][cat][atestado][indInternacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.atestado.indInternacao' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.atestado.indInternacao' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.atestado.indInternacao'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.atestado.indInternacao'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -734,7 +734,7 @@ S - Sim
 N - Não
 Validação: Se o campo indCatObito for igual a [S], o campo deve sempre ser preenchido com [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__atestado__id__indAfast" name="[evtCAT][cat][atestado][indAfast]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.atestado.indAfast' 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.atestado.indAfast' 'N' %}selected{% endifequal %}>N - Não</option>
+            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.atestado.indAfast'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.atestado.indAfast'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -825,7 +825,7 @@ Valores válidos:
 2 - Conselho Regional de Odontologia - CRO
 3 - Registro do Ministério da Saúde - RMS"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCAT__cat__atestado__emitente__id__ideOC" name="[evtCAT][cat][atestado][emitente][ideOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.atestado.emitente.ideOC' '1' %}selected{% endifequal %}>1 - Conselho Regional de Medicina - CRM</option><option value='2' {% ifequal evtCAT|readjson:'cat.atestado.emitente.ideOC' '2' %}selected{% endifequal %}>2 - Conselho Regional de Odontologia - CRO</option><option value='3' {% ifequal evtCAT|readjson:'cat.atestado.emitente.ideOC' '3' %}selected{% endifequal %}>3 - Registro do Ministério da Saúde - RMS</option>
+            <option value="">---</option><option value='1' {% ifequal evtCAT|readjson:'cat.atestado.emitente.ideOC'|to_str '1' %}selected{% endifequal %}>1 - Conselho Regional de Medicina - CRM</option><option value='2' {% ifequal evtCAT|readjson:'cat.atestado.emitente.ideOC'|to_str '2' %}selected{% endifequal %}>2 - Conselho Regional de Odontologia - CRO</option><option value='3' {% ifequal evtCAT|readjson:'cat.atestado.emitente.ideOC'|to_str '3' %}selected{% endifequal %}>3 - Registro do Ministério da Saúde - RMS</option>
             </select>
         </div>
     </div>

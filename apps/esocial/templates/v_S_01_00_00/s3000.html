@@ -238,7 +238,7 @@ Valores válidos:
 2 - Anual (13° salário)
 Validação: Preenchimento obrigatório e exclusivo se tpEvento = [S-1200, S-1202, S-1207, S-1280, S-1300]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtExclusao__infoExclusao__ideFolhaPagto__id__indApuracao" name="[evtExclusao][infoExclusao][ideFolhaPagto][indApuracao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtExclusao|readjson:'infoExclusao.ideFolhaPagto.indApuracao' '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtExclusao|readjson:'infoExclusao.ideFolhaPagto.indApuracao' '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
+            <option value="">---</option><option value='1' {% ifequal evtExclusao|readjson:'infoExclusao.ideFolhaPagto.indApuracao'|to_str '1' %}selected{% endifequal %}>1 - Mensal</option><option value='2' {% ifequal evtExclusao|readjson:'infoExclusao.ideFolhaPagto.indApuracao'|to_str '2' %}selected{% endifequal %}>2 - Anual (13° salário)</option>
             </select>
         </div>
     </div>
