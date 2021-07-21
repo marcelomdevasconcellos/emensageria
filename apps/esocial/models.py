@@ -561,7 +561,8 @@ class TransmissorEventos(BaseModelEsocial):
                 self.resposta_codigo = soup.find('cdResposta').text
                 self.resposta_descricao = soup.find('descResposta').text
                 self.data_hora_consulta = datetime.now()
-                self.processamento_versao_aplicativo = soup.find('versaoAplicativoProcessamentoLote').text
+                if soup.find('versaoAplicativoProcessamentoLote'):
+                    self.processamento_versao_aplicativo = soup.find('versaoAplicativoProcessamentoLote').text
                 self.arquivo_header = dados['header']
                 self.arquivo_request = dados['request']
                 self.arquivo_response = dados['response']
