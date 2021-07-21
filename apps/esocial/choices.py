@@ -9,14 +9,12 @@ TPAMB = {
 URLS_ESOCIAL = {
     'Produção': {
         'WsEnviarLoteEventos': {
-            'url': 'https://webservices.producaorestrita.esocial.gov.br/servicos'
-                   '/empregador/enviarloteeventos/WsEnviarLoteEventos.svc',
+            'url': 'https://webservices.envio.esocial.gov.br/servicos/empregador/enviarloteeventos/WsEnviarLoteEventos.svc',
             'action': 'http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/v1_1_0/'
                       'ServicoEnviarLoteEventos/EnviarLoteEventos',
         },
         'WsConsultarLoteEventos': {
-            'url': 'https://webservices.producaorestrita.esocial.gov.br/servicos/empregador'
-                   '/consultarloteeventos/WsConsultarLoteEventos.svc',
+            'url': 'https://webservices.consulta.esocial.gov.br/servicos/empregador/consultarloteeventos/WsConsultarLoteEventos.svc',
             'action': 'http://www.esocial.gov.br/servicos/empregador/lote/eventos/envio/'
                       'consulta/retornoProcessamento/v1_1_0/ServicoConsultarLoteEventos/ConsultarLoteEventos',
         },
