@@ -26,9 +26,11 @@ class EventosSerializer(ModelSerializer):
     origem_txt = CharField(source='get_origem_display', read_only=True)
 
     def create(self, validated_data):
+        from config.settings import ESOCIAL_TPAMB
         validated_data['origem'] = EVENTO_ORIGEM_API
         validated_data['is_aberto'] = False
         validated_data['status'] = STATUS_EVENTO_IMPORTADO
+        validated_data['tpamb'] = ESOCIAL_TPAMB
         if validated_data.get('evento_xml') and not validated_data.get('evento_json'):
             import json
             dict = xmltodict.parse(validated_data['evento_xml'])
@@ -36,10 +38,12 @@ class EventosSerializer(ModelSerializer):
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
+        from config.settings import ESOCIAL_TPAMB
         validated_data['origem'] = EVENTO_ORIGEM_API
         validated_data['is_aberto'] = False
         validated_data['status'] = STATUS_EVENTO_IMPORTADO
         validated_data['ocorrencias_json'] = None
+        validated_data['tpamb'] = ESOCIAL_TPAMB
         validated_data['retorno_envio_json'] = '{}'
         validated_data['retorno_consulta_json'] = '{}'
         if validated_data['evento_xml'] and not validated_data['evento_json']:

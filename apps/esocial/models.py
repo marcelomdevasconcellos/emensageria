@@ -285,6 +285,7 @@ class TransmissorEventos(BaseModelEsocial):
 
     def enviar(self, service='WsEnviarLoteEventos', request=None):
         from .choices import COMMAND_CURL
+        from config.settings import ESOCIAL_TPAMB
         date_now = datetime.now().strftime('%Y%m%d%H%M%S')
 
         dados = {'quant_eventos': self.quant_eventos(), 'empregador_tpinsc': self.empregador_tpinsc,
@@ -294,8 +295,8 @@ class TransmissorEventos(BaseModelEsocial):
                  'transmissor_id': self.id, 'header': self.get_header(service, date_now),
                  'request': self.get_request(service, date_now),
                  'response': self.get_response(service, date_now), 'service': service,
-                 'url': URLS_ESOCIAL[config.ESOCIAL_TP_AMB][service]['url'],
-                 'action': URLS_ESOCIAL[config.ESOCIAL_TP_AMB][service]['action'],
+                 'url': URLS_ESOCIAL[ESOCIAL_TPAMB][service]['url'],
+                 'action': URLS_ESOCIAL[ESOCIAL_TPAMB][service]['action'],
                  'cert': self.transmissor.certificado.cert_pem_file(),
                  'key': self.transmissor.certificado.key_pem_file(), 'capath': self.transmissor.certificado.capath(),
                  'timeout': int(config.ESOCIAL_TIMEOUT)}
@@ -473,6 +474,7 @@ class TransmissorEventos(BaseModelEsocial):
                                 possuem eventos validados para envio neste lote!'''}
 
     def consultar(self, service='WsConsultarLoteEventos', request=None):
+        from config.settings import ESOCIAL_TPAMB
 
         date_now = datetime.now().strftime('%Y%m%d%H%M%S')
         dados = {'quant_eventos': self.quant_eventos(), 'empregador_tpinsc': self.empregador_tpinsc,
@@ -482,8 +484,8 @@ class TransmissorEventos(BaseModelEsocial):
                  'transmissor_id': self.id, 'header': self.get_header(service, date_now),
                  'request': self.get_request(service, date_now),
                  'response': self.get_response(service, date_now), 'service': service,
-                 'url': URLS_ESOCIAL[config.ESOCIAL_TP_AMB][service]['url'],
-                 'action': URLS_ESOCIAL[config.ESOCIAL_TP_AMB][service]['action'],
+                 'url': URLS_ESOCIAL[ESOCIAL_TPAMB][service]['url'],
+                 'action': URLS_ESOCIAL[ESOCIAL_TPAMB][service]['action'],
                  'cert': self.transmissor.certificado.cert_pem_file(),
                  'key': self.transmissor.certificado.key_pem_file(), 'capath': self.transmissor.certificado.capath(),
                  'timeout': int(config.ESOCIAL_TIMEOUT)}
