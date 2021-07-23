@@ -76,6 +76,8 @@ class EventosViewSet(ModelViewSet):
             retorno.update(dic)
             obj = get_object_or_404(Eventos, id=pk)
             return Response({'id': obj.id,
+                 'retorno': retorno.get('retorno'),
+                 'mensagem': retorno.get('mensagem'),
                  'identidade': obj.identidade,
                  'status': obj.status,
                  'status_txt': obj.get_status_display(),
@@ -100,6 +102,8 @@ class EventosViewSet(ModelViewSet):
             retorno.update(dic)
             obj = get_object_or_404(Eventos, id=pk)
             return Response({'id': obj.id,
+                 'retorno': retorno.get('retorno'),
+                 'mensagem': retorno.get('mensagem'),
                  'identidade': obj.identidade,
                  'status': obj.status,
                  'status_txt': obj.get_status_display(),
