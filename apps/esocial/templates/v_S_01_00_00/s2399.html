@@ -7,7 +7,23 @@
 
 <div id="evtTSVTermino__div">
     <div class="col-md-12">
-        <h4>S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término</h4>
+        <h4>Evento Trabalhador Sem Vínculo de Emprego/Estatutário - Término.
+Regras de validação:
+REGRA_ENVIO_PROC_FECHAMENTO
+REGRA_EVENTOS_EXTEMP
+REGRA_EVENTO_IMPACTO_FOPAG
+REGRA_EVE_FOPAG_SIMPLIFICADO
+REGRA_EXISTE_INFO_EMPREGADOR
+REGRA_GERAL_VALIDA_DADOS_TABCONTRIB
+REGRA_MESMO_PROCEMI
+REGRA_MUDANCA_CPF
+REGRA_REMUN_IND_RETIFICACAO
+REGRA_REMUN_PERMITE_EXCLUSAO
+REGRA_RETIFICA_MESMO_VINCULO
+REGRA_RUBRICA_COMPATIVEL_CATEGORIA
+REGRA_TSV_ATIVO_NA_DTEVENTO
+REGRA_VALIDA_EMPREGADOR
+REGRA_VALIDA_PERIODO_APURACAO</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -1609,7 +1625,7 @@ Valores válidos:
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
 Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__procJudTrab__id__nrProcJud" maxlength="20" value="{{procJudTrab|readjson:'nrProcJud'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][procJudTrab][][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1667,7 +1683,7 @@ Valores válidos:
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
 Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__procJudTrab__id__nrProcJud" maxlength="20" value="{{procJudTrab|readjson:'nrProcJud'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][procJudTrab][][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>

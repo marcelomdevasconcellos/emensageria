@@ -7,7 +7,17 @@
 
 <div id="evtTabLotacao__div">
     <div class="col-md-12">
-        <h4>S-1020 - Tabela de Lotações Tributárias</h4>
+        <h4>Evento Tabela de Lotações Tributárias.
+Regras de validação:
+REGRA_ENVIO_PROC_FECHAMENTO
+REGRA_EXISTE_INFO_EMPREGADOR
+REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE
+REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO
+REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO
+REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE
+REGRA_TABLOTACAO_VALIDA_FPASTERCEIROS
+REGRA_TAB_PERMITE_EXCLUSAO
+REGRA_VALIDA_DT_FUTURA</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -393,7 +403,7 @@ Validação: Deve ser um código de Terceiro válido e compatível com o FPAS/Te
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
 Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__fpasLotacao__infoProcJudTerceiros__procJudTerceiro__id__nrProcJud" maxlength="20" value="{{procJudTerceiro|readjson:'nrProcJud'}}" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][fpasLotacao][infoProcJudTerceiros][procJudTerceiro][][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -447,7 +457,7 @@ Validação: Deve ser um código de Terceiro válido e compatível com o FPAS/Te
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
 Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__fpasLotacao__infoProcJudTerceiros__procJudTerceiro__id__nrProcJud" maxlength="20" value="{{procJudTerceiro|readjson:'nrProcJud'}}" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][fpasLotacao][infoProcJudTerceiros][procJudTerceiro][][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -837,7 +847,7 @@ Validação: Deve ser um código de Terceiro válido e compatível com o FPAS/Te
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
 Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__fpasLotacao__infoProcJudTerceiros__procJudTerceiro__id__nrProcJud" maxlength="20" value="{{procJudTerceiro|readjson:'nrProcJud'}}" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][fpasLotacao][infoProcJudTerceiros][procJudTerceiro][][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -891,7 +901,7 @@ Validação: Deve ser um código de Terceiro válido e compatível com o FPAS/Te
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
 Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__fpasLotacao__infoProcJudTerceiros__procJudTerceiro__id__nrProcJud" maxlength="20" value="{{procJudTerceiro|readjson:'nrProcJud'}}" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][fpasLotacao][infoProcJudTerceiros][procJudTerceiro][][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>

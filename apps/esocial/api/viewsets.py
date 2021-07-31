@@ -71,8 +71,7 @@ class EventosViewSet(ModelViewSet):
                  'identidade': obj.identidade,
                  'status': obj.status,
                  'status_txt': obj.get_status_display(),
-                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
-                 'retorno_envio': json.loads(obj.retorno_envio_json or '{}'), }
+                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'), }
             retorno.update(dic)
             obj = get_object_or_404(Eventos, id=pk)
             return Response({'id': obj.id,
@@ -82,7 +81,8 @@ class EventosViewSet(ModelViewSet):
                  'status': obj.status,
                  'status_txt': obj.get_status_display(),
                  'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
-                 'retorno_envio': json.loads(obj.retorno_envio_json or '{}'), })
+                 'retorno_envio': json.loads(obj.retorno_envio_json or '{}'),
+                 'retorno_envio_lote': retorno.get('retorno_envio'), })
         else:
             return Response({'retorno': 'error',
                     'mensagem': 'Não foi possivel enviar o evento, pois somente poderá ser enviado com os status "Aguardando envio" ou "Importado"'})
@@ -97,8 +97,7 @@ class EventosViewSet(ModelViewSet):
                  'identidade': obj.identidade,
                  'status': obj.status,
                  'status_txt': obj.get_status_display(),
-                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
-                 'retorno_consulta': json.loads(obj.retorno_consulta_json or '{}'), }
+                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'), }
             retorno.update(dic)
             obj = get_object_or_404(Eventos, id=pk)
             return Response({'id': obj.id,
@@ -108,7 +107,8 @@ class EventosViewSet(ModelViewSet):
                  'status': obj.status,
                  'status_txt': obj.get_status_display(),
                  'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
-                 'retorno_consulta': json.loads(obj.retorno_consulta_json or '{}'), })
+                 'retorno_consulta': json.loads(obj.retorno_consulta_json or '{}'),
+                 'retorno_consulta_lote': retorno.get('retorno_consulta'), })
         else:
             return Response({'retorno': 'error',
                     'mensagem': 'Não foi possivel consultar o evento, pois o mesmo somente poderá ser consultado caso esteja com os status "Enviado" ou "Consultado"'})

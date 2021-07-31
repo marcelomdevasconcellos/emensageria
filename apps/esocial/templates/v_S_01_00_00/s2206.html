@@ -7,7 +7,21 @@
 
 <div id="evtAltContratual__div">
     <div class="col-md-12">
-        <h4>S-2206 - Alteração de Contrato de Trabalho/Relação Estatutária</h4>
+        <h4>Evento Alteração de Contrato de Trabalho/Relação Estatutária.
+Regras de validação:
+REGRA_ADMISSAO_VALIDA_DURACAO_CONTRATO
+REGRA_ALTERA_CATEG
+REGRA_EMPREGADO_DOMESTICO
+REGRA_ENVIO_PROC_FECHAMENTO
+REGRA_EVENTOS_EXTEMP
+REGRA_EXISTE_INFO_EMPREGADOR
+REGRA_EXTEMP_DOMESTICO
+REGRA_EXTEMP_REINTEGRACAO
+REGRA_GERAL_VALIDA_DADOS_TABCONTRIB
+REGRA_MESMO_PROCEMI
+REGRA_RETIFICA_MESMO_VINCULO
+REGRA_VALIDA_TRABALHADOR_BASE_CPF
+REGRA_VINCULO_ATIVO_NA_DTEVENTO</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -1048,7 +1062,7 @@ Validação: Informação obrigatória se codCateg for diferente de [111]."><i c
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
 Validação: Deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__alvaraJudicial__id__nrProcJud" maxlength="20" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.alvaraJudicial.nrProcJud'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][alvaraJudicial][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>

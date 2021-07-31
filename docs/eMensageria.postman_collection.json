@@ -246,7 +246,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/46/validar/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/50/validar/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -256,7 +256,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"46",
+						"50",
 						"validar",
 						""
 					],
@@ -282,7 +282,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/46/enviar/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/50/enviar/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -292,7 +292,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"46",
+						"50",
 						"enviar",
 						""
 					],
@@ -318,7 +318,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/46/consultar/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/50/consultar/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -328,7 +328,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"46",
+						"50",
 						"consultar",
 						""
 					],

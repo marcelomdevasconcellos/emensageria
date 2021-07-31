@@ -192,6 +192,10 @@ class TransmissorEventos(BaseModelEsocial):
         "Retorno do envio", blank=True, null=True)
     retorno_consulta_json = models.TextField(
         "Retorno da consulta", blank=True, null=True)
+    retorno_envio_lote_json = models.TextField(
+        "Retorno do envio (Lote)", blank=True, null=True)
+    retorno_consulta_lote_json = models.TextField(
+        "Retorno da consulta (Lote)", blank=True, null=True)
     ocorrencias_json = models.TextField(
         "Ocorrências", blank=True, null=True)
 
@@ -412,11 +416,19 @@ class TransmissorEventos(BaseModelEsocial):
                         oco_json = json.dumps(oco_dict.get('ocorrencias'))
                     evento = Eventos.objects.get(identidade=identidade)
                     evento.retorno_envio_json = retorno_envio_json
+                    evento.retorno_envio_lote_json = '{}'
                     evento.ocorrencias_json = oco_json
                     if oco_json and oco_json != '{}':
                         evento.status = STATUS_EVENTO_ERRO
                     evento.save()
                     ocorrencias_lista.append({'identidade': identidade, 'ocorrencias': oco_dict, })
+
+                if not soup.find_all('evento'):
+                    evts = Eventos.objects.filter(transmissor_evento=self).all()
+                    for evt in evts:
+                        evt.retorno_envio_json = '{}'
+                        evt.retorno_envio_lote_json = response_json
+                        evt.save()
 
                 if response_dict["status"]["cdResposta"] not in ('101', '201', '202'):
                     self.status = STATUS_TRANSMISSOR_ERRO_ENVIO
@@ -583,11 +595,19 @@ class TransmissorEventos(BaseModelEsocial):
                         oco_json = json.dumps(oco_dict.get('ocorrencias'))
                     evento = Eventos.objects.get(identidade=identidade)
                     evento.retorno_consulta_json = retorno_consulta_json
+                    evento.retorno_consulta_lote_json = '{}'
                     evento.ocorrencias_json = oco_json
                     ocorrencias_lista.append({'identidade': identidade, 'ocorrencias': oco_dict, })
                     if oco_json and oco_json != '{}':
                         evento.status = STATUS_EVENTO_ERRO
                     evento.save()
+
+                if not soup.find_all('evento'):
+                    evts = Eventos.objects.filter(transmissor_evento=self).all()
+                    for evt in evts:
+                        evt.retorno_consulta_json = '{}'
+                        evt.retorno_consulta_lote_json = response_json
+                        evt.save()
 
                 return {
                     'retorno': 'success',

@@ -7,7 +7,18 @@
 
 <div id="evtTabEstab__div">
     <div class="col-md-12">
-        <h4>S-1005 - Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos</h4>
+        <h4>Evento Tabela de Estabelecimentos, Obras ou Unidades de Órgãos Públicos.
+Regras de validação:
+REGRA_ENVIO_PROC_FECHAMENTO
+REGRA_EXISTE_INFO_EMPREGADOR
+REGRA_TABESTAB_VALIDA_ESTABELECIMENTO
+REGRA_TABESTAB_VALIDA_INFO_CNO
+REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE
+REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO
+REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO
+REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE
+REGRA_TAB_PERMITE_EXCLUSAO
+REGRA_VALIDA_DT_FUTURA</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -561,7 +572,7 @@ Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de co
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
 Validação: Se informado, deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoTrab__infoApr__id__nrProcJud" maxlength="20" value="{{evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoTrab.infoApr.nrProcJud'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoTrab][infoApr][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -665,7 +676,7 @@ Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de co
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
 Validação: Deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__infoTrab__infoPCD__id__nrProcJud" maxlength="20" value="{{evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.infoTrab.infoPCD.nrProcJud'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][infoTrab][infoPCD][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1093,7 +1104,7 @@ Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de co
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
 Validação: Se informado, deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoTrab__infoApr__id__nrProcJud" maxlength="20" value="{{evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoTrab.infoApr.nrProcJud'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoTrab][infoApr][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1197,7 +1208,7 @@ Preenchimento obrigatório somente no caso de dispensa, ainda que parcial, de co
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
 Validação: Deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__infoTrab__infoPCD__id__nrProcJud" maxlength="20" value="{{evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.infoTrab.infoPCD.nrProcJud'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][infoTrab][infoPCD][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>

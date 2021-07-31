@@ -7,7 +7,19 @@
 
 <div id="evtReintegr__div">
     <div class="col-md-12">
-        <h4>S-2298 - Reintegração/Outros Provimentos</h4>
+        <h4>Evento Reintegração/Outros Provimentos.
+Regras de validação:
+REGRA_EMPREGADO_DOMESTICO
+REGRA_ENVIO_PROC_FECHAMENTO
+REGRA_EVENTOS_EXTEMP
+REGRA_EVENTO_IMPACTO_FOPAG
+REGRA_EXISTE_EVENTO_DESLIGAMENTO
+REGRA_EXISTE_INFO_EMPREGADOR
+REGRA_EXTEMP_REINTEGRACAO
+REGRA_MESMO_PROCEMI
+REGRA_REINTEG_EXCLUSAO_EVENTO
+REGRA_RETIFICA_MESMO_VINCULO
+REGRA_VALIDA_EMPREGADOR</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -246,7 +258,7 @@ Validação: Os tipos [3, 4, 5] só podem ser informados se a natureza jurídica
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Em caso de reintegração por determinação judicial, preencher com o número do processo.
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Em caso de reintegração por determinação judicial, preencher com o número do processo.
 Validação: Informação obrigatória e exclusiva se tpReint = [1].
 Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtReintegr__infoReintegr__id__nrProcJud" maxlength="20" value="{{evtReintegr|readjson:'infoReintegr.nrProcJud'}}" name="[evtReintegr][infoReintegr][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />

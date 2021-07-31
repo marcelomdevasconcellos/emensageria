@@ -7,7 +7,34 @@
 
 <div id="evtRemun__div">
     <div class="col-md-12">
-        <h4>S-1200 - Remuneração de Trabalhador vinculado ao Regime Geral de Previd. Social</h4>
+        <h4>Evento Remuneração de Trabalhador vinculado ao Regime Geral de Previdência Social.
+Regras de validação:
+REGRA_BLOQUEIA_USO_CPF_EMPREGADOR
+REGRA_COMPATIBILIDADE_CATEGORIA_CLASSTRIB
+REGRA_COMPATIB_REGIME_PREV
+REGRA_CONTROLE_DUPLICIDADE
+REGRA_EMPREGADO_DOMESTICO
+REGRA_ENVIO_PROC_FECHAMENTO
+REGRA_EVENTOS_EXTEMP
+REGRA_EVE_FOPAG_SIMPLIFICADO
+REGRA_EXISTE_INFO_EMPREGADOR
+REGRA_GERAL_VALIDA_DADOS_TABCONTRIB
+REGRA_MESMO_PROCEMI
+REGRA_REMUN_ANUAL_DEZEMBRO
+REGRA_REMUN_CATEG_COMPATIVEL_TPLOTACAO
+REGRA_REMUN_CATEG_EXISTENTE_RET
+REGRA_REMUN_FGTS_ANTERIOR_ESOCIAL
+REGRA_REMUN_IND_RETIFICACAO
+REGRA_REMUN_JA_EXISTE_DESLIGAMENTO
+REGRA_REMUN_PERMITE_EXCLUSAO
+REGRA_REMUN_TRAB_EXISTENTE_RET
+REGRA_REMUN_VALIDA_INFO_COMPLEMENTAR
+REGRA_RUBRICA_COMPATIVEL_CATEGORIA
+REGRA_RUBRICA_COMPATIVEL_DECTERCEIRO
+REGRA_RUBRICA_COMPATIVEL_RESC
+REGRA_TSV_ATIVO_NA_DTEVENTO
+REGRA_VALIDA_EMPREGADOR
+REGRA_VALIDA_PERIODO_APURACAO</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -566,7 +593,7 @@ Valores válidos:
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
 Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtRemun__ideTrabalhador__procJudTrab__id__nrProcJud" maxlength="20" value="{{procJudTrab|readjson:'nrProcJud'}}" name="[evtRemun][ideTrabalhador][procJudTrab][][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -624,7 +651,7 @@ Valores válidos:
 <div id="nrProcJud__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número do processo judicial<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1].
 Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtRemun__ideTrabalhador__procJudTrab__id__nrProcJud" maxlength="20" value="{{procJudTrab|readjson:'nrProcJud'}}" name="[evtRemun][ideTrabalhador][procJudTrab][][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -7184,6 +7211,67 @@ Valores válidos:
         </blockquote>
     </div>
 </div>
+<div id="infoComplCont__div">
+    <div class="col-md-12">
+        <h4>Grupo preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codCBO__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Classificação Brasileira de Ocupações - CBO<a data-toggle="tooltip" title="Classificação Brasileira de Ocupações - CBO.
+Validação: Deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRemun__dmDev__infoComplCont__id__codCBO" maxlength="6" value="{{dmDev|readjson:'infoComplCont.codCBO'}}" name="[evtRemun][dmDev][][infoComplCont][codCBO]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="natAtividade__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Natureza da atividade<a data-toggle="tooltip" title="Natureza da atividade.
+Valores válidos:
+1 - Trabalho urbano
+2 - Trabalho rural
+Validação: O campo deve ser preenchido apenas se atendida uma das condições a seguir apresentadas:
+a) classTrib em S-1000 = [06, 07];
+b) classTrib em S-1000 = [21, 22] e existir remuneração para o trabalhador vinculada a um tipo de CAEPF informado em S-1005 como produtor rural ou segurado especial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtRemun__dmDev__infoComplCont__id__natAtividade" name="[evtRemun][dmDev][][infoComplCont][natAtividade]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal dmDev|readjson:'infoComplCont.natAtividade'|to_str '1' %}selected{% endifequal %}>1 - Trabalho urbano</option><option value='2' {% ifequal dmDev|readjson:'infoComplCont.natAtividade'|to_str '2' %}selected{% endifequal %}>2 - Trabalho rural</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="qtdDiasTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informação prestada exclusivamente pelo segurado especial em caso de contratação de contribuinte individual<a data-toggle="tooltip" title="Informação prestada exclusivamente pelo segurado especial em caso de contratação de contribuinte individual, indicando a quantidade de dias trabalhados pelo mesmo.
+Validação: Preenchimento obrigatório e exclusivo se classTrib em S-1000 = [22], natAtividade = [2] e indApuracao = [1]. Neste caso, preencher com um número entre 1 e 31, de acordo com o calendário anual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRemun__dmDev__infoComplCont__id__qtdDiasTrab" maxlength="2" value="{{dmDev|readjson:'infoComplCont.qtdDiasTrab'}}" name="[evtRemun][dmDev][][infoComplCont][qtdDiasTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
             </div>
         </blockquote>
     </div>
@@ -13651,6 +13739,67 @@ Valores válidos:
         </blockquote>
     </div>
 </div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>
+<div id="infoComplCont__div">
+    <div class="col-md-12">
+        <h4>Grupo preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codCBO__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Classificação Brasileira de Ocupações - CBO<a data-toggle="tooltip" title="Classificação Brasileira de Ocupações - CBO.
+Validação: Deve ser um código válido e existente na tabela de CBO, com 6 (seis) posições."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRemun__dmDev__infoComplCont__id__codCBO" maxlength="6" value="{{dmDev|readjson:'infoComplCont.codCBO'}}" name="[evtRemun][dmDev][][infoComplCont][codCBO]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="natAtividade__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Natureza da atividade<a data-toggle="tooltip" title="Natureza da atividade.
+Valores válidos:
+1 - Trabalho urbano
+2 - Trabalho rural
+Validação: O campo deve ser preenchido apenas se atendida uma das condições a seguir apresentadas:
+a) classTrib em S-1000 = [06, 07];
+b) classTrib em S-1000 = [21, 22] e existir remuneração para o trabalhador vinculada a um tipo de CAEPF informado em S-1005 como produtor rural ou segurado especial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtRemun__dmDev__infoComplCont__id__natAtividade" name="[evtRemun][dmDev][][infoComplCont][natAtividade]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal dmDev|readjson:'infoComplCont.natAtividade'|to_str '1' %}selected{% endifequal %}>1 - Trabalho urbano</option><option value='2' {% ifequal dmDev|readjson:'infoComplCont.natAtividade'|to_str '2' %}selected{% endifequal %}>2 - Trabalho rural</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="qtdDiasTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informação prestada exclusivamente pelo segurado especial em caso de contratação de contribuinte individual<a data-toggle="tooltip" title="Informação prestada exclusivamente pelo segurado especial em caso de contratação de contribuinte individual, indicando a quantidade de dias trabalhados pelo mesmo.
+Validação: Preenchimento obrigatório e exclusivo se classTrib em S-1000 = [22], natAtividade = [2] e indApuracao = [1]. Neste caso, preencher com um número entre 1 e 31, de acordo com o calendário anual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtRemun__dmDev__infoComplCont__id__qtdDiasTrab" maxlength="2" value="{{dmDev|readjson:'infoComplCont.qtdDiasTrab'}}" name="[evtRemun][dmDev][][infoComplCont][qtdDiasTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
             </div>
         </blockquote>
     </div>

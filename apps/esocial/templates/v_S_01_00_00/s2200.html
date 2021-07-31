@@ -7,7 +7,30 @@
 
 <div id="evtAdmissao__div">
     <div class="col-md-12">
-        <h4>S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador</h4>
+        <h4>Evento Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador.
+Regras de validação:
+REGRA_ADMISSAO_POSTERIOR_INICIO_ATIVIDADES
+REGRA_ADMISSAO_VALIDA_DT_ADM
+REGRA_ADMISSAO_VALIDA_DURACAO_CONTRATO
+REGRA_BLOQUEIA_USO_CPF_EMPREGADOR
+REGRA_COMPATIBILIDADE_CATEGORIA_CLASSTRIB
+REGRA_COMPATIB_CATEG_EVENTO
+REGRA_EMPREGADO_DOMESTICO
+REGRA_ENVIO_PROC_FECHAMENTO
+REGRA_EVENTOS_EXTEMP
+REGRA_EVENTO_IMPACTO_FOPAG
+REGRA_EVETRAB_VALIDA_OPCAO_FGTS
+REGRA_EXISTE_INFO_EMPREGADOR
+REGRA_EXTEMP_DOMESTICO
+REGRA_EXTEMP_REINTEGRACAO
+REGRA_GERAL_VALIDA_DADOS_TABCONTRIB
+REGRA_MESMO_PROCEMI
+REGRA_MUDANCA_CPF
+REGRA_REGISTRO_PRELIMINAR
+REGRA_RETIFICA_MESMO_VINCULO
+REGRA_VALIDA_EMPREGADOR
+REGRA_VALIDA_MATRICULA
+REGRA_VALIDA_TRABALHADOR_BASE_CPF</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -2056,6 +2079,592 @@ Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR
         </blockquote>
     </div>
 </div>
+<div id="horContratual__div">
+    <div class="col-md-12">
+        <h4>Informações do horário contratual do trabalhador.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="qtdHrsSem__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Quantidade média de horas relativas à jornada semanal do trabalhador<a data-toggle="tooltip" title="Quantidade média de horas relativas à jornada semanal do trabalhador.
+Validação: Deve ser preenchida se codCateg for diferente de [111]. Se informada, deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__horContratual__id__qtdHrsSem" maxlength="4" value="{{evtAdmissao|readjson:'vinculo.infoContrato.horContratual.qtdHrsSem'}}" name="[evtAdmissao][vinculo][infoContrato][horContratual][qtdHrsSem]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="tpJornada__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Tipo de jornada<a data-toggle="tooltip" title="Tipo de jornada.
+Valores válidos:
+2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)
+3 - Jornada com horário diário fixo e folga variável
+4 - Jornada com horário diário fixo e folga fixa (no domingo)
+5 - Jornada com horário diário fixo e folga fixa (exceto no domingo)
+6 - Jornada com horário diário fixo e folga fixa (em outro dia da semana), com folga adicional periódica no domingo
+7 - Turno ininterrupto de revezamento
+9 - Demais tipos de jornada"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAdmissao__vinculo__infoContrato__horContratual__id__tpJornada" name="[evtAdmissao][vinculo][infoContrato][horContratual][tpJornada]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tpJornada'|to_str '2' %}selected{% endifequal %}>2 - Jornada 12 x 36 (12 horas de trabalho seguidas de 36 horas ininterruptas de descanso)</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tpJornada'|to_str '3' %}selected{% endifequal %}>3 - Jornada com horário diário fixo e folga variável</option><option value='4' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tpJornada'|to_str '4' %}selected{% endifequal %}>4 - Jornada com horário diário fixo e folga fixa (no domingo)</option><option value='5' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tpJornada'|to_str '5' %}selected{% endifequal %}>5 - Jornada com horário diário fixo e folga fixa (exceto no domingo)</option><option value='6' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tpJornada'|to_str '6' %}selected{% endifequal %}>6 - Jornada com horário diário fixo e folga fixa (em outro dia da semana), com folga adicional periódica no domingo</option><option value='7' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tpJornada'|to_str '7' %}selected{% endifequal %}>7 - Turno ininterrupto de revezamento</option><option value='9' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tpJornada'|to_str '9' %}selected{% endifequal %}>9 - Demais tipos de jornada</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="tmpParc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código relativo ao tipo de contrato em tempo parcial<a data-toggle="tooltip" title="Preencher com o código relativo ao tipo de contrato em tempo parcial.
+Valores válidos:
+0 - Não é contrato em tempo parcial
+1 - Limitado a 25 horas semanais
+2 - Limitado a 30 horas semanais
+3 - Limitado a 26 horas semanais
+Validação: O código [1] só é válido se codCateg = [104]. Os códigos [2, 3] não são válidos se codCateg = [104]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAdmissao__vinculo__infoContrato__horContratual__id__tmpParc" name="[evtAdmissao][vinculo][infoContrato][horContratual][tmpParc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='0' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tmpParc'|to_str '0' %}selected{% endifequal %}>0 - Não é contrato em tempo parcial</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tmpParc'|to_str '1' %}selected{% endifequal %}>1 - Limitado a 25 horas semanais</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tmpParc'|to_str '2' %}selected{% endifequal %}>2 - Limitado a 30 horas semanais</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.tmpParc'|to_str '3' %}selected{% endifequal %}>3 - Limitado a 26 horas semanais</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="horNoturno__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Indicar se a jornada semanal possui horário noturno (no todo ou em parte)<a data-toggle="tooltip" title="Indicar se a jornada semanal possui horário noturno (no todo ou em parte).
+Valores válidos:
+S - Sim
+N - Não
+Validação: Informação obrigatória se codCateg for diferente de [111]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAdmissao__vinculo__infoContrato__horContratual__id__horNoturno" name="[evtAdmissao][vinculo][infoContrato][horContratual][horNoturno]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.horNoturno'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtAdmissao|readjson:'vinculo.infoContrato.horContratual.horNoturno'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="dscJorn__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Descrição da jornada semanal contratual<a data-toggle="tooltip" title="Descrição da jornada semanal contratual, contendo os dias da semana e os respectivos horários contratuais (entrada, saída e intervalos)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__horContratual__id__dscJorn" maxlength="999" value="{{evtAdmissao|readjson:'vinculo.infoContrato.horContratual.dscJorn'}}" name="[evtAdmissao][vinculo][infoContrato][horContratual][dscJorn]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+<div id="alvaraJudicial__div">
+    <div class="col-md-12">
+        <h4>Informações do alvará judicial em caso de contratação de menores de 14 anos, em qualquer categoria, e de maiores de 14 e menores de 16, em categoria diferente de "Aprendiz".</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="nrProcJud__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de processo judicial cadastrado<a data-toggle="tooltip" title="Preencher com o número do processo judicial.
+Validação: Deve ser um número de processo judicial válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__alvaraJudicial__id__nrProcJud" maxlength="20" value="{{evtAdmissao|readjson:'vinculo.infoContrato.alvaraJudicial.nrProcJud'}}" name="[evtAdmissao][vinculo][infoContrato][alvaraJudicial][nrProcJud]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% for observacoes in evtAdmissao|readjson:'vinculo.infoContrato.observacoes' %}
+<div id="observacoes__div">
+    <div class="col-md-12">
+        <h4>Observações do contrato de trabalho.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="observacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação relacionada ao contrato de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__observacoes__id__observacao" maxlength="255" value="{{observacoes|readjson:'observacao'}}" name="[evtAdmissao][vinculo][infoContrato][observacoes][][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="observacoes__div">
+    <div class="col-md-12">
+        <h4>Observações do contrato de trabalho.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="observacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação relacionada ao contrato de trabalho."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__observacoes__id__observacao" maxlength="255" value="{{observacoes|readjson:'observacao'}}" name="[evtAdmissao][vinculo][infoContrato][observacoes][][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}{% for treiCap in evtAdmissao|readjson:'vinculo.infoContrato.treiCap' %}
+<div id="treiCap__div">
+    <div class="col-md-12">
+        <h4>Treinamentos, capacitações, exercícios simulados, autorizações ou outras anotações que devam ser anotadas no registro de empregados e/ou na CTPS, por determinação de Norma Regulamentadora - NR.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codTreiCap__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código do treinamento<a data-toggle="tooltip" title="Informar o código do treinamento, capacitação, exercício simulado ou outra anotação, conforme Tabela 28.
+Validação: Deve ser um código válido e existente na Tabela 28."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__treiCap__id__codTreiCap" maxlength="4" value="{{treiCap|readjson:'codTreiCap'}}" name="[evtAdmissao][vinculo][infoContrato][treiCap][][codTreiCap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% empty %}
+<div id="treiCap__div">
+    <div class="col-md-12">
+        <h4>Treinamentos, capacitações, exercícios simulados, autorizações ou outras anotações que devam ser anotadas no registro de empregados e/ou na CTPS, por determinação de Norma Regulamentadora - NR.</h4>
+        {% if True %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="codTreiCap__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o código do treinamento<a data-toggle="tooltip" title="Informar o código do treinamento, capacitação, exercício simulado ou outra anotação, conforme Tabela 28.
+Validação: Deve ser um código válido e existente na Tabela 28."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__infoContrato__treiCap__id__codTreiCap" maxlength="4" value="{{treiCap|readjson:'codTreiCap'}}" name="[evtAdmissao][vinculo][infoContrato][treiCap][][codTreiCap]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>{% endfor %}
+            </div>
+        </blockquote>
+    </div>
+</div>
+<div id="sucessaoVinc__div">
+    <div class="col-md-12">
+        <h4>Grupo de informações da sucessão de vínculo trabalhista/estatutário.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="tpInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
+Valores válidos:
+1 - CNPJ
+2 - CPF
+5 - CGC
+6 - CEI
+Validação: Somente é possível informar [5] se dtTransf for igual ou anterior a [1999-06-30].
+Somente é possível informar [6] se dtTransf for igual ou anterior a [2011-12-31]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtAdmissao__vinculo__sucessaoVinc__id__tpInsc" name="[evtAdmissao][vinculo][sucessaoVinc][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.sucessaoVinc.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.sucessaoVinc.tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option><option value='5' {% ifequal evtAdmissao|readjson:'vinculo.sucessaoVinc.tpInsc'|to_str '5' %}selected{% endifequal %}>5 - CGC</option><option value='6' {% ifequal evtAdmissao|readjson:'vinculo.sucessaoVinc.tpInsc'|to_str '6' %}selected{% endifequal %}>6 - CEI</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="nrInsc__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do empregador anterior, de acordo com o tipo de inscrição indicado no campo sucessaoVinc/tpInsc.
+Validação: Deve ser um número de inscrição válido e diferente da inscrição do declarante, considerando as particularidades aplicadas à informação de CNPJ de órgão público em S-1000.
+Se sucessaoVinc/tpInsc = [1], deve possuir 14 (catorze) algarismos e ser diferente do CNPJ base do empregador (exceto se ideEmpregador/nrInsc tiver 14 (catorze) algarismos) e dos estabelecimentos informados através do evento S-1005.
+Se sucessaoVinc/tpInsc = [2], deve possuir 11 (onze) algarismos.
+Se sucessaoVinc/tpInsc = [5], deve possuir somente algarismos.
+Se sucessaoVinc/tpInsc = [6], deve possuir 12 (doze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__sucessaoVinc__id__nrInsc" maxlength="14" value="{{evtAdmissao|readjson:'vinculo.sucessaoVinc.nrInsc'}}" name="[evtAdmissao][vinculo][sucessaoVinc][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="matricAnt__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Matrícula do trabalhador no empregador anterior<a data-toggle="tooltip" title="Matrícula do trabalhador no empregador anterior.
+Validação: O preenchimento é obrigatório se cadIni = [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__sucessaoVinc__id__matricAnt" maxlength="30" value="{{evtAdmissao|readjson:'vinculo.sucessaoVinc.matricAnt'}}" name="[evtAdmissao][vinculo][sucessaoVinc][matricAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtTransf__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com a data da transferência do benefício para o órgão público declarante<a data-toggle="tooltip" title="Preencher com a data da transferência do empregado para o empregador declarante.
+Validação: Devem ser observadas as seguintes regras:
+a) Deve ser posterior à data de admissão do trabalhador;
+b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador;
+c) Se cadIni = [N], deve ser igual ou posterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__sucessaoVinc__id__dtTransf" value="{{evtAdmissao|readjson:'vinculo.sucessaoVinc.dtTransf'}}" name="[evtAdmissao][vinculo][sucessaoVinc][dtTransf]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="observacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__sucessaoVinc__id__observacao" maxlength="255" value="{{evtAdmissao|readjson:'vinculo.sucessaoVinc.observacao'}}" name="[evtAdmissao][vinculo][sucessaoVinc][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+<div id="transfDom__div">
+    <div class="col-md-12">
+        <h4>Informações do empregado doméstico transferido de outro representante da mesma unidade familiar.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="cpfSubstituido__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o número do CPF do representante anterior da unidade familiar<a data-toggle="tooltip" title="Preencher com o número do CPF do representante anterior da unidade familiar.
+Validação: Deve ser um CPF válido e diferente do CPF do declarante e do empregado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__transfDom__id__cpfSubstituido" maxlength="11" value="{{evtAdmissao|readjson:'vinculo.transfDom.cpfSubstituido'}}" name="[evtAdmissao][vinculo][transfDom][cpfSubstituido]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="matricAnt__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Matrícula do trabalhador no empregador anterior<a data-toggle="tooltip" title="Matrícula do trabalhador no representante anterior da unidade familiar."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__transfDom__id__matricAnt" maxlength="30" value="{{evtAdmissao|readjson:'vinculo.transfDom.matricAnt'}}" name="[evtAdmissao][vinculo][transfDom][matricAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtTransf__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com a data da transferência do benefício para o órgão público declarante<a data-toggle="tooltip" title="Data da transferência do vínculo ao novo representante da unidade familiar."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__transfDom__id__dtTransf" value="{{evtAdmissao|readjson:'vinculo.transfDom.dtTransf'}}" name="[evtAdmissao][vinculo][transfDom][dtTransf]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+<div id="mudancaCPF__div">
+    <div class="col-md-12">
+        <h4>Informações de mudança de CPF do trabalhador.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="cpfAnt__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o número do CPF antigo do beneficiário<a data-toggle="tooltip" title="Preencher com o número do CPF antigo do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__mudancaCPF__id__cpfAnt" maxlength="11" value="{{evtAdmissao|readjson:'vinculo.mudancaCPF.cpfAnt'}}" name="[evtAdmissao][vinculo][mudancaCPF][cpfAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="matricAnt__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Matrícula do trabalhador no empregador anterior<a data-toggle="tooltip" title="Preencher com a matrícula anterior do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__mudancaCPF__id__matricAnt" maxlength="30" value="{{evtAdmissao|readjson:'vinculo.mudancaCPF.matricAnt'}}" name="[evtAdmissao][vinculo][mudancaCPF][matricAnt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtAltCPF__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de alteração do CPF<a data-toggle="tooltip" title="Data de alteração do CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__mudancaCPF__id__dtAltCPF" value="{{evtAdmissao|readjson:'vinculo.mudancaCPF.dtAltCPF'}}" name="[evtAdmissao][vinculo][mudancaCPF][dtAltCPF]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="observacao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Observação relevante sobre o desligamento do trabalhador<a data-toggle="tooltip" title="Observação."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__mudancaCPF__id__observacao" maxlength="255" value="{{evtAdmissao|readjson:'vinculo.mudancaCPF.observacao'}}" name="[evtAdmissao][vinculo][mudancaCPF][observacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+<div id="afastamento__div">
+    <div class="col-md-12">
+        <h4>Informações de afastamento do trabalhador.
+Preenchimento exclusivo em caso de trabalhador que permaneça afastado na data de início da obrigatoriedade dos eventos não periódicos para o empregador no eSocial ou na data de transferência ou alteração de CPF do empregado.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="dtIniAfast__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de início do afastamento<a data-toggle="tooltip" title="Data de início do afastamento.
+Validação: Devem ser observadas as seguintes regras:
+a) Deve ser igual ou posterior à data de admissão/exercício do trabalhador;
+b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador;
+c) Se cadIni = [N], deve ser anterior à data da transferência ou alteração do CPF do empregado (sucessaoVinc/dtTransf, transfDom/dtTransf ou dtAltCPF). Não informar se tpAdmissao = [1] ou se tpProv for diferente de [5, 8, 10]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__afastamento__id__dtIniAfast" value="{{evtAdmissao|readjson:'vinculo.afastamento.dtIniAfast'}}" name="[evtAdmissao][vinculo][afastamento][dtIniAfast]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="codMotAfast__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código do motivo de afastamento temporário<a data-toggle="tooltip" title="Preencher com o código do motivo de afastamento temporário.
+Validação: Deve ser um código válido e existente na Tabela 18, bem como compatível com o código de categoria do trabalhador, conforme Tabela 18. Se a natureza jurídica do declarante for Administração Pública (grupo [1]), não pode ser informado [14]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__afastamento__id__codMotAfast" maxlength="2" value="{{evtAdmissao|readjson:'vinculo.afastamento.codMotAfast'}}" name="[evtAdmissao][vinculo][afastamento][codMotAfast]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+<div id="desligamento__div">
+    <div class="col-md-12">
+        <h4>Informação do desligamento do trabalhador.
+Grupo preenchido exclusivamente caso seja necessário enviar cadastramento inicial referente a trabalhador que já tenha sido desligado da empresa antes do início dos eventos não periódicos para o empregador no eSocial (por exemplo, envio para pagamento de diferenças salariais - acordo/dissídio/convenção coletiva - em meses posteriores ao desligamento e sob vigência dos eventos periódicos para o empregador no eSocial) ou no caso de desligamento em data anterior à transferência do empregado.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="dtDeslig__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com a data de desligamento do vínculo (último dia trabalhado)<a data-toggle="tooltip" title="Preencher com a data de desligamento do vínculo (último dia trabalhado).
+Validação: Devem ser observadas as seguintes regras:
+a) Deve ser igual ou posterior à data de admissão/exercício do trabalhador;
+b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador;
+c) Se cadIni = [N], deve ser anterior à data da transferência do empregado (sucessaoVinc/dtTransf ou transfDom/dtTransf). Não informar se tpAdmissao = [1] ou se tpProv for diferente de [5, 8]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__desligamento__id__dtDeslig" value="{{evtAdmissao|readjson:'vinculo.desligamento.dtDeslig'}}" name="[evtAdmissao][vinculo][desligamento][dtDeslig]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
+<div id="cessao__div">
+    <div class="col-md-12">
+        <h4>Informação de cessão/exercício em outro órgão do trabalhador.
+Preenchimento exclusivo em caso de trabalhador que permaneça cedido/em exercício em outro órgão na data de início da obrigatoriedade dos eventos não periódicos para o empregador/ente público no eSocial ou na data de transferência ou alteração de CPF do empregado.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="dtIniCessao__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Data de início da cessão/exercício em outro órgão<a data-toggle="tooltip" title="Data de início da cessão/exercício em outro órgão.
+Validação: Devem ser observadas as seguintes regras:
+a) Deve ser igual ou posterior à data de admissão/exercício do trabalhador;
+b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o ente público e a natureza jurídica do declarante deve ser Administração Pública (grupo [1]);
+c) Se cadIni = [N], deve ser anterior à data da transferência ou alteração do CPF do empregado (sucessaoVinc/dtTransf ou dtAltCPF) e igual ou posterior a [2021-05-10]. Não informar se tpAdmissao = [1] ou se tpProv for diferente de [5, 8, 10]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtAdmissao__vinculo__cessao__id__dtIniCessao" value="{{evtAdmissao|readjson:'vinculo.cessao.dtIniCessao'}}" name="[evtAdmissao][vinculo][cessao][dtIniCessao]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
             </div>
         </blockquote>
     </div>
