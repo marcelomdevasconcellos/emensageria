@@ -513,7 +513,7 @@ Validação: A inscrição informada deve ser compatível com ideEstabLot/tpInsc
             <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.
 Validação: Não pode ser utilizada rubrica:
 a) cujo codIncCP em S-1010 seja igual a [25, 26, 51];
-b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+b) cuja natRubr em S-1010 seja igual a [1801, 9220], desde que mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__codRubr" maxlength="30" value="{{detVerbas|readjson:'codRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -532,8 +532,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
-Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
-Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{detVerbas|readjson:'qtdRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
@@ -566,7 +565,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
 Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR
-Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
@@ -604,7 +603,7 @@ Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [202
             <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.
 Validação: Não pode ser utilizada rubrica:
 a) cujo codIncCP em S-1010 seja igual a [25, 26, 51];
-b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+b) cuja natRubr em S-1010 seja igual a [1801, 9220], desde que mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__codRubr" maxlength="30" value="{{detVerbas|readjson:'codRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -623,8 +622,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
-Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
-Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{detVerbas|readjson:'qtdRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
@@ -657,7 +655,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
 Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR
-Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
@@ -791,7 +789,7 @@ Validação: A inscrição informada deve ser compatível com ideEstabLot/tpInsc
             <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.
 Validação: Não pode ser utilizada rubrica:
 a) cujo codIncCP em S-1010 seja igual a [25, 26, 51];
-b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+b) cuja natRubr em S-1010 seja igual a [1801, 9220], desde que mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__codRubr" maxlength="30" value="{{detVerbas|readjson:'codRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -810,8 +808,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
-Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
-Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{detVerbas|readjson:'qtdRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
@@ -844,7 +841,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
 Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR
-Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
@@ -882,7 +879,7 @@ Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [202
             <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.
 Validação: Não pode ser utilizada rubrica:
 a) cujo codIncCP em S-1010 seja igual a [25, 26, 51];
-b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+b) cuja natRubr em S-1010 seja igual a [1801, 9220], desde que mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__codRubr" maxlength="30" value="{{detVerbas|readjson:'codRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -901,8 +898,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
-Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
-Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{detVerbas|readjson:'qtdRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
@@ -935,7 +931,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
 Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR
-Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
@@ -1107,7 +1103,7 @@ Validação: A inscrição informada deve ser compatível com ideEstabLot/tpInsc
             <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.
 Validação: Não pode ser utilizada rubrica:
 a) cujo codIncCP em S-1010 seja igual a [25, 26, 51];
-b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+b) cuja natRubr em S-1010 seja igual a [1801, 9220], desde que mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__codRubr" maxlength="30" value="{{detVerbas|readjson:'codRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1126,8 +1122,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
-Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
-Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{detVerbas|readjson:'qtdRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
@@ -1160,7 +1155,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
 Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR
-Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
@@ -1198,7 +1193,7 @@ Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [202
             <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.
 Validação: Não pode ser utilizada rubrica:
 a) cujo codIncCP em S-1010 seja igual a [25, 26, 51];
-b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+b) cuja natRubr em S-1010 seja igual a [1801, 9220], desde que mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__codRubr" maxlength="30" value="{{detVerbas|readjson:'codRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1217,8 +1212,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
-Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
-Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{detVerbas|readjson:'qtdRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
@@ -1251,7 +1245,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
 Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR
-Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
@@ -1385,7 +1379,7 @@ Validação: A inscrição informada deve ser compatível com ideEstabLot/tpInsc
             <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.
 Validação: Não pode ser utilizada rubrica:
 a) cujo codIncCP em S-1010 seja igual a [25, 26, 51];
-b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+b) cuja natRubr em S-1010 seja igual a [1801, 9220], desde que mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__codRubr" maxlength="30" value="{{detVerbas|readjson:'codRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1404,8 +1398,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
-Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
-Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{detVerbas|readjson:'qtdRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
@@ -1438,7 +1431,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
 Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR
-Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>
@@ -1476,7 +1469,7 @@ Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [202
             <label>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento<a data-toggle="tooltip" title="Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.
 Validação: Não pode ser utilizada rubrica:
 a) cujo codIncCP em S-1010 seja igual a [25, 26, 51];
-b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+b) cuja natRubr em S-1010 seja igual a [1801, 9220], desde que mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__codRubr" maxlength="30" value="{{detVerbas|readjson:'codRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][codRubr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1495,8 +1488,7 @@ b) cuja natRubr em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que mês/
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar a quantidade de referência para apuração (em horas<a data-toggle="tooltip" title="Informar a quantidade de referência para apuração (em horas, cotas, meses, etc.). Ex.: Quantidade de horas extras trabalhadas relacionada com uma rubrica de hora extra, quantidade de dias trabalhados relacionada com uma rubrica de salário, etc.
-Preenchimento obrigatório quando se tratar de rubrica relativa a faltas ou Descanso Semanal Remunerado - DSR sobre faltas (nesse caso, informar a quantidade de dias).
-Validação: Deve ser maior que 0 (zero). Informação obrigatória se codRubr tiver natRubr em S-1010 igual a [9207, 9211]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__qtdRubr" maxlength="12" value="{{detVerbas|readjson:'qtdRubr'}}" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][qtdRubr]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
     </div>
@@ -1529,7 +1521,7 @@ Validação: Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle
 Valores válidos:
 0 - Normal (apuração sob a folha de pagamento declarada no eSocial)
 1 - Situação especial de apuração de IR
-Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-05]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se mês/ano de dtTerm >= [2021-07]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVTermino__infoTSVTermino__verbasResc__dmDev__ideEstabLot__detVerbas__id__indApurIR" name="[evtTSVTermino][infoTSVTermino][verbasResc][dmDev][][ideEstabLot][][detVerbas][][indApurIR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='0' {% ifequal detVerbas|readjson:'indApurIR'|to_str '0' %}selected{% endifequal %}>0 - Normal (apuração sob a folha de pagamento declarada no eSocial)</option><option value='1' {% ifequal detVerbas|readjson:'indApurIR'|to_str '1' %}selected{% endifequal %}>1 - Situação especial de apuração de IR</option>
             </select>

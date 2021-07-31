@@ -592,7 +592,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 Valores válidos:
 1 - Prazo indeterminado
 2 - Prazo determinado
-Validação: Preenchimento obrigatório se dtInicio >= [2021-05-10]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório se dtInicio >= [2021-07-19]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVInicio__trabalhador__trabImig__id__tmpResid" name="[evtTSVInicio][trabalhador][trabImig][tmpResid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal evtTSVInicio|readjson:'trabalhador.trabImig.tmpResid'|to_str '1' %}selected{% endifequal %}>1 - Prazo indeterminado</option><option value='2' {% ifequal evtTSVInicio|readjson:'trabalhador.trabImig.tmpResid'|to_str '2' %}selected{% endifequal %}>2 - Prazo determinado</option>
             </select>

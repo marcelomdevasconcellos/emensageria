@@ -462,7 +462,7 @@ Validação: Deve corresponder à alíquota declarada no evento S-1005. Caso nã
     <div class="col-md-4">
         <div class="form-group">
             <label>Fator Acidentário de Prevenção - FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP.
-Validação: Deve corresponder ao FAP declarado no evento S-1005. Caso não haja informação, retornar o FAP estabelecido para a empresa pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao FAP declarado no evento S-1005. Caso não haja informação, retornar o FAP estabelecido para a empresa pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__id__fap" maxlength="5" value="{{ideEstab|readjson:'infoEstab.fap'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
@@ -472,7 +472,7 @@ Validação: Deve corresponder ao FAP declarado no evento S-1005. Caso não haja
     <div class="col-md-4">
         <div class="form-group">
             <label>Alíquota do RAT após ajuste pelo FAP<a data-toggle="tooltip" title="Alíquota do RAT após ajuste pelo FAP.
-Validação: Deve corresponder ao resultado da multiplicação dos campos infoEstab/aliqRat e infoEstab/fap."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao resultado da multiplicação dos campos infoEstab/aliqRat e infoEstab/fap."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__id__aliqRatAjust" maxlength="5" value="{{ideEstab|readjson:'infoEstab.aliqRatAjust'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][aliqRatAjust]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
@@ -824,7 +824,7 @@ Valores válidos:
 1 - Normal
 2 - Atividade concomitante
 9 - Substituída ou isenta
-Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9].
+Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9], EXCETO para classTrib = [01] E ideEstab/tpInsc = [4], que deve ser totalizada com indIncid = [1].
 b) Para empresas com classTrib = [03], considerar a informação prestada no campo indSimples do evento S-5001, conforme abaixo:
 - Se o indSimples em S-5001 = [1] (contrib. subst. integralmente), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [9];
 - Se o indSimples em S-5001 = [2] (contrib. não substituída), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [1] (normal);
@@ -1127,7 +1127,7 @@ Valores válidos:
 1 - Normal
 2 - Atividade concomitante
 9 - Substituída ou isenta
-Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9].
+Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9], EXCETO para classTrib = [01] E ideEstab/tpInsc = [4], que deve ser totalizada com indIncid = [1].
 b) Para empresas com classTrib = [03], considerar a informação prestada no campo indSimples do evento S-5001, conforme abaixo:
 - Se o indSimples em S-5001 = [1] (contrib. subst. integralmente), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [9];
 - Se o indSimples em S-5001 = [2] (contrib. não substituída), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [1] (normal);
@@ -1828,7 +1828,7 @@ Valores válidos:
 1 - Normal
 2 - Atividade concomitante
 9 - Substituída ou isenta
-Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9].
+Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9], EXCETO para classTrib = [01] E ideEstab/tpInsc = [4], que deve ser totalizada com indIncid = [1].
 b) Para empresas com classTrib = [03], considerar a informação prestada no campo indSimples do evento S-5001, conforme abaixo:
 - Se o indSimples em S-5001 = [1] (contrib. subst. integralmente), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [9];
 - Se o indSimples em S-5001 = [2] (contrib. não substituída), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [1] (normal);
@@ -2131,7 +2131,7 @@ Valores válidos:
 1 - Normal
 2 - Atividade concomitante
 9 - Substituída ou isenta
-Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9].
+Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9], EXCETO para classTrib = [01] E ideEstab/tpInsc = [4], que deve ser totalizada com indIncid = [1].
 b) Para empresas com classTrib = [03], considerar a informação prestada no campo indSimples do evento S-5001, conforme abaixo:
 - Se o indSimples em S-5001 = [1] (contrib. subst. integralmente), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [9];
 - Se o indSimples em S-5001 = [2] (contrib. não substituída), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [1] (normal);
@@ -3190,7 +3190,7 @@ Validação: Deve corresponder à alíquota declarada no evento S-1005. Caso nã
     <div class="col-md-4">
         <div class="form-group">
             <label>Fator Acidentário de Prevenção - FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP.
-Validação: Deve corresponder ao FAP declarado no evento S-1005. Caso não haja informação, retornar o FAP estabelecido para a empresa pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao FAP declarado no evento S-1005. Caso não haja informação, retornar o FAP estabelecido para a empresa pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__id__fap" maxlength="5" value="{{ideEstab|readjson:'infoEstab.fap'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
@@ -3200,7 +3200,7 @@ Validação: Deve corresponder ao FAP declarado no evento S-1005. Caso não haja
     <div class="col-md-4">
         <div class="form-group">
             <label>Alíquota do RAT após ajuste pelo FAP<a data-toggle="tooltip" title="Alíquota do RAT após ajuste pelo FAP.
-Validação: Deve corresponder ao resultado da multiplicação dos campos infoEstab/aliqRat e infoEstab/fap."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao resultado da multiplicação dos campos infoEstab/aliqRat e infoEstab/fap."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__id__aliqRatAjust" maxlength="5" value="{{ideEstab|readjson:'infoEstab.aliqRatAjust'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][aliqRatAjust]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
@@ -3552,7 +3552,7 @@ Valores válidos:
 1 - Normal
 2 - Atividade concomitante
 9 - Substituída ou isenta
-Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9].
+Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9], EXCETO para classTrib = [01] E ideEstab/tpInsc = [4], que deve ser totalizada com indIncid = [1].
 b) Para empresas com classTrib = [03], considerar a informação prestada no campo indSimples do evento S-5001, conforme abaixo:
 - Se o indSimples em S-5001 = [1] (contrib. subst. integralmente), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [9];
 - Se o indSimples em S-5001 = [2] (contrib. não substituída), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [1] (normal);
@@ -3855,7 +3855,7 @@ Valores válidos:
 1 - Normal
 2 - Atividade concomitante
 9 - Substituída ou isenta
-Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9].
+Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9], EXCETO para classTrib = [01] E ideEstab/tpInsc = [4], que deve ser totalizada com indIncid = [1].
 b) Para empresas com classTrib = [03], considerar a informação prestada no campo indSimples do evento S-5001, conforme abaixo:
 - Se o indSimples em S-5001 = [1] (contrib. subst. integralmente), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [9];
 - Se o indSimples em S-5001 = [2] (contrib. não substituída), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [1] (normal);
@@ -4556,7 +4556,7 @@ Valores válidos:
 1 - Normal
 2 - Atividade concomitante
 9 - Substituída ou isenta
-Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9].
+Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9], EXCETO para classTrib = [01] E ideEstab/tpInsc = [4], que deve ser totalizada com indIncid = [1].
 b) Para empresas com classTrib = [03], considerar a informação prestada no campo indSimples do evento S-5001, conforme abaixo:
 - Se o indSimples em S-5001 = [1] (contrib. subst. integralmente), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [9];
 - Se o indSimples em S-5001 = [2] (contrib. não substituída), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [1] (normal);
@@ -4859,7 +4859,7 @@ Valores válidos:
 1 - Normal
 2 - Atividade concomitante
 9 - Substituída ou isenta
-Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9].
+Validação: a) Para empresas com classTrib = [01, 70, 80], todas as bases de cálculo devem ser totalizadas com indIncid = [9], EXCETO para classTrib = [01] E ideEstab/tpInsc = [4], que deve ser totalizada com indIncid = [1].
 b) Para empresas com classTrib = [03], considerar a informação prestada no campo indSimples do evento S-5001, conforme abaixo:
 - Se o indSimples em S-5001 = [1] (contrib. subst. integralmente), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [9];
 - Se o indSimples em S-5001 = [2] (contrib. não substituída), a base de cálculo do respectivo trabalhador deve ser totalizada com indIncid = [1] (normal);

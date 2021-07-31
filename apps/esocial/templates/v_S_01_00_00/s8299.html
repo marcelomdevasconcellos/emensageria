@@ -250,7 +250,7 @@ Não podem ser informados motivos que não implicam rescisão do contrato de tra
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com a data de desligamento do vínculo (último dia trabalhado)<a data-toggle="tooltip" title="Preencher com a data de desligamento do vínculo (último dia trabalhado).
-Validação: Deve ser uma data igual ou posterior a 20/09/2019 e igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser uma data igual ou posterior a 24/09/2019 e igual ou anterior à data atual. No caso de empregado reintegrado e quando não se tratar de retificação do desligamento anterior à reintegração, também deve ser uma data igual ou posterior a dtEfetRetorno do evento S-2298."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBaixa__infoBaixa__id__dtDeslig" value="{{evtBaixa|readjson:'infoBaixa.dtDeslig'}}" name="[evtBaixa][infoBaixa][dtDeslig]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>

@@ -270,7 +270,7 @@ Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos.
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar a lei de anistia<a data-toggle="tooltip" title="Informar a lei de anistia, descrevendo seu número e ano de publicação.
-Validação: Preenchimento obrigatório se tpReint = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório e exclusivo se tpReint = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtReintegr__infoReintegr__id__nrLeiAnistia" maxlength="13" value="{{evtReintegr|readjson:'infoReintegr.nrLeiAnistia'}}" name="[evtReintegr][infoReintegr][nrLeiAnistia]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>

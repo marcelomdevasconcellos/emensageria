@@ -6,6 +6,7 @@ eMensageria - Sistema de Mensageria Opensource do eSocial <www.emensageria.com.b
 ## Versões eMensageria
 
 - 1.0 (eSocial versão S-1.0 - Leiautes (cons. até NT 01/2021))
+- 1.1 (eSocial versão S-1.0 - Leiautes (cons. até NT 02/2021))
 
 ## Versões compatíveis do eSocial
 
