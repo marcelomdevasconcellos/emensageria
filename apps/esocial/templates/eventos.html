@@ -53,9 +53,48 @@ label {
             {{ adminform.form.non_field_errors }}
         </div>
         {% endif %}
+
+        {% if original.status == STATUS_EVENTO_ENVIADO or original.status == STATUS_EVENTO_PROCESSADO %}
+
+        <div class="alert alert-success alert-dismissible" style="margin: 20px;">
+            <h4>
+                <i class="icon fa fa-check"></i> {{ original.get_status_display }}
+            </h4>
+            {% if original.status == STATUS_EVENTO_ENVIADO %}
+            Resposta:
+            <strong>{{ original.transmissor_evento.retorno_envio_json|readjson:"status.cdResposta" }}</strong> -
+            <strong>{{ original.transmissor_evento.retorno_envio_json|readjson:"status.descResposta" }}</strong><br>
+            Data/Hora de recepção:
+            <strong>{{ original.transmissor_evento.retorno_envio_json|readjson:"dadosRecepcaoLote.dhRecepcao" }}</strong><br>
+            Versão do aplicativo de recepção:
+            <strong>{{ original.transmissor_evento.retorno_envio_json|readjson:"dadosRecepcaoLote.versaoAplicativoRecepcao" }}</strong><br>
+            Protocolo de envio:
+            <strong>{{ original.transmissor_evento.retorno_envio_json|readjson:"dadosRecepcaoLote.protocoloEnvio" }}</strong><br>
+            {% elif original.status == STATUS_EVENTO_PROCESSADO %}
+
+            Resposta:
+            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.cdResposta" }}</strong> -
+            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.descResposta" }}</strong><br>
+            Versão do aplicativo de processamento:
+            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.versaoAppProcessamento" }}</strong><br>
+            Data/Hora de Processamento:
+            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.dhProcessamento" }}</strong>
+            {% endif %}
+        </div>
+        {% endif %}
+
+
         {% if original.ocorrencias_json %}
         <div class="alert alert-danger alert-dismissible" style="margin: 20px;">
         <h4><i class="icon fa fa-ban"></i> Ocorrência(s)!</h4>
+            Resposta:
+            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.cdResposta" }}</strong> -
+            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.descResposta" }}</strong><br>
+            Versão do aplicativo de processamento:
+            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.versaoAppProcessamento" }}</strong><br>
+            Data/Hora de Processamento:
+            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.dhProcessamento" }}</strong>
+        <br>
             {% for e in original.ocorrencias_json|read_ocorrencias %}
                 <br>
                 Tipo: <strong>{{ e.tipo|get_tipo_erro }}</strong><br>

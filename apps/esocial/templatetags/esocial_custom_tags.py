@@ -188,7 +188,6 @@ def is_int(value):
         return False
 
 
-
 @register.filter(name='multiply')
 def multiply(value, arg):
     return value * arg

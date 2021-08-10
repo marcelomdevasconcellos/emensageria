@@ -9,21 +9,30 @@ from rest_framework.serializers import (
 )
 
 from ..models import (
-    Eventos,
+    Eventos, TransmissorEventos
 )
 
 from ..choices import EVENTO_ORIGEM_API, EVENTO_ORIGEM, STATUS_EVENTO_IMPORTADO
 
 
+class TransmissorEventosSerializer(ModelSerializer):
+    class Meta:
+        model = TransmissorEventos
+        fields = '__all__'
+
+
 class EventosSerializer(ModelSerializer):
     retorno_envio = JSONField(read_only=True)
     retorno_consulta = JSONField(read_only=True)
+    retorno_envio_lote = JSONField(read_only=True)
+    retorno_consulta_lote = JSONField(read_only=True)
     ocorrencias = JSONField(read_only=True)
     status_txt = CharField(source='get_status_display', read_only=True)
     tpinsc_txt = CharField(source='get_tpinsc_display', read_only=True)
     tpamb_txt = CharField(source='get_tpamb_display', read_only=True)
     procemi_txt = CharField(source='get_procemi_display', read_only=True)
     origem_txt = CharField(source='get_origem_display', read_only=True)
+    transmissor = TransmissorEventosSerializer(source='transmissor_evento', many=False, read_only=True)
 
     def create(self, validated_data):
         from config.settings import ESOCIAL_TPAMB

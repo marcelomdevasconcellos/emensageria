@@ -192,10 +192,6 @@ class TransmissorEventos(BaseModelEsocial):
         "Retorno do envio", blank=True, null=True)
     retorno_consulta_json = models.TextField(
         "Retorno da consulta", blank=True, null=True)
-    retorno_envio_lote_json = models.TextField(
-        "Retorno do envio (Lote)", blank=True, null=True)
-    retorno_consulta_lote_json = models.TextField(
-        "Retorno da consulta (Lote)", blank=True, null=True)
     ocorrencias_json = models.TextField(
         "Ocorrências", blank=True, null=True)
 
@@ -416,6 +412,7 @@ class TransmissorEventos(BaseModelEsocial):
                         oco_json = json.dumps(oco_dict.get('ocorrencias'))
                     evento = Eventos.objects.get(identidade=identidade)
                     evento.retorno_envio_json = retorno_envio_json
+                    evento.retorno_consulta_json = '{}'
                     evento.retorno_envio_lote_json = '{}'
                     evento.ocorrencias_json = oco_json
                     if oco_json and oco_json != '{}':
@@ -427,7 +424,9 @@ class TransmissorEventos(BaseModelEsocial):
                     evts = Eventos.objects.filter(transmissor_evento=self).all()
                     for evt in evts:
                         evt.retorno_envio_json = '{}'
+                        evt.retorno_consulta_json = '{}'
                         evt.retorno_envio_lote_json = response_json
+                        evt.retorno_envio_consulta_json = '{}'
                         evt.save()
 
                 if response_dict["status"]["cdResposta"] not in ('101', '201', '202'):
@@ -845,6 +844,10 @@ class Eventos(BaseModelEsocial):
         'Retorno do envio', default='{}', blank=True)
     retorno_consulta_json = models.TextField(
         'Retorno da consulta', default='{}', blank=True)
+    retorno_envio_lote_json = models.TextField(
+        'Retorno do lote do envio',default='{}', blank=True)
+    retorno_consulta_lote_json = models.TextField(
+        'Retorno do lote da consulta',default='{}', blank=True)
     evento_json = models.TextField("JSON", null=True, blank=True)
     evento_xml = models.TextField("XML", null=True, blank=True)
     ocorrencias_json = models.TextField("Ocorrências", null=True, blank=True)
@@ -867,6 +870,12 @@ class Eventos(BaseModelEsocial):
 
     def retorno_consulta(self):
         return json.loads(self.retorno_consulta_json or '{}')
+
+    def retorno_envio_lote(self):
+        return json.loads(self.retorno_envio_lote_json or '{}')
+
+    def retorno_consulta_lote(self):
+        return json.loads(self.retorno_consulta_lote_json or '{}')
 
     def ocorrencias(self):
         return json.loads(self.ocorrencias_json or '{}')
@@ -1022,7 +1031,6 @@ class Eventos(BaseModelEsocial):
             if 'Id="ID' not in xml:
                 if not self.identidade:
                     self.make_identidade()
-                print(1)
                 xml_obj.find(EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
 
             evento_xml = ET.tostring(xml_obj)
@@ -1211,6 +1219,8 @@ class EventosSerializer(BaseModelSerializer):
             'transmissor_evento_error',
             'retorno_envio_json',
             'retorno_consulta_json',
+            'retorno_envio_lote_json',
+            'retorno_consulta_lote_json',
             'ocorrencias_json',
         )
 
@@ -1302,6 +1312,10 @@ class EventosHistorico(BaseModelEsocial):
     retorno_consulta_json = models.TextField(
         'Retorno da consulta',
         "retorno_consulta_json", default='{}', blank=True)
+    retorno_envio_lote_json = models.TextField(
+        'Retorno do lote do envio',default='{}', blank=True)
+    retorno_consulta_lote_json = models.TextField(
+        'Retorno do lote da consulta',default='{}', blank=True)
     evento_json = models.TextField("JSON", null=True, blank=True)
     evento_xml = models.TextField("XML", null=True, blank=True)
     ocorrencias_json = models.TextField("Ocorrências", null=True, blank=True)

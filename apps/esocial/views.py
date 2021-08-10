@@ -318,18 +318,31 @@ def pdf_recibo_evento(evento):
     re = json.loads(evento.retorno_consulta_json)
 
     # RECEPÇÃO
-    if re.get('retornoEvento'):
-        rec = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('recepcao')
+    re = json.loads(evento.retorno_envio_lote_json)
+    co = json.loads(evento.retorno_consulta_json)
+    if re.get('dadosRecepcaoLote'):
+        rec = re.get('dadosRecepcaoLote')
+        resp = re.get('status')
         if rec:
-            my_canvas.drawString(22*mm, 214*mm, rec.get('tpAmb'))
+            my_canvas.drawString(22*mm, 214*mm, rec.get('tpAmb') or '')
             my_canvas.setFont('Helvetica', 9)
             my_canvas.drawString(50*mm, 214*mm, rec.get('dhRecepcao') or '')
             my_canvas.setFont('Helvetica', 9)
-            my_canvas.drawString(94*mm, 214*mm, rec.get('versaoAppRecepcao') or '')
-            my_canvas.drawString(122*mm, 214*mm, rec.get('protocoloEnvioLote') or '')
+            my_canvas.drawString(94*mm, 214*mm, rec.get('versaoAplicativoRecepcao') or '')
+            my_canvas.drawString(122*mm, 214*mm, rec.get('protocoloEnvio') or '')
+        if not co:
+            my_canvas.drawString(22*mm, 195*mm, resp.get('cdResposta'))
+            my_canvas.drawString(36*mm, 195*mm, resp.get('descResposta'))
 
-        # PROCESSAMENTO
-        pro = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('processamento')
+    # RECEPÇÃO
+    if co.get('retornoEvento'):
+        rec = co.get('retornoEvento').get('eSocial').get('retornoEvento').get('recepcao')
+        if rec:
+            my_canvas.drawString(22*mm, 214*mm, rec.get('tpAmb') or '')
+
+    # PROCESSAMENTO
+    if co.get('retornoEvento'):
+        pro = co.get('retornoEvento').get('eSocial').get('retornoEvento').get('processamento')
         if pro:
             my_canvas.drawString(22*mm, 195*mm, pro.get('cdResposta'))
             my_canvas.drawString(36*mm, 195*mm, pro.get('descResposta'))
@@ -337,7 +350,7 @@ def pdf_recibo_evento(evento):
             my_canvas.drawString(150*mm, 195*mm, pro.get('dhProcessamento'))
 
         # RECIBO
-        reci = re.get('retornoEvento').get('eSocial').get('retornoEvento').get('recibo')
+        reci = co.get('retornoEvento').get('eSocial').get('retornoEvento').get('recibo')
         if reci:
             my_canvas.drawString(22*mm, 176*mm, reci.get('nrRecibo') or '')
             my_canvas.drawString(79*mm, 176*mm, reci.get('hash') or '')
