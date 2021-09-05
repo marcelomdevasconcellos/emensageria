@@ -337,12 +337,12 @@ Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-ques
 <div id="indOptRegEletron__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Indica se houve opção pelo registro eletrônico de empregados<a data-toggle="tooltip" title="Indica se houve opção pelo registro eletrônico de empregados.
+            <label>Indica se houve opção pelo registro eletrônico de empregados<a data-toggle="tooltip" title="Indica se houve opção pelo registro eletrônico de empregados. Caso o declarante seja órgão público sem empregados regidos pela CLT, informar [0].
 Valores válidos:
-0 - Não optou pelo registro eletrônico de empregados
+0 - Não optou pelo registro eletrônico de empregados (ou opção não aplicável)
 1 - Optou pelo registro eletrônico de empregados"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__indOptRegEletron" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][indOptRegEletron]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOptRegEletron'|to_str '0' %}selected{% endifequal %}>0 - Não optou pelo registro eletrônico de empregados</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOptRegEletron'|to_str '1' %}selected{% endifequal %}>1 - Optou pelo registro eletrônico de empregados</option>
+            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOptRegEletron'|to_str '0' %}selected{% endifequal %}>0 - Não optou pelo registro eletrônico de empregados (ou opção não aplicável)</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOptRegEletron'|to_str '1' %}selected{% endifequal %}>1 - Optou pelo registro eletrônico de empregados</option>
             </select>
         </div>
     </div>
@@ -675,12 +675,12 @@ Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-ques
 <div id="indOptRegEletron__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Indica se houve opção pelo registro eletrônico de empregados<a data-toggle="tooltip" title="Indica se houve opção pelo registro eletrônico de empregados.
+            <label>Indica se houve opção pelo registro eletrônico de empregados<a data-toggle="tooltip" title="Indica se houve opção pelo registro eletrônico de empregados. Caso o declarante seja órgão público sem empregados regidos pela CLT, informar [0].
 Valores válidos:
-0 - Não optou pelo registro eletrônico de empregados
+0 - Não optou pelo registro eletrônico de empregados (ou opção não aplicável)
 1 - Optou pelo registro eletrônico de empregados"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__indOptRegEletron" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][indOptRegEletron]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOptRegEletron'|to_str '0' %}selected{% endifequal %}>0 - Não optou pelo registro eletrônico de empregados</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOptRegEletron'|to_str '1' %}selected{% endifequal %}>1 - Optou pelo registro eletrônico de empregados</option>
+            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOptRegEletron'|to_str '0' %}selected{% endifequal %}>0 - Não optou pelo registro eletrônico de empregados (ou opção não aplicável)</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOptRegEletron'|to_str '1' %}selected{% endifequal %}>1 - Optou pelo registro eletrônico de empregados</option>
             </select>
         </div>
     </div>

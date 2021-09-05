@@ -351,7 +351,8 @@ Validação: Deve ser um código válido e existente na Tabela 27."><i class="fa
 <div id="obsProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Observação sobre o procedimento diagnóstico realizado<a data-toggle="tooltip" title="Observação sobre o procedimento diagnóstico realizado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Observação sobre o procedimento diagnóstico realizado<a data-toggle="tooltip" title="Observação sobre o procedimento diagnóstico realizado.
+Validação: Preenchimento obrigatório se procRealizado = [0583, 0998, 0999, 1128, 1230, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 9999]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtMonit__exMedOcup__aso__exame__id__obsProc" maxlength="999" value="{{exame|readjson:'obsProc'}}" name="[evtMonit][exMedOcup][aso][exame][][obsProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -363,7 +364,8 @@ Validação: Deve ser um código válido e existente na Tabela 27."><i class="fa
             <label>Ordem do exame<a data-toggle="tooltip" title="Ordem do exame.
 Valores válidos:
 1 - Inicial
-2 - Sequencial"><i class="fa fa-fw fa-question-circle"></i></a></label>
+2 - Sequencial
+Validação: Preenchimento obrigatório se procRealizado = [0281]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__exame__id__ordExame" name="[evtMonit][exMedOcup][aso][exame][][ordExame]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal exame|readjson:'ordExame'|to_str '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame|readjson:'ordExame'|to_str '2' %}selected{% endifequal %}>2 - Sequencial</option>
             </select>
@@ -434,7 +436,8 @@ Validação: Deve ser um código válido e existente na Tabela 27."><i class="fa
 <div id="obsProc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Observação sobre o procedimento diagnóstico realizado<a data-toggle="tooltip" title="Observação sobre o procedimento diagnóstico realizado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Observação sobre o procedimento diagnóstico realizado<a data-toggle="tooltip" title="Observação sobre o procedimento diagnóstico realizado.
+Validação: Preenchimento obrigatório se procRealizado = [0583, 0998, 0999, 1128, 1230, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 9999]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtMonit__exMedOcup__aso__exame__id__obsProc" maxlength="999" value="{{exame|readjson:'obsProc'}}" name="[evtMonit][exMedOcup][aso][exame][][obsProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -446,7 +449,8 @@ Validação: Deve ser um código válido e existente na Tabela 27."><i class="fa
             <label>Ordem do exame<a data-toggle="tooltip" title="Ordem do exame.
 Valores válidos:
 1 - Inicial
-2 - Sequencial"><i class="fa fa-fw fa-question-circle"></i></a></label>
+2 - Sequencial
+Validação: Preenchimento obrigatório se procRealizado = [0281]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtMonit__exMedOcup__aso__exame__id__ordExame" name="[evtMonit][exMedOcup][aso][exame][][ordExame]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal exame|readjson:'ordExame'|to_str '1' %}selected{% endifequal %}>1 - Inicial</option><option value='2' {% ifequal exame|readjson:'ordExame'|to_str '2' %}selected{% endifequal %}>2 - Sequencial</option>
             </select>

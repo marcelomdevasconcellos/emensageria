@@ -409,7 +409,8 @@ Validação: Preenchimento obrigatório se codAgNoc = [01.01.001, 01.02.001, 01.
             <label>Tipo de avaliação do agente nocivo<a data-toggle="tooltip" title="Tipo de avaliação do agente nocivo.
 Valores válidos:
 1 - Critério quantitativo
-2 - Critério qualitativo"><i class="fa fa-fw fa-question-circle"></i></a></label>
+2 - Critério qualitativo
+Validação: Não informar se codAgNoc = [09.01.001]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtExpRisco__infoExpRisco__agNoc__id__tpAval" name="[evtExpRisco][infoExpRisco][agNoc][][tpAval]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal agNoc|readjson:'tpAval'|to_str '1' %}selected{% endifequal %}>1 - Critério quantitativo</option><option value='2' {% ifequal agNoc|readjson:'tpAval'|to_str '2' %}selected{% endifequal %}>2 - Critério qualitativo</option>
             </select>
@@ -529,8 +530,8 @@ Valores válidos:
 <div id="eficEpc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Os EPCs são eficazes na neutralização dos riscos ao trabalhador?
-Valores válidos<a data-toggle="tooltip" title="Os EPCs são eficazes na neutralização dos riscos ao trabalhador?
+            <label>Os EPCs são eficazes na neutralização do risco ao trabalhador?
+Valores válidos<a data-toggle="tooltip" title="Os EPCs são eficazes na neutralização do risco ao trabalhador?
 Valores válidos:
 S - Sim
 N - Não
@@ -552,6 +553,22 @@ Valores válidos:
 2 - Utilizado"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__utilizEPI" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][utilizEPI]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='0' {% ifequal agNoc|readjson:'epcEpi.utilizEPI'|to_str '0' %}selected{% endifequal %}>0 - Não se aplica</option><option value='1' {% ifequal agNoc|readjson:'epcEpi.utilizEPI'|to_str '1' %}selected{% endifequal %}>1 - Não utilizado</option><option value='2' {% ifequal agNoc|readjson:'epcEpi.utilizEPI'|to_str '2' %}selected{% endifequal %}>2 - Utilizado</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="eficEpi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Os EPIs são eficazes na neutralização do risco ao trabalhador?
+Valores válidos<a data-toggle="tooltip" title="Os EPIs são eficazes na neutralização do risco ao trabalhador?
+Valores válidos:
+S - Sim
+N - Não
+Validação: Preenchimento obrigatório e exclusivo se utilizEPI = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__eficEpi" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][eficEpi]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal agNoc|readjson:'epcEpi.eficEpi'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal agNoc|readjson:'epcEpi.eficEpi'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -596,21 +613,6 @@ Validação: Preenchimento obrigatório e exclusivo se docAval não for informad
     </div>
 </div>
 
-<div id="eficEpi__div">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label>O EPI é eficaz na neutralização do risco ao trabalhador?
-Valores válidos<a data-toggle="tooltip" title="O EPI é eficaz na neutralização do risco ao trabalhador?
-Valores válidos:
-S - Sim
-N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__eficEpi" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][eficEpi]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal epi|readjson:'eficEpi'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal epi|readjson:'eficEpi'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
-            </select>
-        </div>
-    </div>
-</div>
-
             </div>
         </blockquote>
     </div>
@@ -650,21 +652,6 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <label>Descrição do EPI<a data-toggle="tooltip" title="Descrição do EPI.
 Validação: Preenchimento obrigatório e exclusivo se docAval não for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__dscEPI" maxlength="999" value="{{epi|readjson:'dscEPI'}}" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][dscEPI]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
-        </div>
-    </div>
-</div>
-
-<div id="eficEpi__div">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label>O EPI é eficaz na neutralização do risco ao trabalhador?
-Valores válidos<a data-toggle="tooltip" title="O EPI é eficaz na neutralização do risco ao trabalhador?
-Valores válidos:
-S - Sim
-N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__eficEpi" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][eficEpi]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal epi|readjson:'eficEpi'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal epi|readjson:'eficEpi'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
-            </select>
         </div>
     </div>
 </div>
@@ -837,7 +824,8 @@ Validação: Preenchimento obrigatório se codAgNoc = [01.01.001, 01.02.001, 01.
             <label>Tipo de avaliação do agente nocivo<a data-toggle="tooltip" title="Tipo de avaliação do agente nocivo.
 Valores válidos:
 1 - Critério quantitativo
-2 - Critério qualitativo"><i class="fa fa-fw fa-question-circle"></i></a></label>
+2 - Critério qualitativo
+Validação: Não informar se codAgNoc = [09.01.001]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtExpRisco__infoExpRisco__agNoc__id__tpAval" name="[evtExpRisco][infoExpRisco][agNoc][][tpAval]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal agNoc|readjson:'tpAval'|to_str '1' %}selected{% endifequal %}>1 - Critério quantitativo</option><option value='2' {% ifequal agNoc|readjson:'tpAval'|to_str '2' %}selected{% endifequal %}>2 - Critério qualitativo</option>
             </select>
@@ -957,8 +945,8 @@ Valores válidos:
 <div id="eficEpc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Os EPCs são eficazes na neutralização dos riscos ao trabalhador?
-Valores válidos<a data-toggle="tooltip" title="Os EPCs são eficazes na neutralização dos riscos ao trabalhador?
+            <label>Os EPCs são eficazes na neutralização do risco ao trabalhador?
+Valores válidos<a data-toggle="tooltip" title="Os EPCs são eficazes na neutralização do risco ao trabalhador?
 Valores válidos:
 S - Sim
 N - Não
@@ -980,6 +968,22 @@ Valores válidos:
 2 - Utilizado"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__utilizEPI" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][utilizEPI]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='0' {% ifequal agNoc|readjson:'epcEpi.utilizEPI'|to_str '0' %}selected{% endifequal %}>0 - Não se aplica</option><option value='1' {% ifequal agNoc|readjson:'epcEpi.utilizEPI'|to_str '1' %}selected{% endifequal %}>1 - Não utilizado</option><option value='2' {% ifequal agNoc|readjson:'epcEpi.utilizEPI'|to_str '2' %}selected{% endifequal %}>2 - Utilizado</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div id="eficEpi__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Os EPIs são eficazes na neutralização do risco ao trabalhador?
+Valores válidos<a data-toggle="tooltip" title="Os EPIs são eficazes na neutralização do risco ao trabalhador?
+Valores válidos:
+S - Sim
+N - Não
+Validação: Preenchimento obrigatório e exclusivo se utilizEPI = [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__id__eficEpi" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][eficEpi]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal agNoc|readjson:'epcEpi.eficEpi'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal agNoc|readjson:'epcEpi.eficEpi'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
         </div>
     </div>
@@ -1024,21 +1028,6 @@ Validação: Preenchimento obrigatório e exclusivo se docAval não for informad
     </div>
 </div>
 
-<div id="eficEpi__div">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label>O EPI é eficaz na neutralização do risco ao trabalhador?
-Valores válidos<a data-toggle="tooltip" title="O EPI é eficaz na neutralização do risco ao trabalhador?
-Valores válidos:
-S - Sim
-N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__eficEpi" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][eficEpi]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal epi|readjson:'eficEpi'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal epi|readjson:'eficEpi'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
-            </select>
-        </div>
-    </div>
-</div>
-
             </div>
         </blockquote>
     </div>
@@ -1078,21 +1067,6 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <label>Descrição do EPI<a data-toggle="tooltip" title="Descrição do EPI.
 Validação: Preenchimento obrigatório e exclusivo se docAval não for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__dscEPI" maxlength="999" value="{{epi|readjson:'dscEPI'}}" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][dscEPI]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
-        </div>
-    </div>
-</div>
-
-<div id="eficEpi__div">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label>O EPI é eficaz na neutralização do risco ao trabalhador?
-Valores válidos<a data-toggle="tooltip" title="O EPI é eficaz na neutralização do risco ao trabalhador?
-Valores válidos:
-S - Sim
-N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtExpRisco__infoExpRisco__agNoc__epcEpi__epi__id__eficEpi" name="[evtExpRisco][infoExpRisco][agNoc][][epcEpi][epi][][eficEpi]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal epi|readjson:'eficEpi'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal epi|readjson:'eficEpi'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
-            </select>
         </div>
     </div>
 </div>

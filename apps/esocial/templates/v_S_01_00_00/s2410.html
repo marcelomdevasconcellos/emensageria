@@ -438,7 +438,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o CPF do instituidor da pensão por morte<a data-toggle="tooltip" title="Preencher com o CPF do instituidor da pensão por morte.
-Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser um CPF válido e diferente do CPF do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenIn__infoBenInicio__dadosBeneficio__infoPenMorte__instPenMorte__id__cpfInst" maxlength="11" value="{{evtCdBenIn|readjson:'infoBenInicio.dadosBeneficio.infoPenMorte.instPenMorte.cpfInst'}}" name="[evtCdBenIn][infoBenInicio][dadosBeneficio][infoPenMorte][instPenMorte][cpfInst]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>

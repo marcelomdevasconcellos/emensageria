@@ -462,7 +462,11 @@ Validação: Deve corresponder à alíquota declarada no evento S-1005. Caso nã
     <div class="col-md-4">
         <div class="form-group">
             <label>Fator Acidentário de Prevenção - FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP.
-Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao FAP declarado no evento S-1005. Caso não haja informação, retornar o FAP estabelecido para a empresa pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao FAP estabelecido para a empresa pelo órgão governamental competente, exceto se:
+a) ideEstab/tpInsc = [4]; ou
+b) ideEstab/tpInsc = [1] e se houver informação de procAdmJudFap em S-1005; ou
+c) ideEstab/tpInsc = [1] e o estabalecimento não for encontrado na tabela FAP referente ao ano de perApur.
+Caso haja alguma exceção acima, retornar o FAP declarado no evento S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__id__fap" maxlength="5" value="{{ideEstab|readjson:'infoEstab.fap'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
@@ -478,6 +482,61 @@ Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]
     </div>
 </div>
 
+<div id="infoEstabRef__div">
+    <div class="col-md-12">
+        <h4>Informações de RAT e FAP de referência, nos casos de processo administrativo ou judicial que altere a(s) alíquota(s).</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="aliqRat__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a alíquota RAT<a data-toggle="tooltip" title="Retornar a alíquota RAT definida na legislação vigente.
+Valores válidos: 1, 2, 3
+Validação: Deve corresponder à alíquota definida na legislação vigente para o código CNAE informado em S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__infoEstabRef__id__aliqRat" maxlength="1" value="{{ideEstab|readjson:'infoEstab.infoEstabRef.aliqRat'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][infoEstabRef][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fap__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fator Acidentário de Prevenção - FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP estabelecido pelo órgão governamental competente.
+Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao FAP estabelecido para a empresa pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__infoEstabRef__id__fap" maxlength="5" value="{{ideEstab|readjson:'infoEstab.infoEstabRef.fap'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][infoEstabRef][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="aliqRatAjust__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Alíquota do RAT após ajuste pelo FAP<a data-toggle="tooltip" title="Alíquota de referência - RAT após ajuste pelo FAP.
+Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao resultado da multiplicação dos campos infoEstabRef/aliqRat e infoEstabRef/fap."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__infoEstabRef__id__aliqRatAjust" maxlength="5" value="{{ideEstab|readjson:'infoEstab.infoEstabRef.aliqRatAjust'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][infoEstabRef][aliqRatAjust]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
 <div id="infoComplObra__div">
     <div class="col-md-12">
         <h4>Informações complementares relativas a obras de construção civil.</h4>
@@ -3190,7 +3249,11 @@ Validação: Deve corresponder à alíquota declarada no evento S-1005. Caso nã
     <div class="col-md-4">
         <div class="form-group">
             <label>Fator Acidentário de Prevenção - FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP.
-Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao FAP declarado no evento S-1005. Caso não haja informação, retornar o FAP estabelecido para a empresa pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao FAP estabelecido para a empresa pelo órgão governamental competente, exceto se:
+a) ideEstab/tpInsc = [4]; ou
+b) ideEstab/tpInsc = [1] e se houver informação de procAdmJudFap em S-1005; ou
+c) ideEstab/tpInsc = [1] e o estabalecimento não for encontrado na tabela FAP referente ao ano de perApur.
+Caso haja alguma exceção acima, retornar o FAP declarado no evento S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__id__fap" maxlength="5" value="{{ideEstab|readjson:'infoEstab.fap'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
@@ -3206,6 +3269,61 @@ Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]
     </div>
 </div>
 
+<div id="infoEstabRef__div">
+    <div class="col-md-12">
+        <h4>Informações de RAT e FAP de referência, nos casos de processo administrativo ou judicial que altere a(s) alíquota(s).</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="aliqRat__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar a alíquota RAT<a data-toggle="tooltip" title="Retornar a alíquota RAT definida na legislação vigente.
+Valores válidos: 1, 2, 3
+Validação: Deve corresponder à alíquota definida na legislação vigente para o código CNAE informado em S-1005."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__infoEstabRef__id__aliqRat" maxlength="1" value="{{ideEstab|readjson:'infoEstab.infoEstabRef.aliqRat'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][infoEstabRef][aliqRat]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="fap__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Fator Acidentário de Prevenção - FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP estabelecido pelo órgão governamental competente.
+Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao FAP estabelecido para a empresa pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__infoEstabRef__id__fap" maxlength="5" value="{{ideEstab|readjson:'infoEstab.infoEstabRef.fap'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][infoEstabRef][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="aliqRatAjust__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Alíquota do RAT após ajuste pelo FAP<a data-toggle="tooltip" title="Alíquota de referência - RAT após ajuste pelo FAP.
+Validação: Informação obrigatória e exclusiva se ideEmpregador/tpInsc = [1]. Deve corresponder ao resultado da multiplicação dos campos infoEstabRef/aliqRat e infoEstabRef/fap."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCS__infoCS__ideEstab__infoEstab__infoEstabRef__id__aliqRatAjust" maxlength="5" value="{{ideEstab|readjson:'infoEstab.infoEstabRef.aliqRatAjust'}}" name="[evtCS][infoCS][ideEstab][][infoEstab][infoEstabRef][aliqRatAjust]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
 <div id="infoComplObra__div">
     <div class="col-md-12">
         <h4>Informações complementares relativas a obras de construção civil.</h4>

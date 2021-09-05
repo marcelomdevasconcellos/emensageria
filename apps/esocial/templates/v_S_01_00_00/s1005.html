@@ -214,7 +214,8 @@ REGRA_VALIDA_DT_FUTURA</h4>
 Valores válidos:
 1 - CNPJ
 3 - CAEPF
-4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+4 - CNO
+Validação: Se classTrib em S-1000 = [04], deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__inclusao__ideEstab__id__tpInsc" name="[evtTabEstab][infoEstab][inclusao][ideEstab][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.ideEstab.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.ideEstab.tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.inclusao.ideEstab.tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
@@ -322,8 +323,11 @@ Se informada, deve ser diferente da alíquota definida na legislação vigente p
     <div class="col-md-4">
         <div class="form-group">
             <label>Fator Acidentário de Prevenção - FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP.
-Validação: Preenchimento obrigatório e exclusivo por Pessoa Jurídica e ideEstab/tpInsc = [4], ou se ideEstab/tpInsc = [1] e o fator informado for diferente do definido pelo órgão governamental competente para o estabelecimento (neste caso, deverá haver informações de processo em procAdmJudFap).
-Se informado, deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000 e, se ideEstab/tpInsc = [1], deve ser diferente do valor definido pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório e exclusivo por Pessoa Jurídica e:
+a) ideEstab/tpInsc = [4]; ou
+b) ideEstab/tpInsc = [1] e o fator informado for diferente do definido pelo órgão governamental competente para o estabelecimento (neste caso, deverá haver informações de processo em procAdmJudFap); ou
+c) ideEstab/tpInsc = [1] e o estabalecimento não for encontrado na tabela FAP.
+Se informado, deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000 e, no caso da alínea "c", deve ser diferente do valor definido pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__id__fap" maxlength="5" value="{{evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.fap'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
@@ -492,7 +496,7 @@ Validação: Deve ser compatível com o cadastro da RFB."><i class="fa fa-fw fa-
 </div>
 <div id="infoObra__div">
     <div class="col-md-12">
-        <h4>Grupo preenchido exclusivamente por empresa construtora, relacionando os estabelecimentos inscritos no Cadastro Nacional de Obras - CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</h4>
+        <h4>Grupo preenchido obrigatória e exclusivamente por empresa construtora e com indDesFolha em S-1000 = [1], relacionando os estabelecimentos inscritos no Cadastro Nacional de Obras - CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -746,7 +750,8 @@ Validação: Deve ser um número de processo judicial válido."><i class="fa fa-
 Valores válidos:
 1 - CNPJ
 3 - CAEPF
-4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+4 - CNO
+Validação: Se classTrib em S-1000 = [04], deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__alteracao__ideEstab__id__tpInsc" name="[evtTabEstab][infoEstab][alteracao][ideEstab][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.ideEstab.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.ideEstab.tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.alteracao.ideEstab.tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
@@ -854,8 +859,11 @@ Se informada, deve ser diferente da alíquota definida na legislação vigente p
     <div class="col-md-4">
         <div class="form-group">
             <label>Fator Acidentário de Prevenção - FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP.
-Validação: Preenchimento obrigatório e exclusivo por Pessoa Jurídica e ideEstab/tpInsc = [4], ou se ideEstab/tpInsc = [1] e o fator informado for diferente do definido pelo órgão governamental competente para o estabelecimento (neste caso, deverá haver informações de processo em procAdmJudFap).
-Se informado, deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000 e, se ideEstab/tpInsc = [1], deve ser diferente do valor definido pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório e exclusivo por Pessoa Jurídica e:
+a) ideEstab/tpInsc = [4]; ou
+b) ideEstab/tpInsc = [1] e o fator informado for diferente do definido pelo órgão governamental competente para o estabelecimento (neste caso, deverá haver informações de processo em procAdmJudFap); ou
+c) ideEstab/tpInsc = [1] e o estabalecimento não for encontrado na tabela FAP.
+Se informado, deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000 e, no caso da alínea "c", deve ser diferente do valor definido pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__id__fap" maxlength="5" value="{{evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.fap'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
@@ -1024,7 +1032,7 @@ Validação: Deve ser compatível com o cadastro da RFB."><i class="fa fa-fw fa-
 </div>
 <div id="infoObra__div">
     <div class="col-md-12">
-        <h4>Grupo preenchido exclusivamente por empresa construtora, relacionando os estabelecimentos inscritos no Cadastro Nacional de Obras - CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</h4>
+        <h4>Grupo preenchido obrigatória e exclusivamente por empresa construtora e com indDesFolha em S-1000 = [1], relacionando os estabelecimentos inscritos no Cadastro Nacional de Obras - CNO, para indicar a substituição ou não da contribuição patronal incidente sobre a remuneração dos trabalhadores de obra de construção civil.</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -1322,7 +1330,8 @@ Validação: Se informado, deve estar no formato AAAA-MM e ser um período igual
 Valores válidos:
 1 - CNPJ
 3 - CAEPF
-4 - CNO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+4 - CNO
+Validação: Se classTrib em S-1000 = [04], deve ser igual a [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabEstab__infoEstab__exclusao__ideEstab__id__tpInsc" name="[evtTabEstab][infoEstab][exclusao][ideEstab][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal evtTabEstab|readjson:'infoEstab.exclusao.ideEstab.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='3' {% ifequal evtTabEstab|readjson:'infoEstab.exclusao.ideEstab.tpInsc'|to_str '3' %}selected{% endifequal %}>3 - CAEPF</option><option value='4' {% ifequal evtTabEstab|readjson:'infoEstab.exclusao.ideEstab.tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>

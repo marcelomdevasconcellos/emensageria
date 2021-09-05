@@ -18,7 +18,6 @@ REGRA_COMPATIB_CATEG_EVENTO
 REGRA_EMPREGADO_DOMESTICO
 REGRA_ENVIO_PROC_FECHAMENTO
 REGRA_EVENTOS_EXTEMP
-REGRA_EVENTO_IMPACTO_FOPAG
 REGRA_EVETRAB_VALIDA_OPCAO_FGTS
 REGRA_EXISTE_INFO_EMPREGADOR
 REGRA_EXTEMP_DOMESTICO
@@ -1229,7 +1228,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Número que identifica o processo judicial onde a baixa do vínculo foi determinada<a data-toggle="tooltip" title="Número que identifica o processo trabalhista, quando a admissão se der por decisão judicial.
-Validação: Não informar se indAdmissao = [1, 2]. Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se indAdmissao = [3]. Se preenchido, deve ser um processo judicial válido, com 20 (vinte) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmissao__vinculo__infoRegimeTrab__infoCeletista__id__nrProcTrab" maxlength="20" value="{{evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoCeletista.nrProcTrab'}}" name="[evtAdmissao][vinculo][infoRegimeTrab][infoCeletista][nrProcTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>

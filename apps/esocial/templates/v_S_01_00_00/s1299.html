@@ -14,6 +14,7 @@ REGRA_EVE_FOPAG_SIMPLIFICADO
 REGRA_EXISTE_INFO_EMPREGADOR
 REGRA_REMUN_ANUAL_DEZEMBRO
 REGRA_VALIDA_EMPREGADOR
+REGRA_VALIDA_FAP
 REGRA_VALIDA_FECHAMENTO_FOPAG</h4>
         {% if False %}
         <div class="btn-group">
@@ -282,7 +283,7 @@ Validação: Não informar se perApur >= [2021-07] ou se indApuracao = [2]. Pree
             <label>Solicitação de transmissão imediata da DCTFWeb<a data-toggle="tooltip" title="Solicitação de transmissão imediata da DCTFWeb.
 Valores válidos:
 S - Sim
-Validação: Preenchimento obrigatório se classTrib em S-1000 = [04] ou indGuia estiver informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Não informar se perApur < [2021-10]. Preenchimento obrigatório se perApur >= [2021-10] e (classTrib em S-1000 = [04] ou indGuia estiver informado)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtFechaEvPer__infoFech__id__transDCTFWeb" name="[evtFechaEvPer][infoFech][transDCTFWeb]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal evtFechaEvPer|readjson:'infoFech.transDCTFWeb'|to_str 'S' %}selected{% endifequal %}>S - Sim</option>
             </select>

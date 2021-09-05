@@ -197,6 +197,17 @@ Considera-se como dia não útil o sábado, o domingo e todo aquele constante do
         </div>
     </div>
 </div>
+
+<div id="classTrib__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente à classificação tributária do contribuinte<a data-toggle="tooltip" title="Preencher com o código correspondente à classificação tributária do contribuinte, conforme Tabela 08.
+Evento de origem: S-1000.
+Validação: Retornar somente se for igual a [04, 22]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtBasesFGTS__infoFGTS__id__classTrib" maxlength="2" value="{{evtBasesFGTS|readjson:'infoFGTS.classTrib'}}" name="[evtBasesFGTS][infoFGTS][classTrib]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
 {% for ideEstab in evtBasesFGTS|readjson:'infoFGTS.ideEstab' %}
 <div id="ideEstab__div">
     <div class="col-md-12">

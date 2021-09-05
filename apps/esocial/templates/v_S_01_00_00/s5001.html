@@ -592,7 +592,7 @@ I. Efetuar o somatório de valor quando tpValor = [11, 12, 13, 14, 19] para toda
 II. Caso o somatório do item I não tenha atingido o limite máximo do salário de contribuição, efetuar o somatório de valor quando tpValor = [11, 12, 13, 14, 19] para todas as categorias diferentes de segurado empregado e aplicar a alíquota correta conforme a categoria, observado o limite máximo do salário de contribuição.
  
 OBS.: a) No caso de indApuracao = [1], o cálculo deve ser efetuado separadamente para infoBaseCS/ind13 = [0] e infoBaseCS/ind13 = [1]. A soma de ambos os cálculos deve corresponder ao valor de vrCpSeg.
-b) Aplica-se a alíquota de 20% para o cálculo da contribuição previdenciária a ser descontada de remuneração de trabalhador pertencente às categorias [731, 734], quando o empregador for cooperativa de trabalho (indCoop em S-1000 = [1]), ou pertencente ao grupo "Contribuinte Individual", quando o Empregador tiver classificação tributária (classTrib em S-1000) = [70, 80]). Caso o trabalhador receba remuneração da empresa em outra categoria do grupo "Contribuinte Individual", primeiro deve ser aplicado o desconto sobre essa categoria (7XX) e depois sobre a remuneração das categorias [731, 734], observado o limite máximo do salário de contribuição.
+b) Aplica-se a alíquota de 20% para o cálculo da contribuição previdenciária a ser descontada de remuneração de trabalhador pertencente às categorias [731, 734], quando o empregador for cooperativa de trabalho (indCoop em S-1000 = [1]), ou pertencente ao grupo "Contribuinte Individual", quando o Empregador tiver classificação tributária (classTrib em S-1000) = [04, 70, 80]). Caso o trabalhador receba remuneração da empresa em outra categoria do grupo "Contribuinte Individual", primeiro deve ser aplicado o desconto sobre essa categoria (7XX) e depois sobre a remuneração das categorias [731, 734], observado o limite máximo do salário de contribuição.
 c) vrCpSeg deve ser igual a vrDescSeg nas seguintes situações:
 c1) Se houver informações em {infoPerAnt} na composição de valor;
 c2) Se houver informação de {procJudTrab} com {tpTrib} = [2] nos eventos que contenham informações de remuneração (S-1200, S-2299 e S-2399);
@@ -600,7 +600,7 @@ c3) Se houver processo do empregador informado em S-1010, contestando incidênci
 c4) Se, no período de apuração mensal, houver remuneração referente a 13º salário (codIncCP em S-1010 = [12, 14, 16, 22, 26, 32, 92, 94, 96, 98]). Nesse caso, o campo vrCpSeg será igual ao valor calculado sobre a remuneração mensal acrescido do desconto sobre a remuneração relativa a 13° salário informado pelo empregador;
 c5) se {procEmi} do evento S-1200/S-2299/S-2399 for igual a [2, 4, 22].
 d) No caso de trabalhador categoria = [102], utilizar somente a alíquota de 8%, observado o limite máximo do salário de contribuição.
-e) No caso de empregador com classTrib em S-1000 = [21, 60], não calcular para a categoria do grupo "Contribuinte Individual" (7XX). O valor deve ser zerado.
+e) No caso de empregador com classTrib em S-1000 = [21], exceto se ideEstabLot/tpInsc = [4], ou com classTrib em S-1000 = [60], não calcular para a categoria do grupo "Contribuinte Individual" (7XX). O valor deve ser zerado.
 f) Não calcular quando a categoria do trabalhador for [741] (MEI). O valor deve ser zerado.
 g) Não calcular quando a lotação tributária for [91]. O valor deve ser zerado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesTrab__infoCpCalc__id__vrCpSeg" maxlength="14" value="{{infoCpCalc|readjson:'vrCpSeg'}}" name="[evtBasesTrab][infoCpCalc][][vrCpSeg]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
@@ -687,7 +687,7 @@ I. Efetuar o somatório de valor quando tpValor = [11, 12, 13, 14, 19] para toda
 II. Caso o somatório do item I não tenha atingido o limite máximo do salário de contribuição, efetuar o somatório de valor quando tpValor = [11, 12, 13, 14, 19] para todas as categorias diferentes de segurado empregado e aplicar a alíquota correta conforme a categoria, observado o limite máximo do salário de contribuição.
  
 OBS.: a) No caso de indApuracao = [1], o cálculo deve ser efetuado separadamente para infoBaseCS/ind13 = [0] e infoBaseCS/ind13 = [1]. A soma de ambos os cálculos deve corresponder ao valor de vrCpSeg.
-b) Aplica-se a alíquota de 20% para o cálculo da contribuição previdenciária a ser descontada de remuneração de trabalhador pertencente às categorias [731, 734], quando o empregador for cooperativa de trabalho (indCoop em S-1000 = [1]), ou pertencente ao grupo "Contribuinte Individual", quando o Empregador tiver classificação tributária (classTrib em S-1000) = [70, 80]). Caso o trabalhador receba remuneração da empresa em outra categoria do grupo "Contribuinte Individual", primeiro deve ser aplicado o desconto sobre essa categoria (7XX) e depois sobre a remuneração das categorias [731, 734], observado o limite máximo do salário de contribuição.
+b) Aplica-se a alíquota de 20% para o cálculo da contribuição previdenciária a ser descontada de remuneração de trabalhador pertencente às categorias [731, 734], quando o empregador for cooperativa de trabalho (indCoop em S-1000 = [1]), ou pertencente ao grupo "Contribuinte Individual", quando o Empregador tiver classificação tributária (classTrib em S-1000) = [04, 70, 80]). Caso o trabalhador receba remuneração da empresa em outra categoria do grupo "Contribuinte Individual", primeiro deve ser aplicado o desconto sobre essa categoria (7XX) e depois sobre a remuneração das categorias [731, 734], observado o limite máximo do salário de contribuição.
 c) vrCpSeg deve ser igual a vrDescSeg nas seguintes situações:
 c1) Se houver informações em {infoPerAnt} na composição de valor;
 c2) Se houver informação de {procJudTrab} com {tpTrib} = [2] nos eventos que contenham informações de remuneração (S-1200, S-2299 e S-2399);
@@ -695,7 +695,7 @@ c3) Se houver processo do empregador informado em S-1010, contestando incidênci
 c4) Se, no período de apuração mensal, houver remuneração referente a 13º salário (codIncCP em S-1010 = [12, 14, 16, 22, 26, 32, 92, 94, 96, 98]). Nesse caso, o campo vrCpSeg será igual ao valor calculado sobre a remuneração mensal acrescido do desconto sobre a remuneração relativa a 13° salário informado pelo empregador;
 c5) se {procEmi} do evento S-1200/S-2299/S-2399 for igual a [2, 4, 22].
 d) No caso de trabalhador categoria = [102], utilizar somente a alíquota de 8%, observado o limite máximo do salário de contribuição.
-e) No caso de empregador com classTrib em S-1000 = [21, 60], não calcular para a categoria do grupo "Contribuinte Individual" (7XX). O valor deve ser zerado.
+e) No caso de empregador com classTrib em S-1000 = [21], exceto se ideEstabLot/tpInsc = [4], ou com classTrib em S-1000 = [60], não calcular para a categoria do grupo "Contribuinte Individual" (7XX). O valor deve ser zerado.
 f) Não calcular quando a categoria do trabalhador for [741] (MEI). O valor deve ser zerado.
 g) Não calcular quando a lotação tributária for [91]. O valor deve ser zerado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesTrab__infoCpCalc__id__vrCpSeg" maxlength="14" value="{{infoCpCalc|readjson:'vrCpSeg'}}" name="[evtBasesTrab][infoCpCalc][][vrCpSeg]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
@@ -1187,8 +1187,8 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da contribuição social devida a Outras Entidades ou Fundos<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR.
-Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo);
-calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo).
+Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1];
+calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1].
 OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__vrCsSegTerc" maxlength="14" value="{{calcTerc|readjson:'vrCsSegTerc'}}" name="[evtBasesTrab][infoCp][ideEstabLot][][infoCategIncid][][calcTerc][][vrCsSegTerc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -1246,8 +1246,8 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da contribuição social devida a Outras Entidades ou Fundos<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR.
-Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo);
-calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo).
+Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1];
+calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1].
 OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__vrCsSegTerc" maxlength="14" value="{{calcTerc|readjson:'vrCsSegTerc'}}" name="[evtBasesTrab][infoCp][ideEstabLot][][infoCategIncid][][calcTerc][][vrCsSegTerc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -2429,8 +2429,8 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da contribuição social devida a Outras Entidades ou Fundos<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR.
-Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo);
-calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo).
+Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1];
+calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1].
 OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__vrCsSegTerc" maxlength="14" value="{{calcTerc|readjson:'vrCsSegTerc'}}" name="[evtBasesTrab][infoCp][ideEstabLot][][infoCategIncid][][calcTerc][][vrCsSegTerc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -2488,8 +2488,8 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da contribuição social devida a Outras Entidades ou Fundos<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR.
-Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo);
-calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo).
+Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1];
+calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1].
 OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__vrCsSegTerc" maxlength="14" value="{{calcTerc|readjson:'vrCsSegTerc'}}" name="[evtBasesTrab][infoCp][ideEstabLot][][infoCategIncid][][calcTerc][][vrCsSegTerc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -3732,8 +3732,8 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da contribuição social devida a Outras Entidades ou Fundos<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR.
-Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo);
-calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo).
+Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1];
+calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1].
 OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__vrCsSegTerc" maxlength="14" value="{{calcTerc|readjson:'vrCsSegTerc'}}" name="[evtBasesTrab][infoCp][ideEstabLot][][infoCategIncid][][calcTerc][][vrCsSegTerc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -3791,8 +3791,8 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da contribuição social devida a Outras Entidades ou Fundos<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR.
-Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo);
-calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo).
+Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1];
+calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1].
 OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__vrCsSegTerc" maxlength="14" value="{{calcTerc|readjson:'vrCsSegTerc'}}" name="[evtBasesTrab][infoCp][ideEstabLot][][infoCategIncid][][calcTerc][][vrCsSegTerc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -4974,8 +4974,8 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da contribuição social devida a Outras Entidades ou Fundos<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR.
-Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo);
-calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo).
+Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1];
+calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1].
 OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__vrCsSegTerc" maxlength="14" value="{{calcTerc|readjson:'vrCsSegTerc'}}" name="[evtBasesTrab][infoCp][ideEstabLot][][infoCategIncid][][calcTerc][][vrCsSegTerc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -5033,8 +5033,8 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Valor da contribuição social devida a Outras Entidades ou Fundos<a data-toggle="tooltip" title="Valor da contribuição social devida a Outras Entidades ou Fundos, calculada segundo a legislação em vigor, por CR.
-Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo);
-calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo).
+Validação: calcTerc/tpCR = [121802] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,5%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1];
+calcTerc/tpCR = [122102] - Somatório de valor quando tpValor = [11, 12, 13, 14], multiplicado pela alíquota de 1,0%, se codCateg = [711, 712, 734] (transportador autônomo) e ideEmpregador/tpInsc = [1].
 OBS.: No período de 04/2020 a 06/2020, as alíquotas devem ser 0,75% para o SEST e 0,5% para o SENAT."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBasesTrab__infoCp__ideEstabLot__infoCategIncid__calcTerc__id__vrCsSegTerc" maxlength="14" value="{{calcTerc|readjson:'vrCsSegTerc'}}" name="[evtBasesTrab][infoCp][ideEstabLot][][infoCategIncid][][calcTerc][][vrCsSegTerc]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
