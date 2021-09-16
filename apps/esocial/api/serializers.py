@@ -42,8 +42,30 @@ class EventosSerializer(ModelSerializer):
         validated_data['tpamb'] = ESOCIAL_TPAMB
         if validated_data.get('evento_xml') and not validated_data.get('evento_json'):
             import json
-            dict = xmltodict.parse(validated_data['evento_xml'])
+            import xml.etree.ElementTree as ET
+            from ..choices import EVENTO_COD
+
+            evento = validated_data['evento']
+            evento_codigo = EVENTO_COD[evento]['codigo']
+            versao = validated_data['versao']
+
+            def recursive_update_datefield(elem2):
+                from dateutil import parser as dateutil_parser
+                for elem in elem2:
+                    if elem.text and len(elem.text) == 10 and len(elem.text.split('-')) == 3:
+                        data = dateutil_parser.parse(elem.text)
+                        elem.text = data.strftime('%d/%m/%Y')
+                    else:
+                        recursive_update_datefield(elem)
+
+            ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{versao}")
+            xml_obj = ET.fromstring(validated_data['evento_xml'])
+            for elem in xml_obj:
+                recursive_update_datefield(elem)
+            xml_string = ET.tostring(xml_obj)
+            dict = xmltodict.parse(xml_string)
             validated_data['evento_json'] = json.dumps(dict.get('eSocial'))
+
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
@@ -57,7 +79,28 @@ class EventosSerializer(ModelSerializer):
         validated_data['retorno_consulta_json'] = '{}'
         if validated_data['evento_xml'] and not validated_data['evento_json']:
             import json
-            dict = xmltodict.parse(validated_data['evento_xml'])
+            import xml.etree.ElementTree as ET
+            from ..choices import EVENTO_COD
+
+            evento = validated_data['evento']
+            evento_codigo = EVENTO_COD[evento]['codigo']
+            versao = validated_data['versao']
+
+            def recursive_update_datefield(elem2):
+                from dateutil import parser as dateutil_parser
+                for elem in elem2:
+                    if elem.text and len(elem.text) == 10 and len(elem.text.split('-')) == 3:
+                        data = dateutil_parser.parse(elem.text)
+                        elem.text = data.strftime('%d/%m/%Y')
+                    else:
+                        recursive_update_datefield(elem)
+
+            ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{versao}")
+            xml_obj = ET.fromstring(validated_data['evento_xml'])
+            for elem in xml_obj:
+                recursive_update_datefield(elem)
+            xml_string = ET.tostring(xml_obj)
+            dict = xmltodict.parse(xml_string)
             validated_data['evento_json'] = json.dumps(dict.get('eSocial'))
         return super().update(instance, validated_data)
 
