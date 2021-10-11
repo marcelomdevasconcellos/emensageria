@@ -44,6 +44,8 @@ class EventosSerializer(ModelSerializer):
             import json
             import xml.etree.ElementTree as ET
             from ..choices import EVENTO_COD
+            if not '<eSocial>' in validated_data.get('evento_xml'):
+                validated_data['evento_xml'] = '<eSocial>' + validated_data.get('evento_xml') + '</eSocial>'
 
             evento = validated_data['evento']
             evento_codigo = EVENTO_COD[evento]['codigo']
@@ -81,6 +83,8 @@ class EventosSerializer(ModelSerializer):
             import json
             import xml.etree.ElementTree as ET
             from ..choices import EVENTO_COD
+            if not '<eSocial>' in validated_data.get('evento_xml'):
+                validated_data['evento_xml'] = '<eSocial>' + validated_data.get('evento_xml') + '</eSocial>'
 
             evento = validated_data['evento']
             evento_codigo = EVENTO_COD[evento]['codigo']
