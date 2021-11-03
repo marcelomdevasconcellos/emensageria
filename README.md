@@ -159,6 +159,14 @@ curl -X GET http://localhost:8000/esocial/consultar-transmissores/ -H
 python manage.py esocial_consultar
 ```
 
+## Formato do JSON de importação via API
+
+Para identificação do formato do JSON para importação siga os seguintes passos:
+
+1. Acessar o FrontEnd utilizando o usuário admin;
+2. Criar um evento no leiaute que desejar e salvar o evento;
+3. Visualizar a edição do evento;
+4. O formato do JSON irá aparecer em um campo somente leitura no formulario chamado JSON. 
 
 ## Licença AGPL-3
 
