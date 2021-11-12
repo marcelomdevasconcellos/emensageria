@@ -17,6 +17,8 @@ from config.functions import (create_dir, read_file, save_file)
 from config.mixins import BaseModelEsocial, BaseModelSerializer, BaseModel
 from .choices import *
 
+import subprocess as sp
+
 get_model = apps.get_model
 
 
@@ -283,6 +285,16 @@ class TransmissorEventos(BaseModelEsocial):
         create_dir(filename)
         return filename
 
+    def get_output(self, service, date_now):
+        filename = os.path.join(
+            settings.BASE_DIR,
+            config.FILES_PATH, 'comunicacao',
+            service, 'output',
+            '{}_{}.txt'.format(
+                self.id, datetime.now().strftime('%Y%m%d%H%M%S')))
+        create_dir(filename)
+        return filename
+
     def enviar(self, service='WsEnviarLoteEventos', request=None):
         from .choices import COMMAND_CURL
         from config.settings import ESOCIAL_TPAMB
@@ -314,7 +326,9 @@ class TransmissorEventos(BaseModelEsocial):
                 save_file(dados['request'], self.make_send())
                 save_file(self.get_command(service, date_now), COMMAND_CURL % dados)
 
-                os.system(COMMAND_CURL % dados)
+                command_output = sp.getoutput(COMMAND_CURL % dados)
+                save_file(self.get_output(service, date_now), command_output)
+                # os.system(COMMAND_CURL % dados)
 
                 if not os.path.isfile(dados['response']):
 
