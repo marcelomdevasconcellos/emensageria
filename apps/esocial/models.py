@@ -1031,7 +1031,7 @@ class Eventos(BaseModelEsocial):
         wrapper = 'eSocial'
         evento_codigo = EVENTO_COD[self.evento]['codigo']
 
-        if self.evento_xml and self.origem == EVENTO_ORIGEM_API and STATUS_EVENTO_IMPORTADO:
+        if self.evento_xml and self.origem == EVENTO_ORIGEM_API and self.status == STATUS_EVENTO_IMPORTADO:
 
             xml = self.evento_xml
             if '<eSocial' not in self.evento_xml:

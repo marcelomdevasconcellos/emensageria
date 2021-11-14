@@ -138,7 +138,7 @@ def validar_evento(request, pk):
         if not evt.transmissor_evento:
             evt = evt.vincular_transmissor()
             evt = Eventos.objects.get(id=pk)
-            print(evt.transmissor_evento)
+            # print(evt.transmissor_evento)
         evt.create_xml()
         evt.validar()
     else:
