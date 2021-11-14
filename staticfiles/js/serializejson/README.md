@@ -1,7 +1,7 @@
 jquery.serializeJSON
 ====================
 
-Adds the method `.serializeJSON()` to [jQuery](http://jquery.com/) (or [Zepto](http://zeptojs.com/)) that serializes a form into a JavaScript Object, using the same format as the default Ruby on Rails request params.
+Adds the method `.serializeJSON()` to [jQuery](http://jquery.com/) to serializes a form into a JavaScript Object. Supports the same format for nested parameters that is used in Ruby on Rails.
 
 Install
 -------
@@ -40,7 +40,7 @@ $('form').serializeJSON();
 }
 ```
 
-Form input, textarea and select tags are supported. Nested attributes and arrays can be specified by using the `attr[nested][nested]` syntax.
+Nested attributes and arrays can be specified by naming fields with the syntax: `name="attr[nested][nested]"`.
 
 HTML form:
 ```html
@@ -114,7 +114,7 @@ $('#my-profile').serializeJSON();
 }
 ```
 
-The `serializeJSON` function returns a JavaScript object, not a JSON String. The plugin should probably have been called `serializeObject` or similar, but those plugins already existed.
+The `serializeJSON` function returns a JavaScript object, not a JSON String. The plugin should probably have been called `serializeObject` or similar, but that plugin name was already taken.
 
 To convert into a JSON String, use the `JSON.stringify` method, that is available on all major [new browsers](http://caniuse.com/json).
 If you need to support very old browsers, just include the [json2.js](https://github.com/douglascrockford/JSON-js) polyfill (as described on [stackoverfow](http://stackoverflow.com/questions/191881/serializing-to-json-in-jquery)).
@@ -124,8 +124,7 @@ var obj = $('form').serializeJSON();
 var jsonString = JSON.stringify(obj);
 ```
 
-The plugin implememtation relies on jQuery's [.serializeArray()](https://api.jquery.com/serializeArray/) method.
-This means that it only serializes the inputs supported by `.serializeArray()`, which follows the standard W3C rules for [successful controls](http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2). In particular, the included elements **cannot be disabled** and must contain a **name attribute**. No submit button value is serialized since the form was not submitted using a button. And data from file select elements is not serialized.
+The plugin serializes the same inputs supported by [.serializeArray()](https://api.jquery.com/serializeArray/), following the standard W3C rules for [successful controls](http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2). In particular, the included elements **cannot be disabled** and must contain a **name attribute**. No submit button value is serialized since the form was not submitted using a button. And data from file select elements is not serialized.
 
 
 Parse values with :types
@@ -203,12 +202,12 @@ Types can also be specified with the attribute `data-value-type`, instead of add
 </form>
 ```
 
-If your field names contain colons (e.g. `name="article[my::key][active]"`) the last part after the colon will be confused as an invalid type. One way to avoid that is to explicitly append the type `:string` (e.g. `name="article[my::key][active]:string"`), or to use the attribute `data-value-type="string"`. Data attributes have precedence over `:type` name suffixes. It is also possible to disable parsing `:type` suffixes with the option `{disableColonTypes: true}`.
+If your field names contain colons (e.g. `name="article[my::key][active]"`) the last part after the colon will be confused as an invalid type. One way to avoid that is to explicitly append the type `:string` (e.g. `name="article[my::key][active]:string"`), or to use the attribute `data-value-type="string"`. Data attributes have precedence over `:type` name suffixes. It is also possible to disable parsing `:type` suffixes with the option `{ disableColonTypes: true }`.
 
 
 ### Custom Types
 
-Use the `customTypes` option to provide your own type functions. For example:
+Use the `customTypes` option to provide your own parsing functions. The parsing functions receive the input name as a string, and the DOM elment of the serialized input.
 
 ```html
 <form>
@@ -221,25 +220,29 @@ Use the `customTypes` option to provide your own type functions. For example:
 ```javascript
 $('form').serializeJSON({
   customTypes: {
-    alwaysBoo: (str) => { return "boo"; },
+    alwaysBoo: (strVal, el) => {
+      // strVal: is the input value as a string
+      // el: is the dom element. $(el) would be the jQuery element
+      return "boo"; // value returned in the serialization of this type
+    },
   }
 });
 
 // returns =>
 {
   "scary": "boo",  // <-- parsed with custom type "alwaysBoo"
-  "str": "str",    // <-- parsed with default type "string"
-  "five": 5,       // <-- parsed with default type "number"
+  "str": "str",
+  "five": 5,
 }
 ```
 
-The `customTypes` option can also include one of the `detaultTypes`, in which case it will override the default type:
+The provided `customTypes` can include one of the `detaultTypes` to override the default behavior:
 
 ```javascript
 $('form').serializeJSON({
   customTypes: {
-    alwaysBoo: (str) => { return "boo"; },
-    string: (str) => { return str + "-OVERDRIVE"; },
+    alwaysBoo: (strVal) => { return "boo"; },
+    string: (strVal) => { return strVal + "-OVERDRIVE"; },
   }
 });
 
@@ -251,7 +254,7 @@ $('form').serializeJSON({
 }
 ```
 
-The default types are defined in `$.serializeJSON.defaultOptions.defaultTypes`.
+Default types used by the plugin are defined in `$.serializeJSON.defaultOptions.defaultTypes`.
 
 
 Options
@@ -457,7 +460,7 @@ None of them did what I needed at the time `serializeJSON` was created. Factors 
 
  * Simple and small code base. The minimified version is < 1Kb.
  * Yet flexible enough with features like nested objects, unchecked-checkboxes and custom types.
- * Implemented on top of jQuery (or Zepto) `serializeArray`, that creates a JavaScript array of objects, ready to be encoded as a JSON string. It takes into account the W3C rules for [successful controls](http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2), making `serializeJSON` as standard and stable as it can be.
+ * Implementation follows the same rules as the jQuery method `serializeArray`, that creates a JavaScript array of objects, ready to be encoded as a JSON string. Taking into account the W3C rules for [successful controls](http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2) for better compatibility.
  * The format for the input field names is the same used by Rails (from [Rack::Utils.parse_nested_query](http://codefol.io/posts/How-Does-Rack-Parse-Query-Params-With-parse-nested-query)), that is successfully used by many backend systems and already well understood by many front end developers.
  * Exaustive test suite helps iterate on new releases and bugfixes with confidence.
  * Compatible with [bower](https://github.com/bower/bower), [zepto.js](http://zeptojs.com/) and pretty much every version of [jQuery](https://jquery.com/).
@@ -471,36 +474,7 @@ Contributions are awesome. Feature branch *pull requests* are the preferred meth
 Changelog
 ---------
 
- * *3.1.0* (Sep 13, 2020): Rename option `disableColonTypes` that was mistakenly named `disableSemicolonTypes`. Fix typos in README.
- * *3.0.0* (Sep 06, 2020): Improve types (PR #105) and remove parsing options (PR #104). The type system with `:type` suffixes, `data-value-type` attributes, and a combination of the options `customTypes`, `disableColonTypes` and `defaultType`, are safer and easier to use than the previous options `parseNumbers`, `parseAll`, etc. Thanks [Laykou](https://github.com/Laykou) for suggesting [PR #102] that pointed the problems of inputs with colons in their names.
- * *2.9.0* (Jan 12, 2018): Overrides to `customTypes.string` function now also apply to fields with no type, because `:string` is the default implicit type. Thanks [JocaPC](https://github.com/JocaPC) for reporting the [issue #83](https://github.com/marioizquierdo/jquery.serializeJSON/issues/83).
- * *2.8.1* (Dec 09, 2016): Identify issue #67 and throw a descriptive error with a link to the issue, that explains why nested arrays of objects with checkboxes with unchecked values are not supported.
- * *2.8.0* (Dec 09, 2016): Add options `skipFalsyValuesForFields`, `skipFalsyValuesForTypes` and attr `data-skip-falsy` to easily skip falsy values (which includes empty strings). Thanks to [milkaknap](https://github.com/milkaknap).
- * *2.7.2* (Dec 19, 2015): Bugfix #55 (Allow data types with the `data-value-type` attribute to use brackets in names). Thanks to [stricte](https://github.com/stricte).
- * *2.7.1* (Dec 12, 2015): Bugfix #54 (`data-value-type` attribute only works with input elements). Thanks to [madrabaz](https://github.com/madrabaz).
- * *2.7.0* (Nov 28, 2015): Allow to define custom types with the `data-value-type` attribute. Thanks to [madrabaz](https://github.com/madrabaz).
- * *2.6.2* (Oct 24, 2015): Add support for AMD/CommonJS/Browserify modules. Thanks to [jisaacks](https://github.com/jisaacks).
- * *2.6.1* (May 13, 2015): Bugfix #43 (Fix IE 8 compatibility). Thanks to [rywall](https://github.com/rywall).
- * *2.6.0* (Apr 24, 2015): Allow to define custom types with the option `customTypes` and inspect/override default types with the option `defaultTypes`. Thanks to [tygriffin](https://github.com/tygriffin) for the [pull request](https://github.com/marioizquierdo/jquery.serializeJSON/pull/40).
- * *2.5.0* (Mar 11, 2015): Override serialized properties if using the same name, even for nested values, instead of crashing the script, fixing issue#29. Also fix a crash when using Zepto and the data-unchecked-value option.
- * *2.4.2* (Feb 04, 2015): Ignore disabled checkboxes with "data-unchecked-value". Thanks to [skarr](https://github.com/skarr) for the [pull request](https://github.com/marioizquierdo/jquery.serializeJSON/pull/33).
- * *2.4.1* (Oct 12, 2014): Add `:auto` type, that works like the `parseAll` option, but targeted to a single input.
- * *2.4.0* (Oct 12, 2014): Implement :types. Types allow to easily specify how to parse each input.
- * *2.3.2* (Oct 11, 2014): Bugfix #27 (parsing error on nested keys like name="foo[inn[bar]]"). Thanks to [danlo](https://github.com/danlo) for finding the issue.
- * *2.3.1* (Oct 06, 2014): Bugfix #22 (ignore checkboxes with no name when doing `checkboxUncheckedValue`). Thanks to [KATT](https://github.com/KATT) for finding and fixing the issue.
- * *2.3.0* (Sep 25, 2014): Properly spell "data-unckecked-value", change for "data-unchecked-value"
- * *2.2.0* (Sep 17, 2014): Add option `checkboxUncheckedValue` and attribute `data-unckecked-value` to allow parsing unchecked checkboxes.
- * *2.1.0* (Jun 08, 2014): Add option `parseWithFunction` to allow custom parsers. And fix issue #14: empty strings were parsed as a zero when `parseNumbers` option was true.
- * *2.0.0* (May 04, 2014): Nested keys are always object attributes by default (discussed on issue #12). Set option `$.serializeJSON.defaultOptions.useIntKeysAsArrayIndex = true;` for backwards compatibility (see **Options** section). Thanks to [joshuajabbour](https://github.com/joshuajabbour) for finding the issue.
- * *1.3.0* (May 03, 2014): Accept options {parseBooleans, parseNumbers, parseNulls, parseAll} to modify what type to values are interpreted from the strings. Thanks to [diaswrd](https://github.com/diaswrd) for finding the issue.
- * *1.2.3* (Apr 12, 2014): Lowercase filenames.
- * *1.2.2* (Apr 03, 2014): Now also works with [Zepto.js](http://zeptojs.com/).
- * *1.2.1* (Mar 17, 2014): Refactor, cleanup, lint code and improve test coverage.
- * *1.2.0* (Mar 11, 2014): Arrays with empty index and objects with empty values are added and not overriden. Thanks to [kotas](https://github.com/kotas).
- * *1.1.1* (Feb 16, 2014): Only unsigned integers are used to create arrays. Alphanumeric keys are always for objects. Thanks to [Nicocin](https://github.com/Nicocin).
- * *1.0.2* (Jan 07, 2014): Tag to be on the jQuery plugin registry.
- * *1.0.1* (Aug 20, 2012): Bugfix: ensure that generated arrays are being displayed when parsed with JSON.stringify
- * *1.0.0* (Aug 20, 2012): Initial release
+See [CHANGELOG.md](./CHANGELOG.md)
 
 Author
 -------

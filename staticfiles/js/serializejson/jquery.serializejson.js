@@ -1,9 +1,9 @@
 /*!
   SerializeJSON jQuery plugin.
   https://github.com/marioizquierdo/jquery.serializeJSON
-  version 3.0.0 (Jan, 2018)
+  version 3.2.1 (Feb, 2021)
 
-  Copyright (c) 2012-2018 Mario Izquierdo
+  Copyright (c) 2012-2021 Mario Izquierdo
   Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
   and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
 */
@@ -21,28 +21,30 @@
 }(function ($) {
     "use strict";
 
+    var rCRLF = /\r?\n/g;
+    var rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i;
+    var rsubmittable = /^(?:input|select|textarea|keygen)/i;
+    var rcheckableType = /^(?:checkbox|radio)$/i;
+
     $.fn.serializeJSON = function (options) {
         var f = $.serializeJSON;
         var $form = this; // NOTE: the set of matched elements is most likely a form, but it could also be a group of inputs
-        var opts = f.setupOpts(options); // validate and apply defaults
+        var opts = f.setupOpts(options); // validate options and apply defaults
         var typeFunctions = $.extend({}, opts.defaultTypes, opts.customTypes);
 
-        // Use native `serializeArray` function to get an array of {name, value} objects.
-        var formAsArray = $form.serializeArray();
-        f.readCheckboxUncheckedValues(formAsArray, opts, $form); // add objects to the array from unchecked checkboxes if needed
+        // Make a list with {name, value, el} for each input element
+        var serializedArray = f.serializeArray($form, opts);
 
-        // Convert the formAsArray into a serializedObject with nested keys
+        // Convert the serializedArray into a serializedObject with nested keys
         var serializedObject = {};
-        $.each(formAsArray, function (_i, obj) {
-            var rawName  = obj.name; // original input name
-            var rawValue = obj.value; // input value
+        $.each(serializedArray, function (_i, obj) {
 
-            // Parse type
-            var name = rawName;
-            var type = f.attrFromInputWithName($form, rawName, "data-value-type");
-            if (!type && !opts.disableColonTypes) {
-                var p = f.splitType(rawName); // "foo:string" => ["foo", "string"]
-                name = p[0];
+            var nameSansType = obj.name;
+            var type = $(obj.el).attr("data-value-type");
+
+            if (!type && !opts.disableColonTypes) { // try getting the type from the input name
+                var p = f.splitType(obj.name); // "foo:string" => ["foo", "string"]
+                nameSansType = p[0];
                 type = p[1];
             }
             if (type === "skip") {
@@ -52,13 +54,13 @@
                 type = opts.defaultType; // "string" by default
             }
 
-            var typedValue = f.applyTypeFunc(rawName, rawValue, type, typeFunctions); // Parse type as string, number, etc.
+            var typedValue = f.applyTypeFunc(obj.name, obj.value, type, obj.el, typeFunctions); // Parse type as string, number, etc.
 
-            if (!typedValue && f.shouldSkipFalsy($form, rawName, name, type, opts)) {
+            if (!typedValue && f.shouldSkipFalsy(obj.name, nameSansType, type, obj.el, opts)) {
                 return; // ignore falsy inputs if specified in the options
             }
 
-            var keys = f.splitInputNameIntoKeysArray(name);
+            var keys = f.splitInputNameIntoKeysArray(nameSansType);
             f.deepSet(serializedObject, keys, typedValue, opts);
         });
         return serializedObject;
@@ -118,40 +120,65 @@
             return $.extend({}, f.defaultBaseOptions, f.defaultOptions, options);
         },
 
+        // Just like jQuery's serializeArray method, returns an array of objects with name and value.
+        // but also includes the dom element (el) and is handles unchecked checkboxes if the option or data attribute are provided.
+        serializeArray: function($form, opts) {
+            if (opts == null) { opts = {}; }
+            var f = $.serializeJSON;
+
+            return $form.map(function() {
+                var elements = $.prop(this, "elements"); // handle propHook "elements" to filter or add form elements
+                return elements ? $.makeArray(elements) : this;
+
+            }).filter(function() {
+                var $el = $(this);
+                var type = this.type;
+
+                // Filter with the standard W3C rules for successful controls: http://www.w3.org/TR/html401/interact/forms.html#h-17.13.2
+                return this.name && // must contain a name attribute
+                    !$el.is(":disabled") && // must not be disable (use .is(":disabled") so that fieldset[disabled] works)
+                    rsubmittable.test(this.nodeName) && !rsubmitterTypes.test(type) && // only serialize submittable fields (and not buttons)
+                    (this.checked || !rcheckableType.test(type) || f.getCheckboxUncheckedValue($el, opts) != null); // skip unchecked checkboxes (unless using opts)
+
+            }).map(function(_i, el) {
+                var $el = $(this);
+                var val = $el.val();
+                var type = this.type; // "input", "select", "textarea", "checkbox", etc.
+
+                if (val == null) {
+                    return null;
+                }
+
+                if (rcheckableType.test(type) && !this.checked) {
+                    val = f.getCheckboxUncheckedValue($el, opts);
+                }
+
+                if (isArray(val)) {
+                    return $.map(val, function(val) {
+                        return { name: el.name, value: val.replace(rCRLF, "\r\n"), el: el };
+                    } );
+                }
+
+                return { name: el.name, value: val.replace(rCRLF, "\r\n"), el: el };
+
+            }).get();
+        },
+
+        getCheckboxUncheckedValue: function($el, opts) {
+            var val = $el.attr("data-unchecked-value");
+            if (val == null) {
+                val = opts.checkboxUncheckedValue;
+            }
+            return val;
+        },
+
         // Parse value with type function
-        applyTypeFunc: function(name, valStr, type, typeFunctions) {
+        applyTypeFunc: function(name, strVal, type, el, typeFunctions) {
             var typeFunc = typeFunctions[type];
             if (!typeFunc) { // quick feedback to user if there is a typo or missconfiguration
                 throw new Error("serializeJSON ERROR: Invalid type " + type + " found in input name '" + name + "', please use one of " + objectKeys(typeFunctions).join(", "));
             }
-            return typeFunc(valStr);
-        },
-
-        // Fill the formAsArray object with values for the unchecked checkbox inputs,
-        // using the same format as the jquery.serializeArray function.
-        // The value of the unchecked values is determined from the opts.checkboxUncheckedValue
-        // and/or the data-unchecked-value attribute of the inputs.
-        readCheckboxUncheckedValues: function (formAsArray, opts, $form) {
-            if (opts == null) { opts = {}; }
-
-            var selector = "input[type=checkbox][name]:not(:checked):not([disabled])";
-            var $uncheckedCheckboxes = $form.find(selector).add($form.filter(selector));
-            $uncheckedCheckboxes.each(function (_i, el) {
-                // Check data attr first, then the option
-                var $el = $(el);
-                var uncheckedValue = $el.attr("data-unchecked-value");
-                if (uncheckedValue == null) {
-                    uncheckedValue = opts.checkboxUncheckedValue;
-                }
-
-                // If there's an uncheckedValue, push it into the serialized formAsArray
-                if (uncheckedValue != null) {
-                    if (el.name && el.name.indexOf("[][") !== -1) { // identify a non-supported
-                        throw new Error("serializeJSON ERROR: checkbox unchecked values are not supported on nested arrays of objects like '"+el.name+"'. See https://github.com/marioizquierdo/jquery.serializeJSON/issues/67");
-                    }
-                    formAsArray.push({name: el.name, value: uncheckedValue});
-                }
-            });
+            return typeFunc(strVal, el);
         },
 
         // Splits a field name into the name and the type. Examples:
@@ -168,38 +195,25 @@
             }
         },
 
-
         // Check if this input should be skipped when it has a falsy value,
         // depending on the options to skip values by name or type, and the data-skip-falsy attribute.
-        shouldSkipFalsy: function($form, name, nameWithNoType, type, opts) {
-            var f = $.serializeJSON;
-
-            var skipFromDataAttr = f.attrFromInputWithName($form, name, "data-skip-falsy");
+        shouldSkipFalsy: function(name, nameSansType, type, el, opts) {
+            var skipFromDataAttr = $(el).attr("data-skip-falsy");
             if (skipFromDataAttr != null) {
-                return skipFromDataAttr !== "false"; // any value is true, except if explicitly using 'false'
+                return skipFromDataAttr !== "false"; // any value is true, except the string "false"
             }
 
             var optForFields = opts.skipFalsyValuesForFields;
-            if (optForFields && (optForFields.indexOf(nameWithNoType) !== -1 || optForFields.indexOf(name) !== -1)) {
+            if (optForFields && (optForFields.indexOf(nameSansType) !== -1 || optForFields.indexOf(name) !== -1)) {
                 return true;
             }
 
             var optForTypes = opts.skipFalsyValuesForTypes;
-            if (type == null) type = "string"; // assume fields with no type are targeted as string
             if (optForTypes && optForTypes.indexOf(type) !== -1) {
                 return true;
             }
 
             return false;
-        },
-
-        // Finds the first input in $form with this name, and get the given attr from it.
-        // Returns undefined if no input or no attribute was found.
-        attrFromInputWithName: function($form, name, attrName) {
-            var escapedName = name.replace(/(:|\.|\[|\]|\s)/g, "\\$1"); // every non-standard character need to be escaped by \\
-            var selector = "[name=\"" + escapedName + "\"]";
-            var $input = $form.find(selector).add($form.filter(selector)); // NOTE: this returns only the first $input element if multiple are matched with the same name (i.e. an "array[]"). So, arrays with different element types specified through the data-value-type attr is not supported.
-            return $input.attr(attrName);
         },
 
         // Split the input name in programatically readable keys.
@@ -244,52 +258,65 @@
 
             var key = keys[0];
 
-            // Only one key, then it's not a deepSet, just assign the value.
+            // Only one key, then it's not a deepSet, just assign the value in the object or add it to the array.
             if (keys.length === 1) {
-                if (key === "") {
-                    o.push(value); // '' is used to push values into the array (assume o is an array)
+                if (key === "") { // push values into an array (o must be an array)
+                    o.push(value);
                 } else {
-                    o[key] = value; // other keys can be used as object keys or array indexes
+                    o[key] = value; // keys can be object keys (strings) or array indexes (numbers)
                 }
-
-                // With more keys is a deepSet. Apply recursively.
-            } else {
-                var nextKey = keys[1];
-
-                // "" is used to push values into the array,
-                // with nextKey, set the value into the same object, in object[nextKey].
-                // Covers the case of ["", "foo"] and ["", "var"] to push the object {foo, var}, and the case of nested arrays.
-                if (key === "") {
-                    var lastIdx = o.length - 1; // asume o is array
-                    var lastVal = o[lastIdx];
-                    if (isObject(lastVal) && (isUndefined(lastVal[nextKey]) || keys.length > 2)) { // if nextKey is not present in the last object element, or there are more keys to deep set
-                        key = lastIdx; // then set the new value in the same object element
-                    } else {
-                        key = lastIdx + 1; // otherwise, point to set the next index in the array
-                    }
-                }
-
-                // "" is used to push values into the array "array[]"
-                if (nextKey === "") {
-                    if (isUndefined(o[key]) || !$.isArray(o[key])) {
-                        o[key] = []; // define (or override) as array to push values
-                    }
-                } else {
-                    if (opts.useIntKeysAsArrayIndex && isValidArrayIndex(nextKey)) { // if 1, 2, 3 ... then use an array, where nextKey is the index
-                        if (isUndefined(o[key]) || !$.isArray(o[key])) {
-                            o[key] = []; // define (or override) as array, to insert values using int keys as array indexes
-                        }
-                    } else { // for anything else, use an object, where nextKey is going to be the attribute name
-                        if (isUndefined(o[key]) || !isObject(o[key])) {
-                            o[key] = {}; // define (or override) as object, to set nested properties
-                        }
-                    }
-                }
-
-                // Recursively set the inner object
-                var tail = keys.slice(1);
-                f.deepSet(o[key], tail, value, opts);
+                return;
             }
+
+            var nextKey = keys[1]; // nested key
+            var tailKeys = keys.slice(1); // list of all other nested keys (nextKey is first)
+
+            if (key === "") { // push nested objects into an array (o must be an array)
+                var lastIdx = o.length - 1;
+                var lastVal = o[lastIdx];
+
+                // if the last value is an object or array, and the new key is not set yet
+                if (isObject(lastVal) && isUndefined(f.deepGet(lastVal, tailKeys))) {
+                    key = lastIdx; // then set the new value as a new attribute of the same object
+                } else {
+                    key = lastIdx + 1; // otherwise, add a new element in the array
+                }
+            }
+
+            if (nextKey === "") { // "" is used to push values into the nested array "array[]"
+                if (isUndefined(o[key]) || !isArray(o[key])) {
+                    o[key] = []; // define (or override) as array to push values
+                }
+            } else {
+                if (opts.useIntKeysAsArrayIndex && isValidArrayIndex(nextKey)) { // if 1, 2, 3 ... then use an array, where nextKey is the index
+                    if (isUndefined(o[key]) || !isArray(o[key])) {
+                        o[key] = []; // define (or override) as array, to insert values using int keys as array indexes
+                    }
+                } else { // nextKey is going to be the nested object's attribute
+                    if (isUndefined(o[key]) || !isObject(o[key])) {
+                        o[key] = {}; // define (or override) as object, to set nested properties
+                    }
+                }
+            }
+
+            // Recursively set the inner object
+            f.deepSet(o[key], tailKeys, value, opts);
+        },
+
+        deepGet: function (o, keys) {
+            var f = $.serializeJSON;
+            if (isUndefined(o) || isUndefined(keys) || keys.length === 0 || (!isObject(o) && !isArray(o))) {
+                return o;
+            }
+            var key = keys[0];
+            if (key === "") { // "" means next array index (used by deepSet)
+                return undefined;
+            }
+            if (keys.length === 1) {
+                return o[key];
+            }
+            var tailKeys = keys.slice(1);
+            return f.deepGet(o[key], tailKeys);
         }
     };
 
@@ -304,7 +331,8 @@
         }
     };
 
-    var isObject =          function(obj) { return obj === Object(obj); };
+    var isObject =          function(obj) { return obj === Object(obj); }; // true for Objects and Arrays
     var isUndefined =       function(obj) { return obj === void 0; }; // safe check for undefined values
     var isValidArrayIndex = function(val) { return /^[0-9]+$/.test(String(val)); }; // 1,2,3,4 ... are valid array indexes
+    var isArray =           Array.isArray || function(obj) { return Object.prototype.toString.call(obj) === "[object Array]"; };
 }));
