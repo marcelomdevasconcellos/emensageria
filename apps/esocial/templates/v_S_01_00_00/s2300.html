@@ -1358,7 +1358,7 @@ Validação: O preenchimento é obrigatório se infoDirigenteSindical/categOrig 
 <div id="matricOrig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Preencher com a matrícula do trabalhador na empresa de origem<a data-toggle="tooltip" title="Preencher com a matrícula do trabalhador na empresa de origem.
+            <label>Preencher com a matrícula do servidor no órgão público de origem<a data-toggle="tooltip" title="Preencher com a matrícula do trabalhador na empresa de origem.
 Validação: Preenchimento obrigatório se infoDirigenteSindical/categOrig corresponder a "Empregado" ou "Agente Público"."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__matricOrig" maxlength="30" value="{{evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoDirigenteSindical.matricOrig'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][matricOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -1402,7 +1402,7 @@ Validação: Se infoDirigenteSindical/categOrig for relativa a "Empregado", não
 </div>
 <div id="infoTrabCedido__div">
     <div class="col-md-12">
-        <h4>Informações relativas ao trabalhador cedido/em exercício em outro órgão, preenchidas exclusivamente pelo cessionário/órgão de destino.</h4>
+        <h4>Informações relativas ao trabalhador cedido/em exercício em outro órgão ou servidor público indicado para conselho, preenchidas exclusivamente pelo cessionário/órgão de destino.</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -1423,8 +1423,8 @@ Validação: Se infoDirigenteSindical/categOrig for relativa a "Empregado", não
 <div id="categOrig__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Preencher com o código correspondente à categoria de origem do dirigente sindical ou do trabalhador cedido<a data-toggle="tooltip" title="Preencher com o código correspondente à categoria de origem do trabalhador cedido.
-Validação: Deve ser um código válido e existente na Tabela 01, diferente de [410]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o código correspondente à categoria de origem do dirigente sindical ou do trabalhador cedido<a data-toggle="tooltip" title="Preencher com o código correspondente à categoria de origem do trabalhador cedido ou do servidor público indicado para conselho.
+Validação: Deve ser um código válido e existente na Tabela 01, diferente de [305, 410]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoTrabCedido__id__categOrig" maxlength="3" value="{{evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.categOrig'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoTrabCedido][categOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1483,7 +1483,7 @@ Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
 2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
 3 - Regime de Previdência Social no exterior
-Validação: Se infoTrabCedido/categOrig for relativa a "Empregado", não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Se infoTrabCedido/categOrig for relativa a "Empregado", não pode ser preenchido com [2]. Se codCateg = [305], deve ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVInicio__infoTSVInicio__infoComplementares__infoTrabCedido__id__tpRegPrev" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoTrabCedido][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
@@ -1514,6 +1514,46 @@ Validação: Se infoTrabCedido/categOrig for relativa a "Empregado", não pode s
     <div class="col-md-12">
         <blockquote>
             <div class="row">
+
+<div id="categOrig__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o código correspondente à categoria de origem do dirigente sindical ou do trabalhador cedido<a data-toggle="tooltip" title="Preencher com o código correspondente à categoria de origem do servidor.
+Validação: Deve ser um código válido e existente na Tabela 01, diferente de [304]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoMandElet__id__categOrig" maxlength="3" value="{{evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoMandElet.categOrig'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoMandElet][categOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="cnpjOrig__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Informar o CNPJ do órgão público de origem<a data-toggle="tooltip" title="Informar o CNPJ do órgão público de origem.
+Regra de validação:
+REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoMandElet__id__cnpjOrig" maxlength="14" value="{{evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoMandElet.cnpjOrig'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoMandElet][cnpjOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="matricOrig__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com a matrícula do servidor no órgão público de origem<a data-toggle="tooltip" title="Preencher com a matrícula do servidor no órgão público de origem."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoMandElet__id__matricOrig" maxlength="30" value="{{evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoMandElet.matricOrig'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoMandElet][matricOrig]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="dtExercOrig__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com a data de exercício do servidor no órgão público de origem<a data-toggle="tooltip" title="Preencher com a data de exercício do servidor no órgão público de origem.
+Validação: Deve ser uma data anterior a dtInicio e igual ou posterior a 01/01/1890."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoMandElet__id__dtExercOrig" value="{{evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoMandElet.dtExercOrig'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoMandElet][dtExercOrig]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
 
 <div id="indRemunCargo__div">
     <div class="col-md-4">

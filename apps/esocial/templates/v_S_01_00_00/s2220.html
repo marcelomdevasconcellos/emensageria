@@ -288,7 +288,7 @@ Validação: Se informado [0], não pode existir outro evento S-2220 para o mesm
     <div class="col-md-4">
         <div class="form-group">
             <label>Data de emissão do ASO<a data-toggle="tooltip" title="Data de emissão do ASO.
-Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser uma data válida, igual ou anterior à data atual e igual ou posterior à data de início da obrigatoriedade deste evento para o empregador no eSocial. Se tpExameOcup for diferente de [0], também deve ser igual ou posterior à data de admissão/exercício ou de início."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtMonit__exMedOcup__aso__id__dtAso" value="{{evtMonit|readjson:'exMedOcup.aso.dtAso'}}" name="[evtMonit][exMedOcup][aso][dtAso]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -332,7 +332,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Data do exame realizado<a data-toggle="tooltip" title="Data do exame realizado.
-Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso. Se tpExameOcup for diferente de [0], também deve ser igual ou posterior à data de admissão/exercício ou de início."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtMonit__exMedOcup__aso__exame__id__dtExm" value="{{exame|readjson:'dtExm'}}" name="[evtMonit][exMedOcup][aso][exame][][dtExm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -417,7 +417,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Data do exame realizado<a data-toggle="tooltip" title="Data do exame realizado.
-Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso. Se tpExameOcup for diferente de [0], também deve ser igual ou posterior à data de admissão/exercício ou de início."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtMonit__exMedOcup__aso__exame__id__dtExm" value="{{exame|readjson:'dtExm'}}" name="[evtMonit][exMedOcup][aso][exame][][dtExm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>

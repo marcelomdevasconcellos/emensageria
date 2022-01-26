@@ -226,7 +226,7 @@ Validação: Se classTrib em S-1000 = [04], deve ser igual a [1]."><i class="fa 
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo ideEstab/tpInsc.
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento (inclusive Sociedade em Conta de Participação - SCP), obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo ideEstab/tpInsc.
 Validação: Deve ser compatível com o conteúdo do campo ideEstab/tpInsc. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__inclusao__ideEstab__id__nrInsc" maxlength="14" value="{{evtTabEstab|readjson:'infoEstab.inclusao.ideEstab.nrInsc'}}" name="[evtTabEstab][infoEstab][inclusao][ideEstab][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -287,6 +287,17 @@ Validação: Deve ser um número existente na tabela CNAE, com 7 (sete) algarism
     </div>
 </div>
 
+<div id="cnpjResp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o CNPJ responsável pela inscrição no cadastro de obras da RFB<a data-toggle="tooltip" title="Preencher com o CNPJ responsável pela inscrição no cadastro de obras da RFB.
+Validação: Preenchimento obrigatório e exclusivo por Pessoa Jurídica e se ideEstab/tpInsc = [4]. Informação obrigatória se iniValid >= [2022-04].
+Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__id__cnpjResp" maxlength="14" value="{{evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.cnpjResp'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][cnpjResp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
 <div id="aliqGilrat__div">
     <div class="col-md-12">
         <h4>Informações de apuração da alíquota GILRAT do estabelecimento.</h4>
@@ -324,10 +335,10 @@ Se informada, deve ser diferente da alíquota definida na legislação vigente p
         <div class="form-group">
             <label>Fator Acidentário de Prevenção - FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP.
 Validação: Preenchimento obrigatório e exclusivo por Pessoa Jurídica e:
-a) ideEstab/tpInsc = [4]; ou
-b) ideEstab/tpInsc = [1] e o fator informado for diferente do definido pelo órgão governamental competente para o estabelecimento (neste caso, deverá haver informações de processo em procAdmJudFap); ou
-c) ideEstab/tpInsc = [1] e o estabalecimento não for encontrado na tabela FAP.
-Se informado, deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000 e, no caso da alínea "c", deve ser diferente do valor definido pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+a) ideEstab/tpInsc = [4] e o campo cnpjResp não estiver informado; ou
+b) ideEstab/tpInsc = [1, 4] e o fator informado for diferente do definido pelo órgão governamental competente para o estabelecimento ou para o CNPJ responsável pela inscrição no CNO (neste caso, deverá haver informações de processo em procAdmJudFap); ou
+c) ideEstab/tpInsc = [1, 4] e o estabelecimento ou o CNPJ responsável pela inscrição no CNO não for encontrado na tabela FAP.
+Se informado, deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000 e, no caso da alínea "b", deve ser diferente do valor definido pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__inclusao__dadosEstab__aliqGilrat__id__fap" maxlength="5" value="{{evtTabEstab|readjson:'infoEstab.inclusao.dadosEstab.aliqGilrat.fap'}}" name="[evtTabEstab][infoEstab][inclusao][dadosEstab][aliqGilrat][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
@@ -762,7 +773,7 @@ Validação: Se classTrib em S-1000 = [04], deve ser igual a [1]."><i class="fa 
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo ideEstab/tpInsc.
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento (inclusive Sociedade em Conta de Participação - SCP), obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo ideEstab/tpInsc.
 Validação: Deve ser compatível com o conteúdo do campo ideEstab/tpInsc. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__alteracao__ideEstab__id__nrInsc" maxlength="14" value="{{evtTabEstab|readjson:'infoEstab.alteracao.ideEstab.nrInsc'}}" name="[evtTabEstab][infoEstab][alteracao][ideEstab][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -823,6 +834,17 @@ Validação: Deve ser um número existente na tabela CNAE, com 7 (sete) algarism
     </div>
 </div>
 
+<div id="cnpjResp__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Preencher com o CNPJ responsável pela inscrição no cadastro de obras da RFB<a data-toggle="tooltip" title="Preencher com o CNPJ responsável pela inscrição no cadastro de obras da RFB.
+Validação: Preenchimento obrigatório e exclusivo por Pessoa Jurídica e se ideEstab/tpInsc = [4]. Informação obrigatória se iniValid >= [2022-04].
+Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__id__cnpjResp" maxlength="14" value="{{evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.cnpjResp'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][cnpjResp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
 <div id="aliqGilrat__div">
     <div class="col-md-12">
         <h4>Informações de apuração da alíquota GILRAT do estabelecimento.</h4>
@@ -860,10 +882,10 @@ Se informada, deve ser diferente da alíquota definida na legislação vigente p
         <div class="form-group">
             <label>Fator Acidentário de Prevenção - FAP<a data-toggle="tooltip" title="Fator Acidentário de Prevenção - FAP.
 Validação: Preenchimento obrigatório e exclusivo por Pessoa Jurídica e:
-a) ideEstab/tpInsc = [4]; ou
-b) ideEstab/tpInsc = [1] e o fator informado for diferente do definido pelo órgão governamental competente para o estabelecimento (neste caso, deverá haver informações de processo em procAdmJudFap); ou
-c) ideEstab/tpInsc = [1] e o estabalecimento não for encontrado na tabela FAP.
-Se informado, deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000 e, no caso da alínea "c", deve ser diferente do valor definido pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
+a) ideEstab/tpInsc = [4] e o campo cnpjResp não estiver informado; ou
+b) ideEstab/tpInsc = [1, 4] e o fator informado for diferente do definido pelo órgão governamental competente para o estabelecimento ou para o CNPJ responsável pela inscrição no CNO (neste caso, deverá haver informações de processo em procAdmJudFap); ou
+c) ideEstab/tpInsc = [1, 4] e o estabelecimento ou o CNPJ responsável pela inscrição no CNO não for encontrado na tabela FAP.
+Se informado, deve ser um número maior ou igual a 0,5000 e menor ou igual a 2,0000 e, no caso da alínea "b", deve ser diferente do valor definido pelo órgão governamental competente."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__alteracao__dadosEstab__aliqGilrat__id__fap" maxlength="5" value="{{evtTabEstab|readjson:'infoEstab.alteracao.dadosEstab.aliqGilrat.fap'}}" name="[evtTabEstab][infoEstab][alteracao][dadosEstab][aliqGilrat][fap]" onchange="set_evento_json()" class="form-control esocial-valor-4" {{ original|disabled}} />
         </div>
     </div>
@@ -1342,7 +1364,7 @@ Validação: Se classTrib em S-1000 = [04], deve ser igual a [1]."><i class="fa 
 <div id="nrInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento, obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo ideEstab/tpInsc.
+            <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento (inclusive Sociedade em Conta de Participação - SCP), obra de construção civil ou órgão público de acordo com o tipo de inscrição indicado no campo ideEstab/tpInsc.
 Validação: Deve ser compatível com o conteúdo do campo ideEstab/tpInsc. Deve ser um identificador válido, constante das bases da RFB, vinculado ao empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabEstab__infoEstab__exclusao__ideEstab__id__nrInsc" maxlength="14" value="{{evtTabEstab|readjson:'infoEstab.exclusao.ideEstab.nrInsc'}}" name="[evtTabEstab][infoEstab][exclusao][ideEstab][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>

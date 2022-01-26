@@ -410,7 +410,7 @@ Validação: Preenchimento obrigatório se codAgNoc = [01.01.001, 01.02.001, 01.
 Valores válidos:
 1 - Critério quantitativo
 2 - Critério qualitativo
-Validação: Não informar se codAgNoc = [09.01.001]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório e exclusivo se codAgNoc for diferente de [09.01.001]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtExpRisco__infoExpRisco__agNoc__id__tpAval" name="[evtExpRisco][infoExpRisco][agNoc][][tpAval]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal agNoc|readjson:'tpAval'|to_str '1' %}selected{% endifequal %}>1 - Critério quantitativo</option><option value='2' {% ifequal agNoc|readjson:'tpAval'|to_str '2' %}selected{% endifequal %}>2 - Critério qualitativo</option>
             </select>
@@ -825,7 +825,7 @@ Validação: Preenchimento obrigatório se codAgNoc = [01.01.001, 01.02.001, 01.
 Valores válidos:
 1 - Critério quantitativo
 2 - Critério qualitativo
-Validação: Não informar se codAgNoc = [09.01.001]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório e exclusivo se codAgNoc for diferente de [09.01.001]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtExpRisco__infoExpRisco__agNoc__id__tpAval" name="[evtExpRisco][infoExpRisco][agNoc][][tpAval]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal agNoc|readjson:'tpAval'|to_str '1' %}selected{% endifequal %}>1 - Critério quantitativo</option><option value='2' {% ifequal agNoc|readjson:'tpAval'|to_str '2' %}selected{% endifequal %}>2 - Critério qualitativo</option>
             </select>

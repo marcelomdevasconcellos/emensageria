@@ -368,6 +368,47 @@ Validação: Deve ser um código válido e existente na Tabela de Lotações Tri
         </blockquote>
     </div>
 </div>
+<div id="infoPercTransf11096__div">
+    <div class="col-md-12">
+        <h4>Grupo preenchido por entidade que tenha se transformado em sociedade de fins lucrativos nos termos e no prazo da Lei 11.096/2005.</h4>
+        {% if False %}
+        <div class="btn-group">
+            <button type="button" onclick="duplicateDiv($(this))" 
+                    class="btn btn-success btn-flat">
+                    <i class="fa fa-plus-circle"></i>
+            </button>
+            <button type="button" onclick="removeDiv($(this))" 
+                    class="btn btn-danger btn-flat">
+                    <i class="fa fa-minus-circle"></i>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-12">
+        <blockquote>
+            <div class="row">
+
+<div id="percTransf__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Percentual de contribuição social - Lei 11<a data-toggle="tooltip" title="Informe o percentual de contribuição social devida em caso de transformação em sociedade de fins lucrativos - Lei 11.096/2005.
+Valores válidos:
+1 - 0,2000
+2 - 0,4000
+3 - 0,6000
+4 - 0,8000
+5 - 1,0000"><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtInfoComplPer__infoPercTransf11096__id__percTransf" name="[evtInfoComplPer][infoPercTransf11096][percTransf]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='1' {% ifequal evtInfoComplPer|readjson:'infoPercTransf11096.percTransf'|to_str '1' %}selected{% endifequal %}>1 - 0,2000</option><option value='2' {% ifequal evtInfoComplPer|readjson:'infoPercTransf11096.percTransf'|to_str '2' %}selected{% endifequal %}>2 - 0,4000</option><option value='3' {% ifequal evtInfoComplPer|readjson:'infoPercTransf11096.percTransf'|to_str '3' %}selected{% endifequal %}>3 - 0,6000</option><option value='4' {% ifequal evtInfoComplPer|readjson:'infoPercTransf11096.percTransf'|to_str '4' %}selected{% endifequal %}>4 - 0,8000</option><option value='5' {% ifequal evtInfoComplPer|readjson:'infoPercTransf11096.percTransf'|to_str '5' %}selected{% endifequal %}>5 - 1,0000</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </blockquote>
+    </div>
+</div>
             </div>
         </blockquote>
     </div>

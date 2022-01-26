@@ -281,7 +281,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Hora do acidente<a data-toggle="tooltip" title="Hora do acidente, no formato HHMM.
-Validação: Preenchimento obrigatório e exclusivo se tpAcid = [1]. Se informada, deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.
+Validação: Preenchimento obrigatório e exclusivo se tpAcid = [1, 3]. Se informada, deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.
 Se tpCat = [2, 3], deve ser informado valor igual ao preenchido no evento de CAT anterior, quando informado em nrRecCatOrig."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__id__hrAcid" maxlength="4" value="{{evtCAT|readjson:'cat.hrAcid'}}" name="[evtCAT][cat][hrAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -702,7 +702,7 @@ Validação: Deve ser um código válido e existente na Tabela 14 ou na Tabela 1
     <div class="col-md-4">
         <div class="form-group">
             <label>Data do atendimento<a data-toggle="tooltip" title="Data do atendimento.
-Validação: Deve ser uma data válida, igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser uma data igual ou posterior a dtAcid e igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__id__dtAtendimento" value="{{evtCAT|readjson:'cat.atestado.dtAtendimento'}}" name="[evtCAT][cat][atestado][dtAtendimento]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>

@@ -344,7 +344,7 @@ Validação: Se a classificação tributária em S-1000 for igual a [01, 02, 03,
         <div class="form-group">
             <label>Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos judiciais<a data-toggle="tooltip" title="Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos judiciais. Ex.: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao SESI (0008) e ao SEBRAE (0064), deve informar o código combinado das duas entidades, ou seja, [0072].
 Validação: Deve ser um código consistente com a Tabela 04.
-Deve haver um processo em procJudTerceiro para cada código de Terceiro cujo recolhimento esteja suspenso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Deve haver pelo menos um processo em procJudTerceiro para cada código de Terceiro cujo recolhimento esteja suspenso."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__fpasLotacao__id__codTercsSusp" maxlength="4" value="{{evtTabLotacao|readjson:'infoLotacao.inclusao.dadosLotacao.fpasLotacao.codTercsSusp'}}" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][fpasLotacao][codTercsSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -788,7 +788,7 @@ Validação: Se a classificação tributária em S-1000 for igual a [01, 02, 03,
         <div class="form-group">
             <label>Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos judiciais<a data-toggle="tooltip" title="Informar o código combinado dos Terceiros para os quais o recolhimento está suspenso em virtude de processos judiciais. Ex.: Se o contribuinte possui decisões de processos para suspensão de recolhimentos ao SESI (0008) e ao SEBRAE (0064), deve informar o código combinado das duas entidades, ou seja, [0072].
 Validação: Deve ser um código consistente com a Tabela 04.
-Deve haver um processo em procJudTerceiro para cada código de Terceiro cujo recolhimento esteja suspenso."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Deve haver pelo menos um processo em procJudTerceiro para cada código de Terceiro cujo recolhimento esteja suspenso."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__fpasLotacao__id__codTercsSusp" maxlength="4" value="{{evtTabLotacao|readjson:'infoLotacao.alteracao.dadosLotacao.fpasLotacao.codTercsSusp'}}" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][fpasLotacao][codTercsSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>

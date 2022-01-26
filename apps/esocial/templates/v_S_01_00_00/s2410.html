@@ -217,7 +217,7 @@ Validação: Informação obrigatória se cadIni = [N] e tpBeneficio pertencer a
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o CNPJ do órgão público responsável pela matrícula do servidor/militar<a data-toggle="tooltip" title="Preencher com o CNPJ do órgão público responsável pela matrícula do servidor/militar. Informação obrigatória se cadIni = [N], desde que haja informação de matrícula e que o CNPJ seja diferente do CNPJ do órgão declarante.
-Validação: Preenchimento obrigatório se cadIni = [N] e houver informação de matricula, exceto se existir vínculo (evento S-2200) para o beneficiário (indicado em cpfBenef e matricula) no órgão declarante.
+Validação: Preenchimento obrigatório se cadIni = [N] e houver informação de matricula, exceto se existir vínculo (evento S-2200) no órgão declarante para o beneficiário (indicado em cpfBenef e matricula) ou, se tpBeneficio pertencer ao grupo [06] da Tabela 25, para o instituidor da pensão por morte (indicado em cpfInst e matricula).
 Se informado, deve ser um CNPJ válido e diferente do CNPJ do órgão público declarante, com 14 (catorze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenIn__beneficiario__id__cnpjOrigem" maxlength="14" value="{{evtCdBenIn|readjson:'beneficiario.cnpjOrigem'}}" name="[evtCdBenIn][beneficiario][cnpjOrigem]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
