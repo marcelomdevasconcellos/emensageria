@@ -9,10 +9,17 @@ from rest_framework.serializers import (
 )
 
 from ..models import (
-    Eventos, TransmissorEventos
+    Eventos, TransmissorEventos, Transmissor
 )
 
 from ..choices import EVENTO_ORIGEM_API, EVENTO_ORIGEM, STATUS_EVENTO_IMPORTADO
+
+
+class TransmissorSerializer(ModelSerializer):
+    class Meta:
+        model = Transmissor
+        fields = '__all__'
+        read_only_fields = ('created_by', 'updated_by', 'created_at', 'updated_at', )
 
 
 class TransmissorEventosSerializer(ModelSerializer):

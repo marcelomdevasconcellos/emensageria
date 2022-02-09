@@ -7,9 +7,17 @@ import json
 from django.shortcuts import redirect, get_object_or_404, render
 
 from django.forms.models import model_to_dict
-from .serializers import EventosSerializer
-from ..models import Eventos
+from .serializers import EventosSerializer, TransmissorSerializer
+from ..models import Eventos, Transmissor
 from ..choices import EVENTO_ORIGEM_API
+
+
+class TransmissorViewSet(ModelViewSet):
+    queryset = Transmissor.objects.all()
+    serializer_class = TransmissorSerializer
+    # filterset_class = EventosFilter
+    http_method_names = ['get', 'put', 'patch', 'post', 'head', 'delete']
+    permission_classes = [IsAuthenticated]
 
 
 class EventosViewSet(ModelViewSet):
