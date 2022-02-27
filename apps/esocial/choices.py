@@ -366,6 +366,4 @@ IMPORTACAO_STATUS = [
 TIPO_INSCRICAO = [
     (1, '1 - CNPJ'),
     (2, '2 - CPF'),
-    (3, '3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)'),
-    (4, '4 - CNO (Cadastro Nacional de Obra)'),
 ]
