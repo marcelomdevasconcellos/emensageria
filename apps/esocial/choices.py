@@ -230,7 +230,7 @@ EVENTOS = [
     ('s2410', 'S-2410 - Cadastro de Benefício - Entes Públicos - Início'),
     ('s2416', 'S-2416 - Cadastro de Benefício - Entes Públicos - Alteração'),
     ('s2418', 'S-2418 - Reativação de Benefício - Entes Públicos'),
-    ('s2428', 'S-2420 - Cadastro de Benefício - Entes Públicos - Término'),
+    ('s2420', 'S-2420 - Cadastro de Benefício - Entes Públicos - Término'),
     ('s3000', 'S-3000 - Exclusão de Eventos'),
 ]
 
