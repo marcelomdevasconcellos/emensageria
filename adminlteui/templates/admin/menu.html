@@ -10,26 +10,26 @@
       </a>
       <ul class="treeview-menu">
          {% if perms.esocial.view_eventos %}
-         <li><a href="/esocial/eventos/"><i class="fa fa-circle-o"></i>Eventos</a></li>
+         <li><a href="{% url 'admin:esocial_eventos_changelist' %}"><i class="fa fa-circle-o"></i>Eventos</a></li>
          {% endif %}
       {% comment %}
          {% if perms.esocial.view_arquivos %}
-         <li><a href="/esocial/arquivos/"><i class="fa fa-circle-o"></i>Arquivos</a></li>
+         <li><a href="{% url 'admin:esocial_arquivos_changelist' %}"><i class="fa fa-circle-o"></i>Arquivos</a></li>
          {% endif %}
       {% endcomment %}
          {% if perms.esocial.view_certificados %}
-         <li><a href="/esocial/certificados/"><i class="fa fa-circle-o"></i>Certificados</a></li>
+         <li><a href="{% url 'admin:esocial_certificados_changelist' %}"><i class="fa fa-circle-o"></i>Certificados</a></li>
          {% endif %}
       {% comment %}
          {% if perms.esocial.view_relatorios %}
-         <li><a href="/esocial/relatorios/"><i class="fa fa-circle-o"></i>Relatórios</a></li>
+         <li><a href="{% url 'admin:esocial_relatorios_changelist' %}"><i class="fa fa-circle-o"></i>Relatórios</a></li>
          {% endif %}
       {% endcomment %}
          {% if perms.esocial.view_transmissor %}
-         <li><a href="/esocial/transmissor/"><i class="fa fa-circle-o"></i>Transmissor</a></li>
+         <li><a href="{% url 'admin:esocial_transmissor_changelist' %}"><i class="fa fa-circle-o"></i>Transmissor</a></li>
          {% endif %}
          {% if perms.esocial.view_transmissoreventos %}
-         <li><a href="/esocial/transmissoreventos/"><i class="fa fa-circle-o"></i>Lotes</a></li>
+         <li><a href="{% url 'admin:esocial_transmissoreventos_changelist' %}"><i class="fa fa-circle-o"></i>Lotes</a></li>
          {% endif %}
       </ul>
    </li>
@@ -90,7 +90,7 @@
          {% endif %}
       {% endcomment %}
          {% if perms.constance.view_config %}
-         <li><a href="/constance/config/"><i class="fa fa-circle-o"></i>Configurações</a></li>
+         <li><a href="{% url 'admin:constance_config_changelist' %}"><i class="fa fa-circle-o"></i>Configurações</a></li>
          {% endif %}
       </ul>
    </li>
@@ -106,13 +106,13 @@
       </a>
       <ul class="treeview-menu">
          {% if perms.auth.view_group %}
-         <li><a href="/auth/group/"><i class="fa fa-circle-o"></i>Grupos</a></li>
+         <li><a href="{% url 'admin:auth_group_changelist' %}"><i class="fa fa-circle-o"></i>Grupos</a></li>
          {% endif %}
          {% if perms.authtoken.view_token %}
-         <li><a href="/authtoken/tokenproxy/"><i class="fa fa-circle-o"></i>Tokens</a></li>
+         <li><a href="{% url 'admin:authtoken_tokenproxy_changelist' %}"><i class="fa fa-circle-o"></i>Tokens</a></li>
          {% endif %}
          {% if perms.auth.view_user %}
-         <li><a href="/auth/user/"><i class="fa fa-circle-o"></i>Usuários</a></li>
+         <li><a href="{% url 'admin:auth_user_changelist' %}"><i class="fa fa-circle-o"></i>Usuários</a></li>
          {% endif %}
       </ul>
    </li>
