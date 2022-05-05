@@ -28,8 +28,8 @@ xhtml2pdf==0.2.2
 xmlschema==1.0.13
 xmltodict==0.11.0
 json2xml==3.5.0  # https://json2xml.readthedocs.io/en/latest/
-git+git://github.com/marcelomdevasconcellos/django-adminlte-ui.git#egg=django-adminlte-ui #original: django-adminlte-ui==1.5.1
-git+git://github.com/marcelomdevasconcellos/libesocial.git#egg=libesocial #original: libesocial
+git+https://github.com/marcelomdevasconcellos/django-adminlte-ui.git#egg=django-adminlte-ui #original: django-adminlte-ui==1.5.1
+git+https://github.com/marcelomdevasconcellos/libesocial.git#egg=libesocial #original: libesocial
 beautifulsoup4==4.9.3
 pandas==1.2.4
 lxml~=4.6.1
