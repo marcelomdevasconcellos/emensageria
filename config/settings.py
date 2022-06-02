@@ -142,7 +142,7 @@ THOUSAND_SEPARATOR = '.'
 
 USE_THOUSAND_SEPARATOR = True
 
-LINK_SITE = env('LINK_SITE', default='')
+LINK_WEBSITE = env('LINK_WEBSITE', default='')
 
 # Configurações de Versão do Aplicativo
 VERSAO_EMENSAGERIA = '1.3.0'

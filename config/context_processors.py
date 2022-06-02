@@ -19,7 +19,7 @@ def admin_media(request):
         'DATABASE_NAME': settings.DATABASES['default']['NAME'],
         'get_tags': False,
         'MEDIA_URL': settings.MEDIA_URL,
-        'LINK_SITE': settings.LINK_SITE,
+        'LINK_WEBSITE': settings.LINK_WEBSITE,
         'STATUS_EVENTO_CADASTRADO': STATUS_EVENTO_CADASTRADO,
         'STATUS_EVENTO_IMPORTADO': STATUS_EVENTO_IMPORTADO,
         'STATUS_EVENTO_AGUARD_ENVIO': STATUS_EVENTO_AGUARD_ENVIO,
