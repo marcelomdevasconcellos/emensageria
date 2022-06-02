@@ -142,8 +142,9 @@ THOUSAND_SEPARATOR = '.'
 
 USE_THOUSAND_SEPARATOR = True
 
-# Configurações de Versão do Aplicativo
+LINK_SITE = env('LINK_SITE', default='')
 
+# Configurações de Versão do Aplicativo
 VERSAO_EMENSAGERIA = '1.3.0'
 VERSAO_LAYOUT_ESOCIAL = 'v_S_01_00_00'
 VERSAO_LAYOUT_REINF = 'v1_04_00'
