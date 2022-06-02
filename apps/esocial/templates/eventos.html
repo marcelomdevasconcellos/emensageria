@@ -392,13 +392,13 @@ label {
 {% block extrajs %}
 <script type="text/javascript">
   $(function() {
-    {% if not original.operacao == 1 %}
+    {% if original.operacao and not original.operacao == 1 %}
     $('#inclusao__div').hide(); 
     {% endif %}
-    {% if not original.operacao == 2 %}
+    {% if original.operacao and not original.operacao == 2 %}
     $('#alteracao__div').hide(); 
     {% endif %}
-    {% if not original.operacao == 3 %}
+    {% if original.operacao and not original.operacao == 3 %}
     $('#exclusao__div').hide(); 
     {% endif %}
     $('#id_operacao').change(function(){
