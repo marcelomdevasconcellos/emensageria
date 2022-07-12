@@ -281,7 +281,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Hora do acidente<a data-toggle="tooltip" title="Hora do acidente, no formato HHMM.
-Validação: Preenchimento obrigatório e exclusivo se tpAcid = [1, 3]. Se informada, deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.
+Validação: Preenchimento obrigatório se tpAcid = [1] ou se (tpAcid = [3] e dtAcid >= [2022-01-26]). Não informar se tpAcid = [2]. Se preenchida, deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.
 Se tpCat = [2, 3], deve ser informado valor igual ao preenchido no evento de CAT anterior, quando informado em nrRecCatOrig."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__id__hrAcid" maxlength="4" value="{{evtCAT|readjson:'cat.hrAcid'}}" name="[evtCAT][cat][hrAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -292,7 +292,7 @@ Se tpCat = [2, 3], deve ser informado valor igual ao preenchido no evento de CAT
     <div class="col-md-4">
         <div class="form-group">
             <label>Horas trabalhadas antes da ocorrência do acidente<a data-toggle="tooltip" title="Horas trabalhadas antes da ocorrência do acidente, no formato HHMM.
-Validação: Preenchimento obrigatório e exclusivo se tpAcid = [1]. Se informada, deve estar no intervalo entre [0000] e [9959], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório se tpAcid = [1] ou se (tpAcid = [3] e dtAcid >= [2022-07-20]). Não informar se tpAcid = [2]. Se preenchida, deve estar no intervalo entre [0000] e [9959], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__id__hrsTrabAntesAcid" maxlength="4" value="{{evtCAT|readjson:'cat.hrsTrabAntesAcid'}}" name="[evtCAT][cat][hrsTrabAntesAcid]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -850,7 +850,7 @@ Valores válidos:
 <div id="nrOC__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no órgão de classe<a data-toggle="tooltip" title="Número de inscrição no órgão de classe."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Número de inscrição no órgão de classe<a data-toggle="tooltip" title="Número de inscrição no órgão de classe ou Registro do Ministério da Saúde (RMS)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__emitente__id__nrOC" maxlength="14" value="{{evtCAT|readjson:'cat.atestado.emitente.nrOC'}}" name="[evtCAT][cat][atestado][emitente][nrOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -860,7 +860,8 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Sigla da Unidade da Federação - UF do órgão de classe<a data-toggle="tooltip" title="Sigla da UF do órgão de classe.
-Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO"><i class="fa fa-fw fa-question-circle"></i></a></label>
+Valores válidos: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO
+Validação: Preenchimento obrigatório se ideOC = [1, 2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__atestado__emitente__id__ufOC" maxlength="2" value="{{evtCAT|readjson:'cat.atestado.emitente.ufOC'}}" name="[evtCAT][cat][atestado][emitente][ufOC]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>

@@ -786,7 +786,8 @@ Valores válidos:
             <label>Tipo de inscrição do proprietário do CNO<a data-toggle="tooltip" title="Tipo de inscrição do proprietário do CNO.
 Valores válidos:
 1 - CNPJ
-2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
+2 - CPF
+Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido informado, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
@@ -797,7 +798,8 @@ Valores válidos:
 <div id="nrInscProp__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO.
+Validação: Retornar nrInscProp de S-1020. Caso esse campo não tenha sido informado, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__nrInscProp" maxlength="14" value="{{ideLotacao|readjson:'infoEmprParcial.nrInscProp'}}" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][nrInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1790,7 +1792,8 @@ Valores válidos:
             <label>Tipo de inscrição do proprietário do CNO<a data-toggle="tooltip" title="Tipo de inscrição do proprietário do CNO.
 Valores válidos:
 1 - CNPJ
-2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
+2 - CPF
+Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido informado, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
@@ -1801,7 +1804,8 @@ Valores válidos:
 <div id="nrInscProp__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO.
+Validação: Retornar nrInscProp de S-1020. Caso esse campo não tenha sido informado, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__nrInscProp" maxlength="14" value="{{ideLotacao|readjson:'infoEmprParcial.nrInscProp'}}" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][nrInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -3583,7 +3587,8 @@ Valores válidos:
             <label>Tipo de inscrição do proprietário do CNO<a data-toggle="tooltip" title="Tipo de inscrição do proprietário do CNO.
 Valores válidos:
 1 - CNPJ
-2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
+2 - CPF
+Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido informado, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
@@ -3594,7 +3599,8 @@ Valores válidos:
 <div id="nrInscProp__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO.
+Validação: Retornar nrInscProp de S-1020. Caso esse campo não tenha sido informado, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__nrInscProp" maxlength="14" value="{{ideLotacao|readjson:'infoEmprParcial.nrInscProp'}}" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][nrInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -4587,7 +4593,8 @@ Valores válidos:
             <label>Tipo de inscrição do proprietário do CNO<a data-toggle="tooltip" title="Tipo de inscrição do proprietário do CNO.
 Valores válidos:
 1 - CNPJ
-2 - CPF"><i class="fa fa-fw fa-question-circle"></i></a></label>
+2 - CPF
+Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido informado, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
@@ -4598,7 +4605,8 @@ Valores válidos:
 <div id="nrInscProp__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO.
+Validação: Retornar nrInscProp de S-1020. Caso esse campo não tenha sido informado, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__nrInscProp" maxlength="14" value="{{ideLotacao|readjson:'infoEmprParcial.nrInscProp'}}" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][nrInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>

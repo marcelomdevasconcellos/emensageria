@@ -1455,7 +1455,7 @@ REGRA_VALIDA_CNPJ"><i class="fa fa-fw fa-question-circle"></i></a></label>
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com a data de admissão (ou de exercício) do trabalhador no empregador/órgão público cedente/de origem<a data-toggle="tooltip" title="Preencher com a data de admissão (ou de exercício) do trabalhador no empregador/órgão público cedente/de origem.
-Validação: Deve ser uma data anterior a dtInicio e igual ou posterior a 01/01/1890."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser uma data igual ou anterior a dtInicio e igual ou posterior a 01/01/1890."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoTrabCedido__id__dtAdmCed" value="{{evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.dtAdmCed'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoTrabCedido][dtAdmCed]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -1605,7 +1605,7 @@ Valores válidos:
 </div>
 <div id="infoEstagiario__div">
     <div class="col-md-12">
-        <h4>Informações relativas ao estagiário.</h4>
+        <h4>Informações relativas ao estagiário ou ao beneficiário do Programa Nacional de Prestação de Serviço Civil Voluntário.</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -1626,10 +1626,11 @@ Valores válidos:
 <div id="natEstagio__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Natureza do estágio<a data-toggle="tooltip" title="Natureza do estágio.
+            <label>Natureza do estágio ou da prestação de serviço civil voluntário<a data-toggle="tooltip" title="Natureza do estágio ou da prestação de serviço civil voluntário.
 Valores válidos:
 O - Obrigatório
-N - Não obrigatório"><i class="fa fa-fw fa-question-circle"></i></a></label>
+N - Não obrigatório
+Validação: Se o código de categoria for igual a [906], deve ser preenchido com [N]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__id__natEstagio" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][natEstagio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='O' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.natEstagio'|to_str 'O' %}selected{% endifequal %}>O - Obrigatório</option><option value='N' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.natEstagio'|to_str 'N' %}selected{% endifequal %}>N - Não obrigatório</option>
             </select>
@@ -1640,14 +1641,15 @@ N - Não obrigatório"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="nivEstagio__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o nível do estágio<a data-toggle="tooltip" title="Informar o nível do estágio.
+            <label>Informar o nível do estágio ou da prestação de serviço civil voluntário<a data-toggle="tooltip" title="Informar o nível do estágio ou da prestação de serviço civil voluntário.
 Valores válidos:
 1 - Fundamental
 2 - Médio
 3 - Formação profissional
 4 - Superior
 8 - Especial
-9 - Mãe social (Lei 7.644/1987)"><i class="fa fa-fw fa-question-circle"></i></a></label>
+9 - Mãe social (Lei 7.644/1987)
+Validação: Preenchimento obrigatório se o código de categoria for igual a [901]. Se o código de categoria for igual a [906], não pode ser informado [9]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__id__nivEstagio" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][nivEstagio]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.nivEstagio'|to_str '1' %}selected{% endifequal %}>1 - Fundamental</option><option value='2' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.nivEstagio'|to_str '2' %}selected{% endifequal %}>2 - Médio</option><option value='3' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.nivEstagio'|to_str '3' %}selected{% endifequal %}>3 - Formação profissional</option><option value='4' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.nivEstagio'|to_str '4' %}selected{% endifequal %}>4 - Superior</option><option value='8' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.nivEstagio'|to_str '8' %}selected{% endifequal %}>8 - Especial</option><option value='9' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.nivEstagio'|to_str '9' %}selected{% endifequal %}>9 - Mãe social (Lei 7.644/1987)</option>
             </select>
@@ -1658,7 +1660,7 @@ Valores válidos:
 <div id="areaAtuacao__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Área de atuação do estagiário<a data-toggle="tooltip" title="Área de atuação do estagiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Área de atuação do estagiário ou<a data-toggle="tooltip" title="Área de atuação do estagiário ou, no caso de prestação de serviço civil voluntário, jornada semanal do desempenho de atividades em formato decimal."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__id__areaAtuacao" maxlength="100" value="{{evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.areaAtuacao'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][areaAtuacao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1676,8 +1678,8 @@ Valores válidos:
 <div id="dtPrevTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Data prevista para o término do estágio<a data-toggle="tooltip" title="Data prevista para o término do estágio.
-Validação: Deve ser uma data posterior à data de início do estágio."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Data prevista para o término do estágio ou da prestação de serviço civil voluntário<a data-toggle="tooltip" title="Data prevista para o término do estágio ou da prestação de serviço civil voluntário.
+Validação: Deve ser uma data posterior à data de início do estágio ou da prestação de serviço civil voluntário."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__id__dtPrevTerm" value="{{evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.dtPrevTerm'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][dtPrevTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -1685,7 +1687,7 @@ Validação: Deve ser uma data posterior à data de início do estágio."><i cla
 
 <div id="instEnsino__div">
     <div class="col-md-12">
-        <h4>Instituição de ensino.</h4>
+        <h4>Instituição de ensino ou entidade de formação/qualificação.</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -1706,7 +1708,7 @@ Validação: Deve ser uma data posterior à data de início do estágio."><i cla
 <div id="cnpjInstEnsino__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Preencher com o CNPJ da instituição de ensino<a data-toggle="tooltip" title="Preencher com o CNPJ da instituição de ensino. Deve ser preenchido apenas se a instituição de ensino for brasileira.
+            <label>Preencher com o CNPJ da instituição de ensino<a data-toggle="tooltip" title="Preencher com o CNPJ da instituição de ensino, no caso de estágio, ou da entidade de formação/qualificação, no caso de prestação de serviço civil voluntário. Deve ser preenchido apenas se a instituição/entidade for brasileira.
 Validação: Se informado, deve ser um CNPJ válido, com 14 (catorze) algarismos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__infoTSVInicio__infoComplementares__infoEstagiario__instEnsino__id__cnpjInstEnsino" maxlength="14" value="{{evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoEstagiario.instEnsino.cnpjInstEnsino'}}" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoEstagiario][instEnsino][cnpjInstEnsino]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>

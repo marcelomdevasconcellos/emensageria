@@ -12,6 +12,7 @@ Regras de validação:
 REGRA_ENVIO_PROC_FECHAMENTO
 REGRA_EVENTOS_EXTEMP
 REGRA_EVENTO_EXT_SEM_IMPACTO_FOPAG
+REGRA_EVENTO_POSTERIOR_CAT_OBITO
 REGRA_EXISTE_EVENTO_TSV_INICIO
 REGRA_EXISTE_INFO_EMPREGADOR
 REGRA_EXISTE_VINCULO
@@ -332,7 +333,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Data do exame realizado<a data-toggle="tooltip" title="Data do exame realizado.
-Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso. Se tpExameOcup for diferente de [0], também deve ser igual ou posterior à data de admissão/exercício ou de início."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtMonit__exMedOcup__aso__exame__id__dtExm" value="{{exame|readjson:'dtExm'}}" name="[evtMonit][exMedOcup][aso][exame][][dtExm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -417,7 +418,7 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Data do exame realizado<a data-toggle="tooltip" title="Data do exame realizado.
-Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso. Se tpExameOcup for diferente de [0], também deve ser igual ou posterior à data de admissão/exercício ou de início."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser uma data válida, igual ou anterior à data do ASO informada em dtAso."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtMonit__exMedOcup__aso__exame__id__dtExm" value="{{exame|readjson:'dtExm'}}" name="[evtMonit][exMedOcup][aso][exame][][dtExm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
