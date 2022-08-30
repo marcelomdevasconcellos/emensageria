@@ -20,6 +20,7 @@
                         <xs:documentation>REGRA:REGRA_EMPREGADO_DOMESTICO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVENTOS_EXTEMP</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_EVENTO_POSTERIOR_CAT_OBITO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVE_FOPAG_SIMPLIFICADO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_GERAL_VALIDA_DADOS_TABCONTRIB</xs:documentation>
@@ -47,7 +48,7 @@
                             <xs:element name="ideTrabalhador">
                                 <xs:annotation>
                                     <xs:documentation>Identificação do trabalhador.</xs:documentation>
-                                    <xs:documentation>CHAVE_GRUPO: {cpfTrab}</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {cpfTrab*}</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
@@ -196,7 +197,7 @@
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Grau de exposição a agentes nocivos</xs:documentation>
                                                                                     <xs:documentation>DESCRICAO_COMPLETA:Grupo referente ao detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</xs:documentation>
-                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {codCateg}(1200_dmDev_codCateg) = [1XX, 2XX, 3XX, 731, 734, 738]); N (nos demais casos)</xs:documentation>
+                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {codCateg}(1200_dmDev_codCateg) = [1XX, 2XX, 3XX, 731, 734, 738] ou se {codCateg}(1200_dmDev_codCateg) = [4XX] com {categOrig} em S-2300 = [1XX, 2XX, 3XX, 731, 734, 738]); N (nos demais casos)</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
                                                                         </xs:sequence>
@@ -217,7 +218,7 @@
                                                 <xs:documentation>c) bases de cálculo para efeitos de apuração de FGTS resultantes de conversão de licença saúde em acidente de trabalho;</xs:documentation>
                                                 <xs:documentation>d) verbas de natureza salarial ou não salarial devidas após o desligamento.</xs:documentation>
                                                 <xs:documentation>OBS.: As informações previstas acima podem se referir ao período de apuração definido em {perApur}(1200_ideEvento_perApur) ou a períodos anteriores a {perApur}(1200_ideEvento_perApur).</xs:documentation>
-                                                <xs:documentation>CONDICAO_GRUPO: N (se {indApuracao}(1200_ideEvento_indApuracao) = [2] ou {codCateg}(1200_dmDev_codCateg) for diferente de [1XX, 2XX, 3XX, 721, 722, 901]); O (se não existir o grupo {infoPerApur}(1200_dmDev_infoPerApur) e {indApuracao}(1200_ideEvento_indApuracao) = [1]); OC (nos demais casos)</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: N (se {indApuracao}(1200_ideEvento_indApuracao) = [2] ou {codCateg}(1200_dmDev_codCateg) for diferente de [1XX, 2XX, 3XX, 4XX, 721, 722, 901]); O (se não existir o grupo {infoPerApur}(1200_dmDev_infoPerApur) e {indApuracao}(1200_ideEvento_indApuracao) = [1]); OC (nos demais casos)</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
@@ -240,7 +241,12 @@
                                                                         </xs:restriction>
                                                                     </xs:simpleType>
                                                                 </xs:element>
-                                                                <xs:element name="tpAcConv" type="TS_tpAcConv" />
+                                                                <xs:element name="tpAcConv" type="TS_tpAcConv">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Tipo do instrumento ou situação ensejadora da remuneração relativa a períodos de apuração anteriores.</xs:documentation>
+                                                                        <xs:documentation>Validação: Se {classTrib}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [04, 22], não pode ser informado [E, H].</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:element>
                                                                 <xs:element name="dsc" type="TS_dsc" />
                                                                 <xs:element name="remunSuc" type="TS_sim_nao">
                                                                     <xs:annotation>
@@ -294,7 +300,7 @@
                                                                                                         <xs:annotation>
                                                                                                             <xs:documentation>Grau de exposição a agentes nocivos</xs:documentation>
                                                                                                             <xs:documentation>DESCRICAO_COMPLETA:Grupo referente ao detalhamento do grau de exposição do trabalhador aos agentes nocivos que ensejam a cobrança da contribuição adicional para financiamento dos benefícios de aposentadoria especial.</xs:documentation>
-                                                                                                            <xs:documentation>CONDICAO_GRUPO: O (se {codCateg}(1200_dmDev_codCateg) = [1XX, 2XX, 3XX]); N (nos demais casos)</xs:documentation>
+                                                                                                            <xs:documentation>CONDICAO_GRUPO: O (se {codCateg}(1200_dmDev_codCateg) = [1XX, 2XX, 3XX] ou se {codCateg}(1200_dmDev_codCateg) = [4XX] com {categOrig} em S-2300 = [1XX, 2XX, 3XX]); N (nos demais casos)</xs:documentation>
                                                                                                         </xs:annotation>
                                                                                                     </xs:element>
                                                                                                 </xs:sequence>
@@ -316,7 +322,7 @@
                                             <xs:annotation>
                                                 <xs:documentation>Informações complementares contratuais do trabalhador</xs:documentation>
                                                 <xs:documentation>DESCRICAO_COMPLETA:Grupo preenchido exclusivamente quando o evento de remuneração se referir a trabalhador cuja categoria não estiver obrigada ao evento de início de TSVE e se não houver evento S-2300 correspondente.</xs:documentation>
-                                                <xs:documentation>CONDICAO_GRUPO: O ((se {codCateg}(1200_dmDev_codCateg) = [2XX, 304, 305, 4XX, 7XX, 902]) E (se para o trabalhador não houver evento S-2300 ativo) E (se não for informado {remunPerApur/matricula}(1200_dmDev_infoPerApur_ideEstabLot_remunPerApur_matricula) ou {remunPerAnt/matricula}(1200_dmDev_infoPerAnt_ideADC_idePeriodo_ideEstabLot_remunPerAnt_matricula))); OC ((se {codCateg}(1200_dmDev_codCateg) = [901, 903, 904]) E (se para o trabalhador não houver evento S-2300 ativo) E (se não for informado {remunPerApur/matricula}(1200_dmDev_infoPerApur_ideEstabLot_remunPerApur_matricula) ou {remunPerAnt/matricula}(1200_dmDev_infoPerAnt_ideADC_idePeriodo_ideEstabLot_remunPerAnt_matricula))); N (nos demais casos)</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: O ((se {codCateg}(1200_dmDev_codCateg) = [2XX, 304, 305, 4XX, 5XX, 7XX, 902]) E (se para o trabalhador não houver evento S-2300 ativo) E (se não for informado {remunPerApur/matricula}(1200_dmDev_infoPerApur_ideEstabLot_remunPerApur_matricula) ou {remunPerAnt/matricula}(1200_dmDev_infoPerAnt_ideADC_idePeriodo_ideEstabLot_remunPerAnt_matricula))); OC ((se {codCateg}(1200_dmDev_codCateg) = [901, 903, 904]) E (se para o trabalhador não houver evento S-2300 ativo) E (se não for informado {remunPerApur/matricula}(1200_dmDev_infoPerApur_ideEstabLot_remunPerApur_matricula) ou {remunPerAnt/matricula}(1200_dmDev_infoPerAnt_ideADC_idePeriodo_ideEstabLot_remunPerAnt_matricula))); N (nos demais casos)</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
@@ -366,7 +372,7 @@
                     <xs:documentation>Informar o código atribuído pelo empregador que identifica a rubrica em sua folha de pagamento ou o código da rubrica constante da Tabela de Rubricas Padrão.</xs:documentation>
                     <xs:documentation>Validação: Não pode ser utilizada rubrica:</xs:documentation>
                     <xs:documentation>a) cujo {codIncCP}(1010_infoRubrica_inclusao_dadosRubrica_codIncCP) em S-1010 seja igual a [25, 26, 51] se {codCateg}(1200_dmDev_codCateg) pertencer ao grupo "Contribuinte Individual" ou "Bolsista" da Tabela 01;</xs:documentation>
-                    <xs:documentation>b) cuja {natRubr}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 seja igual a [1801, 9209, 9210, 9220], desde que {perApur}(1200_ideEvento_perApur) >= [2021-05] (se {indApuracao}(1200_ideEvento_indApuracao) = [1]) ou {perApur}(1200_ideEvento_perApur) >= [2021] (se {indApuracao}(1200_ideEvento_indApuracao) = [2]).</xs:documentation>
+                    <xs:documentation>b) cuja {natRubr}(1010_infoRubrica_inclusao_dadosRubrica_natRubr) em S-1010 seja igual a [1801, 9220], desde que {perApur}(1200_ideEvento_perApur) >= [2021-07] (se {indApuracao}(1200_ideEvento_indApuracao) = [1]) ou {perApur}(1200_ideEvento_perApur) >= [2021] (se {indApuracao}(1200_ideEvento_indApuracao) = [2]).</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="ideTabRubr" type="TS_ideTabRubr" />
@@ -376,7 +382,7 @@
             <xs:element name="indApurIR" type="TS_indApurIR" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>Indicativo de tipo de apuração de IR.</xs:documentation>
-                    <xs:documentation>Validação: Informação obrigatória e exclusiva se {perApur}(1200_ideEvento_perApur) >= [2021-05] (se {indApuracao}(1200_ideEvento_indApuracao) = [1]) ou se {perApur}(1200_ideEvento_perApur) >= [2021] (se {indApuracao}(1200_ideEvento_indApuracao) = [2]).</xs:documentation>
+                    <xs:documentation>Validação: Informação obrigatória e exclusiva se {perApur}(1200_ideEvento_perApur) >= [2021-07] (se {indApuracao}(1200_ideEvento_indApuracao) = [1]) ou se {perApur}(1200_ideEvento_perApur) >= [2021] (se {indApuracao}(1200_ideEvento_indApuracao) = [2]).</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>

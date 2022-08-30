@@ -69,7 +69,7 @@ Valores válidos:
 <div id="perApur__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
+            <label>Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
 Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtFechaEvPer__ideEvento__id__perApur" maxlength="7" value="{{evtFechaEvPer|readjson:'ideEvento.perApur'}}" name="[evtFechaEvPer][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>

@@ -63,7 +63,7 @@ Valores válidos:
 <div id="perApur__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__ideEvento__id__perApur" maxlength="7" value="{{evtCS|readjson:'ideEvento.perApur'}}" name="[evtCS][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -146,7 +146,7 @@ Valores válidos:
 <div id="nrRecArqBase__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador.
+            <label>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno<a data-toggle="tooltip" title="Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador.
 Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1299)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__id__nrRecArqBase" maxlength="23" value="{{evtCS|readjson:'infoCS.nrRecArqBase'}}" name="[evtCS][infoCS][nrRecArqBase]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -787,7 +787,7 @@ Valores válidos:
 Valores válidos:
 1 - CNPJ
 2 - CPF
-Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido informado, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Retornar o tipo de inscrição do proprietário no CNO. Caso não tenha sido encontrado, retornar tpInscProp de S-1020. Se o tipo de inscrição do proprietário no CNO não for encontrado e se não houver informação de tpInscProp em S-1020, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
@@ -799,7 +799,7 @@ Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido info
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO.
-Validação: Retornar nrInscProp de S-1020. Caso esse campo não tenha sido informado, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Retornar o número de inscrição do proprietário no CNO. Caso não tenha sido encontrado, retornar nrInscProp de S-1020. Se o número de inscrição do proprietário no CNO não for encontrado e se não houver informação de nrInscProp em S-1020, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__nrInscProp" maxlength="14" value="{{ideLotacao|readjson:'infoEmprParcial.nrInscProp'}}" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][nrInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1793,7 +1793,7 @@ Valores válidos:
 Valores válidos:
 1 - CNPJ
 2 - CPF
-Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido informado, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Retornar o tipo de inscrição do proprietário no CNO. Caso não tenha sido encontrado, retornar tpInscProp de S-1020. Se o tipo de inscrição do proprietário no CNO não for encontrado e se não houver informação de tpInscProp em S-1020, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
@@ -1805,7 +1805,7 @@ Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido info
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO.
-Validação: Retornar nrInscProp de S-1020. Caso esse campo não tenha sido informado, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Retornar o número de inscrição do proprietário no CNO. Caso não tenha sido encontrado, retornar nrInscProp de S-1020. Se o número de inscrição do proprietário no CNO não for encontrado e se não houver informação de nrInscProp em S-1020, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__nrInscProp" maxlength="14" value="{{ideLotacao|readjson:'infoEmprParcial.nrInscProp'}}" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][nrInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -3099,7 +3099,7 @@ Origem: campo vrSenarSusp de S-1260."><i class="fa fa-fw fa-question-circle"></i
 <div id="tpCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros)<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
+            <label>Código de Receita - CR relativo a Imposto de Renda Retido na Fonte<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
 Validação: Deve ser um código válido, compatível com a classificação tributária do contribuinte e com as informações prestadas nos demais eventos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__tpCR" maxlength="6" value="{{infoCREstab|readjson:'tpCR'}}" name="[evtCS][infoCS][ideEstab][][infoCREstab][][tpCR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -3109,7 +3109,7 @@ Validação: Deve ser um código válido, compatível com a classificação trib
 <div id="vrCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Valor correspondente ao CR apurado<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
+            <label>Valor correspondente ao Código de Receita - CR<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.
 Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__vrCR" maxlength="14" value="{{infoCREstab|readjson:'vrCR'}}" name="[evtCS][infoCS][ideEstab][][infoCREstab][][vrCR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
@@ -3154,7 +3154,7 @@ Validação: Deve ser apurado de acordo com as informações de processos judici
 <div id="tpCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros)<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
+            <label>Código de Receita - CR relativo a Imposto de Renda Retido na Fonte<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
 Validação: Deve ser um código válido, compatível com a classificação tributária do contribuinte e com as informações prestadas nos demais eventos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__tpCR" maxlength="6" value="{{infoCREstab|readjson:'tpCR'}}" name="[evtCS][infoCS][ideEstab][][infoCREstab][][tpCR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -3164,7 +3164,7 @@ Validação: Deve ser um código válido, compatível com a classificação trib
 <div id="vrCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Valor correspondente ao CR apurado<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
+            <label>Valor correspondente ao Código de Receita - CR<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.
 Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__vrCR" maxlength="14" value="{{infoCREstab|readjson:'vrCR'}}" name="[evtCS][infoCS][ideEstab][][infoCREstab][][vrCR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
@@ -3588,7 +3588,7 @@ Valores válidos:
 Valores válidos:
 1 - CNPJ
 2 - CPF
-Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido informado, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Retornar o tipo de inscrição do proprietário no CNO. Caso não tenha sido encontrado, retornar tpInscProp de S-1020. Se o tipo de inscrição do proprietário no CNO não for encontrado e se não houver informação de tpInscProp em S-1020, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
@@ -3600,7 +3600,7 @@ Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido info
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO.
-Validação: Retornar nrInscProp de S-1020. Caso esse campo não tenha sido informado, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Retornar o número de inscrição do proprietário no CNO. Caso não tenha sido encontrado, retornar nrInscProp de S-1020. Se o número de inscrição do proprietário no CNO não for encontrado e se não houver informação de nrInscProp em S-1020, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__nrInscProp" maxlength="14" value="{{ideLotacao|readjson:'infoEmprParcial.nrInscProp'}}" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][nrInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -4594,7 +4594,7 @@ Valores válidos:
 Valores válidos:
 1 - CNPJ
 2 - CPF
-Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido informado, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Retornar o tipo de inscrição do proprietário no CNO. Caso não tenha sido encontrado, retornar tpInscProp de S-1020. Se o tipo de inscrição do proprietário no CNO não for encontrado e se não houver informação de tpInscProp em S-1020, retornar tpInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__tpInscProp" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][tpInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal ideLotacao|readjson:'infoEmprParcial.tpInscProp'|to_str '2' %}selected{% endifequal %}>2 - CPF</option>
             </select>
@@ -4606,7 +4606,7 @@ Validação: Retornar tpInscProp de S-1020. Caso esse campo não tenha sido info
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO<a data-toggle="tooltip" title="Preencher com o número de inscrição (CNPJ/CPF) do proprietário do CNO.
-Validação: Retornar nrInscProp de S-1020. Caso esse campo não tenha sido informado, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Retornar o número de inscrição do proprietário no CNO. Caso não tenha sido encontrado, retornar nrInscProp de S-1020. Se o número de inscrição do proprietário no CNO não for encontrado e se não houver informação de nrInscProp em S-1020, retornar nrInscContrat."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__ideLotacao__infoEmprParcial__id__nrInscProp" maxlength="14" value="{{ideLotacao|readjson:'infoEmprParcial.nrInscProp'}}" name="[evtCS][infoCS][ideEstab][][ideLotacao][][infoEmprParcial][nrInscProp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -5900,7 +5900,7 @@ Origem: campo vrSenarSusp de S-1260."><i class="fa fa-fw fa-question-circle"></i
 <div id="tpCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros)<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
+            <label>Código de Receita - CR relativo a Imposto de Renda Retido na Fonte<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
 Validação: Deve ser um código válido, compatível com a classificação tributária do contribuinte e com as informações prestadas nos demais eventos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__tpCR" maxlength="6" value="{{infoCREstab|readjson:'tpCR'}}" name="[evtCS][infoCS][ideEstab][][infoCREstab][][tpCR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -5910,7 +5910,7 @@ Validação: Deve ser um código válido, compatível com a classificação trib
 <div id="vrCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Valor correspondente ao CR apurado<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
+            <label>Valor correspondente ao Código de Receita - CR<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.
 Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__vrCR" maxlength="14" value="{{infoCREstab|readjson:'vrCR'}}" name="[evtCS][infoCS][ideEstab][][infoCREstab][][vrCR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
@@ -5955,7 +5955,7 @@ Validação: Deve ser apurado de acordo com as informações de processos judici
 <div id="tpCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros)<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
+            <label>Código de Receita - CR relativo a Imposto de Renda Retido na Fonte<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
 Validação: Deve ser um código válido, compatível com a classificação tributária do contribuinte e com as informações prestadas nos demais eventos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__tpCR" maxlength="6" value="{{infoCREstab|readjson:'tpCR'}}" name="[evtCS][infoCS][ideEstab][][infoCREstab][][tpCR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -5965,7 +5965,7 @@ Validação: Deve ser um código válido, compatível com a classificação trib
 <div id="vrCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Valor correspondente ao CR apurado<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
+            <label>Valor correspondente ao Código de Receita - CR<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.
 Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__ideEstab__infoCREstab__id__vrCR" maxlength="14" value="{{infoCREstab|readjson:'vrCR'}}" name="[evtCS][infoCS][ideEstab][][infoCREstab][][vrCR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
@@ -6014,7 +6014,7 @@ Validação: Deve ser apurado de acordo com as informações de processos judici
 <div id="tpCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros)<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
+            <label>Código de Receita - CR relativo a Imposto de Renda Retido na Fonte<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
 Validação: Deve ser um código válido, compatível com a classificação tributária do contribuinte e com as informações prestadas nos demais eventos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__infoCRContrib__id__tpCR" maxlength="6" value="{{infoCRContrib|readjson:'tpCR'}}" name="[evtCS][infoCS][infoCRContrib][][tpCR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -6024,7 +6024,7 @@ Validação: Deve ser um código válido, compatível com a classificação trib
 <div id="vrCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Valor correspondente ao CR apurado<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
+            <label>Valor correspondente ao Código de Receita - CR<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.
 Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__infoCRContrib__id__vrCR" maxlength="14" value="{{infoCRContrib|readjson:'vrCR'}}" name="[evtCS][infoCS][infoCRContrib][][vrCR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
@@ -6068,7 +6068,7 @@ Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></l
 <div id="tpCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros)<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
+            <label>Código de Receita - CR relativo a Imposto de Renda Retido na Fonte<a data-toggle="tooltip" title="Código de Receita - CR relativo a contribuições sociais devidas à Previdência Social e a Outras Entidades e Fundos (Terceiros), conforme legislação em vigor na competência.
 Validação: Deve ser um código válido, compatível com a classificação tributária do contribuinte e com as informações prestadas nos demais eventos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__infoCRContrib__id__tpCR" maxlength="6" value="{{infoCRContrib|readjson:'tpCR'}}" name="[evtCS][infoCS][infoCRContrib][][tpCR]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -6078,7 +6078,7 @@ Validação: Deve ser um código válido, compatível com a classificação trib
 <div id="vrCR__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Valor correspondente ao CR apurado<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
+            <label>Valor correspondente ao Código de Receita - CR<a data-toggle="tooltip" title="Valor correspondente ao CR apurado.
 Validação: Deve ser apurado de acordo com a legislação em vigor na competência.
 Deve ser maior que 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCS__infoCS__infoCRContrib__id__vrCR" maxlength="14" value="{{infoCRContrib|readjson:'vrCR'}}" name="[evtCS][infoCS][infoCRContrib][][vrCR]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />

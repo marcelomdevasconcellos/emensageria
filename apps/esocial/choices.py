@@ -143,6 +143,7 @@ EVENTOS_GRUPOS = [
 ESOCIAL_VERSAO_DEFAULT = 'v_S_01_00_00'
 VERSOES = [
     ('v_S_01_00_00', 'Versão S-1.0'),
+    ('v_S_01_01_00', 'Versão S-1.1'),
 ]
 
 ARQUIVO_FONTE = [
@@ -193,7 +194,27 @@ EVENTO_COD = {
     's2416': {'codigo': 'evtCdBenAlt'},
     's2418': {'codigo': 'evtReativBen'},
     's2420': {'codigo': 'evtCdBenTerm'},
+    's2500': {'codigo': 'evtProcTrab'},
+    's2501': {'codigo': 'evtContProc'},
     's3000': {'codigo': 'evtExclusao'},
+}
+
+VERSIONS_CODE = {
+    'v_S_01_00_00': [
+        's1000', 's1005', 's1010', 's1020', 's1070', 's1200', 's1202',
+        's1207', 's1210', 's1260', 's1270', 's1280', 's1298', 's1299',
+        's2190', 's2200', 's2205', 's2206', 's2210', 's2220', 's2230',
+        's2231', 's2240', 's2298', 's2299', 's2300', 's2306', 's2399',
+        's2400', 's2405', 's2410', 's2416', 's2418', 's2420', 's3000',
+        's5001', 's5002', 's5003', 's5011', 's5013', 's8299'],
+    'v_S_01_01_00': [
+        's1000', 's1005', 's1010', 's1020', 's1070', 's1200', 's1202',
+        's1207', 's1210', 's1260', 's1270', 's1280', 's1298', 's1299',
+        's2190', 's2200', 's2205', 's2206', 's2210', 's2220', 's2230',
+        's2231', 's2240', 's2298', 's2299', 's2300', 's2306', 's2399',
+        's2400', 's2405', 's2410', 's2416', 's2418', 's2420', 's2500',
+        's2501', 's3000', 's3500', 's5001', 's5002', 's5003', 's5011',
+        's5012', 's5013', 's5501', 's8299']
 }
 
 EVENTOS = [
@@ -211,7 +232,7 @@ EVENTOS = [
     ('s1280', 'S-1280 - Informações Complementares aos Eventos Periódicos'),
     ('s1298', 'S-1298 - Reabertura dos Eventos Periódicos'),
     ('s1299', 'S-1299 - Fechamento dos Eventos Periódicos'),
-    ('s2198', 'S-2190 - Registro Preliminar de Trabalhador'),
+    ('s2190', 'S-2190 - Registro Preliminar de Trabalhador'),
     ('s2200', 'S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador'),
     ('s2205', 'S-2205 - Alteração de Dados Cadastrais do Trabalhador'),
     ('s2206', 'S-2206 - Alteração de Contrato de Trabalho/Relação Estatutária'),
@@ -231,6 +252,8 @@ EVENTOS = [
     ('s2416', 'S-2416 - Cadastro de Benefício - Entes Públicos - Alteração'),
     ('s2418', 'S-2418 - Reativação de Benefício - Entes Públicos'),
     ('s2420', 'S-2420 - Cadastro de Benefício - Entes Públicos - Término'),
+    ('s2500', 'S-2500 - Processo Trabalhista'),
+    ('s2501', 'S-2501 - Informações de Tributos Decorrentes de Processo Trabalhista'),
     ('s3000', 'S-3000 - Exclusão de Eventos'),
 ]
 

@@ -389,6 +389,33 @@ Valores válidos:
     </div>
 </div>
 
+<div id="ultDiaTrab__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Último dia trabalhado<a data-toggle="tooltip" title="Último dia trabalhado.
+Validação: Preenchimento obrigatório se dtAcid >= [2023-01-16]). Se informada, deve ser uma data igual ou anterior à data atual e igual ou posterior à data de admissão do trabalhador.
+Se tpCat = [2], deve ser informada data posterior à data preenchida no evento de CAT anterior, quando informada em nrRecCatOrig."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <input type="text" id="evtCAT__cat__id__ultDiaTrab" value="{{evtCAT|readjson:'cat.ultDiaTrab'}}" name="[evtCAT][cat][ultDiaTrab]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
+        </div>
+    </div>
+</div>
+
+<div id="houveAfast__div">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Houve afastamento?
+Valores válidos<a data-toggle="tooltip" title="Houve afastamento?
+Valores válidos:
+S - Sim
+N - Não
+Validação: Preenchimento obrigatório se dtAcid >= [2023-01-16])."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <select id="evtCAT__cat__id__houveAfast" name="[evtCAT][cat][houveAfast]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <option value="">---</option><option value='S' {% ifequal evtCAT|readjson:'cat.houveAfast'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal evtCAT|readjson:'cat.houveAfast'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
+            </select>
+        </div>
+    </div>
+</div>
+
 <div id="localAcidente__div">
     <div class="col-md-12">
         <h4>Local do acidente.</h4>
@@ -540,7 +567,7 @@ Validação: Preenchimento obrigatório se tpLocal = [2]. Não preencher nos dem
 
 <div id="ideLocalAcid__div">
     <div class="col-md-12">
-        <h4>Identificação do local onde ocorreu o acidente.</h4>
+        <h4>Identificação do local onde ocorreu o acidente ou do estabelecimento ao qual o trabalhador avulso está vinculado.</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -561,7 +588,7 @@ Validação: Preenchimento obrigatório se tpLocal = [2]. Não preencher nos dem
 <div id="tpInsc__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição do local onde ocorreu o acidente ou a doença ocupacional, conforme Tabela 05.
+            <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.
 Valores válidos:
 1 - CNPJ
 3 - CAEPF
@@ -577,8 +604,9 @@ Valores válidos:
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento, de acordo com o tipo de inscrição indicado no campo ideLocalAcid/tpInsc. Se o acidente ou a doença ocupacional ocorreu em local onde o trabalhador presta serviços, deve ser um número de inscrição pertencente à contratante dos serviços.
+No caso de acidente de avulso com tpLocal diferente de [1, 3], informar o estabelecimento ao qual o trabalhador está vinculado.
 Validação: Deve ser compatível com o conteúdo do campo ideLocalAcid/tpInsc. Deve ser um identificador válido, constante das bases da RFB, e:
-a) Se tpLocal = [1], deve ser válido e existente na Tabela de Estabelecimentos (S-1005);
+a) Se tpLocal = [1] ou (se o código de categoria no RET for igual a [2XX] e tpLocal for diferente de [1, 3]), deve ser válido e existente na Tabela de Estabelecimentos (S-1005);
 b) Se tpLocal = [3], deve ser diferente dos estabelecimentos informados na Tabela S-1005 e, se ideLocalAcid/tpInsc = [1], diferente do CNPJ base indicado em S-1000."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCAT__cat__localAcidente__ideLocalAcid__id__nrInsc" maxlength="14" value="{{evtCAT|readjson:'cat.localAcidente.ideLocalAcid.nrInsc'}}" name="[evtCAT][cat][localAcidente][ideLocalAcid][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>

@@ -100,7 +100,7 @@ Valores válidos:
 <div id="perApur__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
+            <label>Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações, se indApuracao for igual a [1], ou apenas o ano (formato AAAA), se indApuracao for igual a [2].
 Validação: Deve ser um mês/ano ou ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBenPrRP__ideEvento__id__perApur" maxlength="7" value="{{evtBenPrRP|readjson:'ideEvento.perApur'}}" name="[evtBenPrRP][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -231,7 +231,7 @@ Validação: Deve ser um CPF válido."><i class="fa fa-fw fa-question-circle"></
             </div>
         </blockquote>
     </div>
-</div>{% for dmDev in evtBenPrRP|readjson:'' %}
+</div>{% for dmDev in evtBenPrRP|readjson:'dmDev' %}
 <div id="dmDev__div">
     <div class="col-md-12">
         <h4>Identificação de cada um dos demonstrativos de valores devidos ao beneficiário.
@@ -778,7 +778,7 @@ Valores válidos:
 <div id="perRef__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o período ao qual se refere a remuneração no formato AAAA-MM<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
 Validação: Deve ser igual ou anterior ao período de apuração informado em perApur.
 Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__id__perRef" maxlength="7" value="{{idePeriodo|readjson:'perRef'}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -1249,7 +1249,7 @@ Valores válidos:
 <div id="perRef__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o período ao qual se refere a remuneração no formato AAAA-MM<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
 Validação: Deve ser igual ou anterior ao período de apuração informado em perApur.
 Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__id__perRef" maxlength="7" value="{{idePeriodo|readjson:'perRef'}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -2251,7 +2251,7 @@ Valores válidos:
 <div id="perRef__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o período ao qual se refere a remuneração no formato AAAA-MM<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
 Validação: Deve ser igual ou anterior ao período de apuração informado em perApur.
 Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__id__perRef" maxlength="7" value="{{idePeriodo|readjson:'perRef'}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -2722,7 +2722,7 @@ Valores válidos:
 <div id="perRef__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o período ao qual se refere a remuneração no formato AAAA-MM<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o período ao qual se refere o complemento de provento ou pensão, no formato AAAA-MM.
 Validação: Deve ser igual ou anterior ao período de apuração informado em perApur.
 Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtBenPrRP__dmDev__infoPerAnt__idePeriodo__id__perRef" maxlength="7" value="{{idePeriodo|readjson:'perRef'}}" name="[evtBenPrRP][dmDev][][infoPerAnt][idePeriodo][][perRef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />

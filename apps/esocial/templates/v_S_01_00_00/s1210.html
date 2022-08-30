@@ -17,6 +17,7 @@ REGRA_EVE_FOPAG_SIMPLIFICADO
 REGRA_EXISTE_INFO_EMPREGADOR
 REGRA_MESMO_PROCEMI
 REGRA_PAGTO_IND_RETIFICACAO
+REGRA_PAGTO_PERMITE_EXCLUSAO
 REGRA_VALIDA_DT_PGTO
 REGRA_VALIDA_EMPREGADOR
 REGRA_VALIDA_PER_APUR_PGTO</h4>
@@ -85,7 +86,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="perApur__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações.
+            <label>Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações.
 Validação: Deve ser um mês/ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtPgtos__ideEvento__id__perApur" maxlength="7" value="{{evtPgtos|readjson:'ideEvento.perApur'}}" name="[evtPgtos][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -276,7 +277,7 @@ Valores válidos:
 <div id="perRef__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o período ao qual se refere a remuneração no formato AAAA-MM<a data-toggle="tooltip" title="Informar a competência declarada no campo {perApur} do evento remuneratório a que se refere o pagamento, no formato AAAA-MM (ou AAAA, se for relativa à folha de 13° salário). Se tpPgto = [2, 3], informar o mês/ano da data de desligamento (ou de término), no formato AAAA-MM.
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar a competência declarada no campo {perApur} do evento remuneratório a que se refere o pagamento, no formato AAAA-MM (ou AAAA, se for relativa à folha de 13° salário). Se tpPgto = [2, 3], informar o mês/ano da data de desligamento (ou de término), no formato AAAA-MM.
 Validação: Deve corresponder ao conteúdo indicado na relação a seguir:
 Se tpPgto = [1], perApur do S-1200;
 Se tpPgto = [2], mês/ano de dtDeslig do S-2299 (formato AAAA-MM);
@@ -367,7 +368,7 @@ Valores válidos:
 <div id="perRef__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o período ao qual se refere a remuneração no formato AAAA-MM<a data-toggle="tooltip" title="Informar a competência declarada no campo {perApur} do evento remuneratório a que se refere o pagamento, no formato AAAA-MM (ou AAAA, se for relativa à folha de 13° salário). Se tpPgto = [2, 3], informar o mês/ano da data de desligamento (ou de término), no formato AAAA-MM.
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar a competência declarada no campo {perApur} do evento remuneratório a que se refere o pagamento, no formato AAAA-MM (ou AAAA, se for relativa à folha de 13° salário). Se tpPgto = [2, 3], informar o mês/ano da data de desligamento (ou de término), no formato AAAA-MM.
 Validação: Deve corresponder ao conteúdo indicado na relação a seguir:
 Se tpPgto = [1], perApur do S-1200;
 Se tpPgto = [2], mês/ano de dtDeslig do S-2299 (formato AAAA-MM);

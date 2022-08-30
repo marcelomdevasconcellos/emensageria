@@ -6,8 +6,10 @@ from rest_framework.serializers import (
     BooleanField,
     ChoiceField,
     CharField,
+    ValidationError,
 )
 
+from ..choices import VERSIONS_CODE
 from ..models import (
     Eventos, TransmissorEventos, Transmissor
 )
@@ -114,6 +116,14 @@ class EventosSerializer(ModelSerializer):
             dict = xmltodict.parse(xml_string)
             validated_data['evento_json'] = json.dumps(dict.get('eSocial'))
         return super().update(instance, validated_data)
+
+    def validate(self, data):
+        versao = data.get("versao")
+        evento = data.get("evento")
+        if evento not in VERSIONS_CODE[versao]:
+            raise ValidationError(
+                "Este evento nao é válido para esta versão do eSocial.")
+        return data
 
     class Meta:
         model = Eventos

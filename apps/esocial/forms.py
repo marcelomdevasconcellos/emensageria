@@ -4,6 +4,8 @@ from django.core.exceptions import ValidationError
 from django_currentuser.middleware import get_current_user
 
 from .models import Eventos, Certificados, Arquivos, Transmissor
+from .choices import VERSIONS_CODE
+
 
 
 class EventosForm(forms.ModelForm):
@@ -12,6 +14,14 @@ class EventosForm(forms.ModelForm):
     class Meta:
         model = Eventos
         fields = '__all__'
+
+    def clean(self):
+        cleaned_data = super().clean()
+        versao = cleaned_data.get("versao")
+        evento = cleaned_data.get("evento")
+        if evento not in VERSIONS_CODE[versao]:
+            raise ValidationError(
+                "Este evento nao é válido para esta versão do eSocial.")
 
     def __init__(self, *args, **kwargs):
         super(EventosForm, self).__init__(*args, **kwargs)

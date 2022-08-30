@@ -145,7 +145,7 @@ USE_THOUSAND_SEPARATOR = True
 LINK_WEBSITE = env('LINK_WEBSITE', default='')
 
 # Configurações de Versão do Aplicativo
-VERSAO_EMENSAGERIA = '1.4.0'
+VERSAO_EMENSAGERIA = '1.5.0'
 VERSAO_LAYOUT_ESOCIAL = 'v_S_01_00_00'
 VERSAO_LAYOUT_REINF = 'v1_04_00'
 ESOCIAL_TPAMB = env('ESOCIAL_TPAMB', default='2')
@@ -153,7 +153,8 @@ ESOCIAL_PROCEMI = env('ESOCIAL_PROCEMI', default='1')
 
 
 VERSOES_ESOCIAL = [
-    'v_S_01_00_00', ]
+    'v_S_01_00_00',
+    'v_S_01_01_00', ]
 
 VERSOES_REINF = [
     'v1_04_00',
