@@ -198,14 +198,14 @@ class TransmissorEventosAdmin(AuditoriaAdminEventos):
             retorno = obj.enviar()
             retorno['id'] = obj.id
             #self.stdout.write('\n%(id)s %(status)s: %(mensagem)s' % retorno)
-            messages.add_message(request, messages.INFO, '%(id)s %(status)s: %(mensagem)s' % retorno)
+            messages.add_message(request, messages.INFO, '%(id)s %(retorno)s: %(mensagem)s' % retorno)
     enviar_lote.short_description = "Enviar lote"
 
     def consultar_lote(modeladmin, request, queryset):
         for obj in queryset:
             retorno = obj.consultar()
             retorno['id'] = obj.id
-            messages.add_message(request, messages.INFO, '%(id)s %(status)s: %(mensagem)s' % retorno)
+            messages.add_message(request, messages.INFO, '%(id)s %(retorno)s: %(mensagem)s' % retorno)
 
     consultar_lote.short_description = "Consultar lote"
 
