@@ -79,6 +79,51 @@ O resto é configurações pelo sistema. Siga a sequência:
 2. Transmissor
 3. Eventos ...
 
+## How to generate docker images and deploy locally
+
+We will show you how to generate docker images and deploy the docker container locally. 
+
+To build the application and generate docker images you have to execute the command bellow. Execute from root folder (/log).
+
+```
+docker-compose build
+```
+
+To deploy the application locally, you have to have execute following command:
+
+```
+docker-compose up -d
+```
+
+*Tip: if you are in Windows, open a Powershell prompt to run Docker. Do not run inside VS Code prompt because it does not manage memory very well.*
+
+It will set up the docker container from docker image and create the volumes to store application database and data files.
+
+After, we install static artifacts in application. For this, execute:
+
+```
+docker-compose exec app python3 manage.py collectstatic --noinput
+```
+
+Usually we use the user *admin* and the password as well *admin* in development environment, for tests purposes only. The email field we let empty.
+*Please, do not use this in production.*
+
+```
+docker-compose exec app python3 manage.py createsuperuser
+```
+
+After, we create the database:
+
+```
+docker-compose exec app psql -U postgres -h db -c 'CREATE DATABASE emensageria;'
+```
+
+After, we apply the database structure:
+
+```
+docker-compose exec app python3 manage.py migrate
+```
+
 ## APIs
 
 #### Atenção: O apache deverá estar configurado para passar o headers para o Django, para isso inclua a configuração abaixo no servidor de produção.
