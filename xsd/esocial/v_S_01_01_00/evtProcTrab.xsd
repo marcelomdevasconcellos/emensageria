@@ -12,12 +12,13 @@
                     <xs:annotation>
                         <xs:documentation>Evento Processo Trabalhista.</xs:documentation>
                         <xs:documentation>CHAVE_GRUPO: {Id}</xs:documentation>
-                        <xs:documentation>REGRA:REGRA_BASES_PROC_TRAB</xs:documentation>
                         <xs:documentation>REGRA:REGRA_BLOQUEIA_USO_CPF_EMPREGADOR</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_COMPATIBILIDADE_CATEGORIA_CLASSTRIB</xs:documentation>
                         <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVENTOS_EXTEMP</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_MESMO_PROCEMI</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_MUDANCA_CATEG_NAT_ATIV</xs:documentation>
                         <xs:documentation>REGRA:REGRA_UNICIDADE_CONTRATUAL</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_MATRICULA</xs:documentation>
@@ -121,7 +122,10 @@
                                                                 <xs:sequence>
                                                                     <xs:element name="dtSent" type="xs:date">
                                                                         <xs:annotation>
-                                                                            <xs:documentation>Data da sentença ou da homologação do acordo do processo judicial.</xs:documentation>
+                                                                            <xs:documentation>Informar a data do(a):</xs:documentation>
+                                                                            <xs:documentation>a) Trânsito em julgado da decisão líquida proferida no processo trabalhista;</xs:documentation>
+                                                                            <xs:documentation>b) Homologação de acordo judicial; ou</xs:documentation>
+                                                                            <xs:documentation>c) Trânsito em julgado da decisão homologatória dos cálculos de liquidação da sentença.</xs:documentation>
                                                                             <xs:documentation>Validação: Deve ser igual ou anterior à data atual.</xs:documentation>
                                                                         </xs:annotation>
                                                                     </xs:element>
@@ -153,7 +157,7 @@
                                                                 <xs:sequence>
                                                                     <xs:element name="dtCCP" type="xs:date">
                                                                         <xs:annotation>
-                                                                            <xs:documentation>Data da conciliação.</xs:documentation>
+                                                                            <xs:documentation>Data da celebração do acordo celebrado perante CCP ou Ninter.</xs:documentation>
                                                                             <xs:documentation>Validação: Deve ser igual ou anterior à data atual.</xs:documentation>
                                                                         </xs:annotation>
                                                                     </xs:element>
@@ -221,7 +225,7 @@
                                             <xs:annotation>
                                                 <xs:documentation>Informações dos dependentes.</xs:documentation>
                                                 <xs:documentation>CHAVE_GRUPO: {cpfDep}</xs:documentation>
-                                                <xs:documentation>CONDICAO_GRUPO: F (se existir contrato com {indContr}(2500_ideTrab_infoContr_indContr) = [S]); OC (nos demais casos)</xs:documentation>
+                                                <xs:documentation>CONDICAO_GRUPO: OC (se existir contrato com {indContr}(2500_ideTrab_infoContr_indContr) = [N]); N (nos demais casos)</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType>
                                                 <xs:sequence>
@@ -252,6 +256,7 @@
                                                         <xs:simpleType>
                                                             <xs:annotation>
                                                                 <xs:documentation>Tipo de contrato a que se refere o processo judicial ou a demanda submetida à CCP ou ao NINTER.</xs:documentation>
+                                                                <xs:documentation>Validação: Deve ser igual a [8] se o grupo {ideResp}(2500_ideEmpregador_ideResp) for informado.</xs:documentation>
                                                             </xs:annotation>
                                                             <xs:restriction base="xs:byte">
                                                                 <xs:enumeration value="1">
@@ -284,6 +289,21 @@
                                                                         <xs:documentation>Trabalhador sem vínculo de emprego/estatutário (TSVE), sem reconhecimento de vínculo empregatício</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:enumeration>
+                                                                <xs:enumeration value="7">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Trabalhador com vínculo de emprego formalizado em período anterior ao eSocial</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:enumeration>
+                                                                <xs:enumeration value="8">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Responsabilidade indireta</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:enumeration>
+                                                                <xs:enumeration value="9">
+                                                                    <xs:annotation>
+                                                                        <xs:documentation>Trabalhador cujos contratos foram unificados (unicidade contratual)</xs:documentation>
+                                                                    </xs:annotation>
+                                                                </xs:enumeration>
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
@@ -296,18 +316,18 @@
                                                     <xs:element name="dtAdmOrig" minOccurs="0" type="xs:date">
                                                         <xs:annotation>
                                                             <xs:documentation>Preencher com a data de admissão original do vínculo (data de admissão antes da alteração).</xs:documentation>
-                                                            <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {tpContr}(./tpContr) = [2, 4] e se {indContr}(./indContr) = [N]. Deve ser posterior à data de nascimento do trabalhador.</xs:documentation>
+                                                            <xs:documentation>Validação: Preenchimento obrigatório se {infoContr/tpContr}(./tpContr) = [2, 4]. Deve ser posterior à data de nascimento do trabalhador.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="indReint" minOccurs="0" type="TS_sim_nao">
                                                         <xs:annotation>
                                                                 <xs:documentation>Indicativo de reintegração do empregado.</xs:documentation>
-                                                                <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {tpContr}(./tpContr) for diferente de [6] e {indContr}(./indContr) = [S]. Caso seja informado [S], deve existir evento de reintegração (S-2298) para a matrícula abaixo informada, com o número de processo nesse evento igual a {nrProcTrab}(2500_infoProcesso_nrProcTrab).</xs:documentation>
+                                                                <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {infoContr/tpContr}(./tpContr) for diferente de [6] e {indContr}(./indContr) = [S]. Caso seja informado [S], deve existir evento de reintegração (S-2298) para a matrícula abaixo informada, com o número de processo nesse evento igual a {nrProcTrab}(2500_infoProcesso_nrProcTrab).</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="indCateg" type="TS_sim_nao">
                                                         <xs:annotation>
-                                                                <xs:documentation>Indicativo se houve reconhecimento de categoria do trabalhador diferente da cadastrada (no eSocial ou na GFIP) pelo declarante.</xs:documentation>
+                                                                <xs:documentation>Indicativo se houve reconhecimento de categoria do trabalhador diferente da informada (no eSocial ou na GFIP) pelo declarante.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="indNatAtiv" type="TS_sim_nao">
@@ -341,8 +361,8 @@
                                                             <xs:documentation>Preencher com o código da categoria do trabalhador.</xs:documentation>
                                                             <xs:documentation>Validação: Informação obrigatória e exclusiva se {indContr}(./indContr) = [N] ou se o campo {matricula}(./matricula) não estiver preenchido. Deve ser um código válido e existente na Tabela 01 e obedecer ao que segue:</xs:documentation>
                                                             <xs:documentation>a) Se o campo {matricula}(./matricula) não estiver preenchido, deve ser igual ao código de categoria informado no evento S-2300;</xs:documentation>
-                                                            <xs:documentation>b) Se {indContr}(./indContr) = [N] e {tpContr}(./tpContr) for diferente de [6], deve ser um código de categoria compatível com o evento S-2200 (conforme regra de validação abaixo);</xs:documentation>
-                                                            <xs:documentation>c) Se {indContr}(./indContr) = [N] e {tpContr}(./tpContr) = [6], deve ser um código de categoria compatível com o evento S-2300 (conforme regra de validação abaixo).</xs:documentation>
+                                                            <xs:documentation>b) Se {indContr}(./indContr) = [N] e {infoContr/tpContr}(./tpContr) for diferente de [6], deve ser um código de categoria compatível com o evento S-2200 (conforme regra de validação abaixo);</xs:documentation>
+                                                            <xs:documentation>c) Se {indContr}(./indContr) = [N] e {infoContr/tpContr}(./tpContr) = [6], deve ser um código de categoria compatível com o evento S-2300 (conforme regra de validação abaixo).</xs:documentation>
                                                             <xs:documentation>REGRA:REGRA_COMPATIB_CATEG_EVENTO</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
@@ -356,7 +376,7 @@
                                                             <xs:documentation>e) Para o trabalhador avulso, a data de ingresso no Órgão Gestor de Mão de Obra - OGMO ou no sindicato;</xs:documentation>
                                                             <xs:documentation>f) Para o servidor público exercente de cargo eletivo, a data de início do mandato;</xs:documentation>
                                                             <xs:documentation>g) Para os demais trabalhadores, a data de início das atividades.</xs:documentation>
-                                                            <xs:documentation>Validação: Informação obrigatória e exclusiva se ({tpContr}(./tpContr) = [6] e {indContr}(./indContr) = [N]) ou se o campo {matricula}(./matricula) não estiver preenchido. Deve ser posterior à data de nascimento do trabalhador. Se o campo {matricula}(./matricula) não estiver preenchido, deve ser igual à data de início informada no evento S-2300.</xs:documentation>
+                                                            <xs:documentation>Validação: Informação obrigatória e exclusiva se ({infoContr/tpContr}(./tpContr) = [6] e {indContr}(./indContr) = [N]) ou se o campo {matricula}(./matricula) não estiver preenchido. Deve ser posterior à data de nascimento do trabalhador. Se o campo {matricula}(./matricula) não estiver preenchido, deve ser igual à data de início informada no evento S-2300.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="infoCompl" minOccurs="0">
@@ -383,7 +403,7 @@
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informações da remuneração e periodicidade de pagamento.</xs:documentation>
                                                                         <xs:documentation>CHAVE_GRUPO: {dtRemun}</xs:documentation>
-                                                                        <xs:documentation>CONDICAO_GRUPO: N (se ({tpContr}(../../tpContr) for diferente de [6] e {tpRegTrab}(../infoVinc_tpRegTrab) = [2]); O (se ({tpContr}(../../tpContr) for diferente de [6] e {tpRegTrab}(../infoVinc_tpRegTrab) = [1]) ou se {infoContr/codCateg}(../../codCateg) = [721, 722, 771]); OC (nos demais casos)</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: N (se ({infoContr/tpContr}(../../tpContr) for diferente de [6] e {tpRegTrab}(../infoVinc_tpRegTrab) = [2]); O (se ({infoContr/tpContr}(../../tpContr) for diferente de [6] e {tpRegTrab}(../infoVinc_tpRegTrab) = [1]) ou se {infoContr/codCateg}(../../codCateg) = [721, 722, 771]); OC (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>
@@ -395,7 +415,7 @@
                                                                             </xs:element>
                                                                             <xs:element name="vrSalFx" type="TS_vrSalFx">
                                                                                 <xs:annotation>
-                                                                                    <xs:documentation>Salário base do trabalhador, correspondente à parte fixa da remuneração em {compFim}(2500_ideTrab_infoContr_ideEstab_infoVlr_compFim).</xs:documentation>
+                                                                                    <xs:documentation>Salário base do trabalhador, correspondente à parte fixa da remuneração em {dtRemun}(./dtRemun).</xs:documentation>
                                                                                     <xs:documentation>Validação: Se {undSalFixo}(./undSalFixo) for igual a [7], preencher com 0 (zero).</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
@@ -412,7 +432,7 @@
                                                                 <xs:element name="infoVinc" minOccurs="0">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informações sobre o vínculo trabalhista.</xs:documentation>
-                                                                        <xs:documentation>CONDICAO_GRUPO: O (se {tpContr}(2500_ideTrab_infoContr_tpContr) for diferente de [6]); N (nos demais casos)</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: O (se {infoContr/tpContr}(2500_ideTrab_infoContr_tpContr) for diferente de [6]); N (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>
@@ -422,9 +442,9 @@
                                                                                     <xs:documentation>Validação: Se {infoContr/codCateg}(../../codCateg) = [104], deve ser preenchido com [1].</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
-                                                                            <xs:element name="tpRegPrev" type="TS_tpRegPrev">
+                                                                            <xs:element name="tpRegPrev" type="TS_tpRegPrev_1_2_3">
                                                                                 <xs:annotation>
-                                                                                    <xs:documentation>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).</xs:documentation>
+                                                                                    <xs:documentation>Tipo de regime previdenciário.</xs:documentation>
                                                                                     <xs:documentation>Validação: Se {infoContr/codCateg}(../../codCateg) = [104], deve ser preenchido com [1]. Se {infoContr/codCateg}(../../codCateg) = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2].</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>                                                                            
@@ -452,16 +472,21 @@
                                                                                         <xs:element name="dtTerm" minOccurs="0" type="TS_dtTerm">
                                                                                             <xs:annotation>
                                                                                                 <xs:documentation>Data do término do contrato por prazo determinado.</xs:documentation>
-                                                                                                <xs:documentation>Validação: O preenchimento é obrigatório se {tpContr}(./tpContr) = [2]. Não informar se {tpContr}(./tpContr) = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência, igual ou posterior a {sucessaoVinc/dtTransf}(../sucessaoVinc_dtTransf)).</xs:documentation>
+                                                                                                <xs:documentation>Validação: O preenchimento é obrigatório se {duracao/tpContr}(./tpContr) = [2]. Não informar se {duracao/tpContr}(./tpContr) = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência, igual ou posterior a {sucessaoVinc/dtTransf}(../sucessaoVinc_dtTransf)).</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:element>
                                                                                         <xs:element name="clauAssec" minOccurs="0" type="TS_sim_nao">
                                                                                             <xs:annotation>
                                                                                                 <xs:documentation>Indicar se o contrato por prazo determinado contém cláusula assecuratória do direito recíproco de rescisão antes da data de seu término.</xs:documentation>
-                                                                                                <xs:documentation>Validação: O preenchimento é obrigatório se {tpContr}(./tpContr) = [2, 3]. Não preencher se {tpContr}(./tpContr) = [1].</xs:documentation>
+                                                                                                <xs:documentation>Validação: O preenchimento é obrigatório se {duracao/tpContr}(./tpContr) = [2, 3]. Não preencher se {duracao/tpContr}(./tpContr) = [1].</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:element>
-                                                                                        <xs:element name="objDet" minOccurs="0" type="TS_objDet" />
+                                                                                        <xs:element name="objDet" minOccurs="0" type="TS_objDet">
+                                                                                            <xs:annotation>
+                                                                                                <xs:documentation>Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.).</xs:documentation>
+                                                                                                <xs:documentation>Validação: O preenchimento é obrigatório e exclusivo se {duracao/tpContr}(./tpContr) = [3].</xs:documentation>
+                                                                                            </xs:annotation>
+                                                                                        </xs:element>
                                                                                     </xs:sequence>
                                                                                 </xs:complexType>
                                                                             </xs:element>
@@ -492,7 +517,6 @@
                                                                                                 <xs:annotation>
                                                                                                     <xs:documentation>Preencher com o código correspondente ao tipo de inscrição, conforme Tabela 05.</xs:documentation>
                                                                                                     <xs:documentation>Validação: Somente é possível informar [5] se {dtTransf}(./dtTransf) for igual ou anterior a [1999-06-30].</xs:documentation>
-                                                                                                    <xs:documentation>Somente é possível informar [6] se {dtTransf}(./dtTransf) for igual ou anterior a [2011-12-31].</xs:documentation>
                                                                                                 </xs:annotation>
                                                                                                 <xs:restriction base="xs:byte">
                                                                                                     <xs:enumeration value="1">
@@ -586,7 +610,7 @@
                                                                 <xs:element name="infoTerm" minOccurs="0">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informações de término de TSVE.</xs:documentation>
-                                                                        <xs:documentation>CONDICAO_GRUPO: OC (se {tpContr}(2500_ideTrab_infoContr_tpContr) = [6]; N (nos demais casos)</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: OC (se {infoContr/tpContr}(2500_ideTrab_infoContr_tpContr) = [6]; N (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:sequence>
@@ -652,7 +676,7 @@
                                                             <xs:documentation>Informação do novo código de categoria e/ou da nova natureza da atividade.</xs:documentation>
                                                             <xs:documentation>DESCRICAO_COMPLETA:Informação do novo código de categoria e/ou da nova natureza da atividade, no caso de reconhecimento judicial nesse sentido.</xs:documentation>
                                                             <xs:documentation>CHAVE_GRUPO: {dtMudCategAtiv}</xs:documentation>
-                                                            <xs:documentation>CONDICAO_GRUPO: O (se {indCateg}(../indCateg) = [S] ou se {indNatAtiv}(../indNatAtiv) = [S]); N (nos demais casos)</xs:documentation>
+                                                            <xs:documentation>CONDICAO_GRUPO: OC (se {indCateg}(../indCateg) = [S] ou se {indNatAtiv}(../indNatAtiv) = [S]); N (nos demais casos)</xs:documentation>
                                                         </xs:annotation>
                                                         <xs:complexType>
                                                             <xs:sequence>
@@ -718,13 +742,16 @@
                                                                 <xs:element name="tpInsc" type="TS_tpInsc_EstabLot">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Preencher com o código correspondente ao tipo de inscrição do estabelecimento, de acordo com as opções da Tabela 05.</xs:documentation>
+                                                                        <xs:documentation>No caso de empregador doméstico, informar [3] (CAEPF).</xs:documentation>
                                                                         <xs:documentation>Validação: Se {ideEmpregador/tpInsc}(2500_ideEmpregador_tpInsc) = [1], deve ser igual a [1, 4]. Se {ideEmpregador/tpInsc}(2500_ideEmpregador_tpInsc) = [2], deve ser igual a [3, 4].</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:element>
                                                                 <xs:element name="nrInsc" type="TS_nrInsc_EstabLot">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo acima.</xs:documentation>
+                                                                        <xs:documentation>No caso de empregador doméstico, informar os 9 (nove) primeiros dígitos do CPF do empregador, seguidos de 5 (cinco) dígitos 0 (zero). Por exemplo, se o CPF do empregador doméstico for 111111111-99, informar 11111111100000.</xs:documentation>
                                                                         <xs:documentation>Validação: A inscrição informada deve ser compatível com {ideEstab/tpInsc}(./tpInsc) e o número deve constar na base da RFB e pertencer a {ideEmpregador/nrInsc}(2500_ideEmpregador_nrInsc).</xs:documentation>
+                                                                        <xs:documentation>Se o processo for referente a empregado doméstico, a inscrição informada deve ser igual aos 9 (nove) primeiros dígitos do CPF do empregador, seguidos de 5 (cinco) dígitos 0 (zero).</xs:documentation>
                                                                     </xs:annotation>    
                                                                 </xs:element>
                                                                 <xs:element name="infoVlr">
@@ -738,18 +765,18 @@
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Competência inicial a que se refere o processo ou conciliação, no formato AAAA-MM.</xs:documentation>
                                                                                     <xs:documentation>Validação: Devem ser obedecidas as seguintes regras:</xs:documentation>
-                                                                                    <xs:documentation>a) Se {tpContr}(../../tpContr) = [1, 3], deve ser igual ou posterior ao mês/ano da data de admissão;</xs:documentation>
-                                                                                    <xs:documentation>b) Se {tpContr}(../../tpContr) = [2, 4, 5], deve ser igual ao mês/ano da data de admissão;</xs:documentation>
-                                                                                    <xs:documentation>c) Se {tpContr}(../../tpContr) = [6], deve ser igual ou posterior ao mês/ano da data de início do TSVE.</xs:documentation>
+                                                                                    <xs:documentation>a) Se {infoContr/tpContr}(../../tpContr) = [1, 3], deve ser igual ou posterior ao mês/ano da data de admissão;</xs:documentation>
+                                                                                    <xs:documentation>b) Se {infoContr/tpContr}(../../tpContr) = [2, 4, 5], deve ser igual ao mês/ano da data de admissão;</xs:documentation>
+                                                                                    <xs:documentation>c) Se {infoContr/tpContr}(../../tpContr) = [6], deve ser igual ou posterior ao mês/ano da data de início do TSVE.</xs:documentation>
                                                                                 </xs:annotation>    
                                                                             </xs:element>
                                                                             <xs:element name="compFim" type="TS_periodo_mensal">
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Competência final a que se refere o processo ou conciliação, no formato AAAA-MM.</xs:documentation>
                                                                                     <xs:documentation>Validação: Deve ser igual ou posterior a {compIni}(./compIni), igual ou anterior ao mês/ano de {dtSent}(2500_infoProcesso_dadosCompl_infoProcJud_dtSent) ou {dtCCP}(2500_infoProcesso_dadosCompl_infoCCP_dtCCP) e:</xs:documentation>
-                                                                                    <xs:documentation>a) Se {tpContr}(../../tpContr) = [1, 2], deve ser igual ou anterior ao mês/ano da data de desligamento, se informada;</xs:documentation>
-                                                                                    <xs:documentation>b) Se {tpContr}(../../tpContr) = [3, 4, 5], deve ser igual ao mês/ano da data de desligamento, se informada;</xs:documentation>
-                                                                                    <xs:documentation>c) Se {tpContr}(../../tpContr) = [6], deve ser igual ou anterior ao mês/ano da data de término do TSVE, se informada.</xs:documentation>
+                                                                                    <xs:documentation>a) Se {infoContr/tpContr}(../../tpContr) = [1, 2], deve ser igual ou anterior ao mês/ano da data de desligamento, se informada;</xs:documentation>
+                                                                                    <xs:documentation>b) Se {infoContr/tpContr}(../../tpContr) = [3, 4, 5], deve ser igual ao mês/ano da data de desligamento, se informada;</xs:documentation>
+                                                                                    <xs:documentation>c) Se {infoContr/tpContr}(../../tpContr) = [6], deve ser igual ou anterior ao mês/ano da data de término do TSVE, se informada.</xs:documentation>
                                                                                 </xs:annotation>    
                                                                             </xs:element>
                                                                             <xs:element name="repercProc">
@@ -808,11 +835,11 @@
                                                                                     <xs:documentation>Validação: Informação obrigatória e exclusiva se {vrBaseIndenFGTS}(./vrBaseIndenFGTS) estiver preenchido.</xs:documentation>
                                                                                 </xs:annotation>
                                                                             </xs:element>
-                                                                            <xs:element name="idePeriodo" minOccurs="0" maxOccurs="360">
+                                                                            <xs:element name="idePeriodo" minOccurs="0" maxOccurs="999">
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Identificação do período ao qual se referem as bases de cálculo.</xs:documentation>
                                                                                     <xs:documentation>CHAVE_GRUPO: {perRef}</xs:documentation>
-                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {repercProc}(../repercProc) = [1]); N (nos demais casos)</xs:documentation>
+                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {repercProc}(../repercProc) = [1]); OC (nos demais casos)</xs:documentation>
                                                                                 </xs:annotation>
                                                                                 <xs:complexType>
                                                                                     <xs:sequence>
@@ -871,8 +898,8 @@
                                                                                         <xs:element name="infoFGTS" minOccurs="0">
                                                                                             <xs:annotation>
                                                                                                 <xs:documentation>Informações referentes a bases de cálculo de FGTS para geração de guia.</xs:documentation>
-                                                                                                <xs:documentation>DESCRICAO_COMPLETA:Informações referentes a bases de cálculo de FGTS para geração de guia.</xs:documentation>
-                                                                                                <xs:documentation>O grupo somente deve ser preenchido quando o FGTS foi objeto de transação judicial com modificação do valor de FGTS anteriormente declarado (eSocial ou GFIP), acrescida da base complementar declarada no grupo {baseCalculo}(../baseCalculo).</xs:documentation>
+                                                                                                <xs:documentation>DESCRICAO_COMPLETA:Informações referentes a bases de cálculo de FGTS para geração de guia para competências anteriores ao início do FGTS Digital.</xs:documentation>
+                                                                                                <xs:documentation>Informar apenas bases que ainda não foram recolhidas via SEFIP/Conectividade Social.</xs:documentation>
                                                                                                 <xs:documentation>CONDICAO_GRUPO: OC</xs:documentation>
                                                                                             </xs:annotation>
                                                                                             <xs:complexType>

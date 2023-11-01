@@ -199,7 +199,8 @@ Validação: Deve ser um número de processo válido e declarado no evento S-250
     <div class="col-md-4">
         <div class="form-group">
             <label>Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença<a data-toggle="tooltip" title="Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença.
-Validação: Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Deve ser um período igual ou posterior ao mês/ano de dtSent ou de dtCCP existente no evento S-2500 para o processo indicado em nrProcTrab.
+Deve ser informado no formato AAAA-MM."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtContProc__ideProc__id__perApurPgto" maxlength="7" value="{{evtContProc|readjson:'ideProc.perApurPgto'}}" name="[evtContProc][ideProc][perApurPgto]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>

@@ -279,7 +279,7 @@ F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="racaCor__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Raça e cor do beneficiário<a data-toggle="tooltip" title="Raça e cor do trabalhador.
+            <label>Etnia e raça do beneficiário<a data-toggle="tooltip" title="Raça e cor do trabalhador.
 Valores válidos:
 1 - Branca
 2 - Preta
@@ -736,7 +736,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="infoCota__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados<a data-toggle="tooltip" title="Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados.
+            <label>Informar se o trabalhador deve ser contabilizado no preenchimento de cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados<a data-toggle="tooltip" title="Informar se o trabalhador deve ser contabilizado no preenchimento de cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados.
 Valores válidos:
 S - Sim
 N - Não
@@ -785,7 +785,7 @@ Esta validação não deve ser realizada quando se tratar de evento enviado em v
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Relação de dependência<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -814,7 +814,7 @@ Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atu
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF do dependente do plano de saúde<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
@@ -831,7 +831,8 @@ c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="
 Valores válidos:
 M - Masculino
 F - Feminino
-Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador cadastrado no evento S-2200, ativo em dtAlteracao e com {tpRegPrev} = [2] no RET."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador cadastrado no evento S-2200, ativo em dtAlteracao e com {tpRegPrev} = [2] no RET.
+Esta validação não deve ser realizada quando se tratar de recepção de evento extemporâneo."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__sexoDep" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][sexoDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='M' {% ifequal dependente|readjson:'sexoDep'|to_str 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente|readjson:'sexoDep'|to_str 'F' %}selected{% endifequal %}>F - Feminino</option>
             </select>
@@ -842,7 +843,7 @@ Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador ca
 <div id="depIRRF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+            <label>Este campo somente é informado em caso de dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -873,7 +874,8 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <label>Informar se o dependente tem incapacidade física ou mental para o trabalho<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho.
 Valores válidos:
 S - Sim
-N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+N - Não
+Validação: Preenchimento obrigatório se o trabalhador estiver cadastrado no evento S-2200, ativo em dtAlteracao e com {tpRegPrev} diferente de [4] no RET, ou cadastrado no evento S-2300 e ativo em dtAlteracao. Não informar nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__incTrab" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal dependente|readjson:'incTrab'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'incTrab'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -908,7 +910,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Relação de dependência<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -937,7 +939,7 @@ Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atu
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF do dependente do plano de saúde<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
@@ -954,7 +956,8 @@ c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="
 Valores válidos:
 M - Masculino
 F - Feminino
-Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador cadastrado no evento S-2200, ativo em dtAlteracao e com {tpRegPrev} = [2] no RET."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador cadastrado no evento S-2200, ativo em dtAlteracao e com {tpRegPrev} = [2] no RET.
+Esta validação não deve ser realizada quando se tratar de recepção de evento extemporâneo."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__sexoDep" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][sexoDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='M' {% ifequal dependente|readjson:'sexoDep'|to_str 'M' %}selected{% endifequal %}>M - Masculino</option><option value='F' {% ifequal dependente|readjson:'sexoDep'|to_str 'F' %}selected{% endifequal %}>F - Feminino</option>
             </select>
@@ -965,7 +968,7 @@ Validação: Preenchimento obrigatório e exclusivo quando houver trabalhador ca
 <div id="depIRRF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+            <label>Este campo somente é informado em caso de dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -996,7 +999,8 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <label>Informar se o dependente tem incapacidade física ou mental para o trabalho<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho.
 Valores válidos:
 S - Sim
-N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+N - Não
+Validação: Preenchimento obrigatório se o trabalhador estiver cadastrado no evento S-2200, ativo em dtAlteracao e com {tpRegPrev} diferente de [4] no RET, ou cadastrado no evento S-2300 e ativo em dtAlteracao. Não informar nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltCadastral__alteracao__dadosTrabalhador__dependente__id__incTrab" name="[evtAltCadastral][alteracao][dadosTrabalhador][dependente][][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal dependente|readjson:'incTrab'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'incTrab'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>

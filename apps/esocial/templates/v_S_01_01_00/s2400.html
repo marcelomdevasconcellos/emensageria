@@ -191,7 +191,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="cpfBenef__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no Cadastro de Pessoas Físicas - CPF do beneficiário do pagamento<a data-toggle="tooltip" title="Informar o CPF do beneficiário.
+            <label>Número de inscrição no CPF do dependente<a data-toggle="tooltip" title="Informar o CPF do beneficiário.
 Validação: Não é possível existir dois eventos originais do mesmo órgão público declarante para o mesmo CPF do beneficiário."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenefIn__beneficiario__id__cpfBenef" maxlength="11" value="{{evtCdBenefIn|readjson:'beneficiario.cpfBenef'}}" name="[evtCdBenefIn][beneficiario][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -244,7 +244,7 @@ Validação: Informação obrigatória se dtInicio for posterior ao início da o
 <div id="racaCor__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Raça e cor do beneficiário<a data-toggle="tooltip" title="Raça e cor do beneficiário.
+            <label>Etnia e raça do beneficiário<a data-toggle="tooltip" title="Raça e cor do beneficiário.
 Valores válidos:
 1 - Branca
 2 - Preta
@@ -537,7 +537,7 @@ Se não houver número a ser informado, preencher com "S/N"."><i class="fa fa-fw
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Relação de dependência<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenefIn__beneficiario__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtCdBenefIn][beneficiario][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -566,7 +566,7 @@ Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atu
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF do dependente do plano de saúde<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -593,7 +593,7 @@ Validação: Informação obrigatória se dtInicio for posterior ao início da o
 <div id="depIRRF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+            <label>Este campo somente é informado em caso de dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -645,7 +645,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Relação de dependência<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtCdBenefIn__beneficiario__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtCdBenefIn][beneficiario][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -674,7 +674,7 @@ Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atu
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF do dependente do plano de saúde<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -701,7 +701,7 @@ Validação: Informação obrigatória se dtInicio for posterior ao início da o
 <div id="depIRRF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+            <label>Este campo somente é informado em caso de dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>

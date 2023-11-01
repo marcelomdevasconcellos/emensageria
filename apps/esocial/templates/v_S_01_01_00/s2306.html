@@ -440,14 +440,14 @@ Validação: Preenchimento obrigatório se undSalFixo for igual a [6, 7]."><i cl
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário<a data-toggle="tooltip" title="Tipo de regime previdenciário.
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
-2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
+2 - Regime Próprio de Previdência Social - RPPS
 3 - Regime de Previdência Social no exterior
 Validação: Se infoDirigenteSindical/categOrig do evento S-2300 for relativa a "Empregado", não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoDirigenteSindical__id__tpRegPrev" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoDirigenteSindical][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>
@@ -480,14 +480,15 @@ Validação: Se infoDirigenteSindical/categOrig do evento S-2300 for relativa a 
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares das Forças Armadas).
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
-2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
+2 - Regime Próprio de Previdência Social - RPPS
 3 - Regime de Previdência Social no exterior
-Validação: Se infoTrabCedido/categOrig do evento S-2300 for relativa a "Empregado", não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+4 - Sistema de Proteção Social dos Militares das Forças Armadas - SPSMFA
+Validação: Se infoTrabCedido/categOrig do evento S-2300 for relativa a "Empregado", não pode ser preenchido com [2, 4]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoTrabCedido__id__tpRegPrev" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoTrabCedido][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option><option value='4' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '4' %}selected{% endifequal %}>4 - Sistema de Proteção Social dos Militares das Forças Armadas - SPSMFA</option>
             </select>
         </div>
     </div>
@@ -535,13 +536,13 @@ Validação: Informação obrigatória e exclusiva se CBOCargo = [111120, 111250
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário<a data-toggle="tooltip" title="Tipo de regime previdenciário.
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
-2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
+2 - Regime Próprio de Previdência Social - RPPS
 3 - Regime de Previdência Social no exterior"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVAltContr__infoTSVAlteracao__infoComplementares__infoMandElet__id__tpRegPrev" name="[evtTSVAltContr][infoTSVAlteracao][infoComplementares][infoMandElet][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS</option><option value='3' {% ifequal evtTSVAltContr|readjson:'infoTSVAlteracao.infoComplementares.infoMandElet.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>

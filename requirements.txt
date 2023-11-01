@@ -14,7 +14,7 @@ django-timezone-field==3.0
 django-wkhtmltopdf==3.3.0
 djangorestframework==3.12.4
 jsonfield==3.1.0
-markdown==2.6
+# markdown==2.6
 psycopg2-binary==2.9.1
 # psycopg2==2.9.1
 pyOpenSSL==17.5.0

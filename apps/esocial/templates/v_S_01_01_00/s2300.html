@@ -233,7 +233,7 @@ F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="racaCor__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Raça e cor do beneficiário<a data-toggle="tooltip" title="Raça e cor do trabalhador.
+            <label>Etnia e raça do beneficiário<a data-toggle="tooltip" title="Raça e cor do trabalhador.
 Valores válidos:
 1 - Branca
 2 - Preta
@@ -766,7 +766,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Relação de dependência<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtTSVInicio][trabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -795,7 +795,7 @@ Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atu
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF do dependente do plano de saúde<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
@@ -808,7 +808,7 @@ c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="
 <div id="depIRRF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+            <label>Este campo somente é informado em caso de dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -874,7 +874,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Relação de dependência<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtTSVInicio__trabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtTSVInicio][trabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -903,7 +903,7 @@ Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atu
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF do dependente do plano de saúde<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
@@ -916,7 +916,7 @@ c) Não pode haver mais de um dependente com o mesmo número de CPF."><i class="
 <div id="depIRRF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+            <label>Este campo somente é informado em caso de dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -1384,14 +1384,14 @@ Validação: O preenchimento é obrigatório e exclusivo se infoDirigenteSindica
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário<a data-toggle="tooltip" title="Tipo de regime previdenciário.
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
-2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
+2 - Regime Próprio de Previdência Social - RPPS
 3 - Regime de Previdência Social no exterior
 Validação: Se infoDirigenteSindical/categOrig for relativa a "Empregado", não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVInicio__infoTSVInicio__infoComplementares__infoDirigenteSindical__id__tpRegPrev" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoDirigenteSindical][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS</option><option value='3' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoDirigenteSindical.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>
@@ -1479,14 +1479,15 @@ Valores válidos:
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares das Forças Armadas).
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
-2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
+2 - Regime Próprio de Previdência Social - RPPS
 3 - Regime de Previdência Social no exterior
-Validação: Se infoTrabCedido/categOrig for relativa a "Empregado", não pode ser preenchido com [2]. Se codCateg = [305], deve ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+4 - Sistema de Proteção Social dos Militares das Forças Armadas - SPSMFA
+Validação: Se infoTrabCedido/categOrig for relativa a "Empregado", não pode ser preenchido com [2, 4]. Se codCateg = [305], deve ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVInicio__infoTSVInicio__infoComplementares__infoTrabCedido__id__tpRegPrev" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoTrabCedido][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS</option><option value='3' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option><option value='4' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoTrabCedido.tpRegPrev'|to_str '4' %}selected{% endifequal %}>4 - Sistema de Proteção Social dos Militares das Forças Armadas - SPSMFA</option>
             </select>
         </div>
     </div>
@@ -1588,13 +1589,13 @@ Valores válidos:
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário<a data-toggle="tooltip" title="Tipo de regime previdenciário.
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
-2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
+2 - Regime Próprio de Previdência Social - RPPS
 3 - Regime de Previdência Social no exterior"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTSVInicio__infoTSVInicio__infoComplementares__infoMandElet__id__tpRegPrev" name="[evtTSVInicio][infoTSVInicio][infoComplementares][infoMandElet][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoMandElet.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoMandElet.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoMandElet.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoMandElet.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoMandElet.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS</option><option value='3' {% ifequal evtTSVInicio|readjson:'infoTSVInicio.infoComplementares.infoMandElet.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>
@@ -2000,7 +2001,7 @@ Grupo preenchido exclusivamente caso seja necessário enviar cadastramento inici
 <div id="dtTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Data do término<a data-toggle="tooltip" title="Preencher com a data do término.
+            <label>Data do término do contrato por prazo determinado<a data-toggle="tooltip" title="Preencher com a data do término.
 Validação: Devem ser observadas as seguintes regras:
 a) Deve ser igual ou posterior à data de início do TSVE;
 b) Deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>

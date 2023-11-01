@@ -9,12 +9,13 @@
     <div class="col-md-12">
         <h4>Evento Processo Trabalhista.
 Regras de validação:
-REGRA_BASES_PROC_TRAB
 REGRA_BLOQUEIA_USO_CPF_EMPREGADOR
+REGRA_COMPATIBILIDADE_CATEGORIA_CLASSTRIB
 REGRA_ENVIO_PROC_FECHAMENTO
 REGRA_EVENTOS_EXTEMP
 REGRA_EXISTE_INFO_EMPREGADOR
 REGRA_MESMO_PROCEMI
+REGRA_MUDANCA_CATEG_NAT_ATIV
 REGRA_UNICIDADE_CONTRATUAL
 REGRA_VALIDA_EMPREGADOR
 REGRA_VALIDA_MATRICULA
@@ -319,7 +320,10 @@ Validação: Se origem = [1], deve ser um processo judicial válido, com 20 (vin
 <div id="dtSent__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Data da sentença ou da homologação do acordo do processo judicial<a data-toggle="tooltip" title="Data da sentença ou da homologação do acordo do processo judicial.
+            <label>Informar a data da decisão judicial<a data-toggle="tooltip" title="Informar a data do(a):
+a) Trânsito em julgado da decisão líquida proferida no processo trabalhista;
+b) Homologação de acordo judicial; ou
+c) Trânsito em julgado da decisão homologatória dos cálculos de liquidação da sentença.
 Validação: Deve ser igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__infoProcesso__dadosCompl__infoProcJud__id__dtSent" value="{{evtProcTrab|readjson:'infoProcesso.dadosCompl.infoProcJud.dtSent'}}" name="[evtProcTrab][infoProcesso][dadosCompl][infoProcJud][dtSent]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -382,7 +386,7 @@ Validação: Deve ser um código válido e existente na tabela do IBGE."><i clas
 <div id="dtCCP__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Data da conciliação<a data-toggle="tooltip" title="Data da conciliação.
+            <label>Data da celebração do acordo celebrado perante CCP ou Ninter<a data-toggle="tooltip" title="Data da celebração do acordo celebrado perante CCP ou Ninter.
 Validação: Deve ser igual ou anterior à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__infoProcesso__dadosCompl__infoCCP__id__dtCCP" value="{{evtProcTrab|readjson:'infoProcesso.dadosCompl.infoCCP.dtCCP'}}" name="[evtProcTrab][infoProcesso][dadosCompl][infoCCP][dtCCP]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -498,7 +502,7 @@ Validação: Preenchimento obrigatório se não existir contrato com indContr = 
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF do dependente do plano de saúde<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido e diferente do CPF do trabalhador. Em arquivo de empregador Pessoa Física, também deve ser diferente do CPF informado em ideEmpregador/nrInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__dependente__id__cpfDep" maxlength="11" value="{{dependente|readjson:'cpfDep'}}" name="[evtProcTrab][ideTrab][dependente][][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -508,7 +512,7 @@ Validação: Deve ser um número de CPF válido e diferente do CPF do trabalhado
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Relação de dependência<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtProcTrab][ideTrab][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -552,7 +556,7 @@ Validação: Informação obrigatória e exclusiva se tpDep = [99]."><i class="f
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF do dependente do plano de saúde<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido e diferente do CPF do trabalhador. Em arquivo de empregador Pessoa Física, também deve ser diferente do CPF informado em ideEmpregador/nrInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__dependente__id__cpfDep" maxlength="11" value="{{dependente|readjson:'cpfDep'}}" name="[evtProcTrab][ideTrab][dependente][][cpfDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -562,7 +566,7 @@ Validação: Deve ser um número de CPF válido e diferente do CPF do trabalhado
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Relação de dependência<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtProcTrab][ideTrab][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -613,9 +617,13 @@ Valores válidos:
 3 - Trabalhador com vínculo formalizado, com inclusão ou alteração de data de desligamento
 4 - Trabalhador com vínculo formalizado, com alteração nas datas de admissão e de desligamento
 5 - Empregado com reconhecimento de vínculo
-6 - Trabalhador sem vínculo de emprego/estatutário (TSVE), sem reconhecimento de vínculo empregatício"><i class="fa fa-fw fa-question-circle"></i></a></label>
+6 - Trabalhador sem vínculo de emprego/estatutário (TSVE), sem reconhecimento de vínculo empregatício
+7 - Trabalhador com vínculo de emprego formalizado em período anterior ao eSocial
+8 - Responsabilidade indireta
+9 - Trabalhador cujos contratos foram unificados (unicidade contratual)
+Validação: Deve ser igual a [8] se o grupo ideResp for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtProcTrab__ideTrab__infoContr__id__tpContr" name="[evtProcTrab][ideTrab][infoContr][][tpContr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal infoContr|readjson:'tpContr'|to_str '1' %}selected{% endifequal %}>1 - Trabalhador com vínculo formalizado, sem alteração nas datas de admissão e de desligamento</option><option value='2' {% ifequal infoContr|readjson:'tpContr'|to_str '2' %}selected{% endifequal %}>2 - Trabalhador com vínculo formalizado, com alteração na data de admissão</option><option value='3' {% ifequal infoContr|readjson:'tpContr'|to_str '3' %}selected{% endifequal %}>3 - Trabalhador com vínculo formalizado, com inclusão ou alteração de data de desligamento</option><option value='4' {% ifequal infoContr|readjson:'tpContr'|to_str '4' %}selected{% endifequal %}>4 - Trabalhador com vínculo formalizado, com alteração nas datas de admissão e de desligamento</option><option value='5' {% ifequal infoContr|readjson:'tpContr'|to_str '5' %}selected{% endifequal %}>5 - Empregado com reconhecimento de vínculo</option><option value='6' {% ifequal infoContr|readjson:'tpContr'|to_str '6' %}selected{% endifequal %}>6 - Trabalhador sem vínculo de emprego/estatutário (TSVE), sem reconhecimento de vínculo empregatício</option>
+            <option value="">---</option><option value='1' {% ifequal infoContr|readjson:'tpContr'|to_str '1' %}selected{% endifequal %}>1 - Trabalhador com vínculo formalizado, sem alteração nas datas de admissão e de desligamento</option><option value='2' {% ifequal infoContr|readjson:'tpContr'|to_str '2' %}selected{% endifequal %}>2 - Trabalhador com vínculo formalizado, com alteração na data de admissão</option><option value='3' {% ifequal infoContr|readjson:'tpContr'|to_str '3' %}selected{% endifequal %}>3 - Trabalhador com vínculo formalizado, com inclusão ou alteração de data de desligamento</option><option value='4' {% ifequal infoContr|readjson:'tpContr'|to_str '4' %}selected{% endifequal %}>4 - Trabalhador com vínculo formalizado, com alteração nas datas de admissão e de desligamento</option><option value='5' {% ifequal infoContr|readjson:'tpContr'|to_str '5' %}selected{% endifequal %}>5 - Empregado com reconhecimento de vínculo</option><option value='6' {% ifequal infoContr|readjson:'tpContr'|to_str '6' %}selected{% endifequal %}>6 - Trabalhador sem vínculo de emprego/estatutário (TSVE), sem reconhecimento de vínculo empregatício</option><option value='7' {% ifequal infoContr|readjson:'tpContr'|to_str '7' %}selected{% endifequal %}>7 - Trabalhador com vínculo de emprego formalizado em período anterior ao eSocial</option><option value='8' {% ifequal infoContr|readjson:'tpContr'|to_str '8' %}selected{% endifequal %}>8 - Responsabilidade indireta</option><option value='9' {% ifequal infoContr|readjson:'tpContr'|to_str '9' %}selected{% endifequal %}>9 - Trabalhador cujos contratos foram unificados (unicidade contratual)</option>
             </select>
         </div>
     </div>
@@ -640,7 +648,7 @@ Validação: Deve ser igual a [N] se o grupo ideResp for informado."><i class="f
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com a data de admissão original do vínculo (data de admissão antes da alteração)<a data-toggle="tooltip" title="Preencher com a data de admissão original do vínculo (data de admissão antes da alteração).
-Validação: Preenchimento obrigatório e exclusivo se tpContr = [2, 4] e se indContr = [N]. Deve ser posterior à data de nascimento do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório se infoContr/tpContr = [2, 4]. Deve ser posterior à data de nascimento do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__id__dtAdmOrig" value="{{infoContr|readjson:'dtAdmOrig'}}" name="[evtProcTrab][ideTrab][infoContr][][dtAdmOrig]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -653,7 +661,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpContr = [2, 4] e se ind
 Valores válidos:
 S - Sim
 N - Não
-Validação: Preenchimento obrigatório e exclusivo se tpContr for diferente de [6] e indContr = [S]. Caso seja informado [S], deve existir evento de reintegração (S-2298) para a matrícula abaixo informada, com o número de processo nesse evento igual a nrProcTrab."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório e exclusivo se infoContr/tpContr for diferente de [6] e indContr = [S]. Caso seja informado [S], deve existir evento de reintegração (S-2298) para a matrícula abaixo informada, com o número de processo nesse evento igual a nrProcTrab."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtProcTrab__ideTrab__infoContr__id__indReint" name="[evtProcTrab][ideTrab][infoContr][][indReint]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal infoContr|readjson:'indReint'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal infoContr|readjson:'indReint'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -664,7 +672,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpContr for diferente de 
 <div id="indCateg__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Indicativo se houve reconhecimento de categoria do trabalhador diferente da cadastrada (no eSocial ou na GFIP) pelo declarante<a data-toggle="tooltip" title="Indicativo se houve reconhecimento de categoria do trabalhador diferente da cadastrada (no eSocial ou na GFIP) pelo declarante.
+            <label>Indicativo se houve reconhecimento de categoria do trabalhador diferente da informada (no eSocial ou na GFIP) pelo declarante<a data-toggle="tooltip" title="Indicativo se houve reconhecimento de categoria do trabalhador diferente da informada (no eSocial ou na GFIP) pelo declarante.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -739,8 +747,8 @@ REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label
             <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Validação: Informação obrigatória e exclusiva se indContr = [N] ou se o campo matricula não estiver preenchido. Deve ser um código válido e existente na Tabela 01 e obedecer ao que segue:
 a) Se o campo matricula não estiver preenchido, deve ser igual ao código de categoria informado no evento S-2300;
-b) Se indContr = [N] e tpContr for diferente de [6], deve ser um código de categoria compatível com o evento S-2200 (conforme regra de validação abaixo);
-c) Se indContr = [N] e tpContr = [6], deve ser um código de categoria compatível com o evento S-2300 (conforme regra de validação abaixo).
+b) Se indContr = [N] e infoContr/tpContr for diferente de [6], deve ser um código de categoria compatível com o evento S-2200 (conforme regra de validação abaixo);
+c) Se indContr = [N] e infoContr/tpContr = [6], deve ser um código de categoria compatível com o evento S-2300 (conforme regra de validação abaixo).
 Regra de validação:
 REGRA_COMPATIB_CATEG_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__id__codCateg" maxlength="3" value="{{infoContr|readjson:'codCateg'}}" name="[evtProcTrab][ideTrab][infoContr][][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -759,7 +767,7 @@ d) Para o estagiário, a data de início do estágio;
 e) Para o trabalhador avulso, a data de ingresso no Órgão Gestor de Mão de Obra - OGMO ou no sindicato;
 f) Para o servidor público exercente de cargo eletivo, a data de início do mandato;
 g) Para os demais trabalhadores, a data de início das atividades.
-Validação: Informação obrigatória e exclusiva se (tpContr = [6] e indContr = [N]) ou se o campo matricula não estiver preenchido. Deve ser posterior à data de nascimento do trabalhador. Se o campo matricula não estiver preenchido, deve ser igual à data de início informada no evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se (infoContr/tpContr = [6] e indContr = [N]) ou se o campo matricula não estiver preenchido. Deve ser posterior à data de nascimento do trabalhador. Se o campo matricula não estiver preenchido, deve ser igual à data de início informada no evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__id__dtInicio" value="{{infoContr|readjson:'dtInicio'}}" name="[evtProcTrab][ideTrab][infoContr][][dtInicio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -844,7 +852,7 @@ Validação: Deve ser igual ou posterior à data de admissão (ou de início) e 
 <div id="vrSalFx__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração em compFim.
+            <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração em dtRemun.
 Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__infoCompl__remuneracao__id__vrSalFx" maxlength="14" value="{{remuneracao|readjson:'vrSalFx'}}" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][remuneracao][][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -917,7 +925,7 @@ Validação: Deve ser igual ou posterior à data de admissão (ou de início) e 
 <div id="vrSalFx__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração em compFim.
+            <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração em dtRemun.
 Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__infoCompl__remuneracao__id__vrSalFx" maxlength="14" value="{{remuneracao|readjson:'vrSalFx'}}" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][remuneracao][][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -995,14 +1003,14 @@ Validação: Se infoContr/codCateg = [104], deve ser preenchido com [1]."><i cla
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário<a data-toggle="tooltip" title="Tipo de regime previdenciário.
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
-2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
+2 - Regime Próprio de Previdência Social - RPPS
 3 - Regime de Previdência Social no exterior
 Validação: Se infoContr/codCateg = [104], deve ser preenchido com [1]. Se infoContr/codCateg = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtProcTrab__ideTrab__infoContr__infoCompl__infoVinc__id__tpRegPrev" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoVinc][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS</option><option value='3' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>
@@ -1074,8 +1082,8 @@ Valores válidos:
 <div id="dtTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Data do término<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
-Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se tpContr = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência, igual ou posterior a sucessaoVinc/dtTransf)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Data do término do contrato por prazo determinado<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
+Validação: O preenchimento é obrigatório se duracao/tpContr = [2]. Não informar se duracao/tpContr = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência, igual ou posterior a sucessaoVinc/dtTransf)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__infoCompl__infoVinc__duracao__id__dtTerm" value="{{infoContr|readjson:'infoCompl.infoVinc.duracao.dtTerm'}}" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoVinc][duracao][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -1088,7 +1096,7 @@ Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se 
 Valores válidos:
 S - Sim
 N - Não
-Validação: O preenchimento é obrigatório se tpContr = [2, 3]. Não preencher se tpContr = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: O preenchimento é obrigatório se duracao/tpContr = [2, 3]. Não preencher se duracao/tpContr = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtProcTrab__ideTrab__infoContr__infoCompl__infoVinc__duracao__id__clauAssec" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoVinc][duracao][clauAssec]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal infoContr|readjson:'infoCompl.infoVinc.duracao.clauAssec'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal infoContr|readjson:'infoCompl.infoVinc.duracao.clauAssec'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -1100,7 +1108,7 @@ Validação: O preenchimento é obrigatório se tpContr = [2, 3]. Não preencher
     <div class="col-md-4">
         <div class="form-group">
             <label>Indicação do objeto determinante da contratação por prazo determinado (obra<a data-toggle="tooltip" title="Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.).
-Validação: O preenchimento é obrigatório e exclusivo se tpContr = [3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: O preenchimento é obrigatório e exclusivo se duracao/tpContr = [3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__infoCompl__infoVinc__duracao__id__objDet" maxlength="255" value="{{infoContr|readjson:'infoCompl.infoVinc.duracao.objDet'}}" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoVinc][duracao][objDet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1205,8 +1213,7 @@ Valores válidos:
 2 - CPF
 5 - CGC
 6 - CEI
-Validação: Somente é possível informar [5] se dtTransf for igual ou anterior a [1999-06-30].
-Somente é possível informar [6] se dtTransf for igual ou anterior a [2011-12-31]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Somente é possível informar [5] se dtTransf for igual ou anterior a [1999-06-30]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtProcTrab__ideTrab__infoContr__infoCompl__infoVinc__sucessaoVinc__id__tpInsc" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoVinc][sucessaoVinc][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal infoContr|readjson:'infoCompl.infoVinc.sucessaoVinc.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal infoContr|readjson:'infoCompl.infoVinc.sucessaoVinc.tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option><option value='5' {% ifequal infoContr|readjson:'infoCompl.infoVinc.sucessaoVinc.tpInsc'|to_str '5' %}selected{% endifequal %}>5 - CGC</option><option value='6' {% ifequal infoContr|readjson:'infoCompl.infoVinc.sucessaoVinc.tpInsc'|to_str '6' %}selected{% endifequal %}>6 - CEI</option>
             </select>
@@ -1332,7 +1339,7 @@ Validação: Se informada, deve ser igual ou posterior a dtDeslig."><i class="fa
 <div id="dtTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Data do término<a data-toggle="tooltip" title="Data do término.
+            <label>Data do término do contrato por prazo determinado<a data-toggle="tooltip" title="Data do término.
 Validação: Deve ser igual ou posterior a dtInicio e igual ou anterior à data atual acrescida de 10 (dez) dias."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__infoCompl__infoTerm__id__dtTerm" value="{{infoContr|readjson:'infoCompl.infoTerm.dtTerm'}}" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoTerm][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -1619,6 +1626,7 @@ Validação: Informação obrigatória e exclusiva se o campo matUnic não estiv
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição do estabelecimento, de acordo com as opções da Tabela 05.
+No caso de empregador doméstico, informar [3] (CAEPF).
 Valores válidos:
 1 - CNPJ
 3 - CAEPF
@@ -1635,7 +1643,9 @@ Validação: Se ideEmpregador/tpInsc = [1], deve ser igual a [1, 4]. Se ideEmpre
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo acima.
-Validação: A inscrição informada deve ser compatível com ideEstab/tpInsc e o número deve constar na base da RFB e pertencer a ideEmpregador/nrInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+No caso de empregador doméstico, informar os 9 (nove) primeiros dígitos do CPF do empregador, seguidos de 5 (cinco) dígitos 0 (zero). Por exemplo, se o CPF do empregador doméstico for 111111111-99, informar 11111111100000.
+Validação: A inscrição informada deve ser compatível com ideEstab/tpInsc e o número deve constar na base da RFB e pertencer a ideEmpregador/nrInsc.
+Se o processo for referente a empregado doméstico, a inscrição informada deve ser igual aos 9 (nove) primeiros dígitos do CPF do empregador, seguidos de 5 (cinco) dígitos 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__ideEstab__id__nrInsc" maxlength="14" value="{{infoContr|readjson:'ideEstab.nrInsc'}}" name="[evtProcTrab][ideTrab][infoContr][][ideEstab][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1666,9 +1676,9 @@ Validação: A inscrição informada deve ser compatível com ideEstab/tpInsc e 
         <div class="form-group">
             <label>Competência inicial a que se refere o processo ou conciliação<a data-toggle="tooltip" title="Competência inicial a que se refere o processo ou conciliação, no formato AAAA-MM.
 Validação: Devem ser obedecidas as seguintes regras:
-a) Se tpContr = [1, 3], deve ser igual ou posterior ao mês/ano da data de admissão;
-b) Se tpContr = [2, 4, 5], deve ser igual ao mês/ano da data de admissão;
-c) Se tpContr = [6], deve ser igual ou posterior ao mês/ano da data de início do TSVE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+a) Se infoContr/tpContr = [1, 3], deve ser igual ou posterior ao mês/ano da data de admissão;
+b) Se infoContr/tpContr = [2, 4, 5], deve ser igual ao mês/ano da data de admissão;
+c) Se infoContr/tpContr = [6], deve ser igual ou posterior ao mês/ano da data de início do TSVE."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__ideEstab__infoVlr__id__compIni" maxlength="7" value="{{infoContr|readjson:'ideEstab.infoVlr.compIni'}}" name="[evtProcTrab][ideTrab][infoContr][][ideEstab][infoVlr][compIni]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1679,9 +1689,9 @@ c) Se tpContr = [6], deve ser igual ou posterior ao mês/ano da data de início 
         <div class="form-group">
             <label>Competência final a que se refere o processo ou conciliação<a data-toggle="tooltip" title="Competência final a que se refere o processo ou conciliação, no formato AAAA-MM.
 Validação: Deve ser igual ou posterior a compIni, igual ou anterior ao mês/ano de dtSent ou dtCCP e:
-a) Se tpContr = [1, 2], deve ser igual ou anterior ao mês/ano da data de desligamento, se informada;
-b) Se tpContr = [3, 4, 5], deve ser igual ao mês/ano da data de desligamento, se informada;
-c) Se tpContr = [6], deve ser igual ou anterior ao mês/ano da data de término do TSVE, se informada."><i class="fa fa-fw fa-question-circle"></i></a></label>
+a) Se infoContr/tpContr = [1, 2], deve ser igual ou anterior ao mês/ano da data de desligamento, se informada;
+b) Se infoContr/tpContr = [3, 4, 5], deve ser igual ao mês/ano da data de desligamento, se informada;
+c) Se infoContr/tpContr = [6], deve ser igual ou anterior ao mês/ano da data de término do TSVE, se informada."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__ideEstab__infoVlr__id__compFim" maxlength="7" value="{{infoContr|readjson:'ideEstab.infoVlr.compFim'}}" name="[evtProcTrab][ideTrab][infoContr][][ideEstab][infoVlr][compFim]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -1841,7 +1851,7 @@ Validação: Deve ser maior ou igual a 0 (zero)."><i class="fa fa-fw fa-question
 <div id="vrBcFgts__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário)<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário).
+            <label>Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário).
 Validação: Deve ser maior ou igual a 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__ideEstab__infoVlr__idePeriodo__baseCalculo__id__vrBcFgts" maxlength="14" value="{{idePeriodo|readjson:'baseCalculo.vrBcFgts'}}" name="[evtProcTrab][ideTrab][infoContr][][ideEstab][infoVlr][idePeriodo][][baseCalculo][vrBcFgts]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -1904,8 +1914,8 @@ Valores válidos:
 </div>
 <div id="infoFGTS__div">
     <div class="col-md-12">
-        <h4>Informações referentes a bases de cálculo de FGTS para geração de guia.
-O grupo somente deve ser preenchido quando o FGTS foi objeto de transação judicial com modificação do valor de FGTS anteriormente declarado (eSocial ou GFIP), acrescida da base complementar declarada no grupo baseCalculo.</h4>
+        <h4>Informações referentes a bases de cálculo de FGTS para geração de guia para competências anteriores ao início do FGTS Digital.
+Informar apenas bases que ainda não foram recolhidas via SEFIP/Conectividade Social.</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -2083,7 +2093,7 @@ Validação: Deve ser maior ou igual a 0 (zero)."><i class="fa fa-fw fa-question
 <div id="vrBcFgts__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário)<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário).
+            <label>Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário).
 Validação: Deve ser maior ou igual a 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__ideEstab__infoVlr__idePeriodo__baseCalculo__id__vrBcFgts" maxlength="14" value="{{idePeriodo|readjson:'baseCalculo.vrBcFgts'}}" name="[evtProcTrab][ideTrab][infoContr][][ideEstab][infoVlr][idePeriodo][][baseCalculo][vrBcFgts]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -2146,8 +2156,8 @@ Valores válidos:
 </div>
 <div id="infoFGTS__div">
     <div class="col-md-12">
-        <h4>Informações referentes a bases de cálculo de FGTS para geração de guia.
-O grupo somente deve ser preenchido quando o FGTS foi objeto de transação judicial com modificação do valor de FGTS anteriormente declarado (eSocial ou GFIP), acrescida da base complementar declarada no grupo baseCalculo.</h4>
+        <h4>Informações referentes a bases de cálculo de FGTS para geração de guia para competências anteriores ao início do FGTS Digital.
+Informar apenas bases que ainda não foram recolhidas via SEFIP/Conectividade Social.</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -2294,9 +2304,13 @@ Valores válidos:
 3 - Trabalhador com vínculo formalizado, com inclusão ou alteração de data de desligamento
 4 - Trabalhador com vínculo formalizado, com alteração nas datas de admissão e de desligamento
 5 - Empregado com reconhecimento de vínculo
-6 - Trabalhador sem vínculo de emprego/estatutário (TSVE), sem reconhecimento de vínculo empregatício"><i class="fa fa-fw fa-question-circle"></i></a></label>
+6 - Trabalhador sem vínculo de emprego/estatutário (TSVE), sem reconhecimento de vínculo empregatício
+7 - Trabalhador com vínculo de emprego formalizado em período anterior ao eSocial
+8 - Responsabilidade indireta
+9 - Trabalhador cujos contratos foram unificados (unicidade contratual)
+Validação: Deve ser igual a [8] se o grupo ideResp for informado."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtProcTrab__ideTrab__infoContr__id__tpContr" name="[evtProcTrab][ideTrab][infoContr][][tpContr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal infoContr|readjson:'tpContr'|to_str '1' %}selected{% endifequal %}>1 - Trabalhador com vínculo formalizado, sem alteração nas datas de admissão e de desligamento</option><option value='2' {% ifequal infoContr|readjson:'tpContr'|to_str '2' %}selected{% endifequal %}>2 - Trabalhador com vínculo formalizado, com alteração na data de admissão</option><option value='3' {% ifequal infoContr|readjson:'tpContr'|to_str '3' %}selected{% endifequal %}>3 - Trabalhador com vínculo formalizado, com inclusão ou alteração de data de desligamento</option><option value='4' {% ifequal infoContr|readjson:'tpContr'|to_str '4' %}selected{% endifequal %}>4 - Trabalhador com vínculo formalizado, com alteração nas datas de admissão e de desligamento</option><option value='5' {% ifequal infoContr|readjson:'tpContr'|to_str '5' %}selected{% endifequal %}>5 - Empregado com reconhecimento de vínculo</option><option value='6' {% ifequal infoContr|readjson:'tpContr'|to_str '6' %}selected{% endifequal %}>6 - Trabalhador sem vínculo de emprego/estatutário (TSVE), sem reconhecimento de vínculo empregatício</option>
+            <option value="">---</option><option value='1' {% ifequal infoContr|readjson:'tpContr'|to_str '1' %}selected{% endifequal %}>1 - Trabalhador com vínculo formalizado, sem alteração nas datas de admissão e de desligamento</option><option value='2' {% ifequal infoContr|readjson:'tpContr'|to_str '2' %}selected{% endifequal %}>2 - Trabalhador com vínculo formalizado, com alteração na data de admissão</option><option value='3' {% ifequal infoContr|readjson:'tpContr'|to_str '3' %}selected{% endifequal %}>3 - Trabalhador com vínculo formalizado, com inclusão ou alteração de data de desligamento</option><option value='4' {% ifequal infoContr|readjson:'tpContr'|to_str '4' %}selected{% endifequal %}>4 - Trabalhador com vínculo formalizado, com alteração nas datas de admissão e de desligamento</option><option value='5' {% ifequal infoContr|readjson:'tpContr'|to_str '5' %}selected{% endifequal %}>5 - Empregado com reconhecimento de vínculo</option><option value='6' {% ifequal infoContr|readjson:'tpContr'|to_str '6' %}selected{% endifequal %}>6 - Trabalhador sem vínculo de emprego/estatutário (TSVE), sem reconhecimento de vínculo empregatício</option><option value='7' {% ifequal infoContr|readjson:'tpContr'|to_str '7' %}selected{% endifequal %}>7 - Trabalhador com vínculo de emprego formalizado em período anterior ao eSocial</option><option value='8' {% ifequal infoContr|readjson:'tpContr'|to_str '8' %}selected{% endifequal %}>8 - Responsabilidade indireta</option><option value='9' {% ifequal infoContr|readjson:'tpContr'|to_str '9' %}selected{% endifequal %}>9 - Trabalhador cujos contratos foram unificados (unicidade contratual)</option>
             </select>
         </div>
     </div>
@@ -2321,7 +2335,7 @@ Validação: Deve ser igual a [N] se o grupo ideResp for informado."><i class="f
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com a data de admissão original do vínculo (data de admissão antes da alteração)<a data-toggle="tooltip" title="Preencher com a data de admissão original do vínculo (data de admissão antes da alteração).
-Validação: Preenchimento obrigatório e exclusivo se tpContr = [2, 4] e se indContr = [N]. Deve ser posterior à data de nascimento do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório se infoContr/tpContr = [2, 4]. Deve ser posterior à data de nascimento do trabalhador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__id__dtAdmOrig" value="{{infoContr|readjson:'dtAdmOrig'}}" name="[evtProcTrab][ideTrab][infoContr][][dtAdmOrig]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -2334,7 +2348,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpContr = [2, 4] e se ind
 Valores válidos:
 S - Sim
 N - Não
-Validação: Preenchimento obrigatório e exclusivo se tpContr for diferente de [6] e indContr = [S]. Caso seja informado [S], deve existir evento de reintegração (S-2298) para a matrícula abaixo informada, com o número de processo nesse evento igual a nrProcTrab."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Preenchimento obrigatório e exclusivo se infoContr/tpContr for diferente de [6] e indContr = [S]. Caso seja informado [S], deve existir evento de reintegração (S-2298) para a matrícula abaixo informada, com o número de processo nesse evento igual a nrProcTrab."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtProcTrab__ideTrab__infoContr__id__indReint" name="[evtProcTrab][ideTrab][infoContr][][indReint]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal infoContr|readjson:'indReint'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal infoContr|readjson:'indReint'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -2345,7 +2359,7 @@ Validação: Preenchimento obrigatório e exclusivo se tpContr for diferente de 
 <div id="indCateg__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Indicativo se houve reconhecimento de categoria do trabalhador diferente da cadastrada (no eSocial ou na GFIP) pelo declarante<a data-toggle="tooltip" title="Indicativo se houve reconhecimento de categoria do trabalhador diferente da cadastrada (no eSocial ou na GFIP) pelo declarante.
+            <label>Indicativo se houve reconhecimento de categoria do trabalhador diferente da informada (no eSocial ou na GFIP) pelo declarante<a data-toggle="tooltip" title="Indicativo se houve reconhecimento de categoria do trabalhador diferente da informada (no eSocial ou na GFIP) pelo declarante.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -2420,8 +2434,8 @@ REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label
             <label>Preencher com o código da categoria do trabalhador<a data-toggle="tooltip" title="Preencher com o código da categoria do trabalhador.
 Validação: Informação obrigatória e exclusiva se indContr = [N] ou se o campo matricula não estiver preenchido. Deve ser um código válido e existente na Tabela 01 e obedecer ao que segue:
 a) Se o campo matricula não estiver preenchido, deve ser igual ao código de categoria informado no evento S-2300;
-b) Se indContr = [N] e tpContr for diferente de [6], deve ser um código de categoria compatível com o evento S-2200 (conforme regra de validação abaixo);
-c) Se indContr = [N] e tpContr = [6], deve ser um código de categoria compatível com o evento S-2300 (conforme regra de validação abaixo).
+b) Se indContr = [N] e infoContr/tpContr for diferente de [6], deve ser um código de categoria compatível com o evento S-2200 (conforme regra de validação abaixo);
+c) Se indContr = [N] e infoContr/tpContr = [6], deve ser um código de categoria compatível com o evento S-2300 (conforme regra de validação abaixo).
 Regra de validação:
 REGRA_COMPATIB_CATEG_EVENTO"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__id__codCateg" maxlength="3" value="{{infoContr|readjson:'codCateg'}}" name="[evtProcTrab][ideTrab][infoContr][][codCateg]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -2440,7 +2454,7 @@ d) Para o estagiário, a data de início do estágio;
 e) Para o trabalhador avulso, a data de ingresso no Órgão Gestor de Mão de Obra - OGMO ou no sindicato;
 f) Para o servidor público exercente de cargo eletivo, a data de início do mandato;
 g) Para os demais trabalhadores, a data de início das atividades.
-Validação: Informação obrigatória e exclusiva se (tpContr = [6] e indContr = [N]) ou se o campo matricula não estiver preenchido. Deve ser posterior à data de nascimento do trabalhador. Se o campo matricula não estiver preenchido, deve ser igual à data de início informada no evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Informação obrigatória e exclusiva se (infoContr/tpContr = [6] e indContr = [N]) ou se o campo matricula não estiver preenchido. Deve ser posterior à data de nascimento do trabalhador. Se o campo matricula não estiver preenchido, deve ser igual à data de início informada no evento S-2300."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__id__dtInicio" value="{{infoContr|readjson:'dtInicio'}}" name="[evtProcTrab][ideTrab][infoContr][][dtInicio]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -2525,7 +2539,7 @@ Validação: Deve ser igual ou posterior à data de admissão (ou de início) e 
 <div id="vrSalFx__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração em compFim.
+            <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração em dtRemun.
 Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__infoCompl__remuneracao__id__vrSalFx" maxlength="14" value="{{remuneracao|readjson:'vrSalFx'}}" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][remuneracao][][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -2598,7 +2612,7 @@ Validação: Deve ser igual ou posterior à data de admissão (ou de início) e 
 <div id="vrSalFx__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração em compFim.
+            <label>Salário base do trabalhador<a data-toggle="tooltip" title="Salário base do trabalhador, correspondente à parte fixa da remuneração em dtRemun.
 Validação: Se undSalFixo for igual a [7], preencher com 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__infoCompl__remuneracao__id__vrSalFx" maxlength="14" value="{{remuneracao|readjson:'vrSalFx'}}" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][remuneracao][][vrSalFx]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -2676,14 +2690,14 @@ Validação: Se infoContr/codCateg = [104], deve ser preenchido com [1]."><i cla
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário<a data-toggle="tooltip" title="Tipo de regime previdenciário.
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
-2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
+2 - Regime Próprio de Previdência Social - RPPS
 3 - Regime de Previdência Social no exterior
 Validação: Se infoContr/codCateg = [104], deve ser preenchido com [1]. Se infoContr/codCateg = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtProcTrab__ideTrab__infoContr__infoCompl__infoVinc__id__tpRegPrev" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoVinc][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS</option><option value='3' {% ifequal infoContr|readjson:'infoCompl.infoVinc.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
             </select>
         </div>
     </div>
@@ -2755,8 +2769,8 @@ Valores válidos:
 <div id="dtTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Data do término<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
-Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se tpContr = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência, igual ou posterior a sucessaoVinc/dtTransf)."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Data do término do contrato por prazo determinado<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
+Validação: O preenchimento é obrigatório se duracao/tpContr = [2]. Não informar se duracao/tpContr = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência, igual ou posterior a sucessaoVinc/dtTransf)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__infoCompl__infoVinc__duracao__id__dtTerm" value="{{infoContr|readjson:'infoCompl.infoVinc.duracao.dtTerm'}}" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoVinc][duracao][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -2769,7 +2783,7 @@ Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se 
 Valores válidos:
 S - Sim
 N - Não
-Validação: O preenchimento é obrigatório se tpContr = [2, 3]. Não preencher se tpContr = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: O preenchimento é obrigatório se duracao/tpContr = [2, 3]. Não preencher se duracao/tpContr = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtProcTrab__ideTrab__infoContr__infoCompl__infoVinc__duracao__id__clauAssec" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoVinc][duracao][clauAssec]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal infoContr|readjson:'infoCompl.infoVinc.duracao.clauAssec'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal infoContr|readjson:'infoCompl.infoVinc.duracao.clauAssec'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -2781,7 +2795,7 @@ Validação: O preenchimento é obrigatório se tpContr = [2, 3]. Não preencher
     <div class="col-md-4">
         <div class="form-group">
             <label>Indicação do objeto determinante da contratação por prazo determinado (obra<a data-toggle="tooltip" title="Indicação do objeto determinante da contratação por prazo determinado (obra, serviço, safra, etc.).
-Validação: O preenchimento é obrigatório e exclusivo se tpContr = [3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: O preenchimento é obrigatório e exclusivo se duracao/tpContr = [3]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__infoCompl__infoVinc__duracao__id__objDet" maxlength="255" value="{{infoContr|readjson:'infoCompl.infoVinc.duracao.objDet'}}" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoVinc][duracao][objDet]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -2886,8 +2900,7 @@ Valores válidos:
 2 - CPF
 5 - CGC
 6 - CEI
-Validação: Somente é possível informar [5] se dtTransf for igual ou anterior a [1999-06-30].
-Somente é possível informar [6] se dtTransf for igual ou anterior a [2011-12-31]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Somente é possível informar [5] se dtTransf for igual ou anterior a [1999-06-30]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtProcTrab__ideTrab__infoContr__infoCompl__infoVinc__sucessaoVinc__id__tpInsc" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoVinc][sucessaoVinc][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal infoContr|readjson:'infoCompl.infoVinc.sucessaoVinc.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal infoContr|readjson:'infoCompl.infoVinc.sucessaoVinc.tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option><option value='5' {% ifequal infoContr|readjson:'infoCompl.infoVinc.sucessaoVinc.tpInsc'|to_str '5' %}selected{% endifequal %}>5 - CGC</option><option value='6' {% ifequal infoContr|readjson:'infoCompl.infoVinc.sucessaoVinc.tpInsc'|to_str '6' %}selected{% endifequal %}>6 - CEI</option>
             </select>
@@ -3013,7 +3026,7 @@ Validação: Se informada, deve ser igual ou posterior a dtDeslig."><i class="fa
 <div id="dtTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Data do término<a data-toggle="tooltip" title="Data do término.
+            <label>Data do término do contrato por prazo determinado<a data-toggle="tooltip" title="Data do término.
 Validação: Deve ser igual ou posterior a dtInicio e igual ou anterior à data atual acrescida de 10 (dez) dias."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__infoCompl__infoTerm__id__dtTerm" value="{{infoContr|readjson:'infoCompl.infoTerm.dtTerm'}}" name="[evtProcTrab][ideTrab][infoContr][][infoCompl][infoTerm][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -3300,6 +3313,7 @@ Validação: Informação obrigatória e exclusiva se o campo matUnic não estiv
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o código correspondente ao tipo de inscrição<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de inscrição do estabelecimento, de acordo com as opções da Tabela 05.
+No caso de empregador doméstico, informar [3] (CAEPF).
 Valores válidos:
 1 - CNPJ
 3 - CAEPF
@@ -3316,7 +3330,9 @@ Validação: Se ideEmpregador/tpInsc = [1], deve ser igual a [1, 4]. Se ideEmpre
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número de inscrição do contribuinte de acordo com o tipo de inscrição indicado no campo ideEmpregador/tpInsc e conforme informado em S-1000<a data-toggle="tooltip" title="Informar o número de inscrição do estabelecimento do contribuinte de acordo com o tipo de inscrição indicado no campo acima.
-Validação: A inscrição informada deve ser compatível com ideEstab/tpInsc e o número deve constar na base da RFB e pertencer a ideEmpregador/nrInsc."><i class="fa fa-fw fa-question-circle"></i></a></label>
+No caso de empregador doméstico, informar os 9 (nove) primeiros dígitos do CPF do empregador, seguidos de 5 (cinco) dígitos 0 (zero). Por exemplo, se o CPF do empregador doméstico for 111111111-99, informar 11111111100000.
+Validação: A inscrição informada deve ser compatível com ideEstab/tpInsc e o número deve constar na base da RFB e pertencer a ideEmpregador/nrInsc.
+Se o processo for referente a empregado doméstico, a inscrição informada deve ser igual aos 9 (nove) primeiros dígitos do CPF do empregador, seguidos de 5 (cinco) dígitos 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__ideEstab__id__nrInsc" maxlength="14" value="{{infoContr|readjson:'ideEstab.nrInsc'}}" name="[evtProcTrab][ideTrab][infoContr][][ideEstab][nrInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -3347,9 +3363,9 @@ Validação: A inscrição informada deve ser compatível com ideEstab/tpInsc e 
         <div class="form-group">
             <label>Competência inicial a que se refere o processo ou conciliação<a data-toggle="tooltip" title="Competência inicial a que se refere o processo ou conciliação, no formato AAAA-MM.
 Validação: Devem ser obedecidas as seguintes regras:
-a) Se tpContr = [1, 3], deve ser igual ou posterior ao mês/ano da data de admissão;
-b) Se tpContr = [2, 4, 5], deve ser igual ao mês/ano da data de admissão;
-c) Se tpContr = [6], deve ser igual ou posterior ao mês/ano da data de início do TSVE."><i class="fa fa-fw fa-question-circle"></i></a></label>
+a) Se infoContr/tpContr = [1, 3], deve ser igual ou posterior ao mês/ano da data de admissão;
+b) Se infoContr/tpContr = [2, 4, 5], deve ser igual ao mês/ano da data de admissão;
+c) Se infoContr/tpContr = [6], deve ser igual ou posterior ao mês/ano da data de início do TSVE."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__ideEstab__infoVlr__id__compIni" maxlength="7" value="{{infoContr|readjson:'ideEstab.infoVlr.compIni'}}" name="[evtProcTrab][ideTrab][infoContr][][ideEstab][infoVlr][compIni]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -3360,9 +3376,9 @@ c) Se tpContr = [6], deve ser igual ou posterior ao mês/ano da data de início 
         <div class="form-group">
             <label>Competência final a que se refere o processo ou conciliação<a data-toggle="tooltip" title="Competência final a que se refere o processo ou conciliação, no formato AAAA-MM.
 Validação: Deve ser igual ou posterior a compIni, igual ou anterior ao mês/ano de dtSent ou dtCCP e:
-a) Se tpContr = [1, 2], deve ser igual ou anterior ao mês/ano da data de desligamento, se informada;
-b) Se tpContr = [3, 4, 5], deve ser igual ao mês/ano da data de desligamento, se informada;
-c) Se tpContr = [6], deve ser igual ou anterior ao mês/ano da data de término do TSVE, se informada."><i class="fa fa-fw fa-question-circle"></i></a></label>
+a) Se infoContr/tpContr = [1, 2], deve ser igual ou anterior ao mês/ano da data de desligamento, se informada;
+b) Se infoContr/tpContr = [3, 4, 5], deve ser igual ao mês/ano da data de desligamento, se informada;
+c) Se infoContr/tpContr = [6], deve ser igual ou anterior ao mês/ano da data de término do TSVE, se informada."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__ideEstab__infoVlr__id__compFim" maxlength="7" value="{{infoContr|readjson:'ideEstab.infoVlr.compFim'}}" name="[evtProcTrab][ideTrab][infoContr][][ideEstab][infoVlr][compFim]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
     </div>
@@ -3522,7 +3538,7 @@ Validação: Deve ser maior ou igual a 0 (zero)."><i class="fa fa-fw fa-question
 <div id="vrBcFgts__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário)<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário).
+            <label>Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário).
 Validação: Deve ser maior ou igual a 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__ideEstab__infoVlr__idePeriodo__baseCalculo__id__vrBcFgts" maxlength="14" value="{{idePeriodo|readjson:'baseCalculo.vrBcFgts'}}" name="[evtProcTrab][ideTrab][infoContr][][ideEstab][infoVlr][idePeriodo][][baseCalculo][vrBcFgts]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -3585,8 +3601,8 @@ Valores válidos:
 </div>
 <div id="infoFGTS__div">
     <div class="col-md-12">
-        <h4>Informações referentes a bases de cálculo de FGTS para geração de guia.
-O grupo somente deve ser preenchido quando o FGTS foi objeto de transação judicial com modificação do valor de FGTS anteriormente declarado (eSocial ou GFIP), acrescida da base complementar declarada no grupo baseCalculo.</h4>
+        <h4>Informações referentes a bases de cálculo de FGTS para geração de guia para competências anteriores ao início do FGTS Digital.
+Informar apenas bases que ainda não foram recolhidas via SEFIP/Conectividade Social.</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -3764,7 +3780,7 @@ Validação: Deve ser maior ou igual a 0 (zero)."><i class="fa fa-fw fa-question
 <div id="vrBcFgts__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário)<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário).
+            <label>Valor da base de cálculo do FGTS sobre a remuneração dos trabalhadores avulsos não portuários contratados<a data-toggle="tooltip" title="Valor da base de cálculo do FGTS sobre a remuneração do trabalhador (sem 13° salário).
 Validação: Deve ser maior ou igual a 0 (zero)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtProcTrab__ideTrab__infoContr__ideEstab__infoVlr__idePeriodo__baseCalculo__id__vrBcFgts" maxlength="14" value="{{idePeriodo|readjson:'baseCalculo.vrBcFgts'}}" name="[evtProcTrab][ideTrab][infoContr][][ideEstab][infoVlr][idePeriodo][][baseCalculo][vrBcFgts]" onchange="set_evento_json()" class="form-control esocial-valor-2" {{ original|disabled}} />
         </div>
@@ -3827,8 +3843,8 @@ Valores válidos:
 </div>
 <div id="infoFGTS__div">
     <div class="col-md-12">
-        <h4>Informações referentes a bases de cálculo de FGTS para geração de guia.
-O grupo somente deve ser preenchido quando o FGTS foi objeto de transação judicial com modificação do valor de FGTS anteriormente declarado (eSocial ou GFIP), acrescida da base complementar declarada no grupo baseCalculo.</h4>
+        <h4>Informações referentes a bases de cálculo de FGTS para geração de guia para competências anteriores ao início do FGTS Digital.
+Informar apenas bases que ainda não foram recolhidas via SEFIP/Conectividade Social.</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 

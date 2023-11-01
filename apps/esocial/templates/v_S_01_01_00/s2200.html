@@ -239,7 +239,7 @@ F - Feminino"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="racaCor__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Raça e cor do beneficiário<a data-toggle="tooltip" title="Raça e cor do trabalhador.
+            <label>Etnia e raça do beneficiário<a data-toggle="tooltip" title="Raça e cor do trabalhador.
 Valores válidos:
 1 - Branca
 2 - Preta
@@ -739,7 +739,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="infoCota__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados<a data-toggle="tooltip" title="Informar se o trabalhador preenche cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados.
+            <label>Informar se o trabalhador deve ser contabilizado no preenchimento de cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados<a data-toggle="tooltip" title="Informar se o trabalhador deve ser contabilizado no preenchimento de cota de pessoas com deficiência habilitadas ou de beneficiários reabilitados.
 Valores válidos:
 S - Sim
 N - Não
@@ -788,7 +788,7 @@ Esta validação não deve ser realizada quando se tratar de evento enviado em v
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Relação de dependência<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmissao__trabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtAdmissao][trabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -817,7 +817,7 @@ Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atu
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF do dependente do plano de saúde<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
@@ -845,7 +845,7 @@ Validação: Preenchimento obrigatório se tpRegPrev = [2] e cadIni = [N]. Não 
 <div id="depIRRF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+            <label>Este campo somente é informado em caso de dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -876,7 +876,8 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <label>Informar se o dependente tem incapacidade física ou mental para o trabalho<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho.
 Valores válidos:
 S - Sim
-N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+N - Não
+Validação: Não informar se tpRegPrev = [4]. Preenchimento obrigatório nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__dependente__id__incTrab" name="[evtAdmissao][trabalhador][dependente][][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal dependente|readjson:'incTrab'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'incTrab'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -911,7 +912,7 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
 <div id="tpDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de dependente<a data-toggle="tooltip" title="Tipo de dependente.
+            <label>Relação de dependência<a data-toggle="tooltip" title="Tipo de dependente.
 Validação: Deve ser um código válido e existente na Tabela 07."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmissao__trabalhador__dependente__id__tpDep" maxlength="2" value="{{dependente|readjson:'tpDep'}}" name="[evtAdmissao][trabalhador][dependente][][tpDep]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -940,7 +941,7 @@ Validação: Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atu
 <div id="cpfDep__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no CPF<a data-toggle="tooltip" title="Número de inscrição no CPF.
+            <label>Número de inscrição no CPF do dependente do plano de saúde<a data-toggle="tooltip" title="Número de inscrição no CPF.
 Validação: Deve ser um número de CPF válido, observando o que segue:
 a) O preenchimento é obrigatório se depIRRF = [S];
 b) Em arquivo de empregador Pessoa Física, deve ser diferente do CPF informado em ideEmpregador;
@@ -968,7 +969,7 @@ Validação: Preenchimento obrigatório se tpRegPrev = [2] e cadIni = [N]. Não 
 <div id="depIRRF__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar se é dependente do beneficiário para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
+            <label>Este campo somente é informado em caso de dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda<a data-toggle="tooltip" title="Informar se é dependente do trabalhador para fins de dedução de seu rendimento tributável pelo Imposto de Renda.
 Valores válidos:
 S - Sim
 N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -999,7 +1000,8 @@ N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <label>Informar se o dependente tem incapacidade física ou mental para o trabalho<a data-toggle="tooltip" title="Informar se o dependente tem incapacidade física ou mental para o trabalho.
 Valores válidos:
 S - Sim
-N - Não"><i class="fa fa-fw fa-question-circle"></i></a></label>
+N - Não
+Validação: Não informar se tpRegPrev = [4]. Preenchimento obrigatório nos demais casos."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__trabalhador__dependente__id__incTrab" name="[evtAdmissao][trabalhador][dependente][][incTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='S' {% ifequal dependente|readjson:'incTrab'|to_str 'S' %}selected{% endifequal %}>S - Sim</option><option value='N' {% ifequal dependente|readjson:'incTrab'|to_str 'N' %}selected{% endifequal %}>N - Não</option>
             </select>
@@ -1098,7 +1100,7 @@ REGRA_CARACTERE_ESPECIAL"><i class="fa fa-fw fa-question-circle"></i></a></label
 Valores válidos:
 1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas
 2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)
-Validação: Se codCateg = [104], deve ser preenchido com [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [314], deve ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__id__tpRegTrab" name="[evtAdmissao][vinculo][tpRegTrab]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.tpRegTrab'|to_str '1' %}selected{% endifequal %}>1 - CLT - Consolidação das Leis de Trabalho e legislações trabalhistas específicas</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.tpRegTrab'|to_str '2' %}selected{% endifequal %}>2 - Estatutário/legislações específicas (servidor temporário, militar, agente político, etc.)</option>
             </select>
@@ -1109,14 +1111,15 @@ Validação: Se codCateg = [104], deve ser preenchido com [1]."><i class="fa fa-
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares das Forças Armadas).
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
-2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
+2 - Regime Próprio de Previdência Social - RPPS
 3 - Regime de Previdência Social no exterior
-Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+4 - Sistema de Proteção Social dos Militares das Forças Armadas - SPSMFA
+Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2, 4]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__id__tpRegPrev" name="[evtAdmissao][vinculo][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option><option value='4' {% ifequal evtAdmissao|readjson:'vinculo.tpRegPrev'|to_str '4' %}selected{% endifequal %}>4 - Sistema de Proteção Social dos Militares das Forças Armadas - SPSMFA</option>
             </select>
         </div>
     </div>
@@ -1365,7 +1368,7 @@ Valores válidos:
 
 <div id="ideEstabVinc__div">
     <div class="col-md-12">
-        <h4>Identificação do estabelecimento ao qual o trabalhador temporário está vinculado. Se o local da efetiva prestação do serviço não possuir inscrição, deverá ser informado o CNPJ/CPF ao qual o local da efetiva prestação está vinculado.</h4>
+        <h4>Identificação do estabelecimento do tomador ao qual o trabalhador temporário está vinculado</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -1565,7 +1568,7 @@ b) Se aprend/tpInsc = [2], deve ser diferente do CPF do empregado. Se o empregad
 Valores válidos:
 1 - Nomeação em cargo efetivo
 2 - Nomeação exclusivamente em cargo em comissão
-3 - Incorporação, matrícula ou nomeação (militar)
+3 - Incorporação ou matrícula (militar)
 5 - Redistribuição ou Reforma Administrativa
 6 - Diplomação
 7 - Contratação por tempo determinado
@@ -1577,7 +1580,7 @@ Valores válidos:
 Validação: Os valores [3, 5, 6, 7, 8, 9] só são permitidos se a natureza jurídica do declarante for Administração Pública (grupo [1]).
 Se codCateg = [302], deve ser preenchido com [2, 5, 8, 10]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__infoRegimeTrab__infoEstatutario__id__tpProv" name="[evtAdmissao][vinculo][infoRegimeTrab][infoEstatutario][tpProv]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '1' %}selected{% endifequal %}>1 - Nomeação em cargo efetivo</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '2' %}selected{% endifequal %}>2 - Nomeação exclusivamente em cargo em comissão</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '3' %}selected{% endifequal %}>3 - Incorporação, matrícula ou nomeação (militar)</option><option value='5' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '5' %}selected{% endifequal %}>5 - Redistribuição ou Reforma Administrativa</option><option value='6' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '6' %}selected{% endifequal %}>6 - Diplomação</option><option value='7' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '7' %}selected{% endifequal %}>7 - Contratação por tempo determinado</option><option value='8' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '8' %}selected{% endifequal %}>8 - Remoção (em caso de alteração do órgão declarante)</option><option value='9' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '9' %}selected{% endifequal %}>9 - Designação</option><option value='10' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '10' %}selected{% endifequal %}>10 - Mudança de CPF</option><option value='11' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '11' %}selected{% endifequal %}>11 - Estabilizados - Art. 19 do ADCT</option><option value='99' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '99' %}selected{% endifequal %}>99 - Outros não relacionados acima</option>
+            <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '1' %}selected{% endifequal %}>1 - Nomeação em cargo efetivo</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '2' %}selected{% endifequal %}>2 - Nomeação exclusivamente em cargo em comissão</option><option value='3' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '3' %}selected{% endifequal %}>3 - Incorporação ou matrícula (militar)</option><option value='5' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '5' %}selected{% endifequal %}>5 - Redistribuição ou Reforma Administrativa</option><option value='6' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '6' %}selected{% endifequal %}>6 - Diplomação</option><option value='7' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '7' %}selected{% endifequal %}>7 - Contratação por tempo determinado</option><option value='8' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '8' %}selected{% endifequal %}>8 - Remoção (em caso de alteração do órgão declarante)</option><option value='9' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '9' %}selected{% endifequal %}>9 - Designação</option><option value='10' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '10' %}selected{% endifequal %}>10 - Mudança de CPF</option><option value='11' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '11' %}selected{% endifequal %}>11 - Estabilizados - Art. 19 do ADCT</option><option value='99' {% ifequal evtAdmissao|readjson:'vinculo.infoRegimeTrab.infoEstatutario.tpProv'|to_str '99' %}selected{% endifequal %}>99 - Outros não relacionados acima</option>
             </select>
         </div>
     </div>
@@ -1708,7 +1711,7 @@ Validação: Informação obrigatória e exclusiva se nmCargo for preenchido. Se
     <div class="col-md-4">
         <div class="form-group">
             <label>Data de ingresso do servidor no cargo<a data-toggle="tooltip" title="Data de ingresso do servidor no cargo.
-Validação: Não preencher se tpRegTrab = [1] ou se CBOCargo não for informado. Se preenchida, devem ser observadas as seguintes regras:
+Validação: Não preencher se tpRegTrab = [1] ou se tpRegPrev = [4] ou se CBOCargo não for informado. Se preenchida, devem ser observadas as seguintes regras:
 a) Deve ser igual ou posterior à data de exercício do servidor;
 b) Se cadIni = [S], deve ser anterior à data de início da obrigatoriedade dos eventos não periódicos para o ente público;
 c) Se cadIni = [N], deve ser igual ou anterior à data da transferência ou alteração do CPF do servidor (sucessaoVinc/dtTransf ou dtAltCPF). Não informar se tpProv for diferente de [5, 8, 10]."><i class="fa fa-fw fa-question-circle"></i></a></label>
@@ -1863,7 +1866,7 @@ Valores válidos:
 <div id="dtTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Data do término<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
+            <label>Data do término do contrato por prazo determinado<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
 Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se tpContr = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência ou mudança de CPF, igual ou posterior a sucessaoVinc/dtTransf, transfDom/dtTransf ou dtAltCPF do evento S-2200, conforme o caso)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAdmissao__vinculo__infoContrato__duracao__id__dtTerm" value="{{evtAdmissao|readjson:'vinculo.infoContrato.duracao.dtTerm'}}" name="[evtAdmissao][vinculo][infoContrato][duracao][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
@@ -2377,8 +2380,7 @@ Valores válidos:
 2 - CPF
 5 - CGC
 6 - CEI
-Validação: Somente é possível informar [5] se dtTransf for igual ou anterior a [1999-06-30].
-Somente é possível informar [6] se dtTransf for igual ou anterior a [2011-12-31]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Somente é possível informar [5] se dtTransf for igual ou anterior a [1999-06-30]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAdmissao__vinculo__sucessaoVinc__id__tpInsc" name="[evtAdmissao][vinculo][sucessaoVinc][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal evtAdmissao|readjson:'vinculo.sucessaoVinc.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal evtAdmissao|readjson:'vinculo.sucessaoVinc.tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option><option value='5' {% ifequal evtAdmissao|readjson:'vinculo.sucessaoVinc.tpInsc'|to_str '5' %}selected{% endifequal %}>5 - CGC</option><option value='6' {% ifequal evtAdmissao|readjson:'vinculo.sucessaoVinc.tpInsc'|to_str '6' %}selected{% endifequal %}>6 - CEI</option>
             </select>

@@ -292,14 +292,15 @@ Validação: Deve ser uma data válida, igual ou posterior à data de admissão.
 <div id="tpRegPrev__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares)<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares).
+            <label>Tipo de regime previdenciário<a data-toggle="tooltip" title="Tipo de regime previdenciário (ou Sistema de Proteção Social dos Militares das Forças Armadas).
 Valores válidos:
 1 - Regime Geral de Previdência Social - RGPS
-2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares
+2 - Regime Próprio de Previdência Social - RPPS
 3 - Regime de Previdência Social no exterior
-Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+4 - Sistema de Proteção Social dos Militares das Forças Armadas - SPSMFA
+Validação: Se codCateg = [104], deve ser preenchido com [1]. Se codCateg = [101, 102, 103, 105, 106, 107, 108, 111], não pode ser preenchido com [2, 4]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtAltContratual__altContratual__vinculo__id__tpRegPrev" name="[evtAltContratual][altContratual][vinculo][tpRegPrev]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS ou Sistema de Proteção Social dos Militares</option><option value='3' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option>
+            <option value="">---</option><option value='1' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.tpRegPrev'|to_str '1' %}selected{% endifequal %}>1 - Regime Geral de Previdência Social - RGPS</option><option value='2' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.tpRegPrev'|to_str '2' %}selected{% endifequal %}>2 - Regime Próprio de Previdência Social - RPPS</option><option value='3' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.tpRegPrev'|to_str '3' %}selected{% endifequal %}>3 - Regime de Previdência Social no exterior</option><option value='4' {% ifequal evtAltContratual|readjson:'altContratual.vinculo.tpRegPrev'|to_str '4' %}selected{% endifequal %}>4 - Sistema de Proteção Social dos Militares das Forças Armadas - SPSMFA</option>
             </select>
         </div>
     </div>
@@ -742,7 +743,7 @@ Valores válidos:
 <div id="dtTerm__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Data do término<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
+            <label>Data do término do contrato por prazo determinado<a data-toggle="tooltip" title="Data do término do contrato por prazo determinado.
 Validação: O preenchimento é obrigatório se tpContr = [2]. Não informar se tpContr = [1]. Se preenchido, deve ser igual ou posterior à data de admissão (no caso de transferência ou mudança de CPF, igual ou posterior a sucessaoVinc/dtTransf, transfDom/dtTransf ou dtAltCPF do evento S-2200, conforme o caso)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtAltContratual__altContratual__vinculo__infoContrato__duracao__id__dtTerm" value="{{evtAltContratual|readjson:'altContratual.vinculo.infoContrato.duracao.dtTerm'}}" name="[evtAltContratual][altContratual][vinculo][infoContrato][duracao][dtTerm]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>

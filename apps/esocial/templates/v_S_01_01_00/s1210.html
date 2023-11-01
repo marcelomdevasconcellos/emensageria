@@ -86,7 +86,7 @@ Deve ser um recibo de entrega válido, correspondente ao arquivo que está sendo
 <div id="perApur__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Mês/ano em que é devida a obrigação de pagar a parcela prevista no acordo/sentença<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações.
+            <label>Informar o mês/ano (formato AAAA-MM) de referência das informações<a data-toggle="tooltip" title="Informar o mês/ano (formato AAAA-MM) de referência das informações.
 Validação: Deve ser um mês/ano válido, igual ou posterior ao início da obrigatoriedade dos eventos periódicos para o empregador."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtPgtos__ideEvento__id__perApur" maxlength="7" value="{{evtPgtos|readjson:'ideEvento.perApur'}}" name="[evtPgtos][ideEvento][perApur]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -220,7 +220,7 @@ Valores válidos:
 <div id="cpfBenef__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Número de inscrição no Cadastro de Pessoas Físicas - CPF do beneficiário do pagamento<a data-toggle="tooltip" title="Informar o CPF do beneficiário.
+            <label>Número de inscrição no CPF do dependente<a data-toggle="tooltip" title="Informar o CPF do beneficiário.
 Validação: Deve ser o mesmo CPF informado no evento de remuneração ou desligamento (S-1200, S-1202, S-1207, S-2299 ou S-2399)."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtPgtos__ideBenef__id__cpfBenef" maxlength="11" value="{{evtPgtos|readjson:'ideBenef.cpfBenef'}}" name="[evtPgtos][ideBenef][cpfBenef]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
         </div>
@@ -317,7 +317,7 @@ Validação: Não pode ser um valor negativo."><i class="fa fa-fw fa-question-ci
 <div id="paisResidExt__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o código do país de residência para fins fiscais<a data-toggle="tooltip" title="Informar o código do país de residência para fins fiscais, quando no exterior, conforme Tabela 06.
+            <label>Código do país de residência para fins fiscais<a data-toggle="tooltip" title="Informar o código do país de residência para fins fiscais, quando no exterior, conforme Tabela 06.
 Somente informar este campo caso o país de residência para fins fiscais seja diferente de Brasil. Se não informado, implica que o país de residência fiscal é Brasil.
 Validação: O campo apenas pode ser preenchido se perApur >= [2023-03]. Se informado, deve ser um código válido e existente na Tabela 06, exceto [105]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtPgtos__ideBenef__infoPgto__id__paisResidExt" maxlength="3" value="{{infoPgto|readjson:'paisResidExt'}}" name="[evtPgtos][ideBenef][infoPgto][][paisResidExt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
@@ -579,7 +579,7 @@ Validação: Não pode ser um valor negativo."><i class="fa fa-fw fa-question-ci
 <div id="paisResidExt__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Informar o código do país de residência para fins fiscais<a data-toggle="tooltip" title="Informar o código do país de residência para fins fiscais, quando no exterior, conforme Tabela 06.
+            <label>Código do país de residência para fins fiscais<a data-toggle="tooltip" title="Informar o código do país de residência para fins fiscais, quando no exterior, conforme Tabela 06.
 Somente informar este campo caso o país de residência para fins fiscais seja diferente de Brasil. Se não informado, implica que o país de residência fiscal é Brasil.
 Validação: O campo apenas pode ser preenchido se perApur >= [2023-03]. Se informado, deve ser um código válido e existente na Tabela 06, exceto [105]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtPgtos__ideBenef__infoPgto__id__paisResidExt" maxlength="3" value="{{infoPgto|readjson:'paisResidExt'}}" name="[evtPgtos][ideBenef][infoPgto][][paisResidExt]" onchange="set_evento_json()" class="form-control" {{ original|disabled}} />
