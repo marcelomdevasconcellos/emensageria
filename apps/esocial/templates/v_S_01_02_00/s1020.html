@@ -280,7 +280,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF
 4 - CNO
-Validação: O campo não deve ser preenchido se tpLotacao for igual a [01, 10, 21, 24, 90, 91]. Nos demais casos, observar conteúdo exigido para o campo dadosLotacao/nrInsc, conforme Tabela 10."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: O campo não deve ser preenchido se tpLotacao for igual a [01, 10, 21, 24, 90, 91, 92]. Nos demais casos, observar conteúdo exigido para o campo dadosLotacao/nrInsc, conforme Tabela 10."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabLotacao__infoLotacao__inclusao__dadosLotacao__id__tpInsc" name="[evtTabLotacao][infoLotacao][inclusao][dadosLotacao][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal evtTabLotacao|readjson:'infoLotacao.inclusao.dadosLotacao.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal evtTabLotacao|readjson:'infoLotacao.inclusao.dadosLotacao.tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option><option value='4' {% ifequal evtTabLotacao|readjson:'infoLotacao.inclusao.dadosLotacao.tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>
@@ -725,7 +725,7 @@ Valores válidos:
 1 - CNPJ
 2 - CPF
 4 - CNO
-Validação: O campo não deve ser preenchido se tpLotacao for igual a [01, 10, 21, 24, 90, 91]. Nos demais casos, observar conteúdo exigido para o campo dadosLotacao/nrInsc, conforme Tabela 10."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: O campo não deve ser preenchido se tpLotacao for igual a [01, 10, 21, 24, 90, 91, 92]. Nos demais casos, observar conteúdo exigido para o campo dadosLotacao/nrInsc, conforme Tabela 10."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabLotacao__infoLotacao__alteracao__dadosLotacao__id__tpInsc" name="[evtTabLotacao][infoLotacao][alteracao][dadosLotacao][tpInsc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% ifequal evtTabLotacao|readjson:'infoLotacao.alteracao.dadosLotacao.tpInsc'|to_str '1' %}selected{% endifequal %}>1 - CNPJ</option><option value='2' {% ifequal evtTabLotacao|readjson:'infoLotacao.alteracao.dadosLotacao.tpInsc'|to_str '2' %}selected{% endifequal %}>2 - CPF</option><option value='4' {% ifequal evtTabLotacao|readjson:'infoLotacao.alteracao.dadosLotacao.tpInsc'|to_str '4' %}selected{% endifequal %}>4 - CNO</option>
             </select>

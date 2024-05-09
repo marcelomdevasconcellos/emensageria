@@ -293,13 +293,14 @@ Validação: O preenchimento do campo é exclusivo e obrigatório para PJ."><i c
 <div id="indDesFolha__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Indicativo de desoneração da folha<a data-toggle="tooltip" title="Indicativo de desoneração da folha.
+            <label>Indicativo de opção/enquadramento de desoneração da folha<a data-toggle="tooltip" title="Indicativo de opção/enquadramento de desoneração da folha.
 Valores válidos:
 0 - Não aplicável
-1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011
-Validação: Pode ser igual a [1] apenas se classTrib = [02, 03, 99]. Nos demais casos, deve ser igual a [0]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+1 - Empresa enquadrada nos critérios da legislação vigente
+2 - Município enquadrado nos critérios da legislação vigente
+Validação: Pode ser igual a [1] apenas se classTrib = [02, 03, 99]. Pode ser igual a [2] apenas para as naturezas jurídicas iguais a [103-1, 106-6, 124-4, 133-3]. Nos demais casos, deve ser igual a [0]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__indDesFolha" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][indDesFolha]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indDesFolha'|to_str '0' %}selected{% endifequal %}>0 - Não aplicável</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indDesFolha'|to_str '1' %}selected{% endifequal %}>1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011</option>
+            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indDesFolha'|to_str '0' %}selected{% endifequal %}>0 - Não aplicável</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indDesFolha'|to_str '1' %}selected{% endifequal %}>1 - Empresa enquadrada nos critérios da legislação vigente</option><option value='2' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indDesFolha'|to_str '2' %}selected{% endifequal %}>2 - Município enquadrado nos critérios da legislação vigente</option>
             </select>
         </div>
     </div>
@@ -363,7 +364,8 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
     <div class="col-md-4">
         <div class="form-group">
             <label>Data da transformação em sociedade de fins lucrativos - Lei 11<a data-toggle="tooltip" title="Data da transformação em sociedade de fins lucrativos - Lei 11.096/2005.
-Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Não preencher se classTrib = [21, 22].
+Se informada, deve ser maior que [2005-11-21] e menor ou igual à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__dtTrans11096" value="{{evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.dtTrans11096'}}" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][dtTrans11096]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -372,8 +374,8 @@ Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-ques
 <div id="indTribFolhaPisCofins__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Indicador de tributação sobre a folha de pagamento - PIS e COFINS<a data-toggle="tooltip" title="Indicador de tributação sobre a folha de pagamento - PIS e COFINS.
-Preenchimento exclusivo para o empregador em situação de tributação de PIS e COFINS sobre a folha de pagamento.
+            <label>Indicador de tributação sobre a folha de pagamento - PIS e COFINS<a data-toggle="tooltip" title="Indicador de tributação sobre a folha de pagamento - PIS e PASEP.
+Preenchimento exclusivo para o empregador em situação de tributação de PIS e PASEP sobre a folha de pagamento.
 Valores válidos:
 S - Sim"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__indTribFolhaPisCofins" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][indTribFolhaPisCofins]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
@@ -655,13 +657,14 @@ Validação: O preenchimento do campo é exclusivo e obrigatório para PJ."><i c
 <div id="indDesFolha__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Indicativo de desoneração da folha<a data-toggle="tooltip" title="Indicativo de desoneração da folha.
+            <label>Indicativo de opção/enquadramento de desoneração da folha<a data-toggle="tooltip" title="Indicativo de opção/enquadramento de desoneração da folha.
 Valores válidos:
 0 - Não aplicável
-1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011
-Validação: Pode ser igual a [1] apenas se classTrib = [02, 03, 99]. Nos demais casos, deve ser igual a [0]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+1 - Empresa enquadrada nos critérios da legislação vigente
+2 - Município enquadrado nos critérios da legislação vigente
+Validação: Pode ser igual a [1] apenas se classTrib = [02, 03, 99]. Pode ser igual a [2] apenas para as naturezas jurídicas iguais a [103-1, 106-6, 124-4, 133-3]. Nos demais casos, deve ser igual a [0]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__indDesFolha" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][indDesFolha]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indDesFolha'|to_str '0' %}selected{% endifequal %}>0 - Não aplicável</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indDesFolha'|to_str '1' %}selected{% endifequal %}>1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011</option>
+            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indDesFolha'|to_str '0' %}selected{% endifequal %}>0 - Não aplicável</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indDesFolha'|to_str '1' %}selected{% endifequal %}>1 - Empresa enquadrada nos critérios da legislação vigente</option><option value='2' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indDesFolha'|to_str '2' %}selected{% endifequal %}>2 - Município enquadrado nos critérios da legislação vigente</option>
             </select>
         </div>
     </div>
@@ -725,7 +728,8 @@ Informação validada no cadastro do CNPJ da RFB."><i class="fa fa-fw fa-questio
     <div class="col-md-4">
         <div class="form-group">
             <label>Data da transformação em sociedade de fins lucrativos - Lei 11<a data-toggle="tooltip" title="Data da transformação em sociedade de fins lucrativos - Lei 11.096/2005.
-Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+Validação: Não preencher se classTrib = [21, 22].
+Se informada, deve ser maior que [2005-11-21] e menor ou igual à data atual."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <input type="text" id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__dtTrans11096" value="{{evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.dtTrans11096'}}" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][dtTrans11096]" onchange="set_evento_json()" class="form-control automate-date" {{ original|disabled}} />
         </div>
     </div>
@@ -734,8 +738,8 @@ Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-ques
 <div id="indTribFolhaPisCofins__div">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Indicador de tributação sobre a folha de pagamento - PIS e COFINS<a data-toggle="tooltip" title="Indicador de tributação sobre a folha de pagamento - PIS e COFINS.
-Preenchimento exclusivo para o empregador em situação de tributação de PIS e COFINS sobre a folha de pagamento.
+            <label>Indicador de tributação sobre a folha de pagamento - PIS e COFINS<a data-toggle="tooltip" title="Indicador de tributação sobre a folha de pagamento - PIS e PASEP.
+Preenchimento exclusivo para o empregador em situação de tributação de PIS e PASEP sobre a folha de pagamento.
 Valores válidos:
 S - Sim"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__indTribFolhaPisCofins" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][indTribFolhaPisCofins]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
