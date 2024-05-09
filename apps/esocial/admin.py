@@ -23,7 +23,6 @@ from .models import (
 
 
 class CertificadosAdmin(AuditoriaAdminEventos):
-
     form = CertificadosForm
     search_fields = (
         'nome',)
@@ -37,10 +36,10 @@ class CertificadosAdmin(AuditoriaAdminEventos):
         fieldsets = super(CertificadosAdmin, self).get_fieldsets(request, obj)
         if request.user.has_perm('auth.view_user'):
             return ((None, {
-                        'fields': ('nome', 'certificado', 'senha',)
-                    }), ('Usuários', {
-                        'fields': ('users', )
-                    }))
+                'fields': ('nome', 'certificado', 'senha',)
+            }), ('Usuários', {
+                'fields': ('users',)
+            }))
         return fieldsets
 
     def save_model(self, request, obj, form, change):
@@ -70,11 +69,11 @@ class ArquivosAdmin(AuditoriaAdminEventos):
     search_fields = (
         'arquivo',)
     list_filter = (
-        'permite_recuperacao', )
+        'permite_recuperacao',)
     list_display = (
         'arquivo_visualizar',
         'fonte',
-        'permite_recuperacao', )
+        'permite_recuperacao',)
     readonly_fields = (
         'permite_recuperacao',
         'created_at',
@@ -94,19 +93,17 @@ admin.site.register(Arquivos, ArquivosAdmin)
 
 
 class RelatoriosAdmin(AuditoriaAdminEventos):
-
     search_fields = (
-        'titulo', )
+        'titulo',)
     list_filter = ()
     list_display = (
-        'titulo', )
+        'titulo',)
 
 
 admin.site.register(Relatorios, RelatoriosAdmin)
 
 
 class TransmissorAdmin(AuditoriaAdminEventos):
-
     search_fields = (
         'transmissor_tpinsc',
         'transmissor_nrinsc',
@@ -127,20 +124,20 @@ class TransmissorAdmin(AuditoriaAdminEventos):
     }), ('Empregador', {
         'fields': ('nome_empresa', 'logotipo', 'endereco_completo',
                    'tpinsc', 'nrinsc', 'certificado')
-    }), )
+    }),)
     form = TransmissorForm
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super(TransmissorAdmin, self).get_fieldsets(request, obj)
         if request.user.has_perm('auth.view_user'):
             return (('Transmissor', {
-                        'fields': ('transmissor_tpinsc', 'transmissor_nrinsc',)
-                    }), ('Empregador', {
-                        'fields': ('nome_empresa', 'logotipo', 'endereco_completo',
-                                   'tpinsc', 'nrinsc', 'certificado')
-                    }), ('Usuários', {
-                        'fields': ('users', )
-                    }))
+                'fields': ('transmissor_tpinsc', 'transmissor_nrinsc',)
+            }), ('Empregador', {
+                'fields': ('nome_empresa', 'logotipo', 'endereco_completo',
+                           'tpinsc', 'nrinsc', 'certificado')
+            }), ('Usuários', {
+                'fields': ('users',)
+            }))
         return fieldsets
 
 
@@ -160,7 +157,7 @@ class EventosInline(AuditoriaAdminInline):
 
     def has_add_permission(self, request, obj=None):
         return False
-    
+
     def has_change_permission(self, request, obj=None):
         return False
 
@@ -171,13 +168,13 @@ class TransmissorEventosArquivosInline(AuditoriaAdminStackedInlineInline):
 
     def has_add_permission(self, request, obj=None):
         return False
-    
+
     def has_change_permission(self, request, obj=None):
         return False
 
 
 class TransmissorEventosAdmin(AuditoriaAdminEventos):
-    
+
     def recibo(self, obj):
         from django.urls import reverse
         url = reverse('esocial:transmissores_recibo', kwargs={'pk': obj.pk})
@@ -191,14 +188,16 @@ class TransmissorEventosAdmin(AuditoriaAdminEventos):
         for obj in queryset:
             obj.status = STATUS_TRANSMISSOR_AGUARDANDO
             obj.save()
+
     autorizar_envio.short_description = "Autorizar envio de lote"
 
     def enviar_lote(modeladmin, request, queryset):
         for obj in queryset:
             retorno = obj.enviar()
             retorno['id'] = obj.id
-            #self.stdout.write('\n%(id)s %(status)s: %(mensagem)s' % retorno)
+            # self.stdout.write('\n%(id)s %(status)s: %(mensagem)s' % retorno)
             messages.add_message(request, messages.INFO, '%(id)s %(retorno)s: %(mensagem)s' % retorno)
+
     enviar_lote.short_description = "Enviar lote"
 
     def consultar_lote(modeladmin, request, queryset):
@@ -217,7 +216,7 @@ class TransmissorEventosAdmin(AuditoriaAdminEventos):
 
     inlines = (
         EventosInline,
-        #TransmissorEventosArquivosInline,
+        # TransmissorEventosArquivosInline,
     )
 
     list_filter = (
@@ -270,11 +269,11 @@ class TransmissorEventosAdmin(AuditoriaAdminEventos):
             'fields': ('arquivo_header',
                        'arquivo_request',
                        'arquivo_response',),
-        }), )
+        }),)
 
     def has_add_permission(self, request, obj=None):
         return False
-    
+
     def has_change_permission(self, request, obj=None):
         return False
 
@@ -353,8 +352,8 @@ class EventosAdmin(AuditoriaAdminEventos):
                 obj.delete()
             else:
                 messages.add_message(request,
-                    messages.ERROR,
-                    'Não é possível apagar o evento %s, pois o mesmo está com status %s!' % (
+                                     messages.ERROR,
+                                     'Não é possível apagar o evento %s, pois o mesmo está com status %s!' % (
                                          obj.identidade, obj.get_status_display()))
         messages.add_message(request, messages.INFO, '%s eventos apagados!' % n)
 
@@ -401,38 +400,38 @@ class EventosAdmin(AuditoriaAdminEventos):
     change_form_template = "eventos.html"
     search_fields = (
         'identidade',
-        'evento_json', 
-        )
+        'evento_json',
+    )
     list_filter = (
-            'versao',
-            'evento',
-            'operacao',
-            'status',
-            )
+        'versao',
+        'evento',
+        'operacao',
+        'status',
+    )
     list_display = (
-            'identidade',
-            'versao',
-            'evento',
-            'operacao',
-            'status',
-            'acoes',
+        'identidade',
+        'versao',
+        'evento',
+        'operacao',
+        'status',
+        'acoes',
     )
     fieldsets = (
         (None, {
-        'fields': (
-            'versao', 
-            'evento',
-            'operacao',
-            'identidade',
-            'tpinsc',
-            'nrinsc',
-            'tpamb',
-            'procemi',
-            'verproc',
-            'status',
-            'transmissor_evento',
-            'certificado',
-            'evento_json',
+            'fields': (
+                'versao',
+                'evento',
+                'operacao',
+                'identidade',
+                'tpinsc',
+                'nrinsc',
+                'tpamb',
+                'procemi',
+                'verproc',
+                'status',
+                'transmissor_evento',
+                'certificado',
+                'evento_json',
             )
         }),
     )
@@ -452,13 +451,13 @@ class EventosAdmin(AuditoriaAdminEventos):
     def response_change(self, request, obj):
         from django.http import HttpResponseRedirect
         from django.contrib import messages
-        
+
         if "_atualizar_identidade" in request.POST:
             obj.identidade = obj.make_identidade(request=request)
             obj.save()
             self.message_user(request, "Identidade atualizada com sucesso %s" % obj.identidade)
             return HttpResponseRedirect(".")
-        
+
         elif "_duplicar_evento" in request.POST:
             retorno = obj.duplicar_evento(request=request)
             self.message_user(request, "Novo evento criado com sucesso! %s" % retorno.identidade)
@@ -470,8 +469,8 @@ class EventosAdmin(AuditoriaAdminEventos):
                 return HttpResponseRedirect(".")
             else:
                 messages.add_message(request,
-                    messages.ERROR,
-                    'Não é possível apagar o evento %s, pois o mesmo está com status %s!' % (
+                                     messages.ERROR,
+                                     'Não é possível apagar o evento %s, pois o mesmo está com status %s!' % (
                                          obj.identidade, obj.get_status_display()))
 
         elif "_enviar" in request.POST:
@@ -493,18 +492,18 @@ class EventosAdmin(AuditoriaAdminEventos):
             else:
                 self.message_user(request, retorno['mensagem'])
             return HttpResponseRedirect(".")
-        
+
         elif "_abrir_evento_para_edicao" in request.POST:
             obj.abrir_evento_para_edicao(request=request)
             return HttpResponseRedirect(".")
-        
+
         elif "_validar" in request.POST:
             if not obj.transmissor_evento:
                 obj.vincular_transmissor(request=request)
             obj.create_xml(request=request)
             obj.validar(request=request)
             return HttpResponseRedirect(".")
-        
+
         return super().response_change(request, obj)
 
 

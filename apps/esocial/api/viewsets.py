@@ -1,15 +1,13 @@
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.decorators import action
-from rest_framework.response import Response
 import json
 
-from django.shortcuts import redirect, get_object_or_404, render
+from django.shortcuts import get_object_or_404
+from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 
-from django.forms.models import model_to_dict
 from .serializers import EventosSerializer, TransmissorSerializer
 from ..models import Eventos, Transmissor
-from ..choices import EVENTO_ORIGEM_API
 
 
 class TransmissorViewSet(ModelViewSet):
@@ -76,24 +74,24 @@ class EventosViewSet(ModelViewSet):
         if obj.status in [STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_IMPORTADO]:
             retorno = obj.enviar()
             dic = {'id': obj.id,
-                 'identidade': obj.identidade,
-                 'status': obj.status,
-                 'status_txt': obj.get_status_display(),
-                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'), }
+                   'identidade': obj.identidade,
+                   'status': obj.status,
+                   'status_txt': obj.get_status_display(),
+                   'ocorrencias': json.loads(obj.ocorrencias_json or '{}'), }
             retorno.update(dic)
             obj = get_object_or_404(Eventos, id=pk)
             return Response({'id': obj.id,
-                 'retorno': retorno.get('retorno'),
-                 'mensagem': retorno.get('mensagem'),
-                 'identidade': obj.identidade,
-                 'status': obj.status,
-                 'status_txt': obj.get_status_display(),
-                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
-                 'retorno_envio': json.loads(obj.retorno_envio_json or '{}'),
-                 'retorno_envio_lote': retorno.get('retorno_envio'), })
+                             'retorno': retorno.get('retorno'),
+                             'mensagem': retorno.get('mensagem'),
+                             'identidade': obj.identidade,
+                             'status': obj.status,
+                             'status_txt': obj.get_status_display(),
+                             'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
+                             'retorno_envio': json.loads(obj.retorno_envio_json or '{}'),
+                             'retorno_envio_lote': retorno.get('retorno_envio'), })
         else:
             return Response({'retorno': 'error',
-                    'mensagem': 'Não foi possivel enviar o evento, pois somente poderá ser enviado com os status "Aguardando envio" ou "Importado"'})
+                             'mensagem': 'Não foi possivel enviar o evento, pois somente poderá ser enviado com os status "Aguardando envio" ou "Importado"'})
 
     @action(detail=True, methods=['get'], url_path='consultar')
     def consultar(self, request, pk=None):
@@ -102,21 +100,21 @@ class EventosViewSet(ModelViewSet):
         if obj.status in [STATUS_EVENTO_ENVIADO, STATUS_EVENTO_PROCESSADO]:
             retorno = obj.consultar()
             dic = {'id': obj.id,
-                 'identidade': obj.identidade,
-                 'status': obj.status,
-                 'status_txt': obj.get_status_display(),
-                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'), }
+                   'identidade': obj.identidade,
+                   'status': obj.status,
+                   'status_txt': obj.get_status_display(),
+                   'ocorrencias': json.loads(obj.ocorrencias_json or '{}'), }
             retorno.update(dic)
             obj = get_object_or_404(Eventos, id=pk)
             return Response({'id': obj.id,
-                 'retorno': retorno.get('retorno'),
-                 'mensagem': retorno.get('mensagem'),
-                 'identidade': obj.identidade,
-                 'status': obj.status,
-                 'status_txt': obj.get_status_display(),
-                 'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
-                 'retorno_consulta': json.loads(obj.retorno_consulta_json or '{}'),
-                 'retorno_consulta_lote': retorno.get('retorno_consulta'), })
+                             'retorno': retorno.get('retorno'),
+                             'mensagem': retorno.get('mensagem'),
+                             'identidade': obj.identidade,
+                             'status': obj.status,
+                             'status_txt': obj.get_status_display(),
+                             'ocorrencias': json.loads(obj.ocorrencias_json or '{}'),
+                             'retorno_consulta': json.loads(obj.retorno_consulta_json or '{}'),
+                             'retorno_consulta_lote': retorno.get('retorno_consulta'), })
         else:
             return Response({'retorno': 'error',
-                    'mensagem': 'Não foi possivel consultar o evento, pois o mesmo somente poderá ser consultado caso esteja com os status "Enviado" ou "Consultado"'})
+                             'mensagem': 'Não foi possivel consultar o evento, pois o mesmo somente poderá ser consultado caso esteja com os status "Enviado" ou "Consultado"'})

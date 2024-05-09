@@ -5,7 +5,6 @@ TPAMB = {
     'Produção Restrita': 2,
 }
 
-
 URLS_ESOCIAL = {
     'Produção': {
         'WsEnviarLoteEventos': {
@@ -35,14 +34,13 @@ URLS_ESOCIAL = {
     },
 }
 
-
 COMMAND_CURL = CURL_PATH + 'curl --insecure --connect-timeout %(timeout)s ' \
-               '--cert %(cert)s --key %(key)s --capath %(capath)s ' \
-               '-H "Content-Type: text/xml;charset=UTF-8" ' \
-               '-H "SOAPAction:%(action)s" ' \
-               '--dump-header %(header)s ' \
-               '--output %(response)s ' \
-               '-d@%(request)s %(url)s'
+                           '--cert %(cert)s --key %(key)s --capath %(capath)s ' \
+                           '-H "Content-Type: text/xml;charset=UTF-8" ' \
+                           '-H "SOAPAction:%(action)s" ' \
+                           '--dump-header %(header)s ' \
+                           '--output %(response)s ' \
+                           '-d@%(request)s %(url)s'
 
 MAKE_SEND = """
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
@@ -87,13 +85,12 @@ MAKE_RETRIEVE = """
     </soapenv:Body>
 </soapenv:Envelope>"""
 
-
 STATUS_EVENTO_IMPORTADO = -1
 STATUS_EVENTO_CADASTRADO = 0
 STATUS_EVENTO_ERRO = 1
 STATUS_EVENTO_AGUARD_ENVIO = 2
 STATUS_EVENTO_ENVIADO = 3
-#STATUS_EVENTO_ERRO = 4
+# STATUS_EVENTO_ERRO = 4
 STATUS_EVENTO_PROCESSADO = 5
 STATUS_EVENTO_ENVIANDO = 6
 STATUS_EVENTO_CONSULTANDO = 7
@@ -102,7 +99,7 @@ EVENTO_STATUS = [
     (STATUS_EVENTO_IMPORTADO, 'Importado pela API'),
     (STATUS_EVENTO_CADASTRADO, 'Cadastrado (Aguardando validação)'),
     (STATUS_EVENTO_ERRO, 'Erro (Aguardando correção)'),
-    #(STATUS_EVENTO_ERRO, 'Erro (Aguardando correção)'),
+    # (STATUS_EVENTO_ERRO, 'Erro (Aguardando correção)'),
     (STATUS_EVENTO_AGUARD_ENVIO, 'Validado (Aguardando envio)'),
     (STATUS_EVENTO_ENVIANDO, 'Enviando ...'),
     (STATUS_EVENTO_ENVIADO, 'Enviado (Aguardando consulta)'),
@@ -166,64 +163,15 @@ EVENTO_COD = {
     's1010': {'codigo': 'evtTabRubrica'},
     's1020': {'codigo': 'evtTabLotacao'},
     's1070': {'codigo': 'evtTabProcesso'},
-    's1200': {'codigo': 'evtRemun'},
-    's1202': {'codigo': 'evtRmnRPPS'},
-    's1207': {'codigo': 'evtBenPrRP'},
-    's1210': {'codigo': 'evtPgtos'},
-    's1260': {'codigo': 'evtComProd'},
-    's1270': {'codigo': 'evtContratAvNP'},
-    's1280': {'codigo': 'evtInfoComplPer'},
-    's1298': {'codigo': 'evtReabreEvPer'},
-    's1299': {'codigo': 'evtFechaEvPer'},
-    's2190': {'codigo': 'evtAdmPrelim'},
-    's2200': {'codigo': 'evtAdmissao'},
-    's2205': {'codigo': 'evtAltCadastral'},
-    's2206': {'codigo': 'evtAltContratual'},
-    's2210': {'codigo': 'evtCAT'},
-    's2220': {'codigo': 'evtMonit'},
-    's2230': {'codigo': 'evtAfastTemp'},
-    's2231': {'codigo': 'evtCessao'},
-    's2240': {'codigo': 'evtExpRisco'},
-    's2298': {'codigo': 'evtReintegr'},
-    's2299': {'codigo': 'evtDeslig'},
-    's2300': {'codigo': 'evtTSVInicio'},
-    's2306': {'codigo': 'evtTSVAltContr'},
-    's2399': {'codigo': 'evtTSVTermino'},
-    's2400': {'codigo': 'evtCdBenefIn'},
-    's2405': {'codigo': 'evtCdBenefAlt'},
-    's2410': {'codigo': 'evtCdBenIn'},
-    's2416': {'codigo': 'evtCdBenAlt'},
-    's2418': {'codigo': 'evtReativBen'},
-    's2420': {'codigo': 'evtCdBenTerm'},
-    's2500': {'codigo': 'evtProcTrab'},
-    's2501': {'codigo': 'evtContProc'},
-    's3000': {'codigo': 'evtExclusao'},
 }
 
 VERSIONS_CODE = {
     'v_S_01_00_00': [
-        's1000', 's1005', 's1010', 's1020', 's1070', 's1200', 's1202',
-        's1207', 's1210', 's1260', 's1270', 's1280', 's1298', 's1299',
-        's2190', 's2200', 's2205', 's2206', 's2210', 's2220', 's2230',
-        's2231', 's2240', 's2298', 's2299', 's2300', 's2306', 's2399',
-        's2400', 's2405', 's2410', 's2416', 's2418', 's2420', 's3000',
-        's5001', 's5002', 's5003', 's5011', 's5013', 's8299'],
+        's1000', 's1005', 's1010', 's1020', 's1070', ],
     'v_S_01_01_00': [
-        's1000', 's1005', 's1010', 's1020', 's1070', 's1200', 's1202',
-        's1207', 's1210', 's1260', 's1270', 's1280', 's1298', 's1299',
-        's2190', 's2200', 's2205', 's2206', 's2210', 's2220', 's2230',
-        's2231', 's2240', 's2298', 's2299', 's2300', 's2306', 's2399',
-        's2400', 's2405', 's2410', 's2416', 's2418', 's2420', 's2500',
-        's2501', 's3000', 's3500', 's5001', 's5002', 's5003', 's5011',
-        's5012', 's5013', 's5501', 's8299'],
+        's1000', 's1005', 's1010', 's1020', 's1070', ],
     'v_S_01_02_00': [
-        's1000', 's1005', 's1010', 's1020', 's1070', 's1200', 's1202',
-        's1207', 's1210', 's1260', 's1270', 's1280', 's1298', 's1299',
-        's2190', 's2200', 's2205', 's2206', 's2210', 's2220', 's2230',
-        's2231', 's2240', 's2298', 's2299', 's2300', 's2306', 's2399',
-        's2400', 's2405', 's2410', 's2416', 's2418', 's2420', 's2500',
-        's2501', 's3000', 's3500', 's5001', 's5002', 's5003', 's5011',
-        's5012', 's5013', 's5501', 's5503', 's8200', 's8299']
+        's1000', 's1005', 's1010', 's1020', 's1070', ]
 }
 
 EVENTOS = [
@@ -232,38 +180,6 @@ EVENTOS = [
     ('s1010', 'S-1010 - Tabela de Rubricas'),
     ('s1020', 'S-1020 - Tabela de Lotações Tributárias'),
     ('s1070', 'S-1070 - Tabela de Processos Administrativos/Judiciais'),
-    ('s1200', 'S-1200 - Remuneração de Trabalhador vinculado ao Regime Geral de Previd. Social'),
-    ('s1202', 'S-1202 - Remuneração de Servidor vinculado ao Regime Próprio de Previd. Social'),
-    ('s1207', 'S-1207 - Benefícios - Entes Públicos'),
-    ('s1210', 'S-1210 - Pagamentos de Rendimentos do Trabalho'),
-    ('s1260', 'S-1260 - Comercialização da Produção Rural Pessoa Física'),
-    ('s1270', 'S-1270 - Contratação de Trabalhadores Avulsos Não Portuários'),
-    ('s1280', 'S-1280 - Informações Complementares aos Eventos Periódicos'),
-    ('s1298', 'S-1298 - Reabertura dos Eventos Periódicos'),
-    ('s1299', 'S-1299 - Fechamento dos Eventos Periódicos'),
-    ('s2190', 'S-2190 - Registro Preliminar de Trabalhador'),
-    ('s2200', 'S-2200 - Cadastramento Inicial do Vínculo e Admissão/Ingresso de Trabalhador'),
-    ('s2205', 'S-2205 - Alteração de Dados Cadastrais do Trabalhador'),
-    ('s2206', 'S-2206 - Alteração de Contrato de Trabalho/Relação Estatutária'),
-    ('s2210', 'S-2210 - Comunicação de Acidente de Trabalho'),
-    ('s2220', 'S-2220 - Monitoramento da Saúde do Trabalhador'),
-    ('s2230', 'S-2230 - Afastamento Temporário'),
-    ('s2231', 'S-2231 - Cessão/Exercício em Outro Órgão'),
-    ('s2240', 'S-2240 - Condições Ambientais do Trabalho - Agentes Nocivos'),
-    ('s2298', 'S-2298 - Reintegração/Outros Provimentos'),
-    ('s2299', 'S-2299 - Desligamento'),
-    ('s2300', 'S-2300 - Trabalhador Sem Vínculo de Emprego/Estatutário - Início'),
-    ('s2306', 'S-2306 - Trabalhador Sem Vínculo de Emprego/Estatutário - Alteração Contratual'),
-    ('s2399', 'S-2399 - Trabalhador Sem Vínculo de Emprego/Estatutário - Término'),
-    ('s2400', 'S-2400 - Cadastro de Beneficiário - Entes Públicos - Início'),
-    ('s2405', 'S-2405 - Cadastro de Beneficiário - Entes Públicos - Alteração'),
-    ('s2410', 'S-2410 - Cadastro de Benefício - Entes Públicos - Início'),
-    ('s2416', 'S-2416 - Cadastro de Benefício - Entes Públicos - Alteração'),
-    ('s2418', 'S-2418 - Reativação de Benefício - Entes Públicos'),
-    ('s2420', 'S-2420 - Cadastro de Benefício - Entes Públicos - Término'),
-    ('s2500', 'S-2500 - Processo Trabalhista'),
-    ('s2501', 'S-2501 - Informações de Tributos Decorrentes de Processo Trabalhista'),
-    ('s3000', 'S-3000 - Exclusão de Eventos'),
 ]
 
 SERVICO_ENVIAR = 1

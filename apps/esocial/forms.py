@@ -3,9 +3,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django_currentuser.middleware import get_current_user
 
-from .models import Eventos, Certificados, Arquivos, Transmissor
 from .choices import VERSIONS_CODE
-
+from .models import Eventos, Certificados, Arquivos, Transmissor
 
 
 class EventosForm(forms.ModelForm):
@@ -63,9 +62,10 @@ class TransmissorForm(forms.ModelForm):
         nrinsc = cleaned_data.get("nrinsc")
         if config.FILTER_BY_USER:
             current_user = get_current_user()
-            transmissores = Transmissor.all_objects.\
-                filter(nrinsc=nrinsc).\
-                exclude(created_by=current_user).\
+            transmissores = Transmissor.all_objects. \
+                filter(nrinsc=nrinsc). \
+                exclude(created_by=current_user). \
                 exclude(users__id=current_user.id).all()
             if transmissores:
-                raise ValidationError("Já existe um transmissor cadastrado com este número. Entre em contato com o administrador do sistema e solicite que vincule ele ao seu usuário.")
+                raise ValidationError(
+                    "Já existe um transmissor cadastrado com este número. Entre em contato com o administrador do sistema e solicite que vincule ele ao seu usuário.")

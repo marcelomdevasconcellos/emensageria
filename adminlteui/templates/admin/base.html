@@ -280,9 +280,9 @@
                     </div>
                     <div class="modal-body">
                         <strong>
-                            eMensageria - Sistema de Mensageria Opensource do eSocial -
+                            eMensageria OpenSource - Sistema de Mensageria do eSocial -
                             versão: {{ VERSAO_EMENSAGERIA }}<br>
-                            Copyright (C) 2021 Marcelo Medeiros de Vasconcellos<br>
+                            Copyright (C) 2024 Marcelo Medeiros de Vasconcellos<br>
                         </strong>
                         <br>
                         Este programa é um software livre: você pode redistribuí-lo e / ou modificá-lo
@@ -379,9 +379,6 @@
 {% if adminlte.demo %}
 <script src={% static "admin/adminlte-dist/js/demo.js" %}></script>
 {% endif %}
-{##}
-{#<script src="{% static 'admin/bootstrap/js/bootstrap.min.js' %}"></script>#}
-{#<script src="{% static 'admin/plugins/select2/select2.full.min.js' %}"></script>#}
 <script src="{% static 'admin/plugins/input-mask/jquery.inputmask.js' %}"></script>
 <script src="{% static 'admin/plugins/input-mask/jquery.inputmask.numeric.extensions.js' %}"></script>
 <script src="{% static 'admin/plugins/input-mask/jquery.inputmask.date.extensions.js' %}"></script>
@@ -389,8 +386,6 @@
 <script src="{% static 'admin/plugins/input-mask/jquery.maskMoney.js' %}" type="text/javascript"></script>
 <script src="{% static 'admin/plugins/datatables/jquery.dataTables.min.js' %}"></script>
 <script src="{% static 'admin/plugins/datatables/dataTables.bootstrap.min.js' %}"></script>
-{#<script src="{% static 'admin/plugins/slimScroll/jquery.slimscroll.min.js' %}"></script>#}
-{#<script src="{% static 'admin/plugins/fastclick/fastclick.js' %}"></script>#}
 <script src="{% static 'admin/external/moment.min.js' %}"></script>
 <script src="{% static 'admin/plugins/daterangepicker/daterangepicker.js' %}"></script>
 <script src="{% static 'admin/plugins/datepicker/bootstrap-datepicker.js' %}"></script>
@@ -511,14 +506,7 @@ $(function() {
     };
 </script>
 
-{#<script type="application/javascript">#}
-{#    $('#sobreSistema').modal();#}
-{#</script>#}
-
 {% block extrajs %}{% endblock %}
-
-
-
 
 </body>
 </html>

@@ -1,13 +1,13 @@
+from constance import config
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.admin.views.main import ChangeList
 from django.db import models
+from django.db.models.query import QuerySet
 from django.forms import Select, Textarea
 from django_currentuser.db.models import CurrentUserField
+from django_currentuser.middleware import get_current_user
 from rest_framework.serializers import ModelSerializer
-from constance import config
-from django.db.models.query import QuerySet
-from django_currentuser.middleware import get_current_user, get_current_authenticated_user
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -80,7 +80,7 @@ class EventosManager(models.Manager):
             return QuerySet(self.model)
         else:
             if current_user and not current_user.is_superuser and config.FILTER_BY_USER:
-                return QuerySet(self.model).filter(Q(created_by_id=current_user.id)|Q(users__id=current_user.id))
+                return QuerySet(self.model).filter(Q(created_by_id=current_user.id) | Q(users__id=current_user.id))
             return QuerySet(self.model)
 
 
@@ -124,7 +124,7 @@ class AuditoriaManager(models.Manager):
             return super().get_queryset()
         else:
             if current_user and not current_user.has_perm('auth.view_user') and config.FILTER_BY_USER:
-                return super().get_queryset().filter(Q(created_by=current_user)|Q(users__id=current_user.id))
+                return super().get_queryset().filter(Q(created_by=current_user) | Q(users__id=current_user.id))
             return super().get_queryset()
 
 
@@ -134,7 +134,7 @@ class AuditoriaAdminEventos(admin.ModelAdmin):
     def has_view_permission(self, request, obj=None):
         current_user = get_current_user()
         if current_user and not current_user.has_perm('auth.view_user') and config.FILTER_BY_USER and \
-            obj and obj.created_by != current_user:
+                obj and obj.created_by != current_user:
             return False
         return super().has_view_permission(request)
 
@@ -144,7 +144,7 @@ class AuditoriaAdminEventos(admin.ModelAdmin):
         queryset = super().get_queryset(request)
         if current_user and not current_user.has_perm('auth.view_user') and config.FILTER_BY_USER:
             if self.model.__name__ in ('Certificados', 'Transmissor'):
-                return queryset.filter(Q(created_by=current_user)|Q(users__id=current_user.id))
+                return queryset.filter(Q(created_by=current_user) | Q(users__id=current_user.id))
             else:
                 return queryset.filter(created_by=current_user)
         return queryset

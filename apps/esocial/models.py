@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import subprocess as sp
 from datetime import datetime
 
 import xmltodict
@@ -16,8 +17,6 @@ from django.db import models
 from config.functions import (create_dir, read_file, save_file)
 from config.mixins import BaseModelEsocial, BaseModelSerializer, BaseModel
 from .choices import *
-
-import subprocess as sp
 
 get_model = apps.get_model
 
@@ -117,7 +116,7 @@ class Transmissor(BaseModelEsocial):
     endereco_completo = models.TextField(
         'Endereço', null=True, blank=True)
     tpinsc = models.IntegerField(
-        'Tipo de inscrição do empregador', choices=TIPO_INSCRICAO,)
+        'Tipo de inscrição do empregador', choices=TIPO_INSCRICAO, )
     nrinsc = models.CharField(
         'Número de inscrição do empregador', max_length=15, unique=True,
         help_text="O CNPJ completo somente pode ser utilizado por órgãos públicos, " \
@@ -129,6 +128,7 @@ class Transmissor(BaseModelEsocial):
         related_name='%(class)s_certificado', )
     users = models.ManyToManyField(User, verbose_name='Usuários', related_name='transmissores_users', blank=True,
                                    help_text="Informe a lista de usuários que tem acesso a utilizar este transmissor.")
+
     def __str__(self):
         return self.nome_empresa
 
@@ -526,7 +526,9 @@ class TransmissorEventos(BaseModelEsocial):
                  'key': self.transmissor.certificado.key_pem_file(), 'capath': self.transmissor.certificado.capath(),
                  'timeout': int(config.ESOCIAL_TIMEOUT)}
 
-        if self.transmissor.certificado and self.protocolo and self.status in [STATUS_TRANSMISSOR_ENVIADO, STATUS_TRANSMISSOR_ERRO_CONSULTA, STATUS_TRANSMISSOR_CONSULTADO]:
+        if self.transmissor.certificado and self.protocolo and self.status in [STATUS_TRANSMISSOR_ENVIADO,
+                                                                               STATUS_TRANSMISSOR_ERRO_CONSULTA,
+                                                                               STATUS_TRANSMISSOR_CONSULTADO]:
 
             save_file(dados['request'], self.make_retrieve())
             save_file(self.get_command(service, date_now), COMMAND_CURL % dados)
@@ -806,7 +808,7 @@ class Eventos(BaseModelEsocial):
         'Número de inscrição',
         max_length=15,
         help_text="O CNPJ completo somente pode ser utilizado por órgãos públicos, " \
-                  "os demais empregadores deverão informar somente o CNPJ base (8 primeiros dígitos do CNPJ)" )
+                  "os demais empregadores deverão informar somente o CNPJ base (8 primeiros dígitos do CNPJ)")
     tpamb = models.IntegerField(
         'Identificação do ambiente',
         choices=CHOICES_TPAMB, default=settings.ESOCIAL_TPAMB)
@@ -859,9 +861,9 @@ class Eventos(BaseModelEsocial):
     retorno_consulta_json = models.TextField(
         'Retorno da consulta', default='{}', blank=True)
     retorno_envio_lote_json = models.TextField(
-        'Retorno do lote do envio',default='{}', blank=True)
+        'Retorno do lote do envio', default='{}', blank=True)
     retorno_consulta_lote_json = models.TextField(
-        'Retorno do lote da consulta',default='{}', blank=True)
+        'Retorno do lote da consulta', default='{}', blank=True)
     evento_json = models.TextField("JSON", null=True, blank=True)
     evento_xml = models.TextField("XML", null=True, blank=True)
     ocorrencias_json = models.TextField("Ocorrências", null=True, blank=True)
@@ -935,7 +937,7 @@ class Eventos(BaseModelEsocial):
         from .models import Eventos, Transmissor, TransmissorEventos
         from .choices import (
             STATUS_TRANSMISSOR_AGUARDANDO,
-            EVENTOS_GRUPOS_TABELAS, )
+        )
 
         if not self.transmissor_evento:
 
@@ -970,7 +972,8 @@ class Eventos(BaseModelEsocial):
             else:
                 if request:
                     messages.error(
-                        request, 'Erro ao vincular evento. Não foi encontrado nenhum transmissor com o número de inscrição: %s!' % self.nrinsc)
+                        request,
+                        'Erro ao vincular evento. Não foi encontrado nenhum transmissor com o número de inscrição: %s!' % self.nrinsc)
 
     def enviar(self, request=None):
         from .choices import (
@@ -1020,7 +1023,6 @@ class Eventos(BaseModelEsocial):
         self.evento_xml = evt_signed
         self.save()
         save_file(self.xml_file(), evt_signed)
-
 
     def create_xml(self, request=None):
         from json2xml.utils import readfromstring
@@ -1327,9 +1329,9 @@ class EventosHistorico(BaseModelEsocial):
         'Retorno da consulta',
         "retorno_consulta_json", default='{}', blank=True)
     retorno_envio_lote_json = models.TextField(
-        'Retorno do lote do envio',default='{}', blank=True)
+        'Retorno do lote do envio', default='{}', blank=True)
     retorno_consulta_lote_json = models.TextField(
-        'Retorno do lote da consulta',default='{}', blank=True)
+        'Retorno do lote da consulta', default='{}', blank=True)
     evento_json = models.TextField("JSON", null=True, blank=True)
     evento_xml = models.TextField("XML", null=True, blank=True)
     ocorrencias_json = models.TextField("Ocorrências", null=True, blank=True)

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+
 import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -38,7 +39,7 @@ ALLOWED_HOSTS = [
     env('ALLOWED_HOSTS'),
 ]
 
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Application definition
 
@@ -56,8 +57,6 @@ INSTALLED_APPS = [
     'constance',
     'constance.backends.database',
     'apps.esocial.apps.esocialConfig',
-    'apps.reinf.apps.reinfConfig',
-    'apps.contrib.apps.contribConfig',
 ]
 
 MIDDLEWARE = [
@@ -94,7 +93,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -102,7 +100,6 @@ DATABASES = {
     # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
     'default': env.db(),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -121,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -147,19 +143,13 @@ LINK_WEBSITE = env('LINK_WEBSITE', default='')
 # Configurações de Versão do Aplicativo
 VERSAO_EMENSAGERIA = '1.6.0'
 VERSAO_LAYOUT_ESOCIAL = env('VERSAO_LAYOUT_ESOCIAL', default='v_S_01_01_00')
-VERSAO_LAYOUT_REINF = env('VERSAO_LAYOUT_REINF', default='v1_04_00')
 ESOCIAL_TPAMB = env('ESOCIAL_TPAMB', default='2')
 ESOCIAL_PROCEMI = env('ESOCIAL_PROCEMI', default='1')
-
 
 VERSOES_ESOCIAL = [
     'v_S_01_00_00',
     'v_S_01_01_00',
     'v_S_01_02_00', ]
-
-VERSOES_REINF = [
-    'v1_04_00',
-    'v2_00_00']
 
 # caminho dos certificados
 CERT_PATH = env('CERT_PATH', default='certificados/')
@@ -168,7 +158,6 @@ CERT_PATH = env('CERT_PATH', default='certificados/')
 # caminho do CURL
 # Necessário baixar o curl para windows no endereço: https://curl.se/windows/
 CURL_PATH = env('CURL_PATH', default='')
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -211,70 +200,70 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CONSTANCE_CONFIG = {
 
     'SYSTEM_MANUAL_SHOW_IN_MENU': (False,
-        'Visualiza manual do sistema no menu.',
-        bool),
+                                   'Visualiza manual do sistema no menu.',
+                                   bool),
 
     'SYSTEM_MANUAL_LINK': ('http://',
-         'Link do manual do sistema.',
-         str),
+                           'Link do manual do sistema.',
+                           str),
 
     'FILES_PATH': ('/arquivos',
-         'Caminho relativo do local aonde serão armazenados os arquivos. Insira "/" no início para definir diretórios absolutos.',
-         str),
+                   'Caminho relativo do local aonde serão armazenados os arquivos. Insira "/" no início para definir diretórios absolutos.',
+                   str),
 
     'FILTER_BY_USER': (False,
-        'Cada usuário pode ver somente os que ele mesmo cadastrou. Os Super-usuários vêem todos os eventos',
-        bool),
+                       'Cada usuário pode ver somente os que ele mesmo cadastrou. Os Super-usuários vêem todos os eventos',
+                       bool),
 
     'LOGO_IMAGE_IN_LOGIN': (False,
-        'Visualiza imagem do logotipo na tela de Login.',
-        bool),
+                            'Visualiza imagem do logotipo na tela de Login.',
+                            bool),
 
     'LOGO_IMAGE': ('', 'Logotipo da empresa', 'image_field'),
 
     'REPRESENTANTE_NOME': ('EMENSAGERIA',
-        'Nome da empresa que está disponibilizando o sistema',
-        str),
+                           'Nome da empresa que está disponibilizando o sistema',
+                           str),
 
     'REPRESENTANTE_CENTRAL_SERVICOS': ('Central de Serviços (99) 99999.9999',
-        'Contrato da central de serviços',
-        str),
+                                       'Contrato da central de serviços',
+                                       str),
 
     'SYSTEM_TOKEN_SCHEDULE': ('9944b09199c62bcf9418ad846dd0123e4bbdfc6ee4b',
-         'Token de autenticação do sistema para acesso aos webservices',
-         str),
+                              'Token de autenticação do sistema para acesso aos webservices',
+                              str),
 
     'ESOCIAL_VALIDATE_RUN_EVERY_MINS': (10,
-        'Tempo entre validações (em minutos) dos eventos do eSocial.',
-        int),
+                                        'Tempo entre validações (em minutos) dos eventos do eSocial.',
+                                        int),
 
     'ESOCIAL_SEND_RUN_EVERY_MINS': (10,
-        'Tempo entre envios (em minutos) dos eventos do eSocial.',
-        int),
+                                    'Tempo entre envios (em minutos) dos eventos do eSocial.',
+                                    int),
 
     'ESOCIAL_CONSULT_RUN_EVERY_MINS': (10,
-        'Tempo entre consultas (em minutos) dos eventos do eSocial.',
-        int),
+                                       'Tempo entre consultas (em minutos) dos eventos do eSocial.',
+                                       int),
 
     'ESOCIAL_LOTE_MIN': (1,
-        'Quantidade do mínima do lote do eSocial.',
-        int),
+                         'Quantidade do mínima do lote do eSocial.',
+                         int),
 
     'ESOCIAL_LOTE_MAX': (60,
-        'Quantidade do máxima do lote do eSocial.',
-        int),
+                         'Quantidade do máxima do lote do eSocial.',
+                         int),
 
     'ESOCIAL_TIMEOUT': (3600,
-        'Timeout do eSocial.',
-        int),
+                        'Timeout do eSocial.',
+                        int),
 
     'ESOCIAL_AUTOMATIC_FUNCTIONS_ENABLED': (False,
-        'Envio automático do eSocial.',
-        bool),
+                                            'Envio automático do eSocial.',
+                                            bool),
 
     'ESOCIAL_CA_CERT_PEM_FILE': ('certificado/webservicesproducaorestritaesocialgovbr.crt',
-        'Caminho completo do Certificado do SERPRO para o eSocial',
-        str),
+                                 'Caminho completo do Certificado do SERPRO para o eSocial',
+                                 str),
 
     'ESOCIAL_TP_AMB': (
         'Produção Restrita',
@@ -282,84 +271,39 @@ CONSTANCE_CONFIG = {
         'choices_tp_amb'),
 
     'ESOCIAL_FORCE_PRODUCAO_RESTRITA': (True,
-        'Força o sistema para envio pelo ambiente produção restrita do eSocial.',
-        bool),
+                                        'Força o sistema para envio pelo ambiente produção restrita do eSocial.',
+                                        bool),
 
     'ESOCIAL_VERIFICAR_PREDECESSAO_ANTES_ENVIO': (False,
-        'Ativa a função de verificar predecessão antes dos envios dos eventos do eSocial.',
-        bool),
+                                                  'Ativa a função de verificar predecessão antes dos envios dos eventos do eSocial.',
+                                                  bool),
 
     'IMPORT_FILES_RUN_EVERY_MINS': (10,
-        'Tempo de leitura de arquivos importados (em minutos).',
-        int),
+                                    'Tempo de leitura de arquivos importados (em minutos).',
+                                    int),
 
     'IMPORT_LEN_EVENTS': (10,
-        'Quantidade do lote de arquivos de eventos para importação.',
-        int),
+                          'Quantidade do lote de arquivos de eventos para importação.',
+                          int),
 
     'IMPORT_AUTOMATIC_FUNCTIONS_ENABLED': (False,
-        'Funções de importação automáticas ativadas.',
-        bool),
-
-    'EFDREINF_VALIDADE_RUN_EVERY_MINS': (10,
-        'Tempo entre validações (em minutos) dos eventos do EFD-Reinf.',
-        int),
-
-    'EFDREINF_SEND_RUN_EVERY_MINS': (10,
-        'Tempo entre envios (em minutos) dos eventos do EFD-Reinf.',
-        int),
-
-    'EFDREINF_CONSULT_RUN_EVERY_MINS': (10,
-        'Tempo entre consultas (em minutos) dos eventos do EFD-Reinf.',
-        int),
-
-    'EFDREINF_CA_CERT_PEM_FILE': ('certificados/acserproacfv5.crt',
-        'Caminho completo do Certificado do SERPRO para o EFD-Reinf',
-        str),
-
-    'EFDREINF_LOTE_MIN': (1,
-        'Quantidade do mínima do lote do EFD-Reinf.',
-        int),
-
-    'EFDREINF_LOTE_MAX': (60,
-        'Quantidade do máxima do lote do EFD-Reinf.',
-        int),
-
-    'EFDREINF_TIMEOUT': (3600,
-        'Timeout do EFD-Reinf.',
-        int),
-
-    'EFDREINF_AUTOMATIC_FUNCTIONS_ENABLED': (False,
-        'Envio automático do EFD-Reinf.',
-        bool),
-
-    'EFDREINF_TP_AMB': (
-        'Produção Restrita',
-        'Tipo de ambiente padrão do sistema do EFD-Reinf.',
-        'choices_tp_amb'),
-
-    'EFDREINF_FORCE_PRODUCAO_RESTRITA': (True,
-        'Força o sistema para envio pelo ambiente produção restrita do EFD-Reinf.',
-        bool),
-
-    'EFDREINF_VERIFICAR_PREDECESSAO_ANTES_ENVIO': (False,
-        'Ativa a função de verificar predecessão antes dos envios dos eventos do EFD-Reinf.',
-        bool),
+                                           'Funções de importação automáticas ativadas.',
+                                           bool),
 
     'EMAIL_RECUPERACAO_SENHA': ('emensageria@emensageria.com.br',
-        'E-mail de recuperação de senha.',
-        str),
+                                'E-mail de recuperação de senha.',
+                                str),
 
     'EMAIL_RECUPERACAO_SENHA_ASSUNTO': ('Criação/Recuperação de senha | eMensageria',
-        'Assunto padrão do e-mail de recuperação de senha.',
-        str),
+                                        'Assunto padrão do e-mail de recuperação de senha.',
+                                        str),
 
-    'EMAIL_RECUPERACAO_SENHA_MENSAGEM': ('<p>Prezado %(nome)s,<br>Acesse o sistema pelo link <a href="%(endereco)s">eMensageriaPro</a><br>Utilizando o usuário: <strong>%(usuario)s</strong><br>Senha: <strong>%(senha)s</strong><br>E-mail gerado automaticamente pelo sistema eMensageria</p>',
+    'EMAIL_RECUPERACAO_SENHA_MENSAGEM': (
+        '<p>Prezado %(nome)s,<br>Acesse o sistema pelo link <a href="%(endereco)s">eMensageriaPro</a><br>Utilizando o usuário: <strong>%(usuario)s</strong><br>Senha: <strong>%(senha)s</strong><br>E-mail gerado automaticamente pelo sistema eMensageria</p>',
         'Mensagem padrão do e-mail de recuperação de senha.',
         str),
 
 }
-
 
 ADMINLTE_SETTINGS = {
     # 'demo': True,

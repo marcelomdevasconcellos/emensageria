@@ -1,6 +1,5 @@
 import datetime
-from constance import config
-from config import settings
+
 from apps.esocial.choices import (
     STATUS_EVENTO_CADASTRADO,
     STATUS_EVENTO_IMPORTADO,
@@ -9,6 +8,7 @@ from apps.esocial.choices import (
     STATUS_EVENTO_ERRO,
     STATUS_EVENTO_PROCESSADO,
 )
+from config import settings
 
 
 def admin_media(request):

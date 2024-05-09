@@ -1,6 +1,7 @@
-from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
+
 from apps.esocial.models import Certificados as CertificadosEsocial
 from apps.esocial.models import Transmissor as TransmissorEsocial
 
@@ -16,16 +17,16 @@ class CustomAuthToken(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
 
         if user.is_superuser:
-            certificados_esocial = CertificadosEsocial.all_objects.\
+            certificados_esocial = CertificadosEsocial.all_objects. \
                 values('id', 'nome')
-            transmissores_esocial = TransmissorEsocial.all_objects.\
+            transmissores_esocial = TransmissorEsocial.all_objects. \
                 values('id', 'nome_empresa', 'tpinsc', 'nrinsc')
         else:
-            certificados_esocial = CertificadosEsocial.all_objects.\
-                filter(Q(created_by_id=user.id) | Q(users__id=user.id)).\
+            certificados_esocial = CertificadosEsocial.all_objects. \
+                filter(Q(created_by_id=user.id) | Q(users__id=user.id)). \
                 values('id', 'nome')
-            transmissores_esocial = TransmissorEsocial.all_objects.\
-                filter(Q(created_by_id=user.id) | Q(users__id=user.id)).\
+            transmissores_esocial = TransmissorEsocial.all_objects. \
+                filter(Q(created_by_id=user.id) | Q(users__id=user.id)). \
                 values('id', 'nome_empresa', 'tpinsc', 'nrinsc')
 
         return Response({

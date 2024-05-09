@@ -14,28 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
-from django.urls import path, include, re_path
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import path, include
+
 from config import settings
-from rest_framework.authtoken.views import obtain_auth_token
 from .views import CustomAuthToken
 
-admin.site.site_header = 'eMensageria'
-admin.site.site_title = 'eMensageria'
-admin.site.index_title = 'eMensageria'
-
+admin.site.site_header = 'eMensageria OpenSource'
+admin.site.site_title = 'eMensageria OpenSource'
+admin.site.index_title = 'eMensageria OpenSource'
 
 urlpatterns = [
 
-    # path('api-token-auth/',
-    #         obtain_auth_token,
-    #      name='obtain_auth_token'),
-
     path('api-token-auth/', CustomAuthToken.as_view()),
-    path('contrib/', include("apps.contrib.urls", namespace='contrib')),
     path('esocial/', include("apps.esocial.urls", namespace='esocial')),
-    path('reinf/', include("apps.reinf.urls", namespace='reinf')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

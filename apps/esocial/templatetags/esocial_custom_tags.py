@@ -1,9 +1,8 @@
-from django.core.validators import EMPTY_VALUES
-import re
-from django.db import models
-from django import template
-import decimal
 import locale
+import re
+
+from django import template
+from django.core.validators import EMPTY_VALUES
 
 try:
     locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
@@ -11,7 +10,6 @@ except:
     locale.setlocale(locale.LC_ALL, 'pt_BR.utf8')
 
 register = template.Library()
-
 
 
 @register.filter('is_list')
@@ -45,32 +43,33 @@ def read_ocorrencias(string):
     if isinstance(obj, list):
         for o in obj:
             lista.append({'tipo': o.get('ocorrencia').get('tipo'),
-                 'codigo': o.get('ocorrencia').get('codigo'),
-                 'descricao': o.get('ocorrencia').get('descricao'),
-                 'localizacao': o.get('ocorrencia').get('localizacao')})
-    elif isinstance(obj, dict) and isinstance(obj.get('ocorrencias'), dict) and isinstance(obj.get('ocorrencias').get('ocorrencia'), list):
+                          'codigo': o.get('ocorrencia').get('codigo'),
+                          'descricao': o.get('ocorrencia').get('descricao'),
+                          'localizacao': o.get('ocorrencia').get('localizacao')})
+    elif isinstance(obj, dict) and isinstance(obj.get('ocorrencias'), dict) and isinstance(
+            obj.get('ocorrencias').get('ocorrencia'), list):
         for o in obj.get('ocorrencias').get('ocorrencia'):
             lista.append({'tipo': o.get('tipo'),
-                 'codigo': o.get('codigo'),
-                 'descricao': o.get('descricao'),
-                 'localizacao': o.get('localizacao')})
+                          'codigo': o.get('codigo'),
+                          'descricao': o.get('descricao'),
+                          'localizacao': o.get('localizacao')})
     elif isinstance(obj, dict) and isinstance(obj.get('ocorrencia'), dict):
         lista.append({'tipo': obj.get('ocorrencia').get('tipo'),
-             'codigo': obj.get('ocorrencia').get('codigo'),
-             'descricao': obj.get('ocorrencia').get('descricao'),
-             'localizacao': obj.get('ocorrencia').get('localizacao')})
+                      'codigo': obj.get('ocorrencia').get('codigo'),
+                      'descricao': obj.get('ocorrencia').get('descricao'),
+                      'localizacao': obj.get('ocorrencia').get('localizacao')})
     elif isinstance(obj, dict) and isinstance(obj.get('ocorrencia'), list):
         for o in obj.get('ocorrencia'):
             lista.append({'tipo': o.get('tipo'),
-                 'codigo': o.get('codigo'),
-                 'descricao': o.get('descricao'),
-                 'localizacao': o.get('localizacao')})
+                          'codigo': o.get('codigo'),
+                          'descricao': o.get('descricao'),
+                          'localizacao': o.get('localizacao')})
     elif isinstance(obj, dict) and isinstance(obj.get('ocorrencias'), list):
         for o in obj.get('ocorrencias'):
             lista.append({'tipo': o.get('ocorrencia').get('tipo'),
-                 'codigo': o.get('ocorrencia').get('codigo'),
-                 'descricao': o.get('ocorrencia').get('descricao'),
-                 'localizacao': o.get('ocorrencia').get('localizacao')})
+                          'codigo': o.get('ocorrencia').get('codigo'),
+                          'descricao': o.get('ocorrencia').get('descricao'),
+                          'localizacao': o.get('ocorrencia').get('localizacao')})
     else:
         raise Exception(obj)
     return lista
@@ -84,9 +83,9 @@ def read_ocorrencias_lote(string):
     if isinstance(obj.get('ocorrencia'), list):
         for o in obj.get('ocorrencia'):
             lista.append({'tipo': o.get('tipo'),
-                 'codigo': o.get('codigo'),
-                 'descricao': o.get('descricao'),
-                 'localizacao': o.get('localizacao')})
+                          'codigo': o.get('codigo'),
+                          'descricao': o.get('descricao'),
+                          'localizacao': o.get('localizacao')})
     return lista
 
 
@@ -118,7 +117,7 @@ def get_form(obj):
 def disabled(obj):
     if not obj.is_aberto:
         return 'disabled="disabled"'
-    return "" 
+    return ""
 
 
 @register.filter('test')
@@ -147,7 +146,6 @@ def readjson(json_string, arg):
             return ''
     else:
         return ''
-
 
 
 @register.filter('render_with_model_dict')
@@ -253,7 +251,6 @@ def to_xml(texto):
     except:
         pass
     return texto
-
 
 
 @register.filter(name='dec_to_int')

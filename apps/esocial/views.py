@@ -8,6 +8,7 @@ from reportlab.lib import utils
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
+
 from .choices import (
     STATUS_EVENTO_IMPORTADO,
     STATUS_EVENTO_CADASTRADO,
@@ -46,67 +47,6 @@ def dashboard_json(request):
         'esocial_processados': list(eventos_processados.values('id', 'evento', 'identidade')),
     }
     return HttpResponse(json.dumps(dashboars_data, indent=4))
-
-
-"""
-class EventosApiList(generics.ListCreateAPIView):
-    queryset = Eventos.objects.all()
-    serializer_class = EventosSerializer
-    filterset_class = EventosFilter
-
-    def perform_create(self, serializer):
-        from config.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-        from constance import config
-        serializer.save(
-            criado_por=self.request.user,
-            tpamb=config.ESOCIAL_TP_AMB,
-            verproc=VERSAO_EMENSAGERIA,
-            procemi=1,
-            versao=VERSAO_LAYOUT_ESOCIAL,
-            arquivo_original=0,
-            status=0)
-
-    def perform_update(self, serializer):
-        from config.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-        from constance import config
-        serializer.save(
-            modificado_por=self.request.user,
-            tpamb=config.ESOCIAL_TP_AMB,
-            verproc=VERSAO_EMENSAGERIA,
-            procemi=1,
-            versao=VERSAO_LAYOUT_ESOCIAL,
-            arquivo_original=0,
-            status=0)
-
-
-class EventosApiDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Eventos.objects.all()
-    serializer_class = EventosSerializer
-
-    def perform_create(self, serializer):
-        from config.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-        from constance import config
-        serializer.save(
-            criado_por=self.request.user,
-            tpamb=config.ESOCIAL_TP_AMB,
-            verproc=VERSAO_EMENSAGERIA,
-            procemi=1,
-            versao=VERSAO_LAYOUT_ESOCIAL,
-            arquivo_original=0,
-            status=0)
-
-    def perform_update(self, serializer):
-        from config.settings import VERSAO_EMENSAGERIA, VERSAO_LAYOUT_ESOCIAL
-        from constance import config
-        serializer.save(
-            modificado_por=self.request.user,
-            tpamb=config.ESOCIAL_TP_AMB,
-            verproc=VERSAO_EMENSAGERIA,
-            procemi=1,
-            versao=VERSAO_LAYOUT_ESOCIAL,
-            arquivo_original=0,
-            status=0)
-"""
 
 
 @login_required
@@ -285,9 +225,9 @@ def pdf_recibo_evento(evento):
         pagesize=A4)
     my_canvas.drawImage(
         background,
-        0*mm, 0*mm,
-        width=210*mm,
-        height=297*mm, mask='auto')
+        0 * mm, 0 * mm,
+        width=210 * mm,
+        height=297 * mm, mask='auto')
     if evento.transmissor_evento and evento.transmissor_evento.transmissor.logotipo:
         logo = os.path.join(
             settings.BASE_DIR,
@@ -295,26 +235,26 @@ def pdf_recibo_evento(evento):
             evento.transmissor_evento.transmissor.logotipo.file.name)
         logo_w, logo_h = get_size_image(logo)
         my_canvas.drawImage(
-            logo, 159*mm, 280*mm,
-            width=30*mm, height=(logo_h/logo_w)*30*mm)
+            logo, 159 * mm, 280 * mm,
+            width=30 * mm, height=(logo_h / logo_w) * 30 * mm)
     my_canvas.setFont('Helvetica', 12)
-    my_canvas.drawString(20*mm, 280*mm, evento.get_evento_display())
+    my_canvas.drawString(20 * mm, 280 * mm, evento.get_evento_display())
     my_canvas.setFont('Helvetica', 8)
     if evento.transmissor_evento and evento.transmissor_evento.transmissor.logotipo:
         ends = evento.transmissor_evento.transmissor.endereco_completo.replace('\r', '').split('\n')
         ini = 16
         for end in ends:
-            my_canvas.drawString(20*mm, ini*mm, end)
+            my_canvas.drawString(20 * mm, ini * mm, end)
             ini -= 4
 
     my_canvas.setFont('Helvetica', 9)
-    my_canvas.drawString(22*mm, 252*mm, evento.identidade)
-    my_canvas.drawString(108*mm, 252*mm, evento.versao)
-    my_canvas.drawString(150*mm, 252*mm, evento.get_tpamb_display())
-    my_canvas.drawString(22*mm, 233*mm, evento.get_procemi_display())
-    my_canvas.drawString(79*mm, 233*mm, evento.verproc)
-    my_canvas.drawString(108*mm, 233*mm, evento.get_tpinsc_display())
-    my_canvas.drawString(136*mm, 233*mm, evento.nrinsc)
+    my_canvas.drawString(22 * mm, 252 * mm, evento.identidade)
+    my_canvas.drawString(108 * mm, 252 * mm, evento.versao)
+    my_canvas.drawString(150 * mm, 252 * mm, evento.get_tpamb_display())
+    my_canvas.drawString(22 * mm, 233 * mm, evento.get_procemi_display())
+    my_canvas.drawString(79 * mm, 233 * mm, evento.verproc)
+    my_canvas.drawString(108 * mm, 233 * mm, evento.get_tpinsc_display())
+    my_canvas.drawString(136 * mm, 233 * mm, evento.nrinsc)
     re = json.loads(evento.retorno_consulta_json)
 
     # RECEPÇÃO
@@ -324,36 +264,36 @@ def pdf_recibo_evento(evento):
         rec = re.get('dadosRecepcaoLote')
         resp = re.get('status')
         if rec:
-            my_canvas.drawString(22*mm, 214*mm, rec.get('tpAmb') or '')
+            my_canvas.drawString(22 * mm, 214 * mm, rec.get('tpAmb') or '')
             my_canvas.setFont('Helvetica', 9)
-            my_canvas.drawString(50*mm, 214*mm, rec.get('dhRecepcao') or '')
+            my_canvas.drawString(50 * mm, 214 * mm, rec.get('dhRecepcao') or '')
             my_canvas.setFont('Helvetica', 9)
-            my_canvas.drawString(94*mm, 214*mm, rec.get('versaoAplicativoRecepcao') or '')
-            my_canvas.drawString(122*mm, 214*mm, rec.get('protocoloEnvio') or '')
+            my_canvas.drawString(94 * mm, 214 * mm, rec.get('versaoAplicativoRecepcao') or '')
+            my_canvas.drawString(122 * mm, 214 * mm, rec.get('protocoloEnvio') or '')
         if not co:
-            my_canvas.drawString(22*mm, 195*mm, resp.get('cdResposta'))
-            my_canvas.drawString(36*mm, 195*mm, resp.get('descResposta'))
+            my_canvas.drawString(22 * mm, 195 * mm, resp.get('cdResposta'))
+            my_canvas.drawString(36 * mm, 195 * mm, resp.get('descResposta'))
 
     # RECEPÇÃO
     if co.get('retornoEvento'):
         rec = co.get('retornoEvento').get('eSocial').get('retornoEvento').get('recepcao')
         if rec:
-            my_canvas.drawString(22*mm, 214*mm, rec.get('tpAmb') or '')
+            my_canvas.drawString(22 * mm, 214 * mm, rec.get('tpAmb') or '')
 
     # PROCESSAMENTO
     if co.get('retornoEvento'):
         pro = co.get('retornoEvento').get('eSocial').get('retornoEvento').get('processamento')
         if pro:
-            my_canvas.drawString(22*mm, 195*mm, pro.get('cdResposta'))
-            my_canvas.drawString(36*mm, 195*mm, pro.get('descResposta'))
-            my_canvas.drawString(122*mm, 195*mm, pro.get('versaoAppProcessamento') or '')
-            my_canvas.drawString(150*mm, 195*mm, pro.get('dhProcessamento'))
+            my_canvas.drawString(22 * mm, 195 * mm, pro.get('cdResposta'))
+            my_canvas.drawString(36 * mm, 195 * mm, pro.get('descResposta'))
+            my_canvas.drawString(122 * mm, 195 * mm, pro.get('versaoAppProcessamento') or '')
+            my_canvas.drawString(150 * mm, 195 * mm, pro.get('dhProcessamento'))
 
         # RECIBO
         reci = co.get('retornoEvento').get('eSocial').get('retornoEvento').get('recibo')
         if reci:
-            my_canvas.drawString(22*mm, 176*mm, reci.get('nrRecibo') or '')
-            my_canvas.drawString(79*mm, 176*mm, reci.get('hash') or '')
+            my_canvas.drawString(22 * mm, 176 * mm, reci.get('nrRecibo') or '')
+            my_canvas.drawString(79 * mm, 176 * mm, reci.get('hash') or '')
 
         # OCORRÊNCIAS
         if pro.get('ocorrencias'):
@@ -362,17 +302,17 @@ def pdf_recibo_evento(evento):
                 ocor = [ocor, ]
             ini = 160
             for oco in ocor:
-                my_canvas.drawString(22*mm, ini*mm, oco.get('tipo') or '')
-                my_canvas.drawString(32*mm, ini*mm, oco.get('codigo') or '')
+                my_canvas.drawString(22 * mm, ini * mm, oco.get('tipo') or '')
+                my_canvas.drawString(32 * mm, ini * mm, oco.get('codigo') or '')
                 desc_txt = oco.get('descricao').replace('\n', ' ')
                 desc_list = generate_text_list(desc_txt, 88)
                 for des in desc_list:
-                    my_canvas.drawString(42*mm, ini*mm, des)
+                    my_canvas.drawString(42 * mm, ini * mm, des)
                     ini -= 5
                 if oco.get('localizacao'):
-                    my_canvas.drawString(42*mm, ini*mm, oco.get('localizacao') or '')
+                    my_canvas.drawString(42 * mm, ini * mm, oco.get('localizacao') or '')
                 else:
-                    ini +=5
+                    ini += 5
                 ini -= 7
         else:
             ini = 160
@@ -420,7 +360,6 @@ def eventos_recibo(request, pk):
 #     #                  'javascript-delay': 1000,
 #     #                  'footer-center': '[page]/[topage]',
 #     #                  "no-stop-slow-scripts": True}, )
-
 
 
 @login_required
@@ -527,128 +466,3 @@ def arquivos_visualizar(request, pk):
         return HttpResponse(txt, content_type='text/xml')
     else:
         return HttpResponse(txt, content_type='text/txt')
-
-# @login_required
-# def arquivos_recuperar(request, pk):
-#     import os
-#     from datetime import datetime
-#     from config.mensageiro.functions.funcoes_importacao import importar_arquivo
-#     from config.mensageiro.models import ImportacaoArquivosEventos
-#     from config.settings import BASE_DIR
-#     arquivos = get_object_or_404(Arquivos, id=pk)
-#     if arquivos.permite_recuperacao:
-#         arquivo_importacao = ImportacaoArquivosEventos.objects.filter(arquivo=arquivos.arquivo).all()
-
-#         if not arquivo_importacao:
-#             a = arquivos.arquivo.split('/')
-#             nome_arquivo = a[len(a) - 1]
-#             path_arq = '/arquivos/Importacao/aguardando/' + nome_arquivo
-
-#             os.system('cp %s %s' % (BASE_DIR + arquivos.arquivo, BASE_DIR + path_arq))
-
-#             arq_import = ImportacaoArquivos.objects. \
-#                 filter(arquivo=arquivos.arquivo).all()
-
-#             if arq_import:
-#                 obj = arq_import[0]
-#             else:
-#                 dados_importacao = {}
-#                 dados_importacao['arquivo'] = path_arq
-#                 dados_importacao['status'] = 0
-#                 dados_importacao['data_hora'] = datetime.now()
-#                 dados_importacao['quant_processado'] = 0
-#                 dados_importacao['quant_erros'] = 0
-#                 dados_importacao['quant_aguardando'] = 0
-#                 dados_importacao['importado_por_id'] = request.user.id
-
-#                 obj = ImportacaoArquivos(**dados_importacao)
-#                 obj.save()
-
-#             dados_eventos = {}
-#             dados_eventos['importacao_arquivos_id'] = obj.id
-#             dados_eventos['evento'] = '-'
-#             dados_eventos['versao'] = '-'
-#             dados_eventos['identidade_evento'] = '-'
-#             dados_eventos['identidade'] = 0
-#             dados_eventos['arquivo'] = path_arq
-#             dados_eventos['status'] = 0
-#             dados_eventos['data_hora'] = datetime.now()
-#             dados_eventos['validacoes'] = ''
-
-#             obj_ev = ImportacaoArquivosEventos(**dados_eventos)
-#             obj_ev.save()
-
-#             arquivo_importacao = ImportacaoArquivosEventos.objects.filter(arquivo=path_arq).all()
-
-#         dados_importacao = importar_arquivo(arquivo_importacao[0], request, 0)
-#         dados_importacao['status'] = STATUS_IMPORT_PROCESSADO
-
-#         if dados_importacao:
-#             messages.warning(request, '''
-#                 Arquivo recuperado com sucesso! 
-#                 Por gentileza confira todo o conteúdo 
-#                 do mesmo, pois este processo não 
-#                 passou por validação''')
-
-#         else:
-#             messages.error(request, '''
-#                 Arquivo não pode ser recuperado 
-#                 pois já existe um arquivo com a 
-#                 mesma identidade cadastrado!''')
-
-#     else:
-#         messages.error(request, 'Este arquivo não permite ser recuperado!')
-#     return redirect('arquivos')
-
-
-# @login_required
-# def arquivos_reprocessar(request, pk):
-
-#     import os
-#     from config.settings import BASE_DIR
-
-#     arquivos = get_object_or_404(Arquivos, id=pk)
-
-#     texto = ''
-
-#     if not os.path.isfile(BASE_DIR + '/' + arquivos.arquivo):
-
-#         # texto = ler_arquivo(arquivos.arquivo)
-#         return redirect('mapa_importacoes', tab='master')
-
-#     a = arquivos.arquivo.split('/')
-#     b = a[len(a)-1].split('.')
-#     transmissor_id = int(b[0])
-
-#     if 'eSocial' in texto:
-
-#         if 'WsEnviarLoteEventos' in arquivos.arquivo:
-
-#             from config.mensageiro.functions.funcoes_esocial_comunicacao import read_envioLoteEventos
-#             read_envioLoteEventos(arquivos.arquivo, transmissor_id)
-
-#         elif 'WsConsultarLoteEventos' in arquivos.arquivo:
-
-#             from config.mensageiro.functions.funcoes_esocial_comunicacao import read_consultaLoteEventos
-#             read_consultaLoteEventos(arquivos.arquivo, transmissor_id)
-
-#         messages.success(request, 'Arquivo processado com sucesso!')
-
-#     elif 'Reinf' in texto:
-
-#         if 'RecepcaoLoteReinf' in arquivos.arquivo:
-#             from config.mensageiro.functions.funcoes_efdreinf_comunicacao import read_envioLoteEventos
-#             read_envioLoteEventos(arquivos.arquivo, transmissor_id)
-
-#         elif 'ConsultasReinf' in arquivos.arquivo:
-#             from config.mensageiro.functions.funcoes_efdreinf_comunicacao import read_consultaLoteEventos
-#             read_consultaLoteEventos(arquivos.arquivo, transmissor_id)
-
-#         messages.success(request, 'Arquivo processado com sucesso!')
-
-#     else:
-
-#         messages.error(request,
-#                        'Não foi possível reprocessar o arquivo!')
-
-#     return redirect('mapa_importacoes', tab='master')

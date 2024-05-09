@@ -1,5 +1,6 @@
 import codecs
 import os
+
 import xmlschema
 from lxml import etree
 
@@ -32,7 +33,6 @@ def read_file(filename):
         return content
     else:
         raise NameError('Não foi possivel ler o arquivo %s.' % filename)
-
 
 
 def validar_schema(file_schema_xsd, file_xml):
