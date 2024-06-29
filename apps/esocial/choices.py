@@ -137,11 +137,12 @@ EVENTOS_GRUPOS = [
     (EVENTOS_GRUPOS_PERIODICOS, '3 - Eventos Periódicos'),
 ]
 
-ESOCIAL_VERSAO_DEFAULT = 'v_S_01_00_00'
+ESOCIAL_VERSAO_DEFAULT = 'v_S_01_02_00'
 VERSOES = [
     ('v_S_01_00_00', 'Versão S-1.0'),
     ('v_S_01_01_00', 'Versão S-1.1'),
     ('v_S_01_02_00', 'Versão S-1.2'),
+    ('v_S_01_03_00', 'Versão S-1.3'),
 ]
 
 ARQUIVO_FONTE = [
@@ -171,6 +172,8 @@ VERSIONS_CODE = {
     'v_S_01_01_00': [
         's1000', 's1005', 's1010', 's1020', 's1070', ],
     'v_S_01_02_00': [
+        's1000', 's1005', 's1010', 's1020', 's1070', ],
+    'v_S_01_03_00': [
         's1000', 's1005', 's1010', 's1020', 's1070', ]
 }
 
