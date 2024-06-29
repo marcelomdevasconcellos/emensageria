@@ -1,0 +1,59 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/adminlte-dist/css/app.css" %}">{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block content_title %}Visão Geral - Mapa de processamento{% endblock %}
+
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'admin:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
+    <li class="active">Visão Geral - Mapa de processamento</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <div class="row">
+    {% if app_list %}
+        <div class="col-md-12">
+          <!-- Custom Tabs -->
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab_1" data-toggle="tab">eSocial</a></li>
+{% comment %}              <li><a href="#tab_2" data-toggle="tab">Reinf</a></li>
+              <li><a href="#tab_3" data-toggle="tab">Importações</a></li>{% endcomment %}
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+                {% include 'dashboard/painel_esocial.html' %}
+              </div>
+              <!-- /.tab-pane -->
+{% comment %}              <div class="tab-pane" id="tab_2">
+                {% include 'dashboard/painel_efdreinf.html' %}
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_3">
+                {% include 'dashboard/painel_importacoes.html' %}
+              </div>{% endcomment %}
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- nav-tabs-custom -->
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-md-12">
+            {% trans "You don't have permission to view or edit anything." %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+    {% endblock %}
+</div>

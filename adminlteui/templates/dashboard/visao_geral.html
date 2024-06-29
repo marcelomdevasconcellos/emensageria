@@ -1,0 +1,30 @@
+{% load templatetags %}
+{% if messages %}
+<div class="row">
+    <div class="pad margin no-print">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}"
+                style="margin-bottom: 0!important;">{{ message }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<div class="row">
+    <div class="col-lg-12 col-xs-12">
+        <h3>eSocial</h3>
+    </div>
+</div>
+{% include 'dashboard/painel_esocial.html' %}
+<div class="row">
+    <div class="col-lg-12 col-xs-12">
+        <h3>EFD-Reinf</h3>
+    </div>
+</div>
+{% include 'dashboard/painel_efdreinf.html' %}
+<div class="row">
+    <div class="col-lg-12 col-xs-12">
+        <h3>Importações</h3>
+    </div>
+</div>
+{% include 'dashboard/painel_importacoes.html' %}

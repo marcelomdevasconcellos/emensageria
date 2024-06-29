@@ -1,0 +1,557 @@
+{
+	"info": {
+		"_postman_id": "e7f7aaea-cdff-4ef4-bf15-aa4784579d4f",
+		"name": "eMensageria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Criando TOKEN",
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false,
+				"followOriginalHttpMethod": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"admin\", \"password\":\"admin\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api-token-auth/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-token-auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Importando evento via API (xml) S1000",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s1000\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<eSocial><evtInfoEmpregador><ideEvento><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>v6.0.0.0</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>34686613</nrInsc></ideEmpregador><infoEmpregador><inclusao><idePeriodo><iniValid>2021-06</iniValid></idePeriodo><infoCadastro><classTrib>01</classTrib><indCoop>0</indCoop><indConstr>0</indConstr><indDesFolha>0</indDesFolha><indOptRegEletron>0</indOptRegEletron><cnpjEFR>34686613000000</cnpjEFR></infoCadastro></inclusao></infoEmpregador></evtInfoEmpregador></eSocial>\",\n    \"certificado\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Importando evento via API (xml) S2200",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s2220\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<eSocial xmlns=\\\"http://www.esocial.gov.br/schema/evt/evtMonit/v_S_01_00_00\\\"><evtMonit Id=\\\"ID1076478680000002021091511103900000\\\"><ideEvento><indRetif>1</indRetif><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>1.0</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>07647868</nrInsc></ideEmpregador><ideVinculo><cpfTrab>06436015973</cpfTrab><matricula>18</matricula></ideVinculo><exMedOcup><tpExameOcup>1</tpExameOcup><aso><dtAso>2021-09-01</dtAso><resAso>1</resAso><exame><dtExm>2021-09-01</dtExm><procRealizado>0295</procRealizado><ordExame>2</ordExame></exame><exame><dtExm>2021-08-31</dtExm><procRealizado>0699</procRealizado><ordExame>1</ordExame></exame><exame><dtExm>2021-08-31</dtExm><procRealizado>0704</procRealizado><ordExame>1</ordExame></exame><medico><nmMed>TESTE</nmMed><nrCRM>3434343</nrCRM><ufCRM>SC</ufCRM></medico></aso></exMedOcup></evtMonit></eSocial>\",\n    \"certificado\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Importando evento via API (xml) S2210",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s2210\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<?xml version=\\\"1.0\\\"?><eSocial xmlns=\\\"http://www.esocial.gov.br/schema/evt/evtCAT/v_S_01_00_00\\\"><evtCAT Id=\\\"ID1076478680000002021092211354600000\\\"><ideEvento><indRetif>1</indRetif><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>1.0</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>07647868</nrInsc></ideEmpregador><ideVinculo><cpfTrab>06436015973</cpfTrab><matricula>18</matricula></ideVinculo><cat><dtAcid>2021-09-22</dtAcid><tpAcid>1</tpAcid><hrAcid>0652</hrAcid><hrsTrabAntesAcid>0400</hrsTrabAntesAcid><tpCat>1</tpCat><indCatObito>N</indCatObito><indComunPolicia>N</indComunPolicia><codSitGeradora>200004600</codSitGeradora><iniciatCAT>1</iniciatCAT><localAcidente><tpLocal>1</tpLocal><tpLograd>AC</tpLograd><dscLograd>teste</dscLograd><nrLograd>30</nrLograd><cep>89507552</cep><codMunic>4203006</codMunic><uf>SC</uf><ideLocalAcid><tpInsc>1</tpInsc><nrInsc>07647868000127</nrInsc></ideLocalAcid></localAcidente><parteAtingida><codParteAting>753510000</codParteAting><lateralidade>1</lateralidade></parteAtingida><agenteCausador><codAgntCausador>305004500</codAgntCausador></agenteCausador><atestado><dtAtendimento>2021-09-22</dtAtendimento><hrAtendimento>0700</hrAtendimento><indInternacao>N</indInternacao><durTrat>1</durTrat><indAfast>N</indAfast><dscLesao>702000000</dscLesao><codCID>M54</codCID><emitente><nmEmit>teste</nmEmit><ideOC>1</ideOC><nrOC>343434</nrOC><ufOC>SC</ufOC></emitente></atestado></cat></evtCAT></eSocial> \",\n    \"certificado\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Importando evento via API (xml) com assinatura",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "identidade",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "versao\n",
+							"value": "v_S_01_00_00",
+							"type": "text"
+						},
+						{
+							"key": "evento",
+							"value": "s1000",
+							"type": "text"
+						},
+						{
+							"key": "operacao",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "tpinsc",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "nrinsc",
+							"value": "34686613",
+							"type": "text"
+						},
+						{
+							"key": "verproc",
+							"value": "1.0",
+							"type": "text"
+						},
+						{
+							"key": "evento_json",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "evento_xml",
+							"value": "<eSocial xmlns=\"http://www.esocial.gov.br/schema/evt/evtInfoEmpregador/v_S_01_00_00\">\n  <evtInfoEmpregador Id=\"ID1032141450000002021070610203100854\">\n    <ideEvento>\n      <tpAmb>2</tpAmb>\n      <procEmi>1</procEmi>\n      <verProc>1.0</verProc>\n    </ideEvento>\n    <ideEmpregador>\n      <tpInsc>1</tpInsc>\n      <nrInsc>03214145</nrInsc>\n    </ideEmpregador>\n    <infoEmpregador>\n      <inclusao>\n        <idePeriodo>\n          <iniValid>2021-06</iniValid>\n        </idePeriodo>\n        <infoCadastro>\n          <classTrib>85</classTrib>\n          <indCoop>0</indCoop>\n          <indConstr>0</indConstr>\n          <indDesFolha>0</indDesFolha>\n          <indOptRegEletron>1</indOptRegEletron>\n          <cnpjEFR>03214145000183</cnpjEFR>\n        </infoCadastro>\n      </inclusao>\n    </infoEmpregador>\n  </evtInfoEmpregador>\n  <Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">\n    <SignedInfo>\n      <CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>\n      <SignatureMethod Algorithm=\"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256\"/>\n      <Reference URI=\"\">\n        <Transforms>\n          <Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>\n          <Transform Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>\n        </Transforms>\n        <DigestMethod Algorithm=\"http://www.w3.org/2001/04/xmlenc#sha256\"/>\n        <DigestValue>0DGHx8j6NFHQVja7yBH5y0dlPMynYV7ipKroJC6pDwE=</DigestValue>\n      </Reference>\n    </SignedInfo>\n    <SignatureValue>YTExcfSj+zXMTEd9IFYdkC94nOFBfyPMIT3WHcLTImGT/DO9gfB76iQnJg7g4y8ktQUp1ROCjFJKwuXRTdFKS8KpTyybP/i18DoGIfyFOKi499n9SmkEyJpwo24KiPOWO26PrRLhuM2BBOBcZ4xrS0tz+6U4vj0lbbYsVAVEiGSeEdZnyCZR4w8JrhpBI5u0Qldj4D6BhxPiAlcNsIRplFzDlwdOmg0w581Iq7/l7MuGey7GStx9GgucYzcm1BKR6UtFFCUiFgSF27BzANQaKDRELbLarJUD1+xMdrHOoRccYT0OauVO7PXYQt8XVerr14NblUeCbxHRDaSkRZavfA==</SignatureValue>\n    <KeyInfo>\n      <X509Data>\n        <X509Certificate>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</X509Certificate>\n      </X509Data>\n    </KeyInfo>\n  </Signature>\n</eSocial>",
+							"type": "text"
+						},
+						{
+							"key": "certificado",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Importando evento via API (json)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s2240\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"{\\\"evtExpRisco\\\":{\\\"ideEvento\\\":{\\\"indRetif\\\":1,\\\"nrRecibo\\\":\\\"\\\",\\\"tpAmb\\\":1,\\\"procEmi\\\":1,\\\"verProc\\\":\\\"1.0\\\"},\\\"ideEmpregador\\\":{\\\"tpInsc\\\":1,\\\"nrInsc\\\":\\\"34686613\\\"},\\\"ideVinculo\\\":{\\\"cpfTrab\\\":\\\"80019714300\\\",\\\"matricula\\\":\\\"1990005800\\\"},\\\"infoExpRisco\\\":{\\\"dtIniCondicao\\\":\\\"09/07/2021\\\",\\\"infoAmb\\\":{\\\"localAmb\\\":1,\\\"dscSetor\\\":\\\"SLAV - SLAV PRODUÇÃO - PRODUÇÃO\\\",\\\"tpInsc\\\":1,\\\"nrInsc\\\":\\\"41164796000103\\\"},\\\"infoAtiv\\\":{\\\"dscAtivDes\\\":\\\"Executar serviços de acabamento e reparos de blocos e superfícies concretadas, assentamento de tijolos, reboco e arremates de estruturas construídas, preparação de argamassa de diversos tipos, colocação de telhas, manilhas e peças sanitárias, de acordo com orientações e solicitações recebidas do superior imediato.\\\"},\\\"agNoc\\\":[{\\\"codAgNoc\\\":\\\"02.01.001\\\",\\\"dscAgNoc\\\":\\\"\\\",\\\"tpAval\\\":1,\\\"intConc\\\":\\\"86.5900\\\",\\\"limTol\\\":\\\"\\\",\\\"unMed\\\":4,\\\"tecMedicao\\\":\\\"DOSIMETRIA DE RUÍDO - NHO 01\\\",\\\"epcEpi\\\":{\\\"utilizEPC\\\":0,\\\"eficEpc\\\":\\\"\\\",\\\"utilizEPI\\\":2,\\\"epi\\\":[{\\\"docAval\\\":\\\"34082\\\",\\\"dscEPI\\\":\\\"\\\",\\\"eficEpi\\\":\\\"S\\\"},{\\\"docAval\\\":\\\"10043\\\",\\\"dscEPI\\\":\\\"\\\",\\\"eficEpi\\\":\\\"N\\\"},{\\\"docAval\\\":\\\"39644\\\",\\\"dscEPI\\\":\\\"\\\",\\\"eficEpi\\\":\\\"S\\\"}],\\\"epiCompl\\\":{\\\"medProtecao\\\":\\\"S\\\",\\\"condFuncto\\\":\\\"S\\\",\\\"usoInint\\\":\\\"S\\\",\\\"przValid\\\":\\\"S\\\",\\\"periodicTroca\\\":\\\"S\\\",\\\"higienizacao\\\":\\\"S\\\"}}}],\\\"respReg\\\":[{\\\"cpfResp\\\":\\\"44089422353\\\",\\\"ideOC\\\":4,\\\"dscOC\\\":\\\"\\\",\\\"nrOC\\\":\\\"0600909735\\\",\\\"ufOC\\\":\\\"CE\\\"}],\\\"obs\\\":{\\\"obsCompl\\\":\\\"\\\"}}}}\",\n    \"certificado\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterando evento via API (xml)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s1000\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<eSocial><evtInfoEmpregador><ideEvento><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>v6.0.0.0</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>34686613</nrInsc></ideEmpregador><infoEmpregador><inclusao><idePeriodo><iniValid>2021-06</iniValid></idePeriodo><infoCadastro><classTrib>01</classTrib><indCoop>0</indCoop><indConstr>0</indConstr><indDesFolha>0</indDesFolha><indOptRegEletron>0</indOptRegEletron><cnpjEFR>34686613000000</cnpjEFR></infoCadastro></inclusao></infoEmpregador></evtInfoEmpregador></eSocial>\",\n    \"certificado\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/46/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"46",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta dos dados do evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/39/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"39",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Abrindo evento para edição",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/45/abrir-evento-para-edicao/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"45",
+						"abrir-evento-para-edicao",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validar evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/50/validar/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"50",
+						"validar",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enviar evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/42/enviar/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"42",
+						"enviar",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/42/consultar/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"42",
+						"consultar",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar identidade do evento",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/2/atualizar-identidade/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						"2",
+						"atualizar-identidade",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,512 @@
+{% load i18n static adminlte_options adminlte_menu %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% get_adminlte_settings as adminlte %}
+{% get_adminlte_option 'site_logo' as adminlte_site_logo  %}
+
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    {# <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">#}
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <!-- Font Awesome -->
+    <!--<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+    {# <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">#}
+    <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{% static "admin/ionicons/ionicons.min.css" %}">
+
+    {% block extrastyle %} {% endblock %}
+
+    {% block extrahead %} {% endblock %}
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{% static "admin/plugins/select2/select2.min.css" %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static "admin/adminlte-dist/css/AdminLTE.min.css" %}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    {% if adminlte.skin %}
+    <link rel="stylesheet" href="{% static "admin/adminlte-dist/css/skins/skin-"|add:adminlte.skin|add:".min.css" %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static "admin/adminlte-dist/css/skins/_all-skins.min.css" %}">
+    {% endif %}
+
+    <link rel="stylesheet" href="{% static "admin/adminlte-dist/css/django.css" %}">
+    {% if adminlte_site_logo.valid %}
+    <link rel="apple-touch-icon" href="{% static "esocial.ico" %}">
+    <link rel="icon" href="{% static "esocial.ico" %}">
+    {% else %}
+    <link rel="apple-touch-icon" href="{% static "esocial.ico" %}">
+    <link rel="icon" href="{% static "esocial.ico" %}">
+    {% endif %}
+    <!-- jQuery 2.2.3 -->
+    <script src="{% static "admin/plugins/jQuery/jquery-2.2.3.min.js" %}"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    {# <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>#}
+    {# <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>#}
+    <script src="{% static "js/html5shiv.min.js" %}"></script>
+    <script src="{% static "js/respond.min.js" %}"></script>
+    <![endif]-->
+
+</head>
+<body class="hold-transition skin-{% if adminlte.skin %}{{ adminlte.skin }}{% else %}blue{% endif %} sidebar-mini fixed">
+<div class="wrapper">
+    {% if not is_popup %}
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="{% url 'admin:index' %}" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini">
+                {% if adminlte_site_logo.valid %}
+                <img src="{% static "admin/adminlte-dist/css/django.css" %}" class="user-image" alt="User Image" style="width:45px;height:45px;padding:5px;">
+                {% endif %}
+                <b>eM</b>
+            </span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg">
+                {% if adminlte_site_logo.valid %}
+                <img src="{{ adminlte_site_logo.site_logo }}" class="user-image" alt="User Image" style="width:45px;height:45px;padding:5px;">
+                {% endif %}
+                <b>
+                    {% get_adminlte_option 'site_header' as adminlte_site_header  %}
+                    {% if adminlte_site_header.valid %}
+                    {{ adminlte_site_header.site_header }}
+                    {% else %}
+                    {{ site_header }}
+                    {% endif %}
+                </b>
+            </span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">NAVEGAÇÃO</span>
+            </a>
+
+            <div class="navbar-custom-menu" style="float: left;">
+                <ul class="nav navbar-nav top-menu">
+                    {% get_menu request 'top' as app_list %}
+                    {% if app_list %}
+                    {% for app in app_list %}
+                    <li class="dropdown user user-menu">
+                        <a href="{{ app.admin_url }}">
+                            <i class="fa {% if app.icon %} {{app.icon}} {% else %}fa-database{% endif %}"></i>
+                            {{ app.name }}</a>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {% get_adminlte_option 'show_avatar' as adminlte_show_avatar  %}
+                            {% if adminlte_show_avatar.valid and adminlte_show_avatar.show_avatar == 'on' %}
+                            {% get_adminlte_option 'avatar_field' request as adminlte_avatar_field  %}
+                            {% if adminlte_avatar_field.valid and adminlte_avatar_field.avatar_field %}
+                            <img src="{{ adminlte_avatar_field.avatar_field }}" class="user-image" alt="User Image" style="width: 25px; height:25px;">
+                            {% else %}
+                            <img src={% static "admin/adminlte-dist/img/default.jpg" %} class="user-image" alt="User Image">
+                            {% endif %}
+                            {% endif %}
+                            <span class="hidden-xs">{{ request.user.username }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            {% get_adminlte_option 'show_avatar' as adminlte_show_avatar  %}
+                            {% if adminlte_show_avatar.valid and adminlte_show_avatar.show_avatar == 'on' %}
+                            <li class="user-header">
+                                {% get_adminlte_option 'avatar_field' request as adminlte_avatar_field  %}
+                                {% if adminlte_avatar_field.valid and adminlte_avatar_field.avatar_field %}
+                                <img src="{{ adminlte_avatar_field.avatar_field }}" class="img-circle" alt="User Image" style="width: 90px; height:90px;">
+                                {% else %}
+                                <img src={% static "admin/adminlte-dist/img/default.jpg" %} class="img-circle" alt="User Image">
+                                {% endif %}
+                                <p>
+                                    {{ request.user.username }} -
+                                    {% if request.user.is_superuser %}
+                                    {% trans "Super manager" %}
+                                    {% else %}
+                                    {% if request.user.groups.all %}
+                                    {% for i in request.user.groups.all %}{{ i.name }}{% endfor %}
+                                    {% else %}
+                                    {% trans 'Normal' %}
+                                    {% endif %}
+                                    {% endif %}
+                                    <small>{% trans "Register time" %}： {{ request.user.date_joined }}</small>
+                                </p>
+                            </li>
+                            {% else %}
+                            <li class="user-header" style="height: auto;">
+                                <p>
+                                    {{ request.user.username }} -
+                                    {% if request.user.is_superuser %}
+                                    {% trans "Super manager" %}
+                                    {% else %}
+                                    {% if request.user.groups.all %}
+                                    {% for i in request.user.groups.all %}{{ i.name }}{% endfor %}
+                                    {% else %}
+                                    {% trans 'Normal' %}
+                                    {% endif %}
+                                    {% endif %}
+                                    <small>{% trans "Register time" %}： {{ request.user.date_joined }}</small>
+                                </p>
+                            </li>
+                            {% endif %}
+
+                            <!-- Menu Body -->
+                            <!--<li class="user-body">-->
+                            <!--<div class="row">-->
+                            <!--<div class="col-xs-4 text-center">-->
+                            <!--<a href="#">Followers</a>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-4 text-center">-->
+                            <!--<a href="#">Sales</a>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-4 text-center">-->
+                            <!--<a href="#">Friends</a>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash; /.row &ndash;&gt;-->
+                            <!--</li>-->
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a  href="{% url 'admin:password_change' %}" class="btn btn-default btn-flat">{% trans 'Change password' %}</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{% url 'admin:logout' %}" class="btn btn-default btn-flat">{% trans 'Log out' %}</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <li>
+                        {% if adminlte.demo %}
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            {% get_adminlte_option 'show_avatar' as adminlte_show_avatar  %}
+            {% if adminlte_show_avatar.valid and adminlte_show_avatar.show_avatar == 'on' %}
+            <div class="user-panel">
+                <div class="pull-left image">
+                    {% get_adminlte_option 'avatar_field' request as adminlte_avatar_field  %}
+                    {% if adminlte_avatar_field.valid and adminlte_avatar_field.avatar_field %}
+                    <img src="{{ adminlte_avatar_field.avatar_field }}" class="img-circle" alt="User Image">
+                    {% else %}
+                    <img src={% static "admin/adminlte-dist/img/default.jpg" %} class="img-circle" alt="User Image">
+                    {% endif %}
+                </div>
+                <div class="pull-left info">
+                    <p>{{ request.user.username }}</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> {% trans "Online" %}</a>
+                </div>
+            </div>
+            {% endif %}
+            <!-- search form -->
+            {% if adminlte.search_form %}
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="{% trans 'Search' %}...">
+                    <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+                </div>
+            </form>
+            {% endif %}
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+
+                <li class="header">NAVEGAÇÃO</li>
+                <li>
+                    <a id="adminIndex" href="{% url 'admin:index' %}">
+                        <i class="fa fa-dashboard"></i> <span>{% trans 'Dashboard' %}</span>
+                    </a>
+                </li>
+
+                {% get_menu request as app_list %}
+
+                {% include 'admin/menu.html' %}
+
+
+            </ul>
+
+
+
+
+
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    {% endif %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" {% if is_popup %}style="margin-left:0px; padding-top: 0px;"{% endif %}>
+        <!-- Content Header (Page header) -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="sobreSistema" tabindex="-1"
+             role="dialog" aria-labelledby="sobreSistema" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Sobre o sistema</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <strong>
+                            eMensageria OpenSource - Sistema de Mensageria do eSocial -
+                            versão: {{ VERSAO_EMENSAGERIA }}<br>
+                            Copyright (C) 2024 Marcelo Medeiros de Vasconcellos<br>
+                        </strong>
+                        <br>
+                        Este programa é um software livre: você pode redistribuí-lo e / ou modificá-lo
+                        sob os termos da GNU Affero General Public License
+                        conforme publicado pela Free Software Foundation, qualquer versão 3
+                        da Licença ou (conforme sua opção) qualquer versão posterior.<br>
+                        <br>
+                        <strong>
+                            Este programa é distribuído na esperança de que seja útil,
+                            mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita
+                            de COMERCIALIZAÇÃO ou ADEQUAÇÃO A UM DETERMINADO FIM.
+                            Consulte a GNU Affero General Public License para obter mais detalhes.
+                        </strong>
+                        <br>
+                        <br>
+                        Você recebeu uma cópia da Licença Pública Geral GNU Affero
+                        junto com este programa. Baixe a licença clicando em
+                        <a href="{% static 'LICENSE' %}">Licença GNU-AGPL-3</a>.<br>
+                        <br>
+                        Para maiores informações sobre a licença, consulte
+                        <a href="https://www.gnu.org/licenses/" target="_blank">
+                            https://www.gnu.org/licenses/
+                        </a>.
+                        <br>
+                        <br>
+                        <strong>Requisitos e Agradecimentos:</strong><br>
+                        <a href="https://www.python.org/" target="_blank">Python 3.8.5</a> |
+                        <a href="https://www.djangoproject.com/" target="_blank">Django 3.2</a> |
+                        <a href="https://www.postgresql.org/" target="_blank">Postgres 12</a> |
+                        <a href="https://adminlte.io/" target="_blank">Adminlte 2.3.6</a> |
+                        <a href="https://github.com/wuyue92tree/django-adminlte-ui/tree/{{ adminlte_version }}" target="_blank">
+                            django-adminlte-ui 1.5.1</a> |
+                        <a href="https://github.com/marcelomdevasconcellos/emensageria/blob/main/requirements.txt" target="_blank">
+                            Outros</a>
+                        <br>
+                        <br>
+                        <strong>Maiores informações:</strong><br>
+
+                        <a href="https://www.emensageria.com.br/" target="_blank">www.emensageria.com.br</a><br>
+                        <a href="https://github.com/marcelomdevasconcellos/emensageria" target="_blank">
+                            https://github.com/marcelomdevasconcellos/emensageria</a>
+                        <br>
+                        <br>
+                        <div style="text-align: center;">
+                            <strong>
+                            CONTRIBUA!
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% block page_content %}
+        {% endblock %}
+    </div>
+    <!-- /.content-wrapper -->
+    {% if not is_popup %}
+    <footer class="main-footer" style="padding: 5px;">
+        {% block footer %}
+        {% endblock %}
+    </footer>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+    {% endif %}
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+<script type="text/javascript" src="{% static 'js/serializejson/jquery.serializejson.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/json/json2.js' %}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src={% static "admin/plugins/jQueryUI/jquery-ui.min.js" %}></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script src={% static "admin/bootstrap/js/bootstrap.min.js" %}></script>
+<!-- Select2 -->
+<script src={% static "admin/plugins/select2/select2.full.min.js" %}></script>
+<!-- Slimscroll -->
+<script src={% static "admin/plugins/slimScroll/jquery.slimscroll.min.js" %}></script>
+<!-- FastClick -->
+<script src={% static "admin/plugins/fastclick/fastclick.js" %}></script>
+<!-- AdminLTE App -->
+<script src={% static "admin/adminlte-dist/js/app.min.js" %}></script>
+<!-- AdminLTE for demo purposes -->
+{% if adminlte.demo %}
+<script src={% static "admin/adminlte-dist/js/demo.js" %}></script>
+{% endif %}
+<script src="{% static 'admin/plugins/input-mask/jquery.inputmask.js' %}"></script>
+<script src="{% static 'admin/plugins/input-mask/jquery.inputmask.numeric.extensions.js' %}"></script>
+<script src="{% static 'admin/plugins/input-mask/jquery.inputmask.date.extensions.js' %}"></script>
+<script src="{% static 'admin/plugins/input-mask/jquery.inputmask.extensions.js' %}"></script>
+<script src="{% static 'admin/plugins/input-mask/jquery.maskMoney.js' %}" type="text/javascript"></script>
+<script src="{% static 'admin/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'admin/plugins/datatables/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'admin/external/moment.min.js' %}"></script>
+<script src="{% static 'admin/plugins/daterangepicker/daterangepicker.js' %}"></script>
+<script src="{% static 'admin/plugins/datepicker/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'admin/plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js' %}"></script>
+<script src="{% static 'admin/external/ckeditor.js' %}"></script>
+<script src="{% static 'admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js' %}"></script>
+
+
+<script type="application/javascript">
+$(function () {
+    $(".automate-textarea").wysihtml5();
+    $(".automate-data-table").DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true
+    });
+    $(".textarea").wysihtml5();
+});
+$(".automate-date").inputmask({mask: "d/m/y", placeholder: "dd/mm/yyyy"});
+$(".automate-datetime").inputmask({
+    mask: "d/m/y h:s",
+    placeholder: "dd/mm/yyyy hh:mm",
+    alias: "datetime",
+    hourFormat: "24"
+});
+$(".automate-time").inputmask({mask: "h:s", placeholder: "hh:mm", alias: "time", hourFormat: "24"});
+$(".automate-phone").inputmask("(99) 9999-9999");
+$(".automate-cell").inputmask("(99) 99999-9999");
+$(".automate-cpf").inputmask("999.999.999-99");
+$(".automate-cep").inputmask("99.999-999");
+$(".automate-year").inputmask("9999");
+$(".automate-integer").inputmask("integer");
+$(".automate-cpf-cnpj").inputmask("integer", {rightAlignNumerics: false});
+$(".automate-money").maskMoney({
+    prefix: 'R$ ',
+    allowNegative: true,
+    thousands: '.',
+    decimal: ',',
+    affixesStay: false
+});
+$(".esocial-valor-2").maskMoney({
+    allowNegative: true,
+    thousands: '',
+    decimal: '.',
+    precision: 2,
+    affixesStay: false
+});
+$(".esocial-valor-4").maskMoney({
+    allowNegative: true,
+    thousands: '',
+    decimal: '.',
+    precision: 2,
+    affixesStay: false
+});
+$(".automate-select").select2();
+$(".automate-date-range").daterangepicker({locale: {format: 'DD/MM/YYYY'}});
+$('.automate-date-calendar').datepicker({format: 'dd/mm/yyyy', language: 'pt-BR', autoclose: true});
+$(".automate-decimal").maskMoney({allowNegative: true, thousands: '.', decimal: ',', affixesStay: false});
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});</script>
+<script type="application/javascript">
+// use js control active status of siderbar-menu
+$(function() {
+    var menuActions = document.querySelectorAll('.sidebar-menu a')
+    for (var i in menuActions) {
+        var pathname = document.querySelector('#adminIndex').pathname
+
+        try {
+            if (window.location.pathname === pathname) {
+                menuActions[i].parentNode.setAttribute('class', 'active')
+                break
+            }
+
+            if (window.location.href.indexOf(menuActions[i].href) !== -1) {
+                if (menuActions[i].href===window.location.origin + pathname) {
+                    continue
+                }
+                console.log('menu matched.', window.location.href, menuActions[i].href);
+                menuActions[i].parentNode.setAttribute('class', 'active');
+                if (menuActions[i].parentNode.parentNode.getAttribute('class') !== 'sidebar-menu') {
+                    menuActions[i].parentNode.parentNode.setAttribute('class', 'treeview-menu menu-open');
+                    menuActions[i].parentNode.parentNode.parentNode.setAttribute('class', 'treeview active');
+                }
+                break
+            }
+        } catch (e) {
+            console.log(window.location.href, menuActions[i].href, e)
+        }
+    }
+
+    var topMenuActions = document.querySelectorAll('.top-menu a')
+    for (var j in topMenuActions) {
+        if (window.location.href.indexOf(topMenuActions[j].href) !== -1) {
+            topMenuActions[j].parentNode.setAttribute('class', 'active');
+            console.log('top menu matched.', window.location.href, topMenuActions[j].href);
+        }
+    }
+
+
+})
+</script>
+<script type="application/javascript">
+    $(document).ready(function() {
+        {# timeout required because filtered is added after load #}
+        setTimeout(function() {
+            $('select:not(.filtered):not(.admin-autocomplete)').select2({dropdownAutoWidth : true});
+        }, 0);
+    });
+    function removeSelect2() {
+        $('select:not(.filtered):not(.admin-autocomplete)').select2('destroy');
+    };
+    function appendSelect2() {
+        $('select:not(.filtered):not(.admin-autocomplete)').select2({dropdownAutoWidth : true});
+    };
+</script>
+
+{% block extrajs %}{% endblock %}
+
+</body>
+</html>

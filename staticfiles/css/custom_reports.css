@@ -1,0 +1,158 @@
+/*CSS COSTUMIZADO DOS RELATÓRIOS DO SISTEMA*/
+
+body {
+  font-family: "FontAwesome";
+  color: #000;
+  margin: -60px;
+  padding: 0;
+}
+
+.top-report {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.nome-sistema {
+  font-size: 16px;
+}
+
+.nome-relatorio {
+  font-size: 14px;
+  font-style: italic;
+}
+
+table.info-servidor,
+table.historico {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+}
+
+table.info-servidor td,
+table.historico {
+  padding: 2px 5px 3px 5px;
+}
+
+table,
+table tr,
+table td {
+  border: 1px solid #000;
+}
+
+table.info-servidor .label,
+table.historico .label {
+  font-size: 10px;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.historico {
+  margin-top: 5px;
+}
+
+.sem-borda,
+.sem-borda td {
+  border: none;
+}
+
+.borda-left {
+  border-left: 1px solid #000 !important;
+}
+
+.quadro-regra {
+  margin-top: 10px;
+  font-size: 13px;
+  border: 1px solid #000;
+  break-inside: avoid;
+}
+
+.fundamentos-regra {
+  float: left;
+  margin: 3px 0 5px 5px;
+  width: 75%;
+}
+
+.sexo-regra {
+  float: right;
+  margin: 3px 5px 5px 5px;
+  padding: 2px 20px 2px 20px;
+  background: #bbb;
+  text-align: center;
+  font-weight: bold;
+}
+
+div.box-regra {
+  margin: 0 5px 2px 5px;
+  font-size: 11px;
+}
+
+table.tabela-regra {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead tr td {
+  font-weight: bold;
+  text-align: center;
+  background: #bbb;
+}
+
+tbody tr td {
+  padding: 3px 5px 3px 5px;
+}
+
+td.align-right {
+  text-align: right;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.m-r-15 {
+  margin-right: 15px;
+}
+
+.p-r-20 {
+  padding-right: 20px;
+}
+
+.p-l-10 {
+  padding-left: 10px;
+}
+
+.box-info-rodape-l {
+  width: 25%;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.box-info-rodape-r {
+  width: 75%;
+  line-height: 20px;
+}
+
+.sem-borda-top {
+  border-top: none;
+}
+
+.em-desenvolvimento {
+  border: 1px solid #8b0000 !important;
+}

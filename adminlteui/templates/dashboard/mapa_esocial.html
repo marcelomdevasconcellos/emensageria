@@ -1,0 +1,593 @@
+<!-- eMensageriaPro - Sistema de Gerenciamento de Eventos<www.emensageria.com.br>Copyright (C) 2018 Marcelo Medeiros de Vasconcellos This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details. You should have received a copy of the GNU Affero General Public License along with this program. If not, see<https://www.gnu.org/licenses/>. Este programa é distribuído na esperança de que seja útil, mas SEM QUALQUER GARANTIA; sem mesmo a garantia implícita de COMERCIABILIDADE OU ADEQUAÇÃO A UM DETERMINADO FIM. Veja o Licença Pública Geral GNU Affero para mais detalhes. Este programa é software livre: você pode redistribuí-lo e / ou modificar sob os termos da licença GNU Affero General Public License como publicado pela Free Software Foundation, seja versão 3 do Licença, ou (a seu critério) qualquer versão posterior. Você deveria ter recebido uma cópia da Licença Pública Geral GNU Affero junto com este programa. Se não, veja<https://www.gnu.org/licenses/>.-->
+{% extends 'base.html' %}
+{% load templatetags %}
+{% block content %}
+{% if not output %}
+{#    <meta http-equiv="refresh" content="20">#}
+    <section class="content-header">
+        <h1>eSocial
+            <small>Mapa de Processamento</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="#">Mapa de Processamento</a></li>
+            <li class="active">eSocial</li>
+        </ol>
+    </section>
+    <section class="content">
+        {% if messages %}
+        <div class="row">
+            <div class="pad margin no-print">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}"
+                     style="margin-bottom: 0!important;">{{ message }}
+                </div>
+             {% endfor %}
+            </div>
+        </div>{% endif %}
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li {% if tab == 'master' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_esocial' tab='master' %}">
+                                Visão Geral
+                            </a>
+                        </li>
+                        <li {% if tab == 'cadastrados' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_esocial' tab='cadastrados' %}">
+                                Cadastrados
+                            </a>
+                        </li>
+                        <li {% if tab == 'importados' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_esocial' tab='importados' %}">
+                                Importados
+                            </a>
+                        </li>
+                        <li {% if tab == 'erros_validacao' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_esocial' tab='erros_validacao' %}">
+                                Erros de Validação
+                            </a>
+                        </li>
+                        <li {% if tab == 'validados' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_esocial' tab='validados' %}">
+                                Validados
+                            </a>
+                        </li>
+                        <li {% if tab == 'erros_envio' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_esocial' tab='erros_envio' %}">
+                                Erros de Envio
+                            </a>
+                        </li>
+                        <li {% if tab == 'enviados' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_esocial' tab='enviados' %}">
+                                Enviados
+                            </a>
+                        </li>
+                        <li {% if tab == 'processados' %}class="active"{% endif %}>
+                            <a href="{% url 'mapa_esocial' tab='processados' %}">
+                                Processados
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    {% include 'painel_esocial.html' %}
+
+
+
+        {% if tab == 'cadastrados' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Cadastrados</h3>
+                        (Listagem de eventos com status: Cadastrado, Duplicado, Gerado ou Assinado)
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped automate-data-table">
+                            <thead>
+                            <tr>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
+                                <th>Identidade</th>
+                                <th>Status</th>{% if not output %}
+                                <th width="80px">Ações</th>{% endif %}</tr>
+                            </thead>
+                            <tbody>{% for a in esocial_cadastrados %}
+                                <tr>
+                                    <td style="display:none;"></td>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.get_status_display }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{% url a.tabela_validar_api pk=a.id tab='mapa' %}">
+                                                <button class="btn btn-success">
+                                                    <i class="fa fa-fw fa-thumbs-o-up"></i>
+                                                    Validar
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% if tab == 'importados' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Importados</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped automate-data-table">
+                            <thead>
+                            <tr>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
+                                <th>Identidade</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for a in esocial_importados %}
+                                <tr>
+                                    <td style="display:none;"></td>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.get_status_display }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% if tab == 'validados' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Validados</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped automate-data-table">
+                            <thead>
+                            <tr>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
+                                <th>Identidade</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for a in esocial_validados %}
+                                <tr>
+                                    <td style="display:none;"></td>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.get_status_display }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if tab == 'erros_validacao' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Erros de Validação</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped automate-data-table">
+                            <thead>
+                            <tr>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
+                                <th>Identidade</th>
+                                <th>Status</th>
+                                {% if not output %}
+                                <th width="80px">Ações</th>
+                                {% endif %}
+                            </tr>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for a in esocial_erros_validacao %}
+                                <tr>
+                                    <td style="display:none;"></td>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>{{ a.get_status_display }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{% url a.tabela_salvar pk=a.id %}">
+                                                <button class="btn btn-warning">
+                                                    <i class="fa fa-fw fa-edit"></i>
+                                                    Corrigir
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% if tab == 'erros_envio' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Erros reportados pelo eSocial</h3></div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped automate-data-table">
+                            <thead>
+                            <tr>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
+                                <th>Identidade</th>
+                                <th>Data/Hora de Envio</th>
+                                <th>Data/Hora de Consulta</th>
+                                <th>Status</th>{% if not output %}
+                                <th width="80px">Ações</th>{% endif %}</tr>
+                            </thead>
+                            <tbody>{% for a in esocial_erros_envio %}
+                                <tr>
+                                    <td style="display:none;"></td>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>
+                                    {% if a.data_hora_envio %}
+                                        <span style="display:none">{{ a.data_hora_envio|date:"Y-m-d H:i" }}</span>
+                                        {{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
+                                        {% if a.transmissor_lote_esocial_id == transmissor_enviado.id or a.transmissor_lote_esocial_error_id == transmissor_enviado.id %}
+                                            <small class="label pull-right bg-green">recente</small>
+                                        {% endif %}
+                                    {% endif %}
+                                    </td>
+                                    <td>
+                                    {% if a.data_hora_consulta %}
+                                        <span style="display:none">{{ a.data_hora_consulta|date:"Y-m-d H:i" }}</span>
+                                        {{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}
+                                        {% if a.transmissor_lote_esocial_id == transmissor_consultado.id or a.transmissor_lote_esocial_error_id == transmissor_consultado.id %}
+                                            <small class="label pull-right bg-green">recente</small>
+                                        {% endif %}
+                                    {% endif %}
+                                    </td>
+                                    <td>{{ a.get_status_display }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{% url a.tabela_salvar pk=a.id %}">
+                                                <button class="btn btn-warning">
+                                                    <i class="fa fa-fw fa-edit"></i>
+                                                    Corrigir
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>{% endfor %}</tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if tab == 'enviados' %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border"><h3 class="box-title">Enviados</h3>
+                        (Listagem de eventos com status: Enviado)
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped automate-data-table">
+                            <thead>
+                            <tr>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
+                                <th>Identidade</th>
+                                <th>Data/Hora de Envio</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for a in esocial_enviados %}
+                                <tr>
+                                    <td style="display:none;"></td>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>
+                                    {% if a.data_hora_envio %}
+                                        <span style="display:none">{{ a.data_hora_envio|date:"Y-m-d H:i" }}</span>
+                                        {{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
+                                        {% if a.transmissor_lote_esocial_id == transmissor_enviado.id or a.transmissor_lote_esocial_error_id == transmissor_enviado.id %}
+                                            <small class="label pull-right bg-green">recente</small>
+                                        {% endif %}
+                                    {% endif %}
+                                    </td>
+                                    <td>{{ a.get_status_display }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>{% endif %}{% if tab == 'processados' %}<!-- erros_validacao -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-success">
+                    <div class="box-header with-border"><h3 class="box-title">Processados</h3>
+                        (Listagem de eventos com status: Processado)
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped automate-data-table">
+                            <thead>
+                            <tr>
+                                <th style="display:none;"></th>
+                                <th width="30px">Evento</th>
+                                <th>Identidade</th>
+                                <th>Data/Hora de Envio</th>
+                                <th>Data/Hora de Consulta</th>
+                                <th>Status</th>
+                                <th width="30px">Recibo</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for a in esocial_processados %}
+                                <tr>
+                                    <td style="display:none;"></td>
+                                    <td>{{ a.evento }}</td>
+                                    <td>{{ a.identidade }}</td>
+                                    <td>
+                                    {% if a.data_hora_envio %}
+                                        <span style="display:none">{{ a.data_hora_envio|date:"Y-m-d H:i" }}</span>
+                                        {{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}
+                                        {% if a.transmissor_lote_esocial_id == transmissor_enviado.id or a.transmissor_lote_esocial_error_id == transmissor_enviado.id %}
+                                            <small class="label pull-right bg-green">recente</small>
+                                        {% endif %}
+                                    {% endif %}
+                                    </td>
+                                    <td>
+                                    {% if a.data_hora_consulta %}
+                                        <span style="display:none">{{ a.data_hora_consulta|date:"Y-m-d H:i" }}</span>
+                                        {{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}
+                                        {% if a.transmissor_lote_esocial_id == transmissor_consultado.id or a.transmissor_lote_esocial_error_id == transmissor_consultado.id %}
+                                            <small class="label pull-right bg-green">recente</small>
+                                        {% endif %}
+                                    {% endif %}
+                                    </td>
+                                    <td>{{ a.get_status_display }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{% url a.tabela_recibo pk=a.id output='pdf' %}">
+                                                <span class="btn btn-primary" title="Imprimir Recibo">
+                                                    <i class="fa fa-fw fa-print"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+    <script>$(document).ready(function () {
+        $('#btnVisualizar').click(function () {
+            var formAction = '{% url 'mapa_esocial' tab='master' %}';
+            $('#FormRelatorio').attr('action', formAction);
+            $('#FormRelatorio').attr('target', '_self');
+            $('#FormRelatorio').submit();
+        });
+        $('#btnImprimir').click(function () {
+            var formAction = '{% url 'mapa_esocial' tab='master' %}';
+            $('#FormRelatorio').attr('action', formAction);
+            $('#FormRelatorio').attr('target', '_blank');
+            $('#FormRelatorio').submit();
+        });
+    });</script>
+{% else %}
+    {%  if output == 'html' %}
+    <section class="invoice">
+        <div class="row">
+            <div class="col-xs-12">{% endif %}
+                <h2 class="page-header">eSocial -
+                    {% if tab == 'cadastrados' %}Eventos cadastrados
+                    {% elif tab == 'importados' %}Eventos importados
+                    {% elif tab == 'validados' %}Eventos validados
+                    {% elif tab == 'erros_validacao' %}Eventos com erros na validação
+                    {% elif tab == 'enviados' %}Eventos enviados
+                    {% elif tab == 'erros_envio' %}Eventos com erros reportados pelo eSocial
+                    {% elif tab == 'processados' %}Eventos consultados
+                    {% endif %}
+                    <small class="pull-right">
+                        Usuário: {{ user.first_name }} {{ user.last_name }}<br>
+                        Data: {{ data }}</small>
+                </h2>
+    {%  if output == 'html' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 table-responsive">{% endif %}
+                {% if tab == 'cadastrados' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="30px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in esocial_cadastrados %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'importados' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="30px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in esocial_importados %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'erros_validacao' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="30px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in esocial_erros_validacao %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'validados' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="30px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in esocial_validados %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'erros_envio' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="30px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Data/Hora de Envio</th>
+                            <th>Data/Hora de Consulta</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in esocial_erros_envio %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}</td>
+                                <td>{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'enviados' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="30px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Data/Hora de Envio</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in esocial_enviados %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                    <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% elif tab == 'processados' %}
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th width="30px">Evento</th>
+                            <th>Identidade</th>
+                            <th>Data/Hora de Envio</th>
+                            <th>Data/Hora de Consulta</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for a in esocial_processados %}
+                            <tr>
+                                <td>{{ a.evento }}</td>
+                                <td>{{ a.identidade }}</td>
+                                <td>{{ a.data_hora_envio|date:"SHORT_DATETIME_FORMAT" }}</td>
+                                <td>{{ a.data_hora_consulta|date:"SHORT_DATETIME_FORMAT" }}</td>
+                                <td>{{ a.get_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+    {%  if output == 'html' %}
+            </div>
+        </div>
+    </section>{% endif %}
+    {% endif %}
+{% endblock content %}

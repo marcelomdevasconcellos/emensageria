@@ -1,0 +1,86 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list templatetags_fieldset %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static "admin/plugins/datatables/dataTables.bootstrap.css" %}">
+{% if cl.formset or action_form %}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{% endif %}
+{{ media.css }}
+{% if not actions_on_top and not actions_on_bottom %}
+<style>
+    #changelist table thead th:first-child {width: inherit}
+</style>
+{% endif %}
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+{{ media.js }}
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-list{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'admin:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
+    <li><a href="javascript:void(0)">{{ cl.opts.app_config.verbose_name }}</a></li>
+    <li class="active">{{ cl.opts.verbose_name_plural|capfirst }}</li>
+</ol>
+{% endblock %}
+{% endif %}
+
+{% block content_title %} {{ cl.opts.verbose_name_plural|capfirst }} {% endblock %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                {% for d in dashboards %}
+                <li {% ifequal original.id d.id %}class="active"{% else %}class=""{% endifequal %}>
+                    <a href="#{{d.nome|to_slug}}" data-toggle="tab" aria-expanded="{% ifequal original.id d.id %}true{% else %}False{% endifequal %}">
+                        {{d.nome}}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="tab-content">
+                {% for d in dashboards %}
+                <div class="tab-pane{% ifequal original.id d.id %} active{% endifequal %}" id="{{d.nome|to_slug}}">
+                    {% block object-tools %}
+                    <div {% if cl.has_filters or cl.search_fields %}
+                         class="col-md-12 col-sm-12 col-xs-12 text-right"
+                         {% else %}class="col-md-12 text-right"{% endif %}>
+                        {% block object-tools-items %}
+                        {% change_list_object_tools %}
+                        {% endblock %}
+                        {% if request.user.is_superuser %}
+                        <a href="/admin/acolhe/acolhedashboards/{{d.id}}/change/" 
+                        class="btn btn-info">
+                            <i class="fa fa-edit"></i> &nbsp; Editar
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endblock %}
+                    <iframe src="{{d.link}}"
+                            frameborder="0"
+                            width="{{d.width}}"
+                            height="{{d.height}}"
+                            allowtransparency></iframe>
+                </div> 
+                {% endfor %}
+            </div>
+        </div>
+        <br class="clear" />
+    </div>
+</div>
+
+
+{% endblock %}

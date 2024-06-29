@@ -1,0 +1,284 @@
+{% load esocial_custom_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Recibo dos Eventos</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'dist/css/AdminLTE.min.css' %}">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        table.bordasimples {
+            border-collapse: collapse;
+        }
+
+        table.bordasimples tr td {
+            border: 1px solid #333333;
+        }
+
+        * {
+            color: #000;
+            font-size: 12px;
+            font-family: Arial, Tahoma, Verdana;
+        }
+
+        h1 {
+            font-weight: bold;
+            color: #000;
+            font-size: 32px;
+            font-family: Arial, Tahoma, Verdana;
+        }
+
+        h2 {
+            font-weight: bold;
+            color: #000;
+            font-size: 24px;
+            font-family: Arial, Tahoma, Verdana;
+        }
+
+        h3 {
+            font-weight: bold;
+            color: #000;
+            font-size: 20px;
+            font-family: Arial, Tahoma, Verdana;
+        }
+
+        h4 {
+            font-weight: bold;
+            color: #000;
+            font-size: 16px;
+            font-family: Arial, Tahoma, Verdana;
+        }
+    </style>
+</head>
+<body>
+
+{% with ocorrencias_json=evento.ocorrencias_json|to_json %}
+    {% with retorno=evento.retorno_consulta_json|to_json %}
+
+        <h4>Recibo do evento - {{ evento.identidade }}</h4>
+        Gerado em <strong>{{ data|date:"SHORT_DATE_FORMAT" }}</strong> por
+        <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+
+        <h4>Identificação</h4>
+
+        <table class="bordasimples" width="900px">
+            <tr>
+                <td colspan="6">
+                    Identidade:
+                    <strong>{{ evento.identidade }}</strong>
+                </td>
+                <td colspan="3">
+                    Versão do XML:
+                    <strong>{{ evento.get_versao_display }}</strong>
+                </td>
+                <td colspan="3">
+                    Tipo de Ambiente:
+                    <strong>{{ evento.get_tpamb_display }}</strong>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Processo de Emissão</h4>
+
+        <table class="bordasimples" width="900px">
+            <tr>
+                <td>
+                    Processo:
+                    <strong>{{ evento.get_procemi_display }}</strong>
+                </td>
+                <td>
+                    Versão:
+                    <strong>{{ evento.verproc }}</strong>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Empregador</h4>
+
+        <table class="bordasimples" width="900px">
+            <tr>
+                <td>
+                    Tipo de Inscrição:
+                    <strong>{{ evento.get_tpinsc_display }}</strong>
+                </td>
+                <td>
+                    Número de Inscrição:
+                    <strong>{{ evento.nrinsc }}</strong>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Recepção</h4>
+
+        <table class="bordasimples" width="900px">
+            <tr>
+                <td>Tipo de Ambiente:
+                    <strong>
+                        {{ retorno.evento.retornoEvento.eSocial.retornoEvento.recepcao.tpAmb }}
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td>Data/Hora:
+                    <strong>
+                        {{ retorno.evento.retornoEvento.eSocial.retornoEvento.recepcao.dhRecepcao }}
+
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td>Versão do Aplicativo:
+                    <strong>
+                        {{ retorno.evento.retornoEvento.eSocial.retornoEvento.recepcao.versaoAppRecepcao }}
+
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td>Protocolo do Lote:
+                    <strong>
+                        {{ retorno.evento.retornoEvento.eSocial.retornoEvento.recepcao.protocoloEnvioLote }}
+
+                    </strong>
+                </td>
+            </tr>
+        </table>
+        <h4>Processamento</h4>
+
+        <table class="bordasimples" width="900px">
+            <tr>
+                <td>Código:
+                    <strong>
+                        {{ retorno.evento.retornoEvento.eSocial.retornoEvento.processamento.cdResposta }}
+
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td>Descrição:
+                    <strong>
+                        {{ retorno.evento.retornoEvento.eSocial.retornoEvento.processamento.descResposta }}
+
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td>Versão do Aplicativo:
+                    <strong>
+                        {{ retorno.evento.retornoEvento.eSocial.retornoEvento.processamento.versaoAppProcessamento }}
+
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td>Data/Hora:
+                    <strong>
+                        {{ retorno.evento.retornoEvento.eSocial.retornoEvento.processamento.dhProcessamento }}
+
+                    </strong>
+                </td>
+            </tr>
+        </table>
+
+        <h4>Recibo</h4>
+        <table class="bordasimples" width="900px">
+            <tr>
+                <td>
+                    Número:
+                    <strong>{{ retorno.evento.retornoEvento.eSocial.retornoEvento.recibo.nrRecibo }}</strong>
+                </td>
+                <td>
+                    Hash:
+                    <strong>{{ retorno.evento.retornoEvento.eSocial.retornoEvento.recibo.hash }}</strong>
+                </td>
+            </tr>
+        </table>
+        <br>
+
+        <h4>Ocorrências</h4>
+        <br>
+        <table class="bordasimples" width="900px">
+            <tr>
+                <td bgcolor="#CCC" colspan="1">Tipo</td>
+                <td bgcolor="#CCC" colspan="1">Código</td>
+                <td bgcolor="#CCC" colspan="10">Descrição</td>
+            </tr>
+
+            {% for a in retorno_ocorrencias %}
+
+                {% if ocorrencias_json.processamento.ocorrencias.ocorrencia|is_list %}
+
+
+                    {% for c in ocorrencias_json.processamento.ocorrencias.ocorrencia %}
+                        <tr>
+                            <td>{% if c|finditem:'tipo' %}
+                                {% if c|finditem:'tipo' == '1' %}(ERRO)
+                                {% elif c|finditem:'tipo' == '2' %}(ADVERTÊNCIA)
+                                {% endif %}
+                            {% endif %}
+                            </td>
+                            <td>
+                                {% if c|finditem:'codigo' %}
+                                    {{ c|finditem:'codigo' }}{% endif %}
+                            </td>
+                            <td>
+                                {% if c|finditem:'descricao' %}
+                                    {{ c|finditem:'descricao' }}{% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="12">
+                                {% if c|finditem:'localizacao' %}
+                                    {{ c|finditem:'localizacao' }}{% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    {% for a, c in ocorrencias_json.processamento.ocorrencias.items %}
+                        <tr>
+                            <td>{% if c|finditem:'tipo' %}
+                                {% if c|finditem:'tipo' == '1' %}ERRO
+                                {% elif c|finditem:'tipo' == '2' %}ADVERTÊNCIA
+                                {% endif %}
+                            {% endif %}
+                            </td>
+                            <td>
+                                {% if c|finditem:'codigo' %}
+                                    {{ c|finditem:'codigo' }}{% endif %}
+                            </td>
+                            <td>
+                                {% if c|finditem:'descricao' %}
+                                    {{ c|finditem:'descricao' }}{% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                {% if c|finditem:'localizacao' %}
+                                    {{ c|finditem:'localizacao' }}{% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            {% empty %}
+                <tr>
+                    <td colspan="12">
+                        Não foram registradas ocorrências para este evento!
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endwith %}
+{% endwith %}
+</body>
+</html>
