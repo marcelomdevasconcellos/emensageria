@@ -208,7 +208,7 @@ CONSTANCE_CONFIG = {
                            'Link do manual do sistema.',
                            str),
 
-    'FILES_PATH': ('/arquivos',
+    'FILES_PATH': ('/home/arquivos',
                    'Caminho relativo do local aonde serão armazenados os arquivos. Insira "/" no início para definir diretórios absolutos.',
                    str),
 
