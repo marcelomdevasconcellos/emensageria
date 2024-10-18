@@ -1,4 +1,4 @@
-# eMensageria
+# eMensageria OpenSource
 
 eMensageria - Sistema de Mensageria Opensource do eSocial <www.emensageria.com.br>
 
