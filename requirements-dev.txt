@@ -48,3 +48,9 @@ dicttoxml==1.7.16
 urllib3==1.26.19
 setuptools==65.5.1
 future==0.18.3
+
+
+pip-audit  # DEV
+django-debug-toolbar  # DEV
+flake8  # DEV
+mypy  # DEV

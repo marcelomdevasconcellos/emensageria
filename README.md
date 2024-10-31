@@ -243,13 +243,6 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-## Backlog
-
-- Docker
-- Impressão de recibos de transmissores
-- Impressão e geração de relatórios
-- Importação e recuperação de arquivos
-
 ## Contato
 
 Marcelo Medeiros de Vasconcellos <marcelomdevasconcellos@gmail.com>

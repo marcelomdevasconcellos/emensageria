@@ -142,7 +142,7 @@ LINK_WEBSITE = env('LINK_WEBSITE', default='')
 
 # Configurações de Versão do Aplicativo
 VERSAO_EMENSAGERIA = '1.8.0'
-VERSAO_LAYOUT_ESOCIAL = env('VERSAO_LAYOUT_ESOCIAL', default='v_S_01_02_00')
+VERSAO_LAYOUT_ESOCIAL = env('VERSAO_LAYOUT_ESOCIAL', default='v_S_01_03_00')
 ESOCIAL_TPAMB = env('ESOCIAL_TPAMB', default='2')
 ESOCIAL_PROCEMI = env('ESOCIAL_PROCEMI', default='1')
 
@@ -151,6 +151,41 @@ VERSOES_ESOCIAL = [
     'v_S_01_01_00',
     'v_S_01_02_00',
     'v_S_01_03_00', ]
+
+# Configurações para o envio de emails
+EMAIL_SUBJECT_PREFIX = env('EMAIL_SUBJECT_PREFIX', default="[eMensageriaOpenSource] ")
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST', default='')
+EMAIL_PORT = env('EMAIL_PORT', default=587)
+EMAIL_HOST_USER = env('SERVER_EMAIL', default='')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
+SERVER_EMAIL = env('SERVER_EMAIL', default='')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS', default=True)
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='')
+
+LOG_FILENAME = "emensageria.log"
+LOG_DIR = os.path.join(BASE_DIR, 'logs')
+os.makedirs(LOG_DIR, exist_ok=True)  # Cria o diretório de logs, caso não exista
+
+# Função para processar a variável ADMINS
+def parse_admins(admins_string):
+    if not admins_string:
+        return []
+    admins = []
+    for admin in admins_string.split(";"):
+        if admin.strip():
+            name, email = admin.split(",")
+            admins.append((name.strip(), email.strip()))
+    return admins
+
+ADMINS = parse_admins(env('ADMINS', default='Marcelo Vasconcellos, marcelomdevasconcellos@gmail.com;'))
+
+from django.utils.log import DEFAULT_LOGGING as LOGGING
+
+LOGGING['handlers']['mail_admins']['include_html'] = True
+
+SEND_BROKEN_LINK_EMAILS = True
+MANAGERS = ADMINS
 
 # caminho dos certificados
 CERT_PATH = env('CERT_PATH', default='certificados/')
