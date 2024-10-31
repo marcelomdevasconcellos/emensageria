@@ -25,9 +25,10 @@ eMensageria - Sistema de Mensageria Opensource do eSocial <www.emensageria.com.b
 
 ## Requisitos de Sistema
 
-- Python (versão 3.8.5);
-- Django (versão 3.2);
-- Postgres 12;
+- Ubuntu 22.04 (LTS) x64;
+- Python (versão 3.10);
+- Django (versão 3.2.25);
+- Postgres 16;
 - outros requisitos no arquivo requirements.txt
 - cURL
   - Esta biblioteca é nativa do Linux/Mac, para quem instalar o sistema em servidor Windows é necessário instalar a biblioteca e configurar a variável CURL_PATH no arquivo 'config/.env'. Link da biblioteca para download: https://curl.se/download.html
