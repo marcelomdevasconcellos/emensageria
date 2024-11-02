@@ -52,3 +52,6 @@ pip-audit  # DEV
 django-debug-toolbar  # DEV
 flake8  # DEV
 mypy  # DEV
+djangorestframework-stubs
+types-python-dateutil
+types-xmltodict

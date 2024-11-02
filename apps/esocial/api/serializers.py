@@ -1,16 +1,8 @@
 import xmltodict
-from rest_framework.serializers import (
-    ModelSerializer,
-    JSONField,
-    CharField,
-    ValidationError,
-)
+from rest_framework.serializers import (CharField, JSONField, ModelSerializer, ValidationError)
 
-from ..choices import EVENTO_ORIGEM_API, STATUS_EVENTO_IMPORTADO
-from ..choices import VERSIONS_CODE
-from ..models import (
-    Eventos, TransmissorEventos, Transmissor
-)
+from ..choices import EVENTO_ORIGEM_API, STATUS_EVENTO_IMPORTADO, VERSIONS_CODE
+from ..models import (Eventos, Transmissor, TransmissorEventos)
 
 
 class TransmissorSerializer(ModelSerializer):
@@ -37,9 +29,12 @@ class EventosSerializer(ModelSerializer):
     tpamb_txt = CharField(source='get_tpamb_display', read_only=True)
     procemi_txt = CharField(source='get_procemi_display', read_only=True)
     origem_txt = CharField(source='get_origem_display', read_only=True)
-    transmissor = TransmissorEventosSerializer(source='transmissor_evento', many=False, read_only=True)
+    transmissor = TransmissorEventosSerializer(
+        source='transmissor_evento', many=False, read_only=True)
 
-    def create(self, validated_data):
+    def create(
+            self,
+            validated_data):
         from config.settings import ESOCIAL_TPAMB
         validated_data['origem'] = EVENTO_ORIGEM_API
         validated_data['is_aberto'] = False
@@ -49,14 +44,16 @@ class EventosSerializer(ModelSerializer):
             import json
             import xml.etree.ElementTree as ET
             from ..choices import EVENTO_COD
-            if not '<eSocial>' in validated_data.get('evento_xml'):
-                validated_data['evento_xml'] = '<eSocial>' + validated_data.get('evento_xml') + '</eSocial>'
+            if '<eSocial>' not in validated_data.get('evento_xml'):
+                validated_data['evento_xml'] = '<eSocial>' + validated_data.get(
+                    'evento_xml') + '</eSocial>'
 
             evento = validated_data['evento']
             evento_codigo = EVENTO_COD[evento]['codigo']
             versao = validated_data['versao']
 
-            def recursive_update_datefield(elem2):
+            def recursive_update_datefield(
+                    elem2):
                 from dateutil import parser as dateutil_parser
                 for elem in elem2:
                     if elem.text and len(elem.text) == 10 and len(elem.text.split('-')) == 3:
@@ -65,7 +62,8 @@ class EventosSerializer(ModelSerializer):
                     else:
                         recursive_update_datefield(elem)
 
-            ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{versao}")
+            ET.register_namespace(
+                "", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{versao}")
             xml_obj = ET.fromstring(validated_data['evento_xml'])
             for elem in xml_obj:
                 recursive_update_datefield(elem)
@@ -75,7 +73,10 @@ class EventosSerializer(ModelSerializer):
 
         return super().create(validated_data)
 
-    def update(self, instance, validated_data):
+    def update(
+            self,
+            instance,
+            validated_data):
         from config.settings import ESOCIAL_TPAMB
         validated_data['origem'] = EVENTO_ORIGEM_API
         validated_data['is_aberto'] = False
@@ -88,14 +89,16 @@ class EventosSerializer(ModelSerializer):
             import json
             import xml.etree.ElementTree as ET
             from ..choices import EVENTO_COD
-            if not '<eSocial>' in validated_data.get('evento_xml'):
-                validated_data['evento_xml'] = '<eSocial>' + validated_data.get('evento_xml') + '</eSocial>'
+            if '<eSocial>' not in validated_data.get('evento_xml'):
+                validated_data['evento_xml'] = '<eSocial>' + validated_data.get(
+                    'evento_xml') + '</eSocial>'
 
             evento = validated_data['evento']
             evento_codigo = EVENTO_COD[evento]['codigo']
             versao = validated_data['versao']
 
-            def recursive_update_datefield(elem2):
+            def recursive_update_datefield(
+                    elem2):
                 from dateutil import parser as dateutil_parser
                 for elem in elem2:
                     if elem.text and len(elem.text) == 10 and len(elem.text.split('-')) == 3:
@@ -104,7 +107,8 @@ class EventosSerializer(ModelSerializer):
                     else:
                         recursive_update_datefield(elem)
 
-            ET.register_namespace("", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{versao}")
+            ET.register_namespace(
+                "", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{versao}")
             xml_obj = ET.fromstring(validated_data['evento_xml'])
             for elem in xml_obj:
                 recursive_update_datefield(elem)
@@ -113,7 +117,9 @@ class EventosSerializer(ModelSerializer):
             validated_data['evento_json'] = json.dumps(dict.get('eSocial'))
         return super().update(instance, validated_data)
 
-    def validate(self, data):
+    def validate(
+            self,
+            data):
         versao = data.get("versao")
         evento = data.get("evento")
         if evento not in VERSIONS_CODE[versao]:

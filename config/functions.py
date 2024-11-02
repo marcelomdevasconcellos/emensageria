@@ -1,7 +1,7 @@
 import codecs
 import os
 
-import xmlschema
+import xmlschema  # type: ignore
 from lxml import etree
 
 

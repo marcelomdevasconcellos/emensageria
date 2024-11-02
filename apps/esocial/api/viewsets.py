@@ -27,10 +27,10 @@ class EventosViewSet(ModelViewSet):
 
     def get_queryset(self):
         filter = {}
-        if self.request.query_params.get('user_id'):
-            filter['created_by_id'] = int(self.request.query_params.get('user_id'))
-        if self.request.query_params.get('identidade'):
-            filter['identidade'] = self.request.query_params.get('identidade')
+        filter['created_by_id'] = self.request.query_params.get('user_id') \
+            if self.request.query_params.get('user_id') else None
+        filter['identidade'] = self.request.query_params.get('identidade') \
+            if self.request.query_params.get('identidade') else None
         return Eventos.objects.filter(**filter).all()
 
     @action(detail=True, methods=['get'], url_path='atualizar-identidade')
@@ -91,7 +91,9 @@ class EventosViewSet(ModelViewSet):
                              'retorno_envio_lote': retorno.get('retorno_envio'), })
         else:
             return Response({'retorno': 'error',
-                             'mensagem': 'Não foi possivel enviar o evento, pois somente poderá ser enviado com os status "Aguardando envio" ou "Importado"'})
+                             'mensagem': 'Não foi possivel enviar o evento, pois somente '
+                                         'poderá ser enviado com os status '
+                                         '"Aguardando envio" ou "Importado"'})
 
     @action(detail=True, methods=['get'], url_path='consultar')
     def consultar(self, request, pk=None):
@@ -117,4 +119,6 @@ class EventosViewSet(ModelViewSet):
                              'retorno_consulta_lote': retorno.get('retorno_consulta'), })
         else:
             return Response({'retorno': 'error',
-                             'mensagem': 'Não foi possivel consultar o evento, pois o mesmo somente poderá ser consultado caso esteja com os status "Enviado" ou "Consultado"'})
+                             'mensagem': 'Não foi possivel consultar o evento, pois o mesmo'
+                                         ' somente poderá ser consultado caso esteja com '
+                                         'os status "Enviado" ou "Consultado"'})
