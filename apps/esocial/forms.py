@@ -1,8 +1,8 @@
-from constance import config
 from django import forms
 from django.core.exceptions import ValidationError
 from django_currentuser.middleware import get_current_user
 
+from config.settings import FILTER_BY_USER
 from .choices import VERSIONS_CODE
 from .models import Eventos, Certificados, Arquivos, Transmissor
 
@@ -62,7 +62,7 @@ class TransmissorForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean() or {}
         nrinsc = cleaned_data.get("nrinsc")
-        if config.FILTER_BY_USER:
+        if FILTER_BY_USER:
             current_user = get_current_user()
             transmissores = Transmissor.all_objects. \
                 filter(nrinsc=nrinsc). \

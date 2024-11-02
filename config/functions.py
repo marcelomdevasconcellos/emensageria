@@ -10,8 +10,9 @@ def create_dir(filename):
     if not os.path.exists(directory):
         os.makedirs(directory)
     if not os.path.exists(directory):
-        raise NameError('''Não foi possivel criar a pasta %s, verifique se a pasta está 
-                           com permissão de escrita para o usuário do sistema.''' % filename)
+        raise NameError(
+            f'Não foi possivel criar a pasta {filename}, verifique se a pasta está '
+            'com permissão de escrita para o usuário do sistema.')
 
 
 def save_file(filename, content):
@@ -20,7 +21,7 @@ def save_file(filename, content):
     file.write(content)
     file.close()
     if not os.path.exists(filename):
-        raise NameError('''Não foi possivel salvar o arquivo %s, verifique se a pasta 
+        raise NameError('''Não foi possivel salvar o arquivo %s, verifique se a pasta
                            está com permissão de escrita para o usuário do sistema.''' % filename)
 
 

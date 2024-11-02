@@ -16,7 +16,7 @@ from .choices import (
 )
 from .forms import (ArquivosForm, CertificadosForm, EventosForm, TransmissorForm)
 from .models import (
-    Arquivos, Certificados, Eventos, Relatorios, Transmissor, TransmissorEventos,
+    Arquivos, Certificados, Eventos, Transmissor, TransmissorEventos,
     TransmissorEventosArquivos,
 )
 
@@ -106,17 +106,6 @@ class ArquivosAdmin(AuditoriaAdminEventos):
 
 
 admin.site.register(Arquivos, ArquivosAdmin)
-
-
-class RelatoriosAdmin(AuditoriaAdminEventos):
-    search_fields = (
-        'titulo',)
-    list_filter = ()
-    list_display = (
-        'titulo',)
-
-
-admin.site.register(Relatorios, RelatoriosAdmin)
 
 
 class TransmissorAdmin(AuditoriaAdminEventos):

@@ -18,9 +18,9 @@ Including another URLconf
 from django.urls import include, path
 
 from apps.esocial.views import (
-    arquivos_visualizar, consultar_evento, consultar_transmissor, consultar_transmissores,
+    consultar_evento, consultar_transmissor, consultar_transmissores,
     dashboard_json, enviar_evento, enviar_transmissor, enviar_transmissores, eventos_recibo,
-    relatorios_imprimir, transmissores_recibo, validar_evento, validar_eventos, visualizar_xml,
+    transmissores_recibo, validar_evento, validar_eventos, visualizar_xml,
 )
 
 app_name = 'esocial'
@@ -88,15 +88,5 @@ urlpatterns = [
         'transmissor/recibo/<int:pk>/',
         transmissores_recibo,
         name='transmissores_recibo'),
-
-    path(
-        'relatorios/imprimir/<int:pk>/',
-        relatorios_imprimir,
-        name='relatorios_imprimir'),
-
-    path(
-        'arquivos/visualizar/<int:pk>/',
-        arquivos_visualizar,
-        name='arquivos_visualizar'),
 
 ]
