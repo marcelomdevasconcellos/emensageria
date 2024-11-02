@@ -25,9 +25,9 @@ eMensageria - Sistema de Mensageria Opensource do eSocial <www.emensageria.com.b
 
 ## Requisitos de Sistema
 
-- Ubuntu 22.04 (LTS) x64;
+- Ubuntu 24.10 x64;
 - Python (versão 3.10);
-- Django (versão 3.2.25);
+- Django (versão 4.2.16);
 - Postgres 16;
 - outros requisitos no arquivo requirements.txt
 - cURL
