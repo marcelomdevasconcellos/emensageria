@@ -1,0 +1,238 @@
+<div class="row">
+    <div class="col-md-4">
+        <a href="{% url 'reinf:validar_eventos' %}">
+            <span class="btn btn-primary btn-block">
+                <i class="fa fa-check"></i>&nbsp;
+                Validar
+            </span>
+        </a>&nbsp;
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'reinf:enviar_transmissores' %}" id="btn_reinf_enviar">
+            <span class="btn btn-primary btn-block">
+                <i class="fa fa-external-link"></i>&nbsp;
+                Enviar
+            </span>
+        </a>&nbsp;
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'reinf:consultar_transmissores' %}" id="btn_reinf_consultar">
+            <span class="btn btn-primary btn-block">
+                <i class="fa fa-level-down"></i>&nbsp;
+                Consultar
+            </span>
+        </a>&nbsp;
+    </div>
+    {% comment %}
+    <div class="col-md-3">
+        <div class="btn-group btn-block">
+            <button type="button"
+                    class="btn btn-primary dropdown-toggle btn-block btn-lg"
+                    data-toggle="dropdown"
+                    aria-expanded="false">
+                <i class="fa fa-print"></i>&nbsp;Imprimir
+                <span class="caret"></span>
+                <span class="sr-only">Imprimir</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li class="text-left">
+                    <a href="#" target="_blank">
+                        <i class="fa fa-file-code-o"></i>&nbsp;HTML
+                    </a>
+                </li>
+                <li class="text-left">
+                    <a href="#" target="_blank">
+                        <i class="fa fa-file-pdf-o"></i>&nbsp;PDF
+                    </a>
+                </li>
+                <li class="text-left">
+                    <a href="#" target="_blank">
+                        <i class="fa fa-file-excel-o"></i>&nbsp;XLS
+                    </a>
+                </li>
+            </ul>
+        </div>&nbsp;
+    </div>
+    {% endcomment %}
+</div>
+<div class="row">
+    <div class="col-lg-12 col-xs-12">
+        <div class="row">
+            <div class="col-lg-2 col-xs-2">
+                <div class="small-box bg-light-blue">
+                    <div class="inner"><h3 id="reinf_quant_importados">0</h3>
+                        <p><strong>Eventos importados</strong>
+                            <br>Aguardando validação</p>
+                    </div>
+                    <div class="icon"><i class="fa fa-gears"></i></div>
+                    <a href="{{ LINK_WEBSITE }}reinf/eventos/?status__exact={{ STATUS_EVENTO_IMPORTADO }}"
+                       class="small-box-footer">Visualizar<i class="fa fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <div class="small-box bg-primary">
+                    <div class="inner"><h3 id="reinf_quant_cadastrados">0</h3>
+                        <p><strong>Eventos cadastrados</strong>
+                            <br>Aguardando validação</p>
+                    </div>
+                    <div class="icon"><i class="fa fa-edit"></i></div>
+                    <a href="{{ LINK_WEBSITE }}reinf/eventos/?status__exact={{ STATUS_EVENTO_CADASTRADO }}"
+                       class="small-box-footer">Visualizar<i class="fa fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <div class="small-box bg-red">
+                    <div class="inner"><h3 id="reinf_quant_erros">0</h3>
+                        <p><strong>Erros</strong>
+                            <br>Aguardando correção
+                        </p>
+                    </div>
+                    <div class="icon"><i class="fa fa-close"></i></div>
+                    <a href="{{ LINK_WEBSITE }}reinf/eventos/?status__exact={{ STATUS_EVENTO_ERRO }}"
+                       class="small-box-footer">Visualizar<i class="fa fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <div class="small-box bg-green">
+                    <div class="inner"><h3 id="reinf_quant_validados">0</h3>
+                        <p><strong>Eventos validados</strong>
+                            <br>Aguardando envio</p>
+                    </div>
+                    <div class="icon"><i class="fa fa-check"></i></div>
+                    <a href="{{ LINK_WEBSITE }}reinf/eventos/?status__exact={{ STATUS_EVENTO_AGUARD_ENVIO }}"
+                       class="small-box-footer">Visualizar<i class="fa fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <div class="small-box bg-orange">
+                    <div class="inner"><h3 id="reinf_quant_enviados">0</h3>
+                        <p><strong>Eventos enviados</strong>
+                            <br>Aguardando consulta</p>
+                    </div>
+                    <div class="icon"><i class="fa fa-cloud-upload"></i></div>
+                    <a href="{{ LINK_WEBSITE }}reinf/eventos/?status__exact={{ STATUS_EVENTO_ENVIADO }}"
+                       class="small-box-footer">Visualizar<i class="fa fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-xs-2">
+                <div class="small-box bg-green-gradient">
+                    <div class="inner"><h3 id="reinf_quant_processados">0</h3>
+                        <p><strong>Eventos processados</strong>
+                            <br>Imprima o recibo</p></div>
+                    <div class="icon"><i class="fa fa-cloud-download"></i></div>
+                    <a href="{{ LINK_WEBSITE }}reinf/eventos/?status__exact={{ STATUS_EVENTO_PROCESSADO }}"
+                       class="small-box-footer">Visualizar<i class="fa fa-eye"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xs-4">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <h4>Aguardando envio</h4>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="display:none;"></th>
+                            <th width="30px">Evento</th>
+                            <th>Identidade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="id_eventos_validados">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xs-4">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <h4>Aguardando consulta</h4>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="display:none;"></th>
+                            <th width="30px">Evento</th>
+                            <th>Identidade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="id_eventos_enviados">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xs-4">
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <h4>Processados</h4>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="display:none;"></th>
+                            <th width="30px">Evento</th>
+                            <th>Identidade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="id_eventos_consultados">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$("#btn_reinf_enviar").click(function() {
+    $.getJSON("{% url 'reinf:enviar_transmissores' %}", function(data) {});
+});
+$("#btn_reinf_consultar").click(function() {
+    $.getJSON("{% url 'reinf:consultar_transmissores' %}", function(data) {});
+});
+$.getJSON("{% url 'reinf:dashboard_json' %}", function(data) {
+    $("#reinf_quant_cadastrados").html(data.reinf_quant_cadastrados);
+    $("#reinf_quant_importados").html(data.reinf_quant_importados);
+    $("#reinf_quant_erros").html(data.reinf_quant_erros);
+    $("#reinf_quant_validados").html(data.reinf_quant_validados);
+    $("#reinf_quant_enviados").html(data.reinf_quant_enviados);
+    $("#reinf_quant_processados").html(data.reinf_quant_processados);
+    var linha = '';
+    for (var i = 0, maxi = data.reinf_validados.length; i < maxi; ++i) {
+        linha += "<tr><td style=\"display:none;\"></td>\n" +
+            "<td>" + data.reinf_validados[i].evento + "</td>\n" +
+            "<td>" + data.reinf_validados[i].identidade + "</td></tr>"
+    };
+    $("#id_eventos_validados").append(linha);
+    var linha = '';
+    for (var i = 0, maxi = data.reinf_enviados.length; i < maxi; ++i) {
+        linha += "<tr><td style=\"display:none;\"></td>\n" +
+            "<td>" + data.reinf_enviados[i].evento + "</td>\n" +
+            "<td>" + data.reinf_enviados[i].identidade + "</td></tr>"
+    };
+    $("#id_eventos_enviados").append(linha);
+    var linha = '';
+    for (var i = 0, maxi = data.reinf_processados.length; i < maxi; ++i) {
+        linha += "<tr><td style=\"display:none;\"></td>\n" +
+            "<td>" + data.reinf_processados[i].evento + "</td>\n" +
+            "<td>" + data.reinf_processados[i].identidade + "</td></tr>"
+    };
+    $("#id_eventos_consultados").append(linha);
+});
+{#setInterval(function(){ #}
+{#    $.getJSON("{% url 'reinf:dashboard_json' %}", function(data) {#}
+{#        $("#reinf_quant_cadastrados").html(data.reinf_quant_cadastrados);#}
+{#        $("#reinf_quant_importados").html(data.reinf_quant_importados);#}
+{#        $("#reinf_quant_erros").html(data.reinf_quant_erros);#}
+{#        $("#reinf_quant_validados").html(data.reinf_quant_validados);#}
+{#        $("#reinf_quant_enviados").html(data.reinf_quant_enviados);#}
+{#        $("#reinf_quant_processados").html(data.reinf_quant_processados);#}
+{#    });#}
+{#}, 5000);#}
+</script>
+        

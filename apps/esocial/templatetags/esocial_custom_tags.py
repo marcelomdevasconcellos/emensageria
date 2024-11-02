@@ -1,10 +1,14 @@
 import json
 import locale
 import logging
+import os
 import re
+from pathlib import Path
 
 from django import template
 from django.core.validators import EMPTY_VALUES
+
+from config.settings import BASE_DIR
 
 # Configura o logger
 logger = logging.getLogger(__name__)
@@ -145,8 +149,25 @@ def to_json(
         return ''
 
 
-@register.filter('get_form')
-def get_form(
+@register.filter('is_form_exists')
+def is_form_exists(
+        obj):
+    file_path = Path(
+        os.path.join(
+            str(BASE_DIR),
+            'apps',
+            'esocial',
+            'templates',
+            obj.versao,
+            f'{obj.evento}.html'))
+
+    if file_path.is_file():
+        return True
+    return False
+
+
+@register.filter('get_event_form')
+def get_event_form(
         obj):
     return "{}/{}.html".format(obj.versao, obj.evento)
 
@@ -160,7 +181,8 @@ def disabled(
 
 
 @register.filter('test')
-def test(obj):
+def test(
+        obj):
     try:
         logger.info(obj.__dict__)
     except Exception as e:
@@ -224,7 +246,8 @@ def data_en_to_br(
 
 
 @register.filter(name='is_int')
-def is_int(value):
+def is_int(
+        value):
     try:
         int(value)
         return True
@@ -298,7 +321,8 @@ def query(
 
 
 @register.filter(name='to_xml')
-def to_xml(texto):
+def to_xml(
+        texto):
     try:
         texto = texto.replace(">", '&gt;')
         texto = texto.replace("<", '&lt;')
@@ -445,7 +469,9 @@ def add(
 
 
 @register.filter('get_permissao')
-def get_permissao(dict, key):
+def get_permissao(
+        dict,
+        key):
     try:
         if dict[str(key)] == 0:
             return False
@@ -464,29 +490,14 @@ def divide(
         arg = 0
     if not value:
         value = 0
-    # from __future__ import division
     quant_total = (arg * 100.00)
     if int(quant_total) == 0:
         quant_total = 1
     quant_nao_enviado = (value * 100.00)
     quant_enviado = quant_total - quant_nao_enviado
-    # print quant_total, quant_nao_enviado, quant_enviado
     divide = (quant_enviado / quant_total) * 100
-    # print divide
     return int(divide)
 
-
-# @register.filter('base64_encode_me')
-# def base64_encode_me(text, obj_id):
-#    url = str(text).replace('_', '-')
-#    #print url
-#    #print str(obj_id)
-#    text = url+'|'+str(obj_id)
-#    #print text
-#    import base64
-#    encode_to_url = base64.urlsafe_b64encode( text )
-#    #print encode_to_url
-#    return encode_to_url
 
 @register.filter('base64_encode_me')
 def base64_encode_me(
@@ -497,7 +508,9 @@ def base64_encode_me(
 
 
 @register.filter('get_value_from_dict')
-def get_value_from_dict(dict_data, key):
+def get_value_from_dict(
+        dict_data,
+        key):
     """
     Usage example: {{ your_dict|get_value_from_dict:your_key }}
     """
@@ -604,30 +617,17 @@ def ano_mes_extenso(
     return mes_extenso + '/' + ano
 
 
-# @register.filter(name='total')
-# def total(list, arg):
-#     soma = sum(d[arg] for d in list)
-#     soma = round(soma, 2)
-#     soma = soma*1.00
-#     valor = real(soma)
-#     return valor
-
 @register.filter(name='inteiro')
 def inteiro(
         var):
-    # print var
     a = str(var).split('.')
     b = a[0]
-    # print b
     return int(b)
 
 
 @register.filter(name='padrao_americano')
 def padrao_americano(
         var):
-    # print var
-    # a = str(var).replace('.','')
-    # print a
     return str(var)
 
 
@@ -643,7 +643,7 @@ def total_quant(
 def percentage(
         fraction,
         population):
-    # {{ yes.count|percentage:votes.count }} votes.count - total ||| yes.count - parcial
+    # Example: {{ yes.count|percentage:votes.count }} votes.count - total ||| yes.count - parcial
     try:
         return "%.2f%%" % ((float(fraction) / float(population)) * 100)
     except ValueError:
