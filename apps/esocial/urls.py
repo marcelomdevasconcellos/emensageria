@@ -15,78 +15,88 @@ Including another URLconf
 
 """
 
-from django.urls import path, include
+from django.urls import include, path
 
-from .views import *
+from apps.esocial.views import (
+    arquivos_visualizar, consultar_evento, consultar_transmissor, consultar_transmissores,
+    dashboard_json, enviar_evento, enviar_transmissor, enviar_transmissores, eventos_recibo,
+    relatorios_imprimir, transmissores_recibo, validar_evento, validar_eventos, visualizar_xml,
+)
 
 app_name = 'esocial'
 
 urlpatterns = [
 
-    path('dashboard-json/',
-         dashboard_json,
-         name='dashboard_json'),
+    path(
+        'dashboard-json/',
+        dashboard_json,
+        name='dashboard_json'),
 
-    path('validar-evento/<int:pk>/',
-         validar_evento,
-         name='validar_evento'),
+    path(
+        'validar-evento/<int:pk>/',
+        validar_evento,
+        name='validar_evento'),
 
-    path('validar-eventos/',
-         validar_eventos,
-         name='validar_eventos'),
+    path(
+        'validar-eventos/',
+        validar_eventos,
+        name='validar_eventos'),
 
-    path('visualizar-xml/<int:pk>/',
-         visualizar_xml,
-         name='visualizar_xml'),
+    path(
+        'visualizar-xml/<int:pk>/',
+        visualizar_xml,
+        name='visualizar_xml'),
 
     path("api/", include("apps.esocial.api.urls")),
 
-    path('consultar-evento/<int:pk>/',
-         consultar_evento,
-         name='consultar_evento'),
+    path(
+        'consultar-evento/<int:pk>/',
+        consultar_evento,
+        name='consultar_evento'),
 
-    path('consultar-transmissor/<int:pk>/',
-         consultar_transmissor,
-         name='consultar_transmissor'),
+    path(
+        'consultar-transmissor/<int:pk>/',
+        consultar_transmissor,
+        name='consultar_transmissor'),
 
-    path('consultar-transmissor/',
-         consultar_transmissores,
-         name='consultar_transmissores'),
+    path(
+        'consultar-transmissor/',
+        consultar_transmissores,
+        name='consultar_transmissores'),
 
-    path('enviar-evento/<int:pk>/',
-         enviar_evento,
-         name='enviar_evento'),
+    path(
+        'enviar-evento/<int:pk>/',
+        enviar_evento,
+        name='enviar_evento'),
 
-    path('enviar-transmissor/<int:pk>/',
-         enviar_transmissor,
-         name='enviar_transmissor'),
+    path(
+        'enviar-transmissor/<int:pk>/',
+        enviar_transmissor,
+        name='enviar_transmissor'),
 
-    path('enviar-transmissores/',
-         enviar_transmissores,
-         name='enviar_transmissores'),
+    path(
+        'enviar-transmissores/',
+        enviar_transmissores,
+        name='enviar_transmissores'),
 
-    path('evento/recibo/<int:pk>/',
-         eventos_recibo,
-         name='eventos_recibo'),
+    path(
+        'evento/recibo/<int:pk>/',
+        eventos_recibo,
+        name='eventos_recibo'),
 
-    path('transmissor/recibo/<int:pk>/',
-         transmissores_recibo,
-         name='transmissores_recibo'),
+    path(
+        'transmissor/recibo/<int:pk>/',
+        transmissores_recibo,
+        name='transmissores_recibo'),
 
-    path('relatorios/imprimir/<int:pk>/',
-         relatorios_imprimir,
-         name='relatorios_imprimir'),
+    path(
+        'relatorios/imprimir/<int:pk>/',
+        relatorios_imprimir,
+        name='relatorios_imprimir'),
 
-    path('arquivos/visualizar/<int:pk>/',
-         arquivos_visualizar,
-         name='arquivos_visualizar'),
-
-    # path('arquivos/reprocessar/<int:pk>/',
-    #     arquivos_reprocessar, 
-    #     name='arquivos_reprocessar'),
-
-    # path('arquivos/recuperar/<int:pk>/',
-    #     arquivos_recuperar, 
-    #     name='arquivos_recuperar'),
+    path(
+        'arquivos/visualizar/<int:pk>/',
+        arquivos_visualizar,
+        name='arquivos_visualizar'),
 
 ]

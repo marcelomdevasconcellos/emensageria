@@ -3,28 +3,24 @@ import json
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.template.loader import render_to_string
 from reportlab.lib import utils
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
+from wkhtmltopdf.views import PDFTemplateResponse  # type: ignore
 
 from .choices import (
-    STATUS_EVENTO_IMPORTADO,
-    STATUS_EVENTO_CADASTRADO,
-    STATUS_EVENTO_AGUARD_ENVIO,
-    STATUS_EVENTO_ENVIADO,
-    STATUS_EVENTO_ERRO,
-    STATUS_EVENTO_PROCESSADO, )
-from .models import (
-    Eventos,
-    TransmissorEventos,
-    Arquivos,
-    Relatorios, )
+    STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ENVIADO, STATUS_EVENTO_ERRO,
+    STATUS_EVENTO_IMPORTADO, STATUS_EVENTO_PROCESSADO,
+)
+from .models import (Arquivos, Eventos, Relatorios, TransmissorEventos)
 
 
 @login_required
-def dashboard_json(request):
+def dashboard_json(
+        request):
     import json
     eventos_importados = Eventos.objects.filter(status=STATUS_EVENTO_IMPORTADO)
     eventos_cadastrados = Eventos.objects.filter(status=STATUS_EVENTO_CADASTRADO)
@@ -50,7 +46,9 @@ def dashboard_json(request):
 
 
 @login_required
-def visualizar_xml(request, pk):
+def visualizar_xml(
+        request,
+        pk):
     evt = get_object_or_404(Eventos, id=pk)
     if not evt.transmissor_evento:
         evt.vincular_transmissor()
@@ -63,7 +61,9 @@ def visualizar_xml(request, pk):
 
 
 @login_required
-def enviar_evento(request, pk):
+def enviar_evento(
+        request,
+        pk):
     evt = get_object_or_404(Eventos, id=pk)
     response = evt.enviar()
     if request.META.get('HTTP_REFERER'):
@@ -72,7 +72,9 @@ def enviar_evento(request, pk):
 
 
 @login_required
-def validar_evento(request, pk):
+def validar_evento(
+        request,
+        pk):
     evt = get_object_or_404(Eventos, id=pk)
     if evt.evento_json:
         if not evt.transmissor_evento:
@@ -82,15 +84,17 @@ def validar_evento(request, pk):
         evt.create_xml()
         evt.validar()
     else:
-        messages.add_message(request, messages.ERROR,
-                             'Não é possível validar pois o evento %s não possui dados suficientes!' % evt.identidade)
+        messages.add_message(
+            request, messages.ERROR,
+            f'Não é possível validar pois o evento {evt.identidade} não possui dados suficientes!')
     if request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     return HttpResponse('{}', content_type='application/json')
 
 
 @login_required
-def validar_eventos(request):
+def validar_eventos(
+        request):
     evts = Eventos.objects.filter(status__in=[STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO])
     for evt in evts:
         if not evt.transmissor_evento:
@@ -103,16 +107,32 @@ def validar_eventos(request):
 
 
 @login_required
-def consultar_evento(request, pk):
+def consultar_evento(
+        request,
+        pk):
     evt = get_object_or_404(Eventos, id=pk)
-    response = evt.transmissor_evento.consultar()
+    if not evt.transmissor_evento:
+        evt.vincular_transmissor()
+    if evt.transmissor_evento:
+        response = evt.transmissor_evento.consultar()
+    else:
+        messages.error(
+            request,
+            "Erro na consulta: transmissor não vinculado ao evento.")
+        if request.META.get('HTTP_REFERER'):
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponse(
+            json.dumps({'error': 'Transmissor não vinculado ao evento'}),
+            content_type='application/json')
     if request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     return HttpResponse(json.dumps(response), content_type='application/json')
 
 
 @login_required
-def enviar_transmissor(request, pk):
+def enviar_transmissor(
+        request,
+        pk):
     te = get_object_or_404(TransmissorEventos, id=pk)
     response = te.enviar()
     if request.META.get('HTTP_REFERER'):
@@ -121,7 +141,9 @@ def enviar_transmissor(request, pk):
 
 
 @login_required
-def consultar_transmissor(request, pk):
+def consultar_transmissor(
+        request,
+        pk):
     te = get_object_or_404(TransmissorEventos, id=pk)
     response = te.consultar()
     if request.META.get('HTTP_REFERER'):
@@ -130,9 +152,14 @@ def consultar_transmissor(request, pk):
 
 
 @login_required
-def enviar_transmissores(request):
-    from .choices import STATUS_TRANSMISSOR_AGUARDANDO, STATUS_TRANSMISSOR_CADASTRADO, STATUS_EVENTO_IMPORTADO
-    TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_CADASTRADO).update(status=STATUS_TRANSMISSOR_AGUARDANDO)
+def enviar_transmissores(
+        request):
+    from .choices import (
+        STATUS_TRANSMISSOR_AGUARDANDO, STATUS_TRANSMISSOR_CADASTRADO,
+        STATUS_EVENTO_IMPORTADO,
+    )
+    TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_CADASTRADO).update(
+        status=STATUS_TRANSMISSOR_AGUARDANDO)
     evt = Eventos.objects.filter(status__in=[STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_IMPORTADO])
     for e in evt:
         e.vincular_transmissor()
@@ -142,12 +169,14 @@ def enviar_transmissores(request):
     if request.META.get('HTTP_REFERER'):
         messages.success(request, 'Lotes enviados')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return HttpResponse('{"mensagem": "Lotes enviados"}',
-                        content_type='application/json')
+    return HttpResponse(
+        '{"mensagem": "Lotes enviados"}',
+        content_type='application/json')
 
 
 @login_required
-def consultar_transmissores(request):
+def consultar_transmissores(
+        request):
     from .choices import STATUS_TRANSMISSOR_ENVIADO
     tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_ENVIADO).all()
     for te in tes:
@@ -155,12 +184,15 @@ def consultar_transmissores(request):
     if request.META.get('HTTP_REFERER'):
         messages.success(request, 'Lotes consultados')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    return HttpResponse('{"mensagem": "Lotes consultados"}',
-                        content_type='application/json')
+    return HttpResponse(
+        '{"mensagem": "Lotes consultados"}',
+        content_type='application/json')
 
 
 @login_required
-def transmissores_recibo(request, pk):
+def transmissores_recibo(
+        request,
+        pk):
     from datetime import datetime
     transmissor_lote_esocial = get_object_or_404(TransmissorEventos, id=pk)
     context = {
@@ -192,18 +224,22 @@ def transmissores_recibo(request, pk):
     #                  "no-stop-slow-scripts": True}, )
 
 
-def get_size_image(path):
+def get_size_image(
+        path):
     img = utils.ImageReader(path)
     return img.getSize()
 
 
-def pdf_recibo_evento(evento):
+def pdf_recibo_evento(
+        evento):
     import os
     import json
     from config import settings
     from config.functions import create_dir
 
-    def generate_text_list(texto, compr):
+    def generate_text_list(
+            texto,
+            compr):
         lista = []
         palavras = texto.split(' ')
         novo_texto = palavras[0]
@@ -322,12 +358,14 @@ def pdf_recibo_evento(evento):
 
 
 @login_required
-def eventos_recibo(request, pk):
+def eventos_recibo(
+        request,
+        pk):
     evento = get_object_or_404(Eventos, id=pk)
     pdf_recibo_evento(evento)
     with open(evento.pdf_file(), 'rb') as fh:
         response = HttpResponse(fh.read(), content_type="application/pdf")
-        response['Content-Disposition'] = 'inline; filename=' + evento.identidade + '.pdf'
+        response['Content-Disposition'] = f'inline; filename={evento.identidade}.pdf'
         return response
 
 
@@ -363,7 +401,10 @@ def eventos_recibo(request, pk):
 
 
 @login_required
-def relatorios_imprimir(request, pk, output='pdf'):
+def relatorios_imprimir(
+        request,
+        pk,
+        output='pdf'):
     from django.db import connections
     from datetime import datetime
 
@@ -372,8 +413,9 @@ def relatorios_imprimir(request, pk, output='pdf'):
             'insert' in relatorio.sql.lower() or \
             'update' in relatorio.sql.lower() or \
             'drop' in relatorio.sql.lower():
-        messages.error(request, '''
-            Não foi possível criar o relatório pois o comando SQL contém  
+        messages.error(
+            request, '''
+            Não foi possível criar o relatório pois o comando SQL contém
             algumas das seguintes palavras: "DELETE", "UPDATE", "INSERT", "DROP"''')
         return redirect('relatorios')
 
@@ -411,39 +453,42 @@ def relatorios_imprimir(request, pk, output='pdf'):
     }
 
     if output == 'pdf':
-        from wkhtmltopdf.views import PDFTemplateResponse
         return PDFTemplateResponse(
             request=request,
             template='relatorios_imprimir.html',
             filename="relatorios.pdf",
             context=context,
             show_content_in_browser=True,
-            cmd_options={'margin-top': 10,
-                         'margin-bottom': 10,
-                         'margin-right': 10,
-                         'margin-left': 10,
-                         'zoom': 1,
-                         'dpi': 72,
-                         'orientation': 'Landscape',
-                         "viewport-size": "1366 x 513",
-                         'javascript-delay': 1000,
-                         'footer-center': '[page]/[topage]',
-                         "no-stop-slow-scripts": True}, )
+            cmd_options={
+                'margin-top': 10,
+                'margin-bottom': 10,
+                'margin-right': 10,
+                'margin-left': 10,
+                'zoom': 1,
+                'dpi': 72,
+                'orientation': 'Landscape',
+                "viewport-size": "1366 x 513",
+                'javascript-delay': 1000,
+                'footer-center': '[page]/[topage]',
+                "no-stop-slow-scripts": True
+            }, )
 
     elif output == 'xls':
-        from django.shortcuts import render_to_response
-        response = render_to_response('relatorios_imprimir.html', context)
+        content = render_to_string(
+            'relatorios_imprimir.html', context, request=request)
+        response = HttpResponse(content)
         filename = "relatorios.xls"
-        response['Content-Disposition'] = 'attachment; filename=' + filename
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
         response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
         return response
 
     elif output == 'csv':
-        from django.shortcuts import render_to_response
-        response = render_to_response('csv/relatorios.csv', context)
+        content = render_to_string(
+            'csv/relatorios.csv', context, request=request)
+        response = HttpResponse(content)
         filename = "relatorios.csv"
-        response['Content-Disposition'] = 'attachment; filename=' + filename
-        response['Content-Type'] = 'text/csv; charset=UTF-8'
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
+        response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
         return response
 
     else:
@@ -451,7 +496,9 @@ def relatorios_imprimir(request, pk, output='pdf'):
 
 
 @login_required
-def arquivos_visualizar(request, pk):
+def arquivos_visualizar(
+        request,
+        pk):
     import os
     from django.conf import settings
     from config.functions import read_file

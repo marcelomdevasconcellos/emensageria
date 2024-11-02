@@ -15,10 +15,12 @@ class EventosForm(forms.ModelForm):
         fields = '__all__'
 
     def clean(self):
-        cleaned_data = super().clean()
+        cleaned_data = super().clean() or {}
         versao = cleaned_data.get("versao")
         evento = cleaned_data.get("evento")
-        if evento not in VERSIONS_CODE[versao]:
+        if versao is None:
+            raise ValidationError("A versão é obrigatória para validar o evento.")
+        if evento and evento not in VERSIONS_CODE[versao]:
             raise ValidationError(
                 "Este evento nao é válido para esta versão do eSocial.")
 
@@ -58,7 +60,7 @@ class TransmissorForm(forms.ModelForm):
         fields = '__all__'
 
     def clean(self):
-        cleaned_data = super().clean()
+        cleaned_data = super().clean() or {}
         nrinsc = cleaned_data.get("nrinsc")
         if config.FILTER_BY_USER:
             current_user = get_current_user()
@@ -68,4 +70,6 @@ class TransmissorForm(forms.ModelForm):
                 exclude(users__id=current_user.id).all()
             if transmissores:
                 raise ValidationError(
-                    "Já existe um transmissor cadastrado com este número. Entre em contato com o administrador do sistema e solicite que vincule ele ao seu usuário.")
+                    "Já existe um transmissor cadastrado com este número. '"
+                    "'Entre em contato com o administrador do sistema e '"
+                    "'solicite que vincule ele ao seu usuário.")

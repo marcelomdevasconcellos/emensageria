@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-import environ
+import environ  # type: ignore
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,8 +34,6 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
     env('ALLOWED_HOSTS'),
 ]
 
@@ -167,8 +165,10 @@ LOG_FILENAME = "emensageria.log"
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 os.makedirs(LOG_DIR, exist_ok=True)  # Cria o diretório de logs, caso não exista
 
+
 # Função para processar a variável ADMINS
-def parse_admins(admins_string):
+def parse_admins(
+        admins_string):
     if not admins_string:
         return []
     admins = []
@@ -178,7 +178,9 @@ def parse_admins(admins_string):
             admins.append((name.strip(), email.strip()))
     return admins
 
-ADMINS = parse_admins(env('ADMINS', default='Marcelo Vasconcellos, marcelomdevasconcellos@gmail.com;'))
+
+ADMINS = parse_admins(
+    env('ADMINS', default='Marcelo Vasconcellos, marcelomdevasconcellos@gmail.com;'))
 
 from django.utils.log import DEFAULT_LOGGING as LOGGING
 
@@ -243,7 +245,7 @@ CONSTANCE_CONFIG = {
                            'Link do manual do sistema.',
                            str),
 
-    'FILES_PATH': ('/home/arquivos',
+    'FILES_PATH': ('arquivos',
                    'Caminho relativo do local aonde serão armazenados os arquivos. Insira "/" no início para definir diretórios absolutos.',
                    str),
 
