@@ -27,6 +27,7 @@ lxml
 pandas
 psycopg2-binary
 pyOpenSSL==24.2.1
+pypdf>=3.9.0
 python-dateutil
 python-slugify
 reportlab
