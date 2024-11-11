@@ -353,7 +353,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-{#                        {% ifequal original.evento 's1000' %}#}
+{#                        {% if original.evento == 's1000' %}#}
 {#                        <div class="col-md-3">#}
 {#                            <div class="form-group">#}
 {#                                <a href="#">#}
@@ -364,7 +364,7 @@ label {
 {#                                </a>#}
 {#                            </div>#}
 {#                        </div>#}
-{#                        {% endifequal %}#}
+{#                        {% endif %}#}
                         {% if original.pk and not original.is_aberto and original.status == STATUS_EVENTO_ERRO or original.status == STATUS_EVENTO_PROCESSADO or original.status == STATUS_EVENTO_ENVIADO %}
                         <div class="col-md-3">
                             <div class="form-group">
