@@ -281,7 +281,8 @@ EVENTOS = [
     ('s2500', 'S-2500 - Processo Trabalhista'),
     ('s2501', 'S-2501 - Informações de Tributos Decorrentes de Processo Trabalhista'),
     ('s2555',
-     'S-2555 - Solicitação de Consolidação das Informações de Tributos Decorrentes de Processo Trabalhista'),
+     'S-2555 - Solicitação de Consolidação das Informações de Tributos '
+     'Decorrentes de Processo Trabalhista'),
     ('s3000', 'S-3000 - Exclusão de Eventos'),
     ('s3500', 'S-3500 - Exclusão de Eventos - Processo Trabalhista'),
     # ('s5001', 'S-5001 - Informações das Contribuições Sociais por Trabalhador'),

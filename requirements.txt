@@ -17,7 +17,7 @@ django-reversion
 django-timezone-field
 django-wkhtmltopdf
 Django==4.2.16
-djangorestframework
+djangorestframework>=3.15.2
 djangorestframework-simplejwt
 dotmap
 json2xml
