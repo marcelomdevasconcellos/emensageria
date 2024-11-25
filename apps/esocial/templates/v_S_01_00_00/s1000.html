@@ -59,8 +59,8 @@ REGRA_VALIDA_EMPREGADOR</h4>
             <label class="control-label">Identificação do ambiente</label>
             <select name="[evtInfoEmpregador][ideEvento][tpAmb]" id="evtInfoEmpregador__ideEvento__id__tpAmb_disabled" disabled="">
                 <option value="">---------</option>
-                <option value="1" {% ifequal original.tpamb 1 %}selected{% endifequal %}>1 - Produção</option>
-                <option value="2" {% ifequal original.tpamb 2 %}selected{% endifequal %}>2 - Produção restrita.</option>
+                <option value="1" {% if original.tpamb == 1 %}selected{% endif %}>1 - Produção</option>
+                <option value="2" {% if original.tpamb == 2 %}selected{% endif %}>2 - Produção restrita.</option>
             </select>
             <input type="hidden" name="[evtInfoEmpregador][ideEvento][tpAmb]" id="evtInfoEmpregador__ideEvento__id__tpAmb" value="{{original.tpamb}}">
         </div>
@@ -71,11 +71,11 @@ REGRA_VALIDA_EMPREGADOR</h4>
         <div class="form-group">
             <label class="control-label">Processo de emissão do evento</label>
             <select name="[evtInfoEmpregador][ideEvento][procEmi]" id="evtInfoEmpregador__ideEvento__id__procEmi_disabled" disabled="">
-                <option value="1" {% ifequal original.procemi 1 %}selected{% endifequal %}>1 - Aplicativo do empregador</option>
-                <option value="2" {% ifequal original.procemi 2 %}selected{% endifequal %}>2 - Aplicativo governamental - Empregador Doméstico</option>
-                <option value="3" {% ifequal original.procemi 3 %}selected{% endifequal %}>3 - Aplicativo governamental - Web Geral</option>
-                <option value="4" {% ifequal original.procemi 4 %}selected{% endifequal %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
-                <option value="5" {% ifequal original.procemi 5 %}selected{% endifequal %}>5 - Aplicativo governamental - Segurado Especial.</option>
+                <option value="1" {% if original.procemi == 1 %}selected{% endif %}>1 - Aplicativo do empregador</option>
+                <option value="2" {% if original.procemi == 2 %}selected{% endif %}>2 - Aplicativo governamental - Empregador Doméstico</option>
+                <option value="3" {% if original.procemi == 3 %}selected{% endif %}>3 - Aplicativo governamental - Web Geral</option>
+                <option value="4" {% if original.procemi == 4 %}selected{% endif %}>4 - Aplicativo governamental - Simplificado Pessoa Jurídica</option>
+                <option value="5" {% if original.procemi == 5 %}selected{% endif %}>5 - Aplicativo governamental - Segurado Especial.</option>
             </select>
             <input type="hidden" name="[evtInfoEmpregador][ideEvento][procEmi]" id="evtInfoEmpregador__ideEvento__id__procEmi" value="{{original.procemi}}">
         </div>
@@ -120,12 +120,12 @@ REGRA_VALIDA_EMPREGADOR</h4>
             <label class="control-label">Preencher com o código correspondente ao tipo de inscrição</label>
             <select name="[evtInfoEmpregador][ideEmpregador][tpInsc]" id="evtInfoEmpregador__ideEmpregador__id__tpInsc_disabled" disabled="">
                 <option value="">---------</option>
-                <option value="1" {% ifequal original.tpinsc 1 %}selected{% endifequal %}>1 - CNPJ</option>
-                <option value="2" {% ifequal original.tpinsc 2 %}selected{% endifequal %}>2 - CPF</option>
-                <option value="3" {% ifequal original.tpinsc 3 %}selected{% endifequal %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
-                <option value="4" {% ifequal original.tpinsc 4 %}selected{% endifequal %}>4 - CNO (Cadastro Nacional de Obra)</option>
-                <option value="5" {% ifequal original.tpinsc 5 %}selected{% endifequal %}>5 - CGC</option>
-                <option value="6" {% ifequal original.tpinsc 6 %}selected{% endifequal %}>6 - CEI</option>
+                <option value="1" {% if original.tpinsc == 1 %}selected{% endif %}>1 - CNPJ</option>
+                <option value="2" {% if original.tpinsc == 2 %}selected{% endif %}>2 - CPF</option>
+                <option value="3" {% if original.tpinsc == 3 %}selected{% endif %}>3 - CAEPF (Cadastro de Atividade Econômica de Pessoa Física)</option>
+                <option value="4" {% if original.tpinsc == 4 %}selected{% endif %}>4 - CNO (Cadastro Nacional de Obra)</option>
+                <option value="5" {% if original.tpinsc == 5 %}selected{% endif %}>5 - CGC</option>
+                <option value="6" {% if original.tpinsc == 6 %}selected{% endif %}>6 - CEI</option>
             </select>
             <input type="hidden" name="[evtInfoEmpregador][ideEmpregador][tpInsc]" id="evtInfoEmpregador__ideEmpregador__id__tpInsc" value="{{original.tpinsc}}">
         </div>
@@ -269,7 +269,7 @@ Valores válidos:
 3 - Outras cooperativas
 Validação: O preenchimento do campo é exclusivo e obrigatório para PJ. Somente pode ser diferente de [0] se a natureza jurídica do declarante for igual a 214-3."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__indCoop" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][indCoop]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indCoop'|to_str '0' %}selected{% endifequal %}>0 - Não é cooperativa</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indCoop'|to_str '1' %}selected{% endifequal %}>1 - Cooperativa de trabalho</option><option value='2' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indCoop'|to_str '2' %}selected{% endifequal %}>2 - Cooperativa de produção</option><option value='3' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indCoop'|to_str '3' %}selected{% endifequal %}>3 - Outras cooperativas</option>
+            <option value="">---</option><option value='0' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indCoop'|to_str == '0' %}selected{% endif %}>0 - Não é cooperativa</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indCoop'|to_str == '1' %}selected{% endif %}>1 - Cooperativa de trabalho</option><option value='2' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indCoop'|to_str == '2' %}selected{% endif %}>2 - Cooperativa de produção</option><option value='3' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indCoop'|to_str == '3' %}selected{% endif %}>3 - Outras cooperativas</option>
             </select>
         </div>
     </div>
@@ -284,7 +284,7 @@ Valores válidos:
 1 - Empresa construtora
 Validação: O preenchimento do campo é exclusivo e obrigatório para PJ."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__indConstr" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][indConstr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indConstr'|to_str '0' %}selected{% endifequal %}>0 - Não é construtora</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indConstr'|to_str '1' %}selected{% endifequal %}>1 - Empresa construtora</option>
+            <option value="">---</option><option value='0' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indConstr'|to_str == '0' %}selected{% endif %}>0 - Não é construtora</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indConstr'|to_str == '1' %}selected{% endif %}>1 - Empresa construtora</option>
             </select>
         </div>
     </div>
@@ -299,7 +299,7 @@ Valores válidos:
 1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011
 Validação: Pode ser igual a [1] apenas se classTrib = [02, 03, 99]. Nos demais casos, deve ser igual a [0]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__indDesFolha" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][indDesFolha]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indDesFolha'|to_str '0' %}selected{% endifequal %}>0 - Não aplicável</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indDesFolha'|to_str '1' %}selected{% endifequal %}>1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011</option>
+            <option value="">---</option><option value='0' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indDesFolha'|to_str == '0' %}selected{% endif %}>0 - Não aplicável</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indDesFolha'|to_str == '1' %}selected{% endif %}>1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011</option>
             </select>
         </div>
     </div>
@@ -314,7 +314,7 @@ Valores válidos:
 2 - Sobre a folha de pagamento
 Validação: Não preencher se classTrib for diferente de [07, 21]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__indOpcCP" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][indOpcCP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOpcCP'|to_str '1' %}selected{% endifequal %}>1 - Sobre a comercialização da sua produção</option><option value='2' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOpcCP'|to_str '2' %}selected{% endifequal %}>2 - Sobre a folha de pagamento</option>
+            <option value="">---</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOpcCP'|to_str == '1' %}selected{% endif %}>1 - Sobre a comercialização da sua produção</option><option value='2' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOpcCP'|to_str == '2' %}selected{% endif %}>2 - Sobre a folha de pagamento</option>
             </select>
         </div>
     </div>
@@ -328,7 +328,7 @@ Valores válidos:
 S - Sim
 Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__indPorte" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][indPorte]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indPorte'|to_str 'S' %}selected{% endifequal %}>S - Sim</option>
+            <option value="">---</option><option value='S' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indPorte'|to_str == 'S' %}selected{% endif %}>S - Sim</option>
             </select>
         </div>
     </div>
@@ -342,7 +342,7 @@ Valores válidos:
 0 - Não optou pelo registro eletrônico de empregados (ou opção não aplicável)
 1 - Optou pelo registro eletrônico de empregados"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__id__indOptRegEletron" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][indOptRegEletron]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOptRegEletron'|to_str '0' %}selected{% endifequal %}>0 - Não optou pelo registro eletrônico de empregados (ou opção não aplicável)</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOptRegEletron'|to_str '1' %}selected{% endifequal %}>1 - Optou pelo registro eletrônico de empregados</option>
+            <option value="">---</option><option value='0' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOptRegEletron'|to_str == '0' %}selected{% endif %}>0 - Não optou pelo registro eletrônico de empregados (ou opção não aplicável)</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.indOptRegEletron'|to_str == '1' %}selected{% endif %}>1 - Optou pelo registro eletrônico de empregados</option>
             </select>
         </div>
     </div>
@@ -494,7 +494,7 @@ Valores válidos:
 0 - Sem acordo
 1 - Com acordo"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__inclusao__infoCadastro__infoOrgInternacional__id__indAcordoIsenMulta" name="[evtInfoEmpregador][infoEmpregador][inclusao][infoCadastro][infoOrgInternacional][indAcordoIsenMulta]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta'|to_str '0' %}selected{% endifequal %}>0 - Sem acordo</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta'|to_str '1' %}selected{% endifequal %}>1 - Com acordo</option>
+            <option value="">---</option><option value='0' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta'|to_str == '0' %}selected{% endif %}>0 - Sem acordo</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.inclusao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta'|to_str == '1' %}selected{% endif %}>1 - Com acordo</option>
             </select>
         </div>
     </div>
@@ -617,7 +617,7 @@ Valores válidos:
 3 - Outras cooperativas
 Validação: O preenchimento do campo é exclusivo e obrigatório para PJ. Somente pode ser diferente de [0] se a natureza jurídica do declarante for igual a 214-3."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__indCoop" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][indCoop]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indCoop'|to_str '0' %}selected{% endifequal %}>0 - Não é cooperativa</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indCoop'|to_str '1' %}selected{% endifequal %}>1 - Cooperativa de trabalho</option><option value='2' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indCoop'|to_str '2' %}selected{% endifequal %}>2 - Cooperativa de produção</option><option value='3' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indCoop'|to_str '3' %}selected{% endifequal %}>3 - Outras cooperativas</option>
+            <option value="">---</option><option value='0' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indCoop'|to_str == '0' %}selected{% endif %}>0 - Não é cooperativa</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indCoop'|to_str == '1' %}selected{% endif %}>1 - Cooperativa de trabalho</option><option value='2' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indCoop'|to_str == '2' %}selected{% endif %}>2 - Cooperativa de produção</option><option value='3' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indCoop'|to_str == '3' %}selected{% endif %}>3 - Outras cooperativas</option>
             </select>
         </div>
     </div>
@@ -632,7 +632,7 @@ Valores válidos:
 1 - Empresa construtora
 Validação: O preenchimento do campo é exclusivo e obrigatório para PJ."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__indConstr" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][indConstr]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indConstr'|to_str '0' %}selected{% endifequal %}>0 - Não é construtora</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indConstr'|to_str '1' %}selected{% endifequal %}>1 - Empresa construtora</option>
+            <option value="">---</option><option value='0' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indConstr'|to_str == '0' %}selected{% endif %}>0 - Não é construtora</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indConstr'|to_str == '1' %}selected{% endif %}>1 - Empresa construtora</option>
             </select>
         </div>
     </div>
@@ -647,7 +647,7 @@ Valores válidos:
 1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011
 Validação: Pode ser igual a [1] apenas se classTrib = [02, 03, 99]. Nos demais casos, deve ser igual a [0]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__indDesFolha" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][indDesFolha]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indDesFolha'|to_str '0' %}selected{% endifequal %}>0 - Não aplicável</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indDesFolha'|to_str '1' %}selected{% endifequal %}>1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011</option>
+            <option value="">---</option><option value='0' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indDesFolha'|to_str == '0' %}selected{% endif %}>0 - Não aplicável</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indDesFolha'|to_str == '1' %}selected{% endif %}>1 - Empresa enquadrada nos arts. 7º a 9º da Lei 12.546/2011</option>
             </select>
         </div>
     </div>
@@ -662,7 +662,7 @@ Valores válidos:
 2 - Sobre a folha de pagamento
 Validação: Não preencher se classTrib for diferente de [07, 21]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__indOpcCP" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][indOpcCP]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOpcCP'|to_str '1' %}selected{% endifequal %}>1 - Sobre a comercialização da sua produção</option><option value='2' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOpcCP'|to_str '2' %}selected{% endifequal %}>2 - Sobre a folha de pagamento</option>
+            <option value="">---</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOpcCP'|to_str == '1' %}selected{% endif %}>1 - Sobre a comercialização da sua produção</option><option value='2' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOpcCP'|to_str == '2' %}selected{% endif %}>2 - Sobre a folha de pagamento</option>
             </select>
         </div>
     </div>
@@ -676,7 +676,7 @@ Valores válidos:
 S - Sim
 Validação: Não preencher se classTrib = [21, 22]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__indPorte" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][indPorte]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='S' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indPorte'|to_str 'S' %}selected{% endifequal %}>S - Sim</option>
+            <option value="">---</option><option value='S' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indPorte'|to_str == 'S' %}selected{% endif %}>S - Sim</option>
             </select>
         </div>
     </div>
@@ -690,7 +690,7 @@ Valores válidos:
 0 - Não optou pelo registro eletrônico de empregados (ou opção não aplicável)
 1 - Optou pelo registro eletrônico de empregados"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__id__indOptRegEletron" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][indOptRegEletron]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOptRegEletron'|to_str '0' %}selected{% endifequal %}>0 - Não optou pelo registro eletrônico de empregados (ou opção não aplicável)</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOptRegEletron'|to_str '1' %}selected{% endifequal %}>1 - Optou pelo registro eletrônico de empregados</option>
+            <option value="">---</option><option value='0' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOptRegEletron'|to_str == '0' %}selected{% endif %}>0 - Não optou pelo registro eletrônico de empregados (ou opção não aplicável)</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.indOptRegEletron'|to_str == '1' %}selected{% endif %}>1 - Optou pelo registro eletrônico de empregados</option>
             </select>
         </div>
     </div>
@@ -842,7 +842,7 @@ Valores válidos:
 0 - Sem acordo
 1 - Com acordo"><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtInfoEmpregador__infoEmpregador__alteracao__infoCadastro__infoOrgInternacional__id__indAcordoIsenMulta" name="[evtInfoEmpregador][infoEmpregador][alteracao][infoCadastro][infoOrgInternacional][indAcordoIsenMulta]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='0' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta'|to_str '0' %}selected{% endifequal %}>0 - Sem acordo</option><option value='1' {% ifequal evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta'|to_str '1' %}selected{% endifequal %}>1 - Com acordo</option>
+            <option value="">---</option><option value='0' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta'|to_str == '0' %}selected{% endif %}>0 - Sem acordo</option><option value='1' {% if evtInfoEmpregador|readjson:'infoEmpregador.alteracao.infoCadastro.infoOrgInternacional.indAcordoIsenMulta'|to_str == '1' %}selected{% endif %}>1 - Com acordo</option>
             </select>
         </div>
     </div>

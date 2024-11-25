@@ -1,7 +1,8 @@
 from rest_framework.routers import DefaultRouter
 
-from .viewsets import (
-    EventosViewSet, TransmissorViewSet, )
+from apps.esocial.api.viewsets import (
+    EventosViewSet, TransmissorViewSet,
+)
 
 router = DefaultRouter()
 router.register(r'eventos', EventosViewSet, basename='eventos')

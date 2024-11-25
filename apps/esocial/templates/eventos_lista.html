@@ -7,7 +7,11 @@
                 <div id="content-main">
                     <div class="row">
                         <div class="col-md-12">
-                            {% include original|get_form %} 
+                            {% if original|is_form_exists %}
+                                {% include original|get_event_form %}
+                            {% else %}
+                                Não é possível a edição deste evento com o EmensageriaOpenSource
+                            {% endif %}
                         </div> 
                     </div>
                 </div>

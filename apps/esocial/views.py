@@ -4,18 +4,16 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
-from django.template.loader import render_to_string
 from reportlab.lib import utils
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
-from wkhtmltopdf.views import PDFTemplateResponse  # type: ignore
 
 from .choices import (
     STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ENVIADO, STATUS_EVENTO_ERRO,
     STATUS_EVENTO_IMPORTADO, STATUS_EVENTO_PROCESSADO,
 )
-from .models import (Arquivos, Eventos, Relatorios, TransmissorEventos)
+from .models import (Arquivos, Eventos, TransmissorEventos)
 
 
 @login_required
@@ -398,101 +396,6 @@ def eventos_recibo(
 #     #                  'javascript-delay': 1000,
 #     #                  'footer-center': '[page]/[topage]',
 #     #                  "no-stop-slow-scripts": True}, )
-
-
-@login_required
-def relatorios_imprimir(
-        request,
-        pk,
-        output='pdf'):
-    from django.db import connections
-    from datetime import datetime
-
-    relatorio = get_object_or_404(Relatorios, id=pk)
-    if 'delete' in relatorio.sql.lower() or \
-            'insert' in relatorio.sql.lower() or \
-            'update' in relatorio.sql.lower() or \
-            'drop' in relatorio.sql.lower():
-        messages.error(
-            request, '''
-            Não foi possível criar o relatório pois o comando SQL contém
-            algumas das seguintes palavras: "DELETE", "UPDATE", "INSERT", "DROP"''')
-        return redirect('relatorios')
-
-    if output == 'csv':
-        cabecalho = '"%s"\n' % relatorio.campos
-        cabecalho = cabecalho.replace(",", '";"')
-        cursor = connections['default'].cursor()
-        cursor.execute(relatorio.sql)
-        row = cursor.fetchall()
-        listagem = ''
-        for a in row:
-            listagem_temp = '";"'.join(a)
-            listagem_temp = '"%s"\n' % listagem_temp
-            listagem += listagem_temp
-
-    else:
-        cabecalho = '<th>%s</th>' % relatorio.campos
-        cabecalho = cabecalho.replace(",", "</th><th>")
-        cursor = connections['default'].cursor()
-        cursor.execute(relatorio.sql)
-        row = cursor.fetchall()
-        listagem = ''
-        for a in row:
-            listagem_temp = '</td><td>'.join(a)
-            listagem_temp = '<tr><td>%s</td></tr>' % listagem_temp
-            listagem += listagem_temp
-
-    context = {
-        'relatorio': relatorio,
-        'data': datetime.now(),
-        'cabecalho': cabecalho,
-        'listagem': listagem,
-        'output': output,
-        'user': request.user,
-    }
-
-    if output == 'pdf':
-        return PDFTemplateResponse(
-            request=request,
-            template='relatorios_imprimir.html',
-            filename="relatorios.pdf",
-            context=context,
-            show_content_in_browser=True,
-            cmd_options={
-                'margin-top': 10,
-                'margin-bottom': 10,
-                'margin-right': 10,
-                'margin-left': 10,
-                'zoom': 1,
-                'dpi': 72,
-                'orientation': 'Landscape',
-                "viewport-size": "1366 x 513",
-                'javascript-delay': 1000,
-                'footer-center': '[page]/[topage]',
-                "no-stop-slow-scripts": True
-            }, )
-
-    elif output == 'xls':
-        content = render_to_string(
-            'relatorios_imprimir.html', context, request=request)
-        response = HttpResponse(content)
-        filename = "relatorios.xls"
-        response['Content-Disposition'] = f'attachment; filename="{filename}"'
-        response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-        return response
-
-    elif output == 'csv':
-        content = render_to_string(
-            'csv/relatorios.csv', context, request=request)
-        response = HttpResponse(content)
-        filename = "relatorios.csv"
-        response['Content-Disposition'] = f'attachment; filename="{filename}"'
-        response['Content-Type'] = 'application/vnd.ms-excel; charset=UTF-8'
-        return response
-
-    else:
-        return render(request, 'relatorios_imprimir.html', context)
 
 
 @login_required

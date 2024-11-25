@@ -1,0 +1,22 @@
+{% load i18n admin_urls %}
+{% block object-tools-items %}
+<div class="col-sm-12 col-md-3">
+    <div class="form-group">
+        {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
+        <a href="{% add_preserved_filters history_url %}"
+           class="btn btn-primary form-control">
+            {% translate "History" %}
+        </a>
+    </div>
+</div>
+{% if has_absolute_url %}
+<div class="col-sm-12 col-md-3">
+    <div class="form-group">
+        <a href="{{ absolute_url }}"
+           class="btn btn-primary form-control">
+            {% translate "View on site" %}
+        </a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

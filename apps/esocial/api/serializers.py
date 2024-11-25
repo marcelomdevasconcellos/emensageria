@@ -1,8 +1,8 @@
 import xmltodict
 from rest_framework.serializers import (CharField, JSONField, ModelSerializer, ValidationError)
 
-from ..choices import EVENTO_ORIGEM_API, STATUS_EVENTO_IMPORTADO, VERSIONS_CODE
-from ..models import (Eventos, Transmissor, TransmissorEventos)
+from apps.esocial.choices import EVENTO_ORIGEM_API, STATUS_EVENTO_IMPORTADO, VERSIONS_CODE
+from apps.esocial.models import (Eventos, Transmissor, TransmissorEventos)
 
 
 class TransmissorSerializer(ModelSerializer):

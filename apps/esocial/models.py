@@ -10,14 +10,13 @@ import esocial.utils  # type: ignore
 import esocial.xml  # type: ignore
 import xmltodict
 from bs4 import BeautifulSoup, Tag
-from constance import config
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.serialization import Encoding, NoEncryption, PrivateFormat
 from cryptography.hazmat.primitives.serialization.pkcs12 import load_key_and_certificates
 from django.apps import apps
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.files.storage import FileSystemStorage
 from django.db import models
 from lxml import etree
@@ -33,13 +32,18 @@ from apps.esocial.choices import (
     STATUS_TRANSMISSOR_CONSULTADO, STATUS_TRANSMISSOR_ENVIADO, STATUS_TRANSMISSOR_ERRO_CONSULTA,
     STATUS_TRANSMISSOR_ERRO_ENVIO, TIPO_INSCRICAO, TRANSMISSOR_STATUS, URLS_ESOCIAL, VERSOES,
 )
-from config.functions import (create_dir, read_file, save_file)
+from config.functions import (create_dir, read_file, save_file, validar_schema)
 from config.mixins import BaseModelEsocial, BaseModelSerializer
-from config.settings import ESOCIAL_TPAMB
+from config.settings import (
+    ESOCIAL_LOTE_MAX, ESOCIAL_LOTE_MIN, ESOCIAL_TIMEOUT, ESOCIAL_TPAMB,
+    FILES_PATH,
+)
 
 get_model = apps.get_model
 
 logger = logging.getLogger('django')
+
+User = get_user_model()
 
 
 class Arquivos(BaseModelEsocial):
@@ -51,7 +55,7 @@ class Arquivos(BaseModelEsocial):
         'updated_by': 3,
     }
     fs_arquivo = FileSystemStorage(
-        location=os.path.join(settings.BASE_DIR, config.FILES_PATH))
+        location=os.path.join(settings.BASE_DIR, FILES_PATH))
     arquivo = models.FileField(
         'Arquivo', storage=fs_arquivo)
     permite_recuperacao = models.IntegerField(
@@ -80,36 +84,6 @@ class Arquivos(BaseModelEsocial):
 class ArquivosSerializer(BaseModelSerializer):
     class Meta:
         model = Arquivos
-
-
-class Relatorios(BaseModelEsocial):
-    cols = {
-        'titulo': 12,
-        'campos': 12,
-        'sql': 12,
-        'created_at': 3,
-        'created_by': 3,
-        'updated_at': 3,
-        'updated_by': 3,
-    }
-    titulo = models.CharField('Título', max_length=500, )
-    campos = models.CharField(
-        'Campos',
-        help_text='Inclua os campos separando eles por ponto e vírgula', max_length=500, )
-    sql = models.TextField('Comando SQL')
-
-    def __str__(
-            self):
-        return self.titulo
-
-    class Meta:
-        verbose_name = 'Relatórios'
-        verbose_name_plural = 'Relatórios'
-
-
-class RelatoriosSerializer(BaseModelSerializer):
-    class Meta:
-        model = Relatorios
 
 
 class Transmissor(BaseModelEsocial):
@@ -153,7 +127,8 @@ class Transmissor(BaseModelEsocial):
         related_name='%(class)s_certificado', )
     users = models.ManyToManyField(
         User, verbose_name='Usuários', related_name='transmissores_users', blank=True,
-        help_text="Informe a lista de usuários que tem acesso a utilizar este transmissor.")
+        help_text="Informe a lista de usuários que tem acesso a utilizar este transmissor."
+    )  # type: ignore
 
     def __str__(
             self):
@@ -303,7 +278,7 @@ class TransmissorEventos(BaseModelEsocial):
             date_now):
         filename = os.path.join(
             settings.BASE_DIR,
-            config.FILES_PATH, 'comunicacao',
+            FILES_PATH, 'comunicacao',
             service, 'command',
             '{}_{}.txt'.format(
                 self.id, datetime.now().strftime('%Y%m%d%H%M%S')))
@@ -316,7 +291,7 @@ class TransmissorEventos(BaseModelEsocial):
             date_now):
         filename = os.path.join(
             settings.BASE_DIR,
-            config.FILES_PATH, 'comunicacao',
+            FILES_PATH, 'comunicacao',
             service, 'header',
             '{}_{}.txt'.format(
                 self.id, datetime.now().strftime('%Y%m%d%H%M%S')))
@@ -329,7 +304,7 @@ class TransmissorEventos(BaseModelEsocial):
             date_now):
         filename = os.path.join(
             settings.BASE_DIR,
-            config.FILES_PATH, 'comunicacao',
+            FILES_PATH, 'comunicacao',
             service, 'request',
             '{}_{}.xml'.format(
                 self.id, datetime.now().strftime('%Y%m%d%H%M%S')))
@@ -342,7 +317,7 @@ class TransmissorEventos(BaseModelEsocial):
             date_now):
         filename = os.path.join(
             settings.BASE_DIR,
-            config.FILES_PATH, 'comunicacao',
+            FILES_PATH, 'comunicacao',
             service, 'response',
             '{}_{}.xml'.format(
                 self.id, datetime.now().strftime('%Y%m%d%H%M%S')))
@@ -355,7 +330,7 @@ class TransmissorEventos(BaseModelEsocial):
             date_now):
         filename = os.path.join(
             settings.BASE_DIR,
-            config.FILES_PATH, 'comunicacao',
+            FILES_PATH, 'comunicacao',
             service, 'output',
             '{}_{}.txt'.format(
                 self.id, datetime.now().strftime('%Y%m%d%H%M%S')))
@@ -377,9 +352,9 @@ class TransmissorEventos(BaseModelEsocial):
             'empregador_nrinsc': self.empregador_nrinsc,
             'transmissor_tpinsc': self.transmissor.transmissor_tpinsc,
             'transmissor_nrinsc': self.transmissor.transmissor_nrinsc,
-            'esocial_lote_min': config.ESOCIAL_LOTE_MIN,
-            'esocial_lote_max': config.ESOCIAL_LOTE_MAX,
-            'esocial_timeout': int(config.ESOCIAL_TIMEOUT),
+            'esocial_lote_min': ESOCIAL_LOTE_MIN,
+            'esocial_lote_max': ESOCIAL_LOTE_MAX,
+            'esocial_timeout': int(ESOCIAL_TIMEOUT),
             'transmissor_id': self.id, 'header': self.get_header(service, date_now),
             'request': self.get_request(service, date_now),
             'response': self.get_response(service, date_now), 'service': service,
@@ -388,7 +363,7 @@ class TransmissorEventos(BaseModelEsocial):
             'cert': self.transmissor.certificado.cert_pem_file(),
             'key': self.transmissor.certificado.key_pem_file(),
             'capath': self.transmissor.certificado.capath(),
-            'timeout': int(config.ESOCIAL_TIMEOUT)
+            'timeout': int(ESOCIAL_TIMEOUT)
         }
         logger.info('Enviando: {}'.format(dados))
 
@@ -612,9 +587,9 @@ class TransmissorEventos(BaseModelEsocial):
             'empregador_nrinsc': self.empregador_nrinsc,
             'transmissor_tpinsc': self.transmissor.transmissor_tpinsc,
             'transmissor_nrinsc': self.transmissor.transmissor_nrinsc,
-            'esocial_lote_min': config.ESOCIAL_LOTE_MIN,
-            'esocial_lote_max': config.ESOCIAL_LOTE_MAX,
-            'esocial_timeout': int(config.ESOCIAL_TIMEOUT),
+            'esocial_lote_min': ESOCIAL_LOTE_MIN,
+            'esocial_lote_max': ESOCIAL_LOTE_MAX,
+            'esocial_timeout': int(ESOCIAL_TIMEOUT),
             'transmissor_id': self.id, 'header': self.get_header(service, date_now),
             'request': self.get_request(service, date_now),
             'response': self.get_response(service, date_now), 'service': service,
@@ -623,7 +598,7 @@ class TransmissorEventos(BaseModelEsocial):
             'cert': self.transmissor.certificado.cert_pem_file(),
             'key': self.transmissor.certificado.key_pem_file(),
             'capath': self.transmissor.certificado.capath(),
-            'timeout': int(config.ESOCIAL_TIMEOUT)
+            'timeout': int(ESOCIAL_TIMEOUT)
         }
 
         if (self.transmissor.certificado and
@@ -835,7 +810,8 @@ class Certificados(BaseModelEsocial):
     senha = models.CharField('Senha', max_length=300, blank=True, null=True, )
     users = models.ManyToManyField(
         User, verbose_name='Usuários', related_name='certificado_users', blank=True,
-        help_text="Informe a lista de usuários que tem acesso a utilizar este certificado.")
+        help_text="Informe a lista de usuários que tem acesso a utilizar este certificado."
+    )  # type: ignore
 
     def cert_pem_file(
             self):
@@ -1088,13 +1064,13 @@ class Eventos(BaseModelEsocial):
     def pdf_file(
             self):
         return os.path.join(
-            settings.BASE_DIR, config.FILES_PATH,
+            settings.BASE_DIR, FILES_PATH,
             'recibos', 'esocial', '{}.pdf'.format(self.identidade))
 
     def xml_file(
             self):
         return os.path.join(
-            settings.BASE_DIR, config.FILES_PATH,
+            settings.BASE_DIR, FILES_PATH,
             'eventos', 'esocial', '{}.xml'.format(self.identidade))
 
     def vincular_transmissor(
@@ -1120,7 +1096,7 @@ class Eventos(BaseModelEsocial):
                 tra = None
                 for t in tevt:
                     evts = Eventos.objects.filter(transmissor_evento=t).all()
-                    if len(evts) < config.ESOCIAL_LOTE_MAX:
+                    if len(evts) < ESOCIAL_LOTE_MAX:
                         tra = t
                 if not tra:
                     tevt_data = {
@@ -1308,7 +1284,6 @@ class Eventos(BaseModelEsocial):
     def validar(
             self,
             request=None):
-        from config.functions import validar_schema
         err = validar_schema(self.xsd_file(), self.xml_file())
         err_list = []
         if err:
