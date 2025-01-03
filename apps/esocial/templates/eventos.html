@@ -123,7 +123,7 @@ label {
         </div>
         {% endif %}
 
-        {% if original.ocorrencias_json %}
+        {% if original.retorno_envio_lote_json and original.ocorrencias_json %}
             <div class="col-md-4">
                 <div class="row">
                     <div class="alert alert-success alert-dismissible" style="margin: 20px;">
@@ -156,6 +156,30 @@ label {
                         <br>
                         {% for e in original.ocorrencias_json %}
                             <br>
+                            Tipo: <strong>{{ e.tipo|get_tipo_erro }}</strong><br>
+                            Descrição: <strong>{% if e.codigo != '-' %}{{ e.codigo }} - {% endif %}{{ e.descricao }}</strong><br>
+                            {% if e.localizacao %}Localização: <strong>{{ e.localizacao }}</strong><br>{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% elif original.ocorrencias_json %}
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="alert alert-danger alert-dismissible" style="margin: 20px;">
+                    {% if original.retorno_consulta_json %}
+                    <h4><i class="icon fa fa-ban"></i> Ocorrência(s)!</h4>
+                        Resposta:
+                        <strong>{{ original.retorno_consulta_json.processamento.cdResposta }}</strong> -
+                        <strong>{{ original.retorno_consulta_json.processamento.descResposta }}</strong><br>
+                        Versão do aplicativo de processamento:
+                        <strong>{{ original.retorno_consulta_json.processamento.versaoAppProcessamento }}</strong><br>
+                        Data/Hora de Processamento:
+                        <strong>{{ original.retorno_consulta_json.processamento.dhProcessamento }}</strong>
+                        <br>
+                        <br>
+                        {% endif %}
+                        {% for e in original.ocorrencias_json %}
                             Tipo: <strong>{{ e.tipo|get_tipo_erro }}</strong><br>
                             Descrição: <strong>{% if e.codigo != '-' %}{{ e.codigo }} - {% endif %}{{ e.descricao }}</strong><br>
                             {% if e.localizacao %}Localização: <strong>{{ e.localizacao }}</strong><br>{% endif %}

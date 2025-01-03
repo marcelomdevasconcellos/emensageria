@@ -103,12 +103,6 @@ class Eventos(BaseModelEsocial):
     arquivo = models.CharField(
         'Arquivo', max_length=200, blank=True, null=True, )
 
-    transmissor_evento_error: models.ManyToManyField = models.ManyToManyField(
-        'TransmissorEventos',
-        verbose_name='Lote/Transmissor (Erro)',
-        related_name='%(class)s_transmissor_eventos_erros',
-        blank=True, )
-
     retorno_envio_json = models.JSONField(
         'Retorno do envio', null=True, default=dict, blank=True)
     retorno_consulta_json = models.JSONField(
@@ -419,14 +413,12 @@ class Eventos(BaseModelEsocial):
             for e in err:
                 err_list.append(
                     {
-                        "ocorrencia": {
-                            'tipo': '1',
-                            'codigo': '-',
-                            'descricao': e.reason,
-                            'localizacao': e.path
-                        }
+                        'tipo': '1',
+                        'codigo': '-',
+                        'descricao': e.reason,
+                        'localizacao': e.path
                     })
-            self.ocorrencias_json = json.dumps(err_list)
+            self.ocorrencias_json = err_list
             self.is_aberto = False
             self.status = STATUS_EVENTO_ERRO
             self.transmissor_evento = None
@@ -507,6 +499,9 @@ class Eventos(BaseModelEsocial):
         evento = Eventos.objects.get(id=self.id)
         data_dict: Dict[str, Any] = model_to_dict(evento)
         data_dict['evt_id'] = self.pk or None
+        data_dict['created_by_id'] = data_dict.pop('created_by', None)
+        data_dict['certificado_id'] = data_dict.pop('certificado', None)
+        data_dict['transmissor_evento_id'] = data_dict.pop('transmissor_evento', None)
         data_dict.pop('id', None)
         EventosHistorico(**data_dict).save()
 

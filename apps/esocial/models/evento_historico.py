@@ -80,12 +80,6 @@ class EventosHistorico(BaseModelEsocial):
     arquivo = models.CharField(
         'Arquivo', max_length=200, blank=True, null=True, )
 
-    transmissor_evento_error: models.ManyToManyField = models.ManyToManyField(
-        'TransmissorEventos',
-        verbose_name='Transmissores (Erro)',
-        related_name='%(class)s_transmissor_eventos_erros_historico',
-        blank=True, )
-
     retorno_envio_json = models.JSONField(
         'Retorno do envio', null=True, default=dict, blank=True)
     retorno_consulta_json = models.JSONField(
