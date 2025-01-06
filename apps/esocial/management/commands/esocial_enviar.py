@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 
 from apps.esocial.choices import STATUS_TRANSMISSOR_AGUARDANDO
-from apps.esocial.models import TransmissorEventos
+from apps.esocial.models import Lotes
 
 
 class Command(BaseCommand):
@@ -11,7 +11,7 @@ class Command(BaseCommand):
             self,
             *args,
             **options):
-        trm = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_AGUARDANDO)
+        trm = Lotes.objects.filter(status=STATUS_TRANSMISSOR_AGUARDANDO)
         for tle in trm:
             tle.enviar()
             self.stdout.write(

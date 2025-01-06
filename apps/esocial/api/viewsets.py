@@ -67,7 +67,7 @@ class EventosViewSet(ModelViewSet):
             request,
             pk=None):
         obj = get_object_or_404(Eventos, id=pk)
-        if not obj.transmissor_evento:
+        if not obj.lote:
             obj.vincular_transmissor()
         obj.create_xml()
         obj.validar()

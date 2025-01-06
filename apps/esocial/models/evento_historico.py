@@ -57,8 +57,8 @@ class EventosHistorico(BaseModelEsocial):
     verproc = models.CharField(
         'Versão do processo',
         max_length=20, null=True, )
-    transmissor_evento = models.ForeignKey(
-        'TransmissorEventos',
+    lote = models.ForeignKey(
+        'Lotes',
         on_delete=models.SET_NULL,
         verbose_name='Transmissor',
         related_name='transmissor_esocial_historico',

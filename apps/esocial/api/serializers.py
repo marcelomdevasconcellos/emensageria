@@ -4,7 +4,7 @@ import xmltodict
 from rest_framework.serializers import (CharField, JSONField, ModelSerializer, ValidationError)
 
 from apps.esocial.choices import EVENTO_ORIGEM_API, STATUS_EVENTO_IMPORTADO, VERSIONS_CODE
-from apps.esocial.models import (Transmissor, TransmissorEventos)
+from apps.esocial.models import (Transmissor, Lotes)
 from apps.esocial.models.evento import Eventos
 
 
@@ -30,9 +30,9 @@ class TransmissorSerializer(ModelSerializer):
         read_only_fields = ('created_by', 'updated_by', 'created_at', 'updated_at',)
 
 
-class TransmissorEventosSerializer(ModelSerializer):
+class LotesSerializer(ModelSerializer):
     class Meta:
-        model = TransmissorEventos
+        model = Lotes
         fields = '__all__'
 
 
@@ -47,8 +47,8 @@ class EventosSerializer(ModelSerializer):
     tpamb_txt = CharField(source='get_tpamb_display', read_only=True)
     procemi_txt = CharField(source='get_procemi_display', read_only=True)
     origem_txt = CharField(source='get_origem_display', read_only=True)
-    transmissor = TransmissorEventosSerializer(
-        source='transmissor_evento', many=False, read_only=True)
+    transmissor = LotesSerializer(
+        source='lote', many=False, read_only=True)
 
     def create(
             self,
@@ -154,13 +154,12 @@ class EventosSerializer(ModelSerializer):
             'tpamb',
             'procemi',
             'status',
-            'transmissor_evento',
+            'lote',
             'validacao_precedencia',
             'validacoes',
             'arquivo',
             'is_aberto',
             'origem',
-            'transmissor_evento_error',
             'retorno_envio',
             'retorno_envio_json',
             'retorno_envio_lote_json',

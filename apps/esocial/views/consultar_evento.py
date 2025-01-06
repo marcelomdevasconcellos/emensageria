@@ -13,10 +13,10 @@ def consultar_evento(
         request,
         pk):
     evt = get_object_or_404(Eventos, id=pk)
-    if not evt.transmissor_evento:
+    if not evt.lote:
         evt.vincular_transmissor()
-    if evt.transmissor_evento:
-        response = evt.transmissor_evento.consultar()
+    if evt.lote:
+        response = evt.lote.consultar()
     else:
         messages.error(
             request,

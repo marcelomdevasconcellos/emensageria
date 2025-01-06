@@ -14,10 +14,10 @@ class MyAdminlteConfig(AdminlteConfig):
             icon="fa-file-o",
             url="#"),
         MenuItem(
-            label='esocial.TransmissorEventos',
+            label='esocial.Lotes',
             name='Lotes',
             menu_type='model',
-            icon="fa-arrow-circle-right",
+            icon="fa-copy",
             url="#"),
         MenuItem(
             label='esocial.Transmissor',

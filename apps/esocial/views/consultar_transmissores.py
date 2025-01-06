@@ -3,13 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 
 from apps.esocial.choices import STATUS_TRANSMISSOR_ENVIADO
-from apps.esocial.models import TransmissorEventos
+from apps.esocial.models import Lotes
 
 
 @login_required
 def consultar_transmissores(
         request):
-    tes = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_ENVIADO).all()
+    tes = Lotes.objects.filter(status=STATUS_TRANSMISSOR_ENVIADO).all()
     for te in tes:
         te.consultar()
     if request.META.get('HTTP_REFERER'):

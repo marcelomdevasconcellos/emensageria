@@ -49,11 +49,11 @@ def pdf_recibo_evento(
         0 * mm, 0 * mm,
         width=210 * mm,
         height=297 * mm, mask='auto')
-    if evento.transmissor_evento and evento.transmissor_evento.transmissor.logotipo:
+    if evento.lote and evento.lote.transmissor.logotipo:
         logo = os.path.join(
             settings.BASE_DIR,
             settings.MEDIA_ROOT,
-            evento.transmissor_evento.transmissor.logotipo.file.name)
+            evento.lote.transmissor.logotipo.file.name)
         logo_w, logo_h = get_size_image(logo)
         my_canvas.drawImage(
             logo, 159 * mm, 280 * mm,
@@ -61,8 +61,8 @@ def pdf_recibo_evento(
     my_canvas.setFont('Helvetica', 12)
     my_canvas.drawString(20 * mm, 280 * mm, evento.get_evento_display())
     my_canvas.setFont('Helvetica', 8)
-    if evento.transmissor_evento and evento.transmissor_evento.transmissor.logotipo:
-        ends = evento.transmissor_evento.transmissor.endereco_completo.replace('\r', '').split('\n')
+    if evento.lote and evento.lote.transmissor.logotipo:
+        ends = evento.lote.transmissor.endereco_completo.replace('\r', '').split('\n')
         ini = 16
         for end in ends:
             my_canvas.drawString(20 * mm, ini * mm, end)

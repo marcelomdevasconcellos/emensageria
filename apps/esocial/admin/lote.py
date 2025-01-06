@@ -1,7 +1,7 @@
 from django.contrib import admin, messages
 
 from apps.esocial.choices import STATUS_TRANSMISSOR_AGUARDANDO
-from apps.esocial.models import Eventos, TransmissorEventos
+from apps.esocial.models import Eventos, Lotes
 from config.mixins import AuditoriaAdminEventos, AuditoriaAdminInline
 
 
@@ -29,8 +29,8 @@ class EventosInline(AuditoriaAdminInline):
         return False
 
 
-@admin.register(TransmissorEventos)
-class TransmissorEventosAdmin(AuditoriaAdminEventos):
+@admin.register(Lotes)
+class LotesAdmin(AuditoriaAdminEventos):
 
     def autorizar_envio(
             modeladmin,

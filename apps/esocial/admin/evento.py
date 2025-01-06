@@ -178,7 +178,7 @@ class EventosAdmin(AuditoriaAdminEventos):
         for obj in queryset:
             if obj.status in (STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO):
                 n += 1
-                if not obj.transmissor_evento:
+                if not obj.lote:
                     obj.vincular_transmissor()
                 obj.create_xml()
                 obj.validar()
@@ -235,7 +235,7 @@ class EventosAdmin(AuditoriaAdminEventos):
                 'procemi',
                 'verproc',
                 'status',
-                'transmissor_evento',
+                'lote',
                 'certificado',
                 'evento_json',
             )
@@ -243,7 +243,7 @@ class EventosAdmin(AuditoriaAdminEventos):
     )
     readonly_fields = (
         'identidade',
-        'transmissor_evento',
+        'lote',
         'status',
         'created_at',
         'created_by',
@@ -297,7 +297,7 @@ class EventosAdmin(AuditoriaAdminEventos):
             return HttpResponseRedirect(".")
 
         elif "_consultar" in request.POST:
-            retorno = obj.transmissor_evento.consultar(request=request)
+            retorno = obj.lote.consultar(request=request)
             if retorno['retorno'] == 'error':
                 messages.error(request, retorno['mensagem'])
             elif retorno['retorno'] == 'warning':
@@ -311,7 +311,7 @@ class EventosAdmin(AuditoriaAdminEventos):
             return HttpResponseRedirect(".")
 
         elif "_validar" in request.POST:
-            if not obj.transmissor_evento:
+            if not obj.lote:
                 obj.vincular_transmissor(request=request)
             obj.create_xml(request=request)
             obj.validar(request=request)

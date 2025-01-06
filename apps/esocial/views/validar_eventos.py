@@ -12,7 +12,7 @@ def validar_eventos(
         request):
     evts = Eventos.objects.filter(status__in=[STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO])
     for evt in evts:
-        if not evt.transmissor_evento:
+        if not evt.lote:
             evt.vincular_transmissor()
         evt.create_xml()
         evt.validar()

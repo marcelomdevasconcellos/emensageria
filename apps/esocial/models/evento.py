@@ -86,8 +86,8 @@ class Eventos(BaseModelEsocial):
 
     #####
 
-    transmissor_evento = models.ForeignKey(
-        'TransmissorEventos',
+    lote = models.ForeignKey(
+        'Lotes',
         on_delete=models.PROTECT,
         verbose_name='Lote/Transmissor',
         related_name='transmissor_esocial',
@@ -202,23 +202,23 @@ class Eventos(BaseModelEsocial):
     def vincular_transmissor(
             self,
             request=None):
-        from apps.esocial.models import Transmissor, TransmissorEventos
+        from apps.esocial.models import Transmissor, Lotes
 
-        if not self.transmissor_evento:
+        if not self.lote:
 
             transmissores = Transmissor.objects. \
                 filter(nrinsc=self.nrinsc).all()
 
             if transmissores:
                 transmissor = transmissores[0]
-                tevt = TransmissorEventos.objects.filter(
+                tevt = Lotes.objects.filter(
                     empregador_tpinsc=transmissor.tpinsc,
                     empregador_nrinsc=transmissor.nrinsc,
                     grupo=self.get_grupo_esocial(),
-                    status=STATUS_TRANSMISSOR_AGUARDANDO).all()
+                    status=STATUS_TRANSMISSOR_AGUARDANDO).all()[:50]
                 tra = None
                 for t in tevt:
-                    evts = Eventos.objects.filter(transmissor_evento=t).all()
+                    evts = Eventos.objects.filter(lote=t).all()
                     if len(evts) < settings.ESOCIAL_LOTE_MAX:
                         tra = t
                 if not tra:
@@ -229,9 +229,9 @@ class Eventos(BaseModelEsocial):
                         'grupo': self.get_grupo_esocial(),
                         'status': STATUS_TRANSMISSOR_CADASTRADO,
                     }
-                    tra = TransmissorEventos(**tevt_data)
+                    tra = Lotes(**tevt_data)
                     tra.save()
-                self.transmissor_evento = tra
+                self.lote = tra
                 self.save()
                 return tra
             else:
@@ -244,11 +244,11 @@ class Eventos(BaseModelEsocial):
     def enviar(
             self,
             request=None):
-        from apps.esocial.models import Transmissor, TransmissorEventos
+        from apps.esocial.models import Transmissor, Lotes
         tra = Transmissor.objects. \
             get(nrinsc=self.nrinsc)
-        if self.transmissor_evento and self.transmissor_evento.transmissor == tra:
-            return self.transmissor_evento.enviar()
+        if self.lote and self.lote.transmissor == tra:
+            return self.lote.enviar()
         tra_evt_data = {
             'transmissor': tra,
             'empregador_tpinsc': tra.tpinsc,
@@ -256,23 +256,23 @@ class Eventos(BaseModelEsocial):
             'grupo': self.get_grupo_esocial(),
             'status': STATUS_TRANSMISSOR_CADASTRADO,
         }
-        tra_evt = TransmissorEventos(**tra_evt_data)
+        tra_evt = Lotes(**tra_evt_data)
         tra_evt.save()
-        self.transmissor_evento = tra_evt
+        self.lote = tra_evt
         self.save()
         return tra_evt.enviar()
 
     def consultar(
             self,
             request=None):
-        if self.transmissor_evento:
-            return self.transmissor_evento.consultar()
+        if self.lote:
+            return self.lote.consultar()
         else:
             return {}
 
     def salvar_certificado_transmissor(self):
-        if self.transmissor_evento and self.transmissor_evento.transmissor:
-            self.certificado = self.transmissor_evento.transmissor.certificado
+        if self.lote and self.lote.transmissor:
+            self.certificado = self.lote.transmissor.certificado
             self.save()
 
     def assinar(
@@ -280,11 +280,11 @@ class Eventos(BaseModelEsocial):
             request=None):
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
 
-        if not self.transmissor_evento:
+        if not self.lote:
             self.vincular_transmissor()
-        if self.transmissor_evento and not self.certificado:
+        if self.lote and not self.certificado:
             self.salvar_certificado_transmissor()
-        if self.transmissor_evento and self.certificado:
+        if self.lote and self.certificado:
             cert_data = esocial.utils.pkcs12_data(
                 self.certificado.certificado.file.name,
                 self.certificado.get_senha())
@@ -421,7 +421,7 @@ class Eventos(BaseModelEsocial):
             self.ocorrencias_json = err_list
             self.is_aberto = False
             self.status = STATUS_EVENTO_ERRO
-            self.transmissor_evento = None
+            self.lote = None
             self.save()
             if request:
                 messages.error(request, 'Erro na validação do evento!')
@@ -439,7 +439,7 @@ class Eventos(BaseModelEsocial):
         ev_new = self
         ev_new.status = STATUS_EVENTO_CADASTRADO
         ev_new.identidade = STATUS_EVENTO_CADASTRADO
-        ev_new.transmissor_evento = None
+        ev_new.lote = None
         ev_new.created_at = datetime.now()
         ev_new.updated_at = None
         ev_new.created_by = None
@@ -466,7 +466,7 @@ class Eventos(BaseModelEsocial):
             if self.status == STATUS_EVENTO_AGUARD_ENVIO or self.status == STATUS_EVENTO_IMPORTADO:
                 self.status = STATUS_EVENTO_CADASTRADO
             self.is_aberto = True
-            self.transmissor_evento = None
+            self.lote = None
             self.save()
             if request:
                 messages.success(request, "Evento aberto para edição!")
@@ -501,7 +501,7 @@ class Eventos(BaseModelEsocial):
         data_dict['evt_id'] = self.pk or None
         data_dict['created_by_id'] = data_dict.pop('created_by', None)
         data_dict['certificado_id'] = data_dict.pop('certificado', None)
-        data_dict['transmissor_evento_id'] = data_dict.pop('transmissor_evento', None)
+        data_dict['lote_id'] = data_dict.pop('lote', None)
         data_dict.pop('id', None)
         EventosHistorico(**data_dict).save()
 

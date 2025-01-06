@@ -1,12 +1,10 @@
-from .transmissor_evento import EventosInline
-from .transmissor_evento import TransmissorEventosAdmin
+from .lote import LotesAdmin
 from .evento import EventosAdmin
 from .certificado import CertificadosAdmin
 from .transmissor import TransmissorAdmin
 
 __all__ = [
-    "EventosInline",
-    "TransmissorEventosAdmin",
+    "LotesAdmin",
     "EventosAdmin",
     "CertificadosAdmin",
     "TransmissorAdmin",

@@ -24,7 +24,7 @@ from config.settings import ESOCIAL_LOTE_MAX, ESOCIAL_LOTE_MIN, FILES_PATH
 logger = logging.getLogger('django')
 
 
-class TransmissorEventos(BaseModelEsocial):
+class Lotes(BaseModelEsocial):
     cols = {
         'transmissor': 8,
         'arquivo_header': 12,
@@ -94,7 +94,7 @@ class TransmissorEventos(BaseModelEsocial):
             using=None,
             update_fields=None):
         self.empregador_nrinsc = re.sub('[^0-9]', '', self.empregador_nrinsc)
-        super(TransmissorEventos, self).save(
+        super(Lotes, self).save(
             force_insert=False,
             force_update=False,
             using=None,
@@ -104,7 +104,7 @@ class TransmissorEventos(BaseModelEsocial):
             self):
         from apps.esocial.models.evento import Eventos
         return Eventos.objects.filter(
-            transmissor_evento_id=self.id,
+            lote_id=self.id,
             status=STATUS_EVENTO_AGUARD_ENVIO).count()
 
     def eventos(
@@ -112,7 +112,7 @@ class TransmissorEventos(BaseModelEsocial):
         from apps.esocial.models.evento import Eventos
         evts_txt = ''
         evts = Eventos.objects.filter(
-            transmissor_evento=self.id,
+            lote=self.id,
             status=STATUS_EVENTO_AGUARD_ENVIO).all()
         for evt in evts:
             evts_txt += '<evento Id="{}">{}</evento>'.format(
@@ -124,7 +124,7 @@ class TransmissorEventos(BaseModelEsocial):
             self):
         from apps.esocial.models.evento import Eventos
         evts = Eventos.objects.filter(
-            transmissor_evento=self.id,
+            lote=self.id,
             status=STATUS_EVENTO_AGUARD_ENVIO).all()
         return evts
 
@@ -437,6 +437,6 @@ class TransmissorEventos(BaseModelEsocial):
         verbose_name_plural = 'Lotes'
 
 
-class TransmissorEventosSerializer(BaseModelSerializer):
+class LotesSerializer(BaseModelSerializer):
     class Meta:
-        model = TransmissorEventos
+        model = Lotes
