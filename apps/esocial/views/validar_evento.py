@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-
+from django.utils.http import url_has_allowed_host_and_scheme
 from apps.esocial.models import Eventos
 
 
@@ -22,6 +22,7 @@ def validar_evento(
         messages.add_message(
             request, messages.ERROR,
             f'Não é possível validar pois o evento {evt.identidade} não possui dados suficientes!')
-    if request.META.get('HTTP_REFERER'):
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    referer = request.META.get('HTTP_REFERER')
+    if referer and url_has_allowed_host_and_scheme(referer, allowed_hosts=None):
+        return HttpResponseRedirect(referer)
     return HttpResponse('{}', content_type='application/json')
