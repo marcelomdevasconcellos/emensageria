@@ -82,8 +82,12 @@ def download_media(request, file_path):
     View para download de arquivos de mídia.
     Apenas usuários autenticados podem acessar os arquivos.
     """
-    # Caminho absoluto do arquivo
-    full_path = os.path.join(settings.MEDIA_ROOT, file_path)
+    # Normaliza o caminho do arquivo
+    full_path = os.path.normpath(os.path.join(settings.MEDIA_ROOT, file_path))
+
+    # Verifica se o caminho está dentro do diretório MEDIA_ROOT
+    if not full_path.startswith(os.path.abspath(settings.MEDIA_ROOT)):
+        raise Http404("Arquivo não encontrado.")
 
     # Verifica se o arquivo existe
     if not os.path.isfile(full_path):
