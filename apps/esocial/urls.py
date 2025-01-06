@@ -17,11 +17,18 @@ Including another URLconf
 
 from django.urls import include, path
 
-from apps.esocial.views import (
-    arquivos_visualizar, consultar_evento, consultar_transmissor, consultar_transmissores,
-    dashboard_json, enviar_evento, enviar_transmissor, enviar_transmissores, eventos_recibo,
-    relatorios_imprimir, transmissores_recibo, validar_evento, validar_eventos, visualizar_xml,
-)
+from apps.esocial.views.eventos_recibo import eventos_recibo
+from apps.esocial.views.parsing_post import parsing_post
+from apps.esocial.views.consultar_transmissores import consultar_transmissores
+from apps.esocial.views.enviar_transmissores import enviar_transmissores
+from apps.esocial.views.consultar_transmissor import consultar_transmissor
+from apps.esocial.views.enviar_transmissor import enviar_transmissor
+from apps.esocial.views.consultar_evento import consultar_evento
+from apps.esocial.views.validar_eventos import validar_eventos
+from apps.esocial.views.validar_evento import validar_evento
+from apps.esocial.views.enviar_evento import enviar_evento
+from apps.esocial.views.visualizar_xml import visualizar_xml
+from apps.esocial.views.dashboard_json import dashboard_json
 
 app_name = 'esocial'
 
@@ -84,19 +91,8 @@ urlpatterns = [
         eventos_recibo,
         name='eventos_recibo'),
 
-    path(
-        'transmissor/recibo/<int:pk>/',
-        transmissores_recibo,
-        name='transmissores_recibo'),
-
-    path(
-        'relatorios/imprimir/<int:pk>/',
-        relatorios_imprimir,
-        name='relatorios_imprimir'),
-
-    path(
-        'arquivos/visualizar/<int:pk>/',
-        arquivos_visualizar,
-        name='arquivos_visualizar'),
+    path('parsing_post/<int:pk>/',
+         parsing_post,
+         name='parsing_post'),
 
 ]

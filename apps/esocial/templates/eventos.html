@@ -1,15 +1,18 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_urls static admin_modify templatetags_fieldset esocial_custom_tags %}
+{% load i18n admin_urls static admin_modify custom_fieldset esocial_custom_tags %}
 {% load esocial_custom_tags %}
 
 {% block extrahead %}{{ block.super }}
 <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+    <script src="{% static "js/serializejson/spec/lib/jquery-2.1.3.js" %}"></script>
+    <script src="{% static "js/serializejson/jquery.serializejson.min.js" %}"></script>
 {{ media }}
 {% endblock %}
 
 {% block extrastyle %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static "admin/adminlte-dist/css/app.css" %}">
+
 <style>
 label {
     font-size: 14px;
@@ -45,6 +48,72 @@ label {
         {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1">{% endif %}
         {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
         {% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+
+
+
+        {% if original.status == STATUS_EVENTO_ENVIADO %}
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="alert alert-success alert-dismissible" style="margin: 20px;">
+                        <h4>
+                            <i class="icon fa fa-check"></i> {{ original.get_status_display }}
+                        </h4>
+                        Resposta:
+                        <strong>{{ original.retorno_envio_lote_json.status.cdResposta }}</strong> -
+                        <strong>{{ original.retorno_envio_lote_json.status.descResposta }}</strong><br>
+                        Data/Hora de recepção:
+                        <strong>{{ original.retorno_envio_lote_json.dadosRecepcaoLote.dhRecepcao }}</strong><br>
+                        Versão do aplicativo de recepção:
+                        <strong>{{ original.retorno_envio_lote_json.dadosRecepcaoLote.versaoAplicativoRecepcao }}</strong><br>
+                        Protocolo de envio:
+                        <strong>{{ original.retorno_envio_lote_json.dadosRecepcaoLote.protocoloEnvio }}</strong><br>
+
+                    </div>
+                </div>
+            </div>
+        {% elif original.status == STATUS_EVENTO_PROCESSADO %}
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="alert alert-success alert-dismissible" style="margin: 20px;">
+                        <h4>
+                            <i class="icon fa fa-check"></i> Enviado
+                        </h4>
+
+                        Resposta:
+                        <strong>{{ original.retorno_envio_lote_json.status.cdResposta }}</strong> -
+                        <strong>{{ original.retorno_envio_lote_json.status.descResposta }}</strong><br>
+                        Data/Hora de recepção:
+                        <strong>{{ original.retorno_envio_lote_json.dadosRecepcaoLote.dhRecepcao }}</strong><br>
+                        Versão do aplicativo de recepção:
+                        <strong>{{ original.retorno_envio_lote_json.dadosRecepcaoLote.versaoAplicativoRecepcao }}</strong><br>
+                        Protocolo de envio:
+                        <strong>{{ original.retorno_envio_lote_json.dadosRecepcaoLote.protocoloEnvio }}</strong><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="alert alert-info alert-dismissible" style="margin: 20px;">
+                        <h4>
+                            <i class="icon fa fa-check"></i> Consultado
+                        </h4>
+                        Resposta:
+                        <strong>{{ original.retorno_consulta_json.processamento.cdResposta }}</strong> -
+                        <strong>{{ original.retorno_consulta_json.processamento.descResposta }}</strong><br>
+                        Versão do aplicativo de processamento:
+                        <strong>{{ original.retorno_consulta_json.processamento.versaoAppProcessamento }}</strong><br>
+                        Data/Hora de Processamento:
+                        <strong>{{ original.retorno_consulta_json.processamento.dhProcessamento }}</strong><br>
+                        Número do recibo:
+                        <strong>{{ original.retorno_consulta_json.recibo.nrRecibo }}</strong><br>
+                        Hash do recibo:
+                        <strong>{{ original.retorno_consulta_json.recibo.hash }}</strong>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
         {% if errors %}
         <div class="alert alert-danger alert-dismissible" style="margin: 20px;">
         <h4><i class="icon fa fa-ban"></i> Erro!</h4>
@@ -54,60 +123,76 @@ label {
         </div>
         {% endif %}
 
-        {% if original.status == STATUS_EVENTO_ENVIADO or original.status == STATUS_EVENTO_PROCESSADO %}
-
-        <div class="alert alert-success alert-dismissible" style="margin: 20px;">
-            <h4>
-                <i class="icon fa fa-check"></i> {{ original.get_status_display }}
-            </h4>
-            {% if original.status == STATUS_EVENTO_ENVIADO %}
-            Resposta:
-            <strong>{{ original.transmissor_evento.retorno_envio_json|readjson:"status.cdResposta" }}</strong> -
-            <strong>{{ original.transmissor_evento.retorno_envio_json|readjson:"status.descResposta" }}</strong><br>
-            Data/Hora de recepção:
-            <strong>{{ original.transmissor_evento.retorno_envio_json|readjson:"dadosRecepcaoLote.dhRecepcao" }}</strong><br>
-            Versão do aplicativo de recepção:
-            <strong>{{ original.transmissor_evento.retorno_envio_json|readjson:"dadosRecepcaoLote.versaoAplicativoRecepcao" }}</strong><br>
-            Protocolo de envio:
-            <strong>{{ original.transmissor_evento.retorno_envio_json|readjson:"dadosRecepcaoLote.protocoloEnvio" }}</strong><br>
-            {% elif original.status == STATUS_EVENTO_PROCESSADO %}
-
-            Resposta:
-            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.cdResposta" }}</strong> -
-            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.descResposta" }}</strong><br>
-            Versão do aplicativo de processamento:
-            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.versaoAppProcessamento" }}</strong><br>
-            Data/Hora de Processamento:
-            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.dhProcessamento" }}</strong>
-            {% endif %}
-        </div>
+        {% if original.retorno_envio_lote_json and original.ocorrencias_json %}
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="alert alert-success alert-dismissible" style="margin: 20px;">
+                        <h4>
+                            <i class="icon fa fa-check"></i> Enviado
+                        </h4>
+                        Resposta:
+                        <strong>{{ original.retorno_envio_lote_json.status.cdResposta }}</strong> -
+                        <strong>{{ original.retorno_envio_lote_json.status.descResposta }}</strong><br>
+                        Data/Hora de recepção:
+                        <strong>{{ original.retorno_envio_lote_json.dadosRecepcaoLote.dhRecepcao }}</strong><br>
+                        Versão do aplicativo de recepção:
+                        <strong>{{ original.retorno_envio_lote_json.dadosRecepcaoLote.versaoAplicativoRecepcao }}</strong><br>
+                        Protocolo de envio:
+                        <strong>{{ original.retorno_envio_lote_json.dadosRecepcaoLote.protocoloEnvio }}</strong><br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="alert alert-danger alert-dismissible" style="margin: 20px;">
+                    <h4><i class="icon fa fa-ban"></i> Ocorrência(s)!</h4>
+                        Resposta:
+                        <strong>{{ original.retorno_consulta_json.processamento.cdResposta }}</strong> -
+                        <strong>{{ original.retorno_consulta_json.processamento.descResposta }}</strong><br>
+                        Versão do aplicativo de processamento:
+                        <strong>{{ original.retorno_consulta_json.processamento.versaoAppProcessamento }}</strong><br>
+                        Data/Hora de Processamento:
+                        <strong>{{ original.retorno_consulta_json.processamento.dhProcessamento }}</strong>
+                        <br>
+                        {% for e in original.ocorrencias_json %}
+                            <br>
+                            Tipo: <strong>{{ e.tipo|get_tipo_erro }}</strong><br>
+                            Descrição: <strong>{% if e.codigo != '-' %}{{ e.codigo }} - {% endif %}{{ e.descricao }}</strong><br>
+                            {% if e.localizacao %}Localização: <strong>{{ e.localizacao }}</strong><br>{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% elif original.ocorrencias_json %}
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="alert alert-danger alert-dismissible" style="margin: 20px;">
+                    {% if original.retorno_consulta_json %}
+                    <h4><i class="icon fa fa-ban"></i> Ocorrência(s)!</h4>
+                        Resposta:
+                        <strong>{{ original.retorno_consulta_json.processamento.cdResposta }}</strong> -
+                        <strong>{{ original.retorno_consulta_json.processamento.descResposta }}</strong><br>
+                        Versão do aplicativo de processamento:
+                        <strong>{{ original.retorno_consulta_json.processamento.versaoAppProcessamento }}</strong><br>
+                        Data/Hora de Processamento:
+                        <strong>{{ original.retorno_consulta_json.processamento.dhProcessamento }}</strong>
+                        <br>
+                        <br>
+                        {% endif %}
+                        {% for e in original.ocorrencias_json %}
+                            Tipo: <strong>{{ e.tipo|get_tipo_erro }}</strong><br>
+                            Descrição: <strong>{% if e.codigo != '-' %}{{ e.codigo }} - {% endif %}{{ e.descricao }}</strong><br>
+                            {% if e.localizacao %}Localização: <strong>{{ e.localizacao }}</strong><br>{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         {% endif %}
 
-
-        {% if original.ocorrencias_json %}
-        <div class="alert alert-danger alert-dismissible" style="margin: 20px;">
-        <h4><i class="icon fa fa-ban"></i> Ocorrência(s)!</h4>
-            Resposta:
-            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.cdResposta" }}</strong> -
-            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.descResposta" }}</strong><br>
-            Versão do aplicativo de processamento:
-            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.versaoAppProcessamento" }}</strong><br>
-            Data/Hora de Processamento:
-            <strong>{{ original.retorno_consulta_json|readjson:"retornoEvento.eSocial.retornoEvento.processamento.dhProcessamento" }}</strong>
-        <br>
-            {% for e in original.ocorrencias_json|read_ocorrencias %}
-                <br>
-                Tipo: <strong>{{ e.tipo|get_tipo_erro }}</strong><br>
-                Descrição: <strong>{% if e.codigo != '-' %}{{ e.codigo }} - {% endif %}{{ e.descricao }}</strong><br>
-                {% if e.localizacao %}Localização: <strong>{{ e.localizacao }}</strong><br>{% endif %}
-            {% endfor %}
-        </div>
-        {% endif %}
-
-        {% if original.transmissor_evento.ocorrencias_json and original.transmissor_evento.ocorrencias_json != '{}' %}
+        {% if original.lote.ocorrencias_json and original.lote.ocorrencias_json != '{}' %}
         <div class="alert alert-danger alert-dismissible" style="margin: 20px;">
         <h4><i class="icon fa fa-ban"></i> Ocorrência(s) do Lote!</h4>
-            {% for e in original.transmissor_evento.ocorrencias_json|read_ocorrencias_lote %}
+            {% for e in original.lote.ocorrencias_json|read_ocorrencias_lote %}
                 <br>
                 Tipo: <strong>{{ e.tipo|get_tipo_erro }}</strong><br>
                 Descrição: <strong>{{ e.codigo }} - {{ e.descricao }}</strong><br>
@@ -132,7 +217,7 @@ label {
                 {% endif %}
                 {% if 'collapse' in fieldset.classes %}
                 <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                  <button type="button" style="color: #000;" class="btn btn-box-tool" data-widget="collapse">
                     <i class="fa fa-plus"></i> Mostrar/Ocultar
                   </button>
                 </div>
@@ -145,31 +230,33 @@ label {
                   {% for line in fieldset %}
                   {% for field in line %}
 
-                    <div class="col-md-{{ field|div_cols }}">
-                        
+                    <div class="col-md-{{ field|bootstrap_cols_number }}">
+
                         <div class="form-group">
                           {% if not field.field.is_hidden %}
                           <label class="control-label">
                             {{ field.field.label }}
                           </label>
                           {% endif %}
-                          <div {% if not line.fields|length_is:'1' %}
-                            class="fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"
-                            {% elif field.is_checkbox %} class="checkbox-row" {% endif %}>
-                            {% if field.is_readonly %}
-                            <div class="readonly" style="margin-top: 7px;">{{ field.contents }}</div>
-                            {% else %}
-                            {{ field.field }}
-                            {% endif %}
-                            <div class="help-block red">
-                              {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
-                            </div>
-                            {% if field.field.help_text %}
-                            <div class="help-block">{{ field.field.help_text|safe }}</div>
-                            {% endif %}
-                          </div>
+                              <div {% if not line.fields|length_is:'1' %}
+                                class="fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"
+                                {% elif field.is_checkbox %} class="checkbox-row" {% endif %}>
+                                {% if field.is_readonly %}
+{#                                    {{ field.field }}#}
+{#                                    <input type="text" id="{{ field.field.name}}_id" value="{{ field.contents }}" disabled>#}
+                                <div class="readonly" style="margin-top: 7px;">{{ field.contents }}</div>
+                                {% else %}
+                                {{ field.field }}
+                                {% endif %}
+                                <div class="help-block red">
+                                  {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                                </div>
+                                {% if field.field.help_text %}
+                                <div class="help-block">{{ field.field.help_text|safe }}</div>
+                                {% endif %}
+                              </div>
                         </div>
-                        
+
                       </div>
                       {% endfor %}
                       {% if line.errors %}
@@ -183,26 +270,27 @@ label {
                       {% endfor %}
 
                       {% if original.evento and original.is_aberto %}
-                          {% if user.is_superuser %}
+{#                          {% if user.is_superuser %}#}
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>JSON</label>
-                              <input type="text"
-                                     id="id_evento_json_read"
-                                     name="evento_json_read"
-                                     value="{{original.evento_json}}"
-                                     class="form-control" disabled/>
+                                  <input type="text"
+                                         id="id_evento_json_read"
+                                         name="evento_json_read"
+                                         value="{{original.evento_json}}"
+                                         class="form-control" disabled/>
+
                             </div>
                           </div>
-                          {% else %}
-                              <input type="hidden"
-                                     id="id_evento_json_read"
-                                     name="evento_json_read"
-                                     value="{{original.evento_json}}"
-                                     class="form-control"/>
-                          {% endif %}
+{#                          {% else %}#}
+{#                              <input type="hidden"#}
+{#                                     id="id_evento_json_read"#}
+{#                                     name="evento_json_read"#}
+{#                                     value="{{original.evento_json}}"#}
+{#                                     class="form-control"/>#}
+{#                          {% endif %}#}
                       {% endif %}
-          
+
                       <!-- /.col -->
                     </div>
                     <!-- /.row -->
@@ -240,7 +328,7 @@ label {
             {% submit_row %}
         </div>
         {% endcomment %}
-        
+
 
         <div class="col-md-12">
             <div class="box box-primary">
@@ -255,88 +343,95 @@ label {
 
                         {% block object-tools %}
                         {% if change %}{% if not is_popup %}
-                        <ul class="object-tools">
+{#                        <ul class="object-tools">#}
                             {% block object-tools-items %}
                             {% change_form_object_tools %}
                             {% endblock %}
-                        </ul>
+{#                        </ul>#}
                         {% endif %}{% endif %}
                         {% endblock %}
 
                         {% if original.pk %}
                         <div class="col-md-3">
                             <div class="form-group">
-                                <input type="submit"
-                                           value="Duplicar Evento"
-                                           class="btn btn-warning form-control"
-                                           name="_duplicar_evento"
-                                           style="margin-bottom: 3px; margin-right:3px">
+                                <button type="submit"
+                                        class="btn btn-warning form-control"
+                                        name="_duplicar_evento"
+                                        style="margin-bottom: 3px; margin-right:3px">
+                                    <i class="fa fa-copy"></i> Duplicar Evento
+                                </button>
                             </div>
                         </div>
                         {% endif %}
                         {% if original.pk and original.is_aberto and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ERRO or original.status == STATUS_EVENTO_IMPORTADO %}
                         <div class="col-md-3">
                             <div class="form-group">
-                                <input type="submit"
-                                       value="Atualizar Identidade"
-                                       class="btn btn-warning form-control"
-                                       name="_atualizar_identidade"
-                                       style="margin-bottom: 3px; margin-right:3px">
+                                <button type="submit"
+                                        class="btn btn-warning form-control"
+                                        name="_atualizar_identidade"
+                                        style="margin-bottom: 3px; margin-right:3px">
+                                    <i class="fa fa-refresh"></i> Atualizar Identidade
+                                </button>
                             </div>
                         </div>
                         {% endif %}
                         {% if original.pk and not original.is_aberto and original.status in original.abrir_evento_para_edicao_lista %}
                         <div class="col-md-3">
                             <div class="form-group">
-                                <input type="submit"
-                                       value="Abrir evento para edição"
-                                       class="btn btn-warning form-control"
-                                       name="_abrir_evento_para_edicao"
-                                       style="margin-bottom: 3px; margin-right:3px">
+                                <button type="submit"
+                                        class="btn btn-warning form-control"
+                                        name="_abrir_evento_para_edicao"
+                                        style="margin-bottom: 3px; margin-right:3px">
+                                    <i class="fa fa-edit"></i> Abrir evento para edição
+                                </button>
                             </div>
                         </div>
                         {% endif %}
                         {% if original.pk and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ERRO or original.status == STATUS_EVENTO_IMPORTADO %}
                         <div class="col-md-3">
                             <div class="form-group">
-                                <input type="submit"
-                                       value="Validar"
-                                       class="btn btn-primary form-control"
-                                       name="_validar"
-                                       style="margin-bottom: 3px; margin-right:3px">
+                                <button type="submit"
+                                        class="btn btn-primary form-control"
+                                        name="_validar"
+                                        style="margin-bottom: 3px; margin-right:3px">
+                                    <i class="fa fa-check"></i> Validar
+                                </button>
                             </div>
                         </div>
                         {% endif %}
                         {% if original.pk and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ERRO %}
                         <div class="col-md-3">
                             <div class="form-group">
-                                <input type="submit"
-                                       value="Apagar"
-                                       class="btn btn-danger form-control"
-                                       name="_apagar"
-                                       style="margin-bottom: 3px; margin-right:3px">
+                                <button type="submit"
+                                        class="btn btn-danger form-control"
+                                        name="_apagar"
+                                        style="margin-bottom: 3px; margin-right:3px">
+                                    <i class="fa fa-remove"></i> Apagar
+                                </button>
                             </div>
                         </div>
                         {% endif %}
                         {% if original.pk and not original.is_aberto and original.status == STATUS_EVENTO_AGUARD_ENVIO %}
                         <div class="col-md-3">
                             <div class="form-group">
-                                <input type="submit"
-                                       value="Enviar"
-                                       class="btn btn-primary form-control"
-                                       name="_enviar"
-                                       style="margin-bottom: 3px; margin-right:3px">
+                                <button type="submit"
+                                        class="btn btn-primary form-control"
+                                        name="_enviar"
+                                        style="margin-bottom: 3px; margin-right:3px">
+                                    <i class="fa fa-send"></i> Enviar
+                                </button>
                             </div>
                         </div>
                         {% endif %}
                         {% if original.pk and not original.is_aberto and original.status == STATUS_EVENTO_ENVIADO %}
                         <div class="col-md-3">
                             <div class="form-group">
-                                <input type="submit"
-                                       value="Consultar"
-                                       class="btn btn-primary form-control"
-                                       name="_consultar"
-                                       style="margin-bottom: 3px; margin-right:3px">
+                                <button type="submit"
+                                        class="btn btn-primary form-control"
+                                        name="_consultar"
+                                        style="margin-bottom: 3px; margin-right:3px">
+                                    <i class="fa fa-search"></i> Consultar
+                                </button>
                             </div>
                         </div>
                         {% endif %}
@@ -377,15 +472,15 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                    </div> 
-                </div> 
-            </div> 
+                    </div>
+                </div>
+            </div>
         </div>
 </form>
         <br class="clear" />
 </div>
 
-{% include "eventos_lista.html" %} 
+{% include "eventos_lista.html" %}
 
 {% endblock %}
 
@@ -393,28 +488,28 @@ label {
 <script type="text/javascript">
   $(function() {
     {% if original.operacao and not original.operacao == 1 %}
-    $('#inclusao__div').hide(); 
+    $('#inclusao__div').hide();
     {% endif %}
     {% if original.operacao and not original.operacao == 2 %}
-    $('#alteracao__div').hide(); 
+    $('#alteracao__div').hide();
     {% endif %}
     {% if original.operacao and not original.operacao == 3 %}
-    $('#exclusao__div').hide(); 
+    $('#exclusao__div').hide();
     {% endif %}
     $('#id_operacao').change(function(){
         if ($('#id_operacao').val() == 1) {
-            $('#inclusao__div').show(); 
-            $('#alteracao__div').hide(); 
-            $('#exclusao__div').hide(); 
+            $('#inclusao__div').show();
+            $('#alteracao__div').hide();
+            $('#exclusao__div').hide();
         } else if ($('#id_operacao').val() == 2) {
-            $('#inclusao__div').hide(); 
-            $('#alteracao__div').show(); 
-            $('#exclusao__div').hide(); 
+            $('#inclusao__div').hide();
+            $('#alteracao__div').show();
+            $('#exclusao__div').hide();
         } else {
-            $('#inclusao__div').hide(); 
-            $('#alteracao__div').hide(); 
-            $('#exclusao__div').show(); 
-        } 
+            $('#inclusao__div').hide();
+            $('#alteracao__div').hide();
+            $('#exclusao__div').show();
+        }
     });
   });
 </script>
@@ -427,13 +522,6 @@ label {
         dst.value = JSON.stringify(obj);
         dst_read.value = JSON.stringify(obj);
     };
-    function appendSelect2Div() {
-        $('select:not(.filtered):not(.admin-autocomplete)').select2({dropdownAutoWidth : true});
-    };
-    function removeSelect2Div() {
-        $('select:not(.filtered):not(.admin-autocomplete)').select2('destroy');
-
-    };
     function set_evento_json_div() {
         var dst = document.getElementById("id_evento_json");
         var dst_read = document.getElementById("id_evento_json_read");
@@ -442,17 +530,135 @@ label {
         dst_read.value = JSON.stringify(obj);
     };
     function removeDiv(obj) {
-        removeSelect2Div();
         obj.parent().parent().parent().remove();
-        appendSelect2Div();
         set_evento_json_div();
     };
     function duplicateDiv(obj) {
-        removeSelect2Div();
-        obj.parent().parent().parent().clone().appendTo(obj.parent().parent().parent());
-        appendSelect2Div();
+        // Pega o elemento que será duplicado
+        let divToClone = obj.parent().parent().parent();
+
+        // Captura o id da div que será duplicada
+        let baseId = divToClone.attr('id').replace(/\d+$/, ''); // Remove qualquer número final do ID
+
+        // Conta quantas divs similares já existem, ignorando os números no ID
+        let siblingDivs = divToClone.parent().children().filter(function() {
+            let siblingId = $(this).attr('id');
+            {#console.log(siblingId); // Para depuração#}
+            return siblingId && siblingId.startsWith(baseId); // Filtra por IDs que começam com o mesmo padrão base
+        });
+
+        let newIndex = siblingDivs.length; // O índice da nova div será igual ao número de divs existentes
+
+        // Clona o elemento original
+        let clonedDiv = divToClone.clone(false); // Clonando sem eventos antigos
+
+        // Itera sobre todos os elementos clonados que possuem um id
+        clonedDiv.find('[id]').each(function() {
+            let oldId = $(this).attr('id');
+            if (oldId) {
+                // Expressão regular ajustada para adicionar o novo índice ao final do ID, antes de qualquer sufixo
+                let newId = oldId.replace(/(\d+)/, newIndex);
+                $(this).attr('id', newId);
+            }
+        });
+
+        let clonedDivName = clonedDiv.attr('name_temp');
+        // Itera sobre todos os elementos clonados que possuem um id
+        clonedDiv.find('[name]').each(function() {
+            let oldId = $(this).attr('id');
+            let oldName = $(this).attr('name');
+            if (oldId) {
+                // Expressão regular ajustada para adicionar o novo índice ao final do ID, antes de qualquer sufixo
+                let newId = oldId.replace(/(\d+)/, newIndex);
+                let newName = clonedDivName.replace(/\[(\d+)]$/, '[' + newIndex + ']');
+                console.log(newName);
+
+                $(this).attr('id', newId);
+                $(this).attr('name', oldName.replace(clonedDivName, newName));
+            }
+        });
+
+        // Ajusta o id da div clonada com base no novo índice
+        let clonedDivId = clonedDiv.attr('id');
+        if (clonedDivId) {
+            // Substitui qualquer número final no ID pelo novo índice, adicionando-o ao final
+            let newDivId = clonedDivId.replace(/\d+$/, newIndex);
+            let newDivName = clonedDivName.replace(/\d+/, newIndex);
+            console.log(newDivId);
+            console.log(newDivName);
+            clonedDiv.attr('id', newDivId);
+            clonedDiv.attr('name', newDivName);
+        }
+
+        // Adiciona a div clonada ao DOM após a div original
+        clonedDiv.insertAfter(divToClone);
+
+        // Reaplica eventos ou outras configurações necessárias
         set_evento_json_div();
-    };
+    }
+</script>
+{% endif %}
+
+    {% if original.is_aberto %}
+<script type="text/javascript">
+
+function set_evento_json() {
+    // Seleciona o formulário
+    let form = document.getElementById("form_json");
+
+
+    // Cria um objeto FormData a partir do formulário
+    let formData = new FormData(form);
+
+    // Exibe o conteúdo JSON gerado (para depuração)
+    let dst = document.getElementById("id_evento_json");
+    let dst_read = document.getElementById("id_evento_json_read");
+
+    // Captura o CSRF token
+    let csrfToken = getCSRFToken();
+
+    // Envia os dados via POST para a URL especificada
+    fetch('{% url "esocial:parsing_post" pk=original.pk %}', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrfToken  // Inclui o CSRF token no cabeçalho
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (Object.keys(data).length > 0) {
+            // Apenas altera os valores se o JSON não for vazio
+            dst.value = JSON.stringify(data, null, 2);  // Formata o JSON para legibilidade
+            dst_read.value = JSON.stringify(data, null, 2);
+            console.log('Success:', data);
+        } else {
+            console.log('JSON retornado está vazio, não alterando os valores.');
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+};
+
+function getCSRFToken() {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        let cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i].trim();
+            if (cookie.substring(0, 10) === 'csrftoken=') {
+                cookieValue = decodeURIComponent(cookie.substring(10));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+$(document).ready(function(){
+    set_evento_json();
+});
 </script>
 {% endif %}
 <script src="{% static "admin/plugins/datatables/jquery.dataTables.min.js" %}"></script>

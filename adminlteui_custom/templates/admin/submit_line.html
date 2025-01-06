@@ -1,0 +1,64 @@
+{% load i18n admin_urls %}
+
+
+{% block submit-row %}
+{% if show_save_and_continue %}
+<div class="col-sm-12 col-md-3">
+    <div class="form-group">
+        <input type="submit"
+               class="btn btn-info form-control"
+               id="id_save_and_continue"
+               value="{% if can_change %}{% trans 'Salvar e continuar' %}{% else %}{% trans 'Save and view' %}{% endif %}"
+               name="_continue">
+    </div>
+</div>  
+{% endif %}
+{% if show_save %}
+<div class="col-sm-12 col-md-3">
+    <div class="form-group">
+        <input type="submit" value="Salvar e sair"
+            id="id_save_and_exit"
+            class="btn btn-primary form-control"
+            name="_save">
+    </div>
+</div>
+{% endif %}  
+{% if show_delete_link and original %}
+<div class="col-sm-12 col-md-3">
+    <div class="form-group">
+        {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+        <a href="{% add_preserved_filters delete_url %}"
+           class="btn btn-danger form-control">
+            {% trans "Delete" %}
+        </a>
+    </div>
+</div>  
+{% endif %}
+{% if show_save_as_new %}
+<div class="col-sm-12 col-md-3">
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary"
+               value="{% trans 'Save as new' %}" name="_saveasnew">
+    </div>
+</div>  
+{% endif %}
+{% if show_save_and_add_another %}
+<div class="col-sm-12 col-md-3">
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary form-control"
+               value="{% trans 'Save and add another' %}"
+               name="_addanother">
+    </div>
+</div>  
+{% endif %}
+
+
+{% if show_close %}
+<div id='show_close_btn' class="col-sm-12 col-md-3">
+    <div class="form-group"><a
+            href="{% url opts|admin_urlname:'changelist' %}"
+            class="btn btn-danger form-control">{% trans 'Close' %}</a>
+    </div>
+</div>  
+{% endif %}
+{% endblock %}

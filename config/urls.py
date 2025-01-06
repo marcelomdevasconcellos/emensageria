@@ -19,21 +19,20 @@ from django.contrib import admin
 from django.urls import include, path
 
 from config import settings
-from .views import CustomAuthToken, Error500TestView, send_test_email
+from .views import CustomAuthToken, Error500TestView, send_test_email, download_media
 
 admin.site.site_header = 'eMensageria OpenSource'
 admin.site.site_title = 'eMensageria OpenSource'
 admin.site.index_title = 'eMensageria OpenSource'
 
 urlpatterns = [
-
     path('api-token-auth/', CustomAuthToken.as_view()),
     path('esocial/', include("apps.esocial.urls", namespace='esocial')),
     path('test-error/', Error500TestView.as_view(), name='test_error'),
     path('enviar-email-teste/', send_test_email, name='enviar_email_teste'),
-
+    path('media/<path:file_path>', download_media, name='download_media'),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns.append(path('', admin.site.urls))

@@ -1,13 +1,13 @@
 from django.core.management.base import BaseCommand
 from ...choices import STATUS_TRANSMISSOR_ENVIADO
-from ...models import TransmissorEventos
+from ...models import Lotes
 
 
 class Command(BaseCommand):
     help = 'Consultar eSocial'
 
     def handle(self, *args, **options):
-        trm = TransmissorEventos.objects.filter(status=STATUS_TRANSMISSOR_ENVIADO)
+        trm = Lotes.objects.filter(status=STATUS_TRANSMISSOR_ENVIADO)
         for tle in trm:
             tle.consultar()
             self.stdout.write('\n{} {} {} {}'.format(

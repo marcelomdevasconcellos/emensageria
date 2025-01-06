@@ -1,8 +1,26 @@
+import re
+
 import xmltodict
 from rest_framework.serializers import (CharField, JSONField, ModelSerializer, ValidationError)
 
-from ..choices import EVENTO_ORIGEM_API, STATUS_EVENTO_IMPORTADO, VERSIONS_CODE
-from ..models import (Eventos, Transmissor, TransmissorEventos)
+from apps.esocial.choices import EVENTO_ORIGEM_API, STATUS_EVENTO_IMPORTADO, VERSIONS_CODE
+from apps.esocial.models import (Transmissor, Lotes)
+from apps.esocial.models.evento import Eventos
+
+
+def remove_ns_prefixes(
+        dictionary):
+    """Remove namespaces from keys in a nested dictionary."""
+    if isinstance(dictionary, dict):
+        new_dict = {}
+        for key, value in dictionary.items():
+            # Remove prefix like ns0: or ns1:
+            new_key = re.sub(r'ns\d+:', '', key)
+            new_dict[new_key] = remove_ns_prefixes(value)
+        return new_dict
+    elif isinstance(dictionary, list):
+        return [remove_ns_prefixes(item) for item in dictionary]
+    return dictionary
 
 
 class TransmissorSerializer(ModelSerializer):
@@ -12,9 +30,9 @@ class TransmissorSerializer(ModelSerializer):
         read_only_fields = ('created_by', 'updated_by', 'created_at', 'updated_at',)
 
 
-class TransmissorEventosSerializer(ModelSerializer):
+class LotesSerializer(ModelSerializer):
     class Meta:
-        model = TransmissorEventos
+        model = Lotes
         fields = '__all__'
 
 
@@ -29,8 +47,8 @@ class EventosSerializer(ModelSerializer):
     tpamb_txt = CharField(source='get_tpamb_display', read_only=True)
     procemi_txt = CharField(source='get_procemi_display', read_only=True)
     origem_txt = CharField(source='get_origem_display', read_only=True)
-    transmissor = TransmissorEventosSerializer(
-        source='transmissor_evento', many=False, read_only=True)
+    transmissor = LotesSerializer(
+        source='lote', many=False, read_only=True)
 
     def create(
             self,
@@ -41,10 +59,9 @@ class EventosSerializer(ModelSerializer):
         validated_data['status'] = STATUS_EVENTO_IMPORTADO
         validated_data['tpamb'] = ESOCIAL_TPAMB
         if validated_data.get('evento_xml') and not validated_data.get('evento_json'):
-            import json
             import xml.etree.ElementTree as ET
             from ..choices import EVENTO_COD
-            if '<eSocial>' not in validated_data.get('evento_xml'):
+            if '<eSocial' not in validated_data.get('evento_xml'):
                 validated_data['evento_xml'] = '<eSocial>' + validated_data.get(
                     'evento_xml') + '</eSocial>'
 
@@ -69,7 +86,9 @@ class EventosSerializer(ModelSerializer):
                 recursive_update_datefield(elem)
             xml_string = ET.tostring(xml_obj)
             dict = xmltodict.parse(xml_string)
-            validated_data['evento_json'] = json.dumps(dict.get('eSocial'))
+
+            cleaned_dict = remove_ns_prefixes(dict)
+            validated_data['evento_json'] = cleaned_dict.get('eSocial')
 
         return super().create(validated_data)
 
@@ -83,13 +102,12 @@ class EventosSerializer(ModelSerializer):
         validated_data['status'] = STATUS_EVENTO_IMPORTADO
         validated_data['ocorrencias_json'] = None
         validated_data['tpamb'] = ESOCIAL_TPAMB
-        validated_data['retorno_envio_json'] = '{}'
-        validated_data['retorno_consulta_json'] = '{}'
+        validated_data['retorno_envio_json'] = {}
+        validated_data['retorno_consulta_json'] = {}
         if validated_data['evento_xml'] and not validated_data['evento_json']:
-            import json
             import xml.etree.ElementTree as ET
             from ..choices import EVENTO_COD
-            if '<eSocial>' not in validated_data.get('evento_xml'):
+            if '<eSocial' not in validated_data.get('evento_xml'):
                 validated_data['evento_xml'] = '<eSocial>' + validated_data.get(
                     'evento_xml') + '</eSocial>'
 
@@ -114,7 +132,9 @@ class EventosSerializer(ModelSerializer):
                 recursive_update_datefield(elem)
             xml_string = ET.tostring(xml_obj)
             dict = xmltodict.parse(xml_string)
-            validated_data['evento_json'] = json.dumps(dict.get('eSocial'))
+
+            cleaned_dict = remove_ns_prefixes(dict)
+            validated_data['evento_json'] = cleaned_dict.get('eSocial')
         return super().update(instance, validated_data)
 
     def validate(
@@ -134,13 +154,12 @@ class EventosSerializer(ModelSerializer):
             'tpamb',
             'procemi',
             'status',
-            'transmissor_evento',
+            'lote',
             'validacao_precedencia',
             'validacoes',
             'arquivo',
             'is_aberto',
             'origem',
-            'transmissor_evento_error',
             'retorno_envio',
             'retorno_envio_json',
             'retorno_envio_lote_json',

@@ -141,6 +141,7 @@ dmypy.json
 
 # File Folder
 arquivos/*
+lab/
 apps/contrib/management/commands/*
 
 # VsCode
@@ -149,3 +150,6 @@ apps/contrib/management/commands/*
 # media
 media/
 certificados/
+
+refactoring.py
+apagar_migracoes.py

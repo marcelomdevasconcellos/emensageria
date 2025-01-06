@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 import environ  # type: ignore
+from django.utils.log import DEFAULT_LOGGING as LOGGING
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,6 +44,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 INSTALLED_APPS = [
     'adminlteui',
+    'adminlteui_custom',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,10 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'treebeard',
-    'constance',
-    'constance.backends.database',
     'apps.esocial.apps.esocialConfig',
+    'apps.users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +74,8 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                 os.path.join(BASE_DIR, 'adminlteui_custom', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,7 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'constance.context_processors.config',
+                # 'constance.context_processors.config',
                 'config.context_processors.admin_media',
             ],
         },
@@ -122,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-BR'
 
-TIME_ZONE = 'Brazil/East'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -161,6 +162,8 @@ SERVER_EMAIL = env('SERVER_EMAIL', default='')
 EMAIL_USE_TLS = env('EMAIL_USE_TLS', default=True)
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='')
 
+AUTH_USER_MODEL = "users.User"
+
 LOG_FILENAME = "emensageria.log"
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 os.makedirs(LOG_DIR, exist_ok=True)  # Cria o diretório de logs, caso não exista
@@ -181,8 +184,6 @@ def parse_admins(
 
 ADMINS = parse_admins(
     env('ADMINS', default='Marcelo Vasconcellos, marcelomdevasconcellos@gmail.com;'))
-
-from django.utils.log import DEFAULT_LOGGING as LOGGING
 
 LOGGING['handlers']['mail_admins']['include_html'] = True
 
@@ -223,141 +224,161 @@ REST_FRAMEWORK = {
     )
 }
 
-# Constance
+ADMINLTE_CONFIG_CLASS = 'adminlteui_custom.adminlte_config.MyAdminlteConfig'
 
-CONSTANCE_ADDITIONAL_FIELDS = {
-    'choices_tp_amb': ['django.forms.fields.ChoiceField', {
-        'widget': 'django.forms.Select',
-        'choices': (("Produção", "Produção"), ("Produção Restrita", "Produção Restrita"))
-    }],
-    'image_field': ['django.forms.ImageField', {}]
-}
+# Visualiza manual do sistema no menu.
+SYSTEM_MANUAL_SHOW_IN_MENU = env('SYSTEM_MANUAL_SHOW_IN_MENU', default=False)
 
-CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+# Link do manual do sistema.
+SYSTEM_MANUAL_LINK = env('SYSTEM_MANUAL_LINK', default='#')
 
-CONSTANCE_CONFIG = {
+# Caminho relativo do local aonde serão armazenados os arquivos.
+# Insira "/" no início para definir diretórios absolutos.
+FILES_PATH = env('MEDIA_ROOT', default=os.path.join(MEDIA_ROOT, 'arquivos'))
+os.makedirs(os.path.join(FILES_PATH), exist_ok=True)  # Cria o diretório de logs, caso não exista
 
-    'SYSTEM_MANUAL_SHOW_IN_MENU': (False,
-                                   'Visualiza manual do sistema no menu.',
-                                   bool),
+os.makedirs(os.path.join(FILES_PATH, "comunicacao", "WsConsultarLoteEventos"), exist_ok=True)
+os.makedirs(os.path.join(FILES_PATH, "comunicacao", "WsEnviarLoteEventos"), exist_ok=True)
+os.makedirs(os.path.join(FILES_PATH, "esocial", "importacao", "aguardando"), exist_ok=True)
+os.makedirs(os.path.join(FILES_PATH, "esocial", "importacao", "erro"), exist_ok=True)
+os.makedirs(os.path.join(FILES_PATH, "esocial", "importacao", "processado"), exist_ok=True)
+os.makedirs(os.path.join(FILES_PATH, "esocial", "importacao", "processando"), exist_ok=True)
+os.makedirs(os.path.join(FILES_PATH, "esocial", "importacao", "temp"), exist_ok=True)
+os.makedirs(os.path.join(FILES_PATH, "eventos", "esocial"), exist_ok=True)
+os.makedirs(os.path.join(FILES_PATH, "recibos", "esocial"), exist_ok=True)
 
-    'SYSTEM_MANUAL_LINK': ('http://',
-                           'Link do manual do sistema.',
-                           str),
+# Cada usuário pode ver somente os que ele mesmo cadastrou.
+# Os Super-usuários vêem todos os eventos.
+FILTER_BY_USER = env('FILTER_BY_USER', default=False)
 
-    'FILES_PATH': ('arquivos',
-                   'Caminho relativo do local aonde serão armazenados os arquivos. Insira "/" no início para definir diretórios absolutos.',
-                   str),
+# Visualiza imagem do logotipo na tela de Login.
+LOGO_IMAGE_IN_LOGIN = env('LOGO_IMAGE_IN_LOGIN', default=False)
 
-    'FILTER_BY_USER': (False,
-                       'Cada usuário pode ver somente os que ele mesmo cadastrou. Os Super-usuários vêem todos os eventos',
-                       bool),
+# Logotipo da empresa
+LOGO_IMAGE = env('LOGO_IMAGE', default='')
 
-    'LOGO_IMAGE_IN_LOGIN': (False,
-                            'Visualiza imagem do logotipo na tela de Login.',
-                            bool),
+# Nome da empresa que está disponibilizando o sistema
+REPRESENTANTE_NOME = env('REPRESENTANTE_NOME', default='EMENSAGERIA')
 
-    'LOGO_IMAGE': ('', 'Logotipo da empresa', 'image_field'),
+# Contrato da central de serviços
+REPRESENTANTE_CENTRAL_SERVICOS = env(
+    'REPRESENTANTE_CENTRAL_SERVICOS',
+    default='Central de Serviços (99) 99999.9999')
 
-    'REPRESENTANTE_NOME': ('EMENSAGERIA',
-                           'Nome da empresa que está disponibilizando o sistema',
-                           str),
+# Token de autenticação do sistema para acesso aos webservices
+SYSTEM_TOKEN_SCHEDULE = env(
+    'SYSTEM_TOKEN_SCHEDULE',
+    default='9944b09199c62bcf9418ad846dd0123e4bbdfc6ee4b')
 
-    'REPRESENTANTE_CENTRAL_SERVICOS': ('Central de Serviços (99) 99999.9999',
-                                       'Contrato da central de serviços',
-                                       str),
+# Tempo entre validações (em minutos) dos eventos do eSocial.
+ESOCIAL_VALIDATE_RUN_EVERY_MINS = env('ESOCIAL_VALIDATE_RUN_EVERY_MINS', default=10)
 
-    'SYSTEM_TOKEN_SCHEDULE': ('9944b09199c62bcf9418ad846dd0123e4bbdfc6ee4b',
-                              'Token de autenticação do sistema para acesso aos webservices',
-                              str),
+# Tempo entre envios (em minutos) dos eventos do eSocial.'
+ESOCIAL_SEND_RUN_EVERY_MINS = env('ESOCIAL_SEND_RUN_EVERY_MINS', default=10)
 
-    'ESOCIAL_VALIDATE_RUN_EVERY_MINS': (10,
-                                        'Tempo entre validações (em minutos) dos eventos do eSocial.',
-                                        int),
+# Tempo entre consultas (em minutos) dos eventos do eSocial.
+ESOCIAL_CONSULT_RUN_EVERY_MINS = env('ESOCIAL_CONSULT_RUN_EVERY_MINS', default=10)
 
-    'ESOCIAL_SEND_RUN_EVERY_MINS': (10,
-                                    'Tempo entre envios (em minutos) dos eventos do eSocial.',
-                                    int),
+# Quantidade do mínima do lote do eSocial.
+ESOCIAL_LOTE_MIN = env('ESOCIAL_LOTE_MIN', default=1)
 
-    'ESOCIAL_CONSULT_RUN_EVERY_MINS': (10,
-                                       'Tempo entre consultas (em minutos) dos eventos do eSocial.',
-                                       int),
+# Quantidade do máxima do lote do eSocial.
+ESOCIAL_LOTE_MAX = env('ESOCIAL_LOTE_MAX', default=60)
 
-    'ESOCIAL_LOTE_MIN': (1,
-                         'Quantidade do mínima do lote do eSocial.',
-                         int),
+# Timeout do eSocial.
+ESOCIAL_TIMEOUT = env('ESOCIAL_TIMEOUT', default=3600)
 
-    'ESOCIAL_LOTE_MAX': (60,
-                         'Quantidade do máxima do lote do eSocial.',
-                         int),
+# Envio automático do eSocial.
+ESOCIAL_AUTOMATIC_FUNCTIONS_ENABLED = env(
+    'ESOCIAL_AUTOMATIC_FUNCTIONS_ENABLED', default=False)
 
-    'ESOCIAL_TIMEOUT': (3600,
-                        'Timeout do eSocial.',
-                        int),
+# Caminho completo do Certificado do SERPRO para o eSocial'
+ESOCIAL_CA_CERT_PEM_FILE = env(
+    'ESOCIAL_CA_CERT_PEM_FILE',
+    default='certificado/webservicesproducaorestritaesocialgovbr.crt')
 
-    'ESOCIAL_AUTOMATIC_FUNCTIONS_ENABLED': (False,
-                                            'Envio automático do eSocial.',
-                                            bool),
+# Tipo de ambiente padrão do sistema do eSocial.'
+ESOCIAL_TP_AMB = env('ESOCIAL_TP_AMB', default='Produção Restrita')
 
-    'ESOCIAL_CA_CERT_PEM_FILE': ('certificado/webservicesproducaorestritaesocialgovbr.crt',
-                                 'Caminho completo do Certificado do SERPRO para o eSocial',
-                                 str),
+# Força o sistema para envio pelo ambiente produção restrita do eSocial.'
+ESOCIAL_FORCE_PRODUCAO_RESTRITA = env(
+    'ESOCIAL_FORCE_PRODUCAO_RESTRITA', default=True)
 
-    'ESOCIAL_TP_AMB': (
-        'Produção Restrita',
-        'Tipo de ambiente padrão do sistema do eSocial.',
-        'choices_tp_amb'),
+# Ativa a função de verificar predecessão antes dos envios dos eventos do eSocial.'
+ESOCIAL_VERIFICAR_PREDECESSAO_ANTES_ENVIO = env(
+    'ESOCIAL_VERIFICAR_PREDECESSAO_ANTES_ENVIO', default=False)
 
-    'ESOCIAL_FORCE_PRODUCAO_RESTRITA': (True,
-                                        'Força o sistema para envio pelo ambiente produção restrita do eSocial.',
-                                        bool),
+# Tempo de leitura de arquivos importados (em minutos).'
+IMPORT_FILES_RUN_EVERY_MINS = env(
+    'IMPORT_FILES_RUN_EVERY_MINS', default=10)
 
-    'ESOCIAL_VERIFICAR_PREDECESSAO_ANTES_ENVIO': (False,
-                                                  'Ativa a função de verificar predecessão antes dos envios dos eventos do eSocial.',
-                                                  bool),
+# Quantidade do lote de arquivos de eventos para importação.'
+IMPORT_LEN_EVENTS = env(
+    'IMPORT_LEN_EVENTS', default=10)
 
-    'IMPORT_FILES_RUN_EVERY_MINS': (10,
-                                    'Tempo de leitura de arquivos importados (em minutos).',
-                                    int),
+# Funções de importação automáticas ativadas.
+IMPORT_AUTOMATIC_FUNCTIONS_ENABLED = env(
+    'IMPORT_AUTOMATIC_FUNCTIONS_ENABLED', default=False)
 
-    'IMPORT_LEN_EVENTS': (10,
-                          'Quantidade do lote de arquivos de eventos para importação.',
-                          int),
+# Tempo entre validações (em minutos) dos eventos do EFD-Reinf.'
+EFDREINF_VALIDADE_RUN_EVERY_MINS = env(
+    'EFDREINF_VALIDADE_RUN_EVERY_MINS', default=10)
 
-    'IMPORT_AUTOMATIC_FUNCTIONS_ENABLED': (False,
-                                           'Funções de importação automáticas ativadas.',
-                                           bool),
+# Tempo entre envios (em minutos) dos eventos do EFD-Reinf.'
+EFDREINF_SEND_RUN_EVERY_MINS = env(
+    'EFDREINF_SEND_RUN_EVERY_MINS', default=10)
 
-    'EMAIL_RECUPERACAO_SENHA': ('emensageria@emensageria.com.br',
-                                'E-mail de recuperação de senha.',
-                                str),
+# Tempo entre consultas (em minutos) dos eventos do EFD-Reinf.'
+EFDREINF_CONSULT_RUN_EVERY_MINS = env(
+    'EFDREINF_CONSULT_RUN_EVERY_MINS', default=10)
 
-    'EMAIL_RECUPERACAO_SENHA_ASSUNTO': ('Criação/Recuperação de senha | eMensageria',
-                                        'Assunto padrão do e-mail de recuperação de senha.',
-                                        str),
+# Caminho completo do Certificado do SERPRO para o EFD-Reinf'
+EFDREINF_CA_CERT_PEM_FILE = env(
+    'EFDREINF_CA_CERT_PEM_FILE', default='certificados/acserproacfv5.crt')
 
-    'EMAIL_RECUPERACAO_SENHA_MENSAGEM': (
-        '<p>Prezado %(nome)s,<br>Acesse o sistema pelo link <a href="%(endereco)s">eMensageriaPro</a><br>Utilizando o usuário: <strong>%(usuario)s</strong><br>Senha: <strong>%(senha)s</strong><br>E-mail gerado automaticamente pelo sistema eMensageria</p>',
-        'Mensagem padrão do e-mail de recuperação de senha.',
-        str),
+# Quantidade do mínima do lote do EFD-Reinf.
+EFDREINF_LOTE_MIN = env(
+    'EFDREINF_LOTE_MIN', default=1)
 
-}
+# Quantidade do máxima do lote do EFD-Reinf.
+EFDREINF_LOTE_MAX = env(
+    'EFDREINF_LOTE_MAX', default=60)
 
-ADMINLTE_SETTINGS = {
-    # 'demo': True,
-    # 'search_form': True,
-    # 'skin': 'blue',
-    # 'copyright': '<a href="https://github.com/wuyue92tree/django-adminlte-ui/tree/'+version+'">django-adminlte-ui '+version+'</a>',
-    # 'navigation_expanded': True,
+# Timeout do EFD-Reinf.
+EFDREINF_TIMEOUT = env(
+    'EFDREINF_TIMEOUT', default=3600)
 
-    # if you are use custom menu, which will not effective below!
+# Envio automático do EFD-Reinf.
+EFDREINF_AUTOMATIC_FUNCTIONS_ENABLED = env(
+    'EFDREINF_AUTOMATIC_FUNCTIONS_ENABLED', default=False)
 
-    # 'show_apps': ['django_admin_settings', 'auth', 'main'],
-    # 'main_navigation_app': 'django_admin_settings',
-    'icons': {
-        'esocial': {
-            'arquivos': 'fa-circle',
-            'eventos': 'fa-circle',
-        }
-    }
-}
+# Tipo de ambiente padrão do sistema do EFD-Reinf.
+EFDREINF_TP_AMB = env(
+    'EFDREINF_TP_AMB', default='Produção Restrita')
+
+# Força o sistema para envio pelo ambiente produção restrita do EFD-Reinf.
+EFDREINF_FORCE_PRODUCAO_RESTRITA = env(
+    'EFDREINF_FORCE_PRODUCAO_RESTRITA', default=True)
+
+# Ativa a função de verificar predecessão antes dos envios dos eventos do EFD-Reinf.
+EFDREINF_VERIFICAR_PREDECESSAO_ANTES_ENVIO = env(
+    'EFDREINF_VERIFICAR_PREDECESSAO_ANTES_ENVIO', default=False)
+
+# E-mail de recuperação de senha.
+EMAIL_RECUPERACAO_SENHA = env(
+    'EMAIL_RECUPERACAO_SENHA', default='emensageria@emensageria.com.br')
+
+# Assunto padrão do e-mail de recuperação de senha.
+EMAIL_RECUPERACAO_SENHA_ASSUNTO = env(
+    'EMAIL_RECUPERACAO_SENHA_ASSUNTO', default='Criação/Recuperação de senha | eMensageria')
+
+# Mensagem padrão do e-mail de recuperação de senha.
+EMAIL_RECUPERACAO_SENHA_MENSAGEM = env(
+    'EMAIL_RECUPERACAO_SENHA_MENSAGEM',
+    default='<p>Prezado %(nome)s,<br>Acesse o sistema pelo link '
+            '<a href="%(endereco)s">eMensageriaOpenSource</a><br>Utilizando '
+            'o usuário: <strong>%(usuario)s</strong><br>Senha: '
+            '<strong>%(senha)s</strong><br>E-mail gerado '
+            'automaticamente pelo sistema eMensageria</p>')
+
+CRYPTO_KEY = env('CRYPTO_KEY')
