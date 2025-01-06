@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from apps.esocial.choices import STATUS_EVENTO_AGUARD_ENVIO, STATUS_EVENTO_IMPORTADO, \
     STATUS_TRANSMISSOR_AGUARDANDO, \
@@ -19,9 +20,10 @@ def enviar_transmissores(
     tes = Lotes.objects.filter(status=STATUS_TRANSMISSOR_AGUARDANDO).all()
     for te in tes:
         te.enviar()
-    if request.META.get('HTTP_REFERER'):
+    referer = request.META.get('HTTP_REFERER', '')
+    if referer and url_has_allowed_host_and_scheme(referer, allowed_hosts=None):
         messages.success(request, 'Lotes enviados')
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponseRedirect(referer)
     return HttpResponse(
         '{"mensagem": "Lotes enviados"}',
         content_type='application/json')
