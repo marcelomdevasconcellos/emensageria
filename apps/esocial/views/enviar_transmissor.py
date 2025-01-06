@@ -7,6 +7,7 @@ from django.utils.http import url_has_allowed_host_and_scheme
 
 from apps.esocial.models import Lotes
 
+
 @login_required
 def enviar_transmissor(
         request,
