@@ -1,3 +1,7 @@
+## Versão 2.0.1 - 2025-01-06
+
+* PR #43: Fix requirements.txt 
+
 ## Versão 2.0.0 - 2025-01-06
 
 * PR #42: Django4 
