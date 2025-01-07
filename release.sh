@@ -74,7 +74,7 @@ main() {
     update_version_file
     git add "$CHANGELOG_FILE" "$VERSION_FILE"
     git commit -m "Atualiza para versão $VERSION"
-    git push
+    git push origin main
     create_github_release
 }
 

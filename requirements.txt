@@ -36,4 +36,4 @@ untangle
 xlwt==1.3.0
 dotmap
 pdfkit
-libesocial @ https://github.com/qualitaocupacional/libesocial/archive/main.zip#sha256=fafd215f0367ec774052dd168520a3bd45db56ddf1010f96b80ad3cbe579ae6f
+git+https://github.com/marcelomdevasconcellos/libesocial.git@master#egg=libesocial
