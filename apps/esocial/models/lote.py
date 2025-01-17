@@ -370,9 +370,6 @@ class Lotes(BaseModelEsocial):
             self.response_retrieve_xml = result
             self.save()
 
-            # Atualiza o status de todos os eventos vinculados a este transmissor
-            # self.transmissor_esocial.update(status=STATUS_EVENTO_PROCESSADO)
-
             ocorrencias_lista = []
             eventos = response_dict.get('retornoEventos', {}).get('evento', [])
             if type(eventos) is dict:
@@ -380,7 +377,6 @@ class Lotes(BaseModelEsocial):
             for evt in eventos:
                 identidade = evt["@Id"]
                 retorno_consulta_dict = evt["retornoEvento"]["eSocial"]["retornoEvento"]
-                # print("*** retorno_consulta_dict", identidade, retorno_consulta_dict)
                 ocorrencias = retorno_consulta_dict.get(
                     'processamento', {}).get('ocorrencias', {}).get('ocorrencia', [])
                 if type(ocorrencias) is dict:
