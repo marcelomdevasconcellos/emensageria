@@ -1,3 +1,7 @@
+## Versão 2.0.2 - 2025-01-17
+
+* PR #44: Correção de redirecionamentos e controle de status 
+
 ## Versão 2.0.1 - 2025-01-06
 
 * PR #43: Fix requirements.txt 
