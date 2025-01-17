@@ -163,7 +163,7 @@ label {
                     </div>
                 </div>
             </div>
-        {% elif original.ocorrencias_json %}
+        {% elif original.ocorrencias_json  or original.retorno_consulta_json.processamento.cdResposta in CODIGOS_RESPOSTA_ERROS %}
             <div class="col-md-12">
                 <div class="row">
                     <div class="alert alert-danger alert-dismissible" style="margin: 20px;">

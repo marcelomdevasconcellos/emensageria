@@ -2,10 +2,10 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
-from django.utils.http import url_has_allowed_host_and_scheme
 
 from apps.esocial.choices import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_IMPORTADO
 from apps.esocial.models import Eventos
+from config.functions import verify_domain
 
 
 @login_required
@@ -18,7 +18,6 @@ def validar_eventos(
         evt.create_xml()
         evt.validar()
     referer = request.META.get('HTTP_REFERER', '')
-    if url_has_allowed_host_and_scheme(referer, allowed_hosts=None):
+    if referer and verify_domain(referer):
         return HttpResponseRedirect(referer)
-    return HttpResponseRedirect('/')
     return HttpResponse(json.dumps({}), content_type='application/json')

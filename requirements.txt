@@ -1,4 +1,4 @@
-Django==4.2.17
+Django==4.2.18
 django-currentuser
 django-environ
 django-adminlte-ui==2.1.1

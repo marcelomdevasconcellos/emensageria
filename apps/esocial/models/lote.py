@@ -10,7 +10,8 @@ from django.conf import settings
 from django.contrib import messages
 from django.db import models
 
-from apps.esocial.choices import EVENTOS_GRUPOS, STATUS_EVENTO_AGUARD_ENVIO, \
+from apps.esocial.choices import CODIGOS_RESPOSTA_ERROS, CODIGOS_RESPOSTA_PROCESSADOS, \
+    EVENTOS_GRUPOS, STATUS_EVENTO_AGUARD_ENVIO, \
     STATUS_EVENTO_ENVIADO, STATUS_EVENTO_ERRO, STATUS_EVENTO_PROCESSADO, \
     STATUS_TRANSMISSOR_CADASTRADO, \
     STATUS_TRANSMISSOR_CONSULTADO, STATUS_TRANSMISSOR_ENVIADO, \
@@ -370,7 +371,7 @@ class Lotes(BaseModelEsocial):
             self.save()
 
             # Atualiza o status de todos os eventos vinculados a este transmissor
-            self.transmissor_esocial.update(status=STATUS_EVENTO_PROCESSADO)
+            # self.transmissor_esocial.update(status=STATUS_EVENTO_PROCESSADO)
 
             ocorrencias_lista = []
             eventos = response_dict.get('retornoEventos', {}).get('evento', [])
@@ -379,7 +380,7 @@ class Lotes(BaseModelEsocial):
             for evt in eventos:
                 identidade = evt["@Id"]
                 retorno_consulta_dict = evt["retornoEvento"]["eSocial"]["retornoEvento"]
-                print("*** retorno_consulta_dict", identidade, retorno_consulta_dict)
+                # print("*** retorno_consulta_dict", identidade, retorno_consulta_dict)
                 ocorrencias = retorno_consulta_dict.get(
                     'processamento', {}).get('ocorrencias', {}).get('ocorrencia', [])
                 if type(ocorrencias) is dict:
@@ -390,12 +391,18 @@ class Lotes(BaseModelEsocial):
                 evento.ocorrencias_json = ocorrencias
                 ocorrencias_lista.append(
                     {'identidade': identidade, 'ocorrencias': ocorrencias, })
-                if ocorrencias:
+                codigo_retorno = retorno_consulta_dict.get(
+                    'processamento', {}).get('cdResposta')
+                if ocorrencias or codigo_retorno in CODIGOS_RESPOSTA_ERROS:
                     evento.status = STATUS_EVENTO_ERRO
+                elif codigo_retorno in CODIGOS_RESPOSTA_PROCESSADOS:
+                    evento.status = STATUS_EVENTO_PROCESSADO
                 else:
                     # Nenhum status foi alterado, identificar o que precisamos
-                    # fazer neste caos
-                    pass
+                    # fazer neste caso, pois o evento está aguardando processamento
+                    # código 101
+                    logger.info(
+                        f"Evento aguardando processamento {evento.identidade}, {codigo_retorno}")
                 evento.save()
 
             if not eventos:

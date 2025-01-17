@@ -1,8 +1,20 @@
 import codecs
 import os
+from urllib.parse import urlparse
 
 import xmlschema  # type: ignore
+from django.utils.http import url_has_allowed_host_and_scheme
 from lxml import etree
+
+from config.settings import ALLOWED_HOSTS
+
+
+def verify_domain(referer):
+    domain = ''
+    if referer:
+        parsed_url = urlparse(referer)
+        domain = parsed_url.netloc.split(':')[0]
+    return url_has_allowed_host_and_scheme(domain, allowed_hosts=ALLOWED_HOSTS)
 
 
 def create_dir(filename):
