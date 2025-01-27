@@ -113,7 +113,7 @@ def read_ocorrencias_lote(
     lista = []
     obj = string or {}
     if isinstance(obj.get('ocorrencia'), list):
-        for o in obj.get('ocorrencia'):
+        for o in obj.get('ocorrencia', []):
             lista.append(
                 {
                     'tipo': o.get('tipo'),
@@ -124,10 +124,10 @@ def read_ocorrencias_lote(
     else:
         lista.append(
             {
-                'tipo': obj.get('ocorrencia').get('tipo'),
-                'codigo': obj.get('ocorrencia').get('codigo'),
-                'descricao': obj.get('ocorrencia').get('descricao'),
-                'localizacao': obj.get('ocorrencia').get('localizacao')
+                'tipo': obj.get('ocorrencia', {}).get('tipo'),
+                'codigo': obj.get('ocorrencia', {}).get('codigo'),
+                'descricao': obj.get('ocorrencia', {}).get('descricao'),
+                'localizacao': obj.get('ocorrencia', {}).get('localizacao')
             })
     return lista
 

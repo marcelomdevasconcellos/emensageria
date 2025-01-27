@@ -177,7 +177,8 @@ class EventosAdmin(AuditoriaAdminEventos):
         )
         n = 0
         for obj in queryset:
-            if obj.status in (STATUS_EVENTO_IMPORTADO, STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO):
+            if obj.status in (
+                    STATUS_EVENTO_IMPORTADO, STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO):
                 n += 1
                 if not obj.lote:
                     obj.vincular_transmissor()
