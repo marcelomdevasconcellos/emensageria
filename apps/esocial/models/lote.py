@@ -438,6 +438,7 @@ class Lotes(BaseModelEsocial):
     class Meta:
         verbose_name = 'Lote'
         verbose_name_plural = 'Lotes'
+        ordering = ('-updated_at',)
 
 
 class LotesSerializer(BaseModelSerializer):

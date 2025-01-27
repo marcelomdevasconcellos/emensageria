@@ -110,9 +110,8 @@ def read_ocorrencias(
 @register.filter('read_ocorrencias_lote')
 def read_ocorrencias_lote(
         string):
-    import json
     lista = []
-    obj = json.loads(string or '{}')
+    obj = string or {}
     if isinstance(obj.get('ocorrencia'), list):
         for o in obj.get('ocorrencia'):
             lista.append(
@@ -122,6 +121,14 @@ def read_ocorrencias_lote(
                     'descricao': o.get('descricao'),
                     'localizacao': o.get('localizacao')
                 })
+    else:
+        lista.append(
+            {
+                'tipo': obj.get('ocorrencia').get('tipo'),
+                'codigo': obj.get('ocorrencia').get('codigo'),
+                'descricao': obj.get('ocorrencia').get('descricao'),
+                'localizacao': obj.get('ocorrencia').get('localizacao')
+            })
     return lista
 
 

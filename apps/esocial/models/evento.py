@@ -1,6 +1,8 @@
 import json
+import logging
 import os
 from datetime import datetime
+from pathlib import Path
 from typing import Any, Dict
 
 import esocial.utils
@@ -21,7 +23,9 @@ from apps.esocial.choices import (
     STATUS_TRANSMISSOR_AGUARDANDO, STATUS_TRANSMISSOR_CADASTRADO, VERSOES)
 from config.functions import save_file
 from config.mixins import BaseModelEsocial
-from config.settings import VERSAO_LAYOUT_ESOCIAL
+from config.settings import BASE_DIR, VERSAO_LAYOUT_ESOCIAL
+
+logger = logging.getLogger("django")
 
 
 class Eventos(BaseModelEsocial):
@@ -119,6 +123,21 @@ class Eventos(BaseModelEsocial):
         choices=EVENTO_ORIGEM, default=EVENTO_ORIGEM_SISTEMA, )
     is_aberto = models.BooleanField(
         'Está aberto para edição', default=True, )
+
+    def is_editable(
+            self):
+        file_path = Path(
+            os.path.join(
+                str(BASE_DIR),
+                'apps',
+                'esocial',
+                'templates',
+                self.versao,
+                f'{self.evento}.html'))
+
+        if file_path.is_file():
+            return True
+        return False
 
     def get_grupo_esocial(
             self):
@@ -315,6 +334,7 @@ class Eventos(BaseModelEsocial):
 
         if (self.evento_xml and self.origem == EVENTO_ORIGEM_API
                 and self.status == STATUS_EVENTO_IMPORTADO):
+            logger.info("XML criado a partir do campo evento_xml")
 
             xml = self.evento_xml
             if '<eSocial' not in self.evento_xml:
@@ -342,7 +362,8 @@ class Eventos(BaseModelEsocial):
             if 'Signature' not in self.evento_xml:
                 self.assinar(request)
 
-        else:
+        elif self.is_editable():
+            logger.info("XML criado a partir do campo evento_json")
             data = readfromstring(json.dumps(self.evento_json) or '{}')
             xml = dicttoxml.dicttoxml(
                 data,
