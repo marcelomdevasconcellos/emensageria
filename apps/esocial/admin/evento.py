@@ -3,7 +3,8 @@ from typing import Any, Dict
 from django.contrib import admin, messages
 from django.utils.safestring import mark_safe
 
-from apps.esocial.choices import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO
+from apps.esocial.choices import STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO, \
+    STATUS_EVENTO_IMPORTADO
 from apps.esocial.forms.evento import EventosForm
 from apps.esocial.models import Eventos
 from apps.users.models import User
@@ -176,7 +177,7 @@ class EventosAdmin(AuditoriaAdminEventos):
         )
         n = 0
         for obj in queryset:
-            if obj.status in (STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO):
+            if obj.status in (STATUS_EVENTO_IMPORTADO, STATUS_EVENTO_CADASTRADO, STATUS_EVENTO_ERRO):
                 n += 1
                 if not obj.lote:
                     obj.vincular_transmissor()

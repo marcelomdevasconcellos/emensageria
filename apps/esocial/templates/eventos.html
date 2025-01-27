@@ -271,6 +271,7 @@ label {
 
                       {% if original.evento and original.is_aberto %}
 {#                          {% if user.is_superuser %}#}
+                          {% if original.pk and original.is_editable %}
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>JSON</label>
@@ -282,6 +283,7 @@ label {
 
                             </div>
                           </div>
+                          {% endif %}
 {#                          {% else %}#}
 {#                              <input type="hidden"#}
 {#                                     id="id_evento_json_read"#}
@@ -329,7 +331,8 @@ label {
         </div>
         {% endcomment %}
 
-
+{% if original.is_editable %}
+{% endif %}
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-body">
@@ -351,7 +354,7 @@ label {
                         {% endif %}{% endif %}
                         {% endblock %}
 
-                        {% if original.pk %}
+                        {% if original.pk and original.is_editable %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <button type="submit"
@@ -363,7 +366,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and original.is_aberto and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ERRO or original.status == STATUS_EVENTO_IMPORTADO %}
+                        {% if original.pk and original.is_editable and original.is_aberto and original.status == STATUS_EVENTO_CADASTRADO or original.status == STATUS_EVENTO_ERRO or original.status == STATUS_EVENTO_IMPORTADO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <button type="submit"
@@ -375,7 +378,7 @@ label {
                             </div>
                         </div>
                         {% endif %}
-                        {% if original.pk and not original.is_aberto and original.status in original.abrir_evento_para_edicao_lista %}
+                        {% if original.pk and original.is_editable and not original.is_aberto and original.status in original.abrir_evento_para_edicao_lista %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <button type="submit"
@@ -460,7 +463,7 @@ label {
 {#                            </div>#}
 {#                        </div>#}
 {#                        {% endifequal %}#}
-                        {% if original.pk and not original.is_aberto and original.status == STATUS_EVENTO_ERRO or original.status == STATUS_EVENTO_PROCESSADO or original.status == STATUS_EVENTO_ENVIADO %}
+                        {% if original.pk and original.is_editable and not original.is_aberto and original.status == STATUS_EVENTO_ERRO or original.status == STATUS_EVENTO_PROCESSADO or original.status == STATUS_EVENTO_ENVIADO %}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <a href="{% url 'esocial:eventos_recibo' pk=original.pk %}" target="_blank">
