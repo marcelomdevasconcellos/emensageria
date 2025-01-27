@@ -1,3 +1,9 @@
+## Versão 2.0.3 - 2025-01-27
+
+* PR #47: Fix flake8 e mypy 
+* PR #46: Remover serializejson 
+* PR #45: Correções diversas e validação de eventos importados 
+
 ## Versão 2.0.2 - 2025-01-17
 
 * PR #44: Correção de redirecionamentos e controle de status 
