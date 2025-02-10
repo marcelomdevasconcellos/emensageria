@@ -143,7 +143,7 @@ EVENTOS_GRUPOS = [
     (EVENTOS_GRUPOS_PERIODICOS, '3 - Eventos Periódicos'),
 ]
 
-ESOCIAL_VERSAO_DEFAULT = 'v_S_01_02_00'
+ESOCIAL_VERSAO_DEFAULT = 'v_S_01_03_00'
 VERSOES = [
     ('v_S_01_00_00', 'Versão S-1.0'),
     ('v_S_01_01_00', 'Versão S-1.1'),
