@@ -18,55 +18,58 @@ class Command(BaseCommand):
             return
 
         for cert in certificados:
-            try:
+            # try:
                 # Caminho do arquivo do certificado
-                cert_path = cert.cert_host()
+            cert_path = cert.cert_host()
 
-                # Verifica se o arquivo do certificado existe
-                if not os.path.exists(cert_path):
-                    self.stdout.write(
-                        self.style.ERROR(f'O arquivo do certificado "{cert.nome}" não foi '
-                                         F'encontrado: {cert_path}')
+            # Verifica se o arquivo do certificado existe
+            if not os.path.exists(cert_path):
+                self.stdout.write(
+                    self.style.ERROR(f'O arquivo do certificado "{cert.nome}" não foi '
+                                     F'encontrado: {cert_path}')
+                )
+                continue
+
+            # Carregar o arquivo PKCS#12 (.pfx)
+            with open(cert_path, 'rb') as f:
+                pkcs12_data = f.read()
+
+            password = cert.get_senha_certificado()
+            if password is not None:
+                password = password.encode('utf-8')
+            private_key, certificate, additional_certs = pkcs12.load_key_and_certificates(
+                pkcs12_data,
+                password=password,
+                backend=default_backend()
+            )
+
+            if not certificate:
+                raise ValueError(f'O certificado "{cert.nome}" está vazio ou inválido.')
+
+            # Extrair informações do certificado
+            validade_inicio = certificate.not_valid_before
+            validade_fim = certificate.not_valid_after
+            agora = datetime.now()
+
+            # Verificar datas de validade
+            if validade_inicio <= agora <= validade_fim:
+                self.stdout.write(
+                    self.style.SUCCESS(
+                        f'Certificado "{cert.nome}" está válido. '
+                        f'Válido de {validade_inicio} até {validade_fim}.'
                     )
-                    continue
-
-                # Carregar o arquivo PKCS#12 (.pfx)
-                with open(cert_path, 'rb') as f:
-                    pkcs12_data = f.read()
-
-                private_key, certificate, additional_certs = pkcs12.load_key_and_certificates(
-                    pkcs12_data,
-                    password=cert.get_senha_certificado() if cert.senha_certificado else None,
-                    backend=default_backend()
+                )
+            else:
+                self.stdout.write(
+                    self.style.ERROR(
+                        f'Certificado "{cert.nome}" expirado ou inválido. '
+                        f'Válido de {validade_inicio} até {validade_fim}.'
+                    )
                 )
 
-                if not certificate:
-                    raise ValueError(f'O certificado "{cert.nome}" está vazio ou inválido.')
-
-                # Extrair informações do certificado
-                validade_inicio = certificate.not_valid_before
-                validade_fim = certificate.not_valid_after
-                agora = datetime.now()
-
-                # Verificar datas de validade
-                if validade_inicio <= agora <= validade_fim:
-                    self.stdout.write(
-                        self.style.SUCCESS(
-                            f'Certificado "{cert.nome}" está válido. '
-                            f'Válido de {validade_inicio} até {validade_fim}.'
-                        )
-                    )
-                else:
-                    self.stdout.write(
-                        self.style.ERROR(
-                            f'Certificado "{cert.nome}" expirado ou inválido. '
-                            f'Válido de {validade_inicio} até {validade_fim}.'
-                        )
-                    )
-
-            except ValueError as e:
-                self.stdout.write(self.style.ERROR(f"Erro ao carregar '{cert.nome}': {e}"))
-            except Exception as e:
-                self.stdout.write(self.style.ERROR(f"Erro ao verificar '{cert.nome}': {e}"))
+            # except ValueError as e:
+            #     self.stdout.write(self.style.ERROR(f"Erro ao carregar '{cert.nome}': {e}"))
+            # except Exception as e:
+            #     self.stdout.write(self.style.ERROR(f"Erro ao verificar '{cert.nome}': {e}"))
 
         self.stdout.write(self.style.SUCCESS('Verificação de certificados concluída.'))
