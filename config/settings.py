@@ -143,6 +143,13 @@ LINK_WEBSITE = env('LINK_WEBSITE', default='')
 VERSAO_EMENSAGERIA = '1.8.0'
 VERSAO_LAYOUT_ESOCIAL = env('VERSAO_LAYOUT_ESOCIAL', default='v_S_01_03_00')
 ESOCIAL_TPAMB = env('ESOCIAL_TPAMB', default='2')
+
+# Targets: tests, production
+if ESOCIAL_TPAMB == '1':
+    ESOCIAL_TARGET = 'production'
+else:
+    ESOCIAL_TARGET = 'tests'
+
 ESOCIAL_PROCEMI = env('ESOCIAL_PROCEMI', default='1')
 
 VERSOES_ESOCIAL = [
@@ -382,5 +389,3 @@ EMAIL_RECUPERACAO_SENHA_MENSAGEM = env(
             'automaticamente pelo sistema eMensageria</p>')
 
 CRYPTO_KEY = env('CRYPTO_KEY')
-# Targets: tests, production
-ESOCIAL_TARGET = env('ESOCIAL_TARGET', default='tests')
