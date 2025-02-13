@@ -382,3 +382,5 @@ EMAIL_RECUPERACAO_SENHA_MENSAGEM = env(
             'automaticamente pelo sistema eMensageria</p>')
 
 CRYPTO_KEY = env('CRYPTO_KEY')
+# Targets: tests, production
+ESOCIAL_TARGET = env('ESOCIAL_TARGET', default='tests')

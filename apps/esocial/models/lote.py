@@ -20,7 +20,7 @@ from apps.esocial.choices import CODIGOS_RESPOSTA_ERROS, CODIGOS_RESPOSTA_PROCES
     TRANSMISSOR_STATUS
 from config.functions import create_dir, read_file
 from config.mixins import BaseModelEsocial, BaseModelSerializer
-from config.settings import ESOCIAL_LOTE_MAX, ESOCIAL_LOTE_MIN, FILES_PATH
+from config.settings import ESOCIAL_LOTE_MAX, ESOCIAL_LOTE_MIN, FILES_PATH, ESOCIAL_TARGET
 
 logger = logging.getLogger('django')
 
@@ -172,7 +172,8 @@ class Lotes(BaseModelEsocial):
             pfx_file=self.transmissor.certificado.cert_host(),
             pfx_passw=self.transmissor.certificado.get_senha(),
             employer_id=ide_empregador,
-            sender_id=ide_transmissor
+            sender_id=ide_transmissor,
+            target=ESOCIAL_TARGET,
         )
         eventos = self.get_eventos()
         for evento in eventos:
@@ -331,7 +332,8 @@ class Lotes(BaseModelEsocial):
             pfx_file=self.transmissor.certificado.cert_host(),
             pfx_passw=self.transmissor.certificado.get_senha(),
             employer_id=ide_empregador,
-            sender_id=ide_transmissor
+            sender_id=ide_transmissor,
+            target=ESOCIAL_TARGET,
         )
         result = esocial_ws.retrieve(protocol_number=self.protocolo)
         result_str = esocial.xml.dump_tostring(result, xml_declaration=False, pretty_print=True)
