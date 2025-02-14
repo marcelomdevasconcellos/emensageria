@@ -5,7 +5,7 @@
 * Alteração no script verificar_certificados.py
 * Alteração da versão padrão do eSocial no choices
 * Remover requirements-dev 
-:xzqq
+
 ## Versão 2.0.3 - 2025-01-27
 
 * PR #47: Fix flake8 e mypy 
