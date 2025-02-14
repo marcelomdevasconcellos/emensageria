@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 from datetime import datetime
@@ -10,8 +9,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.db import models
 from django.forms import model_to_dict
-from esocial.xml import load_fromfile, sign
-from json2xml.utils import readfromstring
+from esocial.xml import load_fromstring, sign
 from lxml import etree
 
 from apps.esocial.choices import (
@@ -307,13 +305,13 @@ class Eventos(BaseModelEsocial):
             cert_data = esocial.utils.pkcs12_data(
                 self.certificado.certificado.file.name,
                 self.certificado.get_senha())
-            evt = load_fromfile(self.xml_file())
+            evt = load_fromstring(self.evento_xml)
             evt_signed = sign(evt, cert_data)
-            evt_signed = etree.tostring(evt_signed).decode("utf-8")
-            self.evento_xml = evt_signed
+            evt_signed_ = etree.tostring(evt_signed).decode("utf-8")
+            self.evento_xml = evt_signed_
             self.save()
-            save_file(self.xml_file(), evt_signed)
-            save_file(self.xml_file(timestamp), evt_signed)
+            save_file(self.xml_file(), evt_signed_)
+            save_file(self.xml_file(timestamp), evt_signed_)
         else:
             if request:
                 messages.error(
@@ -364,21 +362,11 @@ class Eventos(BaseModelEsocial):
 
         elif self.is_editable():
             logger.info("XML criado a partir do campo evento_json")
-            data = readfromstring(json.dumps(self.evento_json) or '{}')
             xml = dicttoxml.dicttoxml(
-                data,
+                self.evento_json,
                 attr_type=False,
                 custom_root=wrapper,
                 item_func=lambda x: x).decode()
-            xmlTree = ET.fromstring(xml)
-            elemList = []
-            for elem in xmlTree.iter():
-                elemList.append(elem.tag)
-            elemList = list(set(elemList))
-
-            for elem in elemList:  # type: ignore
-                xml = xml.replace('<%s><%s>' % (elem, elem), '<%s>' % elem)
-                xml = xml.replace('</%s></%s>' % (elem, elem), '</%s>' % elem)
 
             ET.register_namespace(
                 "", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
@@ -418,6 +406,7 @@ class Eventos(BaseModelEsocial):
             if self.identidade:
                 xml_obj.find(  # type: ignore
                     EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
+
             evento_xml = ET.tostring(xml_obj)
             Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode())
             save_file(self.xml_file(), evento_xml.decode())

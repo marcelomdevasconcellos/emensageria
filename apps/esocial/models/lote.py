@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.db import models
 
 from apps.esocial.choices import CODIGOS_RESPOSTA_ERROS, CODIGOS_RESPOSTA_PROCESSADOS, \
-    EVENTOS_GRUPOS, STATUS_EVENTO_AGUARD_ENVIO, \
+    CODIGO_AGUARDANDO_PROCESSAMENTO, EVENTOS_GRUPOS, STATUS_EVENTO_AGUARD_ENVIO, \
     STATUS_EVENTO_ENVIADO, STATUS_EVENTO_ERRO, STATUS_EVENTO_PROCESSADO, \
     STATUS_TRANSMISSOR_CADASTRADO, \
     STATUS_TRANSMISSOR_CONSULTADO, STATUS_TRANSMISSOR_ENVIADO, \
@@ -177,7 +177,7 @@ class Lotes(BaseModelEsocial):
         )
         eventos = self.get_eventos()
         for evento in eventos:
-            evento1_grupo1 = esocial.xml.load_fromfile(evento.xml_file())
+            evento1_grupo1 = esocial.xml.load_fromstring(evento.evento_xml)
             # Adicionando eventos ao lote. O evento já vai ser assinado usando o certificado
             # fornecido e validado contra o XSD do evento
             # Se gen_event_id == True, o Id do evento é gerado pela lib (default = False)
@@ -391,16 +391,16 @@ class Lotes(BaseModelEsocial):
                     {'identidade': identidade, 'ocorrencias': ocorrencias, })
                 codigo_retorno = retorno_consulta_dict.get(
                     'processamento', {}).get('cdResposta')
-                if ocorrencias or codigo_retorno in CODIGOS_RESPOSTA_ERROS:
-                    evento.status = STATUS_EVENTO_ERRO
-                elif codigo_retorno in CODIGOS_RESPOSTA_PROCESSADOS:
+                if codigo_retorno in CODIGOS_RESPOSTA_PROCESSADOS:
                     evento.status = STATUS_EVENTO_PROCESSADO
-                else:
+                elif codigo_retorno == CODIGO_AGUARDANDO_PROCESSAMENTO:
                     # Nenhum status foi alterado, identificar o que precisamos
                     # fazer neste caso, pois o evento está aguardando processamento
                     # código 101
                     logger.info(
                         f"Evento aguardando processamento {evento.identidade}, {codigo_retorno}")
+                else:
+                    evento.status = STATUS_EVENTO_ERRO
                 evento.save()
 
             if not eventos:
