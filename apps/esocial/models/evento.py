@@ -408,6 +408,8 @@ class Eventos(BaseModelEsocial):
                     EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
 
             evento_xml = ET.tostring(xml_obj)
+            self.evento_xml = evento_xml
+            self.save()
             Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode())
             save_file(self.xml_file(), evento_xml.decode())
             save_file(self.xml_file(timestamp), evento_xml.decode())
