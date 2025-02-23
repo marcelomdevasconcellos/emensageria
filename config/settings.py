@@ -389,3 +389,8 @@ EMAIL_RECUPERACAO_SENHA_MENSAGEM = env(
             'automaticamente pelo sistema eMensageria</p>')
 
 CRYPTO_KEY = env('CRYPTO_KEY', default='9hHO4321ekwv7e_yRtnp7c5CJH744rznT8Xe_ocLEmw=')
+
+CSRF_TRUSTED_ORIGINS = [
+    env('CSRF_TRUSTED_ORIGINS', default="http://localhost:8000"),
+]
+CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=True)
