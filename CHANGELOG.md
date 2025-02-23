@@ -1,3 +1,8 @@
+## Versão 2.1.0 - 2025-02-23
+
+* PR #50: Correção dos status dos lotes 
+* PR #49: Alteração do nome do usuário para adequação a LGPD 
+
 ## Versão 2.0.4 - 2025-02-14
 
 * Correção de erros de alteração de estrutura ao editar evento
