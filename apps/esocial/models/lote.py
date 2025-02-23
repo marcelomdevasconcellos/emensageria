@@ -234,7 +234,9 @@ class Lotes(BaseModelEsocial):
                 self.response_send_xml = result
                 ocorrencias_lista: List[Dict] = []
 
-                if response_dict["status"]["cdResposta"] not in ('101', '201', '202'):
+                status = response_dict["status"]["cdResposta"]
+                if status not in ('101', '201', '202', '203'):
+                    # Erro no envio
                     self.status = STATUS_TRANSMISSOR_ERRO_ENVIO
                     self.save()
                     # Ocorreu um erro na transmissão do lote, mas nos não alteramos o
@@ -252,7 +254,7 @@ class Lotes(BaseModelEsocial):
                             resposta_codigo,
                             resposta_descricao)
                     }
-
+                # Enviado com sucesso
                 self.status = STATUS_TRANSMISSOR_ENVIADO
                 self.save()
 
@@ -360,7 +362,6 @@ class Lotes(BaseModelEsocial):
             response_dict = response_dict['eSocial']['retornoProcessamentoLoteEventos']
             response_json = json.dumps(response_dict)
 
-            self.status = STATUS_TRANSMISSOR_CONSULTADO
             self.retorno_consulta_json = response_json
             self.data_hora_consulta = datetime.now()
 
@@ -370,8 +371,20 @@ class Lotes(BaseModelEsocial):
                 'dadosProcessamentoLote', {}).get('versaoAplicativoProcessamentoLote')
             self.arquivo_response = self.get_response(service, date_now)
             self.response_retrieve_xml = result
-            self.save()
 
+            if self.resposta_codigo == '101':
+                logger.info(f"Código 101: Lote {self.id} aguardando processamento")
+                self.status = STATUS_TRANSMISSOR_ENVIADO
+                self.save()
+                return
+
+            elif self.resposta_codigo not in ['101', "201", "202", "203"]:
+                self.status = STATUS_TRANSMISSOR_ERRO_CONSULTA
+                self.save()
+                return
+
+            self.status = STATUS_TRANSMISSOR_CONSULTADO
+            self.save()
             ocorrencias_lista = []
             eventos = response_dict.get('retornoEventos', {}).get('evento', [])
             if type(eventos) is dict:
