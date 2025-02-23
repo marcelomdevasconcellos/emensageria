@@ -25,17 +25,12 @@ class User(AbstractUser):
         'name': 4,
         'eventos': 12,
     }
-    username_validator = UnicodeUsernameValidator()
 
     username = models.CharField(
-        'CPF',
-        max_length=14,
+        'Nome do usuário',
+        max_length=50,
         unique=True,
-        help_text='Obrigatório. Informe o CPF do usuário.',
-        validators=[username_validator],
-        error_messages={
-            'unique': "Um usuário com este CPF já está cadastrado no sistema.",
-        },
+        help_text='Obrigatório. Informe o nome do usuário.',
     )
 
     name = CharField("Nome Completo", blank=True, max_length=255)
@@ -90,39 +85,12 @@ class User(AbstractUser):
         'User Search String',
         blank=True, null=True, max_length=200, )
 
-    @staticmethod
-    def formatar_cpf(
-            cpf):
-        return f"{cpf[0:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:11]}"
-
-    @staticmethod
-    def remover_formatacao(
-            cpf):
-        return cpf.replace('.', '').replace('-', '')
-
-    def remover_formatacao_cpf(
-            self):
-        if self.username:
-            return self.username.replace('.', '').replace('-', '')
-        return ""
-
-    def get_cpf_formatado(
-            self):
-        if self.username:
-            cpf = self.username
-            cpf = cpf.replace('.', '').replace('-', '')
-        return self.formatar_cpf(cpf)
-
     def save(
             self,
             force_insert=False,
             force_update=False,
             using=None,
             update_fields=None):
-        username = self.username
-        username = self.remover_formatacao(username)
-        username = self.formatar_cpf(username)
-        self.username = username
         if self.name:
             if ' ' in self.name:
                 name = self.name.split(' ')
@@ -137,7 +105,7 @@ class User(AbstractUser):
                 self.pk, self.first_name or "",
                 self.last_name or "", self.username or "")
             self.user_search_str = '{} {}'.format(
-                self.remover_formatacao_cpf(),
+                self.username,
                 remover_acentos_caracteres_especiais(self.user_str))
 
         super(User, self).save(
