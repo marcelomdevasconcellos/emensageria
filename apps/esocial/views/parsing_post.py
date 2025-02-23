@@ -66,7 +66,8 @@ def parsing_post(
     evento = get_object_or_404(Eventos, pk=pk)
     response = {}
     if request.method == 'POST':
-        response = parsing_post_to_json(request.POST)
+        data = json.loads(request.body)
+        response = parsing_post_to_json(data)
         evento.evento_json = json.dumps(response)
         evento.save()
     return HttpResponse(

@@ -602,29 +602,38 @@ label {
 
     {% if original.is_aberto %}
 <script type="text/javascript">
-
 function set_evento_json() {
     // Seleciona o formulário
     let form = document.getElementById("form_json");
+     
+    // Cria um objeto vazio para armazenar os dados na ordem dos elementos
+    let dataObj = {};
 
+    // Itera sobre os elementos do formulário na ordem em que aparecem
+    Array.from(form.elements).forEach(element => {
+        if (element.name) {
+            dataObj[element.name] = element.value;
+        }
+    });
 
-    // Cria um objeto FormData a partir do formulário
-    let formData = new FormData(form);
-
-    // Exibe o conteúdo JSON gerado (para depuração)
+    // Exibe o JSON gerado (para depuração)
     let dst = document.getElementById("id_evento_json");
     let dst_read = document.getElementById("id_evento_json_read");
 
     // Captura o CSRF token
     let csrfToken = getCSRFToken();
 
+    // Converte os dados para JSON formatado
+    let jsonData = JSON.stringify(dataObj, null, 2);
+
     // Envia os dados via POST para a URL especificada
     fetch('{% url "esocial:parsing_post" pk=original.pk %}', {
         method: 'POST',
         headers: {
-            'X-CSRFToken': csrfToken  // Inclui o CSRF token no cabeçalho
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken
         },
-        body: formData
+        body: jsonData
     })
     .then(response => response.json())
     .then(data => {
@@ -660,6 +669,7 @@ function getCSRFToken() {
 $(document).ready(function(){
     set_evento_json();
 });
+
 </script>
 {% endif %}
 <script src="{% static "admin/plugins/datatables/jquery.dataTables.min.js" %}"></script>
