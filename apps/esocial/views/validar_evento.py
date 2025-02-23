@@ -14,9 +14,8 @@ def validar_evento(
     evt = get_object_or_404(Eventos, id=pk)
     if evt.evento_json:
         if not evt.lote:
-            evt = evt.vincular_transmissor()
+            evt.vincular_transmissor()
             evt = Eventos.objects.get(id=pk)
-            # print(evt.lote)
         evt.create_xml()
         evt.validar()
     else:
