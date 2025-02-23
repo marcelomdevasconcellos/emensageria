@@ -10,7 +10,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.db import models
 
-from apps.esocial.choices import CODIGOS_RESPOSTA_ERROS, CODIGOS_RESPOSTA_PROCESSADOS, \
+from apps.esocial.choices import CODIGOS_RESPOSTA_PROCESSADOS, \
     CODIGO_AGUARDANDO_PROCESSAMENTO, EVENTOS_GRUPOS, STATUS_EVENTO_AGUARD_ENVIO, \
     STATUS_EVENTO_ENVIADO, STATUS_EVENTO_ERRO, STATUS_EVENTO_PROCESSADO, \
     STATUS_TRANSMISSOR_CADASTRADO, \
@@ -20,7 +20,7 @@ from apps.esocial.choices import CODIGOS_RESPOSTA_ERROS, CODIGOS_RESPOSTA_PROCES
     TRANSMISSOR_STATUS
 from config.functions import create_dir, read_file
 from config.mixins import BaseModelEsocial, BaseModelSerializer
-from config.settings import ESOCIAL_LOTE_MAX, ESOCIAL_LOTE_MIN, FILES_PATH, ESOCIAL_TARGET
+from config.settings import ESOCIAL_LOTE_MAX, ESOCIAL_LOTE_MIN, ESOCIAL_TARGET, FILES_PATH
 
 logger = logging.getLogger('django')
 

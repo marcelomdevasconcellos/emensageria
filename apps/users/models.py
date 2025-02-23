@@ -2,12 +2,12 @@ import re
 
 import unicodedata
 from django.contrib.auth.models import AbstractUser, Group
-from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
 from django.db.models import CharField
 from django.urls import reverse
-from apps.esocial.choices import EVENTOS
 from multiselectfield import MultiSelectField
+
+from apps.esocial.choices import EVENTOS
 
 
 def remover_acentos_caracteres_especiais(

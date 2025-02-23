@@ -140,7 +140,7 @@ USE_THOUSAND_SEPARATOR = True
 LINK_WEBSITE = env('LINK_WEBSITE', default='')
 
 # Configurações de Versão do Aplicativo
-VERSAO_EMENSAGERIA = '2.0.4'
+VERSAO_EMENSAGERIA = '2.1.0'
 VERSAO_LAYOUT_ESOCIAL = env('VERSAO_LAYOUT_ESOCIAL', default='v_S_01_03_00')
 ESOCIAL_TPAMB = env('ESOCIAL_TPAMB', default='2')
 

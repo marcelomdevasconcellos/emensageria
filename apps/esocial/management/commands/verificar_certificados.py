@@ -18,8 +18,6 @@ class Command(BaseCommand):
             return
 
         for cert in certificados:
-            # try:
-                # Caminho do arquivo do certificado
             cert_path = cert.cert_host()
 
             # Verifica se o arquivo do certificado existe
@@ -66,10 +64,4 @@ class Command(BaseCommand):
                         f'Válido de {validade_inicio} até {validade_fim}.'
                     )
                 )
-
-            # except ValueError as e:
-            #     self.stdout.write(self.style.ERROR(f"Erro ao carregar '{cert.nome}': {e}"))
-            # except Exception as e:
-            #     self.stdout.write(self.style.ERROR(f"Erro ao verificar '{cert.nome}': {e}"))
-
         self.stdout.write(self.style.SUCCESS('Verificação de certificados concluída.'))
