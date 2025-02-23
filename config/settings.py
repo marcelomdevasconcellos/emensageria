@@ -29,13 +29,13 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY', default='2w0qr9j#u2e=q081@sk)^-t3g9p5+k0+k9-b=yx4*aw!j=dsm$')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = [
-    env('ALLOWED_HOSTS'),
+    env('ALLOWED_HOSTS', default='localhost'),
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
-    'default': env.db(),
+    'default': env.db(default='psql://postgres:postgres@localhost:5432/emensageria'),
 }
 
 # Password validation
@@ -137,7 +137,7 @@ THOUSAND_SEPARATOR = '.'
 
 USE_THOUSAND_SEPARATOR = True
 
-LINK_WEBSITE = env('LINK_WEBSITE', default='')
+LINK_WEBSITE = env('LINK_WEBSITE', default='http://localhost:8000/')
 
 # Configurações de Versão do Aplicativo
 VERSAO_EMENSAGERIA = '2.1.0'
@@ -161,13 +161,13 @@ VERSOES_ESOCIAL = [
 # Configurações para o envio de emails
 EMAIL_SUBJECT_PREFIX = env('EMAIL_SUBJECT_PREFIX', default="[eMensageriaOpenSource] ")
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env('EMAIL_HOST', default='')
+EMAIL_HOST = env('EMAIL_HOST', default='smtp.endereco.com.br')
 EMAIL_PORT = env('EMAIL_PORT', default=587)
-EMAIL_HOST_USER = env('SERVER_EMAIL', default='')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
-SERVER_EMAIL = env('SERVER_EMAIL', default='')
+EMAIL_HOST_USER = env('SERVER_EMAIL', default='admin@endereco.com.br')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='12345')
+SERVER_EMAIL = env('SERVER_EMAIL', default='admin@endereco.com.br')
 EMAIL_USE_TLS = env('EMAIL_USE_TLS', default=True)
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='admin@endereco.com.br')
 
 AUTH_USER_MODEL = "users.User"
 
@@ -190,7 +190,7 @@ def parse_admins(
 
 
 ADMINS = parse_admins(
-    env('ADMINS', default='Marcelo Vasconcellos, marcelomdevasconcellos@gmail.com;'))
+    env('ADMINS', default='Administrador, admin@endereco.com.br;'))
 
 LOGGING['handlers']['mail_admins']['include_html'] = True
 
@@ -208,7 +208,7 @@ CURL_PATH = env('CURL_PATH', default='')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(env('STATIC_ROOT', default='static'))
+STATIC_ROOT = os.path.join(env('STATIC_ROOT', default='static/'))
 STATIC_URL = env('STATIC_URL', default='/static/')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles')
@@ -216,7 +216,7 @@ STATICFILES_DIRS = [
 
 # Media files
 
-MEDIA_ROOT = os.path.join(BASE_DIR, env('MEDIA_ROOT', default='media'))
+MEDIA_ROOT = os.path.join(BASE_DIR, env('MEDIA_ROOT', default='media/'))
 MEDIA_URL = env('MEDIA_URL', default='/media/')
 
 REST_FRAMEWORK = {
@@ -241,7 +241,7 @@ SYSTEM_MANUAL_LINK = env('SYSTEM_MANUAL_LINK', default='#')
 
 # Caminho relativo do local aonde serão armazenados os arquivos.
 # Insira "/" no início para definir diretórios absolutos.
-FILES_PATH = env('MEDIA_ROOT', default=os.path.join(MEDIA_ROOT, 'arquivos'))
+FILES_PATH = env('MEDIA_ROOT', default=os.path.join(env("MEDIA_ROOT", default="media/"), 'arquivos'))
 os.makedirs(os.path.join(FILES_PATH), exist_ok=True)  # Cria o diretório de logs, caso não exista
 
 os.makedirs(os.path.join(FILES_PATH, "comunicacao", "WsConsultarLoteEventos"), exist_ok=True)
@@ -388,4 +388,4 @@ EMAIL_RECUPERACAO_SENHA_MENSAGEM = env(
             '<strong>%(senha)s</strong><br>E-mail gerado '
             'automaticamente pelo sistema eMensageria</p>')
 
-CRYPTO_KEY = env('CRYPTO_KEY')
+CRYPTO_KEY = env('CRYPTO_KEY', default='9hHO4321ekwv7e_yRtnp7c5CJH744rznT8Xe_ocLEmw=')
