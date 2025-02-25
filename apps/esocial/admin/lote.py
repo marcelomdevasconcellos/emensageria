@@ -99,6 +99,7 @@ class LotesAdmin(AuditoriaAdminEventos):
         'grupo',
         'status',)
     list_display = (
+        'id',
         'transmissor',
         'empregador_tpinsc',
         'empregador_nrinsc',

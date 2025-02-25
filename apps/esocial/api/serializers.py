@@ -89,8 +89,9 @@ class EventosSerializer(ModelSerializer):
 
             cleaned_dict = remove_ns_prefixes(dict)
             validated_data['evento_json'] = cleaned_dict.get('eSocial')
-
-        return super().create(validated_data)
+        instance = super().create(validated_data)
+        instance.create_xml()
+        return instance
 
     def update(
             self,

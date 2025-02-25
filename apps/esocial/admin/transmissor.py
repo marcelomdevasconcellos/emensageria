@@ -15,6 +15,7 @@ class TransmissorAdmin(AuditoriaAdminEventos):
         'tpinsc',)
     list_filter = ()
     list_display = (
+        'id',
         'transmissor_tpinsc',
         'transmissor_nrinsc',
         'nome_empresa',

@@ -105,4 +105,4 @@ class EventosHistorico(BaseModelEsocial):
         verbose_name = 'Histórico do Evento'
         verbose_name_plural = 'Histórico dos Eventos'
         ordering = [
-            'id', ]
+            '-id', ]

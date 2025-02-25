@@ -72,3 +72,5 @@ class Transmissor(BaseModelEsocial):
     class Meta:
         verbose_name = 'Transmissor'
         verbose_name_plural = 'Transmissor'
+        ordering = [
+            '-id', ]

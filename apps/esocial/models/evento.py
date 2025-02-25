@@ -360,7 +360,9 @@ class Eventos(BaseModelEsocial):
             if 'Signature' not in self.evento_xml:
                 self.assinar(request)
 
-        elif self.is_editable():
+        elif (not self.evento_xml and self.evento_json
+                and self.origem == EVENTO_ORIGEM_API
+                and self.status == STATUS_EVENTO_IMPORTADO) or self.is_editable():
             logger.info("XML criado a partir do campo evento_json")
             xml = dicttoxml.dicttoxml(
                 self.evento_json,
@@ -521,7 +523,4 @@ class Eventos(BaseModelEsocial):
         verbose_name = 'Evento'
         verbose_name_plural = 'Eventos'
         ordering = [
-            'versao',
-            'evento',
-            'operacao',
-            'status', ]
+            '-id', ]

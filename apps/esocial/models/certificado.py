@@ -152,4 +152,4 @@ class Certificados(BaseModelEsocial):
         verbose_name = 'Certificados'
         verbose_name_plural = 'Certificados'
         ordering = [
-            'nome', ]
+            '-id', ]

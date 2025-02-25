@@ -215,6 +215,7 @@ class EventosAdmin(AuditoriaAdminEventos):
         'nrinsc',
     )
     list_display = (
+        'id',
         'identidade',
         'versao',
         'evento',

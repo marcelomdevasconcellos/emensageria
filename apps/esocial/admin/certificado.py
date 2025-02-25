@@ -11,7 +11,7 @@ class CertificadosAdmin(AuditoriaAdminEventos):
     search_fields = (
         'nome',)
     list_display = (
-        'nome',)
+        'id', 'nome',)
     fieldsets = ((None, {
         'fields': ('nome', 'certificado', 'senha_certificado_input',)
     }),)
