@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e7f7aaea-cdff-4ef4-bf15-aa4784579d4f",
+		"_postman_id": "f3955e2a-e644-4508-91e7-cd9566a6e0a2",
 		"name": "eMensageria",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16447522"
 	},
 	"item": [
 		{
@@ -22,7 +23,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"username\":\"admin\", \"password\":\"admin\"}"
+					"raw": "{\"username\":\"800.197.143-00\", \"password\":\"admin\"}"
 				},
 				"url": {
 					"raw": "http://localhost:8000/api-token-auth/",
@@ -46,13 +47,56 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"value": "Token 5d65a3d9f0c8ee2a8836445052dc622823479092",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s1000\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<eSocial><evtInfoEmpregador><ideEvento><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>v6.0.0.0</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>34686613</nrInsc></ideEmpregador><infoEmpregador><inclusao><idePeriodo><iniValid>2021-06</iniValid></idePeriodo><infoCadastro><classTrib>01</classTrib><indCoop>0</indCoop><indConstr>0</indConstr><indDesFolha>0</indDesFolha><indOptRegEletron>0</indOptRegEletron><cnpjEFR>34686613000000</cnpjEFR></infoCadastro></inclusao></infoEmpregador></evtInfoEmpregador></eSocial>\",\n    \"certificado\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Importando evento via API (xml) S1010",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 93dc4d266be100c0c5e52d4af0f715fd5b0e88c2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identidade\": \"ID1346866130000002025021308511100010\",\n    \"versao\": \"v_S_01_03_00\",\n    \"evento\": \"s1010\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<eSocial xmlns=\\\"http://www.esocial.gov.br/schema/evt/evtTabRubrica/v_S_01_03_00\\\"><evtTabRubrica Id=\\\"ID1346866130000002025021308511100010\\\"><ideEvento><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>S-1.3</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>34686613</nrInsc></ideEmpregador><infoRubrica><inclusao><ideRubrica><codRubr>DIF BEN ACT</codRubr><ideTabRubr>ORACLE</ideTabRubr><iniValid>2025-01</iniValid></ideRubrica><dadosRubrica><dscRubr>Diferenca Beneficios ACT</dscRubr><natRubr>1629</natRubr><tpRubr>1</tpRubr><codIncCP>00</codIncCP><codIncIRRF>79</codIncIRRF><codIncFGTS>00</codIncFGTS></dadosRubrica></inclusao></infoRubrica></evtTabRubrica></eSocial>\",\n    \"certificado\": null\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -132,13 +176,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"value": "Token 5d65a3d9f0c8ee2a8836445052dc622823479092",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s2210\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<?xml version=\\\"1.0\\\"?><eSocial xmlns=\\\"http://www.esocial.gov.br/schema/evt/evtCAT/v_S_01_00_00\\\"><evtCAT Id=\\\"ID1076478680000002021092211354600000\\\"><ideEvento><indRetif>1</indRetif><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>1.0</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>07647868</nrInsc></ideEmpregador><ideVinculo><cpfTrab>06436015973</cpfTrab><matricula>18</matricula></ideVinculo><cat><dtAcid>2021-09-22</dtAcid><tpAcid>1</tpAcid><hrAcid>0652</hrAcid><hrsTrabAntesAcid>0400</hrsTrabAntesAcid><tpCat>1</tpCat><indCatObito>N</indCatObito><indComunPolicia>N</indComunPolicia><codSitGeradora>200004600</codSitGeradora><iniciatCAT>1</iniciatCAT><localAcidente><tpLocal>1</tpLocal><tpLograd>AC</tpLograd><dscLograd>teste</dscLograd><nrLograd>30</nrLograd><cep>89507552</cep><codMunic>4203006</codMunic><uf>SC</uf><ideLocalAcid><tpInsc>1</tpInsc><nrInsc>07647868000127</nrInsc></ideLocalAcid></localAcidente><parteAtingida><codParteAting>753510000</codParteAting><lateralidade>1</lateralidade></parteAtingida><agenteCausador><codAgntCausador>305004500</codAgntCausador></agenteCausador><atestado><dtAtendimento>2021-09-22</dtAtendimento><hrAtendimento>0700</hrAtendimento><indInternacao>N</indInternacao><durTrat>1</durTrat><indAfast>N</indAfast><dscLesao>702000000</dscLesao><codCID>M54</codCID><emitente><nmEmit>teste</nmEmit><ideOC>1</ideOC><nrOC>343434</nrOC><ufOC>SC</ufOC></emitente></atestado></cat></evtCAT></eSocial> \",\n    \"certificado\": null\n}",
+					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_03_00\",\n    \"evento\": \"s2200\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<evtAdmissao Id=\\\"ID1346866130000002025012412433700001\\\"><ideEvento><indRetif>2</indRetif><nrRecibo>1.2.0000000000258726539</nrRecibo><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>S-1.3</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>34686613</nrInsc></ideEmpregador><trabalhador><cpfTrab>00027413220</cpfTrab><nmTrab>XXXXXX</nmTrab><sexo>F</sexo><racaCor>3</racaCor><estCiv>1</estCiv><grauInstr>12</grauInstr><nascimento><dtNascto>1990-05-23</dtNascto><paisNascto>105</paisNascto><paisNac>105</paisNac></nascimento><endereco><brasil><tpLograd>R</tpLograd><dscLograd>Passagem Carana</dscLograd><nrLograd>50</nrLograd><complemento>Marambaia</complemento><cep>66615350</cep><codMunic>1501402</codMunic><uf>PA</uf></brasil></endereco><infoDeficiencia><defFisica>N</defFisica><defVisual>N</defVisual><defAuditiva>N</defAuditiva><defMental>N</defMental><defIntelectual>N</defIntelectual><reabReadap>N</reabReadap><infoCota>N</infoCota></infoDeficiencia><contato><fonePrinc>999999</fonePrinc><emailPrinc>alessandra.silva@hemobras.gov.br</emailPrinc></contato></trabalhador><vinculo><matricula>2110</matricula><tpRegTrab>1</tpRegTrab><tpRegPrev>1</tpRegPrev><cadIni>N</cadIni><infoRegimeTrab><infoCeletista><dtAdm>2023-05-09</dtAdm><tpAdmissao>1</tpAdmissao><indAdmissao>1</indAdmissao><tpRegJor>1</tpRegJor><natAtividade>1</natAtividade><dtBase>03</dtBase><cnpjSindCategProf>24130619000189</cnpjSindCategProf></infoCeletista></infoRegimeTrab><infoContrato><nmCargo>ANALISTA</nmCargo><CBOCargo>223405</CBOCargo><acumCargo>N</acumCargo><codCateg>101</codCateg><remuneracao><vrSalFx>8528.76</vrSalFx><undSalFixo>5</undSalFixo></remuneracao><duracao><tpContr>1</tpContr></duracao><localTrabalho><localTrabGeral><tpInsc>1</tpInsc><nrInsc>07607851000227</nrInsc></localTrabGeral></localTrabalho><horContratual><qtdHrsSem>40</qtdHrsSem><tpJornada>3</tpJornada><tmpParc>0</tmpParc><horNoturno>N</horNoturno><dscJorn>Seg-feira: 07:30:00/16:30:00Ter&#231;a-feira: 07:30:00/16:30:00Quarta-feira: 07:30:00/16:30:00Quinta-feira: 07:30:00/16:30:00Sexta: 07:30:00/16:30:00</dscJorn></horContratual></infoContrato></vinculo></evtAdmissao>\",\n    \"certificado\": null\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -169,70 +213,67 @@
 			"response": []
 		},
 		{
-			"name": "Importando evento via API (xml) com assinatura",
+			"name": "Importando evento via API (xml) S1210 (Assinado)",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"value": "Token 93dc4d266be100c0c5e52d4af0f715fd5b0e88c2",
 						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
+					"mode": "raw",
+					"raw": "{\n    \"identidade\": \"ID1346866130000002025013020310700001\",\n    \"versao\": \"v_S_01_03_00\",\n    \"evento\": \"s1210\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<eSocial xmlns=\\\"http://www.esocial.gov.br/schema/evt/evtPgtos/v_S_01_03_00\\\"><evtPgtos Id=\\\"ID1346866130000002025013020310700001\\\"><ideEvento><indRetif>1</indRetif><perApur>2024-12</perApur><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>S-1.3</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>34686613</nrInsc></ideEmpregador><ideBenef><cpfBenef>05920853417</cpfBenef><infoPgto><dtPgto>2024-12-31</dtPgto><tpPgto>1</tpPgto><perRef>2024-12</perRef><ideDmDev>2</ideDmDev><vrLiq>10870.25</vrLiq></infoPgto><infoIRComplem><infoIRCR><tpCR>056107</tpCR><dedDepen><tpRend>11</tpRend><cpfDep>12798997437</cpfDep><vlrDedDep>189.59</vlrDedDep></dedDepen><dedDepen><tpRend>12</tpRend><cpfDep>12798997437</cpfDep><vlrDedDep>189.59</vlrDedDep></dedDepen><penAlim><tpRend>11</tpRend><cpfDep>12798997437</cpfDep><vlrDedPenAlim>1796.99</vlrDedPenAlim></penAlim></infoIRCR></infoIRComplem></ideBenef></evtPgtos><ds:Signature xmlns:ds=\\\"http://www.w3.org/2000/09/xmldsig#\\\"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm=\\\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\\\"/><ds:SignatureMethod Algorithm=\\\"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256\\\"/><ds:Reference URI=\\\"\\\"><ds:Transforms><ds:Transform Algorithm=\\\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\\\"/><ds:Transform Algorithm=\\\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\\\"/></ds:Transforms><ds:DigestMethod Algorithm=\\\"http://www.w3.org/2001/04/xmlenc#sha256\\\"/><ds:DigestValue>BhdLejTln8Qci+QXjGDtypYIn32Mk27cO5UNWyovibI=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>A/8Tm0t2EXAWRF046w/w45lr+umPum4YoO76Geq3osZaz6Ho8OdzutR7aytiUs2UIN+cC+/ZHdC1cQBlTnmT2Rx+xaAiWcXpwkxS5HVOS5HM9UzRpNq0n/aG0g/GKNnBM57aKrKqoNi4HMpVPCokQ93yfpx3W3xb3Xsa5JrzhxqQNUG813Mx4Vi2sWqLyJXNFb8jMk3bD2XGU+J1amxRFaYkQeCtJBhVAt+x51uSVBCV5BM92iQVbL/xuQoSFmrMGsmGyZSqBxRdU/xGHce8jUW5EqzgGkFTHoPx2SXNTXpm4ee87c+RDcdqX6Idjv+aGhzyXg1mrovX8cj8Tcuxig==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIH+TCCBeGgAwIBAgIUbUsbAEAqBx3Jt4MQKYFqGb68NmwwDQYJKoZIhvcNAQEL\\nBQAwejELMAkGA1UEBhMCQlIxEzARBgNVBAoTCklDUC1CcmFzaWwxNjA0BgNVBAsT\\nLVNlY3JldGFyaWEgZGEgUmVjZWl0YSBGZWRlcmFsIGRvIEJyYXNpbCAtIFJGQjEe\\nMBwGA1UEAxMVQUMgRElHSVRBTFNJR04gUkZCIEczMB4XDTI0MDYxNDE2NDg1M1oX\\nDTI1MDYxNDE2NDg1M1owggERMQswCQYDVQQGEwJCUjETMBEGA1UECgwKSUNQLUJy\\nYXNpbDELMAkGA1UECAwCREYxETAPBgNVBAcMCEJyYXNpbGlhMTYwNAYDVQQLDC1T\\nZWNyZXRhcmlhIGRhIFJlY2VpdGEgRmVkZXJhbCBkbyBCcmFzaWwgLSBSRkIxFjAU\\nBgNVBAsMDVJGQiBlLUNOUEogQTExFzAVBgNVBAsMDjIzNTgzNjg5MDAwMTIwMRkw\\nFwYDVQQLDBB2aWRlb2NvbmZlcmVuY2lhMUkwRwYDVQQDDEBFTVBSRVNBIEJSQVNJ\\nTEVJUkEgREUgSEVNT0RFUklWQURPUyBFIEJJT1RFQ05PTE9HOjA3NjA3ODUxMDAw\\nMTQ2MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAq7ifx06cxmVRcvb1\\nYjyI/N8+YTqJ6/cReJYiEazjVNX438zCoS2BM9gQ4QJAIM4Fmy1TfCjxrtOJ6dDR\\n/nyGAjENrkMaskrJu2CDh5JH9up3KJ9j+Xr+GQkwlKBj9HjSfR2Kr4PUZ/VK2do0\\n/rFbyv30y8L1oG5KKPY/tjm13OIX26SA+NolbHW2gq6l9Z06R1A5HlZTKzSYpJRp\\n4CyM/WC92r/TFcRZl3/Oq6SP40Mcq3qbKTx7uF1OlRhppbZ9fok1FB96zBfO3Cz6\\nifgQr/bNQKLjyTONtU6woOe8Fl7ar6tNo9es8OrP4o9xApiuxNhswbffx6w/sk1+\\nCgMxwQIDAQABo4IC3DCCAtgwCQYDVR0TBAIwADAfBgNVHSMEGDAWgBTduLXdAty4\\nUMp+BlRDwX78rvStezCBqAYIKwYBBQUHAQEEgZswgZgwXQYIKwYBBQUHMAKGUWh0\\ndHA6Ly93d3cuZGlnaXRhbHNpZ25jZXJ0aWZpY2Fkb3JhLmNvbS5ici9yZXBvc2l0\\nb3Jpby9yZmIvQUNESUdJVEFMU0lHTlJGQkczLnA3YjA3BggrBgEFBQcwAYYraHR0\\ncDovL29jc3AuZGlnaXRhbHNpZ25jZXJ0aWZpY2Fkb3JhLmNvbS5icjBdBgNVHSAE\\nVjBUMFIGBmBMAQIBLDBIMEYGCCsGAQUFBwIBFjpodHRwOi8vd3d3LmRpZ2l0YWxz\\naWduY2VydGlmaWNhZG9yYS5jb20uYnIvcmVwb3NpdG9yaW8vcmZiMB0GA1UdJQQW\\nMBQGCCsGAQUFBwMCBggrBgEFBQcDBDCBsQYDVR0fBIGpMIGmMFegVaBThlFodHRw\\nOi8vd3d3LmRpZ2l0YWxzaWduY2VydGlmaWNhZG9yYS5jb20uYnIvcmVwb3NpdG9y\\naW8vcmZiL0FDRElHSVRBTFNJR05SRkJHMy5jcmwwS6BJoEeGRWh0dHA6Ly93d3cu\\nZGlnaXRhbHRydXN0LmNvbS5ici9yZXBvc2l0b3Jpby9yZmIvQUNESUdJVEFMU0lH\\nTlJGQkczLmNybDAOBgNVHQ8BAf8EBAMCBeAwgbwGA1UdEQSBtDCBsYEbam9uYXMu\\nc2lsdmFAaGVtb2JyYXMuZ292LmJyoDgGBWBMAQMEoC8ELTE1MDgxOTYxMzQ5OTg1\\nMTk0NjgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMKAkBgVgTAEDAqAbBBlBTkEg\\nUEFVTEEgRE8gUkVHTyBNRU5FWkVToBkGBWBMAQMDoBAEDjA3NjA3ODUxMDAwMTQ2\\noBcGBWBMAQMHoA4EDDAwMDAwMDAwMDAwMDANBgkqhkiG9w0BAQsFAAOCAgEAiNnc\\nFFapqKiKTUMZ+NnGSBxHd2Yw5ddhRRkWf2SALwfbgG6R4PKAJBjPXKNNmcztZYxU\\nZQ4PM8W7Exl/FH7ldNb8SE7YEFRB4thkcFDkwRV+4tlEp/svItxPIj9bmvGPdw7x\\nVevjOPtll5M5316cbF+MiUqJV4oob/IUSrq2nqhdHTlaEkS83JFUaLiLAWAyb7zd\\nS/eI6COnhoSyni3waVWPu2m1gZ8YbaDVg1qamKHDhUvN/gRth7YfYbuS1H7uVa1w\\n9Qv6ZbSVK9kMvpF6dSn4qfqNpf4rrZaD0DCuTMIETCyDIA+5bY6YwvPnQnBfokik\\nsdKkwKYFfxUV3gHJgl+pYOomwI845TUQgSaqT80jSnvQNLBxefQ3DFE3ynzgoCG/\\nB2AKhIX7xsAKHDLt9HiaCTjJncTXGulVnZ9+xhog2yM4CQQ6GplBSnwvUfjaZJX3\\n78NkXYqDfUkSE3Nh3Uq2SOnRTuYRPGL8WjVoEpMP3t8Hh/VaSJh3eQgyU/kixowG\\n5JFDAie3jxWzURZw+uem2qHLUDy1aqeM/CDVZIvOhYSNtdw/7HKgwADjd9G9p/zZ\\nOlWLnkuwjQ8FYSZosr2OmMUICVer/psfrcWszuLpwIUhJLHyDfGwlPgbN++sW+zD\\n1Xd33X7a/9LC86teEr3AMHHfcwvE/N08mbCY0tQ=\\n</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature></eSocial>\",\n    \"certificado\": null\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						""
+					],
+					"query": [
 						{
-							"key": "identidade",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "versao\n",
-							"value": "v_S_01_00_00",
-							"type": "text"
-						},
-						{
-							"key": "evento",
-							"value": "s1000",
-							"type": "text"
-						},
-						{
-							"key": "operacao",
-							"value": "1",
-							"type": "text"
-						},
-						{
-							"key": "tpinsc",
-							"value": "1",
-							"type": "text"
-						},
-						{
-							"key": "nrinsc",
-							"value": "34686613",
-							"type": "text"
-						},
-						{
-							"key": "verproc",
-							"value": "1.0",
-							"type": "text"
-						},
-						{
-							"key": "evento_json",
-							"value": "",
-							"type": "text"
-						},
-						{
-							"key": "evento_xml",
-							"value": "<eSocial xmlns=\"http://www.esocial.gov.br/schema/evt/evtInfoEmpregador/v_S_01_00_00\">\n  <evtInfoEmpregador Id=\"ID1032141450000002021070610203100854\">\n    <ideEvento>\n      <tpAmb>2</tpAmb>\n      <procEmi>1</procEmi>\n      <verProc>1.0</verProc>\n    </ideEvento>\n    <ideEmpregador>\n      <tpInsc>1</tpInsc>\n      <nrInsc>03214145</nrInsc>\n    </ideEmpregador>\n    <infoEmpregador>\n      <inclusao>\n        <idePeriodo>\n          <iniValid>2021-06</iniValid>\n        </idePeriodo>\n        <infoCadastro>\n          <classTrib>85</classTrib>\n          <indCoop>0</indCoop>\n          <indConstr>0</indConstr>\n          <indDesFolha>0</indDesFolha>\n          <indOptRegEletron>1</indOptRegEletron>\n          <cnpjEFR>03214145000183</cnpjEFR>\n        </infoCadastro>\n      </inclusao>\n    </infoEmpregador>\n  </evtInfoEmpregador>\n  <Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">\n    <SignedInfo>\n      <CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>\n      <SignatureMethod Algorithm=\"http://www.w3.org/2001/04/xmldsig-more#rsa-sha256\"/>\n      <Reference URI=\"\">\n        <Transforms>\n          <Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>\n          <Transform Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/>\n        </Transforms>\n        <DigestMethod Algorithm=\"http://www.w3.org/2001/04/xmlenc#sha256\"/>\n        <DigestValue>0DGHx8j6NFHQVja7yBH5y0dlPMynYV7ipKroJC6pDwE=</DigestValue>\n      </Reference>\n    </SignedInfo>\n    <SignatureValue>YTExcfSj+zXMTEd9IFYdkC94nOFBfyPMIT3WHcLTImGT/DO9gfB76iQnJg7g4y8ktQUp1ROCjFJKwuXRTdFKS8KpTyybP/i18DoGIfyFOKi499n9SmkEyJpwo24KiPOWO26PrRLhuM2BBOBcZ4xrS0tz+6U4vj0lbbYsVAVEiGSeEdZnyCZR4w8JrhpBI5u0Qldj4D6BhxPiAlcNsIRplFzDlwdOmg0w581Iq7/l7MuGey7GStx9GgucYzcm1BKR6UtFFCUiFgSF27BzANQaKDRELbLarJUD1+xMdrHOoRccYT0OauVO7PXYQt8XVerr14NblUeCbxHRDaSkRZavfA==</SignatureValue>\n    <KeyInfo>\n      <X509Data>\n        <X509Certificate>MIIHzTCCBbWgAwIBAgIIMEs0fOMnGlAwDQYJKoZIhvcNAQELBQAwdTELMAkGA1UEBhMCQlIxEzARBgNVBAoMCklDUC1CcmFzaWwxNjA0BgNVBAsMLVNlY3JldGFyaWEgZGEgUmVjZWl0YSBGZWRlcmFsIGRvIEJyYXNpbCAtIFJGQjEZMBcGA1UEAwwQQUMgU0VSQVNBIFJGQiB2NTAeFw0xOTEwMzExNjQ1MDBaFw0yMjEwMzAxNjQ1MDBaMIIBCDELMAkGA1UEBhMCQlIxEzARBgNVBAoMCklDUC1CcmFzaWwxGDAWBgNVBAsMDzAwMDAwMTAwOTM0Mjc2OTE2MDQGA1UECwwtU2VjcmV0YXJpYSBkYSBSZWNlaXRhIEZlZGVyYWwgZG8gQnJhc2lsIC0gUkZCMRUwEwYDVQQLDAxSRkIgZS1DUEYgQTMxGTAXBgNVBAsMEEFDIFNFUkFTQSBSRkIgdjUxFzAVBgNVBAsMDjAzMjA4NjE4MDAwMTMwMRUwEwYDVQQLDAxBUiBDRExDVUlBQkExMDAuBgNVBAMMJ0ZMQVZJQSBDSU5USUEgQkFTU0FOIEFOVEVMTzowMjY3NTU1NDE1NDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAI5aLSalp4mlOHZmNOagsatlQT6mR3fkLeaoy2G2cYLirShAZVOUyleFOkmDrHtVW8iHlKpSXsrRPihy3Xz1CT+UkU2e/BLIS9Pb3H/O2OdhrHdFOp+3MiDRxJuzcf51ersNtCPopzqhpow/m8uIvyLQJeV7Vi9NlOhwjPxQHMK1+6jIxz3zpYSmt+7oEqwhT9baksL2vKdXQi/AUhnLJKr2VkjkFyaeJVEZ6MLlKX4UDZ1Rt+sqlrvnT99ka07DByGZf7TrU63IeMqnWPJnnr+dGNUYlMx6/+jdYCWeVC5YA3BIeL/MEktJSZ88Da+XnSSrolanD5XqOyf7UU2hm9UCAwEAAaOCAsowggLGMAkGA1UdEwQCMAAwHwYDVR0jBBgwFoAU7PFBUVeo5jrpXrOgIvkIirU6h48wgZkGCCsGAQUFBwEBBIGMMIGJMEgGCCsGAQUFBzAChjxodHRwOi8vd3d3LmNlcnRpZmljYWRvZGlnaXRhbC5jb20uYnIvY2FkZWlhcy9zZXJhc2FyZmJ2NS5wN2IwPQYIKwYBBQUHMAGGMWh0dHA6Ly9vY3NwLmNlcnRpZmljYWRvZGlnaXRhbC5jb20uYnIvc2VyYXNhcmZidjUwgZoGA1UdEQSBkjCBj4EaRkxBVklBLkJBU1NBTjJASE9UTUFJTC5DT02gOAYFYEwBAwGgLxMtMTkwMjE5OTAwMjY3NTU1NDE1NDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwoB4GBWBMAQMFoBUTEzAwMDAwMDAwMDAwMDAwMDAwMDCgFwYFYEwBAwagDhMMMDAwMDAwMDAwMDAwMHEGA1UdIARqMGgwZgYGYEwBAgMKMFwwWgYIKwYBBQUHAgEWTmh0dHA6Ly9wdWJsaWNhY2FvLmNlcnRpZmljYWRvZGlnaXRhbC5jb20uYnIvcmVwb3NpdG9yaW8vZHBjL2RlY2xhcmFjYW8tcmZiLnBkZjAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwgZ0GA1UdHwSBlTCBkjBKoEigRoZEaHR0cDovL3d3dy5jZXJ0aWZpY2Fkb2RpZ2l0YWwuY29tLmJyL3JlcG9zaXRvcmlvL2xjci9zZXJhc2FyZmJ2NS5jcmwwRKBCoECGPmh0dHA6Ly9sY3IuY2VydGlmaWNhZG9zLmNvbS5ici9yZXBvc2l0b3Jpby9sY3Ivc2VyYXNhcmZidjUuY3JsMB0GA1UdDgQWBBSYYT/rIr7QrFHOGy4QbvXFm2DBKzAOBgNVHQ8BAf8EBAMCBeAwDQYJKoZIhvcNAQELBQADggIBALBRzEyHFEuQsKNZ6WPB7njQDDkRuOxXBNQVyThh2d3pQOk2TVHEezd0SH/xtl8SLswYIdgQnbeNAJK+ojLBS4IAe+IbuxdB1n6BL9M9p6MEqc9Ajp1SknuPAJzWMIIMD4Q6xhjfFRS2lLyFmOJySzevJKDxGMzACL2ROnsYfcZ5qcwefg8Qf6nmIEwSztqLeBU1+l4IhrsHk7eNqV1V83KDiaMGD3lBr4tDZlvThlPAGpiiuLOWt/3H3Hcm7fa+k0UvU4B9FYAQDM656cGWhRsJAibyutUD2G8Uvw1obFKnLTX48/t/ktrmEm++4LqdniXOeE/d87fCoPutzrwVdwt+NU0Ht8TACEyfbAwIH4QMjSm02waKAlG5xyqinJ5OmtQq9uYjQtMLTfL9VbmZW3dhwe5QrNa0OS7wnfsKpX+PJK44I0BqSnCnpB6NouGE/SIF4coWolTErobzkjg6V7GvCSesdHjv+7hoRdMLLdhi0APzYmODEyYb1qfw4GvidEg7r8iPdy/ZyOS1p4n9pn1kBKf5hA54bDX0tUkC+PXi4bsB/knojw8d4vfYbHxHge42Qc03U0xQLHGSUMRxP4gH74IA4NprNoG8wUJG10NSkQZTnHOmCUsYJy2nAspxlaE+10eaI8XYlm3L+q5O/xzu2SNy/r1yiF5n4TVNj4rW</X509Certificate>\n      </X509Data>\n    </KeyInfo>\n  </Signature>\n</eSocial>",
-							"type": "text"
-						},
-						{
-							"key": "certificado",
-							"value": "",
-							"type": "text"
+							"key": "format",
+							"value": "json"
 						}
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Importando evento via API (xml) S1210 (sem assinatura)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 93dc4d266be100c0c5e52d4af0f715fd5b0e88c2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identidade\": \"ID1076078510000002025013020310700001\",\n    \"versao\": \"v_S_01_03_00\",\n    \"evento\": \"s1210\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"07607851\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"\",\n    \"evento_xml\": \"<evtPgtos Id=\\\"ID1076078510000002025013020310700001\\\"><ideEvento><indRetif>1</indRetif><perApur>2024-12</perApur><tpAmb>2</tpAmb><procEmi>1</procEmi><verProc>S-1.3</verProc></ideEvento><ideEmpregador><tpInsc>1</tpInsc><nrInsc>07607851</nrInsc></ideEmpregador><ideBenef><cpfBenef>05920853417</cpfBenef><infoPgto><dtPgto>2024-12-31</dtPgto><tpPgto>1</tpPgto><perRef>2024-12</perRef><ideDmDev>2</ideDmDev><vrLiq>10870.25</vrLiq></infoPgto><infoIRComplem><infoIRCR><tpCR>056107</tpCR><dedDepen><tpRend>11</tpRend><cpfDep>12798997437</cpfDep><vlrDedDep>189.59</vlrDedDep></dedDepen><dedDepen><tpRend>12</tpRend><cpfDep>12798997437</cpfDep><vlrDedDep>189.59</vlrDedDep></dedDepen><penAlim><tpRend>11</tpRend><cpfDep>12798997437</cpfDep><vlrDedPenAlim>1796.99</vlrDedPenAlim></penAlim></infoIRCR></infoIRComplem></ideBenef></evtPgtos>\",\n    \"certificado\": null\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
@@ -264,13 +305,56 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"value": "Token 93dc4d266be100c0c5e52d4af0f715fd5b0e88c2",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s2240\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": \"{\\\"evtExpRisco\\\":{\\\"ideEvento\\\":{\\\"indRetif\\\":1,\\\"nrRecibo\\\":\\\"\\\",\\\"tpAmb\\\":1,\\\"procEmi\\\":1,\\\"verProc\\\":\\\"1.0\\\"},\\\"ideEmpregador\\\":{\\\"tpInsc\\\":1,\\\"nrInsc\\\":\\\"34686613\\\"},\\\"ideVinculo\\\":{\\\"cpfTrab\\\":\\\"80019714300\\\",\\\"matricula\\\":\\\"1990005800\\\"},\\\"infoExpRisco\\\":{\\\"dtIniCondicao\\\":\\\"09/07/2021\\\",\\\"infoAmb\\\":{\\\"localAmb\\\":1,\\\"dscSetor\\\":\\\"SLAV - SLAV PRODUÇÃO - PRODUÇÃO\\\",\\\"tpInsc\\\":1,\\\"nrInsc\\\":\\\"41164796000103\\\"},\\\"infoAtiv\\\":{\\\"dscAtivDes\\\":\\\"Executar serviços de acabamento e reparos de blocos e superfícies concretadas, assentamento de tijolos, reboco e arremates de estruturas construídas, preparação de argamassa de diversos tipos, colocação de telhas, manilhas e peças sanitárias, de acordo com orientações e solicitações recebidas do superior imediato.\\\"},\\\"agNoc\\\":[{\\\"codAgNoc\\\":\\\"02.01.001\\\",\\\"dscAgNoc\\\":\\\"\\\",\\\"tpAval\\\":1,\\\"intConc\\\":\\\"86.5900\\\",\\\"limTol\\\":\\\"\\\",\\\"unMed\\\":4,\\\"tecMedicao\\\":\\\"DOSIMETRIA DE RUÍDO - NHO 01\\\",\\\"epcEpi\\\":{\\\"utilizEPC\\\":0,\\\"eficEpc\\\":\\\"\\\",\\\"utilizEPI\\\":2,\\\"epi\\\":[{\\\"docAval\\\":\\\"34082\\\",\\\"dscEPI\\\":\\\"\\\",\\\"eficEpi\\\":\\\"S\\\"},{\\\"docAval\\\":\\\"10043\\\",\\\"dscEPI\\\":\\\"\\\",\\\"eficEpi\\\":\\\"N\\\"},{\\\"docAval\\\":\\\"39644\\\",\\\"dscEPI\\\":\\\"\\\",\\\"eficEpi\\\":\\\"S\\\"}],\\\"epiCompl\\\":{\\\"medProtecao\\\":\\\"S\\\",\\\"condFuncto\\\":\\\"S\\\",\\\"usoInint\\\":\\\"S\\\",\\\"przValid\\\":\\\"S\\\",\\\"periodicTroca\\\":\\\"S\\\",\\\"higienizacao\\\":\\\"S\\\"}}}],\\\"respReg\\\":[{\\\"cpfResp\\\":\\\"44089422353\\\",\\\"ideOC\\\":4,\\\"dscOC\\\":\\\"\\\",\\\"nrOC\\\":\\\"0600909735\\\",\\\"ufOC\\\":\\\"CE\\\"}],\\\"obs\\\":{\\\"obsCompl\\\":\\\"\\\"}}}}\",\n    \"certificado\": null\n}",
+					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_00_00\",\n    \"evento\": \"s2240\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": {\"evtExpRisco\":{\"ideEvento\":{\"indRetif\":1,\"nrRecibo\":\"\",\"tpAmb\":1,\"procEmi\":1,\"verProc\":\"1.0\"},\"ideEmpregador\":{\"tpInsc\":1,\"nrInsc\":\"34686613\"},\"ideVinculo\":{\"cpfTrab\":\"80019714300\",\"matricula\":\"1990005800\"},\"infoExpRisco\":{\"dtIniCondicao\":\"09/07/2021\",\"infoAmb\":{\"localAmb\":1,\"dscSetor\":\"SLAV - SLAV PRODUÇÃO - PRODUÇÃO\",\"tpInsc\":1,\"nrInsc\":\"41164796000103\"},\"infoAtiv\":{\"dscAtivDes\":\"Executar serviços de acabamento e reparos de blocos e superfícies concretadas, assentamento de tijolos, reboco e arremates de estruturas construídas, preparação de argamassa de diversos tipos, colocação de telhas, manilhas e peças sanitárias, de acordo com orientações e solicitações recebidas do superior imediato.\"},\"agNoc\":[{\"codAgNoc\":\"02.01.001\",\"dscAgNoc\":\"\",\"tpAval\":1,\"intConc\":\"86.5900\",\"limTol\":\"\",\"unMed\":4,\"tecMedicao\":\"DOSIMETRIA DE RUÍDO - NHO 01\",\"epcEpi\":{\"utilizEPC\":0,\"eficEpc\":\"\",\"utilizEPI\":2,\"epi\":[{\"docAval\":\"34082\",\"dscEPI\":\"\",\"eficEpi\":\"S\"},{\"docAval\":\"10043\",\"dscEPI\":\"\",\"eficEpi\":\"N\"},{\"docAval\":\"39644\",\"dscEPI\":\"\",\"eficEpi\":\"S\"}],\"epiCompl\":{\"medProtecao\":\"S\",\"condFuncto\":\"S\",\"usoInint\":\"S\",\"przValid\":\"S\",\"periodicTroca\":\"S\",\"higienizacao\":\"S\"}}}],\"respReg\":[{\"cpfResp\":\"44089422353\",\"ideOC\":4,\"dscOC\":\"\",\"nrOC\":\"0600909735\",\"ufOC\":\"CE\"}],\"obs\":{\"obsCompl\":\"\"}}}},\n    \"certificado\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Importando evento via API (json) S1200",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 93dc4d266be100c0c5e52d4af0f715fd5b0e88c2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identidade\": \"\",\n    \"versao\": \"v_S_01_03_00\",\n    \"evento\": \"s1200\",\n    \"operacao\": \"1\",\n    \"tpinsc\": \"1\",\n    \"nrinsc\": \"34686613\",\n    \"verproc\": \"1.0\",\n    \"evento_json\": {\"evtRemun\":{\"ideEvento\":{\"indRetif\":\"1\",\"nrRecibo\":\"\",\"indApuracao\":\"1\",\"perApur\":\"2025-02\",\"indGuia\":\"\",\"tpAmb\":\"1\",\"procEmi\":\"1\",\"verProc\":\"1.3.0\"},\"ideEmpregador\":{\"tpInsc\":\"1\",\"nrInsc\":\"34686613\"},\"ideTrabalhador\":{\"cpfTrab\":\"00099988811\",\"infoMV\":{\"indMV\":\"\",\"remunOutrEmpr\":[{\"tpInsc\":\"\",\"nrInsc\":\"\",\"codCateg\":\"\",\"vlrRemunOE\":\"\"}]},\"infoComplem\":{\"nmTrab\":\"\",\"dtNascto\":\"\",\"sucessaoVinc\":{\"tpInsc\":\"\",\"nrInsc\":\"\",\"matricAnt\":\"\",\"dtAdm\":\"\",\"observacao\":\"\"}},\"procJudTrab\":[{\"tpTrib\":\"\",\"nrProcJud\":\"\",\"codSusp\":\"\"}],\"infoInterm\":[{\"dia\":\"\"}]},\"dmDev\":[{\"ideDmDev\":\"2025_2_1_1070396\",\"codCateg\":\"410\",\"indRRA\":\"\",\"infoRRA\":{\"tpProcRRA\":\"\",\"nrProcRRA\":\"\",\"descRRA\":\"\",\"qtdMesesRRA\":\"\",\"despProcJud\":{\"vlrDespCustas\":\"\",\"vlrDespAdvogados\":\"\"},\"ideAdv\":{\"tpInsc\":\"\",\"nrInsc\":\"\",\"vlrAdv\":\"\"}},\"infoPerApur\":{\"ideEstabLot\":[{\"tpInsc\":\"1\",\"nrInsc\":\"05483912000185\",\"codLotacao\":\"01\",\"qtdDiasAv\":\"\",\"remunPerApur\":[{\"matricula\":\"10x0396\",\"indSimples\":\"\",\"itensRemun\":[{\"codRubr\":\"157\",\"ideTabRubr\":\"xxx001\",\"qtdRubr\":\"1.00\",\"fatorRubr\":\"1.00\",\"vrRubr\":\"1412.00\",\"indApurIR\":\"0\"},{\"codRubr\":\"256\",\"ideTabRubr\":\"xxxMA001\",\"qtdRubr\":\"1.00\",\"fatorRubr\":\"30.00\",\"vrRubr\":\"2000.00\",\"indApurIR\":\"0\"}],\"infoAgNocivo\":{\"grauExp\":\"1\"}}]}]}}]}},\n    \"certificado\": null\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -307,7 +391,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"value": "Token 5ab8ff4cb0c7e158f4c4aeb9d8f7dcb33880a817",
 						"type": "text"
 					}
 				],
@@ -321,7 +405,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/46/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/3/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -331,7 +415,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"46",
+						"3",
 						""
 					],
 					"query": [
@@ -367,6 +451,34 @@
 						"api",
 						"eventos",
 						"39",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta lista de eventos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token 93dc4d266be100c0c5e52d4af0f715fd5b0e88c2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/eventos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"eventos",
 						""
 					]
 				}
@@ -416,12 +528,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"value": "Token 5d65a3d9f0c8ee2a8836445052dc622823479092",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/50/validar/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/3/validar/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -431,7 +543,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"50",
+						"3",
 						"validar",
 						""
 					],
@@ -452,7 +564,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"value": "Token 5d65a3d9f0c8ee2a8836445052dc622823479092",
 						"type": "text"
 					}
 				],
@@ -488,12 +600,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Token 9a202f1c901b7b0e134610469a4c23e021b91035",
+						"value": "Token 5d65a3d9f0c8ee2a8836445052dc622823479092",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/esocial/api/eventos/42/consultar/?format=json",
+					"raw": "http://localhost:8000/esocial/api/eventos/3/consultar/?format=json",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -503,7 +615,7 @@
 						"esocial",
 						"api",
 						"eventos",
-						"42",
+						"3",
 						"consultar",
 						""
 					],
@@ -541,6 +653,50 @@
 						"eventos",
 						"2",
 						"atualizar-identidade",
+						""
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterando transmissor",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 5ab8ff4cb0c7e158f4c4aeb9d8f7dcb33880a817",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"certificado\": \"1\",\n \"endereco_completo\": \"\",\n \"logotipo\": null,\n \"nome_empresa\": \"KLESS 53254325 09-08-2024\",\n \"nrinsc\": \"53254325\",\n \"tpinsc\": \"1\",\n \"transmissor_nrinsc\": \"03965732000104\",\n \"transmissor_tpinsc\": \"1\",\n \"users\": [\"1\"]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/esocial/api/transmissores/1/?format=json",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"esocial",
+						"api",
+						"transmissores",
+						"1",
 						""
 					],
 					"query": [
