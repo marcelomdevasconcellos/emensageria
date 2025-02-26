@@ -1,5 +1,9 @@
 ## Versão 2.1.1 - 2025-02-26
 
+* Correção de erros na importação via API com JSON
+* Correção de erros na importação via API com XML
+* Alteração de bibliotecas
+* Alteração de configurações no settings
 
 ## Versão 2.1.0 - 2025-02-23
 
