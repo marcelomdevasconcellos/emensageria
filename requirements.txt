@@ -3,8 +3,8 @@ django-currentuser
 django-environ
 django-adminlte-ui==2.1.1
 django-multiselectfield==0.1.13
-cryptography==43.0.3
-pyOpenSSL==24.2.1
+cryptography==44.0.1
+pyOpenSSL==25.0.0
 django-localflavor
 django-picklefield
 django-reversion==5.1.0

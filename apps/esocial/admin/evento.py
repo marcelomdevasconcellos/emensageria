@@ -316,6 +316,7 @@ class EventosAdmin(AuditoriaAdminEventos):
         elif "_validar" in request.POST:
             if not obj.lote:
                 obj.vincular_transmissor(request=request)
+
             obj.create_xml(request=request)
             obj.validar(request=request)
             return HttpResponseRedirect(".")

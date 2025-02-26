@@ -241,7 +241,9 @@ SYSTEM_MANUAL_LINK = env('SYSTEM_MANUAL_LINK', default='#')
 
 # Caminho relativo do local aonde serão armazenados os arquivos.
 # Insira "/" no início para definir diretórios absolutos.
-FILES_PATH = env('MEDIA_ROOT', default=os.path.join(env("MEDIA_ROOT", default="media/"), 'arquivos'))
+FILES_PATH = env(
+    'MEDIA_ROOT',
+    default=os.path.join(env("MEDIA_ROOT", default="media/"), 'arquivos'))
 os.makedirs(os.path.join(FILES_PATH), exist_ok=True)  # Cria o diretório de logs, caso não exista
 
 os.makedirs(os.path.join(FILES_PATH, "comunicacao", "WsConsultarLoteEventos"), exist_ok=True)

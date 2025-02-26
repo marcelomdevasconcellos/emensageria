@@ -331,7 +331,8 @@ class Eventos(BaseModelEsocial):
         evento_codigo = EVENTO_COD[self.evento]['codigo']
 
         if (self.evento_xml and self.origem == EVENTO_ORIGEM_API
-                and self.status == STATUS_EVENTO_IMPORTADO):
+                and self.status == STATUS_EVENTO_IMPORTADO and
+                "Signature" not in self.evento_xml):
             logger.info("XML criado a partir do campo evento_xml")
 
             xml = self.evento_xml
@@ -361,14 +362,44 @@ class Eventos(BaseModelEsocial):
                 self.assinar(request)
 
         elif (not self.evento_xml and self.evento_json
-                and self.origem == EVENTO_ORIGEM_API
-                and self.status == STATUS_EVENTO_IMPORTADO) or self.is_editable():
+              and self.origem == EVENTO_ORIGEM_API
+              and self.status == STATUS_EVENTO_IMPORTADO) or self.is_editable():
             logger.info("XML criado a partir do campo evento_json")
+
+            def flatten_duplicate_tags(xml_str):
+                """
+                Recebe uma string XML e remove os contêineres redundantes.
+                Se um elemento contém filhos cuja tag é idêntica à dele,
+                os filhos são promovidos para o nível do contêiner.
+                """
+                root = ET.fromstring(xml_str)
+
+                def remove_redundant_containers(elem):
+                    # Processa recursivamente os filhos primeiro
+                    for child in list(elem):
+                        remove_redundant_containers(child)
+                    # Para cada filho, se ele for um contêiner redundante,
+                    # ou seja, se possuir ao menos um filho e TODOS os seus
+                    # filhos tiverem a mesma tag que ele, promove esses filhos.
+                    novos_filhos = []
+                    for child in list(elem):
+                        if len(child) > 0 and all(
+                                grandchild.tag == child.tag for grandchild in child):
+                            novos_filhos.extend(list(child))
+                        else:
+                            novos_filhos.append(child)
+                    elem[:] = novos_filhos
+
+                remove_redundant_containers(root)
+                return ET.tostring(root, encoding='unicode')
+
             xml = dicttoxml.dicttoxml(
                 self.evento_json,
                 attr_type=False,
                 custom_root=wrapper,
                 item_func=lambda x: x).decode()
+
+            xml = flatten_duplicate_tags(xml)
 
             ET.register_namespace(
                 "", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
@@ -410,7 +441,7 @@ class Eventos(BaseModelEsocial):
                     EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
 
             evento_xml = ET.tostring(xml_obj)
-            self.evento_xml = evento_xml
+            self.evento_xml = evento_xml.decode('utf-8')
             self.save()
             Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode())
             save_file(self.xml_file(), evento_xml.decode())
