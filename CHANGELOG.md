@@ -1,3 +1,6 @@
+## Versão 2.1.1 - 2025-02-26
+
+
 ## Versão 2.1.0 - 2025-02-23
 
 * PR #50: Correção dos status dos lotes 
