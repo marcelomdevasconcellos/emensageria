@@ -1,0 +1,10 @@
+[run]
+source = .
+omit =
+    adminlteui_custom/*
+    manage.py
+    wsgi.py
+    lab_*
+    */migrations/*
+    */tests/*
+    */templatetags/*

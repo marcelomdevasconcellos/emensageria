@@ -295,6 +295,7 @@ class Eventos(BaseModelEsocial):
     def assinar(
             self,
             request=None):
+        logger.info(f"Assinando o evento {self.id}.")
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
 
         if not self.lote:
@@ -331,39 +332,52 @@ class Eventos(BaseModelEsocial):
         evento_codigo = EVENTO_COD[self.evento]['codigo']
 
         if (self.evento_xml and self.origem == EVENTO_ORIGEM_API
-                and self.status == STATUS_EVENTO_IMPORTADO and
-                "Signature" not in self.evento_xml):
+                and self.status == STATUS_EVENTO_IMPORTADO):
             logger.info("XML criado a partir do campo evento_xml")
+            # Ele deverá criar um XML através do campo evento_xml, se o evento
+            # for importado da API com o campo evento_xml preenchido
 
-            xml = self.evento_xml
+            xml_str = self.evento_xml
             if '<eSocial' not in self.evento_xml:
-                xml = '<eSocial>' + self.evento_xml + '</eSocial>'
+                logger.info(f"Incluindo a tag eSocial no evento {self.id}.")
+                xml_str = '<eSocial>' + self.evento_xml + '</eSocial>'
 
-            xml_obj = ET.fromstring(xml)
-            if 'www.esocial.gov.br/schema/evt' not in xml:
+            xml_obj = ET.fromstring(xml_str)
+            xml_changed = False
+            if 'www.esocial.gov.br/schema/evt' not in xml_str:
+                xml_changed = True
+                logger.info(f"Incluindo o name space xmlns no evento {self.id}.")
                 ET.register_namespace(
                     "", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
                 xml_obj.set(
                     'xmlns', f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
 
-            if 'Id="ID' not in xml:
+            if 'Id="ID' not in xml_str:
+                xml_changed = True
+                logger.info(f"Incluindo o ID no evento {self.id}.")
                 if not self.identidade:
                     self.make_identidade()
                 xml_obj.find(  # type: ignore
                     EVENTO_COD[self.evento]['codigo']).set(
                     'Id', self.identidade)  # type: ignore[arg-type]
 
-            evento_xml = ET.tostring(xml_obj)
-            Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode())
-            save_file(self.xml_file(), evento_xml.decode())
-            save_file(self.xml_file(timestamp), evento_xml.decode())
+            if xml_changed:
+                xml_str = ET.tostring(xml_obj).decode("utf-8")
+            evento_xml = xml_str
+            Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml)
+            save_file(self.xml_file(), evento_xml)
+            save_file(self.xml_file(timestamp), evento_xml)
 
             if 'Signature' not in self.evento_xml:
+                logger.info(f"Assinando o evento {self.id}.")
                 self.assinar(request)
 
-        elif (not self.evento_xml and self.evento_json
+        elif ((not self.evento_xml and self.evento_json
               and self.origem == EVENTO_ORIGEM_API
-              and self.status == STATUS_EVENTO_IMPORTADO) or self.is_editable():
+              and self.status == STATUS_EVENTO_IMPORTADO) or
+              (self.status == STATUS_EVENTO_CADASTRADO and self.is_editable())):
+            # Ele deverá criar um XML através do campo evento_json, se o evento estiver
+            # aberto para edição ou se ele vier da API com o campo evento_xml não preenchido
             logger.info("XML criado a partir do campo evento_json")
 
             def flatten_duplicate_tags(xml_str):
@@ -401,6 +415,7 @@ class Eventos(BaseModelEsocial):
 
             xml = flatten_duplicate_tags(xml)
 
+            # Incluindo XML no evento_json
             ET.register_namespace(
                 "", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
             xml_obj = ET.fromstring(xml)
@@ -440,18 +455,19 @@ class Eventos(BaseModelEsocial):
                 xml_obj.find(  # type: ignore
                     EVENTO_COD[self.evento]['codigo']).set('Id', self.identidade)
 
-            evento_xml = ET.tostring(xml_obj)
-            self.evento_xml = evento_xml.decode('utf-8')
+            evento_xml = ET.tostring(xml_obj).decode('utf-8')
+            self.evento_xml = evento_xml
             self.save()
-            Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml.decode())
-            save_file(self.xml_file(), evento_xml.decode())
-            save_file(self.xml_file(timestamp), evento_xml.decode())
+            Eventos.objects.filter(id=self.id).update(evento_xml=evento_xml)
+            save_file(self.xml_file(), evento_xml)
+            save_file(self.xml_file(timestamp), evento_xml)
             xml_obj = self.assinar(request)
 
     def validar(
             self,
             request=None):
         from config.functions import validar_schema
+        self.create_xml()
         err = validar_schema(self.xsd_file(), self.xml_file())
         err_list = []
         if err:

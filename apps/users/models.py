@@ -4,7 +4,6 @@ import unicodedata
 from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
 from django.db.models import CharField
-from django.urls import reverse
 from multiselectfield import MultiSelectField
 
 from apps.esocial.choices import EVENTOS
@@ -119,10 +118,6 @@ class User(AbstractUser):
                 self.pk, self.first_name or "",
                 self.last_name or "", self.username or "")
             self.save()
-
-    def get_absolute_url(
-            self):
-        return reverse("users:detail", kwargs={"username": self.username})
 
     def nome(self):
         return f'{self.first_name} {self.last_name}'

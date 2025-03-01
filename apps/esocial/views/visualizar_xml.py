@@ -16,5 +16,4 @@ def visualizar_xml(
     response = HttpResponse(
         evt.evento_xml,
         content_type='text/xml')
-    # response['Content-Disposition'] = 'attachment; filename="%s.xml"' % evt.identidade
     return response

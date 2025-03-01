@@ -16,7 +16,6 @@ def validar_evento(
         if not evt.lote:
             evt.vincular_transmissor()
             evt = Eventos.objects.get(id=pk)
-        evt.create_xml()
         evt.validar()
     else:
         messages.add_message(

@@ -34,9 +34,7 @@ SECRET_KEY = env('SECRET_KEY', default='2w0qr9j#u2e=q081@sk)^-t3g9p5+k0+k9-b=yx4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = [
-    env('ALLOWED_HOSTS', default='localhost'),
-]
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', ])
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
@@ -396,3 +394,18 @@ CSRF_TRUSTED_ORIGINS = [
     env('CSRF_TRUSTED_ORIGINS', default="http://localhost:8000"),
 ]
 CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=True)
+
+# Teste de integracao
+EMPREGADOR_ITEST = env(
+    'EMPREGADOR_ITEST', default='34686613')
+TRANSMISSOR_ITEST = env(
+    'TRANSMISSOR_ITEST', default='34686613000146')
+CERT_NAME_ITEST = env(
+    'CERT_NAME_ITEST', default='ITEST')
+CERT_FILE_ITEST = env(
+    'CERT_FILE_ITEST', default='cert.pfx')
+CERT_PASS_ITEST = env(
+    'CERT_PASS_ITEST', default='123456')
+
+LIST_PER_PAGE = 10
+LIST_MAX_SHOW_ALL = 10

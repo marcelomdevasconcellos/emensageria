@@ -15,7 +15,6 @@ def validar_eventos(
     for evt in evts:
         if not evt.lote:
             evt.vincular_transmissor()
-        evt.create_xml()
         evt.validar()
     referer = request.META.get('HTTP_REFERER', '')
     if referer and verify_domain(referer):
