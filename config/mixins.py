@@ -9,7 +9,7 @@ from django_currentuser.db.models import CurrentUserField
 from django_currentuser.middleware import get_current_user
 from rest_framework.serializers import ModelSerializer
 
-from config.settings import FILTER_BY_USER
+from config.settings import FILTER_BY_USER, LIST_MAX_SHOW_ALL, LIST_PER_PAGE
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -69,17 +69,6 @@ class BaseModelEsocial(models.Model):
         abstract = True
 
 
-class BaseModelReinf(models.Model):
-    created_by = CurrentUserField(related_name='%(class)s_created_by_reinf')
-    updated_by = CurrentUserField(on_update=True, related_name='%(class)s_updated_by_reinf')
-    created_at: models.DateTimeField = models.DateTimeField(auto_now_add=True)
-    updated_at: models.DateTimeField = models.DateTimeField(auto_now=True)
-    objects = EventosManager()
-
-    class Meta:
-        abstract = True
-
-
 class AuditoriaManager(models.Manager):
 
     def __init__(
@@ -109,6 +98,8 @@ class AuditoriaManager(models.Manager):
 
 
 class AuditoriaAdminEventos(admin.ModelAdmin):
+    list_per_page = LIST_PER_PAGE
+    list_max_show_all = LIST_MAX_SHOW_ALL
     objects: models.Manager = AuditoriaManager()
 
     def has_view_permission(
@@ -156,6 +147,8 @@ class AuditoriaAdminEventos(admin.ModelAdmin):
 
 
 class AuditoriaAdmin(admin.ModelAdmin):
+    list_per_page = LIST_PER_PAGE
+    list_max_show_all = LIST_MAX_SHOW_ALL
     readonly_fields = (
         'created_at',
         'created_by',

@@ -182,7 +182,6 @@ class EventosAdmin(AuditoriaAdminEventos):
                 n += 1
                 if not obj.lote:
                     obj.vincular_transmissor()
-                obj.create_xml()
                 obj.validar()
         messages.add_message(request, messages.INFO, '%s eventos validados!' % n)
 
@@ -316,8 +315,6 @@ class EventosAdmin(AuditoriaAdminEventos):
         elif "_validar" in request.POST:
             if not obj.lote:
                 obj.vincular_transmissor(request=request)
-
-            obj.create_xml(request=request)
             obj.validar(request=request)
             return HttpResponseRedirect(".")
 

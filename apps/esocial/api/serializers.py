@@ -58,37 +58,11 @@ class EventosSerializer(ModelSerializer):
         validated_data['is_aberto'] = False
         validated_data['status'] = STATUS_EVENTO_IMPORTADO
         validated_data['tpamb'] = ESOCIAL_TPAMB
-        if validated_data.get('evento_xml') and not validated_data.get('evento_json'):
-            import xml.etree.ElementTree as ET
-            from ..choices import EVENTO_COD
-            if '<eSocial' not in validated_data.get('evento_xml'):
-                validated_data['evento_xml'] = '<eSocial>' + validated_data.get(
-                    'evento_xml') + '</eSocial>'
-
-            evento = validated_data['evento']
-            evento_codigo = EVENTO_COD[evento]['codigo']
-            versao = validated_data['versao']
-
-            def recursive_update_datefield(
-                    elem2):
-                from dateutil import parser as dateutil_parser
-                for elem in elem2:
-                    if elem.text and len(elem.text) == 10 and len(elem.text.split('-')) == 3:
-                        data = dateutil_parser.parse(elem.text)
-                        elem.text = data.strftime('%d/%m/%Y')
-                    else:
-                        recursive_update_datefield(elem)
-
-            ET.register_namespace(
-                "", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{versao}")
-            xml_obj = ET.fromstring(validated_data['evento_xml'])
-            for elem in xml_obj:
-                recursive_update_datefield(elem)
-            xml_string = ET.tostring(xml_obj)
-            dict = xmltodict.parse(xml_string)
-
+        if validated_data.get('evento_xml') and not validated_data['evento_json']:
+            dict = xmltodict.parse(validated_data['evento_xml'])
             cleaned_dict = remove_ns_prefixes(dict)
-            validated_data['evento_json'] = cleaned_dict.get('eSocial')
+            validated_data['evento_json'] = cleaned_dict.get(
+                'eSocial') if cleaned_dict.get('eSocial') else cleaned_dict
         instance = super().create(validated_data)
         instance.create_xml()
         return instance
@@ -105,38 +79,14 @@ class EventosSerializer(ModelSerializer):
         validated_data['tpamb'] = ESOCIAL_TPAMB
         validated_data['retorno_envio_json'] = {}
         validated_data['retorno_consulta_json'] = {}
-        if validated_data['evento_xml'] and not validated_data['evento_json']:
-            import xml.etree.ElementTree as ET
-            from ..choices import EVENTO_COD
-            if '<eSocial' not in validated_data.get('evento_xml'):
-                validated_data['evento_xml'] = '<eSocial>' + validated_data.get(
-                    'evento_xml') + '</eSocial>'
-
-            evento = validated_data['evento']
-            evento_codigo = EVENTO_COD[evento]['codigo']
-            versao = validated_data['versao']
-
-            def recursive_update_datefield(
-                    elem2):
-                from dateutil import parser as dateutil_parser
-                for elem in elem2:
-                    if elem.text and len(elem.text) == 10 and len(elem.text.split('-')) == 3:
-                        data = dateutil_parser.parse(elem.text)
-                        elem.text = data.strftime('%d/%m/%Y')
-                    else:
-                        recursive_update_datefield(elem)
-
-            ET.register_namespace(
-                "", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{versao}")
-            xml_obj = ET.fromstring(validated_data['evento_xml'])
-            for elem in xml_obj:
-                recursive_update_datefield(elem)
-            xml_string = ET.tostring(xml_obj)
-            dict = xmltodict.parse(xml_string)
-
+        if validated_data.get('evento_xml') and not validated_data['evento_json']:
+            dict = xmltodict.parse(validated_data['evento_xml'])
             cleaned_dict = remove_ns_prefixes(dict)
-            validated_data['evento_json'] = cleaned_dict.get('eSocial')
-        return super().update(instance, validated_data)
+            validated_data['evento_json'] = cleaned_dict.get(
+                'eSocial') if cleaned_dict.get('eSocial') else cleaned_dict
+        instance = super().update(instance, validated_data)
+        instance.create_xml()
+        return instance
 
     def validate(
             self,

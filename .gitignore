@@ -155,3 +155,11 @@ certificados/
 
 refactoring.py
 apagar_migracoes.py
+
+tests/
+lab*
+itest.*
+itest.py
+.coveragerc
+
+static/
