@@ -48,5 +48,10 @@ class MyAdminlteConfig(AdminlteConfig):
             name='Usuários',
             menu_type='model',
             icon="fa-user", url="#"),
-
+        MenuItem(
+            label='/esocial/api/',
+            name='API',
+            menu_type='link',
+            icon="fa-server",
+            url="/esocial/api/"),
     ]
