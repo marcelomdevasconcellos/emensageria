@@ -232,8 +232,8 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu tree" data-widget="tree">
                     <li class="header"
-                        style="background-color: {% if ESOCIAL_TPAMB == '1' %}green;{% else %}red;{% endif %}">
-                        <span style="color: white;">AMBIENTE: {% if ESOCIAL_TPAMB == '1' %}PRODUÇÃO{% else %}PRODUÇÃO RESTRITA{% endif %}</span>
+                        style="background-color: {% if ESOCIAL_TPAMB in CHOICES_PRODUCTION %}green;{% else %}red;{% endif %}">
+                        <span style="color: white;">AMBIENTE: {% if ESOCIAL_TPAMB in CHOICES_PRODUCTION %}PRODUÇÃO{% else %}PRODUÇÃO RESTRITA{% endif %}</span>
                     </li>
                     <li>
                         <a id="adminIndex" href="{% url 'admin:index' %}">

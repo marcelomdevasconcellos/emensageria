@@ -7,6 +7,10 @@ TPAMB = {
     'Produção Restrita': 2,
 }
 
+CHOICES_PRODUCTION = [
+    '1', 'prod'
+]
+
 URLS_ESOCIAL = {
     'Produção': {
         'WsEnviarLoteEventos': {
