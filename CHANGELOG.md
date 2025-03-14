@@ -1,3 +1,7 @@
+## Versão 2.1.2 - 2025-03-14
+
+* PR #51: Correção da importação de eventos pela API com XML 
+
 ## Versão 2.1.1 - 2025-02-26
 
 * Correção de erros na importação via API com JSON
