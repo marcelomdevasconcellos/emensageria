@@ -10,7 +10,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         trm = Lotes.objects.filter(
-            Q(status=STATUS_TRANSMISSOR_ENVIADO) | Q(retorno_consulta__icontains='Código do erro: 301'))
+            Q(status=STATUS_TRANSMISSOR_ENVIADO) | Q(
+                retorno_consulta__icontains='Código do erro: 301'))
         for tle in trm:
             tle.consultar()
             self.stdout.write('\n{} {} {} {}'.format(
