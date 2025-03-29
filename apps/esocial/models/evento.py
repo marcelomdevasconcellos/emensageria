@@ -341,6 +341,8 @@ class Eventos(BaseModelEsocial):
             if '<eSocial' not in self.evento_xml:
                 logger.info(f"Incluindo a tag eSocial no evento {self.id}.")
                 xml_str = '<eSocial>' + self.evento_xml + '</eSocial>'
+                self.evento_xml = xml_str
+                self.save()
 
             xml_obj = ET.fromstring(xml_str)
             xml_changed = False
@@ -351,6 +353,9 @@ class Eventos(BaseModelEsocial):
                     "", f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
                 xml_obj.set(
                     'xmlns', f"http://www.esocial.gov.br/schema/evt/{evento_codigo}/{self.versao}")
+                xml_str = ET.tostring(xml_obj).decode("utf-8")
+                self.evento_xml = xml_str
+                self.save()
 
             if 'Id="ID' not in xml_str:
                 xml_changed = True
