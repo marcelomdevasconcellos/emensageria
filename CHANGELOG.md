@@ -1,3 +1,7 @@
+## Versão 2.1.3 - 2025-03-29
+
+* PR #53: Fix vulnerabilidade Jinja 
+
 ## Versão 2.1.2 - 2025-03-14
 
 * PR #51: Correção da importação de eventos pela API com XML 
