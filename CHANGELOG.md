@@ -1,3 +1,7 @@
+## Versão 2.1.5 - 2025-07-01
+
+* PR #54: Correção de envio de evento sem ID pela API 
+
 ## Versão 2.1.4 - 2025-07-01
 
 * PR #54: Correção de envio de evento sem ID pela API 
