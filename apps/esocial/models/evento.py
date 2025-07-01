@@ -1,5 +1,6 @@
 import logging
 import os
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict
@@ -171,6 +172,22 @@ class Eventos(BaseModelEsocial):
             self):
         return self.identidade
 
+    def replace_id(self, xml_str: str, new_id: str) -> str:
+        """
+        Substitui a primeira ocorrência de Id="ID..." no xml_str por Id="new_id".
+        Se não encontrar nada, levanta ValueError.
+        """
+        # Captura:
+        #  (Id=")    → prefixo até o início do valor
+        #  ID[^"]*   → ID + tudo até a próxima aspa
+        #  (")       → aspa de fechamento
+        pattern = r'(Id=")ID[^"]*(")'
+        replacement = rf'\1{new_id}\2'
+
+        # faz somente uma substituição
+        new_xml, count = re.subn(pattern, replacement, xml_str, count=1)
+        return new_xml
+
     def make_identidade(
             self,
             request=None):
@@ -187,6 +204,8 @@ class Eventos(BaseModelEsocial):
                 filter(identidade=identidade_temp).all()
             if not lista_eventos:
                 self.identidade = identidade_temp
+                if self.evento_xml:
+                    self.evento_xml = self.replace_id(self.evento_xml, identidade_temp)
                 self.save()
                 existe = False
         return identidade_temp
@@ -346,6 +365,7 @@ class Eventos(BaseModelEsocial):
 
             xml_obj = ET.fromstring(xml_str)
             xml_changed = False
+
             if 'www.esocial.gov.br/schema/evt' not in xml_str:
                 xml_changed = True
                 logger.info(f"Incluindo o name space xmlns no evento {self.id}.")
@@ -362,9 +382,23 @@ class Eventos(BaseModelEsocial):
                 logger.info(f"Incluindo o ID no evento {self.id}.")
                 if not self.identidade:
                     self.make_identidade()
-                xml_obj.find(  # type: ignore
-                    EVENTO_COD[self.evento]['codigo']).set(
-                    'Id', self.identidade)  # type: ignore[arg-type]
+
+                evt_tag = EVENTO_COD[self.evento]['codigo']
+                # Primeiro tente sem namespace (caso o XML ainda não tenha xmlns)
+                elem = xml_obj.find(f'.//{evt_tag}')
+                # Se não encontrar, tente com wildcard para pegar qualquer namespace
+                if elem is None:
+                    elem = xml_obj.find(f'.//{{*}}{evt_tag}')
+
+                # Se ainda não achou, levante erro
+                if elem is None:
+                    raise ValueError(f"Elemento <{evt_tag}> não encontrado no XML.")
+
+                # Finalmente seta o Id
+                elem.set('Id', self.identidade)
+                xml_str = ET.tostring(xml_obj, encoding='utf-8').decode('utf-8')
+                self.evento_xml = xml_str
+                self.save()
 
             if xml_changed:
                 xml_str = ET.tostring(xml_obj).decode("utf-8")
