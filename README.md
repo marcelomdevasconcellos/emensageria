@@ -1,6 +1,12 @@
+⚠️ Este repositório está arquivado e não é mais mantido.
+Código disponível apenas para consulta.
+Para maiores informações acesse www.emensageria.com.br
+
+---
+
 # eMensageria OpenSource
 
-eMensageria - Sistema de Mensageria Opensource do eSocial <www.emensageria.com.br>
+eMensageria - Sistema de Mensageria do eSocial <www.emensageria.com.br>
 
 **ATENÇÃO: O eMensageria opensource contém apenas os eventos iniciais do eSocial.**
 
