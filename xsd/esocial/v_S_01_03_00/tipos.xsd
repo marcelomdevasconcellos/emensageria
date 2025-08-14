@@ -206,27 +206,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="T_ideEvento_retorno_trab">
-        <xs:annotation>
-            <xs:documentation>Identificação do evento de retorno.</xs:documentation>
-            <xs:documentation>CHAVE_GRUPO: {indApuracao*}, {perApur*}</xs:documentation>
-        </xs:annotation>
-        <xs:sequence>
-            <xs:element name="nrRecArqBase" type="TS_nrRecibo">
-                <xs:annotation>
-                    <xs:documentation>Preencher com o número do recibo do arquivo que deu origem ao presente arquivo de retorno ao empregador.</xs:documentation>
-                    <xs:documentation>Validação: Deve ser um recibo de entrega válido, correspondente ao arquivo que deu origem ao presente arquivo de retorno (S-1200, S-2299, S-2399 ou S-3000).</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="indApuracao" type="TS_indApuracao" />
-            <xs:element name="perApur" type="TS_perApur">
-                <xs:annotation>
-                    <xs:documentation>Informar o mês/ano (formato AAAA-MM) de referência das informações, se {indApuracao}(./indApuracao) for igual a [1], ou apenas o ano (formato AAAA), se {indApuracao}(./indApuracao) for igual a [2].</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-
     <xs:complexType name="T_ideEvento_retorno_contrib">
         <xs:annotation>
             <xs:documentation>Identificação do evento de retorno.</xs:documentation>
@@ -345,16 +324,28 @@
     <xs:complexType name="T_infoInterm">
         <xs:sequence>
             <xs:element name="dia" type="TS_dia" />
-            <xs:element name="hrsTrab" minOccurs="0" type="TS_hora_99">
+            <xs:element name="hrsTrab" minOccurs="0" type="TS_hora">
                 <xs:annotation>
                     <xs:documentation>Horas trabalhadas no dia pelo empregado com contrato de trabalho intermitente, no formato HHMM.</xs:documentation>
                     <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [22].</xs:documentation>
-                    <xs:documentation>Se preenchida, deve estar no intervalo entre [0000] e [9959], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.</xs:documentation>
+                    <xs:documentation>Se preenchida, deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
 
+    <xs:complexType name="T_infoIntermProcTrab">
+        <xs:sequence>
+            <xs:element name="dia" type="TS_dia" />
+            <xs:element name="hrsTrab" minOccurs="0" type="TS_hora">
+                <xs:annotation>
+                    <xs:documentation>Horas trabalhadas no dia pelo empregado com contrato de trabalho intermitente, no formato HHMM.</xs:documentation>
+                    <xs:documentation>Validação: Preenchimento obrigatório e exclusivo se {}(1000_infoEmpregador_inclusao_infoCadastro_classTrib) em S-1000 = [22] em {}(2500_ideTrab_infoContr_ideEstab_infoVlr_idePeriodo_perRef).</xs:documentation>
+                    <xs:documentation>Se preenchida, deve estar no intervalo entre [0000] e [2359], criticando inclusive a segunda parte do número, que indica os minutos, que deve ser menor ou igual a 59.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
     <!-- Grupo {infoRRA} -->
 
     <xs:complexType name="T_infoRRA">
@@ -386,13 +377,14 @@
                         <xs:element name="vlrDespCustas" type="TS_valorMonetario">
                             <xs:annotation>
                                 <xs:documentation>Preencher com o valor das despesas com custas judiciais.</xs:documentation>
+                                <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
                             </xs:annotation>
                         </xs:element>
                         <xs:element name="vlrDespAdvogados" type="TS_valorMonetario">
                             <xs:annotation>
                                 <xs:documentation>Preencher com o valor total das despesas com advogado(s).</xs:documentation>
-                                <xs:documentation>Validação: Se o grupo {}(../ideAdv) for preenchido, o valor informado neste campo deve ser a soma do(s) campo(s) {}(../ideAdv_vlrAdv) do grupo {}(../ideAdv).</xs:documentation>
-                                <xs:documentation>Deve ser maior que 0 (zero).</xs:documentation>
+                                <xs:documentation>Validação: Se o grupo {}(../ideAdv) for preenchido, o valor informado neste campo deve ser maior ou igual à soma do(s) campo(s) {}(../ideAdv_vlrAdv) do grupo {}(../ideAdv).</xs:documentation>
+                                <xs:documentation>Deve ser maior ou igual a 0 (zero).</xs:documentation>
                                 <xs:documentation>O não preenchimento do grupo {}(../ideAdv) indica que o contribuinte declarante não possui as informações detalhadas por advogado.</xs:documentation>
                             </xs:annotation>
                         </xs:element>
@@ -403,7 +395,7 @@
                 <xs:annotation>
                     <xs:documentation>Identificação dos advogados.</xs:documentation>
                     <xs:documentation>CHAVE_GRUPO: {tpInsc}, {nrInsc}</xs:documentation>
-                    <xs:documentation>CONDICAO_GRUPO: O (se {vlrDespAdvogados}(../despProcJud_vlrDespAdvogados) > 0); N (nos demais casos)</xs:documentation>
+                    <xs:documentation>CONDICAO_GRUPO: OC (se {vlrDespAdvogados}(../despProcJud_vlrDespAdvogados) > 0); N (nos demais casos)</xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
@@ -1221,8 +1213,7 @@
                         <xs:documentation>Validação: Deve ser um código válido, conforme tabela do Banco Central.</xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:string">
-                        <xs:length value="3" />
-                        <xs:pattern value="\w{3}" />
+                        <xs:pattern value="\d{3}" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -1232,8 +1223,9 @@
                         <xs:documentation>Número do contrato referente ao empréstimo.</xs:documentation>
                     </xs:annotation>
                     <xs:restriction base="xs:string">
-                        <xs:length value="12" />
-                        <xs:pattern value="\w{12}" />
+                        <xs:minLength value="1" />
+                        <xs:maxLength value="15" />
+                        <xs:pattern value="[A-Za-z0-9][-_A-Za-z0-9/.//]{0,13}[A-Za-z0-9]" />
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
@@ -1978,6 +1970,19 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <!-- Campo {natRubr} -->
+
+    <xs:simpleType name="TS_natRubr">
+        <xs:annotation>
+            <xs:documentation>Informar o código de classificação da rubrica.</xs:documentation>
+            <xs:documentation>Validação: Deve ser um código válido e existente na Tabela 03.</xs:documentation>
+            <xs:documentation>Para utilização de código [9253], é necessário que {iniValid}(1010_infoRubrica_inclusao_ideRubrica_iniValid) seja igual ou posterior ao mês de início do eConsignado no eSocial.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="\d{4}" />
+        </xs:restriction>
+    </xs:simpleType>
+
     <!-- Campo {observacao} -->
 
     <xs:simpleType name="TS_observacao">
@@ -2402,6 +2407,22 @@
         </xs:annotation>
         <xs:restriction base="xs:integer">
             <xs:pattern value="\d{3}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Campo {notAFT} -->
+
+    <xs:simpleType name="TS_notAFT">
+        <xs:annotation>
+            <xs:documentation>Número da notificação de FGTS que deu origem à confissão.</xs:documentation>
+            <xs:documentation>Validação: Se o campo for preenchido:</xs:documentation>
+            <xs:documentation>a) {}(1200_ideEvento_perApur) deve ser igual ou posterior ao início do FGTS Digital;</xs:documentation>
+            <xs:documentation>b) Todas as rubricas de vencimento ({}(1010_infoRubrica_inclusao_dadosRubrica_tpRubr) em S-1010 = [1]) informadas no demonstrativo devem possuir {}(1010_infoRubrica_inclusao_dadosRubrica_codIncFGTS) em S-1010 = [71];</xs:documentation>
+            <xs:documentation>c) Devem ser informados apenas caracteres alfanuméricos, com 9 (nove) posições.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:length value="9" />
+            <xs:pattern value="[A-Za-z0-9]{9}" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -4183,7 +4204,7 @@
     <xs:simpleType name="TS_indIncid">
         <xs:annotation>
             <xs:documentation>Indicativo de incidência de FGTS.</xs:documentation>
-            <xs:documentation>Validação: Se {codIncFGTS}(1010_infoRubrica_inclusao_dadosRubrica_codIncFGTS) em S-1010 for igual a [11, 12, 21], deve ser retornado [1].</xs:documentation>
+            <xs:documentation>Validação: Se {codIncFGTS}(1010_infoRubrica_inclusao_dadosRubrica_codIncFGTS) em S-1010 for igual a [11, 12, 21, 71], deve ser retornado [1].</xs:documentation>
             <xs:documentation>Se {codIncFGTS}(1010_infoRubrica_inclusao_dadosRubrica_codIncFGTS) em S-1010 for igual a [91, 92, 93], deve ser retornado [9].</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:byte">
@@ -4320,7 +4341,7 @@
     <xs:simpleType name="TS_periodo_mensal">
         <xs:restriction base="xs:string">
             <xs:length value="7" />
-            <xs:pattern value="([2]\d{3}|19[8-9]\d)-(1[0-2]|0[1-9])" />
+            <xs:pattern value="([2]\d{3}|19[6-9]\d)-(1[0-2]|0[1-9])" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -4460,14 +4481,14 @@
 
     <xs:simpleType name="TS_hora">
         <xs:restriction base="xs:string">
-            <xs:pattern value="\d{4}" />
+            <xs:length value="4" />
             <xs:pattern value="(([0-1][0-9]|2[0-3])[0-5][0-9])" />
         </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="TS_hora_99">
         <xs:restriction base="xs:string">
-            <xs:pattern value="\d{4}" />
+            <xs:length value="4" />
             <xs:pattern value="([0-9][0-9][0-5][0-9])" />
         </xs:restriction>
     </xs:simpleType>

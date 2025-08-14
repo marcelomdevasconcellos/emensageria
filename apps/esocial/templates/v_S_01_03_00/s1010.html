@@ -5,9 +5,9 @@
 
 <div class="row">
 
-<div id="evtTabRubrica__0" name_temp="[evtTabRubrica][0]">
+<div id="evtTabRubrica__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][{{ forloop.counter0 }}]">
     <div class="col-md-12">
-        <h4>Evento Tabela de Rubricas. Regras de validação: REGRA_ENVIO_PROC_FECHAMENTO REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TABRUBR_INCLUSAO REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_DT_FUTURA</h4>
+        <h4>Evento Tabela de Rubricas. Regras de validação: REGRA_ENVIO_PROC_FECHAMENTO REGRA_EXISTE_INFO_EMPREGADOR REGRA_TABGERAL_ALTERACAO_PERIODO_CONFLITANTE REGRA_TABGERAL_EXISTE_REGISTRO_ALTERADO REGRA_TABGERAL_EXISTE_REGISTRO_EXCLUIDO REGRA_TABGERAL_INCLUSAO_PERIODO_CONFLITANTE REGRA_TABRUBR_INCLUSAO REGRA_TAB_PERMITE_EXCLUSAO REGRA_VALIDA_CODINCCP_EXC_SEGURADO REGRA_VALIDA_DT_FUTURA</h4>
         {% if False %}
         <div class="btn-group">
             <button type="button" onclick="duplicateDiv($(this))" 
@@ -25,7 +25,7 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__ideEvento__0" name_temp="[evtTabRubrica][ideEvento][0]">
+<div id="evtTabRubrica__ideEvento__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][ideEvento][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Informações de identificação do evento.</h4>
         {% if False %}
@@ -86,7 +86,7 @@
         </blockquote>
     </div>
 </div>
-<div id="evtTabRubrica__ideEmpregador__0" name_temp="[evtTabRubrica][ideEmpregador][0]">
+<div id="evtTabRubrica__ideEmpregador__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][ideEmpregador][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Informações de identificação do empregador.</h4>
         {% if False %}
@@ -136,7 +136,7 @@
         </blockquote>
     </div>
 </div>
-<div id="evtTabRubrica__infoRubrica__0" name_temp="[evtTabRubrica][infoRubrica][0]">
+<div id="evtTabRubrica__infoRubrica__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Identificação da operação (inclusão, alteração ou exclusão) e das informações da rubrica.</h4>
         {% if False %}
@@ -156,7 +156,7 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__inclusao__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Inclusão de novas informações.</h4>
         {% if False %}
@@ -176,7 +176,7 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__inclusao__ideRubrica__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][ideRubrica][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__ideRubrica__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][ideRubrica][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Identificação da rubrica e período de validade das informações.</h4>
         {% if False %}
@@ -236,7 +236,7 @@
         </blockquote>
     </div>
 </div>
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Detalhamento das informações da rubrica.</h4>
         {% if False %}
@@ -308,9 +308,9 @@
 <div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__codIncFGTS__0">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Código de incidência da rubrica para o Fundo de Garantia do Tempo de Serviço - FGTS<a data-toggle="tooltip" title="Código de incidência da rubrica para o Fundo de Garantia do Tempo de Serviço - FGTS. Valores válidos: 00 - Não é base de cálculo do FGTS 11 - Base de cálculo do FGTS mensal 12 - Base de cálculo do FGTS 13° salário 21 - Base de cálculo do FGTS aviso prévio indenizado 31 - Desconto eConsignado 91 - Incidência suspensa em decorrência de decisão judicial - FGTS mensal 92 - Incidência suspensa em decorrência de decisão judicial - FGTS 13º salário 93 - Incidência suspensa em decorrência de decisão judicial - FGTS aviso prévio indenizado Validação: Para utilização de código [91, 92, 93], é necessária a existência de grupo com informações relativas ao processo. A utilização do código [31] é obrigatória e exclusiva quando natRubr = [9253]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Código de incidência da rubrica para o Fundo de Garantia do Tempo de Serviço - FGTS<a data-toggle="tooltip" title="Código de incidência da rubrica para o Fundo de Garantia do Tempo de Serviço - FGTS. Valores válidos: 00 - Não é base de cálculo do FGTS 11 - Base de cálculo do FGTS mensal 12 - Base de cálculo do FGTS 13° salário 21 - Base de cálculo do FGTS aviso prévio indenizado 31 - Desconto eConsignado 71 - Valores apurados pela Auditoria-Fiscal do Trabalho, que integram a base de cálculo do FGTS 91 - Incidência suspensa em decorrência de decisão judicial - FGTS mensal 92 - Incidência suspensa em decorrência de decisão judicial - FGTS 13º salário 93 - Incidência suspensa em decorrência de decisão judicial - FGTS aviso prévio indenizado Validação: Para utilização de código [91, 92, 93], é necessária a existência de grupo com informações relativas ao processo. A utilização do código [31] é obrigatória e exclusiva quando natRubr = [9253]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__codIncFGTS__id" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][codIncFGTS]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='00' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '00' %}selected{% endif %}>00 - Não é base de cálculo do FGTS</option><option value='11' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '11' %}selected{% endif %}>11 - Base de cálculo do FGTS mensal</option><option value='12' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '12' %}selected{% endif %}>12 - Base de cálculo do FGTS 13° salário</option><option value='21' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '21' %}selected{% endif %}>21 - Base de cálculo do FGTS aviso prévio indenizado</option><option value='31' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '31' %}selected{% endif %}>31 - Desconto eConsignado</option><option value='91' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '91' %}selected{% endif %}>91 - Incidência suspensa em decorrência de decisão judicial - FGTS mensal</option><option value='92' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '92' %}selected{% endif %}>92 - Incidência suspensa em decorrência de decisão judicial - FGTS 13º salário</option><option value='93' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '93' %}selected{% endif %}>93 - Incidência suspensa em decorrência de decisão judicial - FGTS aviso prévio indenizado</option>
+            <option value="">---</option><option value='00' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '00' %}selected{% endif %}>00 - Não é base de cálculo do FGTS</option><option value='11' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '11' %}selected{% endif %}>11 - Base de cálculo do FGTS mensal</option><option value='12' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '12' %}selected{% endif %}>12 - Base de cálculo do FGTS 13° salário</option><option value='21' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '21' %}selected{% endif %}>21 - Base de cálculo do FGTS aviso prévio indenizado</option><option value='31' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '31' %}selected{% endif %}>31 - Desconto eConsignado</option><option value='71' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '71' %}selected{% endif %}>71 - Valores apurados pela Auditoria-Fiscal do Trabalho, que integram a base de cálculo do FGTS</option><option value='91' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '91' %}selected{% endif %}>91 - Incidência suspensa em decorrência de decisão judicial - FGTS mensal</option><option value='92' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '92' %}selected{% endif %}>92 - Incidência suspensa em decorrência de decisão judicial - FGTS 13º salário</option><option value='93' {% if evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.codIncFGTS'|to_str == '93' %}selected{% endif %}>93 - Incidência suspensa em decorrência de decisão judicial - FGTS aviso prévio indenizado</option>
             </select>
         </div>
     </div>
@@ -358,7 +358,7 @@
     </div>
 </div>
 {% for ideProcessoCP in evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.ideProcessoCP' %}
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -378,42 +378,42 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__tpProc__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__tpProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o código correspondente ao tipo de processo<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo. Valores válidos: 1 - Administrativo 2 - Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__tpProc__id" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][0][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <select id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__tpProc__id" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% if ideProcessoCP|readjson:'tpProc'|to_str == '1' %}selected{% endif %}>1 - Administrativo</option><option value='2' {% if ideProcessoCP|readjson:'tpProc'|to_str == '2' %}selected{% endif %}>2 - Judicial</option>
             </select>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__nrProc__id" maxlength="21" value="{{ideProcessoCP|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__nrProc__id" maxlength="21" value="{{ideProcessoCP|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__extDecisao__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__extDecisao__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Extensão da decisão/sentença<a data-toggle="tooltip" title="Extensão da decisão/sentença. Valores válidos: 1 - Contribuição previdenciária patronal 2 - Contribuição previdenciária patronal + descontada dos segurados"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__extDecisao__id" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][0][extDecisao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <select id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__extDecisao__id" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][extDecisao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% if ideProcessoCP|readjson:'extDecisao'|to_str == '1' %}selected{% endif %}>1 - Contribuição previdenciária patronal</option><option value='2' {% if ideProcessoCP|readjson:'extDecisao'|to_str == '2' %}selected{% endif %}>2 - Contribuição previdenciária patronal + descontada dos segurados</option>
             </select>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__codSusp__id" maxlength="14" value="{{ideProcessoCP|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoCP|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -422,7 +422,7 @@
         </blockquote>
     </div>
 </div>{% empty %}
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -442,42 +442,42 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__tpProc__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__tpProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o código correspondente ao tipo de processo<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo. Valores válidos: 1 - Administrativo 2 - Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__tpProc__id" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][0][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <select id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__tpProc__id" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% if ideProcessoCP|readjson:'tpProc'|to_str == '1' %}selected{% endif %}>1 - Administrativo</option><option value='2' {% if ideProcessoCP|readjson:'tpProc'|to_str == '2' %}selected{% endif %}>2 - Judicial</option>
             </select>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__nrProc__id" maxlength="21" value="{{ideProcessoCP|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__nrProc__id" maxlength="21" value="{{ideProcessoCP|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__extDecisao__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__extDecisao__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Extensão da decisão/sentença<a data-toggle="tooltip" title="Extensão da decisão/sentença. Valores válidos: 1 - Contribuição previdenciária patronal 2 - Contribuição previdenciária patronal + descontada dos segurados"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__extDecisao__id" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][0][extDecisao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <select id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__extDecisao__id" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][extDecisao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% if ideProcessoCP|readjson:'extDecisao'|to_str == '1' %}selected{% endif %}>1 - Contribuição previdenciária patronal</option><option value='2' {% if ideProcessoCP|readjson:'extDecisao'|to_str == '2' %}selected{% endif %}>2 - Contribuição previdenciária patronal + descontada dos segurados</option>
             </select>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__0__codSusp__id" maxlength="14" value="{{ideProcessoCP|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoCP|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -486,7 +486,7 @@
         </blockquote>
     </div>
 </div>{% endfor %}{% for ideProcessoIRRF in evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.ideProcessoIRRF' %}
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -506,20 +506,20 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__0__nrProc__id" maxlength="20" value="{{ideProcessoIRRF|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoIRRF|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__0__codSusp__id" maxlength="14" value="{{ideProcessoIRRF|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoIRRF|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -528,7 +528,7 @@
         </blockquote>
     </div>
 </div>{% empty %}
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -548,20 +548,20 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__0__nrProc__id" maxlength="20" value="{{ideProcessoIRRF|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoIRRF|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__0__codSusp__id" maxlength="14" value="{{ideProcessoIRRF|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoIRRF|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -570,7 +570,7 @@
         </blockquote>
     </div>
 </div>{% endfor %}{% for ideProcessoFGTS in evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.ideProcessoFGTS' %}
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoFGTS][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoFGTS][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -590,11 +590,11 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1, 7]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__0__nrProc__id" maxlength="20" value="{{ideProcessoFGTS|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoFGTS][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoFGTS|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoFGTS][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -603,7 +603,7 @@
         </blockquote>
     </div>
 </div>{% empty %}
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoFGTS][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoFGTS][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -623,11 +623,11 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1, 7]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__0__nrProc__id" maxlength="20" value="{{ideProcessoFGTS|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoFGTS][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoFGTS|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoFGTS][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -636,7 +636,7 @@
         </blockquote>
     </div>
 </div>{% endfor %}{% for ideProcessoPisPasep in evtTabRubrica|readjson:'infoRubrica.inclusao.dadosRubrica.ideProcessoPisPasep' %}
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição para o PIS/PASEP relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -656,20 +656,20 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__0__nrProc__id" maxlength="20" value="{{ideProcessoPisPasep|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoPisPasep|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__0__codSusp__id" maxlength="14" value="{{ideProcessoPisPasep|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoPisPasep|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -678,7 +678,7 @@
         </blockquote>
     </div>
 </div>{% empty %}
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__0" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][0]">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição para o PIS/PASEP relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -698,20 +698,20 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__0__nrProc__id" maxlength="20" value="{{ideProcessoPisPasep|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoPisPasep|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__0__codSusp__id" maxlength="14" value="{{ideProcessoPisPasep|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__inclusao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoPisPasep|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][inclusao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -728,7 +728,7 @@
         </blockquote>
     </div>
 </div>
-<div id="evtTabRubrica__infoRubrica__alteracao__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Alteração das informações.</h4>
         {% if False %}
@@ -748,7 +748,7 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__alteracao__ideRubrica__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][ideRubrica][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__ideRubrica__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][ideRubrica][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Identificação da rubrica e período de validade das informações.</h4>
         {% if False %}
@@ -808,7 +808,7 @@
         </blockquote>
     </div>
 </div>
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Detalhamento das informações da rubrica.</h4>
         {% if False %}
@@ -880,9 +880,9 @@
 <div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__codIncFGTS__0">
     <div class="col-md-4">
         <div class="form-group">
-            <label>Código de incidência da rubrica para o Fundo de Garantia do Tempo de Serviço - FGTS<a data-toggle="tooltip" title="Código de incidência da rubrica para o Fundo de Garantia do Tempo de Serviço - FGTS. Valores válidos: 00 - Não é base de cálculo do FGTS 11 - Base de cálculo do FGTS mensal 12 - Base de cálculo do FGTS 13° salário 21 - Base de cálculo do FGTS aviso prévio indenizado 31 - Desconto eConsignado 91 - Incidência suspensa em decorrência de decisão judicial - FGTS mensal 92 - Incidência suspensa em decorrência de decisão judicial - FGTS 13º salário 93 - Incidência suspensa em decorrência de decisão judicial - FGTS aviso prévio indenizado Validação: Para utilização de código [91, 92, 93], é necessária a existência de grupo com informações relativas ao processo. A utilização do código [31] é obrigatória e exclusiva quando natRubr = [9253]."><i class="fa fa-fw fa-question-circle"></i></a></label>
+            <label>Código de incidência da rubrica para o Fundo de Garantia do Tempo de Serviço - FGTS<a data-toggle="tooltip" title="Código de incidência da rubrica para o Fundo de Garantia do Tempo de Serviço - FGTS. Valores válidos: 00 - Não é base de cálculo do FGTS 11 - Base de cálculo do FGTS mensal 12 - Base de cálculo do FGTS 13° salário 21 - Base de cálculo do FGTS aviso prévio indenizado 31 - Desconto eConsignado 71 - Valores apurados pela Auditoria-Fiscal do Trabalho, que integram a base de cálculo do FGTS 91 - Incidência suspensa em decorrência de decisão judicial - FGTS mensal 92 - Incidência suspensa em decorrência de decisão judicial - FGTS 13º salário 93 - Incidência suspensa em decorrência de decisão judicial - FGTS aviso prévio indenizado Validação: Para utilização de código [91, 92, 93], é necessária a existência de grupo com informações relativas ao processo. A utilização do código [31] é obrigatória e exclusiva quando natRubr = [9253]."><i class="fa fa-fw fa-question-circle"></i></a></label>
             <select id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__codIncFGTS__id" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][codIncFGTS]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
-            <option value="">---</option><option value='00' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '00' %}selected{% endif %}>00 - Não é base de cálculo do FGTS</option><option value='11' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '11' %}selected{% endif %}>11 - Base de cálculo do FGTS mensal</option><option value='12' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '12' %}selected{% endif %}>12 - Base de cálculo do FGTS 13° salário</option><option value='21' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '21' %}selected{% endif %}>21 - Base de cálculo do FGTS aviso prévio indenizado</option><option value='31' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '31' %}selected{% endif %}>31 - Desconto eConsignado</option><option value='91' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '91' %}selected{% endif %}>91 - Incidência suspensa em decorrência de decisão judicial - FGTS mensal</option><option value='92' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '92' %}selected{% endif %}>92 - Incidência suspensa em decorrência de decisão judicial - FGTS 13º salário</option><option value='93' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '93' %}selected{% endif %}>93 - Incidência suspensa em decorrência de decisão judicial - FGTS aviso prévio indenizado</option>
+            <option value="">---</option><option value='00' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '00' %}selected{% endif %}>00 - Não é base de cálculo do FGTS</option><option value='11' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '11' %}selected{% endif %}>11 - Base de cálculo do FGTS mensal</option><option value='12' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '12' %}selected{% endif %}>12 - Base de cálculo do FGTS 13° salário</option><option value='21' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '21' %}selected{% endif %}>21 - Base de cálculo do FGTS aviso prévio indenizado</option><option value='31' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '31' %}selected{% endif %}>31 - Desconto eConsignado</option><option value='71' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '71' %}selected{% endif %}>71 - Valores apurados pela Auditoria-Fiscal do Trabalho, que integram a base de cálculo do FGTS</option><option value='91' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '91' %}selected{% endif %}>91 - Incidência suspensa em decorrência de decisão judicial - FGTS mensal</option><option value='92' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '92' %}selected{% endif %}>92 - Incidência suspensa em decorrência de decisão judicial - FGTS 13º salário</option><option value='93' {% if evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.codIncFGTS'|to_str == '93' %}selected{% endif %}>93 - Incidência suspensa em decorrência de decisão judicial - FGTS aviso prévio indenizado</option>
             </select>
         </div>
     </div>
@@ -930,7 +930,7 @@
     </div>
 </div>
 {% for ideProcessoCP in evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.ideProcessoCP' %}
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -950,42 +950,42 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__tpProc__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__tpProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o código correspondente ao tipo de processo<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo. Valores válidos: 1 - Administrativo 2 - Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__tpProc__id" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][0][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <select id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__tpProc__id" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% if ideProcessoCP|readjson:'tpProc'|to_str == '1' %}selected{% endif %}>1 - Administrativo</option><option value='2' {% if ideProcessoCP|readjson:'tpProc'|to_str == '2' %}selected{% endif %}>2 - Judicial</option>
             </select>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__nrProc__id" maxlength="21" value="{{ideProcessoCP|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__nrProc__id" maxlength="21" value="{{ideProcessoCP|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__extDecisao__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__extDecisao__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Extensão da decisão/sentença<a data-toggle="tooltip" title="Extensão da decisão/sentença. Valores válidos: 1 - Contribuição previdenciária patronal 2 - Contribuição previdenciária patronal + descontada dos segurados"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__extDecisao__id" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][0][extDecisao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <select id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__extDecisao__id" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][extDecisao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% if ideProcessoCP|readjson:'extDecisao'|to_str == '1' %}selected{% endif %}>1 - Contribuição previdenciária patronal</option><option value='2' {% if ideProcessoCP|readjson:'extDecisao'|to_str == '2' %}selected{% endif %}>2 - Contribuição previdenciária patronal + descontada dos segurados</option>
             </select>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__codSusp__id" maxlength="14" value="{{ideProcessoCP|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoCP|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -994,7 +994,7 @@
         </blockquote>
     </div>
 </div>{% empty %}
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo administrativo ou judicial com decisão/sentença favorável, determinando a não incidência de contribuição previdenciária relativa à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -1014,42 +1014,42 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__tpProc__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__tpProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Preencher com o código correspondente ao tipo de processo<a data-toggle="tooltip" title="Preencher com o código correspondente ao tipo de processo. Valores válidos: 1 - Administrativo 2 - Judicial"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__tpProc__id" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][0][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <select id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__tpProc__id" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][tpProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% if ideProcessoCP|readjson:'tpProc'|to_str == '1' %}selected{% endif %}>1 - Administrativo</option><option value='2' {% if ideProcessoCP|readjson:'tpProc'|to_str == '2' %}selected{% endif %}>2 - Judicial</option>
             </select>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo administrativo ou judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__nrProc__id" maxlength="21" value="{{ideProcessoCP|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__nrProc__id" maxlength="21" value="{{ideProcessoCP|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__extDecisao__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__extDecisao__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Extensão da decisão/sentença<a data-toggle="tooltip" title="Extensão da decisão/sentença. Valores válidos: 1 - Contribuição previdenciária patronal 2 - Contribuição previdenciária patronal + descontada dos segurados"><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <select id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__extDecisao__id" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][0][extDecisao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <select id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__extDecisao__id" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][extDecisao]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
             <option value="">---</option><option value='1' {% if ideProcessoCP|readjson:'extDecisao'|to_str == '1' %}selected{% endif %}>1 - Contribuição previdenciária patronal</option><option value='2' {% if ideProcessoCP|readjson:'extDecisao'|to_str == '2' %}selected{% endif %}>2 - Contribuição previdenciária patronal + descontada dos segurados</option>
             </select>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__0__codSusp__id" maxlength="14" value="{{ideProcessoCP|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoCP__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoCP|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoCP][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -1058,7 +1058,7 @@
         </blockquote>
     </div>
 </div>{% endfor %}{% for ideProcessoIRRF in evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.ideProcessoIRRF' %}
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -1078,20 +1078,20 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__0__nrProc__id" maxlength="20" value="{{ideProcessoIRRF|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoIRRF|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__0__codSusp__id" maxlength="14" value="{{ideProcessoIRRF|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoIRRF|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -1100,7 +1100,7 @@
         </blockquote>
     </div>
 </div>{% empty %}
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de imposto de renda relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -1120,20 +1120,20 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__0__nrProc__id" maxlength="20" value="{{ideProcessoIRRF|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoIRRF|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__0__codSusp__id" maxlength="14" value="{{ideProcessoIRRF|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoIRRF__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoIRRF|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoIRRF][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -1142,7 +1142,7 @@
         </blockquote>
     </div>
 </div>{% endfor %}{% for ideProcessoFGTS in evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.ideProcessoFGTS' %}
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoFGTS][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoFGTS][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -1162,11 +1162,11 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1, 7]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__0__nrProc__id" maxlength="20" value="{{ideProcessoFGTS|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoFGTS][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoFGTS|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoFGTS][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -1175,7 +1175,7 @@
         </blockquote>
     </div>
 </div>{% empty %}
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoFGTS][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoFGTS][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de FGTS relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -1195,11 +1195,11 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1, 7]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1, 7]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__0__nrProc__id" maxlength="20" value="{{ideProcessoFGTS|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoFGTS][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoFGTS__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoFGTS|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoFGTS][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -1208,7 +1208,7 @@
         </blockquote>
     </div>
 </div>{% endfor %}{% for ideProcessoPisPasep in evtTabRubrica|readjson:'infoRubrica.alteracao.dadosRubrica.ideProcessoPisPasep' %}
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição para o PIS/PASEP relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -1228,20 +1228,20 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__0__nrProc__id" maxlength="20" value="{{ideProcessoPisPasep|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoPisPasep|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__0__codSusp__id" maxlength="14" value="{{ideProcessoPisPasep|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoPisPasep|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -1250,7 +1250,7 @@
         </blockquote>
     </div>
 </div>{% empty %}
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Caso a empresa possua processo judicial com decisão/sentença favorável, determinando a não incidência de contribuição para o PIS/PASEP relativo à rubrica identificada no evento, as informações deverão ser incluídas neste grupo, e o detalhamento do processo deverá ser efetuado através de evento específico na Tabela de Processos (S-1070).</h4>
         {% if True %}
@@ -1270,20 +1270,20 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__0__nrProc__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__nrProc__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Informar o número do processo<a data-toggle="tooltip" title="Informar um número de processo judicial cadastrado através do evento S-1070, cujo indMatProc seja igual a [1]. Validação: Deve ser um número de processo judicial válido e existente na Tabela de Processos (S-1070), com indMatProc = [1]."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__0__nrProc__id" maxlength="20" value="{{ideProcessoPisPasep|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][0][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__nrProc__id" maxlength="20" value="{{ideProcessoPisPasep|readjson:'nrProc'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}][nrProc]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
 
-<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__0__codSusp__0">
+<div id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__codSusp__0">
     <div class="col-md-4">
         <div class="form-group">
             <label>Código do indicativo da suspensão<a data-toggle="tooltip" title="Código do indicativo da suspensão, atribuído pelo empregador em S-1070. Validação: A informação prestada deve estar de acordo com o que foi informado em S-1070."><i class="fa fa-fw fa-question-circle"></i></a></label>
-            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__0__codSusp__id" maxlength="14" value="{{ideProcessoPisPasep|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][0][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
+            <input type="text" id="evtTabRubrica__infoRubrica__alteracao__dadosRubrica__ideProcessoPisPasep__{{ forloop.counter0 }}__codSusp__id" maxlength="14" value="{{ideProcessoPisPasep|readjson:'codSusp'}}" name="[evtTabRubrica][infoRubrica][alteracao][dadosRubrica][ideProcessoPisPasep][{{ forloop.counter0 }}][codSusp]" onchange="set_evento_json()" class="form-control" {{ original|disabled}}>
         </div>
     </div>
 </div>
@@ -1296,7 +1296,7 @@
         </blockquote>
     </div>
 </div>
-<div id="evtTabRubrica__infoRubrica__alteracao__novaValidade__0" name_temp="[evtTabRubrica][infoRubrica][alteracao][novaValidade][0]">
+<div id="evtTabRubrica__infoRubrica__alteracao__novaValidade__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][alteracao][novaValidade][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Informação preenchida exclusivamente em caso de alteração do período de validade das informações, apresentando o novo período de validade.</h4>
         {% if False %}
@@ -1342,7 +1342,7 @@
         </blockquote>
     </div>
 </div>
-<div id="evtTabRubrica__infoRubrica__exclusao__0" name_temp="[evtTabRubrica][infoRubrica][exclusao][0]">
+<div id="evtTabRubrica__infoRubrica__exclusao__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][exclusao][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Exclusão das informações.</h4>
         {% if False %}
@@ -1362,7 +1362,7 @@
         <blockquote>
             <div class="row">
 
-<div id="evtTabRubrica__infoRubrica__exclusao__ideRubrica__0" name_temp="[evtTabRubrica][infoRubrica][exclusao][ideRubrica][0]">
+<div id="evtTabRubrica__infoRubrica__exclusao__ideRubrica__{{ forloop.counter0 }}" name_temp="[evtTabRubrica][infoRubrica][exclusao][ideRubrica][{{ forloop.counter0 }}]">
     <div class="col-md-12">
         <h4>Identificação da rubrica e período de validade das informações.</h4>
         {% if False %}

@@ -17,8 +17,10 @@
                         <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EVENTOS_EXTEMP</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_INFO_IDESEQTRAB</xs:documentation>
                         <xs:documentation>REGRA:REGRA_MESMO_PROCEMI</xs:documentation>
                         <xs:documentation>REGRA:REGRA_MUDANCA_CATEG_NAT_ATIV</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_RETIFICA_IDENTIFICADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_RETIFICA_MESMO_VINCULO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_UNICIDADE_CONTRATUAL</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
@@ -65,14 +67,15 @@
                                                     </xs:element>
                                                     <xs:element name="dtAdmRespDir" minOccurs="0" type="xs:date">
                                                         <xs:annotation>
-                                                            <xs:documentation>Preencher com a data de admissão do trabalhador no empregador de origem (responsável direto).</xs:documentation>
-                                                            <xs:documentation>Validação: Se informado, deve ser posterior à data de nascimento do trabalhador e igual ou anterior ao ano do óbito, se existente.</xs:documentation>
+                                                            <xs:documentation>Preencher com a data de admissão do trabalhador no empregador de origem (responsável direto) quando se tratar de vínculo que não foi informado no eSocial.</xs:documentation>
+                                                            <xs:documentation>Em caso de TSVE sem informação de matrícula no evento S-2300, informar a data de início.</xs:documentation>
+                                                            <xs:documentation>Validação: Se informado, deve ser posterior à data de nascimento do trabalhador e igual ou anterior ao ano do óbito, se existente. Não deve ser informado se houver informação no campo {}(./matRespDir).</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="matRespDir" minOccurs="0" type="TS_matricula">
                                                         <xs:annotation>
                                                             <xs:documentation>Informar a matrícula no empregador de origem (responsável direto).</xs:documentation>
-                                                            <xs:documentation>Validação: Se informado, deve corresponder a uma matrícula informada pelo empregador de origem (responsável direto) no evento S-2190, S-2200 ou S-2300, pertencente ao trabalhador preenchido em {}(../../ideTrab_cpfTrab), no empregador informado em {}(./nrInsc).</xs:documentation>
+                                                            <xs:documentation>Validação: Se informado, deve corresponder a uma matrícula informada pelo empregador de origem (responsável direto) no evento S-2190, S-2200 ou S-2300, pertencente ao trabalhador preenchido em {}(../../ideTrab_cpfTrab), no empregador informado em {ideResp/nrInsc}(./nrInsc).</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                 </xs:sequence>
@@ -199,7 +202,7 @@
                             <xs:element name="ideTrab">
                                 <xs:annotation>
                                     <xs:documentation>Informações do trabalhador.</xs:documentation>
-                                    <xs:documentation>CHAVE_GRUPO: {cpfTrab*}</xs:documentation>
+                                    <xs:documentation>CHAVE_GRUPO: {cpfTrab*}, {ideSeqTrab*}</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence>
@@ -215,6 +218,21 @@
                                                 <xs:documentation>Preencher com a data de nascimento.</xs:documentation>
                                                 <xs:documentation>Validação: Preenchimento obrigatório se não existir contrato com {indContr}(2500_ideTrab_infoContr_indContr) = [S]. Deve ser maior ou igual que 01/01/1890 e menor ou igual à data atual.</xs:documentation>
                                             </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ideSeqTrab" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Número sequencial atribuído pela empresa a cada conjunto de dados de processo trabalhista, quando for necessário enviar o mesmo processo em múltiplos S-2500, para o mesmo {}(./cpfTrab).</xs:documentation>
+                                                <xs:documentation>Validação: Deve ser um identificador único dentre os eventos S-2500 do empregador que tenham os mesmos {}(../infoProcesso_nrProcTrab) e {}(./cpfTrab).</xs:documentation>
+                                                <xs:documentation>Se for preenchido, não pode haver outro evento S-2500 com os mesmos {}(../infoProcesso_nrProcTrab) e {}(./cpfTrab), e sem o campo {}(./ideSeqTrab).</xs:documentation>
+                                                <xs:documentation>Se não for preenchido, não pode haver outro evento S-2500 com os mesmos {}(../infoProcesso_nrProcTrab) e {}(./cpfTrab).</xs:documentation>
+                                                <xs:documentation>O valor [0] é reservado para uso interno.</xs:documentation>
+                                                <xs:documentation>O campo não pode ser informado se todos os contratos do evento tiverem {}(2500_ideTrab_infoContr_indContr) = [S].</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:positiveInteger">
+                                                    <xs:pattern value="\d{1,3}" />
+                                                </xs:restriction>
+                                            </xs:simpleType>
                                         </xs:element>
                                         <xs:element name="infoContr" maxOccurs="99">
                                             <xs:annotation>
@@ -232,22 +250,22 @@
                                                             <xs:restriction base="xs:byte">
                                                                 <xs:enumeration value="1">
                                                                     <xs:annotation>
-                                                                        <xs:documentation>Trabalhador com vínculo formalizado, sem alteração nas datas de admissão e de desligamento</xs:documentation>
+                                                                        <xs:documentation>Trabalhador com vínculo formalizado no eSocial, sem alteração nas datas de admissão e de desligamento</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:enumeration>
                                                                 <xs:enumeration value="2">
                                                                     <xs:annotation>
-                                                                        <xs:documentation>Trabalhador com vínculo formalizado, com alteração na data de admissão</xs:documentation>
+                                                                        <xs:documentation>Trabalhador com vínculo formalizado no eSocial, com alteração na data de admissão</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:enumeration>
                                                                 <xs:enumeration value="3">
                                                                     <xs:annotation>
-                                                                        <xs:documentation>Trabalhador com vínculo formalizado, com inclusão ou alteração de data de desligamento</xs:documentation>
+                                                                        <xs:documentation>Trabalhador com vínculo formalizado no eSocial, com inclusão ou alteração de data de desligamento</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:enumeration>
                                                                 <xs:enumeration value="4">
                                                                     <xs:annotation>
-                                                                        <xs:documentation>Trabalhador com vínculo formalizado, com alteração na data de admissão e inclusão ou alteração de data de desligamento</xs:documentation>
+                                                                        <xs:documentation>Trabalhador com vínculo formalizado no eSocial, com alteração na data de admissão e inclusão ou alteração de data de desligamento</xs:documentation>
                                                                     </xs:annotation>
                                                                 </xs:enumeration>
                                                                 <xs:enumeration value="5">
@@ -281,13 +299,13 @@
                                                     <xs:element name="indContr" type="TS_sim_nao">
                                                         <xs:annotation>
                                                             <xs:documentation>Indicativo se o contrato possui informação no evento S-2190, S-2200 ou S-2300 no declarante.</xs:documentation>
-                                                            <xs:documentation>Validação: Deve ser igual a [N] se o grupo {ideResp}(2500_ideEmpregador_ideResp) for informado. Além disso, somente pode haver um contrato com o valor igual a [N].</xs:documentation>
+                                                            <xs:documentation>Validação: Deve ser igual a [N] se o grupo {ideResp}(2500_ideEmpregador_ideResp) for informado. Deve ser igual a [S] se {infoContr/tpContr}(2500_ideTrab_infoContr_tpContr) = [1, 2, 3, 4]. Além disso, somente pode haver um contrato com o valor igual a [N].</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="dtAdmOrig" minOccurs="0" type="xs:date">
                                                         <xs:annotation>
                                                             <xs:documentation>Preencher com a data de admissão original do vínculo (data de admissão antes da alteração).</xs:documentation>
-                                                            <xs:documentation>Validação: Preenchimento obrigatório se {infoContr/tpContr}(./tpContr) = [2, 4]. Deve ser posterior à data de nascimento do trabalhador.</xs:documentation>
+                                                            <xs:documentation>Validação: Preenchimento obrigatório se {infoContr/tpContr}(./tpContr) = [2, 4]. Se {infoContr/tpContr}(./tpContr) = [2, 4], deve ser diferente de {}(2200_vinculo_infoRegimeTrab_infoCeletista_dtAdm)/{}(2200_vinculo_infoRegimeTrab_infoEstatutario_dtExercicio) em S-2200. Deve ser posterior à data de nascimento do trabalhador.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="indReint" minOccurs="0" type="TS_sim_nao">
@@ -537,10 +555,10 @@
                                                                                     </xs:sequence>
                                                                                 </xs:complexType>
                                                                             </xs:element>
-                                                                            <xs:element name="infoDeslig">
+                                                                            <xs:element name="infoDeslig" minOccurs="0">
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Informações do desligamento.</xs:documentation>
-                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {}(2500_ideTrab_infoContr_tpContr) for diferente [8]); OC (nos demais casos)</xs:documentation>
+                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {infoContr/tpContr}(2500_ideTrab_infoContr_tpContr) for diferente [8]); OC (nos demais casos)</xs:documentation>
                                                                                 </xs:annotation>
                                                                                 <xs:complexType>
                                                                                     <xs:sequence>
@@ -738,6 +756,7 @@
                                                                 <xs:element name="infoVlr">
                                                                     <xs:annotation>
                                                                         <xs:documentation>Informações dos períodos e valores.</xs:documentation>
+                                                                        <xs:documentation>Validação: Retornar alerta caso {}(./indReperc) = [1 ou 5] e quantidade de grupos {}(./idePeriodo) seja diferente da quantidade de meses compreendidos entre {}(./compIni) e {}(./compFim).</xs:documentation>
                                                                         <xs:documentation>DESCRICAO_COMPLETA:Informações dos períodos e valores decorrentes de processo trabalhista.</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
@@ -827,7 +846,7 @@
                                                                                 <xs:annotation>
                                                                                     <xs:documentation>Identificação do período ao qual se referem as bases de cálculo.</xs:documentation>
                                                                                     <xs:documentation>CHAVE_GRUPO: {perRef}</xs:documentation>
-                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {indReperc}(../indReperc) = [1]); N (nos demais casos)</xs:documentation>
+                                                                                    <xs:documentation>CONDICAO_GRUPO: O (se {indReperc}(../indReperc) = [1 ou 5]); N (nos demais casos)</xs:documentation>
                                                                                 </xs:annotation>
                                                                                 <xs:complexType>
                                                                                     <xs:sequence>
@@ -835,6 +854,7 @@
                                                                                             <xs:annotation>
                                                                                                 <xs:documentation>Informar o mês/ano (formato AAAA-MM) de referência das informações.</xs:documentation>
                                                                                                 <xs:documentation>Validação: Deve ser um período compreendido entre {compIni}(../compIni) e {compFim}(../compFim), informado no formato AAAA-MM.</xs:documentation>
+                                                                                                <xs:documentation>Retornar alerta caso {}(./perRef) seja posterior ao desligamento, se houver.</xs:documentation>
                                                                                             </xs:annotation>
                                                                                         </xs:element>
                                                                                         <xs:element name="baseCalculo" minOccurs="0">
@@ -925,7 +945,7 @@
                                                                                                 </xs:sequence>
                                                                                             </xs:complexType>
                                                                                         </xs:element>
-                                                                                        <xs:element name="infoInterm" minOccurs="0" maxOccurs="31" type="T_infoInterm">
+                                                                                        <xs:element name="infoInterm" minOccurs="0" maxOccurs="31" type="T_infoIntermProcTrab">
                                                                                             <xs:annotation>
                                                                                                 <xs:documentation>Informações relativas ao trabalho intermitente.</xs:documentation>
                                                                                                 <xs:documentation>CHAVE_GRUPO: {dia}</xs:documentation>

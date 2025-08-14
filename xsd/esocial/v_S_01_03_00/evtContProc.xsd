@@ -15,6 +15,7 @@
                         <xs:documentation>REGRA:REGRA_ENVIO_PROC_FECHAMENTO</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXC_RET_2501</xs:documentation>
                         <xs:documentation>REGRA:REGRA_EXISTE_INFO_EMPREGADOR</xs:documentation>
+                        <xs:documentation>REGRA:REGRA_RETIFICA_IDENTIFICADOR</xs:documentation>
                         <xs:documentation>REGRA:REGRA_VALIDA_EMPREGADOR</xs:documentation>
                     </xs:annotation>
                     <xs:complexType>
@@ -132,7 +133,7 @@
                                                 <xs:attribute name="perRef" use="required">
                                                     <xs:annotation>
                                                         <xs:documentation>Informar o mês/ano (formato AAAA-MM) de referência das informações.</xs:documentation>
-                                                        <xs:documentation>Validação: Deve ser um período existente no evento S-2500 para o trabalhador indicado em {cpfTrab}(../cpfTrab) e igual ou posterior a [2008-12].</xs:documentation>
+                                                        <xs:documentation>Validação: Deve ser um período existente no evento S-2500 para o trabalhador indicado em {cpfTrab}(../cpfTrab) (observado o campo {}(2500_ideTrab_ideSeqTrab) de S-2500, se existente) e igual ou posterior a [2008-12].</xs:documentation>
                                                     </xs:annotation>
                                                     <xs:simpleType>
                                                         <xs:restriction base="TS_periodo_mensal" />
@@ -305,6 +306,7 @@
                                                                 <xs:annotation>
                                                                     <xs:documentation>Valor de outros rendimentos isentos ou não tributáveis.</xs:documentation>
                                                                     <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                                    <xs:documentation>O campo não deve ser preenchido se {infoCRIRRF/tpCR}(2501_ideTrab_infoCRIRRF_tpCR) = [188951].</xs:documentation>
                                                                 </xs:annotation>
                                                                 <xs:simpleType>
                                                                     <xs:restriction base="TS_valorMonetario" />
@@ -360,6 +362,7 @@
                                                                         <xs:attribute name="vlrDespCustas">
                                                                             <xs:annotation>
                                                                                 <xs:documentation>Preencher com o valor das despesas com custas judiciais.</xs:documentation>
+                                                                                <xs:documentation>Validação: Deve ser maior ou igual a 0 (zero).</xs:documentation>
                                                                             </xs:annotation>
                                                                             <xs:simpleType>
                                                                                 <xs:restriction base="TS_valorMonetario" />
@@ -368,6 +371,9 @@
                                                                         <xs:attribute name="vlrDespAdvogados">
                                                                             <xs:annotation>
                                                                                 <xs:documentation>Preencher com o valor total das despesas com advogado(s).</xs:documentation>
+                                                                                <xs:documentation>Validação: Se o grupo {}(../ideAdv) for preenchido, o valor informado neste campo deve ser maior ou igual à soma do(s) campo(s) {}(../ideAdv_vlrAdv) do grupo {}(../ideAdv).</xs:documentation>
+                                                                                <xs:documentation>Deve ser maior ou igual a 0 (zero).</xs:documentation>
+                                                                                <xs:documentation>O não preenchimento do grupo {}(../ideAdv) indica que o contribuinte declarante não possui as informações detalhadas por advogado.</xs:documentation>
                                                                             </xs:annotation>
                                                                             <xs:simpleType>
                                                                                 <xs:restriction base="TS_valorMonetario" />
@@ -379,7 +385,7 @@
                                                                     <xs:annotation>
                                                                         <xs:documentation>Identificação dos advogados.</xs:documentation>
                                                                         <xs:documentation>CHAVE_GRUPO: {tpInsc}, {nrInsc}</xs:documentation>
-                                                                        <xs:documentation>CONDICAO_GRUPO: O (se {vlrDespAdvogados}(../despProcJud_vlrDespAdvogados) > 0); N (nos demais casos)</xs:documentation>
+                                                                        <xs:documentation>CONDICAO_GRUPO: OC (se {vlrDespAdvogados}(../despProcJud_vlrDespAdvogados) > 0); N (nos demais casos)</xs:documentation>
                                                                     </xs:annotation>
                                                                     <xs:complexType>
                                                                         <xs:attribute name="tpInsc">
