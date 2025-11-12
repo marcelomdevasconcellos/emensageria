@@ -22,7 +22,7 @@ from apps.esocial.choices import (
     STATUS_TRANSMISSOR_AGUARDANDO, STATUS_TRANSMISSOR_CADASTRADO, VERSOES)
 from config.functions import save_file
 from config.mixins import BaseModelEsocial
-from config.settings import BASE_DIR, VERSAO_LAYOUT_ESOCIAL
+from config.settings import BASE_DIR, VALIDAR_SCHEMA, VERSAO_LAYOUT_ESOCIAL
 
 logger = logging.getLogger("django")
 
@@ -507,31 +507,39 @@ class Eventos(BaseModelEsocial):
             request=None):
         from config.functions import validar_schema
         self.create_xml()
-        err = validar_schema(self.xsd_file(), self.xml_file())
-        err_list = []
-        if err:
-            for e in err:
-                err_list.append(
-                    {
-                        'tipo': '1',
-                        'codigo': '-',
-                        'descricao': e.reason,
-                        'localizacao': e.path
-                    })
-            self.ocorrencias_json = err_list
-            self.is_aberto = False
-            self.status = STATUS_EVENTO_ERRO
-            self.lote = None
-            self.save()
-            if request:
-                messages.error(request, 'Erro na validação do evento!')
+        if VALIDAR_SCHEMA:
+            err = validar_schema(self.xsd_file(), self.xml_file())
+            err_list = []
+            if err:
+                for e in err:
+                    err_list.append(
+                        {
+                            'tipo': '1',
+                            'codigo': '-',
+                            'descricao': e.reason,
+                            'localizacao': e.path
+                        })
+                self.ocorrencias_json = err_list
+                self.is_aberto = False
+                self.status = STATUS_EVENTO_ERRO
+                self.lote = None
+                self.save()
+                if request:
+                    messages.error(request, 'Erro na validação do evento!')
+            else:
+                self.ocorrencias_json = None
+                self.is_aberto = False
+                self.status = STATUS_EVENTO_AGUARD_ENVIO
+                self.save()
+                if request:
+                    messages.success(request, 'Evento validado com sucesso!')
         else:
             self.ocorrencias_json = None
             self.is_aberto = False
             self.status = STATUS_EVENTO_AGUARD_ENVIO
             self.save()
             if request:
-                messages.success(request, 'Evento validado com sucesso!')
+                messages.success(request, 'Evento criado sem validação!')
 
     def duplicar_evento(
             self,

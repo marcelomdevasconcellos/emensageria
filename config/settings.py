@@ -395,6 +395,8 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=True)
 
+VALIDAR_SCHEMA = env.bool("VALIDAR_SCHEMA", default=True)
+
 # Teste de integracao
 EMPREGADOR_ITEST = env(
     'EMPREGADOR_ITEST', default='34686613')
