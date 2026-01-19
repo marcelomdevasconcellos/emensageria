@@ -36,9 +36,3 @@ class CertificadosAdmin(AuditoriaAdminEventos):
             form,
             change):
         super().save_model(request, obj, form, change)
-        try:
-            obj.create_pem_files()
-        except Exception as e:
-            messages.error(
-                request, 'Erro ao tentar criar as chaves do certificado, '
-                         'verifique se o mesmo está com a senha correta. {}'.format(e))
